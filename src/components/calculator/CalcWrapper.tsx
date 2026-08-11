@@ -17,18 +17,35 @@ interface Props {
   formula?: string;
   hideHeader?: boolean;
   hideBreadcrumb?: boolean;
+  /**
+   * @deprecated Use enableSchema instead. Kept temporarily for backward compatibility.
+   */
   disableSchema?: boolean;
+  /**
+   * Opt-in: render a SoftwareApplication schema for this page.
+   * Only pass this on actual individual calculator pages, never on pillar/hub pages.
+   */
+  enableSchema?: boolean;
   titleClassName?: string;
   compactHeader?: boolean;
 }
 
 export function CalcWrapper({
   title, description, crumbs, isNepal,
-  children, formula, relatedCalcs, hideHeader = false, hideBreadcrumb = false, disableSchema = false, titleClassName, compactHeader
+  children, formula, relatedCalcs,
+  hideHeader = false, hideBreadcrumb = false,
+  disableSchema, enableSchema = false,
+  titleClassName, compactHeader
 }: Props) {
+  // Opt-in: only render SoftwareApplication if explicitly requested.
+  // The legacy disableSchema prop is ignored in the new architecture;
+  // pages that previously passed disableSchema={true} are now safe by default.
+  const shouldRenderSoftwareSchema = enableSchema && !disableSchema;
+
   return (
     <div lang={isNepal ? 'ne' : 'en'} className="min-h-screen bg-white">
-      <JsonLd 
+      {/* Breadcrumb schema — CalcWrapper is the sole breadcrumb owner for pages using this layout */}
+      <JsonLd
         type="breadcrumb"
         breadcrumbItems={[
           { name: 'Home', item: 'https://nepacalc.com' },
@@ -39,23 +56,14 @@ export function CalcWrapper({
         ]}
       />
 
-      {!disableSchema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "SoftwareApplication",
-              "name": title,
-              "description": description,
-              "applicationCategory": "UtilitiesApplication",
-              "operatingSystem": "All",
-              "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD"
-              }
-            })
+      {/* SoftwareApplication schema — opt-in only for individual calculator pages */}
+      {shouldRenderSoftwareSchema && (
+        <JsonLd
+          type="calculator"
+          data={{
+            name: title,
+            description: typeof description === 'string' ? description : undefined,
+            applicationCategory: 'EducationalApplication',
           }}
         />
       )}
@@ -149,4 +157,3 @@ export function CalcWrapper({
     </div>
   );
 }
-

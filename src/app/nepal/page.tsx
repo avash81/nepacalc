@@ -14,13 +14,6 @@ export default function NepalDirectoryPage() {
   return (
     <>
       <JsonLd
-        type="breadcrumb"
-        breadcrumbItems={[
-          { name: 'Home', item: 'https://nepacalc.com/' },
-          { name: 'Nepal Calculators', item: 'https://nepacalc.com/nepal/' }
-        ]}
-      />
-      <JsonLd
         type="collection"
         data={{
           name: 'Nepal Calculators',

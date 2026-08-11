@@ -32,13 +32,6 @@ export default function HealthPillarPage() {
   return (
     <>
       <JsonLd
-        type="breadcrumb"
-        breadcrumbItems={[
-          { name: 'Home', item: 'https://NepaCalc.com/' },
-          { name: 'Health', item: 'https://NepaCalc.com/health/' }
-        ]}
-      />
-      <JsonLd
         type="collection"
         data={{
           name: 'Health & Fitness Calculators',

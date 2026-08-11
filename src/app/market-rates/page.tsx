@@ -39,13 +39,6 @@ export default function MarketRatesPillarPage() {
           })),
         }}
       />
-      <JsonLd
-        type="breadcrumb"
-        breadcrumbItems={[
-          { name: 'Home', item: 'https://NepaCalc.com/' },
-          { name: 'Market Rates', item: 'https://NepaCalc.com/market-rates/' }
-        ]}
-      />
       <CalcWrapper
         title="Live Market Rates"
         description="Real-time gold, silver, forex, and remittance rates for Nepal. Synchronized with NRB and FENEGOSIDA data feeds."

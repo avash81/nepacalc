@@ -35,13 +35,6 @@ export default function EngineeringPillarPage() {
   return (
     <>
       <JsonLd
-        type="breadcrumb"
-        breadcrumbItems={[
-          { name: 'Home', item: 'https://NepaCalc.com/' },
-          { name: 'Engineering', item: 'https://NepaCalc.com/engineering/' }
-        ]}
-      />
-      <JsonLd
         type="collection"
         data={{
           name: 'Engineering Calculators & Tools',

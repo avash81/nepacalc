@@ -31,13 +31,6 @@ export default function FinancePillarPage() {
   return (
     <>
       <JsonLd
-        type="breadcrumb"
-        breadcrumbItems={[
-          { name: 'Home', item: 'https://nepacalc.com/' },
-          { name: 'Finance & Tax', item: 'https://nepacalc.com/finance/' }
-        ]}
-      />
-      <JsonLd
         type="collection"
         data={{
           name: 'Finance & Tax Calculators',

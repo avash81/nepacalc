@@ -35,13 +35,6 @@ export default function ConvertersPillarPage() {
   return (
     <>
       <JsonLd
-        type="breadcrumb"
-        breadcrumbItems={[
-          { name: 'Home', item: 'https://NepaCalc.com/' },
-          { name: 'Converters', item: 'https://NepaCalc.com/converters/' }
-        ]}
-      />
-      <JsonLd
         type="collection"
         data={{
           name: 'Converters & Utility Calculators',

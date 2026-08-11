@@ -62,7 +62,7 @@ export function JsonLd(props: JsonLdProps) {
 function generateSchema(
   type: JsonLdProps['type'],
   data: Record<string, any>
-) {
+): Record<string, any> {
   switch (type) {
     /*
      * ============================================================

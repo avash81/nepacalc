@@ -46,13 +46,6 @@ export default function MathToolsPillarPage() {
   return (
     <>
       <JsonLd
-        type="breadcrumb"
-        breadcrumbItems={[
-          { name: 'Home', item: 'https://NepaCalc.com/' },
-          { name: 'Math Tools', item: 'https://NepaCalc.com/math-tools/' }
-        ]}
-      />
-      <JsonLd
         type="collection"
         data={{
           name: 'Math & Education Calculators',
