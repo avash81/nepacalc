@@ -40,7 +40,7 @@ export default function PricingClient() {
 
                    <ul className="space-y-4">
                       {[
-                        'Access to 150+ Precision Tools',
+                        'Access to 100+ Precision Tools',
                         'Real-time Nepal Fiscal Rules',
                         'Advanced 3D Engineering Plotters',
                         'Financial & Tax Compliance Engines',
