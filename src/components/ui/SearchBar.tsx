@@ -196,13 +196,13 @@ export function SearchBar({ variant, onExpandChange }: SearchBarProps) {
         HERO VARIANT
       */}
       {!isNavbar && (
-        <div className={`relative flex items-center bg-white rounded-full p-1.5 shadow-sm border border-[#dadce0] transition-all duration-300 ${isOpen ? 'ring-4 ring-[#0E5C52]/20 border-[#0E5C52]' : 'hover:shadow-md hover:border-slate-300'}`}>
+        <div className={`relative flex items-center bg-white rounded-full p-1.5 shadow-sm border transition-all duration-300 focus-within:ring-[3px] focus-within:ring-[#0E5C52]/30 focus-within:border-[#0E5C52] ${isOpen ? 'ring-[3px] ring-[#0E5C52]/30 border-[#0E5C52]' : 'border-[#dadce0] hover:shadow-md hover:border-slate-300'}`}>
           <input
             ref={inputRef}
             type="text"
             aria-label="Search calculators"
             placeholder="Find calculators..."
-            className="w-full h-12 pl-5 pr-4 bg-transparent text-[#1a1a1a] placeholder:text-[#8a8a8a] text-[16px] sm:text-[18px] font-medium focus:outline-none appearance-none"
+            className="w-full h-12 pl-5 pr-4 bg-transparent text-[#1a1a1a] placeholder:text-[#8a8a8a] text-[16px] sm:text-[18px] font-medium focus:outline-none focus:ring-0 appearance-none"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onFocus={() => query.trim() && setIsOpen(true)}
@@ -211,7 +211,7 @@ export function SearchBar({ variant, onExpandChange }: SearchBarProps) {
           <button
             onClick={handleSubmit}
             aria-label="Search"
-            className="w-12 h-12 rounded-full bg-[#0E5C52] flex items-center justify-center text-white shrink-0 hover:bg-[#0a453d] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0E5C52]"
+            className="w-12 h-12 rounded-full bg-[#0E5C52] flex items-center justify-center text-white shrink-0 hover:bg-[#0a453d] transition-colors focus:outline-none"
           >
             <Search size={22} strokeWidth={2.5} />
           </button>
