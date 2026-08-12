@@ -42,6 +42,19 @@ input:focus {
   border-left: 4px solid #1a73e8;
 }
 
+/* Search pill input — reset all global input overrides */
+input.search-pill-input,
+input.search-pill-input:focus,
+input.search-pill-input:focus-visible {
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  border-color: transparent !important;
+}
+
 /* Tailwind Padding Override Fixes */
 input.pl-12, textarea.pl-12 {
   padding-left: 48px !important;
