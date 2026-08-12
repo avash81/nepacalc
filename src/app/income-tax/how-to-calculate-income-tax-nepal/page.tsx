@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { calcMeta } from '@/lib/calcMeta';
+import { JsonLd } from '@/components/seo/JsonLd';
 
 export const metadata = calcMeta({
   title: "How to Calculate Income Tax in Nepal (2083/84 Guide)",
@@ -19,124 +20,85 @@ export const metadata = calcMeta({
 });
 
 export default function Page() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nepacalc.com/" },
-      { "@type": "ListItem", "position": 2, "name": "Income Tax", "item": "https://nepacalc.com/income-tax/" },
-      { "@type": "ListItem", "position": 3, "name": "How to Calculate Income Tax in Nepal", "item": "https://nepacalc.com/income-tax/how-to-calculate-income-tax-nepal/" }
-    ]
-  };
-
-  const webPageSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "@id": "https://nepacalc.com/income-tax/how-to-calculate-income-tax-nepal/",
-    "url": "https://nepacalc.com/income-tax/how-to-calculate-income-tax-nepal/",
-    "name": "How to Calculate Income Tax in Nepal (FY 2083/84)",
-    "description": "Step-by-step guide to calculating income tax in Nepal for FY 2083/84. IRD progressive slabs, deduction rules, SSF exemption, formula and worked salary examples.",
-    "inLanguage": "en-NP",
-    "datePublished": "2026-07-01",
-    "dateModified": "2026-07-01",
-    "isPartOf": { "@type": "WebSite", "name": "NepaCalc", "url": "https://nepacalc.com" },
-    "speakable": {
-      "@type": "SpeakableSpecification",
-      "cssSelector": [".quick-answer", ".formula-block", ".step-guide", ".faq-section"]
-    }
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    "name": "How to Calculate Income Tax in Nepal (FY 2083/84)",
-    "description": "Complete step-by-step method for calculating personal income tax in Nepal for fiscal year 2083/84 using official IRD progressive slabs and Finance Act 2083 deduction rules.",
-    "totalTime": "PT10M",
-    "supply": [
-      { "@type": "HowToSupply", "name": "Annual gross salary figure" },
-      { "@type": "HowToSupply", "name": "SSF/EPF/CIT contribution amount" },
-      { "@type": "HowToSupply", "name": "Insurance premium amounts" }
-    ],
-    "step": [
-      { "@type": "HowToStep", "position": 1, "name": "Calculate total annual gross income", "text": "Multiply monthly basic salary by 12 and add all allowances and annual bonuses including Dashain bonus." },
-      { "@type": "HowToStep", "position": 2, "name": "Calculate retirement contribution deduction", "text": "Sum SSF, EPF, and CIT contributions. Apply cap: deduct the lower of actual contribution, Rs. 5,00,000, or one-third of gross income." },
-      { "@type": "HowToStep", "position": 3, "name": "Add insurance deductions", "text": "Add life insurance premium paid up to Rs. 40,000 and health insurance premium paid up to Rs. 20,000." },
-      { "@type": "HowToStep", "position": 4, "name": "Calculate Net Assessable Income", "text": "Subtract retirement deduction and insurance deductions from gross annual income. The result is your Net Assessable Income (NAI)." },
-      { "@type": "HowToStep", "position": 5, "name": "Check SSF status", "text": "If you contribute to SSF, Band 1 tax is waived (0%). If not, Band 1 applies at 1%." },
-      { "@type": "HowToStep", "position": 6, "name": "Apply Band 1 — 1% on first Rs. 10 lakh", "text": "If NAI is below Rs. 10 lakh: NAI × 1%. If NAI exceeds Rs. 10 lakh: Rs. 10,00,000 × 1% = Rs. 10,000. Skip this step if SSF contributor." },
-      { "@type": "HowToStep", "position": 7, "name": "Apply Band 2 — 10% on Rs. 10–15 lakh", "text": "Only if NAI exceeds Rs. 10 lakh. Taxable amount = NAI minus Rs. 10 lakh (max Rs. 5 lakh). Band 2 tax = taxable amount × 10%." },
-      { "@type": "HowToStep", "position": 8, "name": "Apply Band 3 — 20% on Rs. 15–25 lakh", "text": "Only if NAI exceeds Rs. 15 lakh. Taxable amount = NAI minus Rs. 15 lakh (max Rs. 10 lakh). Band 3 tax = taxable amount × 20%." },
-      { "@type": "HowToStep", "position": 9, "name": "Apply Band 4 — 27% on Rs. 25–40 lakh", "text": "Only if NAI exceeds Rs. 25 lakh. Taxable amount = NAI minus Rs. 25 lakh (max Rs. 15 lakh). Band 4 tax = taxable amount × 27%." },
-      { "@type": "HowToStep", "position": 10, "name": "Apply Band 5 — 29% above Rs. 40 lakh", "text": "Only if NAI exceeds Rs. 40 lakh. Taxable amount = NAI minus Rs. 40 lakh. Band 5 tax = taxable amount × 29%." },
-      { "@type": "HowToStep", "position": 11, "name": "Sum all band results", "text": "Total Annual Tax = Band 1 + Band 2 + Band 3 + Band 4 + Band 5." },
-      { "@type": "HowToStep", "position": 12, "name": "Apply female rebate if eligible", "text": "If you are a resident female employee with only salary income, reduce total annual tax by 10%." },
-      { "@type": "HowToStep", "position": 13, "name": "Calculate monthly TDS", "text": "Monthly TDS = Annual Tax divided by 12." },
-      { "@type": "HowToStep", "position": 14, "name": "Verify with calculator", "text": "Use the Income Tax Calculator Nepal at nepacalc.com/calculator/nepal-income-tax/ to confirm your manual calculation." }
-    ]
-  };
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How to calculate income tax in Nepal?",
-        "acceptedAnswer": { "@type": "Answer", "text": "To calculate income tax in Nepal for FY 2083/84: subtract SSF/EPF/CIT deductions (capped at Rs. 5 lakh or 1/3 of income) and insurance premiums from gross annual income for Net Assessable Income, then apply progressive slab rates — 1% up to Rs. 10 lakh, 10% on Rs. 10–15 lakh, 20% on Rs. 15–25 lakh, 27% on Rs. 25–40 lakh, 29% above Rs. 40 lakh. SSF contributors skip the 1% band. Female salary-only employees reduce final tax by 10%." }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the formula to calculate income tax in Nepal?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Nepal income tax formula for FY 2083/84: NAI = Gross Income minus Deductions. Annual Tax = [NAI up to Rs. 10L × 1%] + [next Rs. 5L × 10%] + [next Rs. 10L × 20%] + [next Rs. 15L × 27%] + [above Rs. 40L × 29%]. Monthly TDS = Annual Tax divided by 12. SSF contributors use 0% for the first band." }
-      },
-      {
-        "@type": "Question",
-        "name": "How much tax will I pay if my salary is Rs. 1 lakh per month in Nepal?",
-        "acceptedAnswer": { "@type": "Answer", "text": "On Rs. 1 lakh monthly salary (Rs. 12 lakh/year) with no deductions in FY 2083/84: Rs. 10,000 (1% on first Rs. 10 lakh) + Rs. 20,000 (10% on next Rs. 2 lakh) = Rs. 30,000 annual tax (Rs. 2,500/month). SSF contributors pay Rs. 20,000/year (Rs. 1,667/month)." }
-      },
-      {
-        "@type": "Question",
-        "name": "How to calculate salary tax in Nepal?",
-        "acceptedAnswer": { "@type": "Answer", "text": "To calculate salary tax in Nepal: add monthly basic, allowances, and bonuses for annual gross income. Subtract SSF/EPF/CIT (cap: Rs. 5 lakh or 1/3 of gross) and insurance premiums for Net Assessable Income. Apply FY 2083/84 progressive slabs progressively. Apply 10% female rebate if eligible. Divide by 12 for monthly TDS." }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the biggest mistake when calculating income tax in Nepal?",
-        "acceptedAnswer": { "@type": "Answer", "text": "The most common mistake is applying the slab rate to total income rather than progressively. Each slab rate applies only to the portion of income falling within that specific band. For example, at Rs. 18 lakh NAI, only the Rs. 15–18 lakh portion is taxed at 20%, not the entire Rs. 18 lakh." }
-      },
-      {
-        "@type": "Question",
-        "name": "How is TDS calculated on salary in Nepal?",
-        "acceptedAnswer": { "@type": "Answer", "text": "TDS on salary in Nepal is calculated by estimating the employee's annual tax using the FY 2083/84 IRD progressive slabs after all eligible deductions, applying the female rebate if applicable, then dividing by 12 to find the monthly TDS deduction. Employers deposit this amount with the IRD each month." }
-      },
-      {
-        "@type": "Question",
-        "name": "How do self-employed individuals calculate income tax in Nepal?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Self-employed individuals in Nepal use the same FY 2083/84 progressive slab rates as salaried employees but subtract business expenses from gross business income first. They pay advance tax in three installments to the IRD: 40% by end of Poush, 70% by end of Chaitra, and 100% by end of Ashad. IT freelancers earning foreign currency may qualify for a flat 5% rate on income up to Rs. 40 lakh." }
-      }
-    ]
-  };
-
-  const articleSchema = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "How to Calculate Income Tax in Nepal (FY 2083/84)",
-    "description": "Complete step-by-step guide to calculating personal income tax in Nepal for FY 2083/84. IRD slabs, deductions, SSF exemption, formula and worked examples.",
-    "author": { "@type": "Organization", "name": "NepaCalc", "url": "https://nepacalc.com" },
-    "publisher": { "@type": "Organization", "name": "NepaCalc", "logo": { "@type": "ImageObject", "url": "https://nepacalc.com/logo.png" } },
-    "datePublished": "2026-07-01",
-    "dateModified": "2026-07-01",
-    "mainEntityOfPage": "https://nepacalc.com/income-tax/how-to-calculate-income-tax-nepal/",
-    "keywords": ["how to calculate income tax in nepal", "income tax calculation nepal", "income tax formula nepal", "how to calculate salary tax nepal", "TDS calculation nepal", "nepal income tax 2083/84", "IRD tax calculation nepal"]
-  };
-
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <JsonLd 
+        type="unified" 
+        data={{
+          url: "https://nepacalc.com/income-tax/how-to-calculate-income-tax-nepal/",
+          breadcrumbUrl: "https://nepacalc.com/income-tax/how-to-calculate-income-tax-nepal/",
+          breadcrumb: [
+            { name: "Home", item: "https://nepacalc.com/" },
+            { name: "Income Tax", item: "https://nepacalc.com/income-tax/" },
+            { name: "How to Calculate Income Tax in Nepal", item: "https://nepacalc.com/income-tax/how-to-calculate-income-tax-nepal/" }
+          ],
+          webpage: {
+            url: "https://nepacalc.com/income-tax/how-to-calculate-income-tax-nepal/",
+            name: "How to Calculate Income Tax in Nepal (FY 2083/84)",
+            description: "Step-by-step guide to calculating income tax in Nepal for FY 2083/84. IRD progressive slabs, deduction rules, SSF exemption, formula and worked salary examples.",
+            isPartOf: "https://nepacalc.com/#website",
+          },
+          article: {
+            url: "https://nepacalc.com/income-tax/how-to-calculate-income-tax-nepal/",
+            headline: "How to Calculate Income Tax in Nepal (FY 2083/84)",
+            description: "Complete step-by-step guide to calculating personal income tax in Nepal for FY 2083/84. IRD slabs, deductions, SSF exemption, formula and worked examples.",
+            author: "NepaCalc",
+            datePublished: "2026-07-01",
+            dateModified: "2026-07-01"
+          },
+          howto: {
+            name: "How to Calculate Income Tax in Nepal (FY 2083/84)",
+            description: "Complete step-by-step method for calculating personal income tax in Nepal for fiscal year 2083/84 using official IRD progressive slabs and Finance Act 2083 deduction rules.",
+            url: "https://nepacalc.com/income-tax/how-to-calculate-income-tax-nepal/",
+            steps: [
+              { name: "Calculate total annual gross income", text: "Multiply monthly basic salary by 12 and add all allowances and annual bonuses including Dashain bonus." },
+              { name: "Calculate retirement contribution deduction", text: "Sum SSF, EPF, and CIT contributions. Apply cap: deduct the lower of actual contribution, Rs. 5,00,000, or one-third of gross income." },
+              { name: "Add insurance deductions", text: "Add life insurance premium paid up to Rs. 40,000 and health insurance premium paid up to Rs. 20,000." },
+              { name: "Calculate Net Assessable Income", text: "Subtract retirement deduction and insurance deductions from gross annual income. The result is your Net Assessable Income (NAI)." },
+              { name: "Check SSF status", text: "If you contribute to SSF, Band 1 tax is waived (0%). If not, Band 1 applies at 1%." },
+              { name: "Apply Band 1 — 1% on first Rs. 10 lakh", text: "If NAI is below Rs. 10 lakh: NAI × 1%. If NAI exceeds Rs. 10 lakh: Rs. 10,00,000 × 1% = Rs. 10,000. Skip this step if SSF contributor." },
+              { name: "Apply Band 2 — 10% on Rs. 10–15 lakh", text: "Only if NAI exceeds Rs. 10 lakh. Taxable amount = NAI minus Rs. 10 lakh (max Rs. 5 lakh). Band 2 tax = taxable amount × 10%." },
+              { name: "Apply Band 3 — 20% on Rs. 15–25 lakh", text: "Only if NAI exceeds Rs. 15 lakh. Taxable amount = NAI minus Rs. 15 lakh (max Rs. 10 lakh). Band 3 tax = taxable amount × 20%." },
+              { name: "Apply Band 4 — 27% on Rs. 25–40 lakh", text: "Only if NAI exceeds Rs. 25 lakh. Taxable amount = NAI minus Rs. 25 lakh (max Rs. 15 lakh). Band 4 tax = taxable amount × 27%." },
+              { name: "Apply Band 5 — 29% above Rs. 40 lakh", text: "Only if NAI exceeds Rs. 40 lakh. Taxable amount = NAI minus Rs. 40 lakh. Band 5 tax = taxable amount × 29%." },
+              { name: "Sum all band results", text: "Total Annual Tax = Band 1 + Band 2 + Band 3 + Band 4 + Band 5." },
+              { name: "Apply female rebate if eligible", text: "If you are a resident female employee with only salary income, reduce total annual tax by 10%." },
+              { name: "Calculate monthly TDS", text: "Monthly TDS = Annual Tax divided by 12." },
+              { name: "Verify with calculator", text: "Use the Income Tax Calculator Nepal at nepacalc.com/calculator/nepal-income-tax/ to confirm your manual calculation." }
+            ]
+          },
+          faqs: [
+            {
+              question: "How to calculate income tax in Nepal?",
+              answer: "To calculate income tax in Nepal for FY 2083/84: subtract SSF/EPF/CIT deductions (capped at Rs. 5 lakh or 1/3 of income) and insurance premiums from gross annual income for Net Assessable Income, then apply progressive slab rates — 1% up to Rs. 10 lakh, 10% on Rs. 10–15 lakh, 20% on Rs. 15–25 lakh, 27% on Rs. 25–40 lakh, 29% above Rs. 40 lakh. SSF contributors skip the 1% band. Female salary-only employees reduce final tax by 10%."
+            },
+            {
+              question: "What is the formula to calculate income tax in Nepal?",
+              answer: "Nepal income tax formula for FY 2083/84: NAI = Gross Income minus Deductions. Annual Tax = [NAI up to Rs. 10L × 1%] + [next Rs. 5L × 10%] + [next Rs. 10L × 20%] + [next Rs. 15L × 27%] + [above Rs. 40L × 29%]. Monthly TDS = Annual Tax divided by 12. SSF contributors use 0% for the first band."
+            },
+            {
+              question: "How much tax will I pay if my salary is Rs. 1 lakh per month in Nepal?",
+              answer: "On Rs. 1 lakh monthly salary (Rs. 12 lakh/year) with no deductions in FY 2083/84: Rs. 10,000 (1% on first Rs. 10 lakh) + Rs. 20,000 (10% on next Rs. 2 lakh) = Rs. 30,000 annual tax (Rs. 2,500/month). SSF contributors pay Rs. 20,000/year (Rs. 1,667/month)."
+            },
+            {
+              question: "How to calculate salary tax in Nepal?",
+              answer: "To calculate salary tax in Nepal: add monthly basic, allowances, and bonuses for annual gross income. Subtract SSF/EPF/CIT (cap: Rs. 5 lakh or 1/3 of gross) and insurance premiums for Net Assessable Income. Apply FY 2083/84 progressive slabs progressively. Apply 10% female rebate if eligible. Divide by 12 for monthly TDS."
+            },
+            {
+              question: "What is the biggest mistake when calculating income tax in Nepal?",
+              answer: "The most common mistake is applying the slab rate to total income rather than progressively. Each slab rate applies only to the portion of income falling within that specific band. For example, at Rs. 18 lakh NAI, only the Rs. 15–18 lakh portion is taxed at 20%, not the entire Rs. 18 lakh."
+            },
+            {
+              question: "How is TDS calculated on salary in Nepal?",
+              answer: "TDS on salary in Nepal is calculated by estimating the employee's annual tax using the FY 2083/84 IRD progressive slabs after all eligible deductions, applying the female rebate if applicable, then dividing by 12 to find the monthly TDS deduction. Employers deposit this amount with the IRD each month."
+            },
+            {
+              question: "How do self-employed individuals calculate income tax in Nepal?",
+              answer: "Self-employed individuals in Nepal use the same FY 2083/84 progressive slab rates as salaried employees but subtract business expenses from gross business income first. They pay advance tax in three installments to the IRD: 40% by end of Poush, 70% by end of Chaitra, and 100% by end of Ashad. IT freelancers earning foreign currency may qualify for a flat 5% rate on income up to Rs. 40 lakh."
+            }
+          ]
+        }} 
+      />
 
       <div className="bg-[#F1F3F4] min-h-screen">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">

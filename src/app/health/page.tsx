@@ -3,14 +3,12 @@ import { CALCULATORS } from '@/data/calculators';
 import { PillarCard } from '@/components/calculator/PillarCard';
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { HubSEOContent } from '@/components/layout/HubSEOContent';
-import type { Metadata } from 'next';
 
 export const metadata = calcMeta({
-  title: 'Nepal Health Calculators BMI Calorie TDEE More',
-  description: 'BMI BMR TDEE calorie body fat ideal weight free health calculators for Nepal.',
+  title: 'Health & Fitness Calculators | BMI, BMR & More | NepaCalc',
+  description: 'Free health and fitness calculators for BMI, BMR, calories, body fat, ideal weight, hydration, pregnancy and wellness planning. For estimation only — not medical advice.',
   slug: 'health',
-  keywords: ['bmi calculator nepal', 'calorie calculator nepal', 'health tools nepal', 'bmr calculator nepal'],
+  keywords: ['bmi calculator nepal', 'calorie calculator', 'bmr calculator', 'body fat calculator', 'health tools'],
 });
 
 const TAGS: Record<string, string> = {
@@ -32,27 +30,33 @@ export default function HealthPillarPage() {
   return (
     <>
       <JsonLd
-        type="collection"
+        type="unified"
         data={{
-          name: 'Health & Fitness Calculators',
-          description:
-            'Free health, fitness, calorie, BMI, BMR and body composition calculators.',
           url: 'https://nepacalc.com/health/',
-          calculators: healthTools.map((calculator, index) => ({
-            name: calculator.name,
-            url: `https://nepacalc.com${calculator.slug.includes('/') ? '/' + calculator.slug : '/calculator/' + calculator.slug}/`,
-            description: calculator.description,
-            position: index + 1,
-          })),
+          collection: {
+            url: 'https://nepacalc.com/health/',
+            name: 'Health & Fitness Calculators',
+            description: 'Free health, fitness, calorie, BMI, BMR and body composition calculators.',
+          },
+          itemList: {
+            url: 'https://nepacalc.com/health/',
+            name: 'Health & Fitness Calculators - List',
+            description: 'List of calculators in Health & Fitness Calculators',
+            items: healthTools.map((calculator, index) => ({
+              position: index + 1,
+              name: calculator.name,
+              url: `https://nepacalc.com${calculator.slug.includes('/') ? '/' + calculator.slug : '/calculator/' + calculator.slug}/`,
+            })),
+          }
         }}
       />
       <CalcWrapper
         title="Health & Fitness Calculators"
-        description="WHO-standard physiological tools for body composition, nutrition, hydration, and wellness tracking. Accurate and easy to use."
+        description="Free health and fitness calculators for BMI, BMR, calories, body fat, ideal weight, hydration, pregnancy and wellness estimates. These tools are for general planning and estimation — not medical diagnosis."
         crumbs={[{ label: 'Health & Fitness' }]}
       >
         <div className="py-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             {healthTools.map(calc => (
               <PillarCard
                 key={calc.id}
@@ -67,15 +71,18 @@ export default function HealthPillarPage() {
             ))}
           </div>
 
-          {/* SEO Rich Content, ~1500+ Words Health Hub */}
-          <div className="bg-white border border-[#DADCE0] rounded-xl p-8 lg:p-12 shadow-sm">
-            <article className="prose prose-slate max-w-none">
-              <HubSEOContent category="health" />
-            </article>
+          {/* About section + medical disclaimer */}
+          <div className="bg-white border border-[#dadce0] rounded-2xl p-6 space-y-4">
+            <h2 className="text-xl font-bold text-[#202124]">About Health Calculators</h2>
+            <p className="text-[#5f6368] leading-relaxed">
+              NepaCalc health calculators provide estimates based on the inputs and formulas implemented by each tool. They can be useful for understanding common screening measures such as BMI and BMR, estimating calorie needs, or tracking wellness goals.
+            </p>
+            <p className="text-[#5f6368] leading-relaxed font-medium">
+              These calculators are for general information and planning only. They do not provide medical diagnoses and are not a substitute for advice from a qualified healthcare professional. Anyone with a health concern should consult a doctor or relevant medical specialist.
+            </p>
           </div>
         </div>
       </CalcWrapper>
     </>
   );
 }
-

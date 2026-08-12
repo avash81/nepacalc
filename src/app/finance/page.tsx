@@ -3,14 +3,12 @@ import { CALCULATORS } from '@/data/calculators';
 import { PillarCard } from '@/components/calculator/PillarCard';
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { HubSEOContent } from '@/components/layout/HubSEOContent';
-import type { Metadata } from 'next';
 
 export const metadata = calcMeta({
-  title: 'Nepal Finance Calculators Tax VAT Loans More',
-  description: 'Free Nepal finance calculators for income tax VAT TDS home loans FD SIP and gratuity. Updated for FY 2083 82. No signup needed.',
+  title: 'Finance & Tax Calculators | EMI, Loans & More | NepaCalc',
+  description: 'Free financial calculators for EMI, loans, mortgages, SIP, compound interest, fixed deposits, savings, CAGR and financial planning — including Nepal-focused tools.',
   slug: 'finance',
-  keywords: ['nepal finance calculator', 'tax calculator nepal', 'vat calculator nepal', 'loan emi calculator nepal', 'sip calculator nepal'],
+  keywords: ['nepal finance calculator', 'tax calculator nepal', 'loan emi calculator nepal', 'sip calculator nepal', 'compound interest calculator'],
 });
 
 const TAGS: Record<string, string> = {
@@ -31,27 +29,33 @@ export default function FinancePillarPage() {
   return (
     <>
       <JsonLd
-        type="collection"
+        type="unified"
         data={{
-          name: 'Finance & Tax Calculators',
-          description:
-            'Free finance, tax, loan, investment and savings calculators.',
           url: 'https://nepacalc.com/finance/',
-          calculators: financeTools.map((calculator, index) => ({
-            name: calculator.name,
-            url: `https://nepacalc.com${calculator.slug.includes('/') ? '/' + calculator.slug : '/calculator/' + calculator.slug}/`,
-            description: calculator.description,
-            position: index + 1,
-          })),
+          collection: {
+            url: 'https://nepacalc.com/finance/',
+            name: 'Finance & Tax Calculators',
+            description: 'Free finance, tax, loan, investment and savings calculators.',
+          },
+          itemList: {
+            url: 'https://nepacalc.com/finance/',
+            name: 'Finance & Tax Calculators - List',
+            description: 'List of calculators in Finance & Tax Calculators',
+            items: financeTools.map((calculator, index) => ({
+              position: index + 1,
+              name: calculator.name,
+              url: `https://nepacalc.com${calculator.slug.includes('/') ? '/' + calculator.slug : '/calculator/' + calculator.slug}/`,
+            })),
+          }
         }}
       />
       <CalcWrapper
         title="Finance & Tax Calculators"
-        description="Professional financial planning tools for loans, investments, savings, and interest calculations built on bank-grade amortization logic."
+        description="Free financial calculators for loans, EMI, mortgages, SIP, compound interest, fixed deposits, savings and financial planning — including Nepal-focused tools."
         crumbs={[{ label: 'Finance & Tax' }]}
       >
         <div className="py-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             {financeTools.map(calc => (
               <PillarCard
                 key={calc.id}
@@ -66,48 +70,15 @@ export default function FinancePillarPage() {
             ))}
           </div>
 
-          {/* SEO Rich Content, ~1500+ Words Finance Hub */}
-          <div className="bg-white border border-[#DADCE0] rounded-xl p-8 lg:p-12 shadow-sm">
-            <article className="prose prose-slate max-w-none">
-              <HubSEOContent category="finance" />
-              
-              <div className="mt-16 p-10 bg-[#1A73E8] text-white rounded-lg shadow-sm">
-                <h3 className="text-white text-2xl font-black mb-6">Bank-Grade Precision</h3>
-                <p className="text-blue-50 leading-relaxed mb-8">
-                  NepaCalc uses the same underlying algorithms used by leading financial institutions. Our formulas are strictly aligned with international standards:
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  <div className="bg-white/10 p-4 rounded-xl backdrop-blur-sm">
-                    <p className="text-[10px] uppercase font-black tracking-widest opacity-70 mb-1 text-blue-100">Amortization</p>
-                    <p className="font-bold text-sm">Reducing Balance Logic</p>
-                  </div>
-                  <div className="bg-white/10 p-4 rounded-xl backdrop-blur-sm">
-                    <p className="text-[10px] uppercase font-black tracking-widest opacity-70 mb-1 text-blue-100">Growth</p>
-                    <p className="font-bold text-sm">Compound Annual Rate</p>
-                  </div>
-                  <div className="bg-white/10 p-4 rounded-xl backdrop-blur-sm">
-                    <p className="text-[10px] uppercase font-black tracking-widest opacity-70 mb-1 text-blue-100">Verification</p>
-                    <p className="font-bold text-sm">NRB & IRD Compliant</p>
-                  </div>
-                </div>
-              </div>
-
-              <h3 className="text-2xl font-black text-[#202124] mt-12">Frequently Asked Questions</h3>
-              <div className="space-y-6">
-                <div className="p-6 border border-[#DADCE0] rounded-2xl">
-                  <h4 className="font-black text-[#202124]">How does the SIP calculator work?</h4>
-                  <p className="text-sm text-[#5F6368] mt-2">It uses the future value formula for an annuity: FV = P × [((1 + r)^n - 1) / r] × (1 + r), where P is the periodic investment, r is the monthly interest rate, and n is the total number of months.</p>
-                </div>
-                <div className="p-6 border border-[#DADCE0] rounded-2xl">
-                  <h4 className="font-black text-[#202124]">What is the difference between Simple and Compound Interest?</h4>
-                  <p className="text-sm text-[#5F6368] mt-2">Simple interest is calculated only on the principal amount. Compound interest is calculated on the principal plus any interest that has already been added.</p>
-                </div>
-              </div>
-            </article>
+          {/* About section */}
+          <div className="bg-white border border-[#dadce0] rounded-2xl p-6 space-y-4">
+            <h2 className="text-xl font-bold text-[#202124]">About Finance Calculators</h2>
+            <p className="text-[#5f6368] leading-relaxed">
+              NepaCalc provides financial calculators for common planning tasks including loan and EMI estimates, investment growth, savings targets, interest comparisons and Nepal tax-related calculations. Results are estimates based on the inputs and assumptions entered — verify final figures with your bank, financial advisor or the relevant official source before making financial decisions.
+            </p>
           </div>
         </div>
       </CalcWrapper>
     </>
   );
 }
-

@@ -5,29 +5,36 @@ import { CALCULATORS } from '@/data/calculators';
 import Link from 'next/link';
 
 export const metadata = calcMeta({
-  title: 'Nepal Calculators – Tax, Salary, Loan, NEA, VAT & More | NepaCalc',
-  description: 'Nepal calculators for income tax, salary, VAT, loans, NEA bills, land, gold, NEPSE, education, dates and other Nepal-specific calculations.',
+  title: 'Nepal Calculators | Tax, Salary & Loans | NepaCalc',
+  description: 'Free Nepal-specific calculators for income tax, salary, VAT, loans, electricity bills, land, gold, NEPSE, education, dates and everyday calculations.',
   slug: 'nepal',
+  keywords: ['nepal calculator', 'nepal income tax calculator', 'nepal salary calculator', 'nea bill calculator', 'nepse calculator'],
 });
 
 export default function NepalDirectoryPage() {
   return (
     <>
       <JsonLd
-        type="collection"
+        type="unified"
         data={{
-          name: 'Nepal Calculators',
-          description:
-            'Nepal-specific calculators for taxes, salaries, electricity bills, vehicle taxes, land, finance and other Nepal calculations.',
           url: 'https://nepacalc.com/nepal/',
-          calculators: CALCULATORS.filter(
-            (calculator) => calculator.category === 'nepal'
-          ).map((calculator, index) => ({
-            name: calculator.name,
-            url: `https://nepacalc.com${calculator.slug.includes('/') ? '/' + calculator.slug : '/calculator/' + calculator.slug}/`,
-            description: calculator.description,
-            position: index + 1,
-          })),
+          collection: {
+            url: 'https://nepacalc.com/nepal/',
+            name: 'Nepal Calculators',
+            description: 'Nepal-specific calculators for taxes, salaries, electricity bills, vehicle taxes, land, finance and other Nepal calculations.',
+          },
+          itemList: {
+            url: 'https://nepacalc.com/nepal/',
+            name: 'Nepal Calculators - List',
+            description: 'List of calculators in Nepal Calculators',
+            items: CALCULATORS.filter(
+              (calculator) => calculator.category === 'nepal'
+            ).map((calculator, index) => ({
+              position: index + 1,
+              name: calculator.name,
+              url: `https://nepacalc.com${calculator.slug.includes('/') ? '/' + calculator.slug : '/calculator/' + calculator.slug}/`,
+            })),
+          }
         }}
       />
       <CalcWrapper
@@ -170,9 +177,7 @@ export default function NepalDirectoryPage() {
             <section className="mt-8 pt-8 border-t-2 border-dashed border-[#dadce0]">
               <h2 className="text-xl font-bold text-[#202124] mb-2">About Nepal Calculators</h2>
               <p className="text-[#5f6368] leading-relaxed">
-                NepaCalc provides Nepal-specific calculators for taxes, finance, utilities,
-                property, education, employment, precious metals, stocks and other local
-                calculations.
+                NepaCalc&apos;s Nepal calculator collection is designed around practical calculations that people in Nepal frequently need — covering tax, salary, loans, utilities, property, land, precious metals, stocks, education, dates and employment. Calculation results are intended for estimation and planning. Where a result depends on current government rates, regulations, market prices or official schedules, verify the final figure against the relevant official source before relying on it.
               </p>
             </section>
           </div>

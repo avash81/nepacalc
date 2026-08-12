@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { calcMeta } from '@/lib/calcMeta';
+import { JsonLd } from '@/components/seo/JsonLd';
 
 export const metadata = calcMeta({
   title: "Nepal Income Tax Slab 2083/84 & Budget Highlights — New IRD Rates",
@@ -18,33 +19,26 @@ export const metadata = calcMeta({
 });
 
 export default function Page() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nepacalc.com/" },
-      { "@type": "ListItem", "position": 2, "name": "Income Tax", "item": "https://nepacalc.com/income-tax/" },
-      { "@type": "ListItem", "position": 3, "name": "Nepal Income Tax Slab 2083/84", "item": "https://nepacalc.com/income-tax/nepal-income-tax-slab-2083-84/" }
-    ]
-  };
-
-  const webPageSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "@id": "https://nepacalc.com/income-tax/nepal-income-tax-slab-2083-84/",
-    "url": "https://nepacalc.com/income-tax/nepal-income-tax-slab-2083-84/",
-    "name": "Nepal Income Tax Slab 2083/84 & Budget Highlights",
-    "description": "Complete guide to Nepal income tax slab 2083/84 and Budget Highlights. New unified 5-band structure, doubled threshold, 29% top rate, and sector-wise allocations.",
-    "inLanguage": "en-NP",
-    "datePublished": "2026-06-15",
-    "dateModified": "2026-07-01",
-    "isPartOf": { "@type": "WebSite", "name": "NepaCalc", "url": "https://nepacalc.com" }
-  };
-
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
+      <JsonLd
+        type="unified"
+        data={{
+          url: "https://nepacalc.com/income-tax/nepal-income-tax-slab-2083-84/",
+          breadcrumbUrl: "https://nepacalc.com/income-tax/nepal-income-tax-slab-2083-84/",
+          breadcrumb: [
+            { name: "Home", item: "https://nepacalc.com/" },
+            { name: "Income Tax", item: "https://nepacalc.com/income-tax/" },
+            { name: "Nepal Income Tax Slab 2083/84", item: "https://nepacalc.com/income-tax/nepal-income-tax-slab-2083-84/" }
+          ],
+          webpage: {
+            name: "Nepal Income Tax Slab 2083/84 & Budget Highlights",
+            description: "Complete guide to Nepal income tax slab 2083/84 and Budget Highlights. New unified 5-band structure, doubled threshold, 29% top rate, and sector-wise allocations.",
+            datePublished: "2026-06-15",
+            dateModified: "2026-07-01"
+          }
+        }}
+      />
 
       <div className="bg-[#F1F3F4] min-h-screen">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">

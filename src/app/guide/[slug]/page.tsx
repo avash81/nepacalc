@@ -106,50 +106,7 @@ export default async function GuidePage({
 
   return (
     <>
-      {/* Breadcrumb Schema */}
-      <script
-        type="application/ld+json"
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nepacalc.com" },
-              { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://nepacalc.com/guide" },
-              { "@type": "ListItem", "position": 3, "name": page.title, "item": `https://nepacalc.com/guide/${page.slug}` }
-            ]
-          }),
-        }}
-      />
 
-      {/* FAQ Schema (Automatic Pattern Detection) */}
-      {(() => {
-        const matches = [...(page.content || '').matchAll(/^### (.+\?)\n([\s\S]+?)(?=\n###|\n##|$)/gm)];
-        if (matches.length > 0) {
-          return (
-            <script
-              type="application/ld+json"
-              suppressHydrationWarning
-              dangerouslySetInnerHTML={{
-                __html: JSON.stringify({
-                  "@context": "https://schema.org",
-                  "@type": "FAQPage",
-                  "mainEntity": matches.slice(0, 8).map(m => ({
-                    "@type": "Question",
-                    "name": m[1],
-                    "acceptedAnswer": {
-                      "@type": "Answer",
-                      "text": m[2].trim().replace(/[*#`]/g, '').substring(0, 600)
-                    }
-                  }))
-                })
-              }}
-            />
-          );
-        }
-        return null;
-      })()}
 
       <SEOGuidePage page={page} />
     </>

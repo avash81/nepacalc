@@ -1,16 +1,15 @@
+import { calcMeta } from '@/lib/calcMeta';
 import { CALCULATORS } from '@/data/calculators';
 import { PillarCard } from '@/components/calculator/PillarCard';
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { HubSEOContent } from '@/components/layout/HubSEOContent';
-import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'Math & Education Calculators ,  GPA, Statistics, Calculus | NepaCalc',
-  description: 'Professional grade math calculators for GPA, statistics, calculus, algebra, and more. Academic tools for students and professionals. Try NepaCalc now.',
-  keywords: ['gpa calculator', 'statistics calculator', 'calculus solver', 'algebra calculator', 'math tools'],
-  alternates: { canonical: 'https://NepaCalc.com/math-tools/' }
-};
+export const metadata = calcMeta({
+  title: 'Math & Education Tools | GPA, Statistics & More | NepaCalc',
+  description: 'Free math and education calculators for GPA, CGPA, percentages, fractions, statistics, probability, algebra, calculus and academic calculations.',
+  slug: 'math-tools',
+  keywords: ['gpa calculator', 'cgpa calculator', 'statistics calculator', 'algebra calculator', 'math tools'],
+});
 
 const TAGS: Record<string, string> = {
   'gpa': 'ACADEMICS',
@@ -46,27 +45,33 @@ export default function MathToolsPillarPage() {
   return (
     <>
       <JsonLd
-        type="collection"
+        type="unified"
         data={{
-          name: 'Math & Education Calculators',
-          description:
-            'Free mathematics, statistics, algebra, GPA and education calculators.',
           url: 'https://nepacalc.com/math-tools/',
-          calculators: mathTools.map((calculator, index) => ({
-            name: calculator.name,
-            url: `https://nepacalc.com${calculator.slug.includes('/') ? '/' + calculator.slug : '/calculator/' + calculator.slug}/`,
-            description: calculator.description,
-            position: index + 1,
-          })),
+          collection: {
+            url: 'https://nepacalc.com/math-tools/',
+            name: 'Math & Education Calculators',
+            description: 'Free mathematics, statistics, algebra, GPA and education calculators.',
+          },
+          itemList: {
+            url: 'https://nepacalc.com/math-tools/',
+            name: 'Math & Education Calculators - List',
+            description: 'List of calculators in Math & Education Tools',
+            items: mathTools.map((calculator, index) => ({
+              position: index + 1,
+              name: calculator.name,
+              url: `https://nepacalc.com${calculator.slug.includes('/') ? '/' + calculator.slug : '/calculator/' + calculator.slug}/`,
+            })),
+          }
         }}
       />
       <CalcWrapper
         title="Math & Education Tools"
-        description="High-precision computational engines for algebra, calculus, statistics, and academic grade calculations for students and professionals."
+        description="Free math and education calculators for GPA, CGPA, percentages, fractions, statistics, algebra, calculus and academic calculations."
         crumbs={[{ label: 'Math Tools' }]}
       >
         <div className="py-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             {mathTools.map(calc => (
               <PillarCard
                 key={calc.id}
@@ -81,15 +86,15 @@ export default function MathToolsPillarPage() {
             ))}
           </div>
 
-          {/* SEO Rich Content, ~1500+ Words Math Hub */}
-          <div className="bg-white border border-[#DADCE0] rounded-xl p-8 lg:p-12 shadow-sm">
-            <article className="prose prose-slate max-w-none">
-              <HubSEOContent category="math" />
-            </article>
+          {/* About section */}
+          <div className="bg-white border border-[#dadce0] rounded-2xl p-6 space-y-4">
+            <h2 className="text-xl font-bold text-[#202124]">About Math & Education Tools</h2>
+            <p className="text-[#5f6368] leading-relaxed">
+              NepaCalc provides mathematics and education calculators for students, teachers and professionals. Tools include GPA, CGPA, statistics, algebra, calculus, geometry, fraction and percentage calculators. Results are generated from mathematical formulas — verify results against your institution's requirements or grading system where accuracy matters.
+            </p>
           </div>
         </div>
       </CalcWrapper>
     </>
   );
 }
-

@@ -18,6 +18,7 @@ import { InternalLinks } from '@/components/seo/InternalLinks';
 import { CalcFAQ } from '@/components/calculator/CalcFAQ';
 import { ShareResult } from '@/components/calculator/ShareResult';
 import { useMemo } from 'react';
+import { JsonLd } from '@/components/seo/JsonLd';
 
 interface GuidePageData {
   title: string;
@@ -113,45 +114,6 @@ function readingTime(wordCount: number): string {
   return `${mins} min read`;
 }
 
-/** JSON-LD schema for the page */
-function buildSchema(page: GuidePageData): object {
-  const images = [page.imageTop, page.imageMiddle, page.imageBottom, page.ogImage].filter(Boolean);
-  
-  const base = {
-    '@context': 'https://schema.org',
-    '@type': page.schemaType || 'Article',
-    headline: page.metaTitle || page.title,
-    description: page.metaDesc || page.excerpt,
-    url: `https://nepacalc.com/guide/${page.slug}`,
-    datePublished: page.date,
-    dateModified: page.date,
-    author: {
-      '@type': 'Organization',
-      name: 'NEPACALC',
-      url: 'https://nepacalc.com',
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'NEPACALC',
-      url: 'https://nepacalc.com',
-    },
-    inLanguage: 'en-NP',
-    ...(images.length > 0 ? { image: images } : {}),
-  };
-
-  if (page.schemaType === 'HowTo') {
-    // Extract numbered steps for HowTo schema
-    const steps = [...page.content.matchAll(/^\d+\. (.+)$/gm)]
-      .map((m, i) => ({
-        '@type': 'HowToStep',
-        position: i + 1,
-        text: m[1],
-      }));
-    return { ...base, step: steps };
-  }
-
-  return base;
-}
 
 export default function SEOGuidePage({ page }: { page: GuidePageData }) {
   const safeTopSrc = sanitizeUrlRaw(page.imageTop);
@@ -175,7 +137,6 @@ export default function SEOGuidePage({ page }: { page: GuidePageData }) {
   }, [page.content, page.imageMiddle, page.title]);
   
   const toc  = useMemo(() => extractTOC(page.content), [page.content]);
-  const schema = useMemo(() => buildSchema(page), [page]);
 
   // Extract FAQ items from content (### Q\nA format)
   const faqs = useMemo(() => {
@@ -192,24 +153,33 @@ export default function SEOGuidePage({ page }: { page: GuidePageData }) {
 
   return (
     <>
-      {/* JSON-LD Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-      />
-      {/* BreadcrumbList schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              { '@type':'ListItem', position:1, name:'Home', item:'https://nepacalc.com' },
-              { '@type':'ListItem', position:2, name:'Guides', item:'https://nepacalc.com/guide' },
-              { '@type':'ListItem', position:3, name:page.title, item:`https://nepacalc.com/guide/${page.slug}` },
-            ]
-          })
+      <JsonLd
+        type="unified"
+        data={{
+          url: `https://nepacalc.com/guide/${page.slug}`,
+          breadcrumb: [
+            { name: 'Home', item: 'https://nepacalc.com' },
+            { name: 'Guides', item: 'https://nepacalc.com/guide' },
+            { name: page.title, item: `https://nepacalc.com/guide/${page.slug}` }
+          ],
+          article: page.schemaType !== 'HowTo' ? {
+            headline: page.metaTitle || page.title,
+            description: page.metaDesc || page.excerpt,
+            datePublished: page.date,
+            dateModified: page.date,
+            authorName: page.author,
+            image: [page.imageTop, page.imageMiddle, page.imageBottom, page.ogImage].filter(Boolean) as string[]
+          } : undefined,
+          howto: page.schemaType === 'HowTo' ? {
+            headline: page.metaTitle || page.title,
+            description: page.metaDesc || page.excerpt,
+            datePublished: page.date,
+            dateModified: page.date,
+            authorName: page.author,
+            image: [page.imageTop, page.imageMiddle, page.imageBottom, page.ogImage].filter(Boolean) as string[],
+            steps: [...page.content.matchAll(/^\d+\. (.+)$/gm)].map(m => ({ text: m[1] }))
+          } : undefined,
+          faqs: faqs.length > 0 ? faqs : undefined
         }}
       />
 

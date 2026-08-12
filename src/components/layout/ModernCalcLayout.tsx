@@ -122,28 +122,15 @@ export function ModernCalcLayout({
     return normalized;
   };
 
-  const faqSchema = (enrichedFAQs && enrichedFAQs.length > 0) ? {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": enrichedFAQs.map(f => ({
-      "@type": "Question",
-      "name": f.question,
-      "acceptedAnswer": { "@type": "Answer", "text": f.answer }
-    }))
-  } : null;
+  const faqQuestions = enrichedFAQs && enrichedFAQs.length > 0 ? enrichedFAQs.map((f: any) => ({
+    question: f.question,
+    answer: f.answer
+  })) : undefined;
 
-  const howToSchema = (howToUse && howToUse.steps.length > 0) ? {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    "name": `How to use ${title}`,
-    "description": description,
-    "step": howToUse.steps.map((s, i) => ({
-      "@type": "HowToStep",
-      "position": i + 1,
-      "text": s,
-      "name": `Step ${i + 1}`
-    }))
-  } : null;
+  const howToSteps = howToUse && howToUse.steps.length > 0 ? howToUse.steps.map((s: string, i: number) => ({
+    name: `Step ${i + 1}`,
+    text: s
+  })) : undefined;
 
   const category = CALCULATORS.find(c => c.slug === effectiveSlug)?.category || 'General';
 
@@ -203,36 +190,28 @@ export function ModernCalcLayout({
 
   return (
     <div className="min-h-screen bg-[#F1F3F4] font-sans text-[#3C4043] pb-20 lg:pb-0 selection:bg-blue-100">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": title,
-        "description": description,
-        "image": "https://nepacalc.com/logo.png",
-        "applicationCategory": "BusinessApplication, FinanceApplication, EducationApplication",
-        "operatingSystem": "All",
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "NPR" },
-        "publisher": {
-          "@type": "Organization",
-          "name": "NepaCalc",
-          "url": "https://nepacalc.com",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://nepacalc.com/logo.png",
-            "width": "1024",
-            "height": "1024"
-          }
-        }
-      })}} />
-      {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
-      {howToSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />}
       {customSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(customSchema) }} />}
-      {crumbs && crumbs.length > 0 && (
-        <JsonLd type="breadcrumb" breadcrumbItems={[
-          { name: 'Home', item: 'https://nepacalc.com' },
-          ...crumbs.map(c => ({ name: c.label, item: c.href ? `https://nepacalc.com${normalizeLink(c.href)}` : undefined })).filter((x): x is { name: string, item: string } => !!x.item)
-        ]} />
-      )}
+      
+      <JsonLd 
+        type="unified" 
+        data={{
+          url: pathname ? `https://nepacalc.com${normalizeLink(pathname)}` : undefined,
+          breadcrumbUrl: pathname ? `https://nepacalc.com${normalizeLink(pathname)}` : undefined,
+          breadcrumb: crumbs && crumbs.length > 0 ? [
+            { name: 'Home', item: 'https://nepacalc.com' },
+            ...crumbs.map(c => ({ name: c.label, item: c.href ? `https://nepacalc.com${normalizeLink(c.href)}` : undefined })).filter((x): x is { name: string, item: string } => !!x.item)
+          ] : undefined,
+          calculator: {
+            name: title,
+            description: description,
+            applicationCategory: "EducationalApplication",
+            url: pathname ? `https://nepacalc.com${normalizeLink(pathname)}` : undefined,
+            isPartOf: crumbs && crumbs[0]?.href ? `https://nepacalc.com${normalizeLink(crumbs[0].href)}#collection` : 'https://nepacalc.com/#website'
+          },
+          faqs: faqQuestions,
+          howto: howToSteps ? { name: `How to use ${title}`, description: description, steps: howToSteps, url: pathname ? `https://nepacalc.com${normalizeLink(pathname)}` : undefined } : undefined
+        }} 
+      />
       <div className="max-w-[1280px] mx-auto px-4 pt-2 pb-16">
         {((crumbs && crumbs.length > 0) || !hideH1) && (
           <div className={`mb-2 pb-2 flex flex-col md:flex-row md:items-end justify-between gap-2 border-b border-[#dadce0]`}>

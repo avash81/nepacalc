@@ -2,6 +2,7 @@ import { calcMeta } from '@/lib/calcMeta';
 import ForexDashboardClient from './ForexDashboardClient';
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import Link from 'next/link';
+import { JsonLd } from '@/components/seo/JsonLd';
 
 import fs from 'fs';
 import path from 'path';
@@ -53,7 +54,22 @@ export default async function Page() {
         title="NRB Exchange Rate Today Nepal (2083/84)"
         description="Check today's official Nepal Rastra Bank (NRB) exchange rates including USD to NPR, EUR, GBP, AUD, AED, QAR, SAR and INR."
         crumbs={[{ label: 'Market Rates', href: '/market-rates/' }, { label: 'Exchange Rate Nepal' }]}
-        isNepal={true}
+        dataset={{
+          name: "Nepal Rastra Bank Daily Exchange Rates",
+          description: "Daily exchange rates for major currencies against Nepalese Rupee (NPR) based on official Nepal Rastra Bank (NRB) reference rates. Includes USD, EUR, GBP, AUD, AED, QAR, SAR, INR and more.",
+          url: "https://nepacalc.com/market-rates/exchange-rate-nepal/",
+          dateModified: new Date(rawDate).toISOString(),
+          temporalCoverage: "2024/..",
+          isPartOf: "https://nepacalc.com/market-rates/#collection",
+        }}
+        faqs={[
+          { q: "What is the Nepal Rastra Bank (NRB) exchange rate?", a: "The Nepal Rastra Bank (NRB) exchange rate is the official foreign exchange reference rate published by Nepal's central bank every banking day. It provides the official buying and selling rates for major international currencies including USD, EUR, GBP, AUD, AED, SAR, QAR, JPY, and INR. Commercial banks and licensed money exchange institutions use these rates as the benchmark for their daily foreign exchange transactions." },
+          { q: "What is today's dollar rate in Nepal?", a: "The US Dollar (USD) exchange rate changes every banking day based on official rates published by Nepal Rastra Bank. The live exchange rate table on this page displays today's official USD buying and selling rates. For the latest USD to NPR rate, always refer to the official daily NRB update." },
+          { q: "How much is 1 USD in Nepal today?", a: "The value of 1 US Dollar in Nepal depends on the official Nepal Rastra Bank exchange rate published for that day. Check the live USD to NPR section above to see today's buying rate, selling rate, and conversion values." },
+          { q: "How is the exchange rate calculated in Nepal?", a: "Nepal uses two systems. For the Indian Rupee, Nepal maintains a fixed peg of 100 INR = 160 NPR. For all other currencies (USD, EUR, GBP, AUD, AED, QAR, SAR), Nepal Rastra Bank determines rates using international forex markets, commercial bank quotations, cross-currency calculations, and global currency movements." },
+          { q: "Why are buying and selling exchange rates different?", a: "Banks purchase foreign currency at the buying rate and sell it at the selling rate. The difference is the exchange spread, which covers banking costs, foreign exchange risk, and operational expenses. Selling rates are always slightly higher than buying rates." },
+          { q: "Is the Indian Rupee exchange rate fixed in Nepal?", a: "Yes. The Nepalese Rupee is officially pegged to the Indian Rupee at a fixed rate of 100 INR = 160 NPR. This peg has been maintained since 1993 to support financial stability given the close economic relationship between Nepal and India." },
+        ]}
         relatedCalcs={[
           { name: 'Remittance Board', slug: '/market-rates/remittance/' },
           { name: 'Live Gold Price', slug: '/market-rates/live-gold-price/' },
@@ -545,220 +561,6 @@ export default async function Page() {
           </div>
         </div>
       </CalcWrapper>
-
-      {/* ── ALL 10 SCHEMA BLOCKS ── */}
-
-      {/* 1. WebPage Schema */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context":"https://schema.org",
-        "@type":"WebPage",
-        "@id":"https://nepacalc.com/market-rates/exchange-rate-nepal/#webpage",
-        "url":"https://nepacalc.com/market-rates/exchange-rate-nepal/",
-        "name":"NRB Exchange Rate Today | Live Dollar Rate Nepal | USD to NPR",
-        "headline":"NRB Exchange Rate Today",
-        "description":"Check today's official Nepal Rastra Bank (NRB) exchange rates including USD to NPR, EUR, GBP, AUD, AED, QAR, SAR and INR. Compare buying and selling rates with live currency conversion.",
-        "datePublished":"2023-11-01",
-        "dateModified": new Date(rawDate).toISOString(),
-        "isPartOf":{ "@type":"WebSite", "url":"https://nepacalc.com" },
-        "primaryImageOfPage":{ "@type":"ImageObject", "url":"https://nepacalc.com/images/nrb-exchange-rate-today-nepal.webp", "caption":"NRB Exchange Rate Today USD to NPR EUR GBP AUD AED QAR SAR Nepal" },
-        "speakable":{ "@type":"SpeakableSpecification", "cssSelector":["h1","h2",".prose p"] },
-        "about":[
-          { "@type":"Thing", "name":"Foreign Exchange" },
-          { "@type":"Thing", "name":"Nepal Rastra Bank" },
-          { "@type":"Thing", "name":"Currency Conversion" },
-          { "@type":"Thing", "name":"Remittance Nepal" }
-        ]
-      })}} />
-
-      {/* 2. Breadcrumb Schema */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context":"https://schema.org",
-        "@type":"BreadcrumbList",
-        "itemListElement":[
-          { "@type":"ListItem", "position":1, "name":"Home", "item":"https://nepacalc.com/" },
-          { "@type":"ListItem", "position":2, "name":"Market Rates", "item":"https://nepacalc.com/market-rates/" },
-          { "@type":"ListItem", "position":3, "name":"Exchange Rate Nepal", "item":"https://nepacalc.com/market-rates/exchange-rate-nepal/" }
-        ]
-      })}} />
-
-      {/* 3. Organization Schema */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context":"https://schema.org",
-        "@type":"Organization",
-        "name":"NepaCalc",
-        "url":"https://nepacalc.com/",
-        "logo":"https://nepacalc.com/images/nepacalc-logo.webp",
-        "description":"NepaCalc is Nepal's leading financial calculator platform providing live NRB exchange rates, income tax calculators, remittance tools, and other financial utilities.",
-        "areaServed":"Nepal",
-        "sameAs":[
-          "https://www.facebook.com/nepacalc",
-          "https://twitter.com/nepacalc"
-        ]
-      })}} />
-
-      {/* 4. FinancialService Schema */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context":"https://schema.org",
-        "@type":"FinancialService",
-        "name":"NepaCalc Exchange Rate Nepal",
-        "url":"https://nepacalc.com/market-rates/exchange-rate-nepal/",
-        "serviceType":"Foreign Exchange Rates",
-        "description":"Live NRB exchange rates, foreign exchange rates in Nepal, currency conversion, USD to NPR, Dollar Rate Nepal Today and remittance exchange rate information.",
-        "areaServed":"Nepal",
-        "provider":{ "@type":"Organization", "name":"NepaCalc", "url":"https://nepacalc.com/" },
-        "currenciesAccepted":["USD","EUR","GBP","AUD","AED","QAR","SAR","INR","CAD","CHF","JPY","CNY","SGD"]
-      })}} />
-
-      {/* 5. Dataset Schema */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context":"https://schema.org",
-        "@type":"Dataset",
-        "name":"Nepal Rastra Bank Daily Exchange Rates",
-        "description":"Daily exchange rates for major currencies against Nepalese Rupee (NPR) based on official Nepal Rastra Bank (NRB) reference rates. Includes USD, EUR, GBP, AUD, AED, QAR, SAR, INR and more.",
-        "url":"https://nepacalc.com/market-rates/exchange-rate-nepal/",
-        "keywords":["NRB Exchange Rate","USD to NPR","Dollar Rate Nepal","Exchange Rate Nepal","Foreign Exchange Rate Nepal","Currency Converter Nepal"],
-        "creator":{ "@type":"Organization", "name":"NepaCalc", "url":"https://nepacalc.com/" },
-        "license":"https://creativecommons.org/licenses/by/4.0/",
-        "temporalCoverage":"2024/..",
-        "variableMeasured":["Buying Rate","Selling Rate","Currency","Unit"]
-      })}} />
-
-      {/* 6. ItemList Schema */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context":"https://schema.org",
-        "@type":"ItemList",
-        "name":"Major Exchange Rates in Nepal",
-        "itemListElement":[
-          {"@type":"ListItem","position":1,"name":"USD to NPR"},
-          {"@type":"ListItem","position":2,"name":"EUR to NPR"},
-          {"@type":"ListItem","position":3,"name":"GBP to NPR"},
-          {"@type":"ListItem","position":4,"name":"AUD to NPR"},
-          {"@type":"ListItem","position":5,"name":"AED to NPR"},
-          {"@type":"ListItem","position":6,"name":"QAR to NPR"},
-          {"@type":"ListItem","position":7,"name":"SAR to NPR"},
-          {"@type":"ListItem","position":8,"name":"INR to NPR"}
-        ]
-      })}} />
-
-      {/* 7. CollectionPage Schema */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context":"https://schema.org",
-        "@type":"CollectionPage",
-        "name":"NRB Exchange Rate Nepal — Live Currency Dashboard",
-        "url":"https://nepacalc.com/market-rates/exchange-rate-nepal/",
-        "description":"A complete collection of live foreign exchange rates, currency converters, and remittance tools for Nepal, based on official Nepal Rastra Bank data.",
-        "hasPart":[
-          { "@type":"WebPage", "name":"Currency Converter Nepal", "url":"https://nepacalc.com/calculator/currency-converter/" },
-          { "@type":"WebPage", "name":"Remittance Calculator", "url":"https://nepacalc.com/calculator/remittance-calculator/" },
-          { "@type":"WebPage", "name":"Live Gold Price Nepal", "url":"https://nepacalc.com/market-rates/live-gold-price/" }
-        ]
-      })}} />
-
-      {/* 8. SearchAction Schema */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context":"https://schema.org",
-        "@type":"WebSite",
-        "name":"NepaCalc",
-        "url":"https://nepacalc.com/",
-        "potentialAction":{
-          "@type":"SearchAction",
-          "target":{ "@type":"EntryPoint", "urlTemplate":"https://nepacalc.com/search?q={search_term_string}" },
-          "query-input":"required name=search_term_string"
-        }
-      })}} />
-
-      {/* 9. Speakable Schema */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context":"https://schema.org",
-        "@type":"WebPage",
-        "url":"https://nepacalc.com/market-rates/exchange-rate-nepal/",
-        "speakable":{
-          "@type":"SpeakableSpecification",
-          "cssSelector":[
-            "h2",
-            ".prose h3",
-            ".prose p"
-          ]
-        }
-      })}} />
-
-      {/* 10. FAQPage Schema — 14 questions */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context":"https://schema.org",
-        "@type":"FAQPage",
-        "mainEntity":[
-          {
-            "@type":"Question",
-            "name":"What is the Nepal Rastra Bank (NRB) exchange rate?",
-            "acceptedAnswer":{ "@type":"Answer", "text":"The Nepal Rastra Bank (NRB) exchange rate is the official foreign exchange reference rate published by Nepal's central bank every banking day. It provides the official buying and selling rates for major international currencies including USD, EUR, GBP, AUD, AED, SAR, QAR, JPY, and INR. Commercial banks and licensed money exchange institutions use these rates as the benchmark for their daily foreign exchange transactions." }
-          },
-          {
-            "@type":"Question",
-            "name":"What is today's dollar rate in Nepal?",
-            "acceptedAnswer":{ "@type":"Answer", "text":"The US Dollar (USD) exchange rate changes every banking day based on official rates published by Nepal Rastra Bank. The live exchange rate table on this page displays today's official USD buying and selling rates. For the latest USD to NPR rate, always refer to the official daily NRB update." }
-          },
-          {
-            "@type":"Question",
-            "name":"How much is 1 USD in Nepal today?",
-            "acceptedAnswer":{ "@type":"Answer", "text":"The value of 1 US Dollar in Nepal depends on the official Nepal Rastra Bank exchange rate published for that day. Check the live USD to NPR section above to see today's buying rate, selling rate, and conversion values. You can also use the built-in currency converter to convert any USD amount into Nepalese Rupees instantly." }
-          },
-          {
-            "@type":"Question",
-            "name":"How is the exchange rate calculated in Nepal?",
-            "acceptedAnswer":{ "@type":"Answer", "text":"Nepal uses two systems. For the Indian Rupee, Nepal maintains a fixed peg of 100 INR = 160 NPR. For all other currencies (USD, EUR, GBP, AUD, AED, QAR, SAR), Nepal Rastra Bank determines rates using international forex markets, commercial bank quotations, cross-currency calculations, and global currency movements. Official rates are published every banking day." }
-          },
-          {
-            "@type":"Question",
-            "name":"Why are buying and selling exchange rates different?",
-            "acceptedAnswer":{ "@type":"Answer", "text":"Banks purchase foreign currency at the buying rate and sell it at the selling rate. The difference is the exchange spread, which covers banking costs, foreign exchange risk, and operational expenses. Selling rates are always slightly higher than buying rates." }
-          },
-          {
-            "@type":"Question",
-            "name":"Which bank gives the highest exchange rate in Nepal?",
-            "acceptedAnswer":{ "@type":"Answer", "text":"No bank consistently offers the highest exchange rate every day. Rates vary by market demand, currency availability, internal pricing, and Nepal Rastra Bank reference rates. Comparing several banks before a large transaction helps you receive a better rate." }
-          },
-          {
-            "@type":"Question",
-            "name":"Is the Nepal Rastra Bank exchange rate the same as bank rates?",
-            "acceptedAnswer":{ "@type":"Answer", "text":"Not exactly. NRB publishes the official reference rate. Commercial banks follow this benchmark but may apply slightly different buying and selling prices based on their own margins. The final rate at your bank may differ slightly from the official NRB rate." }
-          },
-          {
-            "@type":"Question",
-            "name":"Why do exchange rates change every day?",
-            "acceptedAnswer":{ "@type":"Answer", "text":"Foreign exchange markets operate continuously worldwide. Rates fluctuate due to global demand and supply, inflation, interest rates, international trade, economic news, political events, and central bank policies. Nepal Rastra Bank updates its official rates accordingly each banking day." }
-          },
-          {
-            "@type":"Question",
-            "name":"How often are exchange rates updated?",
-            "acceptedAnswer":{ "@type":"Answer", "text":"Nepal Rastra Bank publishes updated exchange rates once every banking day. NepaCalc automatically refreshes rates whenever new official data is available." }
-          },
-          {
-            "@type":"Question",
-            "name":"What currencies are available on this page?",
-            "acceptedAnswer":{ "@type":"Answer", "text":"This page covers major global currencies including USD, EUR, GBP, AUD, CAD, CHF, JPY, SGD, CNY, HKD, AED, QAR, SAR, and INR. Additional currencies may be listed based on the official Nepal Rastra Bank publication." }
-          },
-          {
-            "@type":"Question",
-            "name":"Can I use these exchange rates for remittance calculations?",
-            "acceptedAnswer":{ "@type":"Answer", "text":"Yes. NRB rates are an excellent benchmark for estimating remittance values. However, remittance companies such as IME, Wise, Western Union, MoneyGram, Remitly, and WorldRemit may apply their own margins and fees, so the final received amount may vary." }
-          },
-          {
-            "@type":"Question",
-            "name":"How can I convert foreign currency into Nepalese Rupees?",
-            "acceptedAnswer":{ "@type":"Answer", "text":"Enter any amount into the currency converter on this page. It uses the latest Nepal Rastra Bank exchange rates to estimate the equivalent in Nepalese Rupees (NPR)." }
-          },
-          {
-            "@type":"Question",
-            "name":"Is the Indian Rupee exchange rate fixed in Nepal?",
-            "acceptedAnswer":{ "@type":"Answer", "text":"Yes. The Nepalese Rupee is officially pegged to the Indian Rupee at a fixed rate of 100 INR = 160 NPR. This peg has been maintained since 1993 to support financial stability given the close economic relationship between Nepal and India." }
-          },
-          {
-            "@type":"Question",
-            "name":"Why should I use NepaCalc instead of checking multiple bank websites?",
-            "acceptedAnswer":{ "@type":"Answer", "text":"NepaCalc combines official NRB exchange rates, a live currency converter, educational content, and related financial calculators in one place. Instead of visiting multiple bank websites individually, you can compare rates, convert currencies, and access financial tools from a single page." }
-          }
-        ]
-      })}} />
     </div>
   );
 }

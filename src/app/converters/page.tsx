@@ -1,16 +1,15 @@
+import { calcMeta } from '@/lib/calcMeta';
 import { CALCULATORS } from '@/data/calculators';
 import { PillarCard } from '@/components/calculator/PillarCard';
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { HubSEOContent } from '@/components/layout/HubSEOContent';
-import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'Unit Converters & Utility Tools ,  Length, Weight, Date | NepaCalc',
-  description: 'Free online unit converters for length, weight, date, currency, binary, and more. Fast and precise daily utility tools. Try NepaCalc now.',
-  keywords: ['unit converter', 'length converter', 'weight converter', 'binary converter', 'date calculator'],
-  alternates: { canonical: 'https://NepaCalc.com/converters/' }
-};
+export const metadata = calcMeta({
+  title: 'Converters & Utility Tools | Length, Weight | NepaCalc',
+  description: 'Free unit converters and everyday utility tools for length, weight, measurements, dates, age, discounts, numbers, data and more.',
+  slug: 'converters',
+  keywords: ['unit converter', 'length converter', 'weight converter', 'date calculator', 'age calculator'],
+});
 
 const TAGS: Record<string, string> = {
   'unit-converter': 'MEASUREMENT',
@@ -35,27 +34,33 @@ export default function ConvertersPillarPage() {
   return (
     <>
       <JsonLd
-        type="collection"
+        type="unified"
         data={{
-          name: 'Converters & Utility Calculators',
-          description:
-            'Free unit converters, date calculators, age calculators and everyday utility tools.',
           url: 'https://nepacalc.com/converters/',
-          calculators: utilityTools.map((calculator, index) => ({
-            name: calculator.name,
-            url: `https://nepacalc.com${calculator.slug.includes('/') ? '/' + calculator.slug : '/calculator/' + calculator.slug}/`,
-            description: calculator.description,
-            position: index + 1,
-          })),
+          collection: {
+            url: 'https://nepacalc.com/converters/',
+            name: 'Converters & Utility Calculators',
+            description: 'Free unit converters, date calculators, age calculators and everyday utility tools.',
+          },
+          itemList: {
+            url: 'https://nepacalc.com/converters/',
+            name: 'Converters & Utility Calculators - List',
+            description: 'List of calculators in Converters & Utility Tools',
+            items: utilityTools.map((calculator, index) => ({
+              position: index + 1,
+              name: calculator.name,
+              url: `https://nepacalc.com${calculator.slug.includes('/') ? '/' + calculator.slug : '/calculator/' + calculator.slug}/`,
+            })),
+          }
         }}
       />
       <CalcWrapper
         title="Unit Converters & Utility Tools"
-        description="Precision measurement converters and everyday utility tools built on NIST-verified scientific constants for accurate results."
+        description="Free unit converters and everyday utility tools for length, weight, measurements, dates, age, discounts, numbers and more."
         crumbs={[{ label: 'Converters' }]}
       >
         <div className="py-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             {utilityTools.map(calc => (
               <PillarCard
                 key={calc.id}
@@ -70,15 +75,15 @@ export default function ConvertersPillarPage() {
             ))}
           </div>
 
-          {/* SEO Rich Content, ~1500+ Words Converter Hub */}
-          <div className="bg-white border border-[#DADCE0] rounded-xl p-8 lg:p-12 shadow-sm">
-            <article className="prose prose-slate max-w-none">
-              <HubSEOContent category="utility" />
-            </article>
+          {/* About section */}
+          <div className="bg-white border border-[#dadce0] rounded-2xl p-6 space-y-4">
+            <h2 className="text-xl font-bold text-[#202124]">About Converters & Utility Tools</h2>
+            <p className="text-[#5f6368] leading-relaxed">
+              NepaCalc provides unit converters and everyday utility tools for common measurement, date and number conversion tasks. Conversion results depend on the units and conversion factors implemented by each tool. For professional, legal or engineering applications, verify the required conversion standard independently.
+            </p>
           </div>
         </div>
       </CalcWrapper>
     </>
   );
 }
-

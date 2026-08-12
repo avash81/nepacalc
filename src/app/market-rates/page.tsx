@@ -1,12 +1,15 @@
-'use client';
-
+import { calcMeta } from '@/lib/calcMeta';
 import { CALCULATORS } from '@/data/calculators';
 import { PillarCard } from '@/components/calculator/PillarCard';
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { useLiveRates } from '@/hooks/useLiveRates';
-import Link from 'next/link';
-import { TrendingUp, TrendingDown } from 'lucide-react';
+import { MarketRateTicker } from '@/components/market/MarketRateTicker';
+
+export const metadata = calcMeta({
+  title: 'Live Market Rates Nepal | Gold, Silver & Forex | NepaCalc',
+  description: 'Check Nepal gold, silver, foreign exchange and remittance rates with conversion tools. Verify the latest rate with your provider before any transaction.',
+  slug: 'market-rates',
+});
 
 const TAGS: Record<string, string> = {
   'market-rates/live-gold-price': 'PRECIOUS METALS',
@@ -19,50 +22,39 @@ const TAGS: Record<string, string> = {
 };
 
 export default function MarketRatesPillarPage() {
-  const { rates, loading } = useLiveRates();
   const marketTools = CALCULATORS.filter(c => c.category === 'market');
 
   return (
     <>
       <JsonLd
-        type="collection"
+        type="unified"
         data={{
-          name: 'Market Rates & Converters',
-          description:
-            'Live gold, silver, currency and remittance tools for Nepal.',
           url: 'https://nepacalc.com/market-rates/',
-          calculators: marketTools.map((calculator, index) => ({
-            name: calculator.name,
-            url: `https://nepacalc.com/${calculator.slug.replace(/^\/+/, '')}`, // To fix double slashes if slug has leading slash
-            description: calculator.description,
-            position: index + 1,
-          })),
+          collection: {
+            url: 'https://nepacalc.com/market-rates/',
+            name: 'Market Rates & Converters',
+            description: 'Nepal gold, silver, foreign exchange and remittance rate tools and converters.',
+          },
+          itemList: {
+            url: 'https://nepacalc.com/market-rates/',
+            name: 'Market Rates & Converters - List',
+            description: 'List of calculators in Market Rates & Converters',
+            items: marketTools.map((calculator, index) => ({
+              position: index + 1,
+              name: calculator.name,
+              url: `https://nepacalc.com/${calculator.slug.replace(/^\/+/, '')}`,
+            })),
+          }
         }}
       />
       <CalcWrapper
         title="Live Market Rates"
-        description="Real-time gold, silver, forex, and remittance rates for Nepal. Synchronized with NRB and FENEGOSIDA data feeds."
+        description="Check Nepal gold, silver, foreign exchange and remittance rates. Market values can change throughout the day — always verify the current rate with your provider before completing a transaction."
         crumbs={[{ label: 'Market Rates' }]}
       >
         <div className="py-4 space-y-6">
-          <p className="text-[13px] text-slate-600 font-medium leading-relaxed">
-            Live Market Rates includes official Nepal prices for gold, silver, foreign exchange rates and remittance exchange rates updated daily. Choose a category below.
-          </p>
-          {/* Live Rate Ticker */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-            {loading || !rates ? (
-              [1, 2, 3, 4].map(i => (
-                <div key={i} className="h-24 bg-[#f8f9fa] rounded-xl animate-pulse border border-[#dadce0]" />
-              ))
-            ) : (
-              <>
-                <RateTile label="Gold 24K" value={rates.gold.tolaNPR.current} change={rates.gold.tolaNPR.changePercent24h} href="/market-rates/live-gold-price/" />
-                <RateTile label="Gold 22K" value={Math.round(rates.gold.tolaNPR.current * 0.916)} change={rates.gold.tolaNPR.changePercent24h} href="/market-rates/live-gold-price/" />
-                <RateTile label="Silver" value={rates.silver.tolaNPR.current} change={rates.silver.tolaNPR.changePercent24h} href="/market-rates/live-silver-price/" />
-                <RateTile label="USD/NPR" value={rates.forex.usd.current} change={rates.forex.usd.changePercent24h} href="/market-rates/exchange-rate-nepal/" isForex />
-              </>
-            )}
-          </div>
+          {/* Live Rate Ticker — client component */}
+          <MarketRateTicker />
 
           {/* Tool Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -79,31 +71,16 @@ export default function MarketRatesPillarPage() {
               />
             ))}
           </div>
+
+          {/* About section */}
+          <div className="bg-white border border-[#dadce0] rounded-2xl p-6 space-y-4">
+            <h2 className="text-xl font-bold text-[#202124]">About Market Rates</h2>
+            <p className="text-[#5f6368] leading-relaxed">
+              NepaCalc displays gold, silver, foreign exchange and remittance rate information alongside conversion tools for everyday financial reference. Rates shown depend on the data source and update frequency used by each individual tool. Always confirm the rate, fees and terms directly with your bank, exchange house, jeweller or remittance provider before making a transaction.
+            </p>
+          </div>
         </div>
       </CalcWrapper>
     </>
   );
 }
-
-function RateTile({ label, value, change, href, isForex }: any) {
-  const isUp = parseFloat(change) >= 0;
-  return (
-    <Link href={href} className="bg-white border border-[#dadce0] rounded-xl p-4 flex flex-col justify-between hover:shadow-md hover:border-[#c5c9d0] transition-all">
-      <div className="flex items-center justify-between mb-2">
-        <span className="text-[10px] font-black uppercase tracking-widest text-[#5f6368]">{label}</span>
-        <div className={`flex items-center gap-0.5 text-[10px] font-bold ${isUp ? 'text-emerald-600' : 'text-red-500'}`}>
-          {isUp ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
-          {isUp ? '+' : ''}{change}%
-        </div>
-      </div>
-      <div className="flex items-baseline gap-1">
-        <span className="text-[11px] font-bold text-[#5f6368]">Rs.</span>
-        <span className="text-[18px] font-black text-[#202124] tracking-tight">
-          {isForex ? value.toFixed(2) : value.toLocaleString()}
-        </span>
-      </div>
-      <span className="text-[10px] text-[#5f6368] mt-1">{isForex ? 'Live Base Rate' : 'Per Tola · Live'}</span>
-    </Link>
-  );
-}
-

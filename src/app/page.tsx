@@ -20,63 +20,42 @@ export default function HomePage() {
   return (
     <>
       <JsonLd
-        type="collection"
+        type="unified"
         data={{
           url: 'https://nepacalc.com/',
-          name: 'Free Online Calculators, Converters & Tools | NepaCalc',
-          description:
-            'Free online calculators, converters and digital tools for finance, engineering, education, health and Nepal-specific calculations.',
-          about: 'Online calculators and converters',
-        }}
-      />
-      <JsonLd
-        type="itemList"
-        data={{
-          url: 'https://nepacalc.com/',
-          name: 'NepaCalc Calculator Categories',
-          description:
-            'Browse NepaCalc calculators by category.',
-          items: CATEGORIES.map((category, index) => {
-            const categoryUrl =
-              category.id === 'education'
-                ? 'https://nepacalc.com/math-tools/'
-                : category.id === 'utility'
-                  ? 'https://nepacalc.com/converters/'
-                  : `https://nepacalc.com/${category.id}/`;
-
-            return {
-              position: index + 1,
-              name: category.name,
-              url: categoryUrl,
-            };
-          }),
-        }}
-      />
-      <JsonLd
-        type="faq"
-        data={{
-          questions: [
-            {
-              q: 'What is NepaCalc?',
-              a: 'NepaCalc is a free online calculator and converter platform providing tools for Nepal-specific calculations, finance, engineering, education, health and everyday calculations.',
-            },
-            {
-              q: 'Are NepaCalc calculators free?',
-              a: 'Yes. NepaCalc provides free online calculators and conversion tools.',
-            },
-            {
-              q: 'Are NepaCalc calculators available on mobile?',
-              a: 'Yes. NepaCalc tools are designed to work on mobile phones, tablets and desktop devices.',
-            },
-            {
-              q: 'Does NepaCalc provide calculators for Nepal?',
-              a: 'Yes. NepaCalc provides Nepal-specific calculators including NEA bills, vehicle tax, salary tax, land conversion, NEPSE calculations and other Nepal-related tools.',
-            },
-            {
-              q: 'How often are NepaCalc calculators updated?',
-              a: 'NepaCalc updates calculators when relevant rates, regulations, formulas or official information changes.',
-            },
-          ],
+          webpage: {
+            url: 'https://nepacalc.com/',
+            name: 'Free Online Calculators, Converters & Tools | NepaCalc',
+            description: 'Free online calculators, converters and digital tools for finance, engineering, education, health and Nepal-specific calculations.',
+            isPartOf: 'https://nepacalc.com/#website',
+            mainEntity: 'https://nepacalc.com/#collection'
+          },
+          collection: {
+            url: 'https://nepacalc.com/',
+            name: 'Free Online Calculators, Converters & Tools | NepaCalc',
+            description: 'Free online calculators, converters and digital tools for finance, engineering, education, health and Nepal-specific calculations.',
+            about: 'Online calculators and converters',
+          },
+          itemList: {
+            url: 'https://nepacalc.com/',
+            name: 'NepaCalc Calculator Categories',
+            description: 'Browse NepaCalc calculators by category.',
+            items: CATEGORIES.map((category, index) => {
+              const categoryUrl =
+                category.id === 'education' ? 'https://nepacalc.com/math-tools/' :
+                category.id === 'utility' ? 'https://nepacalc.com/converters/' :
+                category.id === 'market' ? 'https://nepacalc.com/market-rates/' :
+                `https://nepacalc.com/${category.id}/`;
+              return { position: index + 1, name: category.name, url: categoryUrl };
+            })
+          },
+          faqs: [
+            { question: 'What is NepaCalc?', answer: 'NepaCalc is a free online calculator and converter platform providing tools for Nepal-specific calculations, finance, engineering, education, health and everyday calculations.' },
+            { question: 'Are NepaCalc calculators free?', answer: 'Yes. NepaCalc provides free online calculators and conversion tools.' },
+            { question: 'Are NepaCalc calculators available on mobile?', answer: 'Yes. NepaCalc tools are designed to work on mobile phones, tablets and desktop devices.' },
+            { question: 'Does NepaCalc provide calculators for Nepal?', answer: 'Yes. NepaCalc provides Nepal-specific calculators including NEA bills, vehicle tax, salary tax, land conversion, NEPSE calculations and other Nepal-related tools.' },
+            { question: 'How often are NepaCalc calculators updated?', answer: 'NepaCalc updates calculators when relevant rates, regulations, formulas or official information changes.' }
+          ]
         }}
       />
       <div className="min-h-screen bg-[#F1F3F4]">
@@ -87,7 +66,10 @@ export default function HomePage() {
                 Free Online <span className="text-blue-600">Calculators</span>, Converters &amp; Digital Tools
               </h1>
               <p className="text-[14px] sm:text-[15px] text-slate-600 font-medium leading-relaxed max-w-3xl mx-auto mb-4">
-                NepaCalc provides 100+ free online calculators, converters and digital tools for finance, engineering, education, health, science and Nepal-specific calculations built for students, professionals, businesses and everyday users.
+                NepaCalc provides free online calculators, converters, and digital tools for everyday calculations, finance, engineering, education, health, science, and more. The platform includes general-purpose tools for users worldwide, along with specialized calculators and market tools for Nepal.
+              </p>
+              <p className="text-[13px] sm:text-[14px] text-slate-500 leading-relaxed max-w-4xl mx-auto mb-4 hidden md:block">
+                Nepal-specific tools cover areas such as Nepal taxes, salaries, electricity bills, vehicle taxes, water bills, land and property calculations, NEPSE-related tools, gold and silver rates, remittance, and other Nepal-specific calculations. General calculators such as EMI, mortgage, SIP, compound interest, BMI, engineering, mathematics, unit conversion, and scientific tools are designed for broader international use.
               </p>
               <div className="w-full max-w-2xl mx-auto px-4">
                 <SearchBar variant="hero" />

@@ -1,6 +1,7 @@
 import React from 'react';
 import { calcMeta } from '@/lib/calcMeta';
 import Link from 'next/link';
+import { JsonLd } from '@/components/seo/JsonLd';
 
 export const metadata = calcMeta({
   title: "1 Unit Electricity Cost in Nepal (2083/84) - NEA Unit Price Guide",
@@ -31,198 +32,105 @@ export const metadata = calcMeta({
 });
 
 export default function NepalElectricityUnitPricePage() {
-
-  /* ─────────────────────────────────────────────
-     SCHEMA STACK
-  ───────────────────────────────────────────── */
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nepacalc.com" },
-      { "@type": "ListItem", "position": 2, "name": "Electricity Guides", "item": "https://nepacalc.com/electricity/" },
-      { "@type": "ListItem", "position": 3, "name": "1 Unit Electricity Price in Nepal", "item": "https://nepacalc.com/electricity/nepal-unit-price/" }
-    ]
-  };
-
-  const organizationSchema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "NepaCalc",
-    "url": "https://nepacalc.com",
-    "logo": "https://nepacalc.com/logo.png",
-    "sameAs": ["https://www.facebook.com/nepacalc"]
-  };
-
-  const websiteSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "NepaCalc",
-    "url": "https://nepacalc.com"
-  };
-
-  const webPageSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "@id": "https://nepacalc.com/electricity/nepal-unit-price/",
-    "url": "https://nepacalc.com/electricity/nepal-unit-price/",
-    "name": "1 Unit Electricity Price in Nepal",
-    "description": "Latest electricity unit price in Nepal with NEA domestic tariff rates, service charges, VAT rules, and cost calculations.",
-    "inLanguage": "en-NP",
-    "isPartOf": { "@type": "WebSite", "name": "NepaCalc", "url": "https://nepacalc.com" }
-  };
-
-  const articleSchema = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "1 Unit Electricity Price in Nepal (Latest NEA Rates and Cost Per Unit Guide)",
-    "description": "Latest electricity unit price guide in Nepal with official NEA tariff rates, slab calculations, service charges, VAT rules, and real bill examples.",
-    "author": { "@type": "Organization", "name": "NepaCalc", "url": "https://nepacalc.com" },
-    "publisher": {
-      "@type": "Organization",
-      "name": "NepaCalc",
-      "logo": { "@type": "ImageObject", "url": "https://nepacalc.com/logo.png" }
-    },
-    "datePublished": "2026-06-17",
-    "dateModified": "2026-06-17",
-    "mainEntityOfPage": "https://nepacalc.com/electricity/nepal-unit-price/"
-  };
-
-    const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What is 1 unit of electricity?",
-        "acceptedAnswer": { "@type": "Answer", "text": "One unit of electricity is exactly equal to one kilowatt-hour (kWh)." }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the price of 1 kWh in Nepal?",
-        "acceptedAnswer": { "@type": "Answer", "text": "One kilowatt-hour (kWh), also called one unit of electricity, typically costs between Rs. 4 and Rs. 11 depending on consumption slab and meter category." }
-      },
-      {
-        "@type": "Question",
-        "name": "How much does 100 units of electricity cost in Nepal?",
-        "acceptedAnswer": { "@type": "Answer", "text": "For a medium-sized family consuming 100 units, the energy charges primarily fall into higher residential slabs, and the effective cost generally ranges between Rs. 8 and Rs. 10 per unit." }
-      },
-      {
-        "@type": "Question",
-        "name": "How much does 50 units of electricity cost in Nepal?",
-        "acceptedAnswer": { "@type": "Answer", "text": "For 50 units, the first units are charged at lower slabs and later units at higher slabs. Use the NEA Bill Calculator for exact amounts including service charges." }
-      },
-      {
-        "@type": "Question",
-        "name": "Why is electricity charged in slabs in Nepal?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Nepal uses a progressive slab-based electricity tariff system to ensure lower-income households pay less for basic usage, while heavier consumers pay a fairer share of infrastructure costs." }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the NEA electricity tariff rate?",
-        "acceptedAnswer": { "@type": "Answer", "text": "The NEA tariff rate ranges from Rs. 4 to Rs. 11 per unit for domestic consumers, depending on monthly consumption and meter capacity. A fixed service charge also applies." }
-      },
-      {
-        "@type": "Question",
-        "name": "Is 1 unit equal to 1 kWh?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes. One unit of electricity is exactly equal to one kilowatt-hour (kWh)." }
-      },
-      {
-        "@type": "Question",
-        "name": "How can I calculate my electricity bill in Nepal?",
-        "acceptedAnswer": { "@type": "Answer", "text": "You can calculate your electricity bill by using the NepaCalc NEA Bill Calculator, which factor in units consumed, consumption slab, meter capacity, and service charge." }
-      },
-      {
-        "@type": "Question",
-        "name": "Why do landlords charge more than NEA rates?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Many landlords charge a fixed rate (e.g., Rs. 10 to Rs. 15 per unit) that includes administrative costs or simplified billing. This rate may be higher than official NEA tariff rates." }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the current electricity price per unit in Nepal?",
-        "acceptedAnswer": { "@type": "Answer", "text": "The current electricity price per unit in Nepal generally ranges from Rs. 4 to Rs. 11 per unit (kWh), depending on the progressive slab system." }
-      },
-      {
-        "@type": "Question",
-        "name": "How many watts are in one unit?",
-        "acceptedAnswer": { "@type": "Answer", "text": "One unit equals 1,000 watt-hours. If you have a 1,000-watt device, running it for 1 hour consumes exactly 1 unit." }
-      },
-      {
-        "@type": "Question",
-        "name": "How much electricity does a refrigerator use?",
-        "acceptedAnswer": { "@type": "Answer", "text": "A standard refrigerator uses between 1 to 2 units per day, depending on its size and energy efficiency rating." }
-      },
-      {
-        "@type": "Question",
-        "name": "How much electricity does an AC use?",
-        "acceptedAnswer": { "@type": "Answer", "text": "An air conditioner typically uses between 1 to 2.5 units per hour, depending on the ton capacity and whether it is an inverter model." }
-      },
-      {
-        "@type": "Question",
-        "name": "How do I estimate my next electricity bill?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Read your current meter, subtract the previous month's reading to find total units consumed, and use our NEA Bill Calculator to get the exact amount." }
-      },
-      {
-        "@type": "Question",
-        "name": "Why does my neighbour pay less per unit?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Because Nepal uses a progressive slab tariff, households with lower total consumption are charged at lower per-unit rates. If your neighbour uses less electricity overall, their average cost per unit will be lower." }
-      }
-    ]
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    "name": "How to calculate electricity bill in Nepal",
-    "step": [
-      {
-        "@type": "HowToStep",
-        "text": "Find your total units consumed from your NEA electricity meter."
-      },
-      {
-        "@type": "HowToStep",
-        "text": "Identify your meter capacity (e.g., 5A, 15A, 30A)."
-      },
-      {
-        "@type": "HowToStep",
-        "text": "Enter these details into the NepaCalc NEA Bill Calculator to get your exact bill."
-      }
-    ]
-  };
-
-  const datasetSchema = {
-    "@context": "https://schema.org",
-    "@type": "Dataset",
-    "name": "Nepal Electricity Tariff Rates",
-    "description": "Official domestic electricity tariff rates for Nepal.",
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "url": "https://nepacalc.com/electricity/nepal-unit-price/",
-    "creator": {
-      "@type": "Organization",
-      "name": "Nepal Electricity Authority",
-      "url": "https://www.nea.org.np/"
-    }
-  };
-
-
-  const speakableSchema = {
-    "@context": "https://schema.org",
-    "@type": "SpeakableSpecification",
-    "cssSelector": [".quick-answer", ".summary-box"]
-  };
-
   return (
     <>
       {/* ── JSON-LD SCHEMA STACK ── */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(datasetSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableSchema) }} />
+      <JsonLd
+        type="unified"
+        data={{
+          url: "https://nepacalc.com/electricity/nepal-unit-price/",
+          breadcrumbUrl: "https://nepacalc.com/electricity/nepal-unit-price/",
+          breadcrumb: [
+            { name: "Home", item: "https://nepacalc.com" },
+            { name: "Electricity Guides", item: "https://nepacalc.com/electricity/" },
+            { name: "1 Unit Electricity Price in Nepal", item: "https://nepacalc.com/electricity/nepal-unit-price/" }
+          ],
+          webpage: {
+            name: "1 Unit Electricity Price in Nepal",
+            description: "Latest electricity unit price in Nepal with NEA domestic tariff rates, service charges, VAT rules, and cost calculations."
+          },
+          article: {
+            headline: "1 Unit Electricity Price in Nepal (Latest NEA Rates and Cost Per Unit Guide)",
+            description: "Latest electricity unit price guide in Nepal with official NEA tariff rates, slab calculations, service charges, VAT rules, and real bill examples.",
+            datePublished: "2026-06-17",
+            dateModified: "2026-06-17"
+          },
+          faqs: [
+            {
+              question: "What is 1 unit of electricity?",
+              answer: "One unit of electricity is exactly equal to one kilowatt-hour (kWh)."
+            },
+            {
+              question: "What is the price of 1 kWh in Nepal?",
+              answer: "One kilowatt-hour (kWh), also called one unit of electricity, typically costs between Rs. 4 and Rs. 11 depending on consumption slab and meter category."
+            },
+            {
+              question: "How much does 100 units of electricity cost in Nepal?",
+              answer: "For a medium-sized family consuming 100 units, the energy charges primarily fall into higher residential slabs, and the effective cost generally ranges between Rs. 8 and Rs. 10 per unit."
+            },
+            {
+              question: "How much does 50 units of electricity cost in Nepal?",
+              answer: "For 50 units, the first units are charged at lower slabs and later units at higher slabs. Use the NEA Bill Calculator for exact amounts including service charges."
+            },
+            {
+              question: "Why is electricity charged in slabs in Nepal?",
+              answer: "Nepal uses a progressive slab-based electricity tariff system to ensure lower-income households pay less for basic usage, while heavier consumers pay a fairer share of infrastructure costs."
+            },
+            {
+              question: "What is the NEA electricity tariff rate?",
+              answer: "The NEA tariff rate ranges from Rs. 4 to Rs. 11 per unit for domestic consumers, depending on monthly consumption and meter capacity. A fixed service charge also applies."
+            },
+            {
+              question: "Is 1 unit equal to 1 kWh?",
+              answer: "Yes. One unit of electricity is exactly equal to one kilowatt-hour (kWh)."
+            },
+            {
+              question: "How can I calculate my electricity bill in Nepal?",
+              answer: "You can calculate your electricity bill by using the NepaCalc NEA Bill Calculator, which factor in units consumed, consumption slab, meter capacity, and service charge."
+            },
+            {
+              question: "Why do landlords charge more than NEA rates?",
+              answer: "Many landlords charge a fixed rate (e.g., Rs. 10 to Rs. 15 per unit) that includes administrative costs or simplified billing. This rate may be higher than official NEA tariff rates."
+            },
+            {
+              question: "What is the current electricity price per unit in Nepal?",
+              answer: "The current electricity price per unit in Nepal generally ranges from Rs. 4 to Rs. 11 per unit (kWh), depending on the progressive slab system."
+            },
+            {
+              question: "How many watts are in one unit?",
+              answer: "One unit equals 1,000 watt-hours. If you have a 1,000-watt device, running it for 1 hour consumes exactly 1 unit."
+            },
+            {
+              question: "How much electricity does a refrigerator use?",
+              answer: "A standard refrigerator uses between 1 to 2 units per day, depending on its size and energy efficiency rating."
+            },
+            {
+              question: "How much electricity does an AC use?",
+              answer: "An air conditioner typically uses between 1 to 2.5 units per hour, depending on the ton capacity and whether it is an inverter model."
+            },
+            {
+              question: "How do I estimate my next electricity bill?",
+              answer: "Read your current meter, subtract the previous month's reading to find total units consumed, and use our NEA Bill Calculator to get the exact amount."
+            },
+            {
+              question: "Why does my neighbour pay less per unit?",
+              answer: "Because Nepal uses a progressive slab tariff, households with lower total consumption are charged at lower per-unit rates. If your neighbour uses less electricity overall, their average cost per unit will be lower."
+            }
+          ],
+          howto: {
+            name: "How to calculate electricity bill in Nepal",
+            steps: [
+              { text: "Find your total units consumed from your NEA electricity meter." },
+              { text: "Identify your meter capacity (e.g., 5A, 15A, 30A)." },
+              { text: "Enter these details into the NepaCalc NEA Bill Calculator to get your exact bill." }
+            ]
+          },
+          dataset: {
+            name: "Nepal Electricity Tariff Rates",
+            description: "Official domestic electricity tariff rates for Nepal."
+          }
+        }}
+      />
 
       <div className="bg-[#F1F3F4] min-h-screen">
         <div className="max-w-4xl mx-auto px-4 py-10">

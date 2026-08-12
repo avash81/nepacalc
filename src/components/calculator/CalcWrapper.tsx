@@ -2,6 +2,7 @@
 
 import React, { Fragment } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import type { ReactNode } from 'react';
 import { ChevronRight, ArrowLeft } from 'lucide-react';
 import { JsonLd } from '@/components/seo/JsonLd';
@@ -28,6 +29,23 @@ interface Props {
   enableSchema?: boolean;
   titleClassName?: string;
   compactHeader?: boolean;
+  /**
+   * Optional: pass a Dataset schema for market-rate/data pages.
+   * This avoids needing a second <JsonLd> block outside CalcWrapper.
+   */
+  dataset?: Record<string, any>;
+  /**
+   * Optional: pass FAQs to include in the unified schema block.
+   */
+  faqs?: Array<{ q?: string; a?: string; question?: string; answer?: string }>;
+  /**
+   * Optional: pass a WebPage override for pages that need explicit webpage metadata.
+   */
+  webpage?: Record<string, any>;
+  /**
+   * Optional: pass an Article schema for guide/article pages using CalcWrapper.
+   */
+  article?: Record<string, any>;
 }
 
 export function CalcWrapper({
@@ -35,38 +53,55 @@ export function CalcWrapper({
   children, formula, relatedCalcs,
   hideHeader = false, hideBreadcrumb = false,
   disableSchema, enableSchema = false,
-  titleClassName, compactHeader
+  titleClassName, compactHeader,
+  dataset, faqs, webpage, article
 }: Props) {
+  const pathname = usePathname();
+  const pageUrl = pathname ? `https://nepacalc.com${pathname}` : undefined;
+
+  // Determine pillar URL for isPartOf
+  const pillarHref = crumbs[0]?.href;
+  const pillarId = pillarHref ? `https://nepacalc.com${pillarHref}#collection` : 'https://nepacalc.com/#website';
+
   // Opt-in: only render SoftwareApplication if explicitly requested.
-  // The legacy disableSchema prop is ignored in the new architecture;
-  // pages that previously passed disableSchema={true} are now safe by default.
   const shouldRenderSoftwareSchema = enableSchema && !disableSchema;
 
   return (
     <div lang={isNepal ? 'ne' : 'en'} className="min-h-screen bg-white">
-      {/* Breadcrumb schema — CalcWrapper is the sole breadcrumb owner for pages using this layout */}
       <JsonLd
-        type="breadcrumb"
-        breadcrumbItems={[
-          { name: 'Home', item: 'https://nepacalc.com' },
-          ...crumbs.map(c => ({
-              name: c.label,
-              item: c.href ? `https://nepacalc.com${c.href}` : undefined
-          })).filter((x): x is { name: string, item: string } => !!x.item)
-        ]}
-      />
-
-      {/* SoftwareApplication schema — opt-in only for individual calculator pages */}
-      {shouldRenderSoftwareSchema && (
-        <JsonLd
-          type="calculator"
-          data={{
+        type="unified"
+        data={{
+          url: pageUrl,
+          breadcrumbUrl: pageUrl,
+          breadcrumb: [
+            { name: 'Home', item: 'https://nepacalc.com' },
+            ...crumbs.map(c => ({
+                name: c.label,
+                item: c.href ? `https://nepacalc.com${c.href}` : undefined
+            })).filter((x): x is { name: string, item: string } => !!x.item)
+          ],
+          webpage: webpage || {
+            url: pageUrl,
             name: title,
             description: typeof description === 'string' ? description : undefined,
-            applicationCategory: 'EducationalApplication',
-          }}
-        />
-      )}
+            mainEntity: shouldRenderSoftwareSchema 
+              ? (pageUrl ? `${pageUrl}#softwareapplication` : undefined) 
+              : (dataset ? (pageUrl ? `${pageUrl}#dataset` : undefined) : (article ? (pageUrl ? `${pageUrl}#article` : undefined) : undefined))
+          },
+          ...(shouldRenderSoftwareSchema ? {
+            calculator: {
+              name: title,
+              description: typeof description === 'string' ? description : undefined,
+              applicationCategory: 'EducationalApplication',
+              url: pageUrl,
+              isPartOf: pillarId
+            }
+          } : {}),
+          ...(article ? { article } : {}),
+          ...(dataset ? { dataset } : {}),
+          ...(faqs ? { faqs } : {}),
+        }}
+      />
 
       <div className="max-w-[94%] mx-auto px-4 sm:px-6 pt-4">
         

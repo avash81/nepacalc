@@ -1,6 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { JsonLd } from '@/components/seo/JsonLd';
 
 // ─── METADATA ────────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
@@ -45,184 +46,62 @@ export const metadata: Metadata = {
   },
 };
 
-// ─── SCHEMA ──────────────────────────────────────────────────────────────────
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  '@id': 'https://nepacalc.com/water/kukl-bill-payment/#breadcrumb',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://nepacalc.com/' },
-    { '@type': 'ListItem', position: 2, name: 'Water', item: 'https://nepacalc.com/water/' },
-    {
-      '@type': 'ListItem',
-      position: 3,
-      name: 'KUKL Bill Payment',
-      item: 'https://nepacalc.com/water/kukl-bill-payment/',
-    },
-  ],
-};
-
-const webPageSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'WebPage',
-  '@id': 'https://nepacalc.com/water/kukl-bill-payment/#webpage',
-  url: 'https://nepacalc.com/water/kukl-bill-payment/',
-  name: 'How to Pay KUKL Bill Online in Nepal – Complete Payment Guide',
-  description:
-    'Learn how to pay your KUKL bill online using the official portal, eSewa, Khalti, ConnectIPS, Fonepay, and mobile banking. Check bills, statements, receipts, and payment status.',
-  inLanguage: 'en',
-  isPartOf: { '@id': 'https://nepacalc.com/#website' },
-  breadcrumb: { '@id': 'https://nepacalc.com/water/kukl-bill-payment/#breadcrumb' },
-  publisher: { '@id': 'https://nepacalc.com/#organization' },
-};
-
-const articleSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Article',
-  headline: 'How to Pay KUKL Bill Online in Nepal',
-  description:
-    'Complete guide to checking, paying, downloading statements, viewing payment history and managing Kathmandu Upatyaka Khanepani Limited water bills online.',
-  author: {
-    '@type': 'Organization',
-    name: 'NepaCalc',
-  },
-  publisher: {
-    '@type': 'Organization',
-    name: 'NepaCalc',
-    logo: {
-      '@type': 'ImageObject',
-      url: 'https://nepacalc.com/logo.png',
-    },
-  },
-  mainEntityOfPage: 'https://nepacalc.com/water/kukl-bill-payment/',
-  datePublished: '2026-07-24',
-  dateModified: '2026-08-04',
-};
-
-const howToSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'HowTo',
-  name: 'How to Pay KUKL Bill Online',
-  step: [
-    {
-      '@type': 'HowToStep',
-      text: 'Open your preferred digital wallet or mobile banking application.',
-    },
-    {
-      '@type': 'HowToStep',
-      text: 'Select Drinking Water or Khanepani bill payment.',
-    },
-    {
-      '@type': 'HowToStep',
-      text: 'Choose your KUKL branch office.',
-    },
-    {
-      '@type': 'HowToStep',
-      text: 'Enter your Customer or Connection Number.',
-    },
-    {
-      '@type': 'HowToStep',
-      text: 'Verify your bill details.',
-    },
-    {
-      '@type': 'HowToStep',
-      text: 'Complete the payment and download your receipt.',
-    },
-  ],
-};
-
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'How can I check my KUKL bill online?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'You can check your KUKL bill online through the official KUKL Customer Portal, the KUKL Customer App, digital wallets like eSewa and Khalti, or mobile banking applications supporting Fonepay Bills.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'How can I pay my KUKL bill online?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Open your preferred banking app or digital wallet, select Drinking Water or Khanepani, choose your KUKL branch, enter your customer or connection number, verify the bill and complete payment.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Can I download my KUKL bill statement?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. You can download your billing history and payment statements from the official KUKL Customer Portal or the KUKL Customer App.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Which payment methods does KUKL support?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'KUKL supports payments through its customer portal, mobile application, eSewa, Khalti, ConnectIPS, Fonepay-enabled mobile banking, and selected commercial banks.',
-      },
-    },
-  ],
-};
-
-const speakableSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'WebPage',
-  speakable: {
-    '@type': 'SpeakableSpecification',
-    cssSelector: ['h1', '.article-introduction'],
-  },
-};
-
-const itemListSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'ItemList',
-  name: 'Related Utility Calculators',
-  itemListElement: [
-    {
-      '@type': 'ListItem',
-      position: 1,
-      url: 'https://nepacalc.com/calculator/kukl-bill/',
-    },
-    {
-      '@type': 'ListItem',
-      position: 2,
-      url: 'https://nepacalc.com/calculator/nea-bill/',
-    },
-    {
-      '@type': 'ListItem',
-      position: 3,
-      url: 'https://nepacalc.com/electricity/nepal-unit-price/',
-    },
-  ],
-};
-
-const organizationSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'NepaCalc',
-  url: 'https://nepacalc.com/',
-  logo: 'https://nepacalc.com/logo.png',
-};
-
 // ─── PAGE COMPONENT ───────────────────────────────────────────────────────────
 export default function KUKLBillPaymentPage() {
   return (
     <div className="bg-white min-h-screen">
       {/* Schema Scripts */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
+      <JsonLd
+        type="unified"
+        data={{
+          url: "https://nepacalc.com/water/kukl-bill-payment/",
+          breadcrumbUrl: "https://nepacalc.com/water/kukl-bill-payment/",
+          breadcrumb: [
+            { name: "Home", item: "https://nepacalc.com/" },
+            { name: "Water", item: "https://nepacalc.com/water/" },
+            { name: "KUKL Bill Payment", item: "https://nepacalc.com/water/kukl-bill-payment/" }
+          ],
+          webpage: {
+            name: "How to Pay KUKL Bill Online in Nepal – Complete Payment Guide",
+            description: "Learn how to pay your KUKL bill online using the official portal, eSewa, Khalti, ConnectIPS, Fonepay, and mobile banking. Check bills, statements, receipts, and payment status."
+          },
+          article: {
+            headline: "How to Pay KUKL Bill Online in Nepal",
+            description: "Complete guide to checking, paying, downloading statements, viewing payment history and managing Kathmandu Upatyaka Khanepani Limited water bills online.",
+            datePublished: "2026-07-24",
+            dateModified: "2026-08-04"
+          },
+          faqs: [
+            {
+              question: "How can I check my KUKL bill online?",
+              answer: "You can check your KUKL bill online through the official KUKL Customer Portal, the KUKL Customer App, digital wallets like eSewa and Khalti, or mobile banking applications supporting Fonepay Bills."
+            },
+            {
+              question: "How can I pay my KUKL bill online?",
+              answer: "Open your preferred banking app or digital wallet, select Drinking Water or Khanepani, choose your KUKL branch, enter your customer or connection number, verify the bill and complete payment."
+            },
+            {
+              question: "Can I download my KUKL bill statement?",
+              answer: "Yes. You can download your billing history and payment statements from the official KUKL Customer Portal or the KUKL Customer App."
+            },
+            {
+              question: "Which payment methods does KUKL support?",
+              answer: "KUKL supports payments through its customer portal, mobile application, eSewa, Khalti, ConnectIPS, Fonepay-enabled mobile banking, and selected commercial banks."
+            }
+          ],
+          howto: {
+            name: "How to Pay KUKL Bill Online",
+            steps: [
+              { text: "Open your preferred digital wallet or mobile banking application." },
+              { text: "Select Drinking Water or Khanepani bill payment." },
+              { text: "Choose your KUKL branch office." },
+              { text: "Enter your Customer or Connection Number." },
+              { text: "Verify your bill details." },
+              { text: "Complete the payment and download your receipt." }
+            ]
+          }
+        }}
+      />
 
       <article className="max-w-6xl mx-auto px-4 py-10">
 
@@ -1413,10 +1292,27 @@ export default function KUKLBillPaymentPage() {
         <section id="faq" className="mb-12">
           <h2 className="text-2xl font-black text-gray-900 mb-6">Frequently Asked Questions</h2>
           <div className="space-y-6">
-            {faqSchema.mainEntity.map((faq, i) => (
+            {[
+              {
+                question: "How can I check my KUKL bill online?",
+                answer: "You can check your KUKL bill online through the official KUKL Customer Portal, the KUKL Customer App, digital wallets like eSewa and Khalti, or mobile banking applications supporting Fonepay Bills."
+              },
+              {
+                question: "How can I pay my KUKL bill online?",
+                answer: "Open your preferred banking app or digital wallet, select Drinking Water or Khanepani, choose your KUKL branch, enter your customer or connection number, verify the bill and complete payment."
+              },
+              {
+                question: "Can I download my KUKL bill statement?",
+                answer: "Yes. You can download your billing history and payment statements from the official KUKL Customer Portal or the KUKL Customer App."
+              },
+              {
+                question: "Which payment methods does KUKL support?",
+                answer: "KUKL supports payments through its customer portal, mobile application, eSewa, Khalti, ConnectIPS, Fonepay-enabled mobile banking, and selected commercial banks."
+              }
+            ].map((faq, i) => (
               <div key={i} className="bg-white border border-gray-200 shadow-sm rounded-xl p-5">
-                <h3 className="font-bold text-gray-900 text-lg mb-2">{faq.name}</h3>
-                <p className="text-gray-700 text-sm leading-relaxed">{faq.acceptedAnswer.text}</p>
+                <h3 className="font-bold text-gray-900 text-lg mb-2">{faq.question}</h3>
+                <p className="text-gray-700 text-sm leading-relaxed">{faq.answer}</p>
               </div>
             ))}
           </div>

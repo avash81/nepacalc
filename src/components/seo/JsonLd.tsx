@@ -4,11 +4,15 @@ export interface JsonLdProps {
   type:
     | 'organization'
     | 'website'
-    | 'calculator'
-    | 'faq'
-    | 'breadcrumb'
+    | 'webpage'
     | 'collection'
     | 'itemList'
+    | 'calculator'
+    | 'article'
+    | 'dataset'
+    | 'faq'
+    | 'breadcrumb'
+    | 'howto'
     | 'unified';
 
   data?: Record<string, any>;
@@ -63,6 +67,9 @@ function generateSchema(
   type: JsonLdProps['type'],
   data: Record<string, any>
 ): Record<string, any> | null {
+  const orgId = 'https://nepacalc.com/#organization';
+  const websiteId = 'https://nepacalc.com/#website';
+
   switch (type) {
     /*
      * ============================================================
@@ -73,18 +80,14 @@ function generateSchema(
       return {
         '@context': 'https://schema.org',
         '@type': 'Organization',
-        '@id': 'https://nepacalc.com/#organization',
+        '@id': orgId,
         name: data.name || 'NepaCalc',
         url: 'https://nepacalc.com/',
         logo: {
           '@type': 'ImageObject',
-          url:
-            data.logo ||
-            'https://nepacalc.com/logo.png',
+          url: data.logo || 'https://nepacalc.com/logo.png',
         },
-        description:
-          data.description ||
-          'NepaCalc provides free online calculators, converters and digital tools for Nepal and international users.',
+        description: data.description || 'NepaCalc provides free online calculators, converters and digital tools for Nepal and international users.',
       };
 
     /*
@@ -96,16 +99,30 @@ function generateSchema(
       return {
         '@context': 'https://schema.org',
         '@type': 'WebSite',
-        '@id': 'https://nepacalc.com/#website',
+        '@id': websiteId,
         url: 'https://nepacalc.com/',
         name: data.name || 'NepaCalc',
-        description:
-          data.description ||
-          'Free online calculators, converters and digital tools.',
-        publisher: {
-          '@id': 'https://nepacalc.com/#organization',
-        },
+        description: data.description || 'Free online calculators, converters and digital tools.',
+        publisher: { '@id': orgId },
         inLanguage: 'en-NP',
+      };
+
+    /*
+     * ============================================================
+     * WEBPAGE
+     * ============================================================
+     */
+    case 'webpage':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        '@id': data.url ? `${data.url}#webpage` : undefined,
+        url: data.url,
+        name: data.name,
+        description: data.description,
+        isPartOf: { '@id': data.isPartOf || websiteId },
+        publisher: { '@id': orgId },
+        mainEntity: data.mainEntity ? { '@id': data.mainEntity } : undefined,
       };
 
     /*
@@ -117,21 +134,85 @@ function generateSchema(
       return {
         '@context': 'https://schema.org',
         '@type': 'SoftwareApplication',
-        '@id': data.url
-          ? `${data.url}#software`
-          : undefined,
+        '@id': data.url ? `${data.url}#softwareapplication` : undefined,
         name: data.name,
         description: data.description,
         url: data.url,
-        applicationCategory:
-          data.applicationCategory ||
-          'EducationalApplication',
+        applicationCategory: data.applicationCategory || 'EducationalApplication',
         operatingSystem: 'Web',
         offers: {
           '@type': 'Offer',
           price: '0',
           priceCurrency: 'USD',
         },
+        isPartOf: data.isPartOf ? { '@id': data.isPartOf } : undefined,
+        publisher: { '@id': orgId },
+        mainEntityOfPage: data.url ? { '@id': `${data.url}#webpage` } : undefined,
+      };
+
+    /*
+     * ============================================================
+     * ARTICLE
+     * ============================================================
+     */
+    case 'article':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        '@id': data.url ? `${data.url}#article` : undefined,
+        headline: data.headline || data.name,
+        description: data.description,
+        url: data.url,
+        datePublished: data.datePublished,
+        dateModified: data.dateModified,
+        author: data.author ? { '@type': 'Organization', name: data.author } : undefined,
+        publisher: { '@id': orgId },
+        isPartOf: { '@id': websiteId },
+        mainEntityOfPage: data.url ? { '@id': `${data.url}#webpage` } : undefined,
+      };
+
+    /*
+     * ============================================================
+     * DATASET
+     * ============================================================
+     */
+    case 'dataset':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Dataset',
+        '@id': data.url ? `${data.url}#dataset` : undefined,
+        name: data.name,
+        description: data.description,
+        url: data.url,
+        dateModified: data.dateModified,
+        temporalCoverage: data.temporalCoverage,
+        spatialCoverage: data.spatialCoverage,
+        creator: { '@id': orgId },
+        publisher: { '@id': orgId },
+        isPartOf: data.isPartOf ? { '@id': data.isPartOf } : { '@id': websiteId },
+        mainEntityOfPage: data.url ? { '@id': `${data.url}#webpage` } : undefined,
+      };
+
+    /*
+     * ============================================================
+     * HOWTO
+     * ============================================================
+     */
+    case 'howto':
+      if (!data.steps?.length) return null;
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'HowTo',
+        '@id': data.url ? `${data.url}#howto` : undefined,
+        name: data.name,
+        description: data.description,
+        step: data.steps.map((step: any, index: number) => ({
+          '@type': 'HowToStep',
+          position: index + 1,
+          name: step.name,
+          text: step.text,
+        })),
+        mainEntityOfPage: data.url ? { '@id': `${data.url}#webpage` } : undefined,
       };
 
     /*
@@ -145,16 +226,15 @@ function generateSchema(
       return {
         '@context': 'https://schema.org',
         '@type': 'FAQPage',
-        mainEntity: data.questions.map(
-          (item: any) => ({
-            '@type': 'Question',
-            name: item.q || item.question,
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: item.a || item.answer,
-            },
-          })
-        ),
+        '@id': data.url ? `${data.url}#faqpage` : undefined,
+        mainEntity: data.questions.map((item: any) => ({
+          '@type': 'Question',
+          name: item.q || item.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: item.a || item.answer,
+          },
+        })),
       };
 
     /*
@@ -168,21 +248,15 @@ function generateSchema(
       return {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
-        itemListElement: data.items.map(
-          (
-            item: any,
-            index: number
-          ) => ({
-            '@type': 'ListItem',
-            position: index + 1,
-            name: item.name,
-            ...(item.url || item.item
-              ? {
-                  item: item.url || item.item,
-                }
-              : {}),
-          })
-        ),
+        '@id': data.url ? `${data.url}#breadcrumb` : undefined,
+        itemListElement: data.items.map((item: any, index: number) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: item.name,
+          ...(item.url || item.item
+            ? { item: item.url || item.item }
+            : {}),
+        })),
       };
 
     /*
@@ -194,21 +268,13 @@ function generateSchema(
       return {
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
-        '@id': data.url
-          ? `${data.url}#collection`
-          : undefined,
+        '@id': data.url ? `${data.url}#collection` : undefined,
         url: data.url,
         name: data.name,
         description: data.description,
-        isPartOf: {
-          '@id': 'https://nepacalc.com/#website',
-        },
-        about: data.about
-          ? {
-              '@type': 'Thing',
-              name: data.about,
-            }
-          : undefined,
+        isPartOf: { '@id': websiteId },
+        publisher: { '@id': orgId },
+        mainEntity: data.url ? { '@id': `${data.url}#itemlist` } : undefined,
         inLanguage: 'en-NP',
       };
 
@@ -223,24 +289,17 @@ function generateSchema(
       return {
         '@context': 'https://schema.org',
         '@type': 'ItemList',
-        '@id': data.url
-          ? `${data.url}#itemlist`
-          : undefined,
+        '@id': data.url ? `${data.url}#itemlist` : undefined,
         name: data.name,
         description: data.description,
         numberOfItems: data.items.length,
         itemListOrder: 'https://schema.org/ItemListOrderAscending',
-        itemListElement: data.items.map(
-          (
-            item: any,
-            index: number
-          ) => ({
-            '@type': 'ListItem',
-            position: item.position || index + 1,
-            name: item.name,
-            url: item.url,
-          })
-        ),
+        itemListElement: data.items.map((item: any, index: number) => ({
+          '@type': 'ListItem',
+          position: item.position || index + 1,
+          name: item.name,
+          url: item.url,
+        })),
       };
 
     /*
@@ -252,27 +311,15 @@ function generateSchema(
       return {
         '@context': 'https://schema.org',
         '@graph': [
-          ...(data.breadcrumb
-            ? [
-                generateSchema('breadcrumb', {
-                  items: data.breadcrumb,
-                }),
-              ]
-            : []),
-
-          ...(data.calculator || (data.name && data.url)
-            ? [
-                generateSchema('calculator', data.calculator || data),
-              ]
-            : []),
-
-          ...(data.questions || data.faqs
-            ? [
-                generateSchema('faq', {
-                  questions: data.questions || data.faqs,
-                }),
-              ]
-            : []),
+          ...(data.webpage ? [generateSchema('webpage', data.webpage)] : []),
+          ...(data.collection ? [generateSchema('collection', data.collection)] : []),
+          ...(data.itemList ? [generateSchema('itemList', data.itemList)] : []),
+          ...(data.breadcrumb ? [generateSchema('breadcrumb', { items: data.breadcrumb, url: data.url || data.breadcrumbUrl })] : []),
+          ...(data.calculator || (data.name && data.url && !data.webpage && !data.article && !data.dataset) ? [generateSchema('calculator', data.calculator || data)] : []),
+          ...(data.article ? [generateSchema('article', data.article)] : []),
+          ...(data.dataset ? [generateSchema('dataset', data.dataset)] : []),
+          ...(data.howto ? [generateSchema('howto', data.howto)] : []),
+          ...(data.questions || data.faqs ? [generateSchema('faq', { questions: data.questions || data.faqs, url: data.url })] : []),
         ].filter(Boolean),
       };
 

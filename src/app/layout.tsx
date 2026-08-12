@@ -75,7 +75,7 @@ const globalSchema = {
       "url": "https://nepacalc.com",
       "logo": "https://nepacalc.com/logo.png",
       "image": "https://nepacalc.com/logo.png",
-      "description": "NepaCalc is a trusted platform providing free online calculators, converters, financial tools, engineering utilities, educational resources, health calculators and Nepal-specific digital tools.",
+      "description": "NepaCalc is a free online calculator and digital tools platform providing general-purpose calculators for finance, engineering, mathematics, education, health, conversions, and everyday tasks, together with specialized calculators and market tools for Nepal.",
       "foundingDate": "2024",
       "email": "support@nepacalc.com",
       "areaServed": ["NP", "Worldwide"],
@@ -104,26 +104,6 @@ const globalSchema = {
         "@id": "https://nepacalc.com/#organization"
       },
       "inLanguage": "en"
-    },
-    {
-      "@type": "WebApplication",
-      "@id": "https://nepacalc.com/#calculator",
-      "name": "NepaCalc Professional Mathematical & Engineering Suite",
-      "url": "https://nepacalc.com",
-      "applicationCategory": "EducationalApplication",
-      "operatingSystem": "Any",
-      "browserRequirements": "Requires JavaScript, HTML5 Canvas",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "NPR" },
-      "featureList": [
-        "Scientific calculator with Deg/Rad toggle",
-        "Interactive 3D Surface Plotter with Orbit Camera",
-        "Wireframe Mesh and Solid Rendering Modes",
-        "Maths Solver with Algebra, Trigonometry, Calculus tabs",
-        "Real-time interactive Canvas graphing engine",
-        "100+ specialized professional calculators for Nepal",
-        "Institutional IRD-verified tax calculations"
-      ],
-      "isPartOf": { "@id": "https://nepacalc.com/#website" }
     }
   ]
 };

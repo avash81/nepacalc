@@ -1,5 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
+import { JsonLd } from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
   title: 'Nepal Budget 2083/84: Summary, Highlights & Tax Changes',
@@ -30,42 +31,7 @@ export const metadata: Metadata = {
   robots: 'index, follow, max-snippet:-1, max-image-preview:large',
 };
 
-/* ─── SCHEMAS ───────────────────────────────────────────────── */
-const webPageSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Nepal Budget 2083/84 Summary, Highlights, Tax Changes & Sector-wise Analysis",
-  "url": "https://nepacalc.com/nepal/nepal-budget/",
-  "description": "Complete Nepal Budget 2083/84 (FY 2026/27) summary covering budget allocation, income tax changes, VAT amendments, sector-wise analysis, excise duty, and customs tariff changes.",
-  "dateModified": "2026-08-07",
-  "publisher": { "@type": "Organization", "name": "NepaCalc", "url": "https://nepacalc.com/" },
-  "breadcrumb": { "@id": "https://nepacalc.com/nepal/nepal-budget/#breadcrumb" }
-};
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "@id": "https://nepacalc.com/nepal/nepal-budget/#breadcrumb",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nepacalc.com/" },
-    { "@type": "ListItem", "position": 2, "name": "Nepal Tools", "item": "https://nepacalc.com/nepal/" },
-    { "@type": "ListItem", "position": 3, "name": "Nepal Budget 2083/84", "item": "https://nepacalc.com/nepal/nepal-budget/" }
-  ]
-};
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    { "@type": "Question", "name": "What is the total budget of Nepal for FY 2083/84?", "acceptedAnswer": { "@type": "Answer", "text": "The total Nepal Budget for FY 2083/84 (2026/27) is approximately NPR 2,124.34 billion, covering recurrent expenditure, capital expenditure, and financial management allocations." } },
-    { "@type": "Question", "name": "What is the new income tax slab structure for FY 2083/84?", "acceptedAnswer": { "@type": "Answer", "text": "The first Rs. 10,00,000 of taxable income falls within the 1% slab. This 1% tax does not apply to specified pension, SSF-contributing employees, and certain sole-proprietorship income. The top rate is 29% on income above Rs. 40,00,000: down from 39% in FY 2082/83." } },
-    { "@type": "Question", "name": "What is the maximum income tax rate?", "acceptedAnswer": { "@type": "Answer", "text": "The maximum marginal income tax rate is 29% on annual taxable income above NPR 40,00,000: down from 39% in the previous fiscal year." } },
-    { "@type": "Question", "name": "What are the major VAT changes?", "acceptedAnswer": { "@type": "Answer", "text": "When consumers pay retail bills via QR code, digital wallet, or card, 10% of the VAT charged is automatically credited back to their payment account by the system." } },
-    { "@type": "Question", "name": "What are the new TDS rates?", "acceptedAnswer": { "@type": "Answer", "text": "IT companies and software exporters receiving foreign currency payments through domestic banks incur a 5% final withholding tax (WHT). Other major changes include updates to insurance agent TDS." } },
-    { "@type": "Question", "name": "What are the major tax waiver and settlement schemes?", "acceptedAnswer": { "@type": "Answer", "text": "Taxpayers with pending income tax, VAT, or excise disputes can settle by paying the assessed principal tax plus a 1% settlement fee by Poush 30, 2083 (mid-January 2027), with all fines, interest, and penalties fully waived." } },
-    { "@type": "Question", "name": "When do the new tax provisions take effect?", "acceptedAnswer": { "@type": "Answer", "text": "The new income tax slabs and most tax provisions under Finance Act 2083 are effective from Shrawan 1, 2083 (July 17, 2026): the start of Fiscal Year 2083/84." } }
-  ]
-};
 
 /* ─── CSS ───────────────────────────────────────────────────── */
 const css = `
@@ -189,9 +155,31 @@ export default function NepalBudgetPage() {
   return (
     <div className="nb">
       <style dangerouslySetInnerHTML={{ __html: css }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <JsonLd
+        type="unified"
+        data={{
+          url: "https://nepacalc.com/nepal/nepal-budget/",
+          webpage: {
+            name: "Nepal Budget 2083/84 Summary, Highlights, Tax Changes & Sector-wise Analysis",
+            description: "Complete Nepal Budget 2083/84 (FY 2026/27) summary covering budget allocation, income tax changes, VAT amendments, sector-wise analysis, excise duty, and customs tariff changes.",
+            dateModified: "2026-08-07"
+          },
+          breadcrumb: [
+            { name: "Home", item: "https://nepacalc.com/" },
+            { name: "Nepal Tools", item: "https://nepacalc.com/nepal/" },
+            { name: "Nepal Budget 2083/84", item: "https://nepacalc.com/nepal/nepal-budget/" }
+          ],
+          faqs: [
+            { question: "What is the total budget of Nepal for FY 2083/84?", answer: "The total Nepal Budget for FY 2083/84 (2026/27) is approximately NPR 2,124.34 billion, covering recurrent expenditure, capital expenditure, and financial management allocations." },
+            { question: "What is the new income tax slab structure for FY 2083/84?", answer: "The first Rs. 10,00,000 of taxable income falls within the 1% slab. This 1% tax does not apply to specified pension, SSF-contributing employees, and certain sole-proprietorship income. The top rate is 29% on income above Rs. 40,00,000: down from 39% in FY 2082/83." },
+            { question: "What is the maximum income tax rate?", answer: "The maximum marginal income tax rate is 29% on annual taxable income above NPR 40,00,000: down from 39% in the previous fiscal year." },
+            { question: "What are the major VAT changes?", answer: "When consumers pay retail bills via QR code, digital wallet, or card, 10% of the VAT charged is automatically credited back to their payment account by the system." },
+            { question: "What are the new TDS rates?", answer: "IT companies and software exporters receiving foreign currency payments through domestic banks incur a 5% final withholding tax (WHT). Other major changes include updates to insurance agent TDS." },
+            { question: "What are the major tax waiver and settlement schemes?", answer: "Taxpayers with pending income tax, VAT, or excise disputes can settle by paying the assessed principal tax plus a 1% settlement fee by Poush 30, 2083 (mid-January 2027), with all fines, interest, and penalties fully waived." },
+            { question: "When do the new tax provisions take effect?", answer: "The new income tax slabs and most tax provisions under Finance Act 2083 are effective from Shrawan 1, 2083 (July 17, 2026): the start of Fiscal Year 2083/84." }
+          ]
+        }}
+      />
 
       {/* BREADCRUMB */}
       <nav className="nb-bc" aria-label="Breadcrumb">
