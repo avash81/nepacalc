@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export function InstitutionalBlock() {
   return (
-    <div className="mt-16 sm:mt-20 pt-8 border-t border-slate-200">
+    <div className="mt-16 sm:mt-20 pt-8 border-t border-slate-200 px-4 sm:px-0">
       <div className="w-full">
         <h2 className="text-[#202124] text-[15px] sm:text-[16px] font-bold tracking-tight mb-2">
           Free Online Calculators for Nepal
