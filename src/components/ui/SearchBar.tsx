@@ -196,24 +196,28 @@ export function SearchBar({ variant, onExpandChange }: SearchBarProps) {
         HERO VARIANT
       */}
       {!isNavbar && (
-        <div className={`relative flex items-center bg-white border border-[#E0E0E0] rounded-full w-full max-w-[560px] mx-auto py-1 pr-1 pl-5 transition-all duration-300 focus-within:border-[#0E5C52] focus-within:shadow-[0_0_0_2px_rgba(14,92,82,0.2)] ${isOpen ? 'border-[#0E5C52] shadow-[0_0_0_2px_rgba(14,92,82,0.2)]' : 'hover:shadow-md'}`}>
+        <div className={`relative flex items-center bg-white border border-[#E0E0E0] rounded-full pl-5 pr-1 py-1 max-w-[560px] w-full focus-within:shadow-[0_0_0_2px_rgba(14,92,82,0.2)] focus-within:border-[#0E5C52] ${isOpen ? 'border-[#0E5C52] shadow-[0_0_0_2px_rgba(14,92,82,0.2)]' : ''}`}>
           <input
             ref={inputRef}
             type="text"
             aria-label="Search calculators"
             placeholder="Find calculators..."
-            className="flex-1 bg-transparent border-none outline-none text-[#1a1a1a] placeholder:text-[#8a8a8a] text-[15px] focus:ring-0 focus:outline-none focus-visible:ring-0 focus-visible:outline-none appearance-none min-w-0"
+            className="flex-1 border-none outline-none bg-transparent focus:ring-0 focus-visible:ring-0 focus:outline-none focus-visible:outline-none text-[15px] text-[#1a1a1a] placeholder:text-[#8a8a8a]"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onFocus={() => query.trim() && setIsOpen(true)}
             onKeyDown={handleKeyDown}
           />
           <button
+            type="submit"
             onClick={handleSubmit}
             aria-label="Search"
-            className="w-10 h-10 rounded-full bg-[#0E5C52] flex items-center justify-center text-white shrink-0 cursor-pointer border-none focus:outline-none"
+            className="w-10 h-10 rounded-full bg-[#0E5C52] text-white flex items-center justify-center flex-shrink-0"
           >
-            <Search size={20} strokeWidth={2.5} />
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="7" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
           </button>
         </div>
       )}
