@@ -68,9 +68,7 @@ export default function HomePage() {
               <p className="text-[14px] sm:text-[15px] text-slate-600 font-medium leading-relaxed max-w-3xl mx-auto mb-4">
                 NepaCalc provides free online calculators, converters, and digital tools for everyday calculations, finance, engineering, education, health, science, and more. The platform includes general-purpose tools for users worldwide, along with specialized calculators and market tools for Nepal.
               </p>
-              <p className="text-[13px] sm:text-[14px] text-slate-500 leading-relaxed max-w-4xl mx-auto mb-4 hidden md:block">
-                Nepal-specific tools cover areas such as Nepal taxes, salaries, electricity bills, vehicle taxes, water bills, land and property calculations, NEPSE-related tools, gold and silver rates, remittance, and other Nepal-specific calculations. General calculators such as EMI, mortgage, SIP, compound interest, BMI, engineering, mathematics, unit conversion, and scientific tools are designed for broader international use.
-              </p>
+
               <div className="w-full max-w-2xl mx-auto px-4">
                 <SearchBar variant="hero" />
               </div>
