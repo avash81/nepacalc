@@ -10,13 +10,10 @@ export function InstitutionalBlock() {
           Free Online Calculators for Nepal
         </h2>
         <p className="text-[12px] sm:text-[13px] text-[#5f6368] leading-relaxed font-medium mb-3">
-          NepaCalc is a Nepal-focused calculator platform offering free online tools for finance, taxation, electricity billing, education, engineering, health, unit conversion, and market rates. Our calculators are designed for students, professionals, businesses, homeowners, investors, and everyday users across Nepal.
-        </p>
-        <p className="text-[12px] sm:text-[13px] text-[#5f6368] leading-relaxed font-medium mb-3">
           Popular tools include the NEA Electricity Bill Calculator, Nepal Income Tax Calculator, Nepal Salary Tax Calculator, SIP Calculator, EMI Calculator, GPA Calculator, Land Area Converter, Scientific Calculator, Vehicle Tax Calculator, and Live Gold Price Tracker.
         </p>
         <p className="text-[12px] sm:text-[13px] text-[#5f6368] leading-relaxed font-medium mb-3">
-          We continuously expand our calculator library to provide accurate, practical, and easy-to-use tools tailored to Nepal. Whether you are looking for a calculator in Nepal, a tax calculator, engineering calculator, GPA calculator, electricity bill calculator, or financial planning tool, NepaCalc provides free and easy-to-use online solutions.
+          We continuously expand our calculator library to provide accurate, practical, and easy-to-use tools for both global and local needs. Whether you are looking for a general utility converter, a tax calculator, engineering formulas, a GPA calculator, or specialized financial planning tools, NepaCalc provides free and reliable online solutions.
         </p>
         <p className="text-[12px] sm:text-[13px] text-[#5f6368] leading-relaxed font-medium mb-5">
           Several calculators use publicly available information and official references where applicable, including Nepal Electricity Authority (NEA), Inland Revenue Department (IRD), Nepal Rastra Bank (NRB), Nepal Stock Exchange (NEPSE), and the Federation of Nepal Gold and Silver Dealers’ Association (FENEGOSIDA).
