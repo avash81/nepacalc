@@ -6,7 +6,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 
 export const metadata = calcMeta({
   title: 'Finance & Tax Calculators | EMI, Loans & More | NepaCalc',
-  description: 'Free financial calculators for EMI, loans, mortgages, SIP, compound interest, fixed deposits, savings, CAGR and financial planning — including Nepal-focused tools.',
+  description: 'Free financial calculators for EMI, loans, mortgages, SIP, compound interest, fixed deposits, savings, CAGR and financial planning, including Nepal-focused tools.',
   slug: 'finance',
   keywords: ['nepal finance calculator', 'tax calculator nepal', 'loan emi calculator nepal', 'sip calculator nepal', 'compound interest calculator'],
 });
@@ -51,7 +51,7 @@ export default function FinancePillarPage() {
       />
       <CalcWrapper
         title="Finance & Tax Calculators"
-        description="Free financial calculators for loans, EMI, mortgages, SIP, compound interest, fixed deposits, savings and financial planning — including Nepal-focused tools."
+        description="Free financial calculators for loans, EMI, mortgages, SIP, compound interest, fixed deposits, savings and financial planning, including Nepal-focused tools."
         crumbs={[{ label: 'Finance & Tax' }]}
       >
         <div className="py-4">
@@ -74,7 +74,7 @@ export default function FinancePillarPage() {
           <div className="bg-white border border-[#dadce0] rounded-2xl p-6 space-y-4">
             <h2 className="text-xl font-bold text-[#202124]">About Finance Calculators</h2>
             <p className="text-[#5f6368] leading-relaxed">
-              NepaCalc provides financial calculators for common planning tasks including loan and EMI estimates, investment growth, savings targets, interest comparisons and Nepal tax-related calculations. Results are estimates based on the inputs and assumptions entered — verify final figures with your bank, financial advisor or the relevant official source before making financial decisions.
+              NepaCalc provides financial calculators for common planning tasks including loan and EMI estimates, investment growth, savings targets, interest comparisons and Nepal tax-related calculations. Results are estimates based on the inputs and assumptions entered. Verify final figures with your bank, financial advisor or the relevant official source before making financial decisions.
             </p>
           </div>
         </div>

@@ -90,7 +90,7 @@ export default function MathToolsPillarPage() {
           <div className="bg-white border border-[#dadce0] rounded-2xl p-6 space-y-4">
             <h2 className="text-xl font-bold text-[#202124]">About Math & Education Tools</h2>
             <p className="text-[#5f6368] leading-relaxed">
-              NepaCalc provides mathematics and education calculators for students, teachers and professionals. Tools include GPA, CGPA, statistics, algebra, calculus, geometry, fraction and percentage calculators. Results are generated from mathematical formulas — verify results against your institution's requirements or grading system where accuracy matters.
+              NepaCalc provides mathematics and education calculators for students, teachers and professionals. Tools include GPA, CGPA, statistics, algebra, calculus, geometry, fraction and percentage calculators. Results are generated from mathematical formulas. Verify results against your institution's requirements or grading system where accuracy matters.
             </p>
           </div>
         </div>

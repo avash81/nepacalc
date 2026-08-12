@@ -6,7 +6,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 
 export const metadata = calcMeta({
   title: 'Health & Fitness Calculators | BMI, BMR & More | NepaCalc',
-  description: 'Free health and fitness calculators for BMI, BMR, calories, body fat, ideal weight, hydration, pregnancy and wellness planning. For estimation only — not medical advice.',
+  description: 'Free health and fitness calculators for BMI, BMR, calories, body fat, ideal weight, hydration, pregnancy and wellness planning. For estimation only, not medical advice.',
   slug: 'health',
   keywords: ['bmi calculator nepal', 'calorie calculator', 'bmr calculator', 'body fat calculator', 'health tools'],
 });
@@ -52,7 +52,7 @@ export default function HealthPillarPage() {
       />
       <CalcWrapper
         title="Health & Fitness Calculators"
-        description="Free health and fitness calculators for BMI, BMR, calories, body fat, ideal weight, hydration, pregnancy and wellness estimates. These tools are for general planning and estimation — not medical diagnosis."
+        description="Free health and fitness calculators for BMI, BMR, calories, body fat, ideal weight, hydration, pregnancy and wellness estimates. These tools are for general planning and estimation, not medical diagnosis."
         crumbs={[{ label: 'Health & Fitness' }]}
       >
         <div className="py-4">

@@ -177,7 +177,7 @@ export default function NepalDirectoryPage() {
             <section className="mt-8 pt-8 border-t-2 border-dashed border-[#dadce0]">
               <h2 className="text-xl font-bold text-[#202124] mb-2">About Nepal Calculators</h2>
               <p className="text-[#5f6368] leading-relaxed">
-                NepaCalc&apos;s Nepal calculator collection is designed around practical calculations that people in Nepal frequently need — covering tax, salary, loans, utilities, property, land, precious metals, stocks, education, dates and employment. Calculation results are intended for estimation and planning. Where a result depends on current government rates, regulations, market prices or official schedules, verify the final figure against the relevant official source before relying on it.
+                NepaCalc&apos;s Nepal calculator collection is designed around practical calculations that people in Nepal frequently need, covering tax, salary, loans, utilities, property, land, precious metals, stocks, education, dates and employment. Calculation results are intended for estimation and planning. Where a result depends on current government rates, regulations, market prices or official schedules, verify the final figure against the relevant official source before relying on it.
               </p>
             </section>
           </div>

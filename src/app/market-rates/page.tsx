@@ -49,7 +49,7 @@ export default function MarketRatesPillarPage() {
       />
       <CalcWrapper
         title="Live Market Rates"
-        description="Check Nepal gold, silver, foreign exchange and remittance rates. Market values can change throughout the day — always verify the current rate with your provider before completing a transaction."
+        description="Check Nepal gold, silver, foreign exchange and remittance rates. Market values can change throughout the day. Always verify the current rate with your provider before completing a transaction."
         crumbs={[{ label: 'Market Rates' }]}
       >
         <div className="py-4 space-y-6">
