@@ -202,7 +202,7 @@ export function SearchBar({ variant, onExpandChange }: SearchBarProps) {
             type="text"
             aria-label="Search calculators"
             placeholder="Find calculators..."
-            className="flex-1 bg-transparent border-none outline-none text-[#1a1a1a] placeholder:text-[#8a8a8a] text-[15px] focus:ring-0 focus:outline-none appearance-none min-w-0"
+            className="flex-1 bg-transparent border-none outline-none text-[#1a1a1a] placeholder:text-[#8a8a8a] text-[15px] focus:ring-0 focus:outline-none focus-visible:ring-0 focus-visible:outline-none appearance-none min-w-0"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onFocus={() => query.trim() && setIsOpen(true)}
