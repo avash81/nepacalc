@@ -95,23 +95,24 @@ export function SearchBar({ variant, onExpandChange }: SearchBarProps) {
   const handleSubmit = () => {
     if (results[activeIndex]) {
       const selected = results[activeIndex];
-      router.push(selected.slug.includes('/') ? `/${selected.slug}/` : `/calculator/${selected.slug}/`);
+      const href = selected.slug.includes('/') ? `/${selected.slug}/` : `/calculator/${selected.slug}/`;
       setIsOpen(false);
       setIsExpanded(false);
       setQuery('');
+      window.location.href = href;
     } else if (query.trim()) {
-       // Optional fallback if no suggestion selected
-       router.push(`/search?q=${encodeURIComponent(query.trim())}`);
-       setIsOpen(false);
-       setIsExpanded(false);
+      setIsOpen(false);
+      setIsExpanded(false);
+      window.location.href = `/search?q=${encodeURIComponent(query.trim())}`;
     }
   };
 
   const goTo = (calc: CalcType) => {
-    router.push(calc.slug.includes('/') ? `/${calc.slug}/` : `/calculator/${calc.slug}/`);
+    const href = calc.slug.includes('/') ? `/${calc.slug}/` : `/calculator/${calc.slug}/`;
     setIsOpen(false);
     setIsExpanded(false);
     setQuery('');
+    window.location.href = href;
   };
 
   const isNavbar = variant === 'navbar';
@@ -224,7 +225,7 @@ export function SearchBar({ variant, onExpandChange }: SearchBarProps) {
 
       {/* DROPDOWN RESULTS (Shared for both variants) */}
       {isOpen && results.length > 0 && (
-        <div className={`absolute left-0 right-0 bg-white border border-[#dadce0] rounded-2xl shadow-xl overflow-hidden z-[400] animate-in fade-in slide-in-from-top-2 duration-200 ${isNavbar && isExpanded ? 'fixed top-16 mx-4 w-auto shadow-2xl' : 'top-full mt-2 w-full max-w-2xl mx-auto'}`}>
+        <div className={`absolute left-0 right-0 bg-white border border-[#dadce0] rounded-2xl shadow-xl overflow-hidden z-[400] animate-in fade-in slide-in-from-top-2 duration-200 ${isNavbar && isExpanded ? 'fixed top-16 mx-4 w-auto shadow-2xl' : 'top-full mt-2'}`}>
           <div className="p-2">
             <div className="px-4 py-2 text-[10px] font-black text-[#5f6368] uppercase tracking-[0.2em] flex items-center gap-2">
               <Sparkles size={12} className="text-amber-500" />

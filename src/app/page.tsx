@@ -9,7 +9,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Free Online Calculators, Converters & Tools | NepaCalc',
   description:
-    'Free online calculators, converters and digital tools for finance, engineering, education, health and Nepal-specific calculations. Fast, accurate and mobile-friendly.',
+    'NepaCalc offers 100+ free online calculators for Nepal and worldwide. Income tax, EMI, GPA, electricity bill, gold price, unit converters and more.',
   alternates: {
     canonical: 'https://nepacalc.com/',
   }
@@ -66,7 +66,7 @@ export default function HomePage() {
                 Free Online <span className="text-blue-600">Calculators</span>, Converters &amp; Digital Tools
               </h1>
               <p className="text-[14px] sm:text-[15px] text-slate-600 font-medium leading-relaxed max-w-3xl mx-auto mb-4">
-                NepaCalc provides free online calculators, converters, and digital tools for everyday calculations, finance, engineering, education, health, science, and more. The platform includes general-purpose tools for users worldwide, along with specialized calculators and market tools for Nepal.
+                NepaCalc provides 100+ free online calculators, converters and digital tools for finance, engineering, education, health, science and Nepal-specific calculations built for students, professionals, businesses and everyday users.
               </p>
 
               <div className="w-full max-w-2xl mx-auto px-4">
