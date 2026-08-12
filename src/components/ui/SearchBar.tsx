@@ -196,13 +196,13 @@ export function SearchBar({ variant, onExpandChange }: SearchBarProps) {
         HERO VARIANT
       */}
       {!isNavbar && (
-        <div className={`relative flex items-center bg-white rounded-full p-1.5 shadow-sm border transition-all duration-300 focus-within:ring-[3px] focus-within:ring-[#0E5C52]/30 focus-within:border-[#0E5C52] ${isOpen ? 'ring-[3px] ring-[#0E5C52]/30 border-[#0E5C52]' : 'border-[#dadce0] hover:shadow-md hover:border-slate-300'}`}>
+        <div className={`relative flex items-center bg-white border border-[#E0E0E0] rounded-full w-full max-w-[560px] mx-auto py-1 pr-1 pl-5 transition-all duration-300 focus-within:border-[#0E5C52] focus-within:shadow-[0_0_0_2px_rgba(14,92,82,0.2)] ${isOpen ? 'border-[#0E5C52] shadow-[0_0_0_2px_rgba(14,92,82,0.2)]' : 'hover:shadow-md'}`}>
           <input
             ref={inputRef}
             type="text"
             aria-label="Search calculators"
             placeholder="Find calculators..."
-            className="w-full h-12 pl-5 pr-4 bg-transparent text-[#1a1a1a] placeholder:text-[#8a8a8a] text-[16px] sm:text-[18px] font-medium focus:outline-none focus:ring-0 appearance-none"
+            className="flex-1 bg-transparent border-none outline-none text-[#1a1a1a] placeholder:text-[#8a8a8a] text-[15px] focus:ring-0 focus:outline-none appearance-none min-w-0"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onFocus={() => query.trim() && setIsOpen(true)}
@@ -211,9 +211,9 @@ export function SearchBar({ variant, onExpandChange }: SearchBarProps) {
           <button
             onClick={handleSubmit}
             aria-label="Search"
-            className="w-12 h-12 rounded-full bg-[#0E5C52] flex items-center justify-center text-white shrink-0 hover:bg-[#0a453d] transition-colors focus:outline-none"
+            className="w-10 h-10 rounded-full bg-[#0E5C52] flex items-center justify-center text-white shrink-0 cursor-pointer border-none focus:outline-none"
           >
-            <Search size={22} strokeWidth={2.5} />
+            <Search size={20} strokeWidth={2.5} />
           </button>
         </div>
       )}
