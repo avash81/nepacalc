@@ -120,7 +120,6 @@ export function Footer() {
         {/* ── BOTTOM BAR ── */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6 text-[11px] font-medium tracking-wide text-white">
           <span>&copy; {year} NepaCalc. All Rights Reserved.</span>
-          <span className="hidden sm:block text-white/50">|</span>
           <span className="text-white">Built for Everyone. Specialized for Nepal.</span>
           <div className="ml-auto sm:ml-0">
             <FooterScrollTop />
