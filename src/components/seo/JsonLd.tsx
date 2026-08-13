@@ -103,7 +103,6 @@ function generateSchema(
         url: 'https://nepacalc.com/',
         name: data.name || 'NepaCalc',
         description: data.description || 'Free online calculators, converters and digital tools.',
-        publisher: { '@id': orgId },
         inLanguage: 'en-NP',
       };
 
@@ -121,7 +120,6 @@ function generateSchema(
         name: data.name,
         description: data.description,
         isPartOf: { '@id': data.isPartOf || websiteId },
-        publisher: { '@id': orgId },
         mainEntity: data.mainEntity ? { '@id': data.mainEntity } : undefined,
       };
 
@@ -146,7 +144,6 @@ function generateSchema(
           priceCurrency: 'USD',
         },
         isPartOf: data.isPartOf ? { '@id': data.isPartOf } : undefined,
-        publisher: { '@id': orgId },
         mainEntityOfPage: data.url ? { '@id': `${data.url}#webpage` } : undefined,
       };
 
@@ -188,7 +185,6 @@ function generateSchema(
         temporalCoverage: data.temporalCoverage,
         spatialCoverage: data.spatialCoverage,
         creator: { '@id': orgId },
-        publisher: { '@id': orgId },
         isPartOf: data.isPartOf ? { '@id': data.isPartOf } : { '@id': websiteId },
         mainEntityOfPage: data.url ? { '@id': `${data.url}#webpage` } : undefined,
       };
@@ -253,9 +249,9 @@ function generateSchema(
           '@type': 'ListItem',
           position: index + 1,
           name: item.name,
-          ...(item.url || item.item
-            ? { item: item.url || item.item }
-            : {}),
+          ...(item.url || item.item || (index === data.items.length - 1 && data.url)
+            ? { item: item.url || item.item || data.url }
+            : { item: data.url }),
         })),
       };
 
@@ -273,7 +269,6 @@ function generateSchema(
         name: data.name,
         description: data.description,
         isPartOf: { '@id': websiteId },
-        publisher: { '@id': orgId },
         mainEntity: data.url ? { '@id': `${data.url}#itemlist` } : undefined,
         inLanguage: 'en-NP',
       };
