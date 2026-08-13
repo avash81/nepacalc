@@ -39,13 +39,24 @@ jobs:
           NEXT_PUBLIC_FIREBASE_APP_ID: "1:369907965034:web:71504a7c24a9b3690dfe13"
           NEXT_PUBLIC_GA_ID: "G-G78ED8CZ3D"
 
-      - name: FTP Deploy to cPanel
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./out/
-          server-dir: /public_html/
-          state-name: .ftp-deploy-sync-state.json
-          dangerous-clean-slate: false
+      - name: Commit built output to repo (for cPanel Git pull)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/avash81/nepacalc.git
+          git add -f out/
+          git add .cpanel.yml
+          git diff --staged --quiet || git commit -m "ci: sync final verified build output to remote [skip ci]"
+          git push --force origin main
+
+      - name: Trigger cPanel to pull and deploy
+        run: |
+          # 1. Pull latest from GitHub
+          curl -s -H "Authorization: cpanel nepacalc:${{ secrets.CPANEL_API_TOKEN }}" \
+            "https://nepacalc.com:2083/execute/VersionControl/update?repository_root=%2Fhome%2Fnepacalc%2Frepositories%2Fnepacalc"
+            
+          # 2. Deploy to public_html
+          curl -s -H "Authorization: cpanel nepacalc:${{ secrets.CPANEL_API_TOKEN }}" \
+            "https://nepacalc.com:2083/execute/VersionControlDeployment/create?repository_root=%2Fhome%2Fnepacalc%2Frepositories%2Fnepacalc"
