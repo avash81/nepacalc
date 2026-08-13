@@ -1,5 +1,5 @@
-2:I[86364,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-ccaf97f3e156d49c.js","843","static/chunks/843-b1aa53f0cbb1d2a7.js","418","static/chunks/app/calculator/ratio-proportion/page-b3a94c4deedf2e64.js"],"CalcWrapper"]
-3:I[25994,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-ccaf97f3e156d49c.js","843","static/chunks/843-b1aa53f0cbb1d2a7.js","418","static/chunks/app/calculator/ratio-proportion/page-b3a94c4deedf2e64.js"],"default"]
+2:I[86364,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-ccaf97f3e156d49c.js","843","static/chunks/843-b1aa53f0cbb1d2a7.js","418","static/chunks/app/calculator/ratio-proportion/page-475182e16c6f7799.js"],"CalcWrapper"]
+3:I[25994,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-ccaf97f3e156d49c.js","843","static/chunks/843-b1aa53f0cbb1d2a7.js","418","static/chunks/app/calculator/ratio-proportion/page-475182e16c6f7799.js"],"default"]
 5:I[39275,[],""]
 6:I[61343,[],""]
 8:I[231,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-ccaf97f3e156d49c.js","596","static/chunks/596-2f1d3b7e5ec628d5.js","1931","static/chunks/app/page-c848c1b48eb485d5.js"],""]

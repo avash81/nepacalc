@@ -1,4 +1,4 @@
-2:I[19442,["231","static/chunks/231-4d5411c705f5b8da.js","4155","static/chunks/4155-6b658e090e276978.js","6164","static/chunks/6164-a86757dfc090f3db.js","7048","static/chunks/7048-ccaf97f3e156d49c.js","843","static/chunks/843-b1aa53f0cbb1d2a7.js","212","static/chunks/app/calculator/remittance-calculator/page-05f2ac82aa76a1a8.js"],"default"]
+2:I[19442,["231","static/chunks/231-4d5411c705f5b8da.js","4155","static/chunks/4155-6b658e090e276978.js","6164","static/chunks/6164-a86757dfc090f3db.js","7048","static/chunks/7048-ccaf97f3e156d49c.js","843","static/chunks/843-b1aa53f0cbb1d2a7.js","212","static/chunks/app/calculator/remittance-calculator/page-72f5d176107befb0.js"],"default"]
 3:I[39275,[],""]
 4:I[61343,[],""]
 6:I[231,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-ccaf97f3e156d49c.js","596","static/chunks/596-2f1d3b7e5ec628d5.js","1931","static/chunks/app/page-c848c1b48eb485d5.js"],""]

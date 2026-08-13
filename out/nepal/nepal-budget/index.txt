@@ -1,16 +1,16 @@
 4:I[39275,[],""]
 5:I[61343,[],""]
-7:I[231,["231","static/chunks/231-4d5411c705f5b8da.js","8559","static/chunks/8559-bcf38f209bc7d6fa.js","6773","static/chunks/app/nepal/page-2c78b4990bfb185f.js"],""]
-8:I[1280,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-ccaf97f3e156d49c.js","596","static/chunks/596-2f1d3b7e5ec628d5.js","3185","static/chunks/app/layout-b3fd3d7f1e87e452.js"],"Logo"]
-9:I[19303,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-ccaf97f3e156d49c.js","596","static/chunks/596-2f1d3b7e5ec628d5.js","3185","static/chunks/app/layout-b3fd3d7f1e87e452.js"],"NavbarLinks"]
-a:I[21197,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-ccaf97f3e156d49c.js","596","static/chunks/596-2f1d3b7e5ec628d5.js","3185","static/chunks/app/layout-b3fd3d7f1e87e452.js"],"NavbarActions"]
-b:I[34845,["231","static/chunks/231-4d5411c705f5b8da.js","7601","static/chunks/app/error-2571836456a7ce1b.js"],"default"]
-c:I[62323,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-ccaf97f3e156d49c.js","596","static/chunks/596-2f1d3b7e5ec628d5.js","3185","static/chunks/app/layout-b3fd3d7f1e87e452.js"],"FooterDynamicLinks"]
-d:I[49896,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-ccaf97f3e156d49c.js","596","static/chunks/596-2f1d3b7e5ec628d5.js","3185","static/chunks/app/layout-b3fd3d7f1e87e452.js"],"FooterScrollTop"]
+7:I[231,["231","static/chunks/231-4d5411c705f5b8da.js","1694","static/chunks/1694-b4002e40d68bde7f.js","6773","static/chunks/app/nepal/page-5005b17cd61375af.js"],""]
+8:I[1280,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-ccaf97f3e156d49c.js","596","static/chunks/596-2f1d3b7e5ec628d5.js","3185","static/chunks/app/layout-39bb028733796242.js"],"Logo"]
+9:I[19303,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-ccaf97f3e156d49c.js","596","static/chunks/596-2f1d3b7e5ec628d5.js","3185","static/chunks/app/layout-39bb028733796242.js"],"NavbarLinks"]
+a:I[21197,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-ccaf97f3e156d49c.js","596","static/chunks/596-2f1d3b7e5ec628d5.js","3185","static/chunks/app/layout-39bb028733796242.js"],"NavbarActions"]
+b:I[34845,["231","static/chunks/231-4d5411c705f5b8da.js","7601","static/chunks/app/error-ee9fec1d830a346d.js"],"default"]
+c:I[62323,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-ccaf97f3e156d49c.js","596","static/chunks/596-2f1d3b7e5ec628d5.js","3185","static/chunks/app/layout-39bb028733796242.js"],"FooterDynamicLinks"]
+d:I[49896,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-ccaf97f3e156d49c.js","596","static/chunks/596-2f1d3b7e5ec628d5.js","3185","static/chunks/app/layout-39bb028733796242.js"],"FooterScrollTop"]
 e:"$Sreact.suspense"
-f:I[10912,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-ccaf97f3e156d49c.js","596","static/chunks/596-2f1d3b7e5ec628d5.js","3185","static/chunks/app/layout-b3fd3d7f1e87e452.js"],"BailoutToCSR"]
-10:I[21195,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-ccaf97f3e156d49c.js","596","static/chunks/596-2f1d3b7e5ec628d5.js","3185","static/chunks/app/layout-b3fd3d7f1e87e452.js"],"MobileNav",1]
-11:I[74043,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-ccaf97f3e156d49c.js","596","static/chunks/596-2f1d3b7e5ec628d5.js","3185","static/chunks/app/layout-b3fd3d7f1e87e452.js"],"GoogleAnalytics",1]
+f:I[10912,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-ccaf97f3e156d49c.js","596","static/chunks/596-2f1d3b7e5ec628d5.js","3185","static/chunks/app/layout-39bb028733796242.js"],"BailoutToCSR"]
+10:I[21195,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-ccaf97f3e156d49c.js","596","static/chunks/596-2f1d3b7e5ec628d5.js","3185","static/chunks/app/layout-39bb028733796242.js"],"MobileNav",1]
+11:I[74043,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-ccaf97f3e156d49c.js","596","static/chunks/596-2f1d3b7e5ec628d5.js","3185","static/chunks/app/layout-39bb028733796242.js"],"GoogleAnalytics",1]
 2:T2237,
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
 
