@@ -3,8 +3,8 @@ import { CATEGORIES } from '@/data/calculators';
 import { ArrowLeft } from 'lucide-react';
 
 export const metadata = {
-  title: 'Full Site Index ,  Complete HTML Sitemap',
-  description: 'A comprehensive, human-readable directory of every tool and calculator available on NepaCalc. Organized for optimal crawlability and ease of use.',
+  title: 'HTML Sitemap | NepaCalc',
+  description: 'Browse the complete NepaCalc site index of calculators, digital tools, guides and important pages.',
   alternates: {
     canonical: 'https://NepaCalc.com/sitemap/',
   },
@@ -34,7 +34,7 @@ export default function HTMLSitemap() {
           <header className="mb-8 border-b border-slate-200 pb-8">
              <h1 className="text-3xl font-black text-slate-900 tracking-tight mb-3">HTML Sitemap</h1>
              <p className="text-slate-600 font-medium">
-               Complete hierarchical index of the NepaCalc platform. This document outlines our entire organizational structure to assist both users and search engines.
+               Complete hierarchical index of the NepaCalc platform, organized by category to help users and search engines discover calculators, tools, guides, and important pages.
              </p>
           </header>
 
@@ -84,21 +84,42 @@ export default function HTMLSitemap() {
                 <h2 className="text-xl font-black text-slate-900 border-b-2 border-slate-500 inline-block pb-1 mb-6 uppercase tracking-tight">
                    Institutional Resources
                 </h2>
-                <ul className="space-y-4 pl-4 border-l-2 border-slate-100 ml-2">
+                 <ul className="space-y-4 pl-4 border-l-2 border-slate-100 ml-2">
                    <li className="relative">
                       <span className="absolute -left-[21px] top-2.5 w-3 h-0.5 bg-slate-200"></span>
-                      <Link href="/blog/" className="text-base font-semibold text-blue-600 hover:text-blue-800 hover:underline mr-2">Research Library (Blog)</Link>
-                      <span className="text-sm text-slate-500 hidden sm:inline-block">,  Specialized guides and platform updates.</span>
+                      <Link href="/about/" className="text-base font-semibold text-blue-600 hover:text-blue-800 hover:underline mr-2">About</Link>
                    </li>
                    <li className="relative">
                       <span className="absolute -left-[21px] top-2.5 w-3 h-0.5 bg-slate-200"></span>
-                      <Link href="/directory/" className="text-base font-semibold text-blue-600 hover:text-blue-800 hover:underline mr-2">Visual Tool Directory</Link>
-                      <span className="text-sm text-slate-500 hidden sm:inline-block">,  Global index of all calculated units and visualizers.</span>
+                      <Link href="/about/editorial-policy/" className="text-base font-semibold text-blue-600 hover:text-blue-800 hover:underline mr-2">Editorial Policy</Link>
                    </li>
                    <li className="relative">
                       <span className="absolute -left-[21px] top-2.5 w-3 h-0.5 bg-slate-200"></span>
-                      <Link href="/nepal/" className="text-base font-semibold text-blue-600 hover:text-blue-800 hover:underline mr-2">Nepal-Specific Pillar</Link>
-                      <span className="text-sm text-slate-500 hidden sm:inline-block">,  Localized tools for the Nepali mathematical standards.</span>
+                      <Link href="/data-policy/" className="text-base font-semibold text-blue-600 hover:text-blue-800 hover:underline mr-2">Data Sources & Methodology</Link>
+                   </li>
+                   <li className="relative">
+                      <span className="absolute -left-[21px] top-2.5 w-3 h-0.5 bg-slate-200"></span>
+                      <Link href="/privacy/" className="text-base font-semibold text-blue-600 hover:text-blue-800 hover:underline mr-2">Privacy Policy</Link>
+                   </li>
+                   <li className="relative">
+                      <span className="absolute -left-[21px] top-2.5 w-3 h-0.5 bg-slate-200"></span>
+                      <Link href="/terms/" className="text-base font-semibold text-blue-600 hover:text-blue-800 hover:underline mr-2">Terms & Conditions</Link>
+                   </li>
+                   <li className="relative">
+                      <span className="absolute -left-[21px] top-2.5 w-3 h-0.5 bg-slate-200"></span>
+                      <Link href="/disclaimer/" className="text-base font-semibold text-blue-600 hover:text-blue-800 hover:underline mr-2">Disclaimer</Link>
+                   </li>
+                   <li className="relative">
+                      <span className="absolute -left-[21px] top-2.5 w-3 h-0.5 bg-slate-200"></span>
+                      <Link href="/contact/" className="text-base font-semibold text-blue-600 hover:text-blue-800 hover:underline mr-2">Contact</Link>
+                   </li>
+                   <li className="relative">
+                      <span className="absolute -left-[21px] top-2.5 w-3 h-0.5 bg-slate-200"></span>
+                      <Link href="/blog/" className="text-base font-semibold text-blue-600 hover:text-blue-800 hover:underline mr-2">Blog</Link>
+                   </li>
+                   <li className="relative">
+                      <span className="absolute -left-[21px] top-2.5 w-3 h-0.5 bg-slate-200"></span>
+                      <Link href="/directory/" className="text-base font-semibold text-blue-600 hover:text-blue-800 hover:underline mr-2">Directory</Link>
                    </li>
                 </ul>
              </section>
