@@ -35,7 +35,7 @@ export function Footer() {
               <Logo size="sm" theme="white" />
             </Link>
             <p className="text-[12.5px] leading-relaxed text-white max-w-[240px]">
-              NepaCalc is a free platform providing online calculators, converters, financial tools, engineering utilities, educational resources, health calculators and digital tools for users in Nepal and around the world. Built for speed, accuracy and everyday problem solving.
+              NepaCalc is a free platform providing online calculators, converters and digital tools for finance, engineering, education, health and everyday calculations for users in Nepal and around the world. Built for speed, accuracy and practical problem solving.
             </p>
 
           </div>
@@ -96,17 +96,11 @@ export function Footer() {
                 </div>
                 <span className="font-medium">Kathmandu, Nepal</span>
               </li>
-              <li>
-                <a
-                  href="https://nepacalc.com"
-                  className="flex items-center gap-2.5 text-white hover:text-white/80 transition-colors duration-150 text-[12.5px] group"
-                >
-                  <div className="w-7 h-7 rounded-lg bg-white/20 border border-white/30 flex items-center justify-center flex-shrink-0 group-hover:bg-white/30 transition-all duration-200">
-                    <Globe className="w-3.5 h-3.5 text-white" />
-                  </div>
-                  <span className="font-medium">nepacalc.com</span>
-                  <ExternalLink className="w-3 h-3 opacity-70 group-hover:opacity-100 transition-opacity" />
-                </a>
+              <li className="flex items-center gap-2.5 text-white text-[12.5px]">
+                <div className="w-7 h-7 rounded-lg bg-white/20 border border-white/30 flex items-center justify-center flex-shrink-0">
+                  <Globe className="w-3.5 h-3.5 text-white" />
+                </div>
+                <span className="font-medium">nepacalc.com</span>
               </li>
             </ul>
 
@@ -126,7 +120,7 @@ export function Footer() {
         {/* ── BOTTOM BAR ── */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6 text-[11px] font-medium tracking-wide text-white">
           <span>&copy; {year} NepaCalc. All Rights Reserved.</span>
-          <span className="hidden sm:block text-white/50">•</span>
+          <span className="hidden sm:block text-white/50">|</span>
           <span className="text-white">Built for Everyone. Specialized for Nepal.</span>
           <div className="ml-auto sm:ml-0">
             <FooterScrollTop />
