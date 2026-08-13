@@ -35,7 +35,7 @@ export function Footer() {
               <Logo size="sm" theme="white" />
             </Link>
             <p className="text-[12.5px] leading-relaxed text-white max-w-[240px]">
-              NepaCalc is a trusted platform providing free online calculators, converters, financial tools, engineering utilities, educational resources, health calculators and Nepal-specific digital tools. Built for speed, accuracy and everyday problem solving.
+              NepaCalc is a free platform providing online calculators, converters, financial tools, engineering utilities, educational resources, health calculators and digital tools for users in Nepal and around the world. Built for speed, accuracy and everyday problem solving.
             </p>
 
           </div>
