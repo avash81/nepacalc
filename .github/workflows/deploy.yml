@@ -54,9 +54,9 @@ jobs:
       - name: Trigger cPanel to pull and deploy
         run: |
           echo "Triggering cPanel to pull from GitHub..."
-          curl -i -H "Authorization: cpanel nepacalc:${{ secrets.CPANEL_API_TOKEN }}" \
-            "https://nepacalc.com:2083/execute/VersionControl/update?repository_root=%2Fhome%2Fnepacalc%2Frepositories%2Fnepacalc"
+          curl -k -i -H "Authorization: cpanel nepacalc:${{ secrets.CPANEL_API_TOKEN }}" \
+            "https://51.79.228.153:2083/execute/VersionControl/update?repository_root=%2Fhome%2Fnepacalc%2Frepositories%2Fnepacalc"
             
           echo -e "\n\nTriggering cPanel to deploy to public_html..."
-          curl -i -H "Authorization: cpanel nepacalc:${{ secrets.CPANEL_API_TOKEN }}" \
-            "https://nepacalc.com:2083/execute/VersionControlDeployment/create?repository_root=%2Fhome%2Fnepacalc%2Frepositories%2Fnepacalc"
+          curl -k -i -H "Authorization: cpanel nepacalc:${{ secrets.CPANEL_API_TOKEN }}" \
+            "https://51.79.228.153:2083/execute/VersionControlDeployment/create?repository_root=%2Fhome%2Fnepacalc%2Frepositories%2Fnepacalc"
