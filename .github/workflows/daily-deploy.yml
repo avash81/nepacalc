@@ -11,6 +11,7 @@ on:
 
 permissions:
   contents: write
+  workflows: write
 
 jobs:
   build-and-deploy:
@@ -22,7 +23,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.DEPLOY_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
       # 2. Setup Node.js
@@ -57,10 +58,12 @@ jobs:
 
       # 6. Commit built output to repo (cPanel pulls via Git — same method as deploy.yml)
       - name: Commit built output & trigger cPanel deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git remote set-url origin https://avash81:${{ secrets.DEPLOY_TOKEN }}@github.com/avash81/nepacalc.git
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/avash81/nepacalc.git
           git add -f out/
           git add .cpanel.yml public/data/market-rates.json
           git diff --staged --quiet || git commit -m "ci: daily auto-deploy with fresh FENEGOSIDA rates [skip ci]"
