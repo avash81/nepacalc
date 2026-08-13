@@ -50,7 +50,7 @@ jobs:
           git add -f out/
           git add .cpanel.yml
           git diff --staged --quiet || git commit -m "ci: sync final verified build output to remote [skip ci]"
-          git push --force-with-lease origin main
+          git push --force origin main
 
       - name: Trigger cPanel to pull and deploy
         run: |
