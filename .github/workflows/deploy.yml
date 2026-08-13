@@ -16,7 +16,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.DEPLOY_TOKEN }}
           fetch-depth: 0
 
       - name: Setup Node.js
@@ -43,11 +43,11 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://avash81:${{ secrets.DEPLOY_TOKEN }}@github.com/avash81/nepacalc.git
           git add -f out/
           git add .cpanel.yml
           git diff --staged --quiet || git commit -m "ci: sync final verified build output to remote [skip ci]"
-          git pull --rebase origin main
-          git push origin main
+          git push --force-with-lease origin main
 
       - name: Trigger cPanel to pull and deploy
         run: |
