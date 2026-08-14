@@ -9,7 +9,7 @@ export const metadata = calcMeta({
   keywords: ["fd calculator nepal 2083", "fixed deposit maturity nepal", "nepal bank fd rates 2083", "fd interest calculator", "compound interest fd", "quarterly compounding nepal"],
 });
 
-export default function Page() { return 
-      <Calculator />
-      ; }
+export default function Page() { 
+  return <Calculator />; 
+}
 
