@@ -245,14 +245,17 @@ function generateSchema(
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         '@id': data.url ? `${data.url}#breadcrumb` : undefined,
-        itemListElement: data.items.map((item: any, index: number) => ({
-          '@type': 'ListItem',
-          position: index + 1,
-          name: item.name,
-          ...(item.url || item.item || (index === data.items.length - 1 && data.url)
-            ? { item: item.url || item.item || data.url }
-            : { item: data.url }),
-        })),
+        itemListElement: data.items.map((crumb: any, index: number) => {
+          // Resolve the URL — support both `item` and `url` fields on the crumb object
+          const resolvedUrl = crumb.item || crumb.url || (index === data.items.length - 1 ? data.url : undefined);
+          return {
+            '@type': 'ListItem',
+            position: index + 1,
+            name: crumb.name,
+            // `item` is REQUIRED by Google — must always be a full absolute URL
+            item: resolvedUrl || 'https://nepacalc.com/',
+          };
+        }),
       };
 
     /*

@@ -56,7 +56,7 @@ const customSchema = {
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nepacalc.com" },
         { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://nepacalc.com/calculators/" },
-        { "@type": "ListItem", "position": 3, "name": "Salary Tax Calculator" }
+        { "@type": "ListItem", "position": 3, "name": "Salary Tax Calculator", "item": "https://nepacalc.com/calculator/nepal-salary/" }
       ]
     },
     {

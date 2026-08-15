@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { JsonLd } from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'Nepal Budget 2083/84: Summary, Highlights & Tax Changes',
+  title: 'Nepal Budget 2083/84: Highlights, Summary, Tax Changes & Key Allocations',
   description: 'Nepal Budget 2083/84 (FY 2026/27): Rs. 2,124.34 billion budget, tax changes, VAT, customs, key allocations, reforms and major announcements.',
 
   keywords: [
@@ -160,9 +160,9 @@ export default function NepalBudgetPage() {
         data={{
           url: "https://nepacalc.com/nepal/nepal-budget/",
           webpage: {
-            name: "Nepal Budget 2083/84 Summary, Highlights, Tax Changes & Sector-wise Analysis",
-            description: "Complete Nepal Budget 2083/84 (FY 2026/27) summary covering budget allocation, income tax changes, VAT amendments, sector-wise analysis, excise duty, and customs tariff changes.",
-            dateModified: "2026-08-07"
+            name: "Nepal Budget 2083/84: Highlights, Summary, Tax Changes & Key Allocations",
+            description: "Complete Nepal Budget 2083/84 (FY 2026/27) hub page: Rs. 2,124.34 billion budget, top highlights, income tax slabs, VAT changes, sector allocations, who is affected, and official sources.",
+            dateModified: "2026-08-15"
           },
           breadcrumb: [
             { name: "Home", item: "https://nepacalc.com/" },
@@ -188,26 +188,53 @@ export default function NepalBudgetPage() {
 
       {/* ── HERO ── */}
       <div className="nb-hero">
-        <div className="nb-eyebrow">Finance Act 2083 · FY 2026/27</div>
-        <h1>Nepal Budget 2083/84: Complete Summary, Tax Changes, VAT, TDS, Customs &amp; Compliance Guide</h1>
+        <div className="nb-eyebrow">Finance Act 2083 · FY 2026/27 · Ministry of Finance</div>
+        <h1>Nepal Budget 2083/84: Highlights, Summary, Tax Changes &amp; Key Allocations</h1>
         <p className="nb-dek">
-          Nepal Budget 2083/84 (FY 2026/27) is a Rs. 2,124.34 billion (NPR 2,124.34 billion) fiscal plan targeting 7% economic growth and inflation below 6%. The budget introduces sweeping tax reforms, including a revised tax structure where the first Rs. 10 lakh falls within the 1% slab, a 29% peak tax rate, reduced customs tiers, and a one-time tax dispute settlement scheme.
+          Nepal Budget 2083/84 (FY 2026/27) is the Government of Nepal&apos;s annual federal budget for the fiscal year beginning 1 Shrawan 2083 (July 17, 2026). The budget has a total outlay of <strong>Rs. 2,124.34 billion</strong> and was presented by Finance Minister Dr. Swarnim Wagle. It targets <strong>7% economic growth</strong> and inflation below 6%. Major measures include changes to personal income-tax slabs, reduction of the maximum individual tax rate to 29%, customs tariff restructuring to 7 tiers, digital-payment VAT incentives, infrastructure investment, energy development and new technology initiatives.
+        </p>
+        <p className="nb-dek">
+          This page provides a consolidated hub overview of Nepal Budget 2083/84, covering budget size, expenditure allocation, revenue and financing, tax changes (income tax, VAT, TDS, customs, excise), sector-wise allocations, social programs, and key implementation measures.
         </p>
       </div>
 
-      {/* QUICK ANSWER BOX: AEO */}
+      {/* QUICK ANSWER BOX + AT A GLANCE */}
       <div className="nb-qa" role="note" aria-label="Quick Answer">
-        <p><strong>Quick Answer: What is the Nepal Budget 2083/84?</strong></p>
-        <p>
-          Nepal&apos;s Budget 2083/84 is a <strong>Rs. 2,124.34 billion</strong> fiscal plan for FY 2026/27. Key changes: first Rs. 10,00,000 in the 1% slab, <strong>29% max tax rate</strong> (down from 39%), <strong>10% digital VAT rebate</strong>, customs from 11 to 7 tiers, and a one-time tax dispute settlement with a 1% fee.
-        </p>
+        <p><strong>Quick Answer: Nepal Budget 2083/84 at a Glance</strong></p>
+        <div className="nb-tw" style={{marginTop:'10px'}}>
+          <table>
+            <caption>Nepal Budget 2083/84 — Key Facts</caption>
+            <thead><tr><th>Item</th><th>Detail</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Fiscal year</strong></td><td>2083/84 (FY 2026/27)</td></tr>
+              <tr><td><strong>Effective date</strong></td><td>Shrawan 1, 2083 (July 17, 2026)</td></tr>
+              <tr><td><strong>Total budget</strong></td><td>Rs. 2,124.34 billion</td></tr>
+              <tr><td><strong>Economic growth target</strong></td><td>7%</td></tr>
+              <tr><td><strong>Inflation target</strong></td><td>Below 6%</td></tr>
+              <tr><td><strong>Maximum individual income-tax rate</strong></td><td>29% (reduced from 39%)</td></tr>
+              <tr><td><strong>First income-tax slab</strong></td><td>Rs. 10 lakh at 1%</td></tr>
+              <tr><td><strong>Standard VAT rate</strong></td><td>13% (unchanged)</td></tr>
+              <tr><td><strong>Digital-payment VAT rebate</strong></td><td>10% of VAT charged</td></tr>
+              <tr><td><strong>Customs tariff tiers</strong></td><td>11 → 7 tiers</td></tr>
+              <tr><td><strong>Digital Services Tax (DST)</strong></td><td>2%</td></tr>
+              <tr><td><strong>IT export withholding tax</strong></td><td>5% final WHT (qualifying income)</td></tr>
+              <tr><td><strong>Tax settlement scheme</strong></td><td>Principal + 1% fee, deadline: Poush 30, 2083</td></tr>
+              <tr><td><strong>Electricity capacity target</strong></td><td>5,535 MW</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style={{marginTop:'8px',fontSize:'0.82rem',color:'#526370'}}><strong>Source:</strong> Ministry of Finance, Finance Act 2083, Inland Revenue Department. Verify current figures with official sources before use.</p>
       </div>
 
       {/* MOBILE TOC DROPDOWN: shown only on mobile/tablet */}
       <nav className="nb-toc-mobile" aria-label="Table of Contents">
         <details>
-          <summary>📋 Table of Contents: 30 Sections</summary>
+          <summary>📋 Table of Contents: 36 Sections</summary>
           <ol>
+            <li><a href="#top-highlights"><span className="nb-toc-num">★</span>Top 15 Highlights</a></li>
+            <li><a href="#who-is-affected"><span className="nb-toc-num">◈</span>Who Is Affected?</a></li>
+            <li><a href="#who-benefits"><span className="nb-toc-num">◈</span>Who Benefits?</a></li>
+            <li><a href="#official-pdf"><span className="nb-toc-num">📄</span>PDF &amp; Nepali</a></li>
             <li><a href="#overview"><span className="nb-toc-num">01</span>Budget Overview</a></li>
             <li><a href="#budget-size"><span className="nb-toc-num">02</span>Budget Size &amp; Financing</a></li>
             <li><a href="#major-highlights"><span className="nb-toc-num">03</span>Major Highlights</a></li>
@@ -238,6 +265,8 @@ export default function NepalBudgetPage() {
             <li><a href="#key-takeaways"><span className="nb-toc-num">28</span>Examples</a></li>
             <li><a href="#faqs"><span className="nb-toc-num">29</span>FAQs</a></li>
             <li><a href="#related-resources"><span className="nb-toc-num">30</span>Calculators &amp; Links</a></li>
+            <li><a href="#misconceptions"><span className="nb-toc-num">★</span>Misconceptions</a></li>
+            <li><a href="#action-checklist"><span className="nb-toc-num">★</span>What To Do Now</a></li>
           </ol>
         </details>
       </nav>
@@ -247,7 +276,7 @@ export default function NepalBudgetPage() {
         <span><span className="dot"></span>Last updated: 15 August 2026</span>
         <span><strong>Source:</strong> Finance Act 2083 · Ministry of Finance</span>
         <span><strong>Effective:</strong> Shrawan 1, 2083 (July 17, 2026)</span>
-        <span><strong>Reading:</strong> ~25 min</span>
+        <span><strong>Reading:</strong> ~35 min</span>
       </div>
 
       {/* STAT STRIP */}
@@ -263,6 +292,99 @@ export default function NepalBudgetPage() {
 
         {/* ── MAIN CONTENT ── */}
         <main className="nb-main">
+
+          {/* TOP 15 HIGHLIGHTS */}
+          <section className="nb-chapter" id="top-highlights" style={{marginBottom:'28px'}}>
+            <span className="nb-ch-tag">★</span>
+            <h2>Nepal Budget 2083/84: Top 15 Highlights</h2>
+            <p className="nb-subdek">The most important changes from Nepal&apos;s Rs. 2,124.34 billion FY 2026/27 budget, designed for quick reference.</p>
+            <ol style={{paddingLeft:'1.4rem',lineHeight:1.8}}>
+              <li><strong>Rs. 2,124.34 billion total budget</strong> — Nepal&apos;s largest federal budget to date for FY 2026/27. Recurrent: Rs. 1,286 B; Capital: Rs. 431 B; Financial management: Rs. 407 B.</li>
+              <li><strong>7% economic growth target</strong> — Government aims to sustain broad-based GDP expansion while keeping inflation below 6%.</li>
+              <li><strong>29% maximum individual income-tax rate</strong> — Reduced from the previous 39%, benefiting high-income earners significantly. Applies to taxable income above Rs. 40 lakh.</li>
+              <li><strong>First Rs. 10 lakh income-tax slab at 1%</strong> — The lowest slab now covers the first Rs. 10,00,000 of taxable income at a 1% rate (with specified waivers for SSF contributors, qualifying pension and sole-proprietorship income).</li>
+              <li><strong>10% digital-payment VAT rebate</strong> — Consumers who pay retail bills via QR code, digital wallet, or card automatically receive a 10% credit of the VAT charged back to their payment account.</li>
+              <li><strong>Customs restructured from 11 to 7 tiers</strong> — Simplified customs tariff structure to reduce trade friction and improve compliance. 273 raw-material duty reductions for manufacturers.</li>
+              <li><strong>5% final withholding tax for IT exporters</strong> — IT companies and software exporters receiving foreign-currency payments through domestic banks pay a 5% final WHT (subject to stated conditions).</li>
+              <li><strong>Sovereign AI Computing Centre</strong> — Budget allocates funds to establish Nepal&apos;s national AI computing infrastructure to support the digital economy.</li>
+              <li><strong>Electricity capacity target: 5,535 MW</strong> — Major push to expand hydropower and energy capacity as a driver of industrial growth and exports.</li>
+              <li><strong>Tax dispute settlement scheme</strong> — Taxpayers with pending income tax, VAT, or excise disputes can settle by paying the assessed principal plus a 1% fee by Poush 30, 2083 (mid-January 2027), with all fines, interest and penalties waived.</li>
+              <li><strong>360 excise-taxed goods exempted</strong> — Excise duty removed from 360 categories of goods to reduce the compliance and price burden.</li>
+              <li><strong>2% Digital Services Tax (DST)</strong> — Foreign digital service providers with Nepal-sourced income above Rs. 30 lakh must register and remit 2% DST.</li>
+              <li><strong>Ride-sharing platform taxation</strong> — Ride-sharing income now subject to 13% VAT and 1% advance income tax deducted at source by the platform.</li>
+              <li><strong>Health insurance expansion</strong> — Programme targeting up to 90% population coverage, with increased premium subsidy for qualifying citizens.</li>
+              <li><strong>Agriculture and food security</strong> — Rs. 47–62 billion allocated to agriculture and livestock (figure varies by classification); emphasis on food self-sufficiency and farmer subsidies.</li>
+            </ol>
+            <p style={{fontSize:'0.82rem',color:'#526370',marginTop:'8px'}}><strong>Source:</strong> Ministry of Finance Budget Speech 2083/84 · Finance Act 2083. All figures to be verified with official MoF publications.</p>
+          </section>
+
+          {/* WHAT CHANGED FOR ME — DECISION TABLE */}
+          <section className="nb-chapter" id="who-is-affected" style={{marginBottom:'28px'}}>
+            <span className="nb-ch-tag">◈</span>
+            <h2>Budget 2083/84 Changes: Who Is Affected?</h2>
+            <p className="nb-subdek">Find out which Budget 2083/84 change applies to you and what to check next.</p>
+            <div className="nb-tw">
+              <table>
+                <caption>Budget 2083/84 — Changes at a Glance by Taxpayer Type</caption>
+                <thead><tr><th>If you are a…</th><th>Most important change</th><th>What to check</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Salaried employee</strong></td><td>First Rs. 10 lakh at 1%; max rate 29%</td><td><a href="/calculator/nepal-income-tax/">Income tax calculation</a></td></tr>
+                  <tr><td><strong>SSF contributor</strong></td><td>1% first-slab rate waived for qualifying SSF income</td><td>SSF exemption eligibility</td></tr>
+                  <tr><td><strong>Freelancer / IT exporter</strong></td><td>5% final WHT on qualifying foreign-currency income</td><td>Section 92 / banking-channel requirement</td></tr>
+                  <tr><td><strong>Share investor</strong></td><td>Revised CGT treatment (verify short/long-term rates)</td><td>Holding period and CGT rate</td></tr>
+                  <tr><td><strong>Property seller</strong></td><td>Real-estate CGT changes</td><td>Holding period classification</td></tr>
+                  <tr><td><strong>Vehicle owner</strong></td><td>Revised vehicle and EV taxes</td><td><a href="/calculator/nepal-vehicle-tax/">Vehicle Tax Calculator</a></td></tr>
+                  <tr><td><strong>VAT-registered business</strong></td><td>Digital invoice / CBMS / VAT changes</td><td>IRD compliance updates</td></tr>
+                  <tr><td><strong>Ride-sharing driver/platform</strong></td><td>13% VAT + 1% advance tax deduction</td><td>Platform withholding obligations</td></tr>
+                  <tr><td><strong>Digital-service provider</strong></td><td>2% DST above Rs. 30 lakh threshold</td><td>DST registration with IRD</td></tr>
+                  <tr><td><strong>Importer</strong></td><td>7 customs tiers (from 11)</td><td>Updated HS-code tariff schedule</td></tr>
+                  <tr><td><strong>Manufacturer</strong></td><td>273 raw-material duty reductions</td><td>Revised customs schedule</td></tr>
+                  <tr><td><strong>Consumer / retail buyer</strong></td><td>10% VAT rebate on digital payments</td><td>Use QR / card / digital wallet</td></tr>
+                  <tr><td><strong>Taxpayer with old disputes</strong></td><td>Principal + 1% settlement, all penalties waived</td><td>Deadline: Poush 30, 2083</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          {/* WHO BENEFITS */}
+          <section className="nb-chapter" id="who-benefits" style={{marginBottom:'28px'}}>
+            <span className="nb-ch-tag">◈</span>
+            <h2>Who Benefits From Nepal Budget 2083/84?</h2>
+            <div className="nb-tw">
+              <table>
+                <caption>Winners and Higher-Burden Groups — Budget 2083/84</caption>
+                <thead><tr><th>Group</th><th>Direction</th><th>Main reason</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>High-income individuals</strong></td><td>✅ Benefits</td><td>Maximum rate reduced from 39% to 29%</td></tr>
+                  <tr><td><strong>SSF contributors</strong></td><td>✅ Benefits</td><td>1% first-slab rate waived</td></tr>
+                  <tr><td><strong>IT exporters / freelancers</strong></td><td>✅ Simplified</td><td>5% final WHT replaces complex assessment</td></tr>
+                  <tr><td><strong>Manufacturers</strong></td><td>✅ Benefits</td><td>273 raw-material duty reductions</td></tr>
+                  <tr><td><strong>Digital-payment users</strong></td><td>✅ Benefits</td><td>10% VAT rebate on digital transactions</td></tr>
+                  <tr><td><strong>Tobacco businesses</strong></td><td>⚠️ Higher burden</td><td>Excise duty increase</td></tr>
+                  <tr><td><strong>Liquor businesses</strong></td><td>⚠️ Higher burden</td><td>Excise duty increase</td></tr>
+                  <tr><td><strong>Importers (general)</strong></td><td>↔️ Mixed</td><td>Revised customs structure; some goods cheaper, some not</td></tr>
+                  <tr><td><strong>Ride-sharing platforms</strong></td><td>⚠️ Higher compliance</td><td>VAT + advance tax withholding obligation</td></tr>
+                  <tr><td><strong>Foreign digital service providers</strong></td><td>⚠️ Compliance burden</td><td>DST registration and remittance above Rs. 30 lakh</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          {/* OFFICIAL PDF + NEPALI SECTION */}
+          <section className="nb-chapter" id="official-pdf" style={{marginBottom:'28px'}}>
+            <span className="nb-ch-tag">📄</span>
+            <h2>Nepal Budget 2083/84 PDF &amp; Official Documents</h2>
+            <p>The official Nepal Budget 2083/84 documents — including the Budget Speech, Finance Bill, Finance Act, and supporting annexes — are published by the Ministry of Finance. For the original Nepali and English-language documents, use the official Ministry of Finance source.</p>
+            <p><strong>Primary source:</strong> <a href="https://mof.gov.np" target="_blank" rel="noopener noreferrer">Ministry of Finance Nepal — mof.gov.np</a></p>
+            <p><strong>Tax provisions source:</strong> <a href="https://ird.gov.np" target="_blank" rel="noopener noreferrer">Inland Revenue Department — ird.gov.np</a></p>
+            <p><strong>Customs:</strong> <a href="https://customs.gov.np" target="_blank" rel="noopener noreferrer">Department of Customs — customs.gov.np</a></p>
+            <p style={{fontSize:'0.85rem',color:'#526370',marginTop:'8px'}}>Do not rely on third-party PDF re-uploads. Always verify documents against the official Ministry of Finance source for accuracy and completeness.</p>
+
+            <h3 style={{marginTop:'20px'}}>बजेट २०८३/८४ — नेपालीमा (Nepali Summary)</h3>
+            <p>आर्थिक वर्ष २०८३/८४ को नेपाल सरकारको संघीय बजेट रु. २,१२४.३४ अर्ब रहेको छ। यो बजेट अर्थमन्त्री डा. स्वर्णिम वाग्लेद्वारा प्रस्तुत गरिएको हो। बजेटको प्रमुख उद्देश्यहरूमा ७% आर्थिक वृद्धि, ६% भन्दा कम मुद्रास्फीति, पूर्वाधार विकास, ऊर्जा, रोजगारी, स्वास्थ्य, शिक्षा, डिजिटल प्रविधि तथा कर सुधार रहेका छन्।</p>
+            <p>प्रमुख कर परिवर्तनहरूमा पहिलो रु. १० लाखमा १% कर, अधिकतम व्यक्तिगत कर दर ३९% बाट घटाएर २९%, डिजिटल भुक्तानीमा १०% VAT छुट, भन्सार दर ११ बाट ७ तहमा घटाइएको र कर विवाद सम्झौता योजना समावेश छन्।</p>
+            <p>आधिकारिक कागजातहरूको लागि: <a href="https://mof.gov.np" target="_blank" rel="noopener noreferrer">अर्थ मन्त्रालय — mof.gov.np</a></p>
+          </section>
 
           {/* § 1 Overview */}
           <section className="nb-chapter" id="overview">
@@ -1575,12 +1697,103 @@ export default function NepalBudgetPage() {
             </div>
           </section>
 
+          {/* COMMON MISCONCEPTIONS */}
+          <section className="nb-chapter" id="misconceptions" style={{marginBottom:'28px'}}>
+            <span className="nb-ch-tag">!</span>
+            <h2>Common Misconceptions About Nepal Budget 2083/84</h2>
+            <p className="nb-subdek">These are frequently misunderstood points about the 2083/84 Budget and Finance Act 2083.</p>
+
+            <h3>Myth 1: The first Rs. 10 lakh is completely tax-free</h3>
+            <p><strong>Reality:</strong> The first Rs. 10 lakh of taxable income is <em>not</em> generally tax-free. It falls under a <strong>1% tax rate</strong>. The 1% treatment is <em>waived</em> only for specified categories — qualifying SSF-contributing employees, certain qualifying pension income, and specified sole-proprietorship income under the Finance Act 2083. Most salaried individuals pay 1% on the first Rs. 10 lakh.</p>
+            <div className="nb-tw">
+              <table>
+                <caption>Is the First Rs. 10 Lakh Tax-Free in Nepal? (FY 2083/84)</caption>
+                <thead><tr><th>Situation</th><th>First Rs. 10 lakh</th></tr></thead>
+                <tbody>
+                  <tr><td>General individual (salaried etc.)</td><td>1% tax applies</td></tr>
+                  <tr><td>Qualifying SSF contributor</td><td>1% rate waived</td></tr>
+                  <tr><td>Specified pension income</td><td>1% rate waived</td></tr>
+                  <tr><td>Specified sole-proprietorship income</td><td>1% rate waived</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 style={{marginTop:'16px'}}>Myth 2: The maximum income-tax rate is still 39%</h3>
+            <p><strong>Reality:</strong> Under Finance Act 2083, the maximum marginal rate for natural persons is <strong>29%</strong> on taxable income above Rs. 40 lakh. The 39% rate applied in FY 2082/83 and has been reduced.</p>
+
+            <h3 style={{marginTop:'16px'}}>Myth 3: The standard VAT rate changed</h3>
+            <p><strong>Reality:</strong> The standard VAT rate remains <strong>13%</strong>. What changed is the introduction of a 10% VAT rebate when consumers pay via digital means (QR, card, wallet). The headline VAT rate is unchanged.</p>
+
+            <h3 style={{marginTop:'16px'}}>Myth 4: Ride-sharing platforms now charge 5% VAT</h3>
+            <p><strong>Reality:</strong> Ride-sharing services are subject to the standard <strong>13% VAT</strong>. Additionally, a <strong>1% advance income tax</strong> is deducted at source by the platform. Do not confuse the 1% advance tax with the VAT rate.</p>
+
+            <h3 style={{marginTop:'16px'}}>Myth 5: Every taxpayer with old dues qualifies for the settlement scheme</h3>
+            <p><strong>Reality:</strong> Eligibility and deadlines vary by provision. The general tax dispute settlement allows payment of the principal + 1% fee by Poush 30, 2083. However, specific schemes have specific eligibility criteria. Confirm your case with the IRD before payment.</p>
+
+            <h3 style={{marginTop:'16px'}}>Myth 6: The 5% IT export WHT applies to all freelancers</h3>
+            <p><strong>Reality:</strong> The 5% final WHT applies to qualifying IT companies and software exporters receiving <em>foreign-currency</em> payments through <em>domestic banking channels</em>. Eligibility depends on the nature of services, payment channel, and conditions under Section 92 of the Income Tax Act as amended. Not all freelancers qualify automatically.</p>
+          </section>
+
+          {/* WHAT SHOULD YOU DO NOW */}
+          <section className="nb-chapter" id="action-checklist" style={{marginBottom:'28px'}}>
+            <span className="nb-ch-tag">✓</span>
+            <h2>What Should You Do After Nepal Budget 2083/84?</h2>
+            <p className="nb-subdek">Practical steps based on your taxpayer type. Verify with a qualified tax adviser before acting.</p>
+
+            <h3>For Individuals &amp; Salaried Employees</h3>
+            <ul>
+              <li>Recalculate your FY 2083/84 taxable income using the new slabs. Use our <a href="/calculator/nepal-income-tax/">Nepal Income Tax Calculator</a>.</li>
+              <li>Check whether you qualify for the 1% slab waiver (SSF contributor, pension, qualifying sole-proprietor).</li>
+              <li>Review your insurance, education, and donation deductions — these reduce taxable income.</li>
+              <li>Verify the TDS deducted by your employer matches the correct slab rates.</li>
+              <li>If you have old tax disputes, check whether the settlement scheme applies to you (deadline: Poush 30, 2083).</li>
+            </ul>
+
+            <h3>For Freelancers &amp; IT Exporters</h3>
+            <ul>
+              <li>Determine whether your foreign-currency income qualifies for the 5% final WHT under Section 92.</li>
+              <li>Confirm you are using a qualifying domestic banking channel for foreign payments.</li>
+              <li>If your income does not qualify for 5% WHT, it falls under normal income tax slabs — plan accordingly.</li>
+              <li>Check DST registration requirements if you provide digital services to Nepal-based clients.</li>
+            </ul>
+
+            <h3>For Businesses</h3>
+            <ul>
+              <li>Review your VAT registration status and e-invoice / CBMS compliance obligations.</li>
+              <li>Verify updated TDS deduction rates for all payment types relevant to your business.</li>
+              <li>If you import goods, review the updated 7-tier customs tariff schedule for your HS codes.</li>
+              <li>Check whether the tax settlement scheme applies to any pending disputes.</li>
+              <li>Ensure ride-sharing or digital-service platforms are withholding and remitting VAT/advance tax correctly.</li>
+            </ul>
+
+            <h3>For Investors &amp; Share Traders</h3>
+            <ul>
+              <li>Check the updated CGT rates for listed securities (short-term and long-term holding periods). Verify rates against IRD notices, as the applicable rate depends on your holding period.</li>
+              <li>Use our <a href="/calculator/nepse-wacc/">NEPSE WACC Calculator</a> for cost-of-capital analysis under revised CGT.</li>
+              <li>If you sold property during FY 2083/84, check the applicable real-estate CGT rate based on holding period.</li>
+            </ul>
+
+            <h3>For Taxpayers with Old Disputes</h3>
+            <ul>
+              <li>Determine whether your liability falls under the one-time settlement scheme.</li>
+              <li>Calculate the principal tax + 1% settlement fee.</li>
+              <li>Check the exact deadline for your specific provision (general: Poush 30, 2083).</li>
+              <li><strong>Confirm with the IRD before making any payment.</strong></li>
+            </ul>
+            <p style={{fontSize:'0.85rem',color:'#526370',marginTop:'12px'}}>This checklist is for informational purposes only. Tax obligations depend on individual circumstances. Consult a registered tax adviser or the IRD for compliance decisions.</p>
+          </section>
+
         </main>
 
         {/* ── RIGHT SIDEBAR TOC ── */}
         <aside className="nb-toc">
           <span className="nb-toc-head">On this page</span>
           <ol>
+            <li><a href="#top-highlights"><span className="nb-toc-num">★</span>Top 15 Highlights</a></li>
+            <li><a href="#who-is-affected"><span className="nb-toc-num">◈</span>Who Is Affected?</a></li>
+            <li><a href="#who-benefits"><span className="nb-toc-num">◈</span>Who Benefits?</a></li>
+            <li><a href="#official-pdf"><span className="nb-toc-num">📄</span>PDF &amp; Nepali</a></li>
+            <div className="nb-toc-divider" />
             <li><a href="#overview"><span className="nb-toc-num">01</span>Nepal Budget 2083/84 Overview</a></li>
             <li><a href="#budget-size"><span className="nb-toc-num">02</span>Budget Size &amp; Financing</a></li>
             <li><a href="#major-highlights"><span className="nb-toc-num">03</span>Major Highlights</a></li>
@@ -1603,17 +1816,20 @@ export default function NepalBudgetPage() {
             <div className="nb-toc-divider" />
             <li><a href="#tax-rate-summary"><span className="nb-toc-num">19</span>Consolidated Tax Rate Table</a></li>
             <li><a href="#tax-tables"><span className="nb-toc-num">20</span>VAT, TDS &amp; Customs Tables</a></li>
-            <li><a href="#tax-exemptions"><span className="nb-toc-num">21</span>Exemptions &amp; Deductions</a></li>
-            <li><a href="#tax-amnesty"><span className="nb-toc-num">22</span>Tax Amnesty &amp; Relief Schemes</a></li>
-            <li><a href="#exemption-summary"><span className="nb-toc-num">23</span>Master Relief Schemes Table</a></li>
-            <li><a href="#compliance-calendar"><span className="nb-toc-num">24</span>Deadlines &amp; Calendar</a></li>
+            <li><a href="#tax-exemptions"><span className="nb-toc-num">21</span>Exemptions &amp; Waivers</a></li>
+            <li><a href="#tax-amnesty"><span className="nb-toc-num">22</span>Tax Amnesty &amp; Settlement</a></li>
+            <li><a href="#exemption-summary"><span className="nb-toc-num">23</span>Relief &amp; Concession Schemes</a></li>
+            <li><a href="#compliance-calendar"><span className="nb-toc-num">24</span>Compliance Calendar</a></li>
             <div className="nb-toc-divider" />
-            <li><a href="#impact-individuals"><span className="nb-toc-num">25</span>Impact on Individuals</a></li>
-            <li><a href="#impact-businesses"><span className="nb-toc-num">26</span>Impact on Businesses</a></li>
-            <li><a href="#year-comparison"><span className="nb-toc-num">27</span>2082/83 vs 2083/84 Changes</a></li>
-            <li><a href="#key-takeaways"><span className="nb-toc-num">28</span>Examples &amp; Key Takeaways</a></li>
+            <li><a href="#impact-individuals"><span className="nb-toc-num">25</span>Impact: Individuals</a></li>
+            <li><a href="#impact-businesses"><span className="nb-toc-num">26</span>Impact: Businesses</a></li>
+            <li><a href="#year-comparison"><span className="nb-toc-num">27</span>Budget vs Previous Year</a></li>
+            <li><a href="#key-takeaways"><span className="nb-toc-num">28</span>Worked Examples</a></li>
             <li><a href="#faqs"><span className="nb-toc-num">29</span>FAQs</a></li>
-            <li><a href="#related-resources"><span className="nb-toc-num">30</span>Calculators &amp; Official Links</a></li>
+            <li><a href="#related-resources"><span className="nb-toc-num">30</span>Calculators &amp; Links</a></li>
+            <div className="nb-toc-divider" />
+            <li><a href="#misconceptions"><span className="nb-toc-num">★</span>Common Misconceptions</a></li>
+            <li><a href="#action-checklist"><span className="nb-toc-num">★</span>What To Do Now</a></li>
           </ol>
         </aside>
 
