@@ -8,10 +8,17 @@
   },
   "date": "2026-08-15",
   "source": "ShareSansar",
+<<<<<<< Updated upstream
   "updatedAt": "2026-08-15T03:25:42.978Z",
   "verified": true,
   "fetchedAt": "2026-08-15T03:25:42.978Z",
   "timeNPT": "09:10 AM NPT",
+=======
+  "updatedAt": "2026-08-15T03:37:06.271Z",
+  "verified": true,
+  "fetchedAt": "2026-08-15T03:37:06.274Z",
+  "timeNPT": "03:07 PM NPT",
+>>>>>>> Stashed changes
   "fetchSource": "prebuild script",
   "fetchFailed": false,
   "_status": "fresh"
