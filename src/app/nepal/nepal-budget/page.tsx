@@ -116,8 +116,8 @@ const css = `
 .nb-subdek{color:var(--slate);max-width:100%;margin:0 0 18px;font-size:.95rem;word-break:break-word;overflow-wrap:break-word;}
 .nb h3{font-family:var(--serif);font-weight:500;font-size:1.08rem;margin:22px 0 8px;color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:4px;word-break:break-word;overflow-wrap:break-word;}
 .nb h4{font-family:var(--sans);font-weight:700;font-size:.88rem;margin:14px 0 4px;text-transform:uppercase;letter-spacing:.05em;color:var(--slate);word-break:break-word;overflow-wrap:break-word;}
-.nb p{margin:0 0 12px;max-width:min(72ch,100%);word-break:break-word;overflow-wrap:break-word;}
-.nb ul,.nb ol{padding-left:1.3em;max-width:min(72ch,100%);}
+.nb p{margin:0 0 12px;max-width:100%;word-break:break-word;overflow-wrap:break-word;}
+.nb ul,.nb ol{padding-left:1.3em;max-width:100%;}
 .nb li{margin-bottom:5px;word-break:break-word;overflow-wrap:break-word;}
 
 /* TABLES */
