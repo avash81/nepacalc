@@ -6,12 +6,12 @@
   "silver": {
     "tolaNPR": 4660
   },
-  "date": "2026-08-14",
+  "date": "2026-08-15",
   "source": "ShareSansar",
-  "updatedAt": "2026-08-14T13:57:02.488Z",
+  "updatedAt": "2026-08-15T02:17:02.729Z",
   "verified": true,
-  "fetchedAt": "2026-08-14T13:57:02.504Z",
-  "timeNPT": "07:42 PM NPT",
+  "fetchedAt": "2026-08-15T02:17:02.729Z",
+  "timeNPT": "08:02 AM NPT",
   "fetchSource": "prebuild script",
   "fetchFailed": false,
   "_status": "fresh"
