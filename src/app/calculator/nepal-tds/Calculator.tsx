@@ -154,7 +154,7 @@ const schemaGraph = {
           "@type": "ListItem",
           "position": 3,
           "name": "Finance Calculators",
-          "item": "https://nepacalc.com/calculator/category/finance/"
+          "item": "https://nepacalc.com/directory/finance/"
         },
         {
           "@type": "ListItem",
@@ -514,7 +514,7 @@ export default function NepalTdsCalculator() {
       crumbs={[
         { label: 'Home', href: '/' },
         { label: 'Calculators', href: '/calculator/' },
-        { label: 'Finance Calculators', href: '/calculator/category/finance/' },
+        { label: 'Finance Calculators', href: '/directory/finance/' },
         { label: 'Nepal TDS Calculator' }
       ]}
       customSchema={schemaGraph}

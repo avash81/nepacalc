@@ -52,7 +52,7 @@ export function CalculatorLayout({
   let catLink = typeof category === 'object' ? category.href : (category ? CATEGORY_URL_MAP[category.toLowerCase()] : categoryHref);
   
   // Logic: Intercept legacy category URLs and map them to pillars to avoid 404s
-  if (catLink && (catLink.includes('/calculator/category/') || !catLink.startsWith('/'))) {
+  if (catLink && (catLink.includes('/directory/') || !catLink.startsWith('/'))) {
     const categoryId = catLink.split('/').filter(Boolean).pop() || catLink;
     if (categoryId && CATEGORY_URL_MAP[categoryId.toLowerCase()]) {
       catLink = CATEGORY_URL_MAP[categoryId.toLowerCase()];

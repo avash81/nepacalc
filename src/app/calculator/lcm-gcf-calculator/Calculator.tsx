@@ -399,12 +399,12 @@ export default function LcmGcfCalculator() {
           { label: "Decimal to Fraction", href: "/calculator/decimal-to-fraction/" },
           { label: "Percentage Calculator", href: "/calculator/percentage/" },
           { label: "Standard Deviation", href: "/calculator/standard-deviation/" },
-          { label: "Scientific Calculator", href: "/calculator/scientific/" }
+          { label: "Scientific Calculator", href: "/calculator/scientific-calculator/" }
         ], banner: { title: "Number Theory", description: "Standardizing mathematical logic for Nepal's digital age.", image: "/images/math-banner.jpg" } }}
       relatedTools={[
         { label: "Fraction Calculator", href: "/calculator/fraction-calculator/" },
         { label: "Percentage Calculator", href: "/calculator/percentage/" },
-        { label: "Matrix Calculator", href: "/calculator/matrix/" },
+        { label: "Matrix Calculator", href: "/calculator/matrices/" },
         { label: "Decimal to Fraction", href: "/calculator/decimal-to-fraction/" }
       ]}
     />
