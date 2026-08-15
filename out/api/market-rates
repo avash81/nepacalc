@@ -1,5 +1,1 @@
-<<<<<<< Updated upstream
-{"success":true,"gold":{"tolaNPR":282100,"tejabiTolaNPR":0},"silver":{"tolaNPR":3609},"provider":"LivePriceOfGold (Real-Time Backup)","updatedAt":"2026-08-15T06:08:33.648Z"}
-=======
-{"success":true,"gold":{"tolaNPR":282100,"tejabiTolaNPR":0},"silver":{"tolaNPR":3609},"provider":"LivePriceOfGold (Real-Time Backup)","updatedAt":"2026-08-15T06:45:58.360Z"}
->>>>>>> Stashed changes
+{"success":true,"gold":{"tolaNPR":282100,"tejabiTolaNPR":0},"silver":{"tolaNPR":3609},"provider":"LivePriceOfGold (Real-Time Backup)","updatedAt":"2026-08-15T06:51:36.630Z"}
