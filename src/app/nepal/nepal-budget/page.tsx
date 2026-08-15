@@ -507,7 +507,7 @@ export default function NepalBudgetPage() {
             <h2>3. Major Highlights of Nepal Budget 2083/84</h2>
 
             <h3>3.1 Major Tax Changes</h3>
-            <p>Introduction of a revised tax structure where the first Rs. 10 lakh of individual taxable income falls within the 1% slab, and maximum individual income tax rate slashed from 39% to 29%. You can calculate your exact liability under this new structure using our <a href="/calculator/nepal-income-tax/">Nepal Income Tax Calculator</a>.</p>
+            <p>Introduction of a revised tax structure where the first Rs. 10 lakh of individual taxable income falls within the 1% slab, and maximum individual income tax rate slashed from 39% to 29%. You can calculate your exact liability under this new structure using our Nepal Income Tax Calculator.</p>
 
             <h3>3.2 Government Restructuring</h3>
             <p>Various redundant government boards and committees are set to be dissolved or merged to optimize recurrent expenditure.</p>
@@ -682,7 +682,7 @@ export default function NepalBudgetPage() {
           <section className="nb-chapter" id="transportation">
             <span className="nb-ch-tag">§ 9</span>
             <h2>9. Transportation, Ride-Sharing &amp; Vehicle Tax</h2>
-            <p>Need to calculate your personal vehicle tax for this fiscal year? Use our <a href="/calculator/nepal-vehicle-tax/">Nepal Vehicle Tax Calculator</a>.</p>
+            <p>Need to calculate your personal vehicle tax for this fiscal year? Use our Nepal Vehicle Tax Calculator.</p>
 
             <h3>9.1 Ride-Sharing Advance Tax</h3>
             <p>Ride-sharing platforms are required to deduct 1% advance tax on payments made to drivers.</p>
@@ -1742,7 +1742,7 @@ export default function NepalBudgetPage() {
 
             <h3>For Individuals &amp; Salaried Employees</h3>
             <ul>
-              <li>Recalculate your FY 2083/84 taxable income using the new slabs. Use our <a href="/calculator/nepal-income-tax/">Nepal Income Tax Calculator</a>.</li>
+              <li>Recalculate your FY 2083/84 taxable income using the new slabs. Use our Nepal Income Tax Calculator.</li>
               <li>Check whether you qualify for the 1% slab waiver (SSF contributor, pension, qualifying sole-proprietor).</li>
               <li>Review your insurance, education, and donation deductions — these reduce taxable income.</li>
               <li>Verify the TDS deducted by your employer matches the correct slab rates.</li>
@@ -1769,7 +1769,7 @@ export default function NepalBudgetPage() {
             <h3>For Investors &amp; Share Traders</h3>
             <ul>
               <li>Check the updated CGT rates for listed securities (short-term and long-term holding periods). Verify rates against IRD notices, as the applicable rate depends on your holding period.</li>
-              <li>Use our <a href="/calculator/nepse-wacc/">NEPSE WACC Calculator</a> for cost-of-capital analysis under revised CGT.</li>
+              <li>Use our NEPSE WACC Calculator for cost-of-capital analysis under revised CGT.</li>
               <li>If you sold property during FY 2083/84, check the applicable real-estate CGT rate based on holding period.</li>
             </ul>
 
