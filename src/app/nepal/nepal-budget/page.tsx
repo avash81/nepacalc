@@ -299,23 +299,50 @@ export default function NepalBudgetPage() {
             <span className="nb-ch-tag">★</span>
             <h2>Nepal Budget 2083/84: Top 15 Highlights</h2>
             <p className="nb-subdek">The most important changes from Nepal&apos;s Rs. 2,124.34 billion FY 2026/27 budget, designed for quick reference.</p>
-            <ol style={{paddingLeft:'1.4rem',lineHeight:1.8}}>
-              <li><strong>Rs. 2,124.34 billion total budget</strong> — Nepal&apos;s largest federal budget to date for FY 2026/27. Recurrent: Rs. 1,286 B; Capital: Rs. 431 B; Financial management: Rs. 407 B.</li>
-              <li><strong>7% economic growth target</strong> — Government aims to sustain broad-based GDP expansion while keeping inflation below 6%.</li>
-              <li><strong>29% maximum individual income-tax rate</strong> — Reduced from the previous 39%, benefiting high-income earners significantly. Applies to taxable income above Rs. 40 lakh.</li>
-              <li><strong>First Rs. 10 lakh income-tax slab at 1%</strong> — The lowest slab now covers the first Rs. 10,00,000 of taxable income at a 1% rate (with specified waivers for SSF contributors, qualifying pension and sole-proprietorship income).</li>
-              <li><strong>10% digital-payment VAT rebate</strong> — Consumers who pay retail bills via QR code, digital wallet, or card automatically receive a 10% credit of the VAT charged back to their payment account.</li>
-              <li><strong>Customs restructured from 11 to 7 tiers</strong> — Simplified customs tariff structure to reduce trade friction and improve compliance. 273 raw-material duty reductions for manufacturers.</li>
-              <li><strong>5% final withholding tax for IT exporters</strong> — IT companies and software exporters receiving foreign-currency payments through domestic banks pay a 5% final WHT (subject to stated conditions).</li>
-              <li><strong>Sovereign AI Computing Centre</strong> — Budget allocates funds to establish Nepal&apos;s national AI computing infrastructure to support the digital economy.</li>
-              <li><strong>Electricity capacity target: 5,535 MW</strong> — Major push to expand hydropower and energy capacity as a driver of industrial growth and exports.</li>
-              <li><strong>Tax dispute settlement scheme</strong> — Taxpayers with pending income tax, VAT, or excise disputes can settle by paying the assessed principal plus a 1% fee by Poush 30, 2083 (mid-January 2027), with all fines, interest and penalties waived.</li>
-              <li><strong>360 excise-taxed goods exempted</strong> — Excise duty removed from 360 categories of goods to reduce the compliance and price burden.</li>
-              <li><strong>2% Digital Services Tax (DST)</strong> — Foreign digital service providers with Nepal-sourced income above Rs. 30 lakh must register and remit 2% DST.</li>
-              <li><strong>Ride-sharing platform taxation</strong> — Ride-sharing income now subject to 13% VAT and 1% advance income tax deducted at source by the platform.</li>
-              <li><strong>Health insurance expansion</strong> — Programme targeting up to 90% population coverage, with increased premium subsidy for qualifying citizens.</li>
-              <li><strong>Agriculture and food security</strong> — Rs. 47–62 billion allocated to agriculture and livestock (figure varies by classification); emphasis on food self-sufficiency and farmer subsidies.</li>
-            </ol>
+            <h3>1. Rs. 2,124.34 billion total budget</h3>
+            <p>Nepal&apos;s largest federal budget to date for FY 2026/27. Recurrent: Rs. 1,286 B; Capital: Rs. 431 B; Financial management: Rs. 407 B.</p>
+            
+            <h3>2. 7% economic growth target</h3>
+            <p>Government aims to sustain broad-based GDP expansion while keeping inflation below 6%.</p>
+            
+            <h3>3. 29% maximum individual income-tax rate</h3>
+            <p>Reduced from the previous 39%, benefiting high-income earners significantly. Applies to taxable income above Rs. 40 lakh.</p>
+            
+            <h3>4. First Rs. 10 lakh income-tax slab at 1%</h3>
+            <p>The lowest slab now covers the first Rs. 10,00,000 of taxable income at a 1% rate (with specified waivers for SSF contributors, qualifying pension and sole-proprietorship income).</p>
+            
+            <h3>5. 10% digital-payment VAT rebate</h3>
+            <p>Consumers who pay retail bills via QR code, digital wallet, or card automatically receive a 10% credit of the VAT charged back to their payment account.</p>
+            
+            <h3>6. Customs restructured from 11 to 7 tiers</h3>
+            <p>Simplified customs tariff structure to reduce trade friction and improve compliance. 273 raw-material duty reductions for manufacturers.</p>
+            
+            <h3>7. 5% final withholding tax for IT exporters</h3>
+            <p>IT companies and software exporters receiving foreign-currency payments through domestic banks pay a 5% final WHT (subject to stated conditions).</p>
+            
+            <h3>8. Sovereign AI Computing Centre</h3>
+            <p>Budget allocates funds to establish Nepal&apos;s national AI computing infrastructure to support the digital economy.</p>
+            
+            <h3>9. Electricity capacity target: 5,535 MW</h3>
+            <p>Major push to expand hydropower and energy capacity as a driver of industrial growth and exports.</p>
+            
+            <h3>10. Tax dispute settlement scheme</h3>
+            <p>Taxpayers with pending income tax, VAT, or excise disputes can settle by paying the assessed principal plus a 1% fee by Poush 30, 2083 (mid-January 2027), with all fines, interest and penalties waived.</p>
+            
+            <h3>11. 360 excise-taxed goods exempted</h3>
+            <p>Excise duty removed from 360 categories of goods to reduce the compliance and price burden.</p>
+            
+            <h3>12. 2% Digital Services Tax (DST)</h3>
+            <p>Foreign digital service providers with Nepal-sourced income above Rs. 30 lakh must register and remit 2% DST.</p>
+            
+            <h3>13. Ride-sharing platform taxation</h3>
+            <p>Ride-sharing income now subject to 13% VAT and 1% advance income tax deducted at source by the platform.</p>
+            
+            <h3>14. Health insurance expansion</h3>
+            <p>Programme targeting up to 90% population coverage, with increased premium subsidy for qualifying citizens.</p>
+            
+            <h3>15. Agriculture and food security</h3>
+            <p>Rs. 47–62 billion allocated to agriculture and livestock (figure varies by classification); emphasis on food self-sufficiency and farmer subsidies.</p>
             <p style={{fontSize:'0.82rem',color:'#526370',marginTop:'8px'}}><strong>Source:</strong> Ministry of Finance Budget Speech 2083/84 · Finance Act 2083. All figures to be verified with official MoF publications.</p>
           </section>
 
