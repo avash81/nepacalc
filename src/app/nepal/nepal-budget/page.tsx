@@ -208,13 +208,13 @@ export default function NepalBudgetPage() {
             <tbody>
               <tr><td><strong>Fiscal year</strong></td><td>2083/84 (FY 2026/27)</td></tr>
               <tr><td><strong>Effective date</strong></td><td>Shrawan 1, 2083 (July 17, 2026)</td></tr>
-              <tr><td><strong>Total budget</strong></td><td>Rs. 2,124.34 billion</td></tr>
+              <tr><td><strong>Total budget</strong></td><td>Rs. 2,124.34 billion (रु. २१.२४ खर्ब / 21.24 Kharab)</td></tr>
               <tr><td><strong>Economic growth target</strong></td><td>7%</td></tr>
               <tr><td><strong>Inflation target</strong></td><td>Below 6%</td></tr>
               <tr><td><strong>Maximum individual income-tax rate</strong></td><td>29% (reduced from 39%)</td></tr>
-              <tr><td><strong>First income-tax slab</strong></td><td>Rs. 10 lakh at 1%</td></tr>
+              <tr><td><strong>First income-tax slab</strong></td><td>Rs. 10 lakh at 1% (रु. १० लाखमा १%)</td></tr>
               <tr><td><strong>Standard VAT rate</strong></td><td>13% (unchanged)</td></tr>
-              <tr><td><strong>Digital-payment VAT rebate</strong></td><td>10% of VAT charged</td></tr>
+              <tr><td><strong>Digital-payment VAT rebate</strong></td><td>10% of VAT charged (डिजिटल भुक्तानीमा)</td></tr>
               <tr><td><strong>Customs tariff tiers</strong></td><td>11 → 7 tiers</td></tr>
               <tr><td><strong>Digital Services Tax (DST)</strong></td><td>2%</td></tr>
               <tr><td><strong>IT export withholding tax</strong></td><td>5% final WHT (qualifying income)</td></tr>
