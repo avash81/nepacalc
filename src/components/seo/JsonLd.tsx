@@ -185,7 +185,8 @@ function generateSchema(
         temporalCoverage: data.temporalCoverage,
         spatialCoverage: data.spatialCoverage,
         creator: { '@id': orgId },
-        isPartOf: data.isPartOf ? { '@id': data.isPartOf } : { '@id': websiteId },
+        license: data.license,
+        isPartOf: data.isPartOf ? { '@id': data.isPartOf } : undefined,
         mainEntityOfPage: data.url ? { '@id': `${data.url}#webpage` } : undefined,
       };
 

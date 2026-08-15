@@ -127,7 +127,8 @@ export default function NepalElectricityUnitPricePage() {
           },
           dataset: {
             name: "Nepal Electricity Tariff Rates",
-            description: "Official domestic electricity tariff rates for Nepal."
+            description: "Official domestic electricity tariff rates for Nepal.",
+            license: "https://creativecommons.org/licenses/by/4.0/"
           }
         }}
       />
