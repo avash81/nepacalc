@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: post.metaTitle || post.title,
     description: post.metaDesc || post.excerpt,
-    robots: { index: false, follow: false }, // User requested noindex
+    robots: { index: true, follow: true },
     alternates: {
       canonical: `https://nepacalc.com/blog/${post.slug}/`,
     },

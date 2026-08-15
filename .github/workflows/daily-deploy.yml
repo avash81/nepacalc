@@ -56,7 +56,7 @@ jobs:
           git add -f out/
           git add .cpanel.yml public/data/market-rates.json
           git diff --staged --quiet || git commit -m "ci: daily auto-deploy with fresh FENEGOSIDA rates [skip ci]"
-          git push --force origin main
+          git push --force-with-lease origin main
 
       - name: Trigger cPanel to pull and deploy
         run: |

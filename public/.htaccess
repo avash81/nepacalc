@@ -67,9 +67,6 @@ RewriteRule ^exchange-rates/?$ /market-rates/exchange-rate-nepal/ [L,R=301]
 RewriteRule ^education/?$ /math-tools/ [L,R=301]
 RewriteRule ^calculator/sitemap\.html$ /sitemap/ [L,R=301]
 
-# Old sitemap redirect
-RewriteRule ^sitemap\.html$ /sitemap/ [L,R=301]
-
 # ============================================================
 # 3. Force Trailing Slash (matches Next.js trailingSlash: true)
 # ============================================================
