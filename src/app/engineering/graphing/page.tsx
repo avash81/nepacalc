@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Free Graphing Calculator | NepaCalc',
     description: 'Plot multiple functions with custom colors, pan, zoom, and real-time rendering.',
-    url: 'https://NepaCalc.com/engineering/graphing/',
+    url: 'https://nepacalc.com/engineering/graphing/',
   },
 };
 

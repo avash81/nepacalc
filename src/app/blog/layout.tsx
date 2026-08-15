@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'NepaCalc Blog & Nepal Calculator Guides',
     description: 'Expert guides on Nepal income tax, and investment tips.',
-    url: 'https://NepaCalc.com/blog',
+    url: 'https://nepacalc.com/blog',
     siteName: 'NepaCalc',
     type: 'website',
   },
   alternates: {
-    canonical: 'https://NepaCalc.com/blog/',
+    canonical: 'https://nepacalc.com/blog/',
   }
 };
 

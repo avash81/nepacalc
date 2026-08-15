@@ -5,12 +5,12 @@ export const metadata: Metadata = {
   title: 'Calculator & Tool Directory | NepaCalc',
   description: 'Browse NepaCalc calculators and digital tools by category, including Nepal, finance, engineering, health, mathematics, education and converters.',
   alternates: {
-    canonical: 'https://NepaCalc.com/directory/',
+    canonical: 'https://nepacalc.com/directory/',
   },
   openGraph: {
     title: 'Calculator & Tool Directory | NepaCalc',
     description: 'Browse NepaCalc calculators and digital tools by category, including Nepal, finance, engineering, health, mathematics, education and converters.',
-    url: 'https://NepaCalc.com/directory/',
+    url: 'https://nepacalc.com/directory/',
   }
 };
 

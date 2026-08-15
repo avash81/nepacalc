@@ -25,7 +25,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description: 'Compare live remittance rates to Nepal from USA, Australia, and Gulf for FY 2083/84. Track IME, Prabhu Money, and Western Union NPR conversions.',
     keywords: ['remittance rates nepal 2083', 'send money to nepal live', 'ime rate today npr', 'remittance board nepal 2084'],
     alternates: {
-      canonical: 'https://NepaCalc.com/market-rates/remittance/',
+      canonical: 'https://nepacalc.com/market-rates/remittance/',
     },
     openGraph: {
       title: 'Remittance Board Nepal 2083/84 | NepaCalc',

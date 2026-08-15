@@ -6,7 +6,7 @@ export const metadata = {
   title: 'HTML Sitemap | NepaCalc',
   description: 'Browse the complete NepaCalc site index of calculators, digital tools, guides and important pages.',
   alternates: {
-    canonical: 'https://NepaCalc.com/sitemap/',
+    canonical: 'https://nepacalc.com/sitemap/',
   },
 };
 

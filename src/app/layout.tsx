@@ -71,7 +71,7 @@ const globalSchema = {
       "@type": "Organization",
       "@id": "https://nepacalc.com/#organization",
       "name": "NepaCalc",
-      "alternateName": ["NepaCalc", "NepaCalc.com"],
+      "alternateName": ["NepaCalc", "nepacalc.com"],
       "url": "https://nepacalc.com",
       "logo": "https://nepacalc.com/logo.png",
       "image": "https://nepacalc.com/logo.png",

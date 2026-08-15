@@ -5,12 +5,12 @@ export const metadata: Metadata = {
   title: 'Calculators Hub | NepaCalc',
   description: 'Explore our complete index of scientific, financial, health, and engineering calculators.',
   alternates: {
-    canonical: 'https://NepaCalc.com/calculator/',
+    canonical: 'https://nepacalc.com/calculator/',
   },
   openGraph: {
     title: 'Calculators Hub | NepaCalc',
     description: 'Explore our complete index of scientific, financial, health, and engineering calculators.',
-    url: 'https://NepaCalc.com/calculator/',
+    url: 'https://nepacalc.com/calculator/',
   }
 };
 
