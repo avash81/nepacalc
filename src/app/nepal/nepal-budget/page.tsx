@@ -59,6 +59,7 @@ const css = `
 .nb-meta .dot{width:5px;height:5px;border-radius:50%;background:#3E8E5A;display:inline-block;margin-right:4px;}
 .nb-meta strong{color:var(--ink);}
 @media(max-width:600px){.nb-hero{padding:12px 14px 10px;}.nb h1{font-size:1.25rem;}.nb-dek{font-size:.9rem;}.nb-meta{font-size:.67rem;gap:8px;}}
+@media(min-width:992px){.nb-dek{max-width:100%;}}
 
 /* QUICK ANSWER */
 .nb-qa{background:var(--paper-raised);border:1px solid var(--line);border-left:4px solid var(--brass);padding:14px 16px;max-width:1200px;margin:0 auto 12px;word-break:break-word;overflow-wrap:break-word;}
