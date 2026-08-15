@@ -244,7 +244,7 @@ export default function NepalBudgetPage() {
 
       {/* META */}
       <div className="nb-meta">
-        <span><span className="dot"></span>Last updated: 7 August 2026</span>
+        <span><span className="dot"></span>Last updated: 15 August 2026</span>
         <span><strong>Source:</strong> Finance Act 2083 · Ministry of Finance</span>
         <span><strong>Effective:</strong> Shrawan 1, 2083 (July 17, 2026)</span>
         <span><strong>Reading:</strong> ~25 min</span>
@@ -281,6 +281,49 @@ export default function NepalBudgetPage() {
 
             <h3>1.4 Main Policy Objectives</h3>
             <p>The principal objectives of this budget are to stimulate economic recovery, broaden the tax net, simplify tax administration, and encourage digital payments and IT exports.</p>
+
+            <h3>1.5 Nepal Budget 2083/84, Fiscal Policy and Economic Outlook</h3>
+            <p>The Nepal Budget 2083/84 is the government&apos;s annual fiscal plan for FY 2026/27. It sets out planned government revenue, expenditure, taxation, borrowing, investment and policy priorities for the fiscal year.</p>
+            <p>The budget should be read together with Nepal&apos;s economic survey, fiscal policy documents, the Finance Act 2083 and related government notifications. These documents provide different parts of the broader economic and fiscal framework.</p>
+            <p>For official documents and the latest government publications, verify information with the Ministry of Finance and the Inland Revenue Department.</p>
+
+            <div className="nb-tw">
+              <table>
+                <caption>Table: Budget vs Economic Survey</caption>
+                <thead>
+                  <tr>
+                    <th>Document</th>
+                    <th>Main purpose</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Economic Survey</strong></td>
+                    <td>Reviews Nepal&apos;s economic performance and conditions</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Budget</strong></td>
+                    <td>Sets planned government revenue, expenditure and fiscal priorities</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Fiscal Policy</strong></td>
+                    <td>Defines the government&apos;s fiscal direction and policy measures</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Finance Act</strong></td>
+                    <td>Provides the legislative framework for specified tax and financial measures</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Official Sources</h3>
+            <p>For authoritative information, readers should verify the latest documents and notifications from:</p>
+            <ul>
+              <li><a href="https://mof.gov.np" target="_blank" rel="noopener noreferrer">Ministry of Finance &ndash; Budget Speech</a></li>
+              <li><a href="https://ird.gov.np" target="_blank" rel="noopener noreferrer">Inland Revenue Department &ndash; Tax and Finance Act information</a></li>
+              <li><a href="https://customs.gov.np" target="_blank" rel="noopener noreferrer">Department of Customs &ndash; applicable customs schedules and notices</a></li>
+            </ul>
           </section>
 
           {/* § 2 Size and Financing */}
@@ -1468,6 +1511,15 @@ export default function NepalBudgetPage() {
 
             <h3>29.7 When do the new tax provisions take effect?</h3>
             <p>Most provisions under Finance Act 2083 are effective from <strong>Shrawan 1, 2083</strong> (July 17, 2026). However, some specific provisions (such as DST and equity fees) have their own deadlines. Always verify with official IRD notices.</p>
+
+            <h3>29.8 What is the budget of Nepal for 2083/84?</h3>
+            <p>Nepal&apos;s total budget for FY 2083/84 (2026/27) is <strong>Rs. 2,124.34 billion</strong>. The allocation covers recurrent expenditure, capital expenditure and financial management.</p>
+
+            <h3>29.9 What is the economic growth target for Nepal in FY 2083/84?</h3>
+            <p>The government has set an economic growth target of <strong>7.0%</strong> for FY 2083/84, with inflation targeted below <strong>6.0%</strong>.</p>
+
+            <h3>29.10 What is the difference between the Nepal Budget and the Economic Survey?</h3>
+            <p>The Economic Survey provides an assessment of Nepal&apos;s economic performance and conditions, while the annual Budget sets out the government&apos;s planned revenue, expenditure, taxation and fiscal priorities for the coming fiscal year.</p>
           </section>
 
           <section className="nb-chapter" id="related-resources">
@@ -1519,7 +1571,7 @@ export default function NepalBudgetPage() {
             </ul>
 
             <div className="nb-note">
-              <strong>Disclaimer:</strong> Based on the Nepal Budget 2083/84 summary and applicable government tax laws. Taxpayers should verify all figures against the official Finance Act 2083 and IRD notices before filing. NepaCalc is not a tax advisory service. Last reviewed: 7 August 2026.
+              <strong>Disclaimer:</strong> Based on the Nepal Budget 2083/84 summary and applicable government tax laws. Taxpayers should verify all figures against the official Finance Act 2083 and IRD notices before filing. NepaCalc is not a tax advisory service. Last updated: 15 August 2026. Reviewed for: FY 2083/84 Budget, Finance Act 2083 and related fiscal information.
             </div>
           </section>
 
