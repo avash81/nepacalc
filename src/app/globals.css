@@ -13,6 +13,10 @@ body {
   font-family: 'IBM Plex Sans', system-ui, sans-serif;
 }
 
+h1, h2, h3 {
+  font-family: 'Fraunces', serif;
+}
+
 /* Force Google Link Style */
 a {
   color: #1a0dab;
