@@ -5,8 +5,8 @@ import { Footer } from "@/components/layout/Footer";
 import dynamic from 'next/dynamic';
 export const metadata: Metadata = {
   metadataBase: new URL('https://nepacalc.com'),
-  title: "Free Online Calculators & Tools for Everyone | NepaCalc",
-  description: "100+ free online calculators, converters and useful tools for math, finance, education, health, engineering and everyday calculations.",
+  title: "Free Online Calculators, Converters & Live Rates | NepaCalc",
+  description: "100+ free online calculators, converters and live rates for finance, math, health, engineering and more. Gold, silver, currency tools and Nepal-specific calculators.",
   manifest: '/manifest.json',
   icons: {
     icon: [
@@ -36,8 +36,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Free Online Calculators & Tools for Everyone | NepaCalc",
-    description: "100+ free online calculators, converters and useful tools for math, finance, education, health, engineering and everyday calculations.",
+    title: "Free Online Calculators, Converters & Live Rates | NepaCalc",
+    description: "100+ free online calculators, converters and live rates for finance, math, health, engineering and more. Gold, silver, currency tools and Nepal-specific calculators.",
     url: 'https://nepacalc.com',
     siteName: 'NepaCalc',
     images: [
@@ -54,8 +54,8 @@ export const metadata: Metadata = {
 
   twitter: {
     card: 'summary_large_image',
-    title: "Free Online Calculators & Tools for Everyone | NepaCalc",
-    description: "100+ free online calculators, converters and useful tools for math, finance, education, health, engineering and everyday calculations.",
+    title: "Free Online Calculators, Converters & Live Rates | NepaCalc",
+    description: "100+ free online calculators, converters and live rates for finance, math, health, engineering and more. Gold, silver, currency tools and Nepal-specific calculators.",
     images: ['/logo.png?v=final'],
   },
 };
@@ -152,5 +152,6 @@ export default function RootLayout({
     </html>
   );
 }
+
 
 

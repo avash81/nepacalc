@@ -7,9 +7,9 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Free Online Calculators & Tools for Everyone | NepaCalc',
+  title: 'Free Online Calculators, Converters & Live Rates | NepaCalc',
   description:
-    '100+ free online calculators, converters and useful tools for math, finance, education, health, engineering and everyday calculations.',
+    '100+ free online calculators, converters and live rates for finance, math, health, engineering and more. Gold, silver, currency tools and Nepal-specific calculators.',
   alternates: {
     canonical: 'https://nepacalc.com/',
   }
@@ -25,7 +25,7 @@ export default function HomePage() {
           url: 'https://nepacalc.com/',
           webpage: {
             url: 'https://nepacalc.com/',
-            name: 'Free Online Calculators & Tools for Everyone | NepaCalc',
+            name: 'Free Online Calculators, Converters & Live Rates | NepaCalc',
             description: 'Free online calculators, converters and useful tools for math, finance, education, health, engineering and everyday calculations.',
             isPartOf: 'https://nepacalc.com/#website',
             mainEntity: 'https://nepacalc.com/#collection'
@@ -123,5 +123,6 @@ export default function HomePage() {
     </>
   );
 }
+
 
 
