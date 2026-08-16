@@ -271,41 +271,49 @@ export default function GoldDashboardClient() {
           </p>
 
           {/* Quick Price Snapshot */}
-          <div className="bg-amber-50 border border-amber-200 rounded-xl p-5 mb-6">
+          <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 sm:p-5 mb-6">
             <div className="text-[11px] font-black text-amber-700 uppercase tracking-widest mb-3">Today&apos;s Official Gold Price Snapshot</div>
-            <div className="grid grid-cols-3 gap-3">
-              <div className="bg-white rounded-lg p-3 border border-amber-100 text-center">
-                <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">24K Hallmark</div>
-                <div className="text-lg font-black text-slate-900">Rs. {fmt(tolaNPR.current)}</div>
-                <div className="text-[10px] text-slate-500 font-medium">per Tola</div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div className="bg-white rounded-lg p-3 border border-amber-100 flex flex-row sm:flex-col items-center justify-between sm:justify-center text-left sm:text-center">
+                <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest sm:mb-1">24K Hallmark</div>
+                <div className="flex flex-col sm:items-center">
+                  <div className="text-base sm:text-lg font-black text-slate-900">Rs. {fmt(tolaNPR.current)}</div>
+                  <div className="text-[9px] sm:text-[10px] text-slate-500 font-medium sm:mt-0.5">per Tola</div>
+                </div>
               </div>
-              <div className="bg-white rounded-lg p-3 border border-amber-100 text-center">
-                <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">22K Tejabi</div>
-                <div className="text-lg font-black text-slate-900">{tejabiTolaNPR === 0 ? 'N/A' : `Rs. ${fmt(tejabiTolaNPR)}`}</div>
-                <div className="text-[10px] text-slate-500 font-medium">per Tola</div>
+              <div className="bg-white rounded-lg p-3 border border-amber-100 flex flex-row sm:flex-col items-center justify-between sm:justify-center text-left sm:text-center">
+                <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest sm:mb-1">22K Tejabi</div>
+                <div className="flex flex-col sm:items-center">
+                  <div className="text-base sm:text-lg font-black text-slate-900">{tejabiDisplayRate}</div>
+                  <div className="text-[9px] sm:text-[10px] text-slate-500 font-medium sm:mt-0.5">per Tola</div>
+                </div>
               </div>
-              <div className="bg-white rounded-lg p-3 border border-amber-100 text-center">
-                <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Silver</div>
-                <div className="text-lg font-black text-slate-900">Rs. {fmt(silverTolaNPR)}</div>
-                <div className="text-[10px] text-slate-500 font-medium">per Tola</div>
+              <div className="bg-white rounded-lg p-3 border border-amber-100 flex flex-row sm:flex-col items-center justify-between sm:justify-center text-left sm:text-center">
+                <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest sm:mb-1">Silver</div>
+                <div className="flex flex-col sm:items-center">
+                  <div className="text-base sm:text-lg font-black text-slate-900">Rs. {fmt(silverTolaNPR)}</div>
+                  <div className="text-[9px] sm:text-[10px] text-slate-500 font-medium sm:mt-0.5">per Tola</div>
+                </div>
               </div>
             </div>
-            <div className="text-[10px] text-amber-600 font-bold mt-3 flex flex-wrap gap-x-3 gap-y-1 items-center">
-                <span>Updated daily from FENEGOSIDA</span>
-                <a href="/calculator/gold-converter/" className="underline hover:text-amber-800">Gold Value Calculator →</a>
-                <a href="/market-rates/live-silver-price/" className="underline hover:text-amber-800">Live Silver Price →</a>
-                <a href="https://www.fenegosida.org/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-600 font-medium">Source: fenegosida.org ↗</a>
+            <div className="mt-4 pt-3 border-t border-amber-200/50 flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-x-4 items-start sm:items-center text-[10px] font-bold text-amber-800">
+              <div className="w-full sm:w-auto">Updated daily from FENEGOSIDA</div>
+              <a href="/calculator/gold-converter/" className="text-blue-600 hover:underline">Gold Value Calculator →</a>
+              <a href="/market-rates/live-silver-price/" className="text-blue-600 hover:underline">Live Silver Price →</a>
+              <div className="w-full sm:w-auto mt-1 sm:mt-0 opacity-70">
+                Source: <a href="https://www.fenegosida.org" target="_blank" rel="noopener noreferrer" className="hover:underline">fenegosida.org ↗</a>
               </div>
+            </div>
           </div>
 
           {/* Live Conversion Table */}
-          <div className="bg-white p-5 rounded-xl border border-blue-100 mb-6">
+          <div className="bg-white p-4 sm:p-5 rounded-xl border border-blue-100 mb-6">
             <h3 className="text-[13px] font-bold text-slate-800 mb-3">Today&apos;s Gold Price by Unit (24K Hallmark)</h3>
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm">
                 <thead>
                   <tr className="border-b border-slate-100 text-[10px] font-black text-slate-400 uppercase tracking-widest">
-                    <th className="py-2 pr-4">Unit</th>
+                    <th className="py-2 pr-2 sm:pr-4">Unit</th>
                     <th className="py-2 text-right">Today&apos;s Value</th>
                     <th className="py-2"></th>
                   </tr>
@@ -321,9 +329,9 @@ export default function GoldDashboardClient() {
                     { unit: '1 Kg', divisor: 0.011664 },
                   ].map(({ unit, divisor }) => (
                     <tr key={unit} className="hover:bg-slate-50">
-                      <td className="py-2 pr-4 font-bold text-slate-700">{unit}</td>
+                      <td className="py-2 pr-2 sm:pr-4 font-bold text-slate-700 whitespace-nowrap">{unit}</td>
                       <td className="py-2 text-right font-black text-slate-900">Rs. {fmt(Math.round(tolaNPR.current / divisor))}</td>
-                      <td className="py-2 pl-3"><a href="/calculator/gold-converter/" className="text-[10px] text-blue-600 font-bold hover:underline">Convert →</a></td>
+                      <td className="py-2 pl-2 sm:pl-3 whitespace-nowrap"><a href="/calculator/gold-converter/" className="text-[10px] text-blue-600 font-bold hover:underline">Convert →</a></td>
                     </tr>
                   ))}
                 </tbody>
