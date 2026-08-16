@@ -6,9 +6,9 @@
   "silver": {
     "tolaNPR": 4660
   },
-  "date": "2026-08-15",
+  "date": "2026-08-16",
   "source": "ShareSansar",
-  "updatedAt": "2026-08-15T17:38:31.691Z",
+  "updatedAt": "2026-08-16T02:56:04.190Z",
   "verified": true,
   "note": "Auto-updated by scripts/fetch-rates.js before every build."
 }
