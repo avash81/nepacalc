@@ -4,55 +4,126 @@ import React from 'react';
 import Link from 'next/link';
 import { useLiveRates } from '@/hooks/useLiveRates';
 
-const tocItems = [
-  { id: 'todays-silver-price', label: "Today's Silver Price" },
-  { id: 'silver-price-history', label: 'Silver Price History' },
-  { id: 'silver-market-guide', label: 'Silver Market Guide' },
-  { id: 'what-determines-silver-prices', label: 'What Determines Silver Prices?' },
-  { id: 'silver-units-nepal', label: 'Silver Units Used in Nepal' },
-  { id: 'silver-purity-standards', label: 'Silver Purity Standards' },
-  { id: 'common-uses-silver-nepal', label: 'Common Uses of Silver in Nepal' },
-  { id: 'silver-as-investment', label: 'Silver as an Investment' },
-  { id: 'gold-vs-silver-prices', label: 'Difference Between Gold and Silver Prices' },
-  { id: 'how-often-updated', label: 'How Often Are Silver Prices Updated?' },
-  { id: 'who-uses-silver-price-data', label: 'Who Uses Silver Price Data?' },
-  { id: 'historical-silver-price-trends', label: 'Historical Silver Price Trends' },
-  { id: 'buying-silver-nepal', label: 'Buying Silver in Nepal' },
-  { id: 'selling-silver-nepal', label: 'Selling Silver in Nepal' },
-  { id: 'silver-jewellery-pricing', label: 'Silver Jewellery Pricing' },
-  { id: 'silver-coins-bullion', label: 'Silver Coins and Bullion' },
-  { id: 'international-silver-market', label: 'International Silver Market' },
-  { id: 'silver-vs-exchange-rate', label: 'Silver Price vs Exchange Rate' },
-  { id: 'daily-price-volatility', label: 'Daily Price Volatility' },
-  { id: 'why-silver-prices-matter', label: 'Why Silver Prices Matter' },
-  { id: 'silver-metrics', label: 'Frequently Monitored Silver Metrics' },
+const tocGroups = [
+  {
+    items: [
+      { id: 'todays-silver-price', label: "Today's Silver Price" },
+      { id: 'silver-price-history', label: 'Silver Price History' },
+      { id: 'silver-market-guide', label: 'Silver Market Guide' },
+    ]
+  },
+  {
+    items: [
+      { id: 'what-determines-silver-prices', label: 'What Determines Silver Prices?' },
+      { id: 'silver-units-nepal', label: 'Silver Units Used in Nepal' },
+      { id: 'silver-purity-standards', label: 'Silver Purity Standards' },
+      { id: 'common-uses-silver-nepal', label: 'Common Uses of Silver in Nepal' },
+    ]
+  },
+  {
+    items: [
+      { id: 'silver-as-investment', label: 'Silver as an Investment' },
+      { id: 'gold-vs-silver-prices', label: 'Gold vs Silver Prices' },
+      { id: 'how-often-updated', label: 'How Often Are Prices Updated?' },
+      { id: 'who-uses-silver-price-data', label: 'Who Uses Silver Price Data?' },
+    ]
+  },
+  {
+    items: [
+      { id: 'historical-silver-price-trends', label: 'Historical Price Trends' },
+      { id: 'buying-silver-nepal', label: 'Buying Silver in Nepal' },
+      { id: 'selling-silver-nepal', label: 'Selling Silver in Nepal' },
+      { id: 'silver-jewellery-pricing', label: 'Silver Jewellery Pricing' },
+    ]
+  },
+  {
+    items: [
+      { id: 'silver-coins-bullion', label: 'Silver Coins & Bullion' },
+      { id: 'international-silver-market', label: 'International Silver Market' },
+      { id: 'silver-vs-exchange-rate', label: 'Silver Price vs Exchange Rate' },
+      { id: 'daily-price-volatility', label: 'Daily Price Volatility' },
+      { id: 'why-silver-prices-matter', label: 'Why Silver Prices Matter' },
+      { id: 'silver-metrics', label: 'Silver Metrics Monitored' },
+    ]
+  },
 ];
 
 export function SilverSeoToc() {
+  let counter = 0;
   return (
     <nav
       aria-label="Table of Contents"
-      className="bg-white border border-slate-200 shadow-sm rounded-2xl p-5 sticky top-24"
+      style={{
+        position: 'sticky',
+        top: '72px',
+        maxHeight: 'calc(100vh - 90px)',
+        overflowY: 'auto',
+        scrollbarWidth: 'thin',
+        scrollbarColor: '#dadce0 transparent',
+      }}
     >
-      <h2 className="text-[11px] font-black uppercase tracking-widest text-slate-500 mb-3">
-        On This Page
-      </h2>
-      <ol className="space-y-2 list-none m-0 p-0">
-        {tocItems.map((item, i) => (
-          <li key={item.id}>
-            <a
-              href={`#${item.id}`}
-              className="flex items-start gap-2 text-[13px] font-medium text-slate-600 hover:text-blue-600 transition-colors no-underline"
-            >
-              <span className="text-slate-400 font-bold text-[11px] mt-[3px] w-4 shrink-0">{i + 1}.</span>
-              <span className="leading-snug">{item.label}</span>
-            </a>
-          </li>
+      <span style={{
+        display: 'block',
+        fontFamily: 'monospace',
+        fontSize: '0.7rem',
+        textTransform: 'uppercase',
+        letterSpacing: '0.12em',
+        color: '#70757a',
+        marginBottom: '8px',
+        fontWeight: 700,
+      }}>On This Page</span>
+      <ol style={{ listStyle: 'none', margin: 0, padding: 0, borderLeft: '2px solid #e8eaed' }}>
+        {tocGroups.map((group, gi) => (
+          <React.Fragment key={gi}>
+            {gi > 0 && (
+              <div style={{ height: '1px', background: '#e8eaed', margin: '8px 0' }} />
+            )}
+            {group.items.map((item) => {
+              counter++;
+              const num = String(counter).padStart(2, '0');
+              return (
+                <li key={item.id}>
+                  <a
+                    href={`#${item.id}`}
+                    style={{
+                      display: 'block',
+                      padding: '6px 0 6px 14px',
+                      fontSize: '0.82rem',
+                      color: '#5f6368',
+                      textDecoration: 'none',
+                      borderLeft: '2px solid transparent',
+                      marginLeft: '-2px',
+                      lineHeight: 1.3,
+                      transition: 'color 0.15s, border-color 0.15s',
+                    }}
+                    onMouseEnter={e => {
+                      (e.currentTarget as HTMLAnchorElement).style.color = '#1a73e8';
+                      (e.currentTarget as HTMLAnchorElement).style.borderLeftColor = '#1a73e8';
+                    }}
+                    onMouseLeave={e => {
+                      (e.currentTarget as HTMLAnchorElement).style.color = '#5f6368';
+                      (e.currentTarget as HTMLAnchorElement).style.borderLeftColor = 'transparent';
+                    }}
+                  >
+                    <span style={{
+                      fontFamily: 'monospace',
+                      fontSize: '0.67rem',
+                      color: '#b59a00',
+                      marginRight: '5px',
+                      fontWeight: 700,
+                    }}>{num}</span>
+                    {item.label}
+                  </a>
+                </li>
+              );
+            })}
+          </React.Fragment>
         ))}
       </ol>
     </nav>
   );
 }
+
 
 export function SilverSeoContent() {
   const { rates } = useLiveRates();

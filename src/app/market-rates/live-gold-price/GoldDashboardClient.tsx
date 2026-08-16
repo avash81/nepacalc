@@ -227,29 +227,85 @@ export default function GoldDashboardClient() {
         </div>
       </div>
 
-      {/* 4.5 Table of Contents */}
-      <div className="bg-slate-50 rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 mb-6">
-        <h2 className="text-xl font-bold mb-4">Table of Contents</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-1.5">
-          <ul className="list-none pl-0 space-y-1.5 text-blue-600 font-medium text-[14px]">
-            <li><a href="#quick-answer-block" className="hover:underline">Quick Answer</a></li>
-            <li><a href="#gold-at-a-glance" className="hover:underline">Today&apos;s Gold Price at a Glance</a></li>
-            <li><a href="#gold-conversion-table" className="hover:underline">Gold Price Conversion Table</a></li>
-            <li><a href="#gold-price-calculator-info" className="hover:underline">Gold Price Calculator</a></li>
-            <li><a href="#live-price" className="hover:underline">Nepal Benchmark Rates</a></li>
-            <li><a href="#calculator" className="hover:underline">Quick Valuation Calculator</a></li>
-            <li><a href="#market-highlights" className="hover:underline">Market Highlights &amp; Price Change</a></li>
-          </ul>
-          <ul className="list-none pl-0 space-y-1.5 text-blue-600 font-medium text-[14px]">
-            <li><a href="#ai-summary" className="hover:underline">Market Intelligence</a></li>
-            <li><a href="#how-its-calculated" className="hover:underline">How Gold Prices Are Calculated</a></li>
-            <li><a href="#jewellery-pricing" className="hover:underline">What Affects Jewellery Prices?</a></li>
-            <li><a href="#gold-vs-silver" className="hover:underline">Gold vs Silver Investment</a></li>
-            <li><a href="#gold-milestones" className="hover:underline">Historic Price Milestones</a></li>
-            <li><a href="#useful-gold-tools" className="hover:underline">Useful Gold Tools</a></li>
-            <li><a href="#faq" className="hover:underline">Frequently Asked Questions</a></li>
-          </ul>
-        </div>
+      {/* Table of Contents — Nepal Budget style */}
+      <div style={{ marginBottom: '24px' }}>
+        <span style={{
+          display: 'block',
+          fontFamily: 'monospace',
+          fontSize: '0.7rem',
+          textTransform: 'uppercase' as const,
+          letterSpacing: '0.12em',
+          color: '#70757a',
+          marginBottom: '8px',
+          fontWeight: 700,
+        }}>On This Page</span>
+        <ol style={{ listStyle: 'none', margin: 0, padding: 0, borderLeft: '2px solid #e8eaed' }}>
+          {[
+            // Group 1 — Live data
+            { id: 'quick-answer-block', label: 'Quick Answer' },
+            { id: 'gold-at-a-glance', label: "Today's Gold Price at a Glance" },
+            { id: 'gold-conversion-table', label: 'Gold Price Conversion Table' },
+            { id: 'gold-price-calculator-info', label: 'Gold Price Calculator' },
+            { divider: true },
+            // Group 2 — Live rates & market
+            { id: 'live-price', label: 'Nepal Benchmark Rates' },
+            { id: 'calculator', label: 'Quick Valuation Calculator' },
+            { id: 'market-highlights', label: 'Market Highlights & Price Change' },
+            { id: 'ai-summary', label: 'Market Intelligence' },
+            { divider: true },
+            // Group 3 — Education
+            { id: 'how-its-calculated', label: 'How Gold Prices Are Calculated' },
+            { id: 'jewellery-pricing', label: 'What Affects Jewellery Prices?' },
+            { id: 'gold-vs-silver', label: 'Gold vs Silver Investment' },
+            { id: 'gold-milestones', label: 'Historic Price Milestones' },
+            { divider: true },
+            // Group 4 — Tools & FAQ
+            { id: 'useful-gold-tools', label: 'Useful Gold Tools' },
+            { id: 'faq', label: 'Frequently Asked Questions' },
+          ].reduce((acc: React.ReactNode[], entry: any, idx) => {
+            if (entry.divider) {
+              acc.push(<div key={`div-${idx}`} style={{ height: '1px', background: '#e8eaed', margin: '8px 0' }} />);
+              return acc;
+            }
+            const num = String(acc.filter(n => n && !(n as any).key?.startsWith('div-')).length + 1).padStart(2, '0');
+            acc.push(
+              <li key={entry.id}>
+                <a
+                  href={`#${entry.id}`}
+                  style={{
+                    display: 'block',
+                    padding: '6px 0 6px 14px',
+                    fontSize: '0.82rem',
+                    color: '#5f6368',
+                    textDecoration: 'none',
+                    borderLeft: '2px solid transparent',
+                    marginLeft: '-2px',
+                    lineHeight: 1.3,
+                    transition: 'color 0.15s, border-color 0.15s',
+                  }}
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLAnchorElement).style.color = '#1a73e8';
+                    (e.currentTarget as HTMLAnchorElement).style.borderLeftColor = '#1a73e8';
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLAnchorElement).style.color = '#5f6368';
+                    (e.currentTarget as HTMLAnchorElement).style.borderLeftColor = 'transparent';
+                  }}
+                >
+                  <span style={{
+                    fontFamily: 'monospace',
+                    fontSize: '0.67rem',
+                    color: '#b59a00',
+                    marginRight: '5px',
+                    fontWeight: 700,
+                  }}>{num}</span>
+                  {entry.label}
+                </a>
+              </li>
+            );
+            return acc;
+          }, [])}
+        </ol>
       </div>
 
       {/* 1. Live Price Table (Moved here) */}
