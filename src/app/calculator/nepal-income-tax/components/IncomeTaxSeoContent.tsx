@@ -148,23 +148,7 @@ export function IncomeTaxSeoContent() {
         Rental income received from residential or commercial properties may also form part of taxable income under Nepal's Income Tax Act. Users can include rental earnings within the calculator when estimating total annual taxable income.
       </p>
 
-      {/* FEATURED IMAGE — optimized with WebP and picture tag */}
-      <div className="my-10 rounded-xl overflow-hidden border border-[#DADCE0] shadow-md max-w-full">
-        <picture>
-          <source srcSet="/images/nepal-income-tax-calculator-2083-2084.webp" type="image/webp" />
-          <img
-            src="/images/nepal-income-tax-calculator-2083-2084.png"
-            alt="Nepal Income Tax Calculator FY 2083 2084"
-            className="w-full h-auto object-cover max-h-[480px]"
-            loading="lazy"
-            width={1200}
-            height={630}
-          />
-        </picture>
-        <div className="bg-[#F8F9FA] px-4 py-2 text-xs text-[#5F6368]">
-          Nepal Income Tax Calculator (FY 2083/84) based on Finance Act 2083
-        </div>
-      </div>
+
 
       {/* SECTION 4: HOW TAX IS CALCULATED */}
       <h2 id="how" className="text-2xl font-black text-[#202124] mt-12 mb-4">How Income Tax Is Calculated in Nepal</h2>
