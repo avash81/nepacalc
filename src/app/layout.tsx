@@ -124,6 +124,8 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         {/* Explicit Favicon for Google Search Results (managed by metadata export) */}
+        {/* Google AdSense */}
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9123093080720168" crossOrigin="anonymous"></script>
       </head>
       <body className="font-sans">
         <script
