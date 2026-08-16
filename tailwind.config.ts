@@ -25,7 +25,7 @@ const config: Config = {
         '7': 'repeat(7, minmax(0, 1fr))',
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['Lexend', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
     },
   },
