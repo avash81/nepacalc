@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useCallback } from 'react';
 import { useLiveRates } from '@/hooks/useLiveRates';
@@ -109,22 +109,36 @@ export default function SilverDashboardClient({
                {/* Freshness/Verification Badge */}
                <div className="mx-4 sm:mx-6 mt-4 p-3 bg-white border border-slate-200 rounded-xl flex flex-wrap gap-4 items-center justify-between text-[10px] font-black uppercase tracking-widest text-slate-500">
                   <div className="flex items-center gap-2">
-                     <div className={`w-2 h-2 rounded-full animate-pulse ${rates.gold.isFresh ? 'bg-green-500' : 'bg-amber-400'}`}></div>
-                     {rates.gold.isFresh ? 'Live · Today' : 'Last Verified'}
+                     <div className={`w-2 h-2 rounded-full ${rates.gold.rateStatus === 'retained_fallback' ? 'bg-amber-400' : 'animate-pulse bg-green-500'}`}></div>
+                     {rates.gold.rateStatus === 'retained_fallback' ? 'Last Verified Rate' : 'Live · Today'}
                   </div>
                   <div className="flex items-center gap-2">
-                     Source: FENEGOSIDA
+                     Source:{' '}
+                     <a
+                       href="https://www.fenegosida.org"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       className="text-blue-600 hover:underline normal-case"
+                     >
+                       {rates.gold.sourceName ?? 'FENEGOSIDA'}
+                     </a>
                   </div>
                   <div className="flex items-center gap-2">
-                     Updated Today ({new Date(rates.gold.dataDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })})
+                     {rates.gold.rateStatus === 'retained_fallback' ? 'Last verified' : 'Rate date'}:{' '}
+                     {rates.gold.rateDate
+                       ? new Date(rates.gold.rateDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
+                       : new Date(rates.gold.dataDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
                   </div>
-                  <div className="flex items-center gap-2">
-                     Next Update: ~11:00 AM NPT
-                  </div>
-                  <div className={`flex items-center gap-2 px-2 py-0.5 rounded text-[10px] ${rates.gold.isFresh ? 'text-green-600 bg-green-50' : 'text-amber-600 bg-amber-50'}`}>
-                     {rates.gold.isFresh ? 'Fresh ✓' : 'Cached'}
+                  {rates.gold.rateStatus !== 'retained_fallback' && (
+                    <div className="flex items-center gap-2">
+                       Next Update: ~11:00 AM NPT
+                    </div>
+                  )}
+                  <div className={`flex items-center gap-2 px-2 py-0.5 rounded text-[10px] ${rates.gold.rateStatus === 'retained_fallback' ? 'text-amber-600 bg-amber-50' : rates.gold.isFresh ? 'text-green-600 bg-green-50' : 'text-amber-600 bg-amber-50'}`}>
+                     {rates.gold.rateStatus === 'retained_fallback' ? '⚠️ Update pending' : rates.gold.isFresh ? 'Fresh ✓' : 'Cached'}
                   </div>
                </div>
+
                <div className="mx-4 sm:mx-6 mt-3 mb-2 text-[11px] text-slate-500 font-medium leading-relaxed">
                  Official Nepal silver rate updated daily from FENEGOSIDA. International spot silver (XAG/USD) is shown for global market reference only.
                </div>

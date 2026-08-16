@@ -30,8 +30,14 @@ export interface LiveRates {
     spotUSD: number;
     provider: string;
     lastUpdated: string;
-    /** ISO date string of the actual FENEGOSIDA bulletin (e.g. "2026-07-30") */
+    /** ISO date string of the actual FENEGOSIDA bulletin (e.g. "2026-08-16") */
     dataDate: string;
+    /** ISO date string from FENEGOSIDA API's published_at field */
+    rateDate: string;
+    /** Source name, e.g. "FENEGOSIDA" */
+    sourceName: string;
+    /** 'verified' | 'retained_fallback' */
+    rateStatus: 'verified' | 'retained_fallback' | string;
     /** true = data is from today's FENEGOSIDA bulletin */
     isFresh: boolean;
   };
@@ -103,7 +109,10 @@ function buildRates(
   provider: string,
   updatedAt: string,
   dataDate: string,
-  isFresh: boolean
+  isFresh: boolean,
+  rateStatus: string = 'verified',
+  rateDate: string = dataDate,
+  sourceName: string = 'FENEGOSIDA'
 ): LiveRates {
   const flat = (v: number): RateStats => ({
     current: v, high24h: v, low24h: v, change24h: 0, changePercent24h: 0
@@ -129,6 +138,9 @@ function buildRates(
       provider,
       lastUpdated: updatedAt,
       dataDate,
+      rateDate,
+      rateStatus,
+      sourceName,
       isFresh,
     },
     silver: {
@@ -213,11 +225,14 @@ export function useLiveRates() {
       if (!res.ok) return;
       const json = await res.json();
 
-      const gold   = json.gold?.tolaNPR;
+      const gold   = json.gold?.tolaNPR?.current ?? json.gold?.tolaNPR;
       const tejabi = json.gold?.tejabiTolaNPR ?? (gold - 700);
-      const silver = json.silver?.tolaNPR ?? FALLBACK_SILVER_TOLA;
-      const date   = json.date ?? FALLBACK_DATE;
+      const silver = json.silver?.tolaNPR?.current ?? json.silver?.tolaNPR ?? FALLBACK_SILVER_TOLA;
+      const date   = json.rate_date ?? json.published_at ?? json.date ?? FALLBACK_DATE;
       const ver    = json._version ?? String(gold);
+      const rateStatus  = json.status ?? 'verified';
+      const sourceName  = json.source_name ?? json.source ?? 'FENEGOSIDA';
+      const rateDate    = json.rate_date ?? date;
 
       if (!gold || gold < 200000) return;
 
@@ -227,15 +242,22 @@ export function useLiveRates() {
       lastVersionRef.current = ver;
       await refreshForex();
 
-      const provider = json.stale
-        ? `FENEGOSIDA (${date})`
-        : `FENEGOSIDA · ${json.timeNPT ?? date}`;
+      // Format provider string: show fallback warning clearly
+      const isFallback = rateStatus === 'retained_fallback';
+      const provider = isFallback
+        ? `${json.source ?? 'FENEGOSIDA'} · Last verified: ${rateDate}`
+        : `${json.source ?? 'FENEGOSIDA'} · ${rateDate}`;
+
+      // isFresh: rate_date matches today in NPT
+      const todayNPT = new Date(Date.now() + (5 * 60 + 45) * 60000).toISOString().split('T')[0];
+      const isFresh = rateDate === todayNPT && !isFallback;
 
       const updated = buildRates(
         gold, tejabi, silver,
         nprUsdRef.current, forexAllRef.current,
-        provider, json.fetchedAt ?? new Date().toISOString(),
-        date, !json.stale && !json.fetchFailed
+        provider, json.fetched_at ?? new Date().toISOString(),
+        date, isFresh,
+        rateStatus, rateDate, sourceName
       );
 
       setRates(updated);

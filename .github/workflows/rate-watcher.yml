@@ -1,0 +1,52 @@
+name: Smart Window Rate Watcher
+
+on:
+  schedule:
+    # Run every 5 minutes from 03:45 UTC (09:30 NPT) to 06:15 UTC (12:00 NPT) Monday-Friday
+    - cron: '*/5 3-6 * * 1-5'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  check-rates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch Official Rates
+        run: |
+          node scripts/fetch-rates.js
+          node scripts/fetch-forex.js
+
+      - name: Check for Rate Changes
+        id: git-check
+        run: |
+          git diff --quiet public/data/market-rates.json public/data/forex-rates.json || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit Updated Rates and Trigger Deploy
+        if: steps.git-check.outputs.changed == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/avash81/nepacalc.git
+          git add public/data/market-rates.json public/data/forex-rates.json
+          git commit -m "data: auto-update official rates (Smart Window)"
+          git push origin HEAD
+
+          echo "Rates changed. Triggering daily-deploy build..."
+          curl -X POST -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            https://api.github.com/repos/${{ github.repository }}/dispatches \
+            -d '{"event_type": "rates_updated"}'

@@ -130,12 +130,23 @@ export default function GoldDashboardClient() {
         </div>
 
         {/* Big Live Price Box */}
-        <div className="flex flex-col bg-white border border-slate-200 rounded-2xl p-5 shadow-sm min-w-[280px]">
+        <div className={`flex flex-col rounded-2xl p-5 shadow-sm min-w-[280px] border ${
+          rates.gold.rateStatus === 'retained_fallback'
+            ? 'bg-amber-50 border-amber-300'
+            : 'bg-white border-slate-200'
+        }`}>
           <div className="flex flex-col gap-1">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              <span className="text-[11px] font-black uppercase tracking-widest text-emerald-600">Live Market Feed</span>
-            </div>
+            {rates.gold.rateStatus === 'retained_fallback' ? (
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-amber-400" />
+                <span className="text-[11px] font-black uppercase tracking-widest text-amber-600">Last Verified Rate</span>
+              </div>
+            ) : (
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                <span className="text-[11px] font-black uppercase tracking-widest text-emerald-600">Live Official Rate</span>
+              </div>
+            )}
             <span className="text-xs font-medium text-slate-500">Official 24K Hallmark Rate</span>
           </div>
           <div className="flex items-baseline gap-2 mt-3">
@@ -150,6 +161,38 @@ export default function GoldDashboardClient() {
               </div>
             </div>
           )}
+
+          {/* Source Attribution — always visible */}
+          <div className="mt-3 flex flex-col gap-1 border-t border-slate-100 pt-3">
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Source</span>
+              <a
+                href="https://www.fenegosida.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Federation of Nepal Gold & Silver Dealers' Association"
+                className="text-[11px] font-bold text-blue-600 hover:underline"
+              >
+                {rates.gold.sourceName ?? 'FENEGOSIDA'}
+              </a>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                {rates.gold.rateStatus === 'retained_fallback' ? 'Last verified' : 'Rate date'}
+              </span>
+              <span className="text-[11px] font-medium text-slate-600">
+                {rates.gold.rateDate
+                  ? new Date(rates.gold.rateDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
+                  : rates.gold.dataDate}
+              </span>
+            </div>
+            {rates.gold.rateStatus === 'retained_fallback' && (
+              <div className="mt-1 flex items-center gap-1.5 text-[10px] font-bold text-amber-600">
+                <span>⚠️</span>
+                <span>Official rate update pending</span>
+              </div>
+            )}
+          </div>
         </div>
       </div>
 

@@ -1,8 +1,8 @@
 name: Daily Auto-Deploy to cPanel
 
 on:
-  schedule:
-    - cron: '0 6 * * 1-5'
+  repository_dispatch:
+    types: [rates_updated]
   workflow_dispatch:
 
 permissions:
