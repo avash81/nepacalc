@@ -9,7 +9,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Free Online Calculators, Converters & Live Rates | NepaCalc',
   description:
-    '100+ free calculators, converters and live rates for gold, silver and currency, with finance, math, health, engineering, education and Nepal tools.',
+    '100+ free online calculators, converters and tools for finance, math, health, education and more, with live gold, silver and currency rates.',
   alternates: {
     canonical: 'https://nepacalc.com/',
   }
@@ -123,6 +123,7 @@ export default function HomePage() {
     </>
   );
 }
+
 
 
 
