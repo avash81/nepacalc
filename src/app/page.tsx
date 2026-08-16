@@ -9,7 +9,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Free Online Calculators & Tools for Everyone | NepaCalc',
   description:
-    'Free online calculators, converters and useful tools for math, finance, education, health, engineering and everyday calculations.',
+    '100+ free online calculators, converters and useful tools for math, finance, education, health, engineering and everyday calculations.',
   alternates: {
     canonical: 'https://nepacalc.com/',
   }

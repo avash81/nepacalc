@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 export const metadata: Metadata = {
   metadataBase: new URL('https://nepacalc.com'),
   title: "Free Online Calculators & Tools for Everyone | NepaCalc",
-  description: "Free online calculators, converters and useful tools for math, finance, education, health, engineering and everyday calculations.",
+  description: "100+ free online calculators, converters and useful tools for math, finance, education, health, engineering and everyday calculations.",
   manifest: '/manifest.json',
   icons: {
     icon: [
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Free Online Calculators & Tools for Everyone | NepaCalc",
-    description: "Free online calculators, converters and useful tools for math, finance, education, health, engineering and everyday calculations.",
+    description: "100+ free online calculators, converters and useful tools for math, finance, education, health, engineering and everyday calculations.",
     url: 'https://nepacalc.com',
     siteName: 'NepaCalc',
     images: [
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: "Free Online Calculators & Tools for Everyone | NepaCalc",
-    description: "Free online calculators, converters and useful tools for math, finance, education, health, engineering and everyday calculations.",
+    description: "100+ free online calculators, converters and useful tools for math, finance, education, health, engineering and everyday calculations.",
     images: ['/logo.png?v=final'],
   },
 };
@@ -152,4 +152,5 @@ export default function RootLayout({
     </html>
   );
 }
+
 
