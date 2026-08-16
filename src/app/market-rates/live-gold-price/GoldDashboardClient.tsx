@@ -8,6 +8,70 @@ import { Trophy, Table, History, Zap, ArrowLeft, ChevronRight } from 'lucide-rea
 import Link from 'next/link';
 import SeoSections from './SeoSections';
 
+
+const renderToc = (items: any[]) => {
+  return items.reduce((acc, entry, idx) => {
+    if (entry.divider) {
+      acc.push(<div key={"div-"+idx} style={{ height: "1px", background: "#e8eaed", margin: "8px 0" }} />);
+      return acc;
+    }
+    const num = String(acc.filter((n: any) => n && !(n.key?.startsWith("div-"))).length + 1).padStart(2, "0");
+    acc.push(
+      <li key={entry.id}>
+        <a
+          href={"#"+entry.id}
+          className="hover:!text-[#1a73e8] hover:!border-l-[#1a73e8]"
+          style={{
+            display: "block",
+            padding: "6px 0 6px 14px",
+            fontSize: "0.82rem",
+            color: "#5f6368",
+            textDecoration: "none",
+            borderLeft: "2px solid transparent",
+            marginLeft: "-2px",
+            lineHeight: 1.3,
+            transition: "color 0.15s, border-color 0.15s",
+          }}
+        >
+          <span style={{
+            fontFamily: "monospace",
+            fontSize: "0.67rem",
+            color: "#b59a00",
+            marginRight: "5px",
+            fontWeight: 700,
+          }}>{num}</span>
+          {entry.label}
+        </a>
+      </li>
+    );
+    return acc;
+  }, []);
+};
+
+const tocItems = [
+            // Group 1 — Live data
+            { id: 'quick-answer-block', label: 'Quick Answer' },
+            { id: 'gold-at-a-glance', label: "Today's Gold Price at a Glance" },
+            { id: 'gold-conversion-table', label: 'Gold Price Conversion Table' },
+            { id: 'gold-price-calculator-info', label: 'Gold Price Calculator' },
+            { divider: true },
+            // Group 2 — Live rates & market
+            { id: 'live-price', label: 'Nepal Benchmark Rates' },
+            { id: 'calculator', label: 'Quick Valuation Calculator' },
+            { id: 'market-highlights', label: 'Market Highlights & Price Change' },
+            { id: 'ai-summary', label: 'Market Intelligence' },
+            { divider: true },
+            // Group 3 — Education
+            { id: 'how-its-calculated', label: 'How Gold Prices Are Calculated' },
+            { id: 'jewellery-pricing', label: 'What Affects Jewellery Prices?' },
+            { id: 'gold-vs-silver', label: 'Gold vs Silver Investment' },
+            { id: 'gold-milestones', label: 'Historic Price Milestones' },
+            { divider: true },
+            // Group 4 — Tools & FAQ
+            { id: 'useful-gold-tools', label: 'Useful Gold Tools' },
+            { id: 'faq', label: 'Frequently Asked Questions' },
+          ];
+
 export default function GoldDashboardClient() {
   const { rates, loading, error } = useLiveRates();
 
@@ -89,7 +153,10 @@ export default function GoldDashboardClient() {
         </div>
       </div>
 
-      {/* 2. Graph */}
+      
+      <div className="lg:grid lg:grid-cols-[1fr_280px] lg:gap-12 items-start">
+        <article className="min-w-0">
+{/* 2. Graph */}
       <div id="market-chart" className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-6 scroll-mt-24">
         <div className="bg-slate-50 px-6 py-4 border-b border-slate-200 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -227,79 +294,15 @@ export default function GoldDashboardClient() {
         </div>
       </div>
 
-      {/* Table of Contents — Nepal Budget style */}
-      <div style={{ marginBottom: '24px' }}>
-        <span style={{
-          display: 'block',
-          fontFamily: 'monospace',
-          fontSize: '0.7rem',
-          textTransform: 'uppercase' as const,
-          letterSpacing: '0.12em',
-          color: '#70757a',
-          marginBottom: '8px',
-          fontWeight: 700,
-        }}>On This Page</span>
-        <ol style={{ listStyle: 'none', margin: 0, padding: 0, borderLeft: '2px solid #e8eaed' }}>
-          {[
-            // Group 1 — Live data
-            { id: 'quick-answer-block', label: 'Quick Answer' },
-            { id: 'gold-at-a-glance', label: "Today's Gold Price at a Glance" },
-            { id: 'gold-conversion-table', label: 'Gold Price Conversion Table' },
-            { id: 'gold-price-calculator-info', label: 'Gold Price Calculator' },
-            { divider: true },
-            // Group 2 — Live rates & market
-            { id: 'live-price', label: 'Nepal Benchmark Rates' },
-            { id: 'calculator', label: 'Quick Valuation Calculator' },
-            { id: 'market-highlights', label: 'Market Highlights & Price Change' },
-            { id: 'ai-summary', label: 'Market Intelligence' },
-            { divider: true },
-            // Group 3 — Education
-            { id: 'how-its-calculated', label: 'How Gold Prices Are Calculated' },
-            { id: 'jewellery-pricing', label: 'What Affects Jewellery Prices?' },
-            { id: 'gold-vs-silver', label: 'Gold vs Silver Investment' },
-            { id: 'gold-milestones', label: 'Historic Price Milestones' },
-            { divider: true },
-            // Group 4 — Tools & FAQ
-            { id: 'useful-gold-tools', label: 'Useful Gold Tools' },
-            { id: 'faq', label: 'Frequently Asked Questions' },
-          ].reduce((acc: React.ReactNode[], entry: any, idx) => {
-            if (entry.divider) {
-              acc.push(<div key={`div-${idx}`} style={{ height: '1px', background: '#e8eaed', margin: '8px 0' }} />);
-              return acc;
-            }
-            const num = String(acc.filter(n => n && !(n as any).key?.startsWith('div-')).length + 1).padStart(2, '0');
-            acc.push(
-              <li key={entry.id}>
-                <a
-                  href={`#${entry.id}`}
-                  className="hover:!text-[#1a73e8] hover:!border-l-[#1a73e8]"
-                  style={{
-                    display: 'block',
-                    padding: '6px 0 6px 14px',
-                    fontSize: '0.82rem',
-                    color: '#5f6368',
-                    textDecoration: 'none',
-                    borderLeft: '2px solid transparent',
-                    marginLeft: '-2px',
-                    lineHeight: 1.3,
-                    transition: 'color 0.15s, border-color 0.15s',
-                  }}
-                >
-                  <span style={{
-                    fontFamily: 'monospace',
-                    fontSize: '0.67rem',
-                    color: '#b59a00',
-                    marginRight: '5px',
-                    fontWeight: 700,
-                  }}>{num}</span>
-                  {entry.label}
-                </a>
-              </li>
-            );
-            return acc;
-          }, [])}
+      
+      {/* MOBILE TOC */}
+      <nav className="lg:hidden bg-[#F8F9FA] border border-[#DADCE0] rounded-xl p-6 mb-12">
+        <p className="text-sm font-black text-[#202124] uppercase tracking-widest mb-4">Contents</p>
+        <ol style={{ listStyle: "none", margin: 0, padding: 0, borderLeft: "2px solid #e8eaed" }}>
+          {renderToc(tocItems)}
         </ol>
-      </div>
+      </nav>
+
 
       {/* 1. Live Price Table (Moved here) */}
       <div id="live-price" className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-6 scroll-mt-24">
@@ -421,6 +424,28 @@ export default function GoldDashboardClient() {
         <SeoSections rates={rates} fmt={fmt} />
       </div>
 
-    </div>
+    
+        </article>
+        
+        {/* DESKTOP TOC */}
+        <aside className="hidden lg:block sticky top-24 self-start">
+          <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-xl p-6">
+            <span style={{
+              display: "block",
+              fontFamily: "monospace",
+              fontSize: "0.7rem",
+              textTransform: "uppercase",
+              letterSpacing: "0.12em",
+              color: "#70757a",
+              marginBottom: "12px",
+              fontWeight: 700,
+            }}>On This Page</span>
+            <ol style={{ listStyle: "none", margin: 0, padding: 0, borderLeft: "2px solid #e8eaed" }}>
+              {renderToc(tocItems)}
+            </ol>
+          </div>
+        </aside>
+      </div>
+</div>
   );
 }

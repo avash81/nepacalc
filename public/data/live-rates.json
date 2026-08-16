@@ -1,17 +1,17 @@
 {
   "gold": {
-    "tolaNPR": 301600,
-    "tejabiTolaNPR": 300900
+    "tolaNPR": 305200,
+    "tejabiTolaNPR": 304500
   },
   "silver": {
-    "tolaNPR": 4660
+    "tolaNPR": 4710
   },
-  "date": "2026-08-15",
+  "date": "2026-08-16",
   "source": "ShareSansar",
-  "updatedAt": "2026-08-15T06:40:50.891Z",
+  "updatedAt": "2026-08-16T10:59:38.634Z",
   "verified": true,
-  "fetchedAt": "2026-08-15T06:40:50.895Z",
-  "timeNPT": "06:10 PM NPT",
+  "fetchedAt": "2026-08-16T10:59:38.638Z",
+  "timeNPT": "10:29 PM NPT",
   "fetchSource": "prebuild script",
   "fetchFailed": false,
   "_status": "fresh"
