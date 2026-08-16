@@ -80,7 +80,7 @@ RewriteRule ^calculator/pregnancy/?$ /calculator/pregnancy-due-date/ [L,R=301]
 RewriteRule ^calculator/ovulation-calculator/?$ /calculator/pregnancy-due-date/ [L,R=301]
 RewriteRule ^calculator/period-calculator/?$ /calculator/pregnancy-due-date/ [L,R=301]
 RewriteRule ^calculator/blood-pressure/?$ /calculator/bmi/ [L,R=301]
-RewriteRule ^calculator/silver-converter/?$ /calculator/gold-converter/ [L,R=301]
+# silver-converter has its own dedicated page — no redirect needed
 RewriteRule ^calculator/week-calculator/?$ /calculator/date-duration/ [L,R=301]
 RewriteRule ^calculator/lumpsum-calculator/?$ /calculator/sip-calculator/ [L,R=301]
 RewriteRule ^calculator/capital-gains-tax/?$ /calculator/nepse-bonus-tax/ [L,R=301]
