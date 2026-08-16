@@ -143,16 +143,19 @@ export function ModernCalcLayout({
         </div>
       </div>
       {fullWidth ? (
-        <div className="flex flex-col lg:flex-row divide-y lg:divide-y-0 lg:divide-x divide-[#DADCE0]">
-          <div className="flex-1 p-4 lg:p-6 bg-white">
-            {inputs}
+        <div className="flex flex-col lg:flex-row lg:items-start divide-y lg:divide-y-0 lg:divide-x divide-[#DADCE0]">
+          <div className="flex-1 w-full bg-white">
+            <div className="p-4 lg:p-6">{inputs}</div>
+            {details && <div className="p-4 lg:p-6 border-t border-[#DADCE0] details-container space-y-6">{details}</div>}
           </div>
           {results && (
-            <div className="w-full lg:w-[420px] xl:w-[480px] p-4 lg:p-6 bg-[#F8F9FA] flex flex-col">
-              <div className="mb-4">
-                <h3 className="text-[11px] font-bold uppercase tracking-wider text-[#70757A]">Result Summary</h3>
+            <div className="w-full lg:w-[420px] xl:w-[480px] bg-[#F8F9FA] flex flex-col shrink-0 lg:sticky lg:top-20 lg:max-h-[calc(100vh-100px)] overflow-y-auto border-t lg:border-t-0 border-[#DADCE0]">
+              <div className="p-4 lg:p-6 flex-1">
+                <div className="mb-4">
+                  <h3 className="text-[11px] font-bold uppercase tracking-wider text-[#70757A]">Result Summary</h3>
+                </div>
+                <div>{results}</div>
               </div>
-              <div className="flex-1">{results}</div>
             </div>
           )}
         </div>
@@ -171,16 +174,19 @@ export function ModernCalcLayout({
           </div>
         </div>
       ) : (
-        <div className="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-[#DADCE0]">
-          <div className="flex-1 p-4 lg:p-6 bg-white relative">
-            <div className="lg:sticky lg:top-24 self-start">{inputs}</div>
+        <div className="flex flex-col md:flex-row md:items-start divide-y md:divide-y-0 md:divide-x divide-[#DADCE0]">
+          <div className="flex-1 w-full bg-white relative">
+            <div className="p-4 lg:p-6">{inputs}</div>
+            {details && <div className="p-4 lg:p-6 border-t border-[#DADCE0] details-container space-y-6">{details}</div>}
           </div>
-          <div className="w-full md:w-[320px] lg:w-[450px] p-4 bg-white">
-            <div className="bg-white border border-[#DADCE0] rounded-md overflow-hidden h-full flex flex-col shadow-sm">
-              <div className="px-4 py-2.5 border-b border-[#DADCE0] bg-[#F8F9FA]">
-                <h3 className="text-[11px] font-bold uppercase tracking-wider text-[#70757A]">Result Summary</h3>
+          <div className="w-full md:w-[320px] lg:w-[450px] bg-white shrink-0 lg:sticky lg:top-20 lg:max-h-[calc(100vh-100px)] overflow-y-auto border-t md:border-t-0 border-[#DADCE0]">
+            <div className="p-4 h-full">
+              <div className="bg-white border border-[#DADCE0] rounded-md overflow-hidden h-full flex flex-col shadow-sm">
+                <div className="px-4 py-2.5 border-b border-[#DADCE0] bg-[#F8F9FA]">
+                  <h3 className="text-[11px] font-bold uppercase tracking-wider text-[#70757A]">Result Summary</h3>
+                </div>
+                <div className="flex-1 p-6 flex flex-col justify-center bg-white">{results}</div>
               </div>
-              <div className="flex-1 p-6 flex flex-col justify-center bg-white">{results}</div>
             </div>
           </div>
         </div>
@@ -240,10 +246,10 @@ export function ModernCalcLayout({
           </div>
         )}
         <div className={`flex flex-col gap-4 ${sidebarPosition === 'bottom' ? '' : 'lg:flex-row'}`}>
-          <div className="flex-1 space-y-4">
+          <div className="flex-1 space-y-4 w-full min-w-0">
             {!fullWidth && calculatorEngineNode}
             {ads?.inContent && <div className="flex justify-center no-print">{ads.inContent}</div>}
-            {details && <div className="details-container space-y-6">{details}</div>}
+            {details && layout === 'stacked' && <div className="details-container space-y-6">{details}</div>}
             {(enrichedHowTo || enrichedFormula) && (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {enrichedHowTo && (

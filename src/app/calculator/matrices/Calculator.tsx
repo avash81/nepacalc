@@ -72,9 +72,8 @@ export default function Calculator() {
       {/* PART 1 CONTENT */}
       <div id="what-is-matrix" className="space-y-10">
         
-        {/* What is a Matrix? */}
         <div>
-          <div id="what-is-matrix"></div>\n<SectionHeader icon={Layers} label="What is a Matrix?" />
+          <div id="what-is-matrix"></div><SectionHeader icon={Layers} label="What is a Matrix?" />
           <div className="text-sm text-[#5F6368] leading-relaxed space-y-4">
             <p>
               A <strong>matrix</strong> is a rectangular arrangement of numbers, variables, or mathematical expressions organized into <strong>rows</strong> and <strong>columns</strong>. Matrices are one of the fundamental building blocks of <strong>linear algebra</strong> and are widely used throughout mathematics, engineering, physics, economics, computer science, robotics, artificial intelligence, and data analysis.
@@ -83,7 +82,7 @@ export default function Calculator() {
               A matrix is usually represented using capital letters such as <strong>A</strong>, <strong>B</strong>, or <strong>C</strong>, while its individual elements are identified by their row and column positions. For example:
             </p>
             <div className="py-2 overflow-x-auto text-center">
-               <BlockMath math={`A = \\begin{bmatrix} 2 & 4 & 6 \\\\ 1 & 3 & 5 \\end{bmatrix}`} />
+               <BlockMath math={String.raw`A = \begin{bmatrix} 2 & 4 & 6 \\ 1 & 3 & 5 \end{bmatrix}`} />
             </div>
             <p>
               This matrix contains <strong>2 rows</strong>, <strong>3 columns</strong>, and <strong>6 individual elements</strong>. The size of a matrix is known as its <strong>order</strong>. The order is written as: <span className="font-mono bg-[#F8F9FA] px-1.5 py-0.5 rounded border border-[#DADCE0] text-[#202124]">Rows × Columns</span>. For the example above, the order is <strong>2 × 3</strong>.
@@ -107,7 +106,7 @@ export default function Calculator() {
               <h4 className="text-xs font-black text-[#1A73E8] uppercase tracking-widest mb-2">Square Matrix</h4>
               <p className="text-xs text-[#5F6368] mb-3 leading-relaxed">Has the same number of rows and columns. Required for determinants and inverses.</p>
               <div className="bg-[#F8F9FA] rounded border border-[#E8EAED] py-2">
-                <BlockMath math={`\\begin{bmatrix} 3 & 5 \\\\ 2 & 7 \\end{bmatrix}`} />
+                <BlockMath math={String.raw`\begin{bmatrix} 3 & 5 \\ 2 & 7 \end{bmatrix}`} />
               </div>
               <p className="text-[10px] font-bold text-[#70757A] text-center mt-2 uppercase tracking-widest">Order: 2 × 2</p>
             </div>
@@ -116,7 +115,7 @@ export default function Calculator() {
               <h4 className="text-xs font-black text-[#1A73E8] uppercase tracking-widest mb-2">Rectangular Matrix</h4>
               <p className="text-xs text-[#5F6368] mb-3 leading-relaxed">Has different numbers of rows and columns. Cannot have determinants or inverses.</p>
               <div className="bg-[#F8F9FA] rounded border border-[#E8EAED] py-2">
-                <BlockMath math={`\\begin{bmatrix} 1 & 2 & 3 \\\\ 4 & 5 & 6 \\end{bmatrix}`} />
+                <BlockMath math={String.raw`\begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix}`} />
               </div>
               <p className="text-[10px] font-bold text-[#70757A] text-center mt-2 uppercase tracking-widest">Order: 2 × 3</p>
             </div>
@@ -125,7 +124,7 @@ export default function Calculator() {
               <h4 className="text-xs font-black text-[#1A73E8] uppercase tracking-widest mb-2">Identity Matrix</h4>
               <p className="text-xs text-[#5F6368] mb-3 leading-relaxed">Square matrix with 1s on the main diagonal and 0s elsewhere. Behaves like the number 1.</p>
               <div className="bg-[#F8F9FA] rounded border border-[#E8EAED] py-2">
-                <BlockMath math={`I = \\begin{bmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix}`} />
+                <BlockMath math={String.raw`I = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}`} />
               </div>
             </div>
 
@@ -133,7 +132,7 @@ export default function Calculator() {
               <h4 className="text-xs font-black text-[#1A73E8] uppercase tracking-widest mb-2">Diagonal Matrix</h4>
               <p className="text-xs text-[#5F6368] mb-3 leading-relaxed">Contains non-zero values only on its principal diagonal. Simplifies engineering calculations.</p>
               <div className="bg-[#F8F9FA] rounded border border-[#E8EAED] py-2">
-                <BlockMath math={`\\begin{bmatrix} 5 & 0 & 0 \\\\ 0 & 9 & 0 \\\\ 0 & 0 & 4 \\end{bmatrix}`} />
+                <BlockMath math={String.raw`\begin{bmatrix} 5 & 0 & 0 \\ 0 & 9 & 0 \\ 0 & 0 & 4 \end{bmatrix}`} />
               </div>
             </div>
 
@@ -176,7 +175,7 @@ export default function Calculator() {
 
       {/* SECTION 2: Formula */}
       <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-        <div id="matrix-formula"></div>\n<SectionHeader icon={Layers} label="Matrix Formula Reference" />
+        <div id="matrix-formula"></div><SectionHeader icon={Layers} label="Matrix Formula Reference" />
         <div className="text-sm text-[#5F6368] leading-relaxed space-y-4">
           <p>
             The Matrix Calculator uses standard linear algebra formulas for every supported operation.
@@ -214,7 +213,7 @@ export default function Calculator() {
             <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg">
               <h3 className="text-xs font-black text-[#202124] uppercase tracking-widest mb-2">Matrix Inverse (2×2)</h3>
               <div className="py-2 overflow-x-auto text-center bg-white border border-[#E8EAED] rounded mb-2">
-                <BlockMath math={`A^{-1} = \\frac{1}{ad-bc} \\begin{bmatrix} d & -b \\\\ -c & a \\end{bmatrix}`} />
+                <BlockMath math={String.raw`A^{-1} = \frac{1}{ad-bc} \begin{bmatrix} d & -b \\ -c & a \end{bmatrix}`} />
               </div>
               <p className="text-[10px] text-[#70757A]">provided <InlineMath math="\det(A) \neq 0" />.</p>
             </div>
@@ -247,7 +246,7 @@ export default function Calculator() {
 
       {/* SECTION 3: Worked Examples */}
       <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-        <div id="worked-examples"></div>\n<SectionHeader icon={Layers} label="Worked Matrix Examples" />
+        <div id="worked-examples"></div><SectionHeader icon={Layers} label="Worked Matrix Examples" />
         <div className="text-sm text-[#5F6368] leading-relaxed space-y-8">
           <p>
             Understanding matrix operations becomes much easier when you see each step of the calculation. The examples below demonstrate how the Matrix Calculator solves common problems while also explaining the mathematics behind the results. These worked examples are suitable for High school mathematics, NEB Mathematics, Engineering Mathematics, Diploma Engineering, Computer Science, Data Science, and University Linear Algebra courses.
@@ -260,7 +259,7 @@ export default function Calculator() {
               <div className="space-y-3">
                 <p className="text-xs font-bold text-[#202124]">Problem: Find the sum of the following matrices.</p>
                 <div className="flex justify-center items-center gap-2 overflow-x-auto bg-white p-3 rounded border border-[#E8EAED]">
-                   <BlockMath math={`A = \\begin{bmatrix} 2 & 4 \\\\ 1 & 3 \\end{bmatrix}, B = \\begin{bmatrix} 5 & 2 \\\\ 7 & 1 \\end{bmatrix}`} />
+                   <BlockMath math={String.raw`A = \begin{bmatrix} 2 & 4 \\ 1 & 3 \end{bmatrix}, B = \begin{bmatrix} 5 & 2 \\ 7 & 1 \end{bmatrix}`} />
                 </div>
                 <div className="text-xs">
                   <p className="font-bold mb-1">Step 1: Add the corresponding elements.</p>
@@ -269,7 +268,7 @@ export default function Calculator() {
                 </div>
                 <div className="bg-white p-3 rounded border border-[#E8EAED] text-center">
                    <p className="text-[10px] font-black uppercase text-[#188038] mb-2 tracking-widest">Final Answer</p>
-                   <BlockMath math={`A+B = \\begin{bmatrix} 7 & 6 \\\\ 8 & 4 \\end{bmatrix}`} />
+                   <BlockMath math={String.raw`A+B = \begin{bmatrix} 7 & 6 \\ 8 & 4 \end{bmatrix}`} />
                 </div>
                 <p className="text-[10px] text-[#70757A]">The calculator performs this instantly for any compatible matrices.</p>
               </div>
@@ -279,20 +278,18 @@ export default function Calculator() {
             <div className="p-5 border border-[#DADCE0] rounded-lg bg-[#F8F9FA]">
               <h3 className="text-sm font-black text-[#1A73E8] mb-3 uppercase tracking-widest">Example 2 — Matrix Multiplication</h3>
               <div className="space-y-3">
-                <p className="text-xs font-bold text-[#202124]">Problem: Multiply</p>
+                <p className="text-xs font-bold text-[#202124]">Problem: Multiply matrices A and B.</p>
                 <div className="flex justify-center items-center gap-2 overflow-x-auto bg-white p-3 rounded border border-[#E8EAED]">
-                   <BlockMath math={`A = \\begin{bmatrix} 1 & 2 \\\\ 3 & 4 \\end{bmatrix}, B = \\begin{bmatrix} 5 & 6 \\\\ 7 & 8 \\end{bmatrix}`} />
+                   <BlockMath math={String.raw`A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}, B = \begin{bmatrix} 2 \\ 1 \end{bmatrix}`} />
                 </div>
                 <div className="text-xs">
                   <p className="font-bold mb-1">Step 1: Multiply rows by columns.</p>
-                  <p>R1 × C1: <InlineMath math="1(5)+2(7)=19" /></p>
-                  <p>R1 × C2: <InlineMath math="1(6)+2(8)=22" /></p>
-                  <p>R2 × C1: <InlineMath math="3(5)+4(7)=43" /></p>
-                  <p>R2 × C2: <InlineMath math="3(6)+4(8)=50" /></p>
+                  <p>R1 × C1: <InlineMath math="1(2)+2(1)=4" /></p>
+                  <p>R2 × C1: <InlineMath math="3(2)+4(1)=10" /></p>
                 </div>
                 <div className="bg-white p-3 rounded border border-[#E8EAED] text-center">
                    <p className="text-[10px] font-black uppercase text-[#188038] mb-2 tracking-widest">Final Answer</p>
-                   <BlockMath math={`AB = \\begin{bmatrix} 19 & 22 \\\\ 43 & 50 \\end{bmatrix}`} />
+                   <BlockMath math={String.raw`AB = \begin{bmatrix} 4 \\ 10 \end{bmatrix}`} />
                 </div>
                 <p className="text-[10px] text-[#70757A]">The Matrix Calculator automatically checks matrix dimensions before multiplication.</p>
               </div>
@@ -300,16 +297,16 @@ export default function Calculator() {
 
             {/* Example 3 */}
             <div className="p-5 border border-[#DADCE0] rounded-lg bg-[#F8F9FA]">
-              <h3 className="text-sm font-black text-[#1A73E8] mb-3 uppercase tracking-widest">Example 3 — Determinant</h3>
+              <h3 className="text-sm font-black text-[#1A73E8] mb-3 uppercase tracking-widest">Example 3 — Determinant (2×2)</h3>
               <div className="space-y-3">
-                <p className="text-xs font-bold text-[#202124]">Problem: Find the determinant of</p>
+                <p className="text-xs font-bold text-[#202124]">Problem: Find the determinant of matrix A.</p>
                 <div className="flex justify-center items-center gap-2 overflow-x-auto bg-white p-3 rounded border border-[#E8EAED]">
-                   <BlockMath math={`A = \\begin{bmatrix} 4 & 2 \\\\ 3 & 5 \\end{bmatrix}`} />
+                   <BlockMath math={String.raw`A = \begin{bmatrix} 5 & 3 \\ 2 & 4 \end{bmatrix}`} />
                 </div>
                 <div className="text-xs">
                   <p className="font-bold mb-1">Formula & Calculation:</p>
-                  <BlockMath math={`\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix} = ad-bc`} />
-                  <p className="text-center mt-2"><InlineMath math="(4)(5)-(2)(3) = 20-6 = 14" /></p>
+                  <BlockMath math={String.raw`\begin{vmatrix} a & b \\ c & d \end{vmatrix} = ad-bc`} />
+                  <p className="text-center mt-2"><InlineMath math="(5)(4)-(3)(2) = 20-6 = 14" /></p>
                 </div>
                 <div className="bg-white p-3 rounded border border-[#E8EAED] text-center">
                    <p className="text-[10px] font-black uppercase text-[#188038] mb-2 tracking-widest">Final Answer</p>
@@ -323,19 +320,18 @@ export default function Calculator() {
             <div className="p-5 border border-[#DADCE0] rounded-lg bg-[#F8F9FA]">
               <h3 className="text-sm font-black text-[#1A73E8] mb-3 uppercase tracking-widest">Example 4 — Matrix Inverse</h3>
               <div className="space-y-3">
-                <p className="text-xs font-bold text-[#202124]">Problem: Find the inverse of</p>
+                <p className="text-xs font-bold text-[#202124]">Problem: Find the inverse of A.</p>
                 <div className="flex justify-center items-center gap-2 overflow-x-auto bg-white p-3 rounded border border-[#E8EAED]">
-                   <BlockMath math={`A = \\begin{bmatrix} 2 & 1 \\\\ 5 & 3 \\end{bmatrix}`} />
+                   <BlockMath math={String.raw`A = \begin{bmatrix} 4 & 7 \\ 2 & 6 \end{bmatrix}`} />
                 </div>
                 <div className="text-xs">
                   <p className="font-bold mb-1">Step 1: Find the determinant.</p>
-                  <p><InlineMath math="(2)(3)-(1)(5) = 1" /></p>
+                  <p><InlineMath math="(4)(6)-(7)(2) = 24-14 = 10" /></p>
                   <p className="font-bold mt-2 mb-1">Step 2: Apply the inverse formula.</p>
-                  <BlockMath math={`A^{-1} = \\frac{1}{1} \\begin{bmatrix} 3 & -1 \\\\ -5 & 2 \\end{bmatrix}`} />
                 </div>
                 <div className="bg-white p-3 rounded border border-[#E8EAED] text-center">
                    <p className="text-[10px] font-black uppercase text-[#188038] mb-2 tracking-widest">Final Answer</p>
-                   <BlockMath math={`A^{-1} = \\begin{bmatrix} 3 & -1 \\\\ -5 & 2 \\end{bmatrix}`} />
+                   <BlockMath math={String.raw`A^{-1} = \frac{1}{10} \begin{bmatrix} 6 & -7 \\ -2 & 4 \end{bmatrix} = \begin{bmatrix} 0.6 & -0.7 \\ -0.2 & 0.4 \end{bmatrix}`} />
                 </div>
                 <p className="text-[10px] text-[#70757A]">The calculator automatically reports when an inverse cannot be found.</p>
               </div>
@@ -345,16 +341,16 @@ export default function Calculator() {
             <div className="p-5 border border-[#DADCE0] rounded-lg bg-[#F8F9FA]">
               <h3 className="text-sm font-black text-[#1A73E8] mb-3 uppercase tracking-widest">Example 5 — Matrix Transpose</h3>
               <div className="space-y-3">
-                <p className="text-xs font-bold text-[#202124]">Problem: Find the transpose of</p>
+                <p className="text-xs font-bold text-[#202124]">Problem: Find the transpose of A.</p>
                 <div className="flex justify-center items-center gap-2 overflow-x-auto bg-white p-3 rounded border border-[#E8EAED]">
-                   <BlockMath math={`A = \\begin{bmatrix} 1 & 4 & 7 \\\\ 2 & 5 & 8 \\end{bmatrix}`} />
+                   <BlockMath math={String.raw`A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \\ 5 & 6 \end{bmatrix}`} />
                 </div>
                 <div className="text-xs">
                   <p className="font-bold mb-1">Solution: Swap rows and columns.</p>
                 </div>
                 <div className="bg-white p-3 rounded border border-[#E8EAED] text-center">
                    <p className="text-[10px] font-black uppercase text-[#188038] mb-2 tracking-widest">Final Answer</p>
-                   <BlockMath math={`A^T = \\begin{bmatrix} 1 & 2 \\\\ 4 & 5 \\\\ 7 & 8 \\end{bmatrix}`} />
+                   <BlockMath math={String.raw`A^T = \begin{bmatrix} 1 & 3 & 5 \\ 2 & 4 & 6 \end{bmatrix}`} />
                 </div>
                 <p className="text-[10px] text-[#70757A]">Commonly used in statistics, machine learning, and graphics.</p>
               </div>
@@ -362,53 +358,30 @@ export default function Calculator() {
 
             {/* Example 6 */}
             <div className="p-5 border border-[#DADCE0] rounded-lg bg-[#F8F9FA]">
-              <h3 className="text-sm font-black text-[#1A73E8] mb-3 uppercase tracking-widest">Example 6 — Solving Equations</h3>
+              <h3 className="text-sm font-black text-[#1A73E8] mb-3 uppercase tracking-widest">Example 6 — Scalar Multiplication</h3>
               <div className="space-y-3">
-                <p className="text-xs font-bold text-[#202124]">Problem: Solve <a href="/calculator/linear-solver/" className="text-[#1A73E8] hover:underline">linear system</a></p>
-                <div className="bg-white p-2 rounded border border-[#E8EAED] text-center text-xs">
-                   <InlineMath math="x+y=7" /> <br/>
-                   <InlineMath math="2x+3y=18" />
+                <p className="text-xs font-bold text-[#202124]">Problem: Multiply matrix A by scalar k=2.</p>
+                <div className="flex justify-center items-center gap-2 overflow-x-auto bg-white p-3 rounded border border-[#E8EAED]">
+                   <BlockMath math={String.raw`A = \begin{bmatrix} 2 & 4 & 6 \\ 4 & 5 & 6 \end{bmatrix}`} />
                 </div>
                 <div className="text-xs">
-                  <p className="font-bold mb-1">Matrix Representation: <InlineMath math="AX=B" /></p>
-                  <BlockMath math={`A = \\begin{bmatrix} 1 & 1 \\\\ 2 & 3 \\end{bmatrix}, X = \\begin{bmatrix} x \\\\ y \\end{bmatrix}, B = \\begin{bmatrix} 7 \\\\ 18 \\end{bmatrix}`} />
+                  <p className="font-bold mb-1">Solution: Multiply every element by 2.</p>
                 </div>
                 <div className="bg-white p-3 rounded border border-[#E8EAED] text-center">
                    <p className="text-[10px] font-black uppercase text-[#188038] mb-2 tracking-widest">Final Answer</p>
-                   <p className="text-xs mb-2 text-[#70757A]">Using <InlineMath math="X=A^{-1}B" />:</p>
-                   <p className="font-bold text-lg text-[#202124]">x = 3, y = 4</p>
+                   <BlockMath math={String.raw`2A = \begin{bmatrix} 4 & 8 & 12 \\ 8 & 10 & 12 \end{bmatrix}`} />
                 </div>
-                <p className="text-[10px] text-[#70757A]">Widely used in engineering software, FEA, and structural analysis.</p>
+                <p className="text-[10px] text-[#70757A]">Useful for scaling transformations in graphics.</p>
               </div>
             </div>
 
             {/* Example 7 */}
             <div className="p-5 border border-[#DADCE0] rounded-lg bg-[#F8F9FA]">
-              <h3 className="text-sm font-black text-[#1A73E8] mb-3 uppercase tracking-widest">Example 7 — Matrix Rank</h3>
+              <h3 className="text-sm font-black text-[#1A73E8] mb-3 uppercase tracking-widest">Example 7 — Matrix Trace</h3>
               <div className="space-y-3">
-                <p className="text-xs font-bold text-[#202124]">Problem: Find the rank of</p>
+                <p className="text-xs font-bold text-[#202124]">Problem: Find the trace of A.</p>
                 <div className="flex justify-center items-center gap-2 overflow-x-auto bg-white p-3 rounded border border-[#E8EAED]">
-                   <BlockMath math={`\\begin{bmatrix} 1 & 2 & 3 \\\\ 2 & 4 & 6 \\\\ 4 & 5 & 6 \\end{bmatrix}`} />
-                </div>
-                <div className="text-xs">
-                  <p className="font-bold mb-1">Explanation:</p>
-                  <p>The second row is a multiple of the first row. Therefore only two rows are linearly independent.</p>
-                </div>
-                <div className="bg-white p-3 rounded border border-[#E8EAED] text-center">
-                   <p className="text-[10px] font-black uppercase text-[#188038] mb-2 tracking-widest">Final Answer</p>
-                   <p className="font-bold text-lg text-[#202124]">Matrix Rank = 2</p>
-                </div>
-                <p className="text-[10px] text-[#70757A]">Important for determining if equation systems have unique solutions.</p>
-              </div>
-            </div>
-
-            {/* Example 8 */}
-            <div className="p-5 border border-[#DADCE0] rounded-lg bg-[#F8F9FA]">
-              <h3 className="text-sm font-black text-[#1A73E8] mb-3 uppercase tracking-widest">Example 8 — Trace</h3>
-              <div className="space-y-3">
-                <p className="text-xs font-bold text-[#202124]">Problem: Find the trace of</p>
-                <div className="flex justify-center items-center gap-2 overflow-x-auto bg-white p-3 rounded border border-[#E8EAED]">
-                   <BlockMath math={`\\begin{bmatrix} 2 & 3 & 1 \\\\ 4 & 6 & 5 \\\\ 7 & 8 & 9 \\end{bmatrix}`} />
+                   <BlockMath math={String.raw`\begin{bmatrix} 2 & 3 & 1 \\ 4 & 6 & 5 \\ 7 & 8 & 9 \end{bmatrix}`} />
                 </div>
                 <div className="text-xs">
                   <p className="font-bold mb-1">Calculation: Add the diagonal elements.</p>
@@ -435,7 +408,8 @@ export default function Calculator() {
 
       {/* SECTION 4: Common Matrix Operations */}
       <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-        <div id="matrix-operations"></div>\n<SectionHeader icon={Layers} label="Common Matrix Operations" />
+        <div id="matrix-operations"></div>
+<SectionHeader icon={Layers} label="Common Matrix Operations" />
         <div className="text-sm text-[#5F6368] leading-relaxed space-y-6">
           <p>
             The NepaCalc Matrix Calculator supports a wide range of matrix operations used in mathematics, engineering, computer science, economics, statistics, and data analysis. Whether you are solving classroom exercises or professional engineering problems, the calculator produces accurate results instantly.
@@ -469,11 +443,11 @@ export default function Calculator() {
               <h3 className="text-sm font-black text-[#202124] mb-2">Matrix Addition</h3>
               <p className="mb-3">Matrix addition combines two matrices by adding the corresponding elements together. Two matrices can only be added when they have exactly the same number of rows and columns.</p>
               <div className="bg-[#F8F9FA] rounded border border-[#E8EAED] py-4 overflow-x-auto flex items-center justify-center gap-4 text-center">
-                 <BlockMath math={`A = \\begin{bmatrix} 2 & 4 \\\\ 1 & 3 \\end{bmatrix}`} />
+                 <BlockMath math={String.raw`A = \begin{bmatrix} 2 & 4 \\ 1 & 3 \end{bmatrix}`} />
                  <span className="font-bold text-[#70757A]">+</span>
-                 <BlockMath math={`B = \\begin{bmatrix} 5 & 2 \\\\ 7 & 1 \\end{bmatrix}`} />
+                 <BlockMath math={String.raw`B = \begin{bmatrix} 5 & 2 \\ 7 & 1 \end{bmatrix}`} />
                  <span className="font-bold text-[#70757A]">=</span>
-                 <BlockMath math={`\\begin{bmatrix} 7 & 6 \\\\ 8 & 4 \\end{bmatrix}`} />
+                 <BlockMath math={String.raw`\begin{bmatrix} 7 & 6 \\ 8 & 4 \end{bmatrix}`} />
               </div>
               <p className="text-xs text-[#70757A] mt-3"><strong>Applications:</strong> Combining datasets, Engineering calculations, Graphics transformations, Statistical models.</p>
             </div>
@@ -483,14 +457,14 @@ export default function Calculator() {
               <h3 className="text-sm font-black text-[#202124] mb-2">Matrix Subtraction</h3>
               <p className="mb-3">Matrix subtraction follows exactly the same rule as addition. Each corresponding element is subtracted from the other.</p>
               <div className="bg-[#F8F9FA] rounded border border-[#E8EAED] py-4 overflow-x-auto text-center flex items-center justify-center gap-4">
-                 <BlockMath math={`A - B = \\begin{bmatrix} -3 & 2 \\\\ -6 & 2 \\end{bmatrix}`} />
+                 <BlockMath math={String.raw`A - B = \begin{bmatrix} -3 & 2 \\ -6 & 2 \end{bmatrix}`} />
               </div>
             </div>
 
             {/* Multiplication */}
             <div className="p-5 border border-[#DADCE0] rounded-lg">
               <h3 className="text-sm font-black text-[#202124] mb-2">Matrix Multiplication</h3>
-              <p className="mb-3">Matrix multiplication is one of the most important concepts in linear algebra. Unlike addition, multiplication requires the number of columns in the first matrix to equal the number of rows in the second matrix. If Matrix A is <InlineMath math="2\\times3" />, then Matrix B must be <InlineMath math="3\\times n" /> for multiplication to be possible. The calculator automatically checks matrix compatibility before performing multiplication.</p>
+              <p className="mb-3">Matrix multiplication is one of the most important concepts in linear algebra. Unlike addition, multiplication requires the number of columns in the first matrix to equal the number of rows in the second matrix. If Matrix A is <InlineMath math="2\times3" />, then Matrix B must be <InlineMath math="3\times n" /> for multiplication to be possible. The calculator automatically checks matrix compatibility before performing multiplication.</p>
               <p className="text-xs text-[#70757A] mt-3"><strong>Applications:</strong> Machine Learning, Artificial Intelligence, Computer Graphics, Robotics, Engineering Simulation, Structural Analysis, Signal Processing.</p>
             </div>
 
@@ -499,7 +473,7 @@ export default function Calculator() {
               <h3 className="text-sm font-black text-[#202124] mb-2">Determinant of a Matrix</h3>
               <p className="mb-3">The determinant is a single numerical value calculated from a square matrix. It indicates whether the matrix has an inverse and whether a <a href="/calculator/linear-solver/" className="text-[#1A73E8] hover:underline">system of linear equations</a> has a unique solution. A determinant of zero means the matrix is singular and cannot be inverted.</p>
               <div className="bg-[#F8F9FA] rounded border border-[#E8EAED] py-4 overflow-x-auto text-center">
-                 <BlockMath math={`\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix} = ad-bc`} />
+                 <BlockMath math={String.raw`\begin{vmatrix} a & b \\ c & d \end{vmatrix} = ad-bc`} />
               </div>
               <p className="text-xs text-[#70757A] mt-3"><strong>Applications:</strong> Solving linear systems, Area and volume calculations, Coordinate transformations, Eigenvalue computation.</p>
             </div>
@@ -515,7 +489,7 @@ export default function Calculator() {
               <h3 className="text-sm font-black text-[#202124] mb-2">Matrix Transpose</h3>
               <p className="mb-3">The transpose of a matrix is created by swapping rows and columns.</p>
               <div className="bg-[#F8F9FA] rounded border border-[#E8EAED] py-4 overflow-x-auto text-center flex items-center justify-center gap-4">
-                 <BlockMath math={`\\begin{bmatrix} 1 & 2 & 3 \\\\ 4 & 5 & 6 \\end{bmatrix} \\xrightarrow{T} \\begin{bmatrix} 1 & 4 \\\\ 2 & 5 \\\\ 3 & 6 \\end{bmatrix}`} />
+                 <BlockMath math={String.raw`\begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix} \xrightarrow{T} \begin{bmatrix} 1 & 4 \\ 2 & 5 \\ 3 & 6 \end{bmatrix}`} />
               </div>
               <p className="text-xs text-[#70757A] mt-3"><strong>Applications:</strong> Statistics, Data Science, Machine Learning, Computer Vision, Engineering Mathematics.</p>
             </div>
@@ -539,21 +513,21 @@ export default function Calculator() {
               <h3 className="text-sm font-black text-[#202124] mb-2">Trace of a Matrix</h3>
               <p className="mb-3">The trace is the sum of all diagonal elements of a square matrix.</p>
               <div className="bg-[#F8F9FA] rounded border border-[#E8EAED] py-4 overflow-x-auto text-center flex items-center justify-center gap-4">
-                 <BlockMath math={`\\begin{bmatrix} 2 & 1 \\\\ 5 & 7 \\end{bmatrix} \\implies \\text{Trace} = 2+7=9`} />
+                 <BlockMath math={String.raw`\begin{bmatrix} 2 & 1 \\ 5 & 7 \end{bmatrix} \implies \text{Trace} = 2+7=9`} />
               </div>
-              <p className="text-xs text-[#70757A] mt-3"><strong>Applications:</strong> Eigenvalue analysis, Differential equations, Quantum mechanics, Engineering mathematics.</p>
+              <p className="text-xs text-[#70757A mt-3"><strong>Applications:</strong> Eigenvalue analysis, Differential equations, Quantum mechanics, Engineering mathematics.</p>
             </div>
 
             {/* Scalar Multiplication */}
             <div className="p-5 border border-[#DADCE0] rounded-lg">
               <h3 className="text-sm font-black text-[#202124] mb-2">Scalar Multiplication</h3>
               <p className="mb-3">Scalar multiplication multiplies every element of a matrix by the same constant value. For example, multiply every element by 5:</p>
-              <div className="bg-[#F8F9FA] rounded border border-[#E8EAED] py-4 overflow-x-auto text-center flex items-center justify-center gap-4">
+              <div className="bg-[#F8F9FA] rounded border border-[#E8EAED] py-4 overflow-x-auto flex items-center justify-center gap-4 text-center">
                  <span className="font-bold text-[#202124] text-lg">5</span>
                  <span className="font-bold text-[#70757A]">×</span>
-                 <BlockMath math={`\\begin{bmatrix} 1 & 2 \\\\ 3 & 4 \\end{bmatrix}`} />
+                 <BlockMath math={String.raw`\begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}`} />
                  <span className="font-bold text-[#70757A]">=</span>
-                 <BlockMath math={`\\begin{bmatrix} 5 & 10 \\\\ 15 & 20 \\end{bmatrix}`} />
+                 <BlockMath math={String.raw`\begin{bmatrix} 5 & 10 \\ 15 & 20 \end{bmatrix}`} />
               </div>
               <p className="text-xs text-[#70757A] mt-3"><strong>Applications:</strong> Graphics, engineering simulations, and physics.</p>
             </div>
@@ -563,7 +537,7 @@ export default function Calculator() {
               <h3 className="text-sm font-black text-[#202124] mb-2">Identity Matrix</h3>
               <p className="mb-3">An identity matrix contains ones along the main diagonal and zeros everywhere else. Multiplying any compatible matrix by the identity matrix leaves it unchanged. Identity matrices form the foundation of many matrix operations including inversion and transformation.</p>
               <div className="bg-[#F8F9FA] rounded border border-[#E8EAED] py-4 overflow-x-auto text-center">
-                 <BlockMath math={`I = \\begin{bmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix}`} />
+                 <BlockMath math={String.raw`I = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}`} />
               </div>
             </div>
 
@@ -846,7 +820,7 @@ export default function Calculator() {
               </h3>
               <p className="mb-2 text-xs">When solving systems, many students arrange coefficients incorrectly. <br/><br/> <InlineMath math="2x+3y=8" /> and <InlineMath math="5x+y=11" /> should become:</p>
               <div className="bg-white py-2 rounded border border-[#FCE8E6] text-center">
-                <BlockMath math="\begin{bmatrix} 2 & 3 \\ 5 & 1 \end{bmatrix}" />
+                <BlockMath math={String.raw`\begin{bmatrix} 2 & 3 \\ 5 & 1 \end{bmatrix}`} />
               </div>
             </div>
 
@@ -1039,9 +1013,9 @@ export default function Calculator() {
             <div className="p-4 space-y-3">
               <p>The transpose of a matrix is obtained by exchanging its rows and columns.</p>
               <div className="overflow-x-auto text-center flex items-center justify-center gap-4">
-                 <BlockMath math="\begin{bmatrix} 1&2&3 \\ 4&5&6 \end{bmatrix}" />
+                 <BlockMath math={String.raw`\begin{bmatrix} 1&2&3 \\ 4&5&6 \end{bmatrix}`} />
                  <span className="font-bold">becomes</span>
-                 <BlockMath math="\begin{bmatrix} 1&4 \\ 2&5 \\ 3&6 \end{bmatrix}" />
+                 <BlockMath math={String.raw`\begin{bmatrix} 1&4 \\ 2&5 \\ 3&6 \end{bmatrix}`} />
               </div>
               <p>Transpose operations are widely used in statistics, engineering, machine learning, and computer graphics.</p>
             </div>
