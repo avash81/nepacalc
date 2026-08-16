@@ -25,7 +25,9 @@ const config: Config = {
         '7': 'repeat(7, minmax(0, 1fr))',
       },
       fontFamily: {
-        sans: ['Lexend', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['IBM Plex Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        serif: ['Fraunces', 'ui-serif', 'Georgia', 'serif'],
+        mono: ['IBM Plex Mono', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
     },
   },

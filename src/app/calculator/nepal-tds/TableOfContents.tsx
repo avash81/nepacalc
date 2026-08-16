@@ -23,22 +23,16 @@ const TOC_ITEMS = [
   { id: 'official-references', label: '18. Official References & Disclaimer' }
 ];
 
-export default function TableOfContents() {
+export default function TableOfContents({ variant = 'desktop' }: { variant?: 'mobile' | 'desktop' }) {
   const [activeId, setActiveId] = useState('');
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    // Automatically expand on desktop
-    if (window.innerWidth >= 768) {
-      setIsOpen(true);
-    }
-    
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setActiveId(entry.target.id);
-            // Removed replaceState to prevent unwanted auto-redirection on load
           }
         });
       },
@@ -57,76 +51,55 @@ export default function TableOfContents() {
     e.preventDefault();
     const el = document.getElementById(id);
     if (el) {
-      const y = el.getBoundingClientRect().top + window.scrollY - 100; // offset for sticky headers
+      const y = el.getBoundingClientRect().top + window.scrollY - 100;
       window.scrollTo({ top: y, behavior: 'smooth' });
       window.history.pushState(null, '', `#${id}`);
       setActiveId(id);
-      if (window.innerWidth < 768) {
+      if (variant === 'mobile') {
         setIsOpen(false);
       }
     }
   };
 
-  const midpoint = Math.ceil(TOC_ITEMS.length / 2);
-  const col1 = TOC_ITEMS.slice(0, midpoint);
-  const col2 = TOC_ITEMS.slice(midpoint);
+  if (variant === 'mobile') {
+    return (
+      <nav className="lg:hidden bg-[#F8F9FA] border border-[#DADCE0] rounded-xl p-6 mb-12">
+        <p className="text-sm font-black text-[#202124] uppercase tracking-widest mb-4">Contents</p>
+        <ol className="list-none pl-0 grid grid-cols-1 sm:grid-cols-2 gap-2">
+          {TOC_ITEMS.map((item, i) => (
+            <li key={item.id} className="flex items-start gap-3">
+              <span className="w-6 h-6 rounded-full bg-[#E8F0FE] text-[#1A73E8] text-[10px] font-black font-mono flex items-center justify-center shrink-0 mt-0.5">{i + 1}</span>
+              <a 
+                href={`#${item.id}`} 
+                onClick={(e) => scrollToSection(e, item.id)}
+                className={`text-sm font-medium hover:underline leading-snug ${activeId === item.id ? 'text-[#1A73E8] font-bold underline' : 'text-[#1A73E8]'}`}
+              >
+                {item.label.replace(/^\d+\.\s*/, '')}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </nav>
+    );
+  }
 
   return (
-    <div className="mt-8 bg-white border border-[#DADCE0] rounded-xl shadow-sm overflow-hidden">
-      <button 
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between p-5 md:p-6 md:cursor-default focus:outline-none"
-      >
-        <div>
-          <h2 className="text-xl md:text-2xl font-black text-[#202124] tracking-tight mb-1 text-left">Table of Contents</h2>
-          <p className="text-[12px] md:text-sm text-[#5F6368] leading-relaxed max-w-4xl text-left hidden md:block">
-            Use the table of contents below to quickly navigate to the section you need. Whether you want to calculate TDS, check the latest withholding rates, understand VAT rules, learn the filing process, or review official legal provisions, you can jump directly to the relevant section.
-          </p>
-        </div>
-        <div className="md:hidden">
-          {isOpen ? <ChevronUp className="w-5 h-5 text-[#5F6368]" /> : <ChevronDown className="w-5 h-5 text-[#5F6368]" />}
-        </div>
-      </button>
-
-      {isOpen && (
-        <div className="px-5 pb-6 md:px-6 md:pt-0">
-          <p className="text-[12px] text-[#5F6368] mb-6 leading-relaxed md:hidden">
-            Use the table of contents below to quickly navigate to the section you need.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 border-t border-[#F1F3F4] md:border-t-0 pt-4 md:pt-0">
-            <div className="space-y-3">
-              {col1.map(item => (
-                <a 
-                  key={item.id} 
-                  href={`#${item.id}`}
-                  onClick={(e) => scrollToSection(e, item.id)}
-                  className={`flex items-start gap-3 group transition-colors`}
-                >
-                  <div className={`mt-1 w-1.5 h-1.5 rounded-full shrink-0 transition-colors ${activeId === item.id ? 'bg-[#1A73E8]' : 'bg-[#DADCE0] group-hover:bg-[#1A73E8]'}`} />
-                  <span className={`text-[13px] md:text-sm leading-snug transition-colors ${activeId === item.id ? 'font-bold text-[#1A73E8]' : 'text-[#1A73E8] group-hover:text-[#1557B0]'}`}>
-                    {item.label}
-                  </span>
-                </a>
-              ))}
-            </div>
-            <div className="space-y-3">
-              {col2.map(item => (
-                <a 
-                  key={item.id} 
-                  href={`#${item.id}`}
-                  onClick={(e) => scrollToSection(e, item.id)}
-                  className={`flex items-start gap-3 group transition-colors`}
-                >
-                  <div className={`mt-1 w-1.5 h-1.5 rounded-full shrink-0 transition-colors ${activeId === item.id ? 'bg-[#1A73E8]' : 'bg-[#DADCE0] group-hover:bg-[#1A73E8]'}`} />
-                  <span className={`text-[13px] md:text-sm leading-snug transition-colors ${activeId === item.id ? 'font-bold text-[#1A73E8]' : 'text-[#1A73E8] group-hover:text-[#1557B0]'}`}>
-                    {item.label}
-                  </span>
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
+    <div className="pr-4 hidden lg:block">
+      <p className="text-xs font-black text-[#5F6368] uppercase tracking-widest mb-4 font-mono">Contents</p>
+      <ol className="list-none pl-0 border-l-2 border-[#DADCE0] space-y-2">
+        {TOC_ITEMS.map((item, i) => (
+          <li key={item.id} className="pl-4">
+            <a 
+              href={`#${item.id}`} 
+              onClick={(e) => scrollToSection(e, item.id)}
+              className={`text-[13px] hover:text-[#D93025] hover:font-bold transition-colors block py-1 border-l-2 -ml-[18px] pl-[16px] hover:border-[#D93025] ${activeId === item.id ? 'text-[#D93025] font-bold border-[#D93025]' : 'text-[#5F6368] border-transparent'}`}
+            >
+              <span className={`font-mono text-[10px] mr-2 ${activeId === item.id ? 'text-[#D93025]' : 'text-[#B0B3B8]'}`}>{i + 1}</span>
+              {item.label.replace(/^\d+\.\s*/, '')}
+            </a>
+          </li>
+        ))}
+      </ol>
     </div>
   );
 }

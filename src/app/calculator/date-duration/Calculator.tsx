@@ -372,11 +372,11 @@ export default function DateDuration() {
         </div>
       }
       details={
-        <div className="space-y-12">
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm space-y-10">
+        <div className="lg:grid lg:grid-cols-[1fr_280px] lg:gap-12 items-start">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm space-y-10 min-w-0">
 
             {/* AI Quick Answer */}
-            <div className="bg-[#E8F0FE] border border-[#1A73E8] rounded-lg p-5">
+            <div className="bg-[#E8F0FE] border border-[#1A73E8] rounded-lg p-5 scroll-mt-24" id="feature-summary">
               <h2 className="font-bold text-[#1A73E8] mb-2 text-lg">Quick Answer</h2>
               <p className="text-[#202124] text-base leading-relaxed">
                 A Date Duration Calculator calculates the exact duration between two calendar dates in years, months, weeks, and days. It uses Gregorian calendar rules while automatically accounting for leap years and varying month lengths to provide accurate calendar-based results.
@@ -384,22 +384,29 @@ export default function DateDuration() {
               <p className="text-[#5F6368] text-sm mt-3">Last updated: July 2026 &bull; Calculations follow the Gregorian calendar and automatically account for leap years.</p>
             </div>
 
-            {/* Table of Contents */}
-            <nav className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-6">
-              <h2 className="text-xl font-bold text-[#202124] mb-4">Table of Contents</h2>
-              <ul className="space-y-2 text-[#1A73E8] text-sm">
-                <li><a href="#feature-summary" className="hover:underline">What This Calculator Can Calculate</a></li>
-                <li><a href="#how-to-use" className="hover:underline">How To Use</a></li>
-                <li><a href="#understanding-results" className="hover:underline">Understanding Your Results</a></li>
-                <li><a href="#popular-modes" className="hover:underline">Popular Calculator Modes</a></li>
-                <li><a href="#real-use-cases" className="hover:underline">Real Use Cases</a></li>
-                <li><a href="#examples" className="hover:underline">Example Calculations</a></li>
-                <li><a href="#calculation-method" className="hover:underline">How Date Duration Is Calculated</a></li>
-                <li><a href="#inclusive-exclusive" className="hover:underline">Inclusive vs Exclusive Date Counting</a></li>
-                <li><a href="#accuracy-matters" className="hover:underline">Why Accurate Date Calculations Matter</a></li>
-                <li><a href="#faq" className="hover:underline">Frequently Asked Questions</a></li>
-                <li><a href="#people-also-search-for" className="hover:underline">People Also Search For</a></li>
-              </ul>
+            {/* Table of Contents (Mobile) */}
+            <nav className="lg:hidden bg-slate-50 rounded-xl p-6 mb-10 border border-slate-200">
+              <p className="text-sm font-black text-slate-900 uppercase tracking-widest mb-4 font-mono">Contents</p>
+              <ol className="list-none pl-0 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {[
+                  ['#feature-summary', 'What This Calculator Can Calculate'],
+                  ['#how-to-use', 'How To Use'],
+                  ['#understanding-results', 'Understanding Your Results'],
+                  ['#popular-modes', 'Popular Calculator Modes'],
+                  ['#real-use-cases', 'Real Use Cases'],
+                  ['#examples', 'Example Calculations'],
+                  ['#calculation-method', 'How Date Duration Is Calculated'],
+                  ['#inclusive-exclusive', 'Inclusive vs Exclusive Date Counting'],
+                  ['#accuracy-matters', 'Why Accurate Date Calculations Matter'],
+                  ['#faq', 'Frequently Asked Questions'],
+                  ['#people-also-search-for', 'People Also Search For'],
+                ].map(([href, label], i) => (
+                  <li key={href} className="flex items-center gap-3">
+                    <span className="w-6 h-6 rounded-full bg-blue-50 text-blue-600 text-[10px] font-black font-mono flex items-center justify-center shrink-0">{i + 1}</span>
+                    <a href={href} className="text-sm text-blue-600 font-medium hover:underline">{label}</a>
+                  </li>
+                ))}
+              </ol>
             </nav>
 
             {/* Feature Summary */}
@@ -708,6 +715,35 @@ export default function DateDuration() {
             </section>
 
           </div>
+
+          {/* Table of Contents (Desktop) */}
+          <aside className="hidden lg:block sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto">
+            <div className="pr-4">
+              <p className="text-xs font-black text-slate-500 uppercase tracking-widest mb-4 font-mono">Contents</p>
+              <ol className="list-none pl-0 border-l-2 border-slate-200 space-y-2">
+                {[
+                  ['#feature-summary', 'What This Calculator Can Calculate'],
+                  ['#how-to-use', 'How To Use'],
+                  ['#understanding-results', 'Understanding Your Results'],
+                  ['#popular-modes', 'Popular Calculator Modes'],
+                  ['#real-use-cases', 'Real Use Cases'],
+                  ['#examples', 'Example Calculations'],
+                  ['#calculation-method', 'How Date Duration Is Calculated'],
+                  ['#inclusive-exclusive', 'Inclusive vs Exclusive Date Counting'],
+                  ['#accuracy-matters', 'Why Accurate Date Calculations Matter'],
+                  ['#faq', 'Frequently Asked Questions'],
+                  ['#people-also-search-for', 'People Also Search For'],
+                ].map(([href, label], i) => (
+                  <li key={href} className="pl-4">
+                    <a href={href} className="text-[13px] text-slate-500 hover:text-blue-600 hover:font-bold transition-colors block py-1 border-l-2 -ml-[18px] pl-[16px] border-transparent hover:border-blue-600">
+                      <span className="font-mono text-[10px] mr-2 text-slate-400">{i + 1}</span>
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </aside>
         </div>
       }
       sidebar={{

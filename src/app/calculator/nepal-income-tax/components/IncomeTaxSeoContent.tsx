@@ -2,37 +2,38 @@ import Link from 'next/link';
 
 export function IncomeTaxSeoContent() {
   return (
-    <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:grid lg:grid-cols-[1fr_280px] lg:gap-12 items-start">
+      <article className="min-w-0">
+        
+        {/* MOBILE TOC */}
+        <nav className="lg:hidden bg-[#F8F9FA] border border-[#DADCE0] rounded-xl p-6 mb-12">
+          <p className="text-sm font-black text-[#202124] uppercase tracking-widest mb-4">Contents</p>
+          <ol className="list-none pl-0 grid grid-cols-1 sm:grid-cols-2 gap-2">
+            {[
+              ['#intro',           'Nepal Income Tax Calculator'],
+              ['#supported-types', 'Income Types Supported'],
+              ['#resident',        'Resident vs Non-Resident Taxation'],
+              ['#slabs',           'Income Tax Slabs (FY 2083/84)'],
+              ['#female-rebate',   'Female Tax Rebate'],
+              ['#allowances',      'Are Allowances Taxable?'],
+              ['#other-income',    'Business, Freelance & Rental Income'],
+              ['#how',             'How Income Tax Is Calculated'],
+              ['#deductions',      'Tax Deductions Allowed'],
+              ['#examples',        'Example Calculations'],
+              ['#faq',             'Frequently Asked Questions'],
+              ['#related',         'Related Calculators'],
+              ['#references',      'Official Resources'],
+            ].map(([href, label], i) => (
+              <li key={href} className="flex items-center gap-3">
+                <span className="w-6 h-6 rounded-full bg-[#E8F0FE] text-[#1A73E8] text-[10px] font-black font-mono flex items-center justify-center shrink-0">{i + 1}</span>
+                <a href={href} className="text-sm text-[#1A73E8] font-medium hover:underline">{label}</a>
+              </li>
+            ))}
+          </ol>
+        </nav>
 
-      {/* TABLE OF CONTENTS */}
-      <nav className="bg-[#F8F9FA] border border-[#DADCE0] rounded-xl p-6 mb-12">
-        <p className="text-sm font-black text-[#202124] uppercase tracking-widest mb-4">Contents</p>
-        <ol className="list-none pl-0 grid grid-cols-1 sm:grid-cols-2 gap-2">
-          {[
-            ['#intro',           'Nepal Income Tax Calculator'],
-            ['#supported-types', 'Income Types Supported'],
-            ['#resident',        'Resident vs Non-Resident Taxation'],
-            ['#slabs',           'Income Tax Slabs (FY 2083/84)'],
-            ['#female-rebate',   'Female Tax Rebate'],
-            ['#allowances',      'Are Allowances Taxable?'],
-            ['#other-income',    'Business, Freelance & Rental Income'],
-            ['#how',             'How Income Tax Is Calculated'],
-            ['#deductions',      'Tax Deductions Allowed'],
-            ['#examples',        'Example Calculations'],
-            ['#faq',             'Frequently Asked Questions'],
-            ['#related',         'Related Calculators'],
-            ['#references',      'Official Resources'],
-          ].map(([href, label], i) => (
-            <li key={href} className="flex items-center gap-3">
-              <span className="w-6 h-6 rounded-full bg-[#E8F0FE] text-[#1A73E8] text-xs font-black flex items-center justify-center shrink-0">{i + 1}</span>
-              <a href={href} className="text-sm text-[#1A73E8] font-medium hover:underline">{label}</a>
-            </li>
-          ))}
-        </ol>
-      </nav>
-
-      {/* SECTION 1: INTRO */}
-      <h2 id="intro" className="text-2xl font-black text-[#202124] mt-12 mb-4">Nepal Income Tax Calculator</h2>
+        {/* SECTION 1: INTRO */}
+        <h2 id="intro" className="text-2xl font-black text-[#202124] mt-12 mb-4 scroll-mt-24">Nepal Income Tax Calculator</h2>
       <p className="text-lg leading-relaxed text-[#202124] font-medium mb-4">
         The Nepal Income Tax Calculator helps individuals estimate their annual income tax using the latest FY 2083/84 Finance Act and Inland Revenue Department (IRD) tax rules. Calculate tax on salary income, business income, professional earnings, freelance work, rental income and other taxable income after applying eligible deductions, SSF contributions and progressive tax slabs.
       </p>
@@ -352,6 +353,38 @@ export function IncomeTaxSeoContent() {
         </div>
       </div>
 
-    </article>
+      </article>
+
+      {/* DESKTOP TOC (STICKY RIGHT) */}
+      <aside className="hidden lg:block sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto">
+        <div className="pr-4">
+          <p className="text-xs font-black text-[#5F6368] uppercase tracking-widest mb-4 font-mono">Contents</p>
+          <ol className="list-none pl-0 border-l-2 border-[#DADCE0] space-y-2">
+            {[
+              ['#intro',           'Nepal Income Tax Calculator'],
+              ['#supported-types', 'Income Types Supported'],
+              ['#resident',        'Resident vs Non-Resident Taxation'],
+              ['#slabs',           'Income Tax Slabs (FY 2083/84)'],
+              ['#female-rebate',   'Female Tax Rebate'],
+              ['#allowances',      'Are Allowances Taxable?'],
+              ['#other-income',    'Business, Freelance & Rental Income'],
+              ['#how',             'How Income Tax Is Calculated'],
+              ['#deductions',      'Tax Deductions Allowed'],
+              ['#examples',        'Example Calculations'],
+              ['#faq',             'Frequently Asked Questions'],
+              ['#related',         'Related Calculators'],
+              ['#references',      'Official Resources'],
+            ].map(([href, label], i) => (
+              <li key={href} className="pl-4">
+                <a href={href} className="text-[13px] text-[#5F6368] hover:text-[#D93025] hover:font-bold transition-colors block py-1 border-l-2 border-transparent -ml-[18px] pl-[16px] hover:border-[#D93025]">
+                  <span className="font-mono text-[10px] text-[#B0B3B8] mr-2">{i + 1}</span>
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </aside>
+    </div>
   );
 }

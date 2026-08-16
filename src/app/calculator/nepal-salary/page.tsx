@@ -181,39 +181,47 @@ export default function Page() {
 
 
       <div className="hp-container pb-20 pt-6">
-        <div className="max-w-4xl mx-auto space-y-14">
+        <div className="max-w-6xl mx-auto lg:grid lg:grid-cols-[1fr_280px] lg:gap-12 items-start">
+          <div className="space-y-14 min-w-0">
 
-          {/* H1 + Short Introduction */}
-          <div>
-            <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight mb-4">
-              Nepal Salary Tax Calculator (FY 2083/84)
-            </h1>
-            <div className="flex flex-wrap items-center gap-3 mb-6">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-green-50 text-green-700 text-xs font-bold rounded-full border border-green-200"><span className="text-green-500">✓</span> Updated for FY2083/84</span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 text-blue-700 text-xs font-bold rounded-full border border-blue-200"><span className="text-blue-500">✓</span> Finance Act 2083</span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-100 text-slate-700 text-xs font-bold rounded-full border border-slate-200">Last Updated: July 2026</span>
+            {/* H1 + Short Introduction */}
+            <div>
+              <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight mb-4 scroll-mt-24" id="intro">
+                Nepal Salary Tax Calculator (FY 2083/84)
+              </h1>
+              <div className="flex flex-wrap items-center gap-3 mb-6">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-green-50 text-green-700 text-xs font-bold rounded-full border border-green-200"><span className="text-green-500">✓</span> Updated for FY2083/84</span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 text-blue-700 text-xs font-bold rounded-full border border-blue-200"><span className="text-blue-500">✓</span> Finance Act 2083</span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-100 text-slate-700 text-xs font-bold rounded-full border border-slate-200">Last Updated: July 2026</span>
+              </div>
+              <p className="intro-text text-slate-700 leading-relaxed max-w-3xl">
+                Calculate your Nepal salary tax instantly using the latest FY 2083/84 income tax rates announced by the Ministry of Finance. Enter your monthly salary to receive an accurate breakdown of Nepal Income Tax, Social Security Fund (SSF), Citizen Investment Trust (CIT), employer contribution, take-home salary and total employer cost.
+              </p>
             </div>
-            <p className="intro-text text-slate-700 leading-relaxed max-w-3xl">
-              Calculate your Nepal salary tax instantly using the latest FY 2083/84 income tax rates announced by the Ministry of Finance. Enter your monthly salary to receive an accurate breakdown of Nepal Income Tax, Social Security Fund (SSF), Citizen Investment Trust (CIT), employer contribution, take-home salary and total employer cost.
-            </p>
-          </div>
 
-          {/* Table of Contents */}
-          <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm mb-8">
-            <h2 className="text-lg font-bold text-slate-900 mb-4">Table of Contents</h2>
-            <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-3 text-sm text-blue-600">
-              <li><a href="#salary-tax-breakdown" className="hover:underline">Salary Tax Breakdown</a></li>
-              <li><a href="#what-is-salary-tax" className="hover:underline">What is Nepal Salary Tax?</a></li>
-              <li><a href="#income-tax-slabs" className="hover:underline">Income Tax Slabs (FY 2083/84)</a></li>
-              <li><a href="#how-calculated" className="hover:underline">How Salary Tax is Calculated</a></li>
-              <li><a href="#ssf" className="hover:underline">Social Security Fund (SSF)</a></li>
-              <li><a href="#cit" className="hover:underline">Citizen Investment Trust (CIT)</a></li>
-              <li><a href="#salary-examples" className="hover:underline">Tax Calculation Examples</a></li>
-              <li><a href="#fy-changes" className="hover:underline">Changes in FY 2083/84</a></li>
-              <li><a href="#faq" className="hover:underline">Frequently Asked Questions</a></li>
-            </ul>
-          </div>
-
+            {/* Mobile TOC */}
+            <nav className="lg:hidden bg-white border border-slate-200 rounded-xl p-6 shadow-sm mb-8">
+              <p className="text-sm font-black text-slate-900 uppercase tracking-widest mb-4 font-mono">Contents</p>
+              <ol className="list-none pl-0 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {[
+                  ['#intro', 'Nepal Salary Tax Calculator'],
+                  ['#salary-tax-breakdown', 'Salary Tax Breakdown'],
+                  ['#what-is-salary-tax', 'What is Nepal Salary Tax?'],
+                  ['#income-tax-slabs', 'Income Tax Slabs (FY 2083/84)'],
+                  ['#how-calculated', 'How Salary Tax is Calculated'],
+                  ['#ssf', 'Social Security Fund (SSF)'],
+                  ['#cit', 'Citizen Investment Trust (CIT)'],
+                  ['#salary-examples', 'Tax Calculation Examples'],
+                  ['#fy-changes', 'Changes in FY 2083/84'],
+                  ['#faq', 'Frequently Asked Questions'],
+                ].map(([href, label], i) => (
+                  <li key={href} className="flex items-center gap-3">
+                    <span className="w-6 h-6 rounded-full bg-blue-50 text-blue-600 text-[10px] font-black font-mono flex items-center justify-center shrink-0">{i + 1}</span>
+                    <a href={href} className="text-sm text-blue-600 font-medium hover:underline">{label}</a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
           {/* AI Overview Block */}
           <div id="ai-overview" className="p-5 bg-blue-50 border-l-4 border-blue-500 rounded-r-xl text-slate-700 text-sm leading-relaxed">
             <p className="font-black text-blue-800 text-xs uppercase tracking-wider mb-2">Quick Summary</p>
@@ -560,6 +568,35 @@ export default function Page() {
             </div>
           </section>
 
+          </div>
+          
+          {/* Desktop TOC */}
+          <aside className="hidden lg:block sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto">
+            <div className="pr-4">
+              <p className="text-xs font-black text-slate-500 uppercase tracking-widest mb-4 font-mono">Contents</p>
+              <ol className="list-none pl-0 border-l-2 border-slate-200 space-y-2">
+                {[
+                  ['#intro', 'Nepal Salary Tax Calculator'],
+                  ['#salary-tax-breakdown', 'Salary Tax Breakdown'],
+                  ['#what-is-salary-tax', 'What is Nepal Salary Tax?'],
+                  ['#income-tax-slabs', 'Income Tax Slabs (FY 2083/84)'],
+                  ['#how-calculated', 'How Salary Tax is Calculated'],
+                  ['#ssf', 'Social Security Fund (SSF)'],
+                  ['#cit', 'Citizen Investment Trust (CIT)'],
+                  ['#salary-examples', 'Tax Calculation Examples'],
+                  ['#fy-changes', 'Changes in FY 2083/84'],
+                  ['#faq', 'Frequently Asked Questions'],
+                ].map(([href, label], i) => (
+                  <li key={href} className="pl-4">
+                    <a href={href} className="text-[13px] text-slate-500 hover:text-blue-600 hover:font-bold transition-colors block py-1 border-l-2 -ml-[18px] pl-[16px] border-transparent hover:border-blue-600">
+                      <span className="font-mono text-[10px] mr-2 text-slate-400">{i + 1}</span>
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </aside>
         </div>
       </div>
     </div>

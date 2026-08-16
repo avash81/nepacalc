@@ -157,25 +157,33 @@ export default async function Page() {
       />
       <Calculator />
       
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-10 text-slate-800 prose prose-slate max-w-none">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:grid lg:grid-cols-[1fr_280px] lg:gap-12 items-start">
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-10 text-slate-800 prose prose-slate max-w-none min-w-0">
           
-          <p className="text-lg leading-relaxed mb-10">
+          <p className="text-lg leading-relaxed mb-10 scroll-mt-24" id="intro">
             Our Nepal Gold Unit Converter instantly converts between Tola, Lal, Aana, Gram, and Ratti using the official Nepal gold measurement standard. Whether you're buying jewellery, checking ornament weight, or converting traditional Nepali gold units into grams, the calculator provides instant and accurate results. Once you've converted your jewellery weight, check <Link href="/market-rates/live-gold-price/" className="text-blue-600 hover:underline">today's gold price</Link> to estimate its current market value.
           </p>
 
-          {/* ── Table of Contents ── */}
-          <div className="bg-slate-50 rounded-xl p-6 mb-10">
-            <h2 className="text-xl font-bold mb-4">Table of Contents</h2>
-            <ul className="list-none pl-0 space-y-2 text-blue-600 font-medium">
-              <li><a href="#understanding-measurements" className="hover:underline">Understanding the Nepal Gold Measurement System</a></li>
-              <li><a href="#conversion-table" className="hover:underline">Nepal Gold Conversion Table</a></li>
-              <li><a href="#official-standard" className="hover:underline">Official Nepal Gold Measurement Standard (FENEGOSIDA & NBSM)</a></li>
-              <li><a href="#formulas" className="hover:underline">Gold Conversion Formulas</a></li>
-              <li><a href="#faqs" className="hover:underline">Frequently Asked Questions</a></li>
-              <li><a href="#related-tools" className="hover:underline">Related Tools</a></li>
-            </ul>
-          </div>
+          {/* ── Table of Contents (Mobile) ── */}
+          <nav className="lg:hidden bg-slate-50 rounded-xl p-6 mb-10 border border-slate-200">
+            <p className="text-sm font-black text-slate-900 uppercase tracking-widest mb-4 font-mono">Contents</p>
+            <ol className="list-none pl-0 grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {[
+                ['#intro', 'Nepal Gold Unit Converter'],
+                ['#understanding-measurements', 'Understanding the Nepal Gold Measurement System'],
+                ['#conversion-table', 'Nepal Gold Conversion Table'],
+                ['#official-standard', 'Official Nepal Gold Measurement Standard'],
+                ['#formulas', 'Gold Conversion Formulas'],
+                ['#related-tools', 'Related Tools'],
+                ['#faqs', 'Frequently Asked Questions'],
+              ].map(([href, label], i) => (
+                <li key={href} className="flex items-center gap-3">
+                  <span className="w-6 h-6 rounded-full bg-blue-50 text-blue-600 text-[10px] font-black font-mono flex items-center justify-center shrink-0">{i + 1}</span>
+                  <a href={href} className="text-sm text-blue-600 font-medium hover:underline">{label}</a>
+                </li>
+              ))}
+            </ol>
+          </nav>
 
           <h2 id="understanding-measurements" className="text-2xl font-black text-slate-900 mt-12 mb-6">Understanding the Nepal Gold Measurement System (1 Tola = 100 Lal)</h2>
           <div className="mb-6">
@@ -269,6 +277,31 @@ export default async function Page() {
 
 
         </div>
+        
+        {/* Desktop TOC */}
+        <aside className="hidden lg:block sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto">
+          <div className="pr-4">
+            <p className="text-xs font-black text-slate-500 uppercase tracking-widest mb-4 font-mono">Contents</p>
+            <ol className="list-none pl-0 border-l-2 border-slate-200 space-y-2">
+              {[
+                ['#intro', 'Nepal Gold Unit Converter'],
+                ['#understanding-measurements', 'Understanding the Nepal Gold Measurement System'],
+                ['#conversion-table', 'Nepal Gold Conversion Table'],
+                ['#official-standard', 'Official Nepal Gold Measurement Standard'],
+                ['#formulas', 'Gold Conversion Formulas'],
+                ['#related-tools', 'Related Tools'],
+                ['#faqs', 'Frequently Asked Questions'],
+              ].map(([href, label], i) => (
+                <li key={href} className="pl-4">
+                  <a href={href} className="text-[13px] text-slate-500 hover:text-blue-600 hover:font-bold transition-colors block py-1 border-l-2 -ml-[18px] pl-[16px] border-transparent hover:border-blue-600">
+                    <span className="font-mono text-[10px] mr-2 text-slate-400">{i + 1}</span>
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </aside>
       </div>
     </>
   );

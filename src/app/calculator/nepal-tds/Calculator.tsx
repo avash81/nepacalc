@@ -815,8 +815,10 @@ export default function NepalTdsCalculator() {
         </div>
       }
       details={
-        <div className="space-y-8 mt-6">
-          <div className="space-y-10 mt-2 mb-4">
+         <>
+         <div className="lg:grid lg:grid-cols-[1fr_280px] lg:gap-12 items-start">
+           <div className="space-y-12 min-w-0">
+             
              {/* 1. HERO DESCRIPTION */}
              <div className="space-y-5 max-w-5xl">
                 <p className="text-sm md:text-[15px] text-[#5F6368] leading-relaxed max-w-4xl">
@@ -848,9 +850,14 @@ export default function NepalTdsCalculator() {
                   </div>
                 ))}
              </div>
+             
+             {/* 7. TABLE OF CONTENTS (MOBILE) */}
+             <div className="lg:hidden">
+               <TableOfContents variant="mobile" />
+             </div>
 
              {/* 3. QUICK ANSWER */}
-             <div className="bg-[#F8F9FA] border-l-4 border-[#1A73E8] rounded-r-lg p-5 sm:p-6 shadow-sm max-w-4xl">
+             <div className="bg-[#F8F9FA] border-l-4 border-[#1A73E8] rounded-r-lg p-5 sm:p-6 shadow-sm max-w-4xl scroll-mt-24" id="what-is-tds">
                 <div className="flex items-center gap-2 mb-2">
                    <Info className="w-5 h-5 text-[#1A73E8]" />
                    <h2 className="text-xs font-black text-[#202124] uppercase tracking-wider">Quick Answer</h2>
@@ -909,11 +916,13 @@ export default function NepalTdsCalculator() {
                    </div>
                 </div>
              </div>
-
-             {/* 7. TABLE OF CONTENTS */}
-             <TableOfContents />
-          </div>
-
+           </div>
+           
+           {/* TABLE OF CONTENTS (DESKTOP) */}
+           <aside className="hidden lg:block sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto">
+             <TableOfContents variant="desktop" />
+           </aside>
+         </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* WHY THIS RATE APPLIES */}
             <div className="border border-[#DADCE0] bg-white rounded-lg p-6 shadow-sm flex flex-col">
@@ -1331,8 +1340,7 @@ export default function NepalTdsCalculator() {
               </div>
             </div>
           </div>
-
-        </div>
+        </>
       }
     />
     </div>

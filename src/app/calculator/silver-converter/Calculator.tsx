@@ -1069,11 +1069,11 @@ export default function SilverCalculatorComponent() {
         </div>
       }
       details={
-        <div className="space-y-12">
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm space-y-10">
+        <div className="lg:grid lg:grid-cols-[1fr_280px] lg:gap-12 items-start">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm space-y-10 min-w-0">
 
             {/* AI Quick Answer Box */}
-            <div className="bg-[#E8F0FE] border border-[#1A73E8] rounded-lg p-5">
+            <div className="bg-[#E8F0FE] border border-[#1A73E8] rounded-lg p-5 scroll-mt-24" id="feature-summary">
               <h2 className="font-bold text-[#1A73E8] mb-2 text-lg">Quick Answer: Silver Measurement Standards</h2>
               <p className="text-[#202124] text-base leading-relaxed">
                 In Nepal, <strong>1 Tola of silver equals exactly 11.6638 grams</strong> (100 Lal, 16 Aana, or 64 Ratti) as standardized by FENEGOSIDA and the Nepal Bureau of Standards &amp; Metrology (NBSM). Internationally, silver is traded in <strong>Troy Ounces</strong>, where 1 Troy Ounce equals <strong>31.1035 grams</strong> or approximately 2.6667 Tolas.
@@ -1082,6 +1082,30 @@ export default function SilverCalculatorComponent() {
                 Last updated: July 2026 &bull; Measurements verified against official FENEGOSIDA and LBMA international standards.
               </p>
             </div>
+
+            {/* Table of Contents (Mobile) */}
+            <nav className="lg:hidden bg-slate-50 rounded-xl p-6 mb-10 border border-slate-200">
+              <p className="text-sm font-black text-slate-900 uppercase tracking-widest mb-4 font-mono">Contents</p>
+              <ol className="list-none pl-0 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {[
+                  ['#feature-summary', 'What This Silver Converter Can Calculate'],
+                  ['#nepal-system', 'Nepal Traditional Silver Measurement System'],
+                  ['#international-units', 'International Silver Measurement System'],
+                  ['#conversion-chart', 'Silver Unit Conversion Chart'],
+                  ['#formulas', 'Silver Conversion Formulas'],
+                  ['#purity-guide', 'Silver Purity Guide (999 vs 925)'],
+                  ['#jewellery-examples', 'Common Silver Jewellery Weights'],
+                  ['#value-calculator', 'Calculating Silver Market Value'],
+                  ['#accuracy-matters', 'Why Accurate Silver Calculations Matter'],
+                  ['#faq', 'Frequently Asked Questions'],
+                ].map(([href, label], i) => (
+                  <li key={href} className="flex items-center gap-3">
+                    <span className="w-6 h-6 rounded-full bg-blue-50 text-blue-600 text-[10px] font-black font-mono flex items-center justify-center shrink-0">{i + 1}</span>
+                    <a href={href} className="text-sm text-blue-600 font-medium hover:underline">{label}</a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
 
             {/* Most Common Nepali Silver Conversions */}
             <section id="common-conversions">
@@ -1105,25 +1129,6 @@ export default function SilverCalculatorComponent() {
                 ))}
               </div>
             </section>
-
-            {/* Table of Contents */}
-            <nav className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-6">
-              <h2 className="text-xl font-bold text-[#202124] mb-4">Table of Contents</h2>
-              <ul className="space-y-2 text-[#1A73E8] text-sm">
-                <li><a href="#feature-summary" className="hover:underline">What This Silver Converter Can Calculate</a></li>
-                <li><a href="#nepal-system" className="hover:underline">Nepal Traditional Silver Measurement System</a></li>
-                <li><a href="#international-units" className="hover:underline">International Silver Measurement System</a></li>
-                <li><a href="#conversion-chart" className="hover:underline">Silver Unit Conversion Chart</a></li>
-                <li><a href="#formulas" className="hover:underline">Silver Conversion Formulas</a></li>
-                <li><a href="#purity-guide" className="hover:underline">Silver Purity Guide (999 Fine vs 925 Sterling)</a></li>
-                <li><a href="#jewellery-examples" className="hover:underline">Common Silver Jewellery & Ornament Weights</a></li>
-                <li><a href="#value-calculator" className="hover:underline">Calculating Silver Market Value & Budget</a></li>
-                <li><a href="#accuracy-matters" className="hover:underline">Why Accurate Silver Calculations Matter</a></li>
-                <li><a href="#people-also-search-for" className="hover:underline">People Also Search For</a></li>
-                <li><a href="#faq" className="hover:underline">Frequently Asked Questions</a></li>
-              </ul>
-            </nav>
-
             {/* Feature Summary */}
             <section id="feature-summary">
               <h2 className="text-2xl font-bold text-[#1967D2] mb-4">What This Silver Converter Can Calculate</h2>
@@ -1628,8 +1633,35 @@ export default function SilverCalculatorComponent() {
                 </div>
               </div>
             </section>
-
           </div>
+
+          {/* Table of Contents (Desktop) */}
+          <aside className="hidden lg:block sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto">
+            <div className="pr-4">
+              <p className="text-xs font-black text-slate-500 uppercase tracking-widest mb-4 font-mono">Contents</p>
+              <ol className="list-none pl-0 border-l-2 border-slate-200 space-y-2">
+                {[
+                  ['#feature-summary', 'What This Silver Converter Can Calculate'],
+                  ['#nepal-system', 'Nepal Traditional Silver Measurement System'],
+                  ['#international-units', 'International Silver Measurement System'],
+                  ['#conversion-chart', 'Silver Unit Conversion Chart'],
+                  ['#formulas', 'Silver Conversion Formulas'],
+                  ['#purity-guide', 'Silver Purity Guide (999 vs 925)'],
+                  ['#jewellery-examples', 'Common Silver Jewellery Weights'],
+                  ['#value-calculator', 'Calculating Silver Market Value'],
+                  ['#accuracy-matters', 'Why Accurate Silver Calculations Matter'],
+                  ['#faq', 'Frequently Asked Questions'],
+                ].map(([href, label], i) => (
+                  <li key={href} className="pl-4">
+                    <a href={href} className="text-[13px] text-slate-500 hover:text-blue-600 hover:font-bold transition-colors block py-1 border-l-2 -ml-[18px] pl-[16px] border-transparent hover:border-blue-600">
+                      <span className="font-mono text-[10px] mr-2 text-slate-400">{i + 1}</span>
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </aside>
         </div>
       }
       sidebar={{

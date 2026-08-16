@@ -43,20 +43,28 @@ export default function Calculator() {
   // ── STEP 1: ENGINEERING PAGE INFORMATION ARCHITECTURE ───────────────────
   // Placeholders strictly defined, no content written yet.
   const step1Structure = (
-    <div className="space-y-10">
+    <div className="lg:grid lg:grid-cols-[1fr_280px] lg:gap-12 items-start">
+      <div className="space-y-10 min-w-0">
 
-      {/* TABLE OF CONTENTS */}
-      <div className="space-y-4">
+      {/* TABLE OF CONTENTS (Mobile) */}
+      <div className="space-y-4 lg:hidden mb-10">
         <span className="inline-block text-[10px] font-bold text-[#70757A] uppercase tracking-widest bg-white border border-[#DADCE0] px-2.5 py-1 rounded shadow-sm">Last Updated: July 2026</span>
-        <nav aria-label="Table of Contents" className="bg-[#F8F9FA] border border-[#DADCE0] rounded-xl p-5">
-          <h2 className="text-[10px] font-black uppercase tracking-widest text-[#70757A] mb-3">On This Page</h2>
-          <ol className="space-y-1.5 text-sm">
-            <li><a href="#what-is-matrix" className="text-[#1A73E8] hover:underline font-medium">Overview — What is a Matrix?</a></li>
-            <li><a href="#matrix-formula" className="text-[#1A73E8] hover:underline font-medium">Matrix Formula Reference</a></li>
-            <li><a href="#matrix-operations" className="text-[#1A73E8] hover:underline font-medium">Matrix Operations</a></li>
-            <li><a href="#worked-examples" className="text-[#1A73E8] hover:underline font-medium">Worked Examples</a></li>
-            <li><a href="#applications" className="text-[#1A73E8] hover:underline font-medium">Engineering Applications</a></li>
-            <li><a href="#faqs" className="text-[#1A73E8] hover:underline font-medium">Frequently Asked Questions</a></li>
+        <nav aria-label="Table of Contents" className="bg-slate-50 border border-slate-200 rounded-xl p-6">
+          <p className="text-sm font-black text-slate-900 uppercase tracking-widest mb-4 font-mono">Contents</p>
+          <ol className="list-none pl-0 grid grid-cols-1 sm:grid-cols-2 gap-2">
+            {[
+              ['#what-is-matrix', 'Overview — What is a Matrix?'],
+              ['#matrix-formula', 'Matrix Formula Reference'],
+              ['#matrix-operations', 'Matrix Operations'],
+              ['#worked-examples', 'Worked Examples'],
+              ['#applications', 'Engineering Applications'],
+              ['#faqs', 'Frequently Asked Questions'],
+            ].map(([href, label], i) => (
+              <li key={href} className="flex items-center gap-3">
+                <span className="w-6 h-6 rounded-full bg-blue-50 text-blue-600 text-[10px] font-black font-mono flex items-center justify-center shrink-0">{i + 1}</span>
+                <a href={href} className="text-sm text-blue-600 font-medium hover:underline">{label}</a>
+              </li>
+            ))}
           </ol>
         </nav>
       </div>
@@ -1194,7 +1202,31 @@ export default function Calculator() {
 
         </div>
       </div>
+      </div>
 
+      {/* Table of Contents (Desktop) */}
+      <aside className="hidden lg:block sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto">
+        <div className="pr-4">
+          <p className="text-xs font-black text-slate-500 uppercase tracking-widest mb-4 font-mono">Contents</p>
+          <ol className="list-none pl-0 border-l-2 border-slate-200 space-y-2">
+            {[
+              ['#what-is-matrix', 'Overview — What is a Matrix?'],
+              ['#matrix-formula', 'Matrix Formula Reference'],
+              ['#matrix-operations', 'Matrix Operations'],
+              ['#worked-examples', 'Worked Examples'],
+              ['#applications', 'Engineering Applications'],
+              ['#faqs', 'Frequently Asked Questions'],
+            ].map(([href, label], i) => (
+              <li key={href} className="pl-4">
+                <a href={href} className="text-[13px] text-slate-500 hover:text-blue-600 hover:font-bold transition-colors block py-1 border-l-2 -ml-[18px] pl-[16px] border-transparent hover:border-blue-600">
+                  <span className="font-mono text-[10px] mr-2 text-slate-400">{i + 1}</span>
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </aside>
     </div>
   );
 

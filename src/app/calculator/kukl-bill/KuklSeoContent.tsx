@@ -3,20 +3,21 @@ import TableOfContents from './TableOfContents';
 
 export default function KuklSeoContent() {
   return (
-    <article className="space-y-12 max-w-4xl">
-      <div className="flex items-center gap-4 text-sm text-[#5F6368] border-b border-[#DADCE0] pb-4 mb-6">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-[#1A73E8] text-white rounded-full flex items-center justify-center font-bold">N</div>
-          <div>
-            <div className="font-bold text-[#202124]">NepaCalc Team</div>
-            <div className="text-xs">Reviewed & Updated: July 2026</div>
+    <div className="lg:grid lg:grid-cols-[1fr_280px] lg:gap-12 items-start">
+      <article className="space-y-12 min-w-0">
+        <div className="flex items-center gap-4 text-sm text-[#5F6368] border-b border-[#DADCE0] pb-4 mb-6">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-[#1A73E8] text-white rounded-full flex items-center justify-center font-bold">N</div>
+            <div>
+              <div className="font-bold text-[#202124]">NepaCalc Team</div>
+              <div className="text-xs">Reviewed &amp; Updated: July 2026</div>
+            </div>
           </div>
         </div>
-      </div>
-      <section className="prose prose-slate max-w-none text-[#5F6368] space-y-4">
-        <p className="text-lg leading-relaxed text-[#3C4043]">
-          Calculate your KUKL water bill online using the latest official tariff structure for Kathmandu Valley. This calculator helps residential customers estimate their monthly water bill by automatically calculating the water charge, 50% sewerage charge, and total amount payable based on your water consumption and pipe connection size.
-        </p>
+        <section className="prose prose-slate max-w-none text-[#5F6368] space-y-4">
+          <p className="text-lg leading-relaxed text-[#3C4043]">
+            Calculate your KUKL water bill online using the latest official tariff structure for Kathmandu Valley. This calculator helps residential customers estimate their monthly water bill by automatically calculating the water charge, 50% sewerage charge, and total amount payable based on your water consumption and pipe connection size.
+          </p>
         <p>
           Whether you want to understand how your KUKL bill is calculated, check the price per unit of water in Nepal, learn how many litres are in one water unit, or estimate your monthly bill before it arrives, this calculator provides a quick and easy way to calculate your expected payment. It follows the official KUKL billing methodology for metered domestic connections and presents a transparent breakdown of every charge, making it easier to understand your water consumption and monthly costs.
         </p>
@@ -87,7 +88,9 @@ export default function KuklSeoContent() {
         </div>
       </section>
 
-      <TableOfContents />
+      <div className="lg:hidden">
+        <TableOfContents />
+      </div>
 
       {/* Phase 3 — How KUKL Calculates Your Water Bill */}
       <section id="how-bill-calculated" className="scroll-mt-24">
@@ -1505,5 +1508,34 @@ export default function KuklSeoContent() {
       </section>
 
     </article>
+
+      {/* Desktop Sticky TOC */}
+      <aside className="hidden lg:block sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto">
+        <div className="pr-4">
+          <p className="text-xs font-black text-slate-500 uppercase tracking-widest mb-4 font-mono">Contents</p>
+          <ol className="list-none pl-0 border-l-2 border-slate-200 space-y-2">
+            {[
+              ['#calculator', '1. KUKL Water Bill Calculator'],
+              ['#how-bill-calculated', '2. How KUKL Calculates Your Water Bill'],
+              ['#tariff-rates', '3. Official KUKL Water Tariff Rates'],
+              ['#pipe-sizes', '4. Pipe Connection Sizes & Charges'],
+              ['#water-unit', '5. What Is 1 Unit of Water?'],
+              ['#meter-reading', '6. How to Read Your Water Meter'],
+              ['#charges', '7. Understanding Water Charges'],
+              ['#examples', '8. KUKL Water Bill Examples'],
+              ['#online-payment', '9. How to Check & Pay Your KUKL Bill Online'],
+              ['#water-quality', '10. Drinking Water Quality Standards in Nepal'],
+              ['#faqs', '11. Frequently Asked Questions'],
+            ].map(([href, label]) => (
+              <li key={href} className="pl-4">
+                <a href={href} className="text-[13px] text-slate-500 hover:text-blue-600 hover:font-bold transition-colors block py-1 border-l-2 -ml-[18px] pl-[16px] border-transparent hover:border-blue-600">
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </aside>
+    </div>
   );
 }

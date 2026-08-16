@@ -173,10 +173,11 @@ export default function Page() {
 
       <Calculator details={
 
-      <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-10 text-slate-800 prose prose-slate max-w-none">
+      <div className="lg:grid lg:grid-cols-[1fr_280px] lg:gap-12 items-start">
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-10 text-slate-800 prose prose-slate max-w-none min-w-0">
           
           {/* ── Badges ── */}
-          <div className="mb-6 flex flex-wrap items-center gap-2">
+          <div className="mb-6 flex flex-wrap items-center gap-2 not-prose">
             <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2.5 py-0.5 rounded-full font-semibold">FY 2083/84 Budget Update</span>
             <span className="inline-block bg-green-100 text-green-800 text-xs px-2.5 py-0.5 rounded-full font-semibold">Bagmati Province</span>
             <span className="inline-block bg-orange-100 text-orange-800 text-xs px-2.5 py-0.5 rounded-full font-semibold">Official DoTM-based Rates</span>
@@ -187,27 +188,34 @@ export default function Page() {
             Calculate vehicle tax, bluebook renewal charges, road tax penalties and electric vehicle tax using the latest Nepal vehicle tax rates for FY 2083/84. This Vehicle Tax Calculator Nepal supports motorcycles, scooters, cars, jeeps, buses, trucks and EVs using guidelines set by the Department of Transport Management (DOTM) and the Bagmati Province Finance Act. If you are a salaried employee or business owner, use our <Link href="/calculator/nepal-income-tax/" className="text-blue-600 hover:underline">Nepal Income Tax Calculator</Link> to estimate your annual income tax liability alongside your vehicle ownership costs.
           </p>
 
-          {/* ── Table of Contents ── */}
-          <div className="bg-slate-50 rounded-xl p-6 mb-10">
-            <h2 className="text-xl font-bold mb-4">Table of Contents</h2>
-            <ul className="list-none pl-0 text-blue-600 font-medium grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2">
-              <li><a href="#whats-new" className="hover:underline">What's New in Vehicle Tax 2083/84?</a></li>
-              <li><a href="#quick-answer" className="hover:underline">Vehicle Tax In Nepal 2083/84 : Quick Reference</a></li>
-              <li><a href="#annual-road-tax" className="hover:underline">Annual Vehicle Tax (Bluebook Renewal)</a></li>
-              <li><a href="#how-calculated" className="hover:underline">How Vehicle Tax Works in Nepal</a></li>
-              <li><a href="#popular-searches" className="hover:underline">Popular Vehicle Tax Searches</a></li>
-              <li><a href="#bike-tax" className="hover:underline">Motorcycle Road Tax Nepal</a></li>
-              <li><a href="#car-tax" className="hover:underline">Private Car Road Tax Nepal</a></li>
-              <li><a href="#ev-annual-tax" className="hover:underline">Electric Vehicle Tax Nepal (Annual)</a></li>
-              <li><a href="#ev-import-tax" className="hover:underline">EV Import Tax Nepal (2083/84)</a></li>
-              <li><a href="#commercial-tax" className="hover:underline">Commercial Vehicle Tax Nepal</a></li>
-              <li><a href="#province-note" className="hover:underline">Vehicle Tax by Province</a></li>
-              <li><a href="#bluebook-renewal" className="hover:underline">Bluebook Renewal Cost Breakdown</a></li>
-              <li><a href="#penalty" className="hover:underline">Late Penalty Explained</a></li>
-              <li><a href="#payment-locations" className="hover:underline">Where Can I Pay Vehicle Tax?</a></li>
-              <li><a href="#faq" className="hover:underline">FAQs</a></li>
-            </ul>
-          </div>
+          {/* ── Table of Contents (Mobile) ── */}
+          <nav className="lg:hidden bg-slate-50 rounded-xl p-6 mb-10 border border-slate-200 not-prose">
+            <p className="text-sm font-black text-slate-900 uppercase tracking-widest mb-4 font-mono">Contents</p>
+            <ol className="list-none pl-0 grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {[
+                ['#whats-new', "What's New in Vehicle Tax 2083/84?"],
+                ['#quick-answer', 'Vehicle Tax In Nepal 2083/84 : Quick Reference'],
+                ['#annual-road-tax', 'Annual Vehicle Tax (Bluebook Renewal)'],
+                ['#how-calculated', 'How Vehicle Tax Works in Nepal'],
+                ['#popular-searches', 'Popular Vehicle Tax Searches'],
+                ['#bike-tax', 'Motorcycle Road Tax Nepal'],
+                ['#car-tax', 'Private Car Road Tax Nepal'],
+                ['#ev-annual-tax', 'Electric Vehicle Tax Nepal (Annual)'],
+                ['#ev-import-tax', 'EV Import Tax Nepal (2083/84)'],
+                ['#commercial-tax', 'Commercial Vehicle Tax Nepal'],
+                ['#province-note', 'Vehicle Tax by Province'],
+                ['#bluebook-renewal', 'Bluebook Renewal Cost Breakdown'],
+                ['#penalty', 'Late Penalty Explained'],
+                ['#payment-locations', 'Where Can I Pay Vehicle Tax?'],
+                ['#faq', 'FAQs'],
+              ].map(([href, label], i) => (
+                <li key={href} className="flex items-center gap-3">
+                  <span className="w-6 h-6 rounded-full bg-blue-50 text-blue-600 text-[10px] font-black font-mono flex items-center justify-center shrink-0">{i + 1}</span>
+                  <a href={href} className="text-sm text-blue-600 font-medium hover:underline">{label}</a>
+                </li>
+              ))}
+            </ol>
+          </nav>
 
           {/* ── What's New ── */}
           <h2 id="whats-new" className="text-2xl font-black text-slate-900 mt-10 mb-6">What's New in Vehicle Tax 2083/84?</h2>
@@ -586,7 +594,41 @@ export default function Page() {
             Vehicle Tax Calculator Nepal. Motorcycle Road Tax Nepal. Bluebook Renewal Calculator Nepal. Department of Transport Management. DOTM Nepal. Bagmati Province Vehicle Tax. Vehicle Tax 2083/84. EV Import Tax Nepal. Clean Infrastructure Investment Fee Nepal. CIIF Nepal. Private Car Road Tax Nepal. Commercial Vehicle Tax Nepal. Electric Vehicle Tax Nepal. Bluebook Renewal Charges Nepal.
           </div>
 
-                </div>
+        </div>
+        
+        {/* ── Table of Contents (Desktop) ── */}
+        <aside className="hidden lg:block sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto">
+          <div className="pr-4">
+            <p className="text-xs font-black text-slate-500 uppercase tracking-widest mb-4 font-mono">Contents</p>
+            <ol className="list-none pl-0 border-l-2 border-slate-200 space-y-2">
+              {[
+                ['#whats-new', "What's New in Vehicle Tax 2083/84?"],
+                ['#quick-answer', 'Vehicle Tax In Nepal 2083/84 : Quick Reference'],
+                ['#annual-road-tax', 'Annual Vehicle Tax (Bluebook Renewal)'],
+                ['#how-calculated', 'How Vehicle Tax Works in Nepal'],
+                ['#popular-searches', 'Popular Vehicle Tax Searches'],
+                ['#bike-tax', 'Motorcycle Road Tax Nepal'],
+                ['#car-tax', 'Private Car Road Tax Nepal'],
+                ['#ev-annual-tax', 'Electric Vehicle Tax Nepal (Annual)'],
+                ['#ev-import-tax', 'EV Import Tax Nepal (2083/84)'],
+                ['#commercial-tax', 'Commercial Vehicle Tax Nepal'],
+                ['#province-note', 'Vehicle Tax by Province'],
+                ['#bluebook-renewal', 'Bluebook Renewal Cost Breakdown'],
+                ['#penalty', 'Late Penalty Explained'],
+                ['#payment-locations', 'Where Can I Pay Vehicle Tax?'],
+                ['#faq', 'FAQs'],
+              ].map(([href, label], i) => (
+                <li key={href} className="pl-4">
+                  <a href={href} className="text-[13px] text-slate-500 hover:text-blue-600 hover:font-bold transition-colors block py-1 border-l-2 -ml-[18px] pl-[16px] border-transparent hover:border-blue-600">
+                    <span className="font-mono text-[10px] mr-2 text-slate-400">{i + 1}</span>
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </aside>
+      </div>
       } />
     </>
   );
