@@ -632,6 +632,7 @@ export default function Page() {
                   <li key={href}>
                     <a
                       href={href}
+                      className="hover:!text-[#1a73e8] hover:!border-l-[#1a73e8]"
                       style={{
                         display: 'block',
                         padding: '6px 0 6px 14px',
@@ -642,14 +643,6 @@ export default function Page() {
                         marginLeft: '-2px',
                         lineHeight: 1.3,
                         transition: 'color 0.15s, border-color 0.15s',
-                      }}
-                      onMouseEnter={e => {
-                        (e.currentTarget as HTMLAnchorElement).style.color = '#1a73e8';
-                        (e.currentTarget as HTMLAnchorElement).style.borderLeftColor = '#1a73e8';
-                      }}
-                      onMouseLeave={e => {
-                        (e.currentTarget as HTMLAnchorElement).style.color = '#5f6368';
-                        (e.currentTarget as HTMLAnchorElement).style.borderLeftColor = 'transparent';
                       }}
                     >
                       <span style={{
