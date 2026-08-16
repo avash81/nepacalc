@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Script from 'next/script';
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import dynamic from 'next/dynamic';
@@ -124,8 +125,6 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         {/* Explicit Favicon for Google Search Results (managed by metadata export) */}
-        {/* Google AdSense */}
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9123093080720168" crossOrigin="anonymous"></script>
       </head>
       <body className="font-sans">
         <script
@@ -150,6 +149,14 @@ export default function RootLayout({
         <MobileNav />
 
         <GoogleAnalytics />
+
+        {/* Google AdSense - loaded after interactive to preserve Core Web Vitals */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9123093080720168"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
