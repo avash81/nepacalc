@@ -50,7 +50,7 @@ export function IncomeTaxSeoContent() {
       </div>
 
       {/* SECTION: INCOME TYPES SUPPORTED */}
-      <h2 id="supported-types" className="text-2xl font-black text-[#202124] mt-12 mb-4">Income Types Supported</h2>
+      <h2 id="supported-types" className="text-2xl font-black text-[#202124] mt-12 mb-4 scroll-mt-24">Income Types Supported</h2>
       <p className="text-base text-[#3C4043] mb-4">
         This calculator supports personal income earned from multiple sources under Nepal's Income Tax Act.
       </p>
@@ -74,7 +74,7 @@ export function IncomeTaxSeoContent() {
       </div>
 
       {/* SECTION: RESIDENT VS NON-RESIDENT */}
-      <h2 id="resident" className="text-2xl font-black text-[#202124] mt-12 mb-4">Resident vs Non-Resident Taxation</h2>
+      <h2 id="resident" className="text-2xl font-black text-[#202124] mt-12 mb-4 scroll-mt-24">Resident vs Non-Resident Taxation</h2>
       <p className="text-base text-[#3C4043] mb-4">
         Resident individuals are generally taxed on their worldwide income under Nepal's Income Tax Act. Non-resident individuals are generally taxed only on income sourced within Nepal.
       </p>
@@ -83,7 +83,7 @@ export function IncomeTaxSeoContent() {
       </p>
 
       {/* SECTION 2: TAX SLABS */}
-      <h2 id="slabs" className="text-2xl font-black text-[#202124] mt-12 mb-4">Nepal Income Tax Slabs (FY 2083/84)</h2>
+      <h2 id="slabs" className="text-2xl font-black text-[#202124] mt-12 mb-4 scroll-mt-24">Nepal Income Tax Slabs (FY 2083/84)</h2>
       <p className="text-base text-[#3C4043] mb-6">
         The FY 2083/84 Finance Act uses a single unified progressive structure for all resident individuals. The highest personal income tax rate is 29%.
       </p>
@@ -107,13 +107,13 @@ export function IncomeTaxSeoContent() {
       </div>
 
       {/* SECTION: FEMALE REBATE */}
-      <h2 id="female-rebate" className="text-2xl font-black text-[#202124] mt-12 mb-4">Female Tax Rebate</h2>
+      <h2 id="female-rebate" className="text-2xl font-black text-[#202124] mt-12 mb-4 scroll-mt-24">Female Tax Rebate</h2>
       <p className="text-base text-[#3C4043] mb-6">
         Female taxpayers may receive a 10% rebate on their final income tax liability where applicable under Nepal's prevailing tax provisions. Selecting the Female option within the calculator automatically applies the rebate during tax computation.
       </p>
 
       {/* SECTION: ALLOWANCES */}
-      <h2 id="allowances" className="text-2xl font-black text-[#202124] mt-12 mb-4">Are Allowances Taxable?</h2>
+      <h2 id="allowances" className="text-2xl font-black text-[#202124] mt-12 mb-4 scroll-mt-24">Are Allowances Taxable?</h2>
       <p className="text-base text-[#3C4043] mb-4">
         Most employment allowances and taxable benefits form part of assessable income unless specifically exempt under Nepal's Income Tax Act.
       </p>
@@ -131,7 +131,7 @@ export function IncomeTaxSeoContent() {
       </p>
 
       {/* SECTION: OTHER INCOMES */}
-      <h2 id="other-income" className="text-2xl font-black text-[#202124] mt-12 mb-4">Business, Freelance &amp; Rental Income</h2>
+      <h2 id="other-income" className="text-2xl font-black text-[#202124] mt-12 mb-4 scroll-mt-24">Business, Freelance &amp; Rental Income</h2>
       
       <h3 className="text-xl font-bold text-[#202124] mt-8 mb-3">Business Income</h3>
       <p className="text-base text-[#3C4043] mb-6">
@@ -151,7 +151,7 @@ export function IncomeTaxSeoContent() {
 
 
       {/* SECTION 4: HOW TAX IS CALCULATED */}
-      <h2 id="how" className="text-2xl font-black text-[#202124] mt-12 mb-4">How Income Tax Is Calculated in Nepal</h2>
+      <h2 id="how" className="text-2xl font-black text-[#202124] mt-12 mb-4 scroll-mt-24">How Income Tax Is Calculated in Nepal</h2>
       <p className="text-base text-[#3C4043] mb-6">
         Nepal follows a progressive income tax system. It is also important to file your taxes within the specified timeframe to avoid penalties. You can use our <Link href="/calculator/nepal-income-tax-deadlines/" className="text-[#1A73E8] font-bold hover:underline">tax date duration calculator</Link> to check exact income tax deadlines. The general calculation process works as follows:
       </p>
@@ -180,7 +180,7 @@ export function IncomeTaxSeoContent() {
       </div>
 
       {/* SECTION 7: DEDUCTIONS */}
-      <h2 id="deductions" className="text-2xl font-black text-[#202124] mt-12 mb-4">Income Tax Deductions Allowed</h2>
+      <h2 id="deductions" className="text-2xl font-black text-[#202124] mt-12 mb-4 scroll-mt-24">Income Tax Deductions Allowed</h2>
       <p className="text-base text-[#3C4043] mb-6">
         The following personal deductions are permitted under the Finance Act 2083. These reduce your taxable income.
       </p>
@@ -205,7 +205,7 @@ export function IncomeTaxSeoContent() {
       </div>
 
       {/* SECTION 8: EXAMPLES */}
-      <h2 id="examples" className="text-2xl font-black text-[#202124] mt-12 mb-4">Example Income Tax Calculations</h2>
+      <h2 id="examples" className="text-2xl font-black text-[#202124] mt-12 mb-4 scroll-mt-24">Example Income Tax Calculations</h2>
       <p className="text-base text-[#3C4043] mb-6">
         The following examples illustrate how the FY 2083/84 progressive tax slabs apply for different types of income. These are pre-deduction estimates.
       </p>
@@ -229,7 +229,7 @@ export function IncomeTaxSeoContent() {
       </div>
 
       {/* SECTION 10: FAQs */}
-      <h2 id="faq" className="text-2xl font-black text-[#202124] mt-16 mb-8 border-b border-[#DADCE0] pb-4">Frequently Asked Questions</h2>
+      <h2 id="faq" className="text-2xl font-black text-[#202124] mt-16 mb-8 border-b border-[#DADCE0] pb-4 scroll-mt-24">Frequently Asked Questions</h2>
       <div className="space-y-6">
         {[
           {
@@ -281,7 +281,7 @@ export function IncomeTaxSeoContent() {
       </div>
 
       {/* SECTION 11: RELATED CALCULATORS */}
-      <h2 id="related" className="text-2xl font-black text-[#202124] mt-16 mb-6">Related Calculators</h2>
+      <h2 id="related" className="text-2xl font-black text-[#202124] mt-16 mb-6 scroll-mt-24">Related Calculators</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
         {[
           ['/calculator/nepal-salary/',            'Salary Calculator Nepal'],
@@ -304,7 +304,7 @@ export function IncomeTaxSeoContent() {
       </div>
 
       {/* SECTION 12: OFFICIAL RESOURCES */}
-      <h2 id="references" className="text-2xl font-black text-[#202124] mt-16 mb-4">Official Resources</h2>
+      <h2 id="references" className="text-2xl font-black text-[#202124] mt-16 mb-4 scroll-mt-24">Official Resources</h2>
       <p className="text-base text-[#3C4043] mb-4">
         All tax rules referenced in this calculator are sourced from the following official Nepal Government publications:
       </p>

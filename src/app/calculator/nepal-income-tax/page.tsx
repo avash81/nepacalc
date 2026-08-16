@@ -25,7 +25,6 @@ export const metadata = calcMeta({
     "Female Tax Rebate Nepal",
     "NRN Tax Calculator Nepal",
   ],
-  ogImage: 'https://nepacalc.com/images/nepal-income-tax-calculator-2083-2084.webp'
 });
 
 export default function Page() {
