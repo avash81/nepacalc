@@ -114,7 +114,7 @@ export default function NepalIncomeTaxCalculator() {
   };
 
   return (
-    <div className="bg-[#F8F9FA] min-h-screen pb-24">
+    <div className="bg-[#F8F9FA] min-h-screen">
 
       {/* BREADCRUMB + BACK BUTTON STRIP */}
       <div className="bg-white border-b border-[#E8EAED] px-4 sm:px-6 lg:px-8 py-3">
@@ -154,11 +154,11 @@ export default function NepalIncomeTaxCalculator() {
       </div>
 
       {/* MAIN CONTENT AREA — 2 columns: form left, all results right */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex flex-col lg:flex-row gap-6 items-start">
 
-          {/* LEFT COLUMN: FORM ONLY */}
-          <div className="w-full lg:w-5/12 lg:sticky lg:top-24 self-start">
+          {/* LEFT COLUMN: FORM ONLY — not sticky so it scrolls naturally with the page */}
+          <div className="w-full lg:w-5/12">
             <IncomeTaxForm
               state={state}
               update={update}
@@ -170,7 +170,7 @@ export default function NepalIncomeTaxCalculator() {
           {/* RIGHT COLUMN: ALL RESULTS */}
           <div className="w-full lg:w-7/12 space-y-4">
             {summary.grossIncome === 0 ? (
-              <div className="bg-white border border-[#DADCE0] rounded-xl shadow-sm p-12 text-center flex flex-col items-center justify-center min-h-[400px]">
+              <div className="bg-white border border-[#DADCE0] rounded-xl shadow-sm p-8 text-center flex flex-col items-center justify-center min-h-[200px]">
                 <div className="bg-blue-50 text-blue-500 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                   <CalcIcon className="w-8 h-8" />
                 </div>
@@ -209,22 +209,22 @@ export default function NepalIncomeTaxCalculator() {
         </div>
       </div>
 
-      {/* FULL-WIDTH SECTION: Why box + Description badges — between calculator and SEO */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
-        <div className="max-w-3xl mx-auto space-y-4">
+      {/* COMPACT INFO STRIP: Why box + Description badges */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="space-y-3">
           {summary.grossIncome > 0 && (
-            <div className="bg-blue-50 border border-blue-100 rounded-xl p-5 text-sm text-blue-900">
-              <span className="font-bold block mb-1 text-base">Why is my tax this amount?</span>
+            <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 text-sm text-blue-900">
+              <span className="font-bold block mb-1">Why is my tax this amount?</span>
               Your annual taxable income falls within the <span className="font-bold">{summary.highestTaxSlab}</span> under the FY 2083/84 Finance Act.
-              The calculator first deducts all eligible retirement contributions and approved deductions before applying Nepal's progressive income tax slabs.
+              The calculator first deducts all eligible retirement contributions and approved deductions before applying Nepal&apos;s progressive income tax slabs.
               The displayed effective tax rate represents the percentage of your gross income paid as income tax, while the marginal tax rate represents the highest tax rate applied to your final taxable rupee.
             </div>
           )}
-          <div className="bg-white border border-[#DADCE0] rounded-xl p-5 space-y-3">
-            <p className="text-sm text-[#5F6368] leading-relaxed">
+          <div className="bg-white border border-[#DADCE0] rounded-xl p-4">
+            <p className="text-sm text-[#5F6368] leading-relaxed mb-3">
               Calculate Nepal income tax for salary, business, freelance, rental and professional income using the latest FY 2083/84 Finance Act and IRD tax slabs.
             </p>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 mb-2">
               <span className="inline-flex items-center bg-[#F1F3F4] text-[#3C4043] px-2.5 py-1 rounded-md border border-[#DADCE0] text-xs font-medium">✓ Finance Act 2083/84</span>
               <span className="inline-flex items-center bg-[#F1F3F4] text-[#3C4043] px-2.5 py-1 rounded-md border border-[#DADCE0] text-xs font-medium">✓ IRD Tax Slabs</span>
               <span className="inline-flex items-center bg-[#F1F3F4] text-[#3C4043] px-2.5 py-1 rounded-md border border-[#DADCE0] text-xs font-medium">✓ SSF Compatible</span>

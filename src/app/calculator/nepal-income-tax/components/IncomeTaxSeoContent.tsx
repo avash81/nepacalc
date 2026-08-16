@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export function IncomeTaxSeoContent() {
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:grid lg:grid-cols-[1fr_280px] lg:gap-12 items-start">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:grid lg:grid-cols-[1fr_280px] lg:gap-12 items-start">
       <article className="min-w-0">
         
         {/* MOBILE TOC */}
