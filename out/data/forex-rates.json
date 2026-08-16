@@ -1,0 +1,208 @@
+{
+  "rates": [
+    {
+      "currency": {
+        "iso3": "INR",
+        "name": "Indian Rupee",
+        "unit": 100
+      },
+      "buy": "160.00",
+      "sell": "160.15"
+    },
+    {
+      "currency": {
+        "iso3": "USD",
+        "name": "U.S. Dollar",
+        "unit": 1
+      },
+      "buy": "152.39",
+      "sell": "152.99"
+    },
+    {
+      "currency": {
+        "iso3": "EUR",
+        "name": "European Euro",
+        "unit": 1
+      },
+      "buy": "176.06",
+      "sell": "176.75"
+    },
+    {
+      "currency": {
+        "iso3": "GBP",
+        "name": "UK Pound Sterling",
+        "unit": 1
+      },
+      "buy": "206.11",
+      "sell": "206.92"
+    },
+    {
+      "currency": {
+        "iso3": "CHF",
+        "name": "Swiss Franc",
+        "unit": 1
+      },
+      "buy": "187.40",
+      "sell": "188.13"
+    },
+    {
+      "currency": {
+        "iso3": "AUD",
+        "name": "Australian Dollar",
+        "unit": 1
+      },
+      "buy": "107.82",
+      "sell": "108.24"
+    },
+    {
+      "currency": {
+        "iso3": "CAD",
+        "name": "Canadian Dollar",
+        "unit": 1
+      },
+      "buy": "109.72",
+      "sell": "110.15"
+    },
+    {
+      "currency": {
+        "iso3": "SGD",
+        "name": "Singapore Dollar",
+        "unit": 1
+      },
+      "buy": "119.13",
+      "sell": "119.60"
+    },
+    {
+      "currency": {
+        "iso3": "JPY",
+        "name": "Japanese Yen",
+        "unit": 10
+      },
+      "buy": "9.58",
+      "sell": "9.61"
+    },
+    {
+      "currency": {
+        "iso3": "CNY",
+        "name": "Chinese Yuan",
+        "unit": 1
+      },
+      "buy": "22.60",
+      "sell": "22.69"
+    },
+    {
+      "currency": {
+        "iso3": "SAR",
+        "name": "Saudi Arabian Riyal",
+        "unit": 1
+      },
+      "buy": "40.59",
+      "sell": "40.75"
+    },
+    {
+      "currency": {
+        "iso3": "QAR",
+        "name": "Qatari Riyal",
+        "unit": 1
+      },
+      "buy": "41.82",
+      "sell": "41.98"
+    },
+    {
+      "currency": {
+        "iso3": "THB",
+        "name": "Thai Baht",
+        "unit": 1
+      },
+      "buy": "4.60",
+      "sell": "4.61"
+    },
+    {
+      "currency": {
+        "iso3": "AED",
+        "name": "UAE Dirham",
+        "unit": 1
+      },
+      "buy": "41.49",
+      "sell": "41.66"
+    },
+    {
+      "currency": {
+        "iso3": "MYR",
+        "name": "Malaysian Ringgit",
+        "unit": 1
+      },
+      "buy": "37.30",
+      "sell": "37.44"
+    },
+    {
+      "currency": {
+        "iso3": "KRW",
+        "name": "South Korean Won",
+        "unit": 100
+      },
+      "buy": "10.79",
+      "sell": "10.83"
+    },
+    {
+      "currency": {
+        "iso3": "SEK",
+        "name": "Swedish Kroner",
+        "unit": 1
+      },
+      "buy": "15.98",
+      "sell": "16.05"
+    },
+    {
+      "currency": {
+        "iso3": "DKK",
+        "name": "Danish Kroner",
+        "unit": 1
+      },
+      "buy": "23.55",
+      "sell": "23.64"
+    },
+    {
+      "currency": {
+        "iso3": "HKD",
+        "name": "Hong Kong Dollar",
+        "unit": 1
+      },
+      "buy": "19.42",
+      "sell": "19.50"
+    },
+    {
+      "currency": {
+        "iso3": "KWD",
+        "name": "Kuwaity Dinar",
+        "unit": 1
+      },
+      "buy": "495.98",
+      "sell": "497.93"
+    },
+    {
+      "currency": {
+        "iso3": "BHD",
+        "name": "Bahrain Dinar",
+        "unit": 1
+      },
+      "buy": "404.21",
+      "sell": "405.80"
+    },
+    {
+      "currency": {
+        "iso3": "OMR",
+        "name": "Omani Rial",
+        "unit": 1
+      },
+      "buy": "395.80",
+      "sell": "397.36"
+    }
+  ],
+  "source": "Nepal Rastra Bank (NRB)",
+  "source_url": "https://www.nrb.org.np/api/forex/v1/rates?page=1&per_page=1&from=2026-08-16&to=2026-08-16",
+  "published_at": "2026-08-16",
+  "updated_at": "2026-08-16T17:34:43.593Z",
+  "fetched_at": "2026-08-16T17:34:43.593Z",
+  "status": "verified"
+}
