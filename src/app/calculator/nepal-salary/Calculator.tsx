@@ -92,8 +92,7 @@ export default function NepalSalaryCalculator() {
 
   // Phase 5: Share handlers
   const handleShareWhatsApp = () => {
-    if (!result) return;
-    const text = encodeURIComponent(`Nepal Salary Tax Calculation (FY ${state.fiscalYear})\nGross: ${formatNPR(result.monthly.gross)}/mo\nTax: ${formatNPR(result.monthly.tax)}/mo\nTake-Home: ${formatNPR(result.monthly.net)}/mo\nEffective Rate: ${formatPct(result.effectiveRate)}\nCalculate yours: https://nepacalc.com/calculator/nepal-salary/`);
+    const text = encodeURIComponent(`Nepal Salary Tax Calculator (FY ${state.fiscalYear})\nCalculate yours: https://nepacalc.com/calculator/nepal-salary/`);
     window.open(`https://wa.me/?text=${text}`, '_blank');
   };
   const handleShareFacebook = () => {

@@ -3,10 +3,11 @@ import Calculator from './Calculator';
 import Link from 'next/link';
 
 export const metadata = calcMeta({
-  title: "Nepal Salary Tax Calculator (FY 2083/84) – Calculate Income Tax Online",
+  title: "Nepal Salary Tax Calculator (FY 2083/84)",
   description: "Calculate your Nepal salary tax instantly using the latest FY 2083/84 income tax rates. Get an accurate breakdown of income tax, SSF, CIT, employer contribution, annual tax, monthly tax and take-home salary.",
   slug: 'nepal-salary',
   canonical: 'https://nepacalc.com/calculator/nepal-salary/',
+  ogImage: 'https://nepacalc.com/og/nepal-salary.jpg',
   keywords: [
     "Nepal salary tax calculator",
     "salary tax calculator Nepal",
@@ -129,60 +130,11 @@ export default function Page() {
     <div className="bg-[#F1F3F4] min-h-screen">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(customSchema) }} />
 
-
       <Calculator />
-
-      <div className="hp-container pt-8 pb-4">
-        <div className="max-w-4xl mx-auto space-y-8">
-          {/* What This Salary Calculator Covers */}
-          <section className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
-            <h2 className="text-xl font-bold text-slate-900 mb-3">What This Salary Calculator Covers</h2>
-            <p className="text-slate-700 leading-relaxed">
-              This Salary Calculator is designed exclusively for employment income in Nepal.
-              It calculates salary tax, payroll deductions, Social Security Fund (SSF), Citizen Investment Trust (CIT), Employee Provident Fund (EPF), employer contribution and take-home salary using the latest FY 2083/84 rules.
-              It should not be used for business income, professional income, rental income, capital gains or other taxable income sources.
-            </p>
-          </section>
-
-          {/* Salary Calculator vs Income Tax Calculator */}
-          <section className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
-            <h2 className="text-xl font-bold text-slate-900 mb-5">Salary Calculator vs Income Tax Calculator</h2>
-            <div className="grid sm:grid-cols-2 gap-4 mb-5">
-              <div className="border border-blue-200 bg-blue-50 p-4 rounded-lg">
-                <h3 className="font-black text-blue-900 mb-3 text-sm uppercase tracking-wider">Salary Calculator</h3>
-                <ul className="space-y-2 text-sm text-blue-800 font-medium">
-                  <li>• Salary only</li>
-                  <li>• Payroll</li>
-                  <li>• Employee deductions</li>
-                  <li>• Employer cost</li>
-                  <li>• Take-home salary</li>
-                  <li>• Monthly payroll</li>
-                </ul>
-              </div>
-              <div className="border border-emerald-200 bg-emerald-50 p-4 rounded-lg">
-                <h3 className="font-black text-emerald-900 mb-3 text-sm uppercase tracking-wider">Income Tax Calculator</h3>
-                <ul className="space-y-2 text-sm text-emerald-800 font-medium">
-                  <li>• Business income</li>
-                  <li>• Rental income</li>
-                  <li>• Capital gains</li>
-                  <li>• Professional income</li>
-                  <li>• Multiple income sources</li>
-                  <li>• Complete annual taxation</li>
-                </ul>
-              </div>
-            </div>
-            <p className="text-slate-700 text-sm leading-relaxed bg-slate-50 p-4 rounded-lg border border-slate-200">
-              If your only income comes from employment, use this Salary Calculator.
-              If you have additional taxable income sources, use the <Link href="/calculator/nepal-income-tax/" className="text-blue-600 font-bold hover:underline">Nepal Income Tax Calculator</Link>.
-            </p>
-          </section>
-        </div>
-      </div>
-
 
       <div className="hp-container pb-20 pt-6">
         <div className="max-w-6xl mx-auto lg:grid lg:grid-cols-[1fr_280px] lg:gap-12 items-start">
-          <div className="space-y-14 min-w-0">
+          <div className="space-y-10 min-w-0">
 
             {/* H1 + Short Introduction */}
             <div>
@@ -198,6 +150,49 @@ export default function Page() {
                 Calculate your Nepal salary tax instantly using the latest FY 2083/84 income tax rates announced by the Ministry of Finance. Enter your monthly salary to receive an accurate breakdown of Nepal Income Tax, Social Security Fund (SSF), Citizen Investment Trust (CIT), employer contribution, take-home salary and total employer cost.
               </p>
             </div>
+
+            {/* What This Salary Calculator Covers */}
+            <section id="what-covers" className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+              <h2 className="text-xl font-bold text-slate-900 mb-3">What This Salary Calculator Covers</h2>
+              <p className="text-slate-700 leading-relaxed">
+                This Salary Calculator is designed exclusively for employment income in Nepal.
+                It calculates salary tax, payroll deductions, Social Security Fund (SSF), Citizen Investment Trust (CIT), Employee Provident Fund (EPF), employer contribution and take-home salary using the latest FY 2083/84 rules.
+                It should not be used for business income, professional income, rental income, capital gains or other taxable income sources.
+              </p>
+            </section>
+
+            {/* Salary Calculator vs Income Tax Calculator */}
+            <section id="calc-vs" className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+              <h2 className="text-xl font-bold text-slate-900 mb-5">Salary Calculator vs Income Tax Calculator</h2>
+              <div className="grid sm:grid-cols-2 gap-4 mb-5">
+                <div className="border border-blue-200 bg-blue-50 p-4 rounded-lg">
+                  <h3 className="font-black text-blue-900 mb-3 text-sm uppercase tracking-wider">Salary Calculator</h3>
+                  <ul className="space-y-2 text-sm text-blue-800 font-medium">
+                    <li>• Salary only</li>
+                    <li>• Payroll</li>
+                    <li>• Employee deductions</li>
+                    <li>• Employer cost</li>
+                    <li>• Take-home salary</li>
+                    <li>• Monthly payroll</li>
+                  </ul>
+                </div>
+                <div className="border border-emerald-200 bg-emerald-50 p-4 rounded-lg">
+                  <h3 className="font-black text-emerald-900 mb-3 text-sm uppercase tracking-wider">Income Tax Calculator</h3>
+                  <ul className="space-y-2 text-sm text-emerald-800 font-medium">
+                    <li>• Business income</li>
+                    <li>• Rental income</li>
+                    <li>• Capital gains</li>
+                    <li>• Professional income</li>
+                    <li>• Multiple income sources</li>
+                    <li>• Complete annual taxation</li>
+                  </ul>
+                </div>
+              </div>
+              <p className="text-slate-700 text-sm leading-relaxed bg-slate-50 p-4 rounded-lg border border-slate-200">
+                If your only income comes from employment, use this Salary Calculator.
+                If you have additional taxable income sources, use the <Link href="/calculator/nepal-income-tax/" className="text-blue-600 font-bold hover:underline">Nepal Income Tax Calculator</Link>.
+              </p>
+            </section>
 
             {/* Mobile TOC */}
             <nav className="lg:hidden bg-white border border-slate-200 rounded-xl p-6 shadow-sm mb-8">
@@ -571,12 +566,14 @@ export default function Page() {
           </div>
           
           {/* Desktop TOC */}
-          <aside className="hidden lg:block sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto">
-            <div className="pr-4">
-              <p className="text-xs font-black text-slate-500 uppercase tracking-widest mb-4 font-mono">Contents</p>
-              <ol className="list-none pl-0 border-l-2 border-slate-200 space-y-2">
+          <aside className="hidden lg:block sticky top-24 self-start max-h-[calc(100vh-120px)] overflow-y-auto">
+            <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-xl p-5">
+              <p className="text-xs font-black text-slate-500 uppercase tracking-[.2em] mb-4">Contents</p>
+              <ol className="list-none pl-0 space-y-1">
                 {[
                   ['#intro', 'Nepal Salary Tax Calculator'],
+                  ['#what-covers', 'What This Calculator Covers'],
+                  ['#calc-vs', 'Salary vs Income Tax'],
                   ['#salary-tax-breakdown', 'Salary Tax Breakdown'],
                   ['#what-is-salary-tax', 'What is Nepal Salary Tax?'],
                   ['#income-tax-slabs', 'Income Tax Slabs (FY 2083/84)'],
@@ -587,10 +584,10 @@ export default function Page() {
                   ['#fy-changes', 'Changes in FY 2083/84'],
                   ['#faq', 'Frequently Asked Questions'],
                 ].map(([href, label], i) => (
-                  <li key={href} className="pl-4">
-                    <a href={href} className="text-[13px] text-slate-500 hover:text-blue-600 hover:font-bold transition-colors block py-1 border-l-2 -ml-[18px] pl-[16px] border-transparent hover:border-blue-600">
-                      <span className="font-mono text-[10px] mr-2 text-slate-400">{i + 1}</span>
-                      {label}
+                  <li key={href}>
+                    <a href={href} className="flex items-center gap-2.5 text-[13px] text-[#5F6368] hover:text-[#1A73E8] font-medium py-1.5 px-2 rounded-lg hover:bg-[#E8F0FE] transition-colors">
+                      <span className="w-5 h-5 rounded-full bg-white border border-[#DADCE0] text-[10px] font-black text-slate-400 flex items-center justify-center shrink-0">{i + 1}</span>
+                      <span>{label}</span>
                     </a>
                   </li>
                 ))}

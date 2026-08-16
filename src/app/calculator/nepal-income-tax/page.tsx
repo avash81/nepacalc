@@ -4,10 +4,11 @@ import Calculator from './Calculator';
 import { IncomeTaxSeoContent } from './components/IncomeTaxSeoContent';
 
 export const metadata = calcMeta({
-  title: "Nepal Income Tax Calculator (FY 2083/84) — IRD Tax Calculator Nepal",
-  description: "Calculate Nepal income tax instantly using the FY 2083/84 Finance Act and IRD tax slabs. Estimate annual tax, monthly TDS, deductions, effective tax rate and net income after tax for salary, business, freelance and rental income. Free.",
+  title: "Nepal Income Tax Calculator (FY 2083/84) – Business & Individuals",
+  description: "Calculate your Nepal income tax for FY 2083/84. Ideal for business income, professionals, freelancers, and multiple income sources with progressive tax slabs.",
   slug: 'calculator/nepal-income-tax',
   canonical: '/calculator/nepal-income-tax/',
+  ogImage: 'https://nepacalc.com/og/nepal-income-tax.jpg',
   keywords: [
     "Nepal Income Tax Calculator",
     "Income Tax Calculator Nepal",
