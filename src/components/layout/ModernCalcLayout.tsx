@@ -146,7 +146,6 @@ export function ModernCalcLayout({
         <div className="flex flex-col lg:flex-row lg:items-start divide-y lg:divide-y-0 lg:divide-x divide-[#DADCE0]">
           <div className="flex-1 w-full bg-white">
             <div className="p-4 lg:p-6">{inputs}</div>
-            {details && <div className="p-4 lg:p-6 border-t border-[#DADCE0] details-container space-y-6">{details}</div>}
           </div>
           {results && (
             <div className="w-full lg:w-[420px] xl:w-[480px] bg-[#F8F9FA] flex flex-col shrink-0 lg:sticky lg:top-20 lg:max-h-[calc(100vh-100px)] overflow-y-auto border-t lg:border-t-0 border-[#DADCE0]">
@@ -177,7 +176,6 @@ export function ModernCalcLayout({
         <div className="flex flex-col md:flex-row md:items-start divide-y md:divide-y-0 md:divide-x divide-[#DADCE0]">
           <div className="flex-1 w-full bg-white relative">
             <div className="p-4 lg:p-6">{inputs}</div>
-            {details && <div className="p-4 lg:p-6 border-t border-[#DADCE0] details-container space-y-6">{details}</div>}
           </div>
           <div className="w-full md:w-[320px] lg:w-[450px] bg-white shrink-0 lg:sticky lg:top-20 lg:max-h-[calc(100vh-100px)] overflow-y-auto border-t md:border-t-0 border-[#DADCE0]">
             <div className="p-4 h-full">
@@ -249,7 +247,7 @@ export function ModernCalcLayout({
           <div className="flex-1 space-y-4 w-full min-w-0">
             {!fullWidth && calculatorEngineNode}
             {ads?.inContent && <div className="flex justify-center no-print">{ads.inContent}</div>}
-            {details && layout === 'stacked' && <div className="details-container space-y-6">{details}</div>}
+            {details && <div className="details-container space-y-6 w-full mb-6">{details}</div>}
             {(enrichedHowTo || enrichedFormula) && (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {enrichedHowTo && (

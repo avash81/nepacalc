@@ -157,8 +157,8 @@ export default function NepalIncomeTaxCalculator() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex flex-col lg:flex-row gap-6 items-start">
 
-          {/* LEFT COLUMN: FORM ONLY — not sticky so it scrolls naturally with the page */}
-          <div className="w-full lg:w-5/12">
+          {/* LEFT COLUMN: FORM ONLY — Sticky to stay visible while scrolling long results */}
+          <div className="w-full lg:w-5/12 lg:sticky lg:top-24 lg:max-h-[calc(100vh-120px)] lg:overflow-y-auto" style={{ scrollbarWidth: 'thin', scrollbarColor: '#dadce0 transparent' }}>
             <IncomeTaxForm
               state={state}
               update={update}

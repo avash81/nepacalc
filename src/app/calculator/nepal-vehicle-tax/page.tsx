@@ -597,10 +597,19 @@ export default function Page() {
         </div>
         
         {/* ── Table of Contents (Desktop) ── */}
-        <aside className="hidden lg:block sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto">
+        <aside className="hidden lg:block sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto" style={{ scrollbarWidth: 'thin', scrollbarColor: '#dadce0 transparent' }}>
           <div className="pr-4">
-            <p className="text-xs font-black text-slate-500 uppercase tracking-widest mb-4 font-mono">Contents</p>
-            <ol className="list-none pl-0 border-l-2 border-slate-200 space-y-2">
+            <span style={{
+              display: 'block',
+              fontFamily: 'monospace',
+              fontSize: '0.7rem',
+              textTransform: 'uppercase',
+              letterSpacing: '0.12em',
+              color: '#70757a',
+              marginBottom: '8px',
+              fontWeight: 700,
+            }}>On This Page</span>
+            <ol style={{ listStyle: 'none', margin: 0, padding: 0, borderLeft: '2px solid #e8eaed' }}>
               {[
                 ['#whats-new', "What's New in Vehicle Tax 2083/84?"],
                 ['#quick-answer', 'Vehicle Tax In Nepal 2083/84 : Quick Reference'],
@@ -617,14 +626,44 @@ export default function Page() {
                 ['#penalty', 'Late Penalty Explained'],
                 ['#payment-locations', 'Where Can I Pay Vehicle Tax?'],
                 ['#faq', 'FAQs'],
-              ].map(([href, label], i) => (
-                <li key={href} className="pl-4">
-                  <a href={href} className="text-[13px] text-slate-500 hover:text-blue-600 hover:font-bold transition-colors block py-1 border-l-2 -ml-[18px] pl-[16px] border-transparent hover:border-blue-600">
-                    <span className="font-mono text-[10px] mr-2 text-slate-400">{i + 1}</span>
-                    {label}
-                  </a>
-                </li>
-              ))}
+              ].map(([href, label], i) => {
+                const num = String(i + 1).padStart(2, '0');
+                return (
+                  <li key={href}>
+                    <a
+                      href={href}
+                      style={{
+                        display: 'block',
+                        padding: '6px 0 6px 14px',
+                        fontSize: '0.82rem',
+                        color: '#5f6368',
+                        textDecoration: 'none',
+                        borderLeft: '2px solid transparent',
+                        marginLeft: '-2px',
+                        lineHeight: 1.3,
+                        transition: 'color 0.15s, border-color 0.15s',
+                      }}
+                      onMouseEnter={e => {
+                        (e.currentTarget as HTMLAnchorElement).style.color = '#1a73e8';
+                        (e.currentTarget as HTMLAnchorElement).style.borderLeftColor = '#1a73e8';
+                      }}
+                      onMouseLeave={e => {
+                        (e.currentTarget as HTMLAnchorElement).style.color = '#5f6368';
+                        (e.currentTarget as HTMLAnchorElement).style.borderLeftColor = 'transparent';
+                      }}
+                    >
+                      <span style={{
+                        fontFamily: 'monospace',
+                        fontSize: '0.67rem',
+                        color: '#b59a00',
+                        marginRight: '5px',
+                        fontWeight: 700,
+                      }}>{num}</span>
+                      {label}
+                    </a>
+                  </li>
+                );
+              })}
             </ol>
           </div>
         </aside>

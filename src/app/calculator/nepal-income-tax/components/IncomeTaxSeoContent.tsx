@@ -356,10 +356,19 @@ export function IncomeTaxSeoContent() {
       </article>
 
       {/* DESKTOP TOC (STICKY RIGHT) */}
-      <aside className="hidden lg:block sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto">
+      <aside className="hidden lg:block sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto" style={{ scrollbarWidth: 'thin', scrollbarColor: '#dadce0 transparent' }}>
         <div className="pr-4">
-          <p className="text-xs font-black text-[#5F6368] uppercase tracking-widest mb-4 font-mono">Contents</p>
-          <ol className="list-none pl-0 border-l-2 border-[#DADCE0] space-y-2">
+          <span style={{
+            display: 'block',
+            fontFamily: 'monospace',
+            fontSize: '0.7rem',
+            textTransform: 'uppercase',
+            letterSpacing: '0.12em',
+            color: '#70757a',
+            marginBottom: '8px',
+            fontWeight: 700,
+          }}>On This Page</span>
+          <ol style={{ listStyle: 'none', margin: 0, padding: 0, borderLeft: '2px solid #e8eaed' }}>
             {[
               ['#intro',           'Nepal Income Tax Calculator'],
               ['#supported-types', 'Income Types Supported'],
@@ -374,14 +383,44 @@ export function IncomeTaxSeoContent() {
               ['#faq',             'Frequently Asked Questions'],
               ['#related',         'Related Calculators'],
               ['#references',      'Official Resources'],
-            ].map(([href, label], i) => (
-              <li key={href} className="pl-4">
-                <a href={href} className="text-[13px] text-[#5F6368] hover:text-[#D93025] hover:font-bold transition-colors block py-1 border-l-2 border-transparent -ml-[18px] pl-[16px] hover:border-[#D93025]">
-                  <span className="font-mono text-[10px] text-[#B0B3B8] mr-2">{i + 1}</span>
-                  {label}
-                </a>
-              </li>
-            ))}
+            ].map(([href, label], i) => {
+              const num = String(i + 1).padStart(2, '0');
+              return (
+                <li key={href}>
+                  <a
+                    href={href}
+                    style={{
+                      display: 'block',
+                      padding: '6px 0 6px 14px',
+                      fontSize: '0.82rem',
+                      color: '#5f6368',
+                      textDecoration: 'none',
+                      borderLeft: '2px solid transparent',
+                      marginLeft: '-2px',
+                      lineHeight: 1.3,
+                      transition: 'color 0.15s, border-color 0.15s',
+                    }}
+                    onMouseEnter={e => {
+                      (e.currentTarget as HTMLAnchorElement).style.color = '#1a73e8';
+                      (e.currentTarget as HTMLAnchorElement).style.borderLeftColor = '#1a73e8';
+                    }}
+                    onMouseLeave={e => {
+                      (e.currentTarget as HTMLAnchorElement).style.color = '#5f6368';
+                      (e.currentTarget as HTMLAnchorElement).style.borderLeftColor = 'transparent';
+                    }}
+                  >
+                    <span style={{
+                      fontFamily: 'monospace',
+                      fontSize: '0.67rem',
+                      color: '#b59a00',
+                      marginRight: '5px',
+                      fontWeight: 700,
+                    }}>{num}</span>
+                    {label}
+                  </a>
+                </li>
+              );
+            })}
           </ol>
         </div>
       </aside>
