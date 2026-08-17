@@ -31,7 +31,7 @@ jobs:
       - name: Check for Rate Changes
         id: git-check
         run: |
-          git diff --quiet public/data/market-rates.json public/data/forex-rates.json || echo "changed=true" >> $GITHUB_OUTPUT
+          git diff --quiet public/data/live-rates.json public/data/market-rates.json public/data/forex-rates.json || echo "changed=true" >> $GITHUB_OUTPUT
 
       - name: Commit Updated Rates and Trigger Deploy
         if: steps.git-check.outputs.changed == 'true'
@@ -41,7 +41,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/avash81/nepacalc.git
-          git add public/data/market-rates.json public/data/forex-rates.json
+          git add public/data/live-rates.json public/data/market-rates.json public/data/forex-rates.json
           git commit -m "data: auto-update official rates (Smart Window)"
           git push origin HEAD
 
