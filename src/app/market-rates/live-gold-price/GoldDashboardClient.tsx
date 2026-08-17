@@ -166,15 +166,12 @@ export default function GoldDashboardClient() {
           <div className="mt-3 flex flex-col gap-1 border-t border-slate-100 pt-3">
             <div className="flex items-center gap-2">
               <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Source</span>
-              <a
-                href="https://www.fenegosida.org"
-                target="_blank"
-                rel="noopener noreferrer"
+              <span
                 title="Federation of Nepal Gold & Silver Dealers' Association"
-                className="text-[11px] font-bold text-blue-600 hover:underline"
+                className="text-[11px] font-bold text-slate-600"
               >
                 {rates.gold.sourceName ?? 'FENEGOSIDA'}
-              </a>
+              </span>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
@@ -301,7 +298,7 @@ export default function GoldDashboardClient() {
               <a href="/calculator/gold-converter/" className="text-blue-600 hover:underline">Gold Value Calculator →</a>
               <a href="/market-rates/live-silver-price/" className="text-blue-600 hover:underline">Live Silver Price →</a>
               <div className="w-full sm:w-auto mt-1 sm:mt-0 opacity-70">
-                Source: <a href="https://www.fenegosida.org" target="_blank" rel="noopener noreferrer" className="hover:underline">fenegosida.org ↗</a>
+                Source: <span className="font-semibold text-slate-700">FENEGOSIDA</span>
               </div>
             </div>
           </div>
