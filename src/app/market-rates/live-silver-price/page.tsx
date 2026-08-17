@@ -338,11 +338,13 @@ export default async function Page() {
         isNepal={false}
         hideHeader={true}
         relatedCalcs={[
-          { name: 'Live Gold Price', slug: '/market-rates/live-gold-price/' },
-          { name: 'Exchange Rate Nepal', slug: '/market-rates/exchange-rate-nepal/' },
-          { name: 'Gold Weight Converter', slug: '/calculator/gold-converter/' },
-          { name: 'Gold Tax Calculator', slug: '/calculator/gold-tax/' },
-          { name: 'Market Rates', slug: '/market-rates/' },
+          { name: 'Nepal Income Tax Calculator', slug: '/calculator/nepal-income-tax/' },
+          { name: 'Nepal Salary Calculator', slug: '/calculator/nepal-salary/' },
+          { name: 'NEA Electricity Bill', slug: '/calculator/nea-bill/' },
+          { name: 'KUKL Water Bill', slug: '/calculator/kukl-bill/' },
+          { name: 'Nepal Land Area Converter', slug: '/calculator/nepal-land/' },
+          { name: 'Nepal Home Loan', slug: '/calculator/nepal-home-loan/' },
+          { name: 'Nepal VAT Calculator', slug: '/calculator/nepal-vat/' }
         ]}
       >
         <div className="max-w-[1000px] mx-auto pb-12">
