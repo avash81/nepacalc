@@ -16,7 +16,7 @@ function getLiveData() {
     const json = JSON.parse(data);
     return {
       date: json.date || new Date().toISOString().split('T')[0],
-      silver: json.silver?.tolaNPR || null,
+      silver: json.silver?.tolaNPR?.current || null,
       silverData: json.silver || null,
       source: json.source || 'FENEGOSIDA',
       source_name: json.source_name || 'FENEGOSIDA',
@@ -36,7 +36,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const year = rawDate.split('-')[0];
 
   const priceSnippet = silver
-    ? `Current Chandi price: Rs.${silver.toLocaleString('en-IN')} per tola, updated daily with per gram and kg prices.`
+    ? `Current Chandi price: Rs.${(silver as number).toLocaleString('en-IN')} per tola, updated daily with per gram and kg prices.`
     : 'Updated daily with per gram and kg prices.';
 
   const description = `Live silver price in Nepal today with official FENEGOSIDA rates. ${priceSnippet}`;
@@ -293,7 +293,7 @@ export default async function Page() {
   const { date: rawDate, silver, silverData, source, source_name, rate_date, status } = getLiveData();
 
   const priceSnippet = silver
-    ? `Current Chandi price: Rs.${silver.toLocaleString('en-IN')} per tola, updated daily with per gram and kg prices.`
+    ? `Current Chandi price: Rs.${(silver as number).toLocaleString('en-IN')} per tola, updated daily with per gram and kg prices.`
     : 'Updated daily with per gram and kg prices.';
   const dynamicDescription = `Live silver price in Nepal today with official FENEGOSIDA rates. ${priceSnippet}`;
 
