@@ -1062,8 +1062,9 @@ export default function SilverCalculatorComponent() {
             <Link
               href="/market-rates/live-silver-price/"
               className="inline-flex items-center justify-center w-full py-2.5 px-4 bg-white border border-[#DADCE0] hover:bg-[#E8F0FE] hover:border-[#1A73E8] hover:text-[#1A73E8] rounded-md text-xs font-bold text-[#202124] transition-all shadow-sm"
+              title="Check today's live silver rate before converting"
             >
-              View Today&apos;s Live Silver Price →
+              Live Silver Price in Nepal →
             </Link>
           </div>
         </div>

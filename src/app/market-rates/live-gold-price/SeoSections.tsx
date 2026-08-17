@@ -311,18 +311,18 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
       {/* ─── ORIGINAL: Looking for Silver Prices? ─── */}
       <section className="scroll-mt-24 mb-8">
         <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tighter mb-4">
-          Looking for Silver Prices?
+          Compare today's gold and silver prices in Nepal
         </h2>
         <div className="bg-slate-50 border border-slate-200 p-6 rounded-xl">
           <p className="text-base leading-relaxed text-slate-700 font-medium mb-5">
-            If you&apos;re tracking both precious metals, you can also check today&apos;s <Link href="/market-rates/live-silver-price/" className="text-blue-600 hover:underline font-bold">Live Silver Price</Link> or use the <Link href="/calculator/silver-converter/" className="text-blue-600 hover:underline font-bold">Silver Converter</Link> to convert silver weight, purity, and market value instantly.
+            If you're tracking both precious metals, you can compare the daily official Nepal rates. Check the <Link href="/market-rates/live-silver-price/" className="text-blue-600 hover:underline font-bold">Silver Price in Nepal</Link> or use the <Link href="/calculator/silver-converter/" className="text-blue-600 hover:underline font-bold">Silver Converter</Link> to value your Chandi instantly.
           </p>
           <div className="flex flex-wrap gap-4">
             <Link href="/market-rates/live-silver-price/" className="px-5 py-2.5 bg-slate-800 text-white font-semibold rounded-lg hover:bg-slate-700 transition-colors">
-              Live Silver Price
+              Silver Price in Nepal →
             </Link>
             <Link href="/calculator/silver-converter/" className="px-5 py-2.5 bg-white border border-slate-300 text-slate-700 font-semibold rounded-lg hover:bg-slate-50 transition-colors">
-              Silver Converter
+              Silver Converter →
             </Link>
           </div>
         </div>

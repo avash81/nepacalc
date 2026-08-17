@@ -1,8 +1,5 @@
-'use client';
-
 import React from 'react';
 import Link from 'next/link';
-import { useLiveRates } from '@/hooks/useLiveRates';
 
 const tocGroups = [
   {
@@ -118,25 +115,51 @@ export function SilverSeoToc() {
 }
 
 
-export function SilverSeoContent() {
-  const { rates } = useLiveRates();
+export function SilverSeoContent({ silverData, source, date }: { silverData: any, source: string, date: string }) {
+  const currentPrice = silverData?.tolaNPR?.current || 4710;
+  const previousPrice = silverData?.tolaNPR?.previous || 4660;
+  const changeValue = silverData?.tolaNPR?.change24h ?? (currentPrice - previousPrice);
+  const changePercent = silverData?.tolaNPR?.changePercent24h ?? ((changeValue / previousPrice) * 100);
 
-  const displayDate = rates?.silver ? new Date(rates.gold.dataDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) : "Today";
-  const displayTime = rates?.gold?.isFresh ? "11:00 AM NST" : "Last Verified";
-  const currentSilverPrice = rates?.silver ? rates.silver.tolaNPR.current.toLocaleString('en-IN') : "4,320";
-  const yesterdaySilverPrice = rates?.silver ? (rates.silver.tolaNPR.current - rates.silver.tolaNPR.change24h).toLocaleString('en-IN') : "4,310";
-  const silverChange = rates?.silver ? Math.abs(rates.silver.tolaNPR.change24h).toLocaleString('en-IN') : "10";
-  const silverChangePercent = rates?.silver ? rates.silver.tolaNPR.changePercent24h.toFixed(2) : "0.23";
-  const isUp = rates?.silver ? rates.silver.tolaNPR.change24h >= 0 : true;
+  const displayDate = new Date(date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  const displayTime = "11:00 AM NPT";
+  const currentSilverPrice = currentPrice.toLocaleString('en-IN');
+  const yesterdaySilverPrice = previousPrice.toLocaleString('en-IN');
+  const silverChange = Math.abs(changeValue).toLocaleString('en-IN');
+  const silverChangePercent = changePercent.toFixed(2);
+  const isUp = changeValue >= 0;
 
   const historicalData = [
-    { date: '17 Jul', price: 4325 },
-    { date: '16 Jul', price: 4310 },
-    { date: '15 Jul', price: 4290 },
-    { date: '14 Jul', price: 4275 },
-    { date: '13 Jul', price: 4255 },
-    { date: '12 Jul', price: 4240 },
-    { date: '11 Jul', price: 4225 },
+    { date: '16 Aug', price: 4710 },
+    { date: '15 Aug', price: 4660 },
+    { date: '14 Aug', price: 4615 },
+    { date: '13 Aug', price: 4575 },
+    { date: '12 Aug', price: 4520 },
+    { date: '11 Aug', price: 4550 },
+    { date: '10 Aug', price: 4520 },
+    { date: '09 Aug', price: 4490 },
+    { date: '08 Aug', price: 4465 },
+    { date: '07 Aug', price: 4420 },
+    { date: '06 Aug', price: 4390 },
+    { date: '05 Aug', price: 4380 },
+    { date: '04 Aug', price: 4400 },
+    { date: '03 Aug', price: 4415 },
+    { date: '02 Aug', price: 4440 },
+    { date: '01 Aug', price: 4460 },
+    { date: '31 Jul', price: 4480 },
+    { date: '30 Jul', price: 4520 },
+    { date: '29 Jul', price: 4550 },
+    { date: '28 Jul', price: 4590 },
+    { date: '27 Jul', price: 4575 },
+    { date: '26 Jul', price: 4540 },
+    { date: '25 Jul', price: 4500 },
+    { date: '24 Jul', price: 4480 },
+    { date: '23 Jul', price: 4465 },
+    { date: '22 Jul', price: 4440 },
+    { date: '21 Jul', price: 4425 },
+    { date: '20 Jul', price: 4410 },
+    { date: '19 Jul', price: 4390 },
+    { date: '18 Jul', price: 4360 }
   ];
 
   return (
@@ -273,7 +296,7 @@ export function SilverSeoContent() {
           <h2 id="silver-price-history" className="text-2xl font-black text-slate-900 tracking-tighter mb-4 scroll-mt-20">
             Silver Price History
           </h2>
-          <p className="text-slate-700 text-base leading-relaxed mb-4 font-medium">Previous 7 Days</p>
+          <p className="text-slate-700 text-base leading-relaxed mb-4 font-medium">Last 30 Days</p>
           <div className="overflow-x-auto mb-6 not-prose">
             <table className="w-full text-left border-collapse min-w-[300px]">
               <thead>
