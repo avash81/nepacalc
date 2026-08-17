@@ -511,18 +511,27 @@ export default async function Page() {
 
               <SilverSeoContent silverData={silverData} source={source} date={rate_date} />
 
-              <div className="mt-6 px-4 py-4 bg-slate-50 border border-slate-200 rounded-xl text-[12px] text-slate-500 font-medium leading-relaxed">
-                <strong className="text-slate-700">Official Source:</strong>{' '}
-                All silver benchmark rates on this page are sourced from the{' '}
-                <a
-                  href="https://www.fenegosida.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline font-semibold"
-                >
-                  Federation of Nepal Gold &amp; Silver Dealers&apos; Association (FENEGOSIDA)
-                </a>
-                , the official body that publishes daily gold and silver benchmark rates in Nepal.
+              <div className="mt-6 px-4 py-4 bg-slate-50 border border-slate-200 rounded-xl text-[12px] text-slate-500 font-medium leading-relaxed space-y-4">
+                <div>
+                  <strong className="text-slate-700">Official Source:</strong>{' '}
+                  All silver benchmark rates on this page are sourced from the{' '}
+                  <a
+                    href="https://www.fenegosida.org"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline font-semibold"
+                  >
+                    Federation of Nepal Gold &amp; Silver Dealers&apos; Association (FENEGOSIDA)
+                  </a>
+                  , the official body that publishes daily gold and silver benchmark rates in Nepal.
+                </div>
+                <div className="pt-3 border-t border-slate-200">
+                  <strong className="text-slate-700">Additional Market References:</strong>{' '}
+                  For official economic data, import policies, and global benchmarks, please refer to the{' '}
+                  <a href="https://www.nrb.org.np" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Nepal Rastra Bank (NRB)</a>,{' '}
+                  <a href="https://www.customs.gov.np" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Department of Customs Nepal</a>, and{' '}
+                  <a href="https://www.silverinstitute.org" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">The Silver Institute</a>.
+                </div>
               </div>
             </article>
             

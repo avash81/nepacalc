@@ -718,6 +718,23 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
         </div>
       </section>
 
+      {/* ─── NEW: Official Market References ─── */}
+      <section className="pt-8 pb-8 border-t border-slate-200">
+        <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tighter mb-4 flex items-center gap-2">
+          <ShieldCheck className="w-6 h-6 text-slate-400" />
+          Official Market References
+        </h2>
+        <div className="bg-slate-50 border border-slate-200 p-5 rounded-xl text-[13px] text-slate-700 font-medium leading-relaxed">
+          For global economic data, official import policies, and international precious metal benchmarks, please refer to the following authoritative sources:
+          <ul className="list-disc ml-6 mt-3 space-y-2">
+            <li><a href="https://www.nrb.org.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-bold">Nepal Rastra Bank (NRB)</a></li>
+            <li><a href="https://www.customs.gov.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-bold">Department of Customs, Nepal</a></li>
+            <li><a href="https://www.gold.org/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-bold">World Gold Council</a></li>
+            <li><a href="https://www.lbma.org.uk/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-bold">London Bullion Market Association (LBMA)</a></li>
+          </ul>
+        </div>
+      </section>
+
       {/* ─── ORIGINAL: E-E-A-T Disclaimer ─── */}
       <div className="bg-slate-100/50 p-6 rounded-2xl border border-slate-200 text-center">
         <ShieldCheck className="w-8 h-8 text-slate-400 mx-auto mb-3" />
