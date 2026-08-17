@@ -422,9 +422,7 @@ export default async function Page() {
                     </div>
                     <div className="flex items-center gap-2">
                       Source:{' '}
-                      <a href="https://www.fenegosida.org" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline normal-case">
-                        {source_name}
-                      </a>
+                      <span className="normal-case text-slate-600 font-black">{source_name}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       {!isFresh ? 'Last verified' : 'Rate date'}: {new Date(rate_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
@@ -510,6 +508,20 @@ export default async function Page() {
               </div>
 
               <SilverSeoContent silverData={silverData} source={source} date={rate_date} />
+
+              <div className="mt-6 px-4 py-4 bg-slate-50 border border-slate-200 rounded-xl text-[12px] text-slate-500 font-medium leading-relaxed">
+                <strong className="text-slate-700">Official Source:</strong>{' '}
+                All silver benchmark rates on this page are sourced from the{' '}
+                <a
+                  href="https://www.fenegosida.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline font-semibold"
+                >
+                  Federation of Nepal Gold &amp; Silver Dealers&apos; Association (FENEGOSIDA)
+                </a>
+                , the official body that publishes daily gold and silver benchmark rates in Nepal.
+              </div>
             </article>
             
             <aside className="hidden lg:block sticky top-24 self-start">
