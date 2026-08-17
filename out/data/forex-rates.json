@@ -24,8 +24,8 @@
         "name": "European Euro",
         "unit": 1
       },
-      "buy": "176.06",
-      "sell": "176.75"
+      "buy": "176.28",
+      "sell": "176.97"
     },
     {
       "currency": {
@@ -33,8 +33,8 @@
         "name": "UK Pound Sterling",
         "unit": 1
       },
-      "buy": "206.11",
-      "sell": "206.92"
+      "buy": "206.23",
+      "sell": "207.04"
     },
     {
       "currency": {
@@ -42,8 +42,8 @@
         "name": "Swiss Franc",
         "unit": 1
       },
-      "buy": "187.40",
-      "sell": "188.13"
+      "buy": "187.41",
+      "sell": "188.14"
     },
     {
       "currency": {
@@ -51,8 +51,8 @@
         "name": "Australian Dollar",
         "unit": 1
       },
-      "buy": "107.82",
-      "sell": "108.24"
+      "buy": "107.95",
+      "sell": "108.38"
     },
     {
       "currency": {
@@ -60,8 +60,8 @@
         "name": "Canadian Dollar",
         "unit": 1
       },
-      "buy": "109.72",
-      "sell": "110.15"
+      "buy": "109.83",
+      "sell": "110.26"
     },
     {
       "currency": {
@@ -69,8 +69,8 @@
         "name": "Singapore Dollar",
         "unit": 1
       },
-      "buy": "119.13",
-      "sell": "119.60"
+      "buy": "119.12",
+      "sell": "119.59"
     },
     {
       "currency": {
@@ -78,8 +78,8 @@
         "name": "Japanese Yen",
         "unit": 10
       },
-      "buy": "9.58",
-      "sell": "9.61"
+      "buy": "9.57",
+      "sell": "9.60"
     },
     {
       "currency": {
@@ -115,7 +115,7 @@
         "unit": 1
       },
       "buy": "4.60",
-      "sell": "4.61"
+      "sell": "4.62"
     },
     {
       "currency": {
@@ -124,7 +124,7 @@
         "unit": 1
       },
       "buy": "41.49",
-      "sell": "41.66"
+      "sell": "41.65"
     },
     {
       "currency": {
@@ -141,8 +141,8 @@
         "name": "South Korean Won",
         "unit": 100
       },
-      "buy": "10.79",
-      "sell": "10.83"
+      "buy": "10.76",
+      "sell": "10.80"
     },
     {
       "currency": {
@@ -150,8 +150,8 @@
         "name": "Swedish Kroner",
         "unit": 1
       },
-      "buy": "15.98",
-      "sell": "16.05"
+      "buy": "15.99",
+      "sell": "16.06"
     },
     {
       "currency": {
@@ -159,8 +159,8 @@
         "name": "Danish Kroner",
         "unit": 1
       },
-      "buy": "23.55",
-      "sell": "23.64"
+      "buy": "23.59",
+      "sell": "23.68"
     },
     {
       "currency": {
@@ -200,9 +200,9 @@
     }
   ],
   "source": "Nepal Rastra Bank (NRB)",
-  "source_url": "https://www.nrb.org.np/api/forex/v1/rates?page=1&per_page=1&from=2026-08-16&to=2026-08-16",
-  "published_at": "2026-08-16",
-  "updated_at": "2026-08-17T03:55:59.872Z",
-  "fetched_at": "2026-08-16T17:34:43.593Z",
-  "status": "retained_fallback"
+  "source_url": "https://www.nrb.org.np/api/forex/v1/rates?page=1&per_page=1&from=2026-08-17&to=2026-08-17",
+  "published_at": "2026-08-17",
+  "updated_at": "2026-08-17T04:52:20.366Z",
+  "fetched_at": "2026-08-17T04:52:20.366Z",
+  "status": "verified"
 }
