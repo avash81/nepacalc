@@ -14,9 +14,9 @@ function getLiveData() {
     const json = JSON.parse(data);
     return {
       date: json.date || new Date().toISOString().split('T')[0],
-      gold24k: json.gold?.tolaNPR || null,
-      gold22k: json.gold?.tejabiTolaNPR || null,
-      silver: json.silver?.tolaNPR || null,
+      gold24k: json.gold?.tolaNPR?.current || null,
+      gold22k: json.gold?.tejabiTolaNPR?.current || null,
+      silver: json.silver?.tolaNPR?.current || null,
     };
   } catch (e) {
     return { date: new Date().toISOString().split('T')[0], gold24k: null, gold22k: null, silver: null };
@@ -28,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const year = rawDate.split('-')[0];
 
   const priceSnippet = gold24k
-    ? `Today's 24K gold rate is Rs.${gold24k.toLocaleString('en-IN')} per Tola and 22K Tejabi is Rs.${gold22k?.toLocaleString('en-IN') ?? ''} per Tola.`
+    ? `Today's 24K gold rate is Rs.${(gold24k as number).toLocaleString('en-IN')} per Tola and 22K Tejabi is Rs.${(gold22k as number)?.toLocaleString('en-IN') ?? ''} per Tola.`
     : '';
 
   const description = `Check today's live gold price in Nepal updated from FENEGOSIDA. ${priceSnippet} View 24K Hallmark, 22K Tejabi and silver rates, historical price charts, market analysis and gold price calculator.`;
