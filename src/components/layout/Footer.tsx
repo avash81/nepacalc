@@ -26,18 +26,17 @@ export function Footer() {
 
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 pt-12 pb-24 lg:pb-6">
 
-        {/* ── MAIN GRID: 4 columns ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-10" style={{ borderBottom: '1px solid rgba(255,255,255,0.15)' }}>
+        {/* ── MAIN GRID: 5 columns ── */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 pb-10" style={{ borderBottom: '1px solid rgba(255,255,255,0.15)' }}>
 
           {/* ── SECTION 1: Brand ── */}
-          <div className="space-y-5">
+          <div className="space-y-5 lg:col-span-1">
             <Link href="/" className="inline-block transition-transform hover:scale-105 duration-300">
               <Logo size="sm" theme="white" />
             </Link>
-            <p className="text-[12.5px] leading-relaxed text-white max-w-[240px]">
+            <p className="text-[12.5px] leading-relaxed text-white">
               NepaCalc is a free platform providing online calculators, converters and digital tools for finance, engineering, education, health and everyday calculations for users in Nepal and around the world. Built for speed, accuracy and practical problem solving.
             </p>
-
           </div>
 
           {/* ── SECTION 2: Dynamic context-aware links ── */}
@@ -45,7 +44,38 @@ export function Footer() {
             <FooterDynamicLinks />
           </div>
 
-          {/* ── SECTION 3: Company ── */}
+          {/* ── SECTION 3: Market Rates (NEW) ── */}
+          <div>
+            <h3
+              className="text-white font-black uppercase text-[9px] tracking-[0.25em] mb-5 pl-3"
+              style={{ borderLeft: '2px solid #fbbc04' }}
+            >
+              Market Rates
+            </h3>
+            <ul className="space-y-2.5">
+              {[
+                { name: 'Live Gold Price', href: '/market-rates/live-gold-price/' },
+                { name: 'Live Silver Price', href: '/market-rates/live-silver-price/' },
+                { name: 'Exchange Rate Nepal', href: '/market-rates/exchange-rate-nepal/' },
+                { name: 'Remittance Rates', href: '/market-rates/remittance/' },
+                { name: 'All Market Rates', href: '/market-rates/' },
+              ].map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="group flex items-center gap-2 text-white hover:text-white/80 transition-colors duration-150 text-[12.5px]"
+                  >
+                    <div className="w-1 h-1 rounded-full flex-shrink-0 bg-white opacity-70 transition-all duration-200 group-hover:opacity-100 group-hover:scale-150" />
+                    <span className="font-medium group-hover:translate-x-0.5 transition-transform duration-150">
+                      {link.name}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* ── SECTION 4: Company ── */}
           <div>
             <h3
               className="text-white font-black uppercase text-[9px] tracking-[0.25em] mb-5 pl-3"
