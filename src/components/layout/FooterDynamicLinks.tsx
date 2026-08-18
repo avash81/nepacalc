@@ -1,23 +1,27 @@
 'use client';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { FOOTER_CATEGORIES, getFooterCategory } from '@/data/footer-links';
+
+const CALC_LINKS = [
+  { name: 'All Calculators', href: '/calculator/' },
+  { name: 'Nepal Calculators', href: '/nepal/' },
+  { name: 'Finance & Investment', href: '/finance/' },
+  { name: 'Math Calculators', href: '/math-tools/' },
+  { name: 'Engineering Calculators', href: '/engineering/' },
+  { name: 'Health Calculators', href: '/health/' },
+  { name: 'Converters', href: '/converters/' },
+];
 
 export function FooterDynamicLinks() {
-  const pathname = usePathname();
-  const categoryKey = getFooterCategory(pathname);
-  const dynamicGroup = FOOTER_CATEGORIES[categoryKey] ?? FOOTER_CATEGORIES.default;
-
   return (
     <>
       <h3
         className="text-white font-black uppercase text-[9px] tracking-[0.25em] mb-5 pl-3"
         style={{ borderLeft: '2px solid #1A73E8' }}
       >
-        {dynamicGroup.heading}
+        Calculators
       </h3>
       <ul className="space-y-2.5">
-        {dynamicGroup.links.map((link) => (
+        {CALC_LINKS.map((link) => (
           <li key={link.href}>
             <Link
               href={link.href}
