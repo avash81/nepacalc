@@ -122,10 +122,17 @@ export function ModernCalcLayout({
     return normalized;
   };
 
+  // Non-calculator sections that must NOT get 'Calculators' injected.
+  const NON_CALC_SECTIONS = ['Market Rates', 'Guide', 'Blog'];
+
   const processedCrumbs = (() => {
     if (!crumbs || crumbs.length === 0) return crumbs;
     let clean = crumbs.filter(c => c.label.toLowerCase() !== 'home');
-    if (clean[0] && clean[0].label !== 'Calculators') {
+    const firstLabel = clean[0]?.label ?? '';
+    const isNonCalcPage =
+      firstLabel === 'Calculators' ||
+      NON_CALC_SECTIONS.some(s => firstLabel === s);
+    if (!isNonCalcPage) {
       clean = [{ label: 'Calculators', href: '/calculator/' }, ...clean];
     }
     return [{ label: 'Home', href: '/' }, ...clean];
