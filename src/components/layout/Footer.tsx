@@ -54,11 +54,11 @@ export function Footer() {
             </h3>
             <ul className="space-y-2.5">
               {[
+                { name: 'All Market Rates', href: '/market-rates/' },
                 { name: 'Live Gold Price', href: '/market-rates/live-gold-price/' },
                 { name: 'Live Silver Price', href: '/market-rates/live-silver-price/' },
                 { name: 'Exchange Rate Nepal', href: '/market-rates/exchange-rate-nepal/' },
                 { name: 'Remittance Rates', href: '/market-rates/remittance/' },
-                { name: 'All Market Rates', href: '/market-rates/' },
               ].map((link) => (
                 <li key={link.href}>
                   <Link
