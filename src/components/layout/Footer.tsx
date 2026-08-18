@@ -26,11 +26,11 @@ export function Footer() {
 
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 pt-12 pb-24 lg:pb-6">
 
-        {/* ── MAIN GRID: 5 columns ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 pb-10" style={{ borderBottom: '1px solid rgba(255,255,255,0.15)' }}>
+        {/* ── MAIN GRID: 12 columns for precise spacing ── */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-6 pb-10" style={{ borderBottom: '1px solid rgba(255,255,255,0.15)' }}>
 
           {/* ── SECTION 1: Brand ── */}
-          <div className="space-y-5 lg:col-span-1">
+          <div className="space-y-5 lg:col-span-4 xl:col-span-4 pr-0 lg:pr-8">
             <Link href="/" className="inline-block transition-transform hover:scale-105 duration-300">
               <Logo size="sm" theme="white" />
             </Link>
@@ -40,12 +40,12 @@ export function Footer() {
           </div>
 
           {/* ── SECTION 2: Dynamic context-aware links ── */}
-          <div>
+          <div className="lg:col-span-2">
             <FooterDynamicLinks />
           </div>
 
           {/* ── SECTION 3: Market Rates (NEW) ── */}
-          <div>
+          <div className="lg:col-span-2">
             <h3
               className="text-white font-black uppercase text-[9px] tracking-[0.25em] mb-5 pl-3"
               style={{ borderLeft: '2px solid #fbbc04' }}
@@ -76,7 +76,7 @@ export function Footer() {
           </div>
 
           {/* ── SECTION 4: Company ── */}
-          <div>
+          <div className="lg:col-span-2">
             <h3
               className="text-white font-black uppercase text-[9px] tracking-[0.25em] mb-5 pl-3"
               style={{ borderLeft: '2px solid #34a853' }}
@@ -100,8 +100,8 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* ── SECTION 4: Contact ── */}
-          <div>
+          {/* ── SECTION 5: Contact ── */}
+          <div className="lg:col-span-2">
             <h3
               className="text-white font-black uppercase text-[9px] tracking-[0.25em] mb-5 pl-3"
               style={{ borderLeft: '2px solid #ea4335' }}
