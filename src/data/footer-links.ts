@@ -27,6 +27,7 @@ export const FOOTER_CATEGORIES: Record<string, FooterLinkGroup> = {
     links: [
       { name: 'All Calculators', href: '/calculator/' },
       { name: 'Nepal Calculators', href: '/nepal/' },
+      { name: 'Market Rates', href: '/market-rates/' },
       { name: 'Finance & Investment', href: '/finance/' },
       { name: 'Math Calculators', href: '/math-tools/' },
       { name: 'Engineering Calculators', href: '/engineering/' },
@@ -114,6 +115,7 @@ export const FOOTER_CATEGORIES: Record<string, FooterLinkGroup> = {
     links: [
       { name: 'All Calculators', href: '/calculator/' },
       { name: 'Nepal Calculators', href: '/nepal/' },
+      { name: 'Market Rates', href: '/market-rates/' },
       { name: 'Finance & Investment', href: '/finance/' },
       { name: 'Math Calculators', href: '/math-tools/' },
       { name: 'Engineering Calculators', href: '/engineering/' },
