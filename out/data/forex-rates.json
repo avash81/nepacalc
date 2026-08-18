@@ -15,8 +15,8 @@
         "name": "U.S. Dollar",
         "unit": 1
       },
-      "buy": "152.39",
-      "sell": "152.99"
+      "buy": "152.67",
+      "sell": "153.27"
     },
     {
       "currency": {
@@ -24,8 +24,8 @@
         "name": "European Euro",
         "unit": 1
       },
-      "buy": "176.28",
-      "sell": "176.97"
+      "buy": "177.03",
+      "sell": "177.72"
     },
     {
       "currency": {
@@ -33,8 +33,8 @@
         "name": "UK Pound Sterling",
         "unit": 1
       },
-      "buy": "206.23",
-      "sell": "207.04"
+      "buy": "207.00",
+      "sell": "207.81"
     },
     {
       "currency": {
@@ -42,8 +42,8 @@
         "name": "Swiss Franc",
         "unit": 1
       },
-      "buy": "187.41",
-      "sell": "188.14"
+      "buy": "188.55",
+      "sell": "189.29"
     },
     {
       "currency": {
@@ -51,8 +51,8 @@
         "name": "Australian Dollar",
         "unit": 1
       },
-      "buy": "107.95",
-      "sell": "108.38"
+      "buy": "108.78",
+      "sell": "109.20"
     },
     {
       "currency": {
@@ -60,8 +60,8 @@
         "name": "Canadian Dollar",
         "unit": 1
       },
-      "buy": "109.83",
-      "sell": "110.26"
+      "buy": "110.17",
+      "sell": "110.60"
     },
     {
       "currency": {
@@ -69,8 +69,8 @@
         "name": "Singapore Dollar",
         "unit": 1
       },
-      "buy": "119.12",
-      "sell": "119.59"
+      "buy": "119.64",
+      "sell": "120.11"
     },
     {
       "currency": {
@@ -78,8 +78,8 @@
         "name": "Japanese Yen",
         "unit": 10
       },
-      "buy": "9.57",
-      "sell": "9.60"
+      "buy": "9.59",
+      "sell": "9.63"
     },
     {
       "currency": {
@@ -87,8 +87,8 @@
         "name": "Chinese Yuan",
         "unit": 1
       },
-      "buy": "22.60",
-      "sell": "22.69"
+      "buy": "22.66",
+      "sell": "22.75"
     },
     {
       "currency": {
@@ -96,8 +96,8 @@
         "name": "Saudi Arabian Riyal",
         "unit": 1
       },
-      "buy": "40.59",
-      "sell": "40.75"
+      "buy": "40.66",
+      "sell": "40.82"
     },
     {
       "currency": {
@@ -105,8 +105,8 @@
         "name": "Qatari Riyal",
         "unit": 1
       },
-      "buy": "41.82",
-      "sell": "41.98"
+      "buy": "41.88",
+      "sell": "42.05"
     },
     {
       "currency": {
@@ -114,8 +114,8 @@
         "name": "Thai Baht",
         "unit": 1
       },
-      "buy": "4.60",
-      "sell": "4.62"
+      "buy": "4.63",
+      "sell": "4.64"
     },
     {
       "currency": {
@@ -123,8 +123,8 @@
         "name": "UAE Dirham",
         "unit": 1
       },
-      "buy": "41.49",
-      "sell": "41.65"
+      "buy": "41.57",
+      "sell": "41.73"
     },
     {
       "currency": {
@@ -132,8 +132,8 @@
         "name": "Malaysian Ringgit",
         "unit": 1
       },
-      "buy": "37.30",
-      "sell": "37.44"
+      "buy": "37.60",
+      "sell": "37.75"
     },
     {
       "currency": {
@@ -141,8 +141,8 @@
         "name": "South Korean Won",
         "unit": 100
       },
-      "buy": "10.76",
-      "sell": "10.80"
+      "buy": "10.81",
+      "sell": "10.85"
     },
     {
       "currency": {
@@ -150,8 +150,8 @@
         "name": "Swedish Kroner",
         "unit": 1
       },
-      "buy": "15.99",
-      "sell": "16.06"
+      "buy": "16.10",
+      "sell": "16.16"
     },
     {
       "currency": {
@@ -159,8 +159,8 @@
         "name": "Danish Kroner",
         "unit": 1
       },
-      "buy": "23.59",
-      "sell": "23.68"
+      "buy": "23.68",
+      "sell": "23.77"
     },
     {
       "currency": {
@@ -168,8 +168,8 @@
         "name": "Hong Kong Dollar",
         "unit": 1
       },
-      "buy": "19.42",
-      "sell": "19.50"
+      "buy": "19.46",
+      "sell": "19.54"
     },
     {
       "currency": {
@@ -177,8 +177,8 @@
         "name": "Kuwaity Dinar",
         "unit": 1
       },
-      "buy": "495.98",
-      "sell": "497.93"
+      "buy": "497.22",
+      "sell": "499.17"
     },
     {
       "currency": {
@@ -186,8 +186,8 @@
         "name": "Bahrain Dinar",
         "unit": 1
       },
-      "buy": "404.21",
-      "sell": "405.80"
+      "buy": "404.95",
+      "sell": "406.54"
     },
     {
       "currency": {
@@ -195,14 +195,14 @@
         "name": "Omani Rial",
         "unit": 1
       },
-      "buy": "395.80",
-      "sell": "397.36"
+      "buy": "396.53",
+      "sell": "398.09"
     }
   ],
   "source": "Nepal Rastra Bank (NRB)",
-  "source_url": "https://www.nrb.org.np/api/forex/v1/rates?page=1&per_page=1&from=2026-08-17&to=2026-08-17",
-  "published_at": "2026-08-17",
-  "updated_at": "2026-08-17T07:14:02.807Z",
-  "fetched_at": "2026-08-17T07:14:02.807Z",
+  "source_url": "https://www.nrb.org.np/api/forex/v1/rates?page=1&per_page=1&from=2026-08-18&to=2026-08-18",
+  "published_at": "2026-08-18",
+  "updated_at": "2026-08-18T03:50:37.645Z",
+  "fetched_at": "2026-08-18T03:50:37.645Z",
   "status": "verified"
 }
