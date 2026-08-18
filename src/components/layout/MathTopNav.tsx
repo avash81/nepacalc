@@ -30,7 +30,7 @@ export function MathTopNav() {
          type="breadcrumb"
          breadcrumbItems={[
            { name: 'Home', item: 'https://nepacalc.com' },
-           { name: 'Math Tools', item: 'https://nepacalc.com/directory/' },
+           { name: 'Math Tools', item: 'https://nepacalc.com/calculator/' },
            { name: activeLink.name, item: `https://nepacalc.com${activeLink.path}` }
          ]}
       />

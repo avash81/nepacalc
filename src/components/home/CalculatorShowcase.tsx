@@ -61,7 +61,7 @@ export default function CalculatorShowcase() {
               Browse our extensive library of calculators organized by category. Each tool is designed for maximum usability.
             </p>
           </div>
-          <Link href="/directory/">
+          <Link href="/calculator/">
             <Button variant="outline" className="flex items-center gap-2 h-12 px-6 rounded-lg text-sm font-medium">
               View All 100+ Tools <ChevronRight className="w-4 h-4" />
             </Button>

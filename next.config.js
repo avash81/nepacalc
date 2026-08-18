@@ -108,6 +108,17 @@ const nextConfig = {
         permanent: true,
       },
       // ── Legacy / Removed Routes ────────────────────────────────────────
+      // 301: /directory/ → /calculator/ (consolidated calculator hub)
+      {
+        source: '/directory',
+        destination: '/calculator/',
+        permanent: true,
+      },
+      {
+        source: '/directory/',
+        destination: '/calculator/',
+        permanent: true,
+      },
       // 301: Deleted blog post → canonical electricity page
       {
         source: '/blog/nea-tariff-rates-2083-84',

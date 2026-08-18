@@ -119,7 +119,7 @@ export default function HTMLSitemap() {
                    </li>
                    <li className="relative">
                       <span className="absolute -left-[21px] top-2.5 w-3 h-0.5 bg-slate-200"></span>
-                      <Link href="/directory/" className="text-base font-semibold text-blue-600 hover:text-blue-800 hover:underline mr-2">Directory</Link>
+                      <Link href="/calculator/" className="text-base font-semibold text-blue-600 hover:text-blue-800 hover:underline mr-2">All Calculators</Link>
                    </li>
                 </ul>
              </section>

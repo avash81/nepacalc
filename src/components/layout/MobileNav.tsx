@@ -8,7 +8,7 @@ import { SearchModal } from './SearchModal';
 const tabs = [
   { name: 'Home', path: '/', icon: Home },
   { name: 'Nepal', path: '/nepal/', icon: Globe },
-  { name: 'Directory', path: '/directory/', icon: Grid },
+  { name: 'Calculators', path: '/calculator/', icon: Grid },
   { name: 'Guide', path: '/guide/', icon: BookOpen },
 ];
 

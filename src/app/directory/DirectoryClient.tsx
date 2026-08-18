@@ -8,9 +8,9 @@ import { LayoutGrid, ArrowRight, ShieldCheck, Globe, BrainCircuit } from 'lucide
 export default function DirectoryClient() {
   return (
     <CalcWrapper
-      title="Calculator & Tool Directory"
-      description="Browse NepaCalc's calculators and digital tools by category, including Nepal-specific, finance, engineering, health, mathematics, education, converters and everyday utilities."
-      crumbs={[{ label: 'Directory' }]}
+      title="Calculators & Tools"
+      description="Browse NepaCalc's complete collection of calculators and digital tools by category, including Nepal-specific, finance, engineering, health, mathematics, education, converters and everyday utilities."
+      crumbs={[{ label: 'Calculators' }]}
     >
       <div className="py-8 pb-12">
         {/* ── INSTITUTIONAL MASONRY GRID ────────────────────────── */}

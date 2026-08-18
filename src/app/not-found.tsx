@@ -32,7 +32,7 @@ export default function NotFound() {
         <div className="w-full max-w-lg mx-auto relative group">
           <div className="absolute inset-0 bg-blue-500/10 blur-xl group-hover:blur-2xl transition-all" />
           <Link
-            href="/directory/"
+            href="/calculator/"
             className="relative block w-full px-8 py-6 bg-white dark:bg-gray-900 border-2 border-gray-100 dark:border-gray-800 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 hover:text-blue-600 hover:border-blue-500 transition-all flex items-center justify-between shadow-sm"
           >
             <span>Browse all 100+ tools...</span>
@@ -105,7 +105,7 @@ export default function NotFound() {
             Back to Home
           </Link>
           <Link
-            href="/directory/"
+            href="/calculator/"
             className="w-full sm:w-auto px-10 py-5 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-[1.8rem] font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-3 transition-all hover:-translate-y-1 active:scale-95"
           >
             All Calculators

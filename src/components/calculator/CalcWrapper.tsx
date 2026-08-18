@@ -59,8 +59,17 @@ export function CalcWrapper({
   const pathname = usePathname();
   const pageUrl = pathname ? `https://nepacalc.com${pathname}` : undefined;
 
+  const processedCrumbs = (() => {
+    if (!crumbs || crumbs.length === 0) return crumbs;
+    let clean = crumbs.filter(c => c.label.toLowerCase() !== 'home');
+    if (clean[0] && clean[0].label !== 'Calculators') {
+      clean = [{ label: 'Calculators', href: '/calculator/' }, ...clean];
+    }
+    return [{ label: 'Home', href: '/' }, ...clean];
+  })();
+
   // Determine pillar URL for isPartOf
-  const pillarHref = crumbs[0]?.href;
+  const pillarHref = processedCrumbs?.[1]?.href; // Category crumb is usually index 1 now
   const pillarId = pillarHref ? `https://nepacalc.com${pillarHref}#collection` : 'https://nepacalc.com/#website';
 
   // Opt-in: only render SoftwareApplication if explicitly requested.
@@ -75,7 +84,7 @@ export function CalcWrapper({
           breadcrumbUrl: pageUrl,
           breadcrumb: [
             { name: 'Home', item: 'https://nepacalc.com' },
-            ...crumbs.map(c => ({
+            ...processedCrumbs.map(c => ({
                 name: c.label,
                 item: c.href ? `https://nepacalc.com${c.href}` : undefined
             })).filter((x): x is { name: string, item: string } => !!x.item)
@@ -118,12 +127,12 @@ export function CalcWrapper({
                 </button>
 
                 <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-2 text-[13px] font-medium text-[#5f6368]">
-                  {crumbs[0]?.label.toLowerCase() !== 'home' && (
+                  {processedCrumbs?.[0]?.label.toLowerCase() !== 'home' && (
                     <Link href="/" className="hover:text-blue-600 hover:underline">Home</Link>
                   )}
-                  {crumbs.map((c, i) => (
+                  {processedCrumbs.map((c, i) => (
                     <Fragment key={i}>
-                      { (i > 0 || crumbs[0]?.label.toLowerCase() !== 'home') && <span className="text-slate-300">/</span> }
+                      { (i > 0 || processedCrumbs?.[0]?.label.toLowerCase() !== 'home') && <span className="text-slate-300">/</span> }
                       {c.href ? (
                         <Link href={c.href} className="hover:text-blue-600 hover:underline">{c.label}</Link>
                       ) : (

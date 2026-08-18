@@ -52,7 +52,7 @@ export function CalculatorLayout({
   let catLink = typeof category === 'object' ? category.href : (category ? CATEGORY_URL_MAP[category.toLowerCase()] : categoryHref);
   
   // Logic: Intercept legacy category URLs and map them to pillars to avoid 404s
-  if (catLink && (catLink.includes('/directory/') || !catLink.startsWith('/'))) {
+  if (catLink && (catLink.includes('/calculator/') || !catLink.startsWith('/'))) {
     const categoryId = catLink.split('/').filter(Boolean).pop() || catLink;
     if (categoryId && CATEGORY_URL_MAP[categoryId.toLowerCase()]) {
       catLink = CATEGORY_URL_MAP[categoryId.toLowerCase()];
@@ -103,7 +103,7 @@ export function CalculatorLayout({
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {CATEGORIES.map(cat => (
             <div key={cat.id} className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-              <Link href={CATEGORY_URL_MAP[cat.id.toLowerCase()] || "/directory/"} className="flex items-center gap-2 text-[14px] font-black text-slate-800 hover:text-blue-600 mb-4 transition-colors">
+              <Link href={CATEGORY_URL_MAP[cat.id.toLowerCase()] || "/calculator/"} className="flex items-center gap-2 text-[14px] font-black text-slate-800 hover:text-blue-600 mb-4 transition-colors">
                  <span>{cat.icon}</span> {cat.name}
               </Link>
               <ul className="space-y-3">
@@ -116,7 +116,7 @@ export function CalculatorLayout({
                     </li>
                   ))}
                   {cat.calculators.length > 4 && (
-                    <li className="pt-2"><Link href={CATEGORY_URL_MAP[cat.id.toLowerCase()] || "/directory/"} className="text-[11px] uppercase tracking-widest text-blue-600 font-bold hover:underline">View All &rarr;</Link></li>
+                    <li className="pt-2"><Link href={CATEGORY_URL_MAP[cat.id.toLowerCase()] || "/calculator/"} className="text-[11px] uppercase tracking-widest text-blue-600 font-bold hover:underline">View All &rarr;</Link></li>
                   )}
               </ul>
             </div>
@@ -133,7 +133,7 @@ export function CalculatorLayout({
         type="unified"
         breadcrumbItems={[
           { name: 'Home', item: 'https://nepacalc.com' },
-          ...(catLabel ? [{ name: catLabel, item: `https://nepacalc.com${catLink || '/directory/'}` }] : []),
+          ...(catLabel ? [{ name: catLabel, item: `https://nepacalc.com${catLink || '/calculator/'}` }] : []),
           { name: title, item: `https://nepacalc.com${resolvedSlug.includes('/') ? `/${resolvedSlug}` : `/calculator/${resolvedSlug}`}` }
         ]}
         name={title}

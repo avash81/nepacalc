@@ -82,7 +82,7 @@ export default function SEEGPACalculator() {
   return (
     <ModernCalcLayout
       slug="see-gpa"
-      crumbs={[{ label: 'Home', href: '/' }, { label: 'Education', href: '/directory/' }, { label: 'SEE GPA Calculator' }]}
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Education', href: '/calculator/' }, { label: 'SEE GPA Calculator' }]}
       title="SEE GPA Calculator"
       description="Calculate your Secondary Education Examination (SEE) GPA using the official Nepal Letter Grading Directive 2083 rules."
       icon={GraduationCap}

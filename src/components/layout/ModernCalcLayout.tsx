@@ -122,6 +122,15 @@ export function ModernCalcLayout({
     return normalized;
   };
 
+  const processedCrumbs = (() => {
+    if (!crumbs || crumbs.length === 0) return crumbs;
+    let clean = crumbs.filter(c => c.label.toLowerCase() !== 'home');
+    if (clean[0] && clean[0].label !== 'Calculators') {
+      clean = [{ label: 'Calculators', href: '/calculator/' }, ...clean];
+    }
+    return [{ label: 'Home', href: '/' }, ...clean];
+  })();
+
   const faqQuestions = enrichedFAQs && enrichedFAQs.length > 0 ? enrichedFAQs.map((f: any) => ({
     question: f.question,
     answer: f.answer
@@ -201,28 +210,28 @@ export function ModernCalcLayout({
         data={{
           url: pathname ? `https://nepacalc.com${normalizeLink(pathname)}` : undefined,
           breadcrumbUrl: pathname ? `https://nepacalc.com${normalizeLink(pathname)}` : undefined,
-          breadcrumb: crumbs && crumbs.length > 0 ? [
+          breadcrumb: processedCrumbs && processedCrumbs.length > 0 ? [
             { name: 'Home', item: 'https://nepacalc.com' },
-            ...crumbs.map(c => ({ name: c.label, item: c.href ? `https://nepacalc.com${normalizeLink(c.href)}` : undefined })).filter((x): x is { name: string, item: string } => !!x.item)
+            ...processedCrumbs.map(c => ({ name: c.label, item: c.href ? `https://nepacalc.com${normalizeLink(c.href)}` : undefined })).filter((x): x is { name: string, item: string } => !!x.item)
           ] : undefined,
           calculator: {
             name: title,
             description: description,
             applicationCategory: "EducationalApplication",
             url: pathname ? `https://nepacalc.com${normalizeLink(pathname)}` : undefined,
-            isPartOf: crumbs && crumbs[0]?.href ? `https://nepacalc.com${normalizeLink(crumbs[0].href)}#collection` : 'https://nepacalc.com/#website'
+            isPartOf: crumbs && processedCrumbs?.[0]?.href ? `https://nepacalc.com${normalizeLink(processedCrumbs?.[0].href)}#collection` : 'https://nepacalc.com/#website'
           },
           faqs: faqQuestions,
           howto: howToSteps ? { name: `How to use ${title}`, description: description, steps: howToSteps, url: pathname ? `https://nepacalc.com${normalizeLink(pathname)}` : undefined } : undefined
         }} 
       />
       <div className="max-w-[1280px] mx-auto px-4 pt-2 pb-16">
-        {((crumbs && crumbs.length > 0) || !hideH1) && (
+        {((processedCrumbs && processedCrumbs.length > 0) || !hideH1) && (
           <div className={`mb-2 pb-2 flex flex-col md:flex-row md:items-end justify-between gap-2 border-b border-[#dadce0]`}>
             <div>
-              {crumbs && crumbs.length > 0 && (
+              {processedCrumbs && processedCrumbs.length > 0 && (
                 <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-1.5 text-[11px] font-medium text-[#5f6368] mb-1 uppercase tracking-wider">
-                  {crumbs.map((c, i) => (
+                  {processedCrumbs.map((c, i) => (
                     <Fragment key={i}>
                       {i > 0 && <span className="text-[#DADCE0] scale-75">/</span>}
                       {c.href ? <Link href={normalizeLink(c.href) as string} className="hover:text-[#1A73E8]">{c.label}</Link> : <span className="text-[#5f6368]">{c.label}</span>}
