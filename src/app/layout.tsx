@@ -120,7 +120,6 @@ export default function RootLayout({
   return (
     <html lang="en-NP" className="scroll-smooth">
       <head>
-        <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
@@ -131,8 +130,6 @@ export default function RootLayout({
         {/* Explicit Favicon for Google Search Results (managed by metadata export) */}
       </head>
       <body className="font-sans">
-        {/* @ts-ignore */}
-        <amp-auto-ads type="adsense" data-ad-client="ca-pub-9123093080720168"></amp-auto-ads>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(globalSchema) }}
@@ -155,14 +152,6 @@ export default function RootLayout({
         <MobileNav />
 
         <GoogleAnalytics />
-
-        {/* Google AdSense - loaded after interactive to preserve Core Web Vitals */}
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9123093080720168"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
       </body>
     </html>
   );

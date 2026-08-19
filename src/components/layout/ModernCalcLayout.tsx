@@ -7,7 +7,8 @@ import { TIER1_SEO_CONTENT } from '@/data/seo-content';
 import { usePathname } from 'next/navigation';
 import { CALCULATORS } from '@/data/calculators';
 import type { MarketRate } from '@/utils/market/fetchRates';
-
+import { AdsterraNativeBanner } from '@/components/ads/AdsterraNativeBanner';
+import { Adsterra320x50 } from '@/components/ads/Adsterra320x50';
 
 interface ModernCalcLayoutProps {
   title: string;
@@ -42,10 +43,11 @@ interface ModernCalcLayoutProps {
   titleClassName?: string;
   sidebarPosition?: 'side' | 'bottom';
   calculatorPosition?: 'main' | 'top';
+  showAds?: boolean;
 }
 
 export function ModernCalcLayout({
-  title, description, icon: Icon = Calculator, inputs, results, howToUse, formula, faqs, sidebar, relatedTools, seoContent, auditPanel, details, crumbs, slug, fullWidth = false, layout = 'split', ads, hideH1 = false, intro, customSchema, compactHeader = false, titleClassName, sidebarPosition = 'side', calculatorPosition = 'main'
+  title, description, icon: Icon = Calculator, inputs, results, howToUse, formula, faqs, sidebar, relatedTools, seoContent, auditPanel, details, crumbs, slug, fullWidth = false, layout = 'split', ads, hideH1 = false, intro, customSchema, compactHeader = false, titleClassName, sidebarPosition = 'side', calculatorPosition = 'main', showAds = true
 }: ModernCalcLayoutProps) {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [liveRates, setLiveRates] = useState<MarketRate[]>([]);
@@ -262,6 +264,12 @@ export function ModernCalcLayout({
         <div className={`flex flex-col gap-4 ${sidebarPosition === 'bottom' ? '' : 'lg:flex-row'}`}>
           <div className="flex-1 space-y-4 w-full min-w-0">
             {!fullWidth && calculatorEngineNode}
+            {showAds && (
+              <div className="flex flex-col items-center justify-center w-full my-6 no-print">
+                {/* Primary Adsterra Native Banner (Desktop + Mobile) */}
+                <AdsterraNativeBanner />
+              </div>
+            )}
             {ads?.inContent && <div className="flex justify-center no-print">{ads.inContent}</div>}
             {details && <div className="details-container space-y-6 w-full mb-6">{details}</div>}
             {(enrichedHowTo || enrichedFormula) && (
@@ -351,6 +359,11 @@ export function ModernCalcLayout({
 
         </div>
       </div>
+      {showAds && (
+        <div className="flex justify-center w-full my-4 no-print sm:hidden">
+          <Adsterra320x50 />
+        </div>
+      )}
       {ads?.bottom && <div className="mt-8 flex justify-center no-print pb-20 lg:pb-8">{ads.bottom}</div>}
       <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-[#DADCE0] px-4 py-2 flex justify-around items-center z-50">
         {[ 

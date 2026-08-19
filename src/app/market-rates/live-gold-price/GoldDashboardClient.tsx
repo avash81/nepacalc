@@ -7,6 +7,8 @@ import TradingViewWidget from '@/components/market/TradingViewWidget';
 import { Trophy, Table, History, Zap, ArrowLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import SeoSections from './SeoSections';
+import { AdsterraNativeBanner } from '@/components/ads/AdsterraNativeBanner';
+import { Adsterra320x50 } from '@/components/ads/Adsterra320x50';
 
 
 const renderToc = (items: any[]) => {
@@ -384,6 +386,14 @@ export default function GoldDashboardClient() {
               ))}
             </tbody>
           </table>
+        </div>
+      </div>
+      
+      {/* Adsterra Units */}
+      <div className="flex flex-col items-center justify-center w-full my-6 no-print">
+        <AdsterraNativeBanner />
+        <div className="sm:hidden mt-4">
+          <Adsterra320x50 />
         </div>
       </div>
 
