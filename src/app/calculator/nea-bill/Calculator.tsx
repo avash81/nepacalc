@@ -1,6 +1,7 @@
 'use client';
 import { useMemo, useState } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
+import { HilltopAds300x250 } from '@/components/ads/HilltopAds300x250';
 import { NeaBillSEO } from './seo';
 import { 
   Zap, Info, Receipt, UtilityPole, Building2, History, Compass, 
@@ -120,6 +121,7 @@ export default function NEABillCalculator() {
       title="NEA Bill Calculator"
       description="The NEA Bill Calculator helps you calculate your Nepal Electricity Authority electricity bill using the latest 2083/84 tariff rates. Enter your electricity consumption to get an instant breakdown of unit charges, service charges, VAT and total bill amount."
       icon={Zap}
+      ads={{ inContent: <HilltopAds300x250 /> }}
       inputs={
         <div className="space-y-6">
           <div className="grid grid-cols-1 gap-6">

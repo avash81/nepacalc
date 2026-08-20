@@ -7,6 +7,7 @@ import TradingViewWidget from '@/components/market/TradingViewWidget';
 import { Trophy, Table, History, Zap, ArrowLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import SeoSections from './SeoSections';
+import { HilltopAds300x250 } from '@/components/ads/HilltopAds300x250';
 
 
 const renderToc = (items: any[]) => {
@@ -385,6 +386,11 @@ export default function GoldDashboardClient() {
             </tbody>
           </table>
         </div>
+      </div>
+
+      {/* HilltopAds 300×250 — test zone between rate table and calculator */}
+      <div className="flex justify-center my-6 no-print">
+        <HilltopAds300x250 />
       </div>
 
       {/* Calculator Integration */}

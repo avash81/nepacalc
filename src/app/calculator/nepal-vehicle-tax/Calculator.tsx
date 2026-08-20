@@ -1,6 +1,7 @@
 'use client';
 import { useMemo } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
+import { HilltopAds300x250 } from '@/components/ads/HilltopAds300x250';
 import {
   Car, Bike, ShieldCheck, AlertCircle, Zap, Activity, Globe,
   Landmark, Wallet, Table, BatteryCharging, Truck, Bus,
@@ -241,6 +242,7 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
       description="The definitive blue-book renewal engine for Nepal. Calculate annual road tax for all vehicle types — bikes, cars, buses, trucks, and EVs — plus EV import duties using the 2083/84 CIF model."
       fullWidth={true}
       icon={Car}
+      ads={{ inContent: <HilltopAds300x250 /> }}
       inputs={
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-8 gap-y-3">
 
