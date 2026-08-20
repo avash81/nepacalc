@@ -5,8 +5,6 @@ import { MarketDashboardLayout } from '@/components/market/MarketDashboardLayout
 import { useLiveRates } from '@/hooks/useLiveRates';
 import CurrencyConverter from '@/app/calculator/currency-converter/Calculator';
 import { Landmark, Search, ArrowRightLeft, Globe2, ListFilter, TrendingDown, TrendingUp } from 'lucide-react';
-import { AdsterraNativeBanner } from '@/components/ads/AdsterraNativeBanner';
-import { Adsterra320x50 } from '@/components/ads/Adsterra320x50';
 
 export default function ForexDashboardClient() {
   const { rates, loading } = useLiveRates();
@@ -131,14 +129,6 @@ export default function ForexDashboardClient() {
                  </div>
                  <button className="text-[11px] font-black text-emerald-600 uppercase tracking-widest hover:underline">Full NRB List →</button>
               </div>
-           </div>
-
-           {/* Adsterra Units */}
-           <div className="flex flex-col items-center justify-center w-full my-6 no-print">
-             <AdsterraNativeBanner />
-             <div className="sm:hidden mt-4">
-               <Adsterra320x50 />
-             </div>
            </div>
         </div>
       }

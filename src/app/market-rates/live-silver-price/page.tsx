@@ -4,8 +4,6 @@ import SilverCalculatorClient from './SilverCalculatorClient';
 import { SilverSeoContent, SilverSeoToc } from './SilverSeoSection';
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { Table, ShieldCheck, Zap } from 'lucide-react';
-import { AdsterraNativeBanner } from '@/components/ads/AdsterraNativeBanner';
-import { Adsterra320x50 } from '@/components/ads/Adsterra320x50';
 
 import fs from 'fs';
 import path from 'path';
@@ -499,14 +497,6 @@ export default async function Page() {
                       </table>
                     </div>
                   </div>
-                </div>
-              </div>
-
-              {/* Adsterra Units */}
-              <div className="flex flex-col items-center justify-center w-full my-6 no-print">
-                <AdsterraNativeBanner />
-                <div className="sm:hidden mt-4">
-                  <Adsterra320x50 />
                 </div>
               </div>
 
