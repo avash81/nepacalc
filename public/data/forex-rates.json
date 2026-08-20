@@ -202,7 +202,7 @@
   "source": "Nepal Rastra Bank (NRB)",
   "source_url": "https://www.nrb.org.np/api/forex/v1/rates?page=1&per_page=1&from=2026-08-20&to=2026-08-20",
   "published_at": "2026-08-20",
-  "updated_at": "2026-08-20T03:52:10.656Z",
-  "fetched_at": "2026-08-20T03:52:10.656Z",
+  "updated_at": "2026-08-20T04:35:20.907Z",
+  "fetched_at": "2026-08-20T04:35:20.907Z",
   "status": "verified"
 }
