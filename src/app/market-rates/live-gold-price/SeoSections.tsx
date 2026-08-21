@@ -1,4 +1,5 @@
 import React from 'react';
+import PricePerformanceWidget from '@/components/widgets/PricePerformanceWidget';
 import { BookOpen, Scale, Globe, ShieldCheck, CheckCircle2, FileText, Search } from 'lucide-react';
 import HistoricalData from './HistoricalData';
 import Link from 'next/link';
@@ -24,97 +25,17 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
     <div className="space-y-16 mt-8">
 
       {/* ─── NEW: Quick Answer Block (AI Overview / Featured Snippet) ─── */}
-      <section id="quick-answer-block" className="scroll-mt-24 bg-blue-50 border border-blue-100 rounded-2xl p-6 md:p-8">
-        <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tighter mb-3">Quick Answer</h3>
-        <p className="text-[15px] text-slate-700 font-medium leading-relaxed">
-          Today&apos;s official gold price in Nepal is published daily by <strong>FENEGOSIDA</strong> and reflects international gold prices (LBMA), USD/NPR exchange rates set by <strong>Nepal Rastra Bank</strong>, customs duties, and local market conditions. The live benchmark rates shown on this page include <strong>Hallmark Gold (24K)</strong>, <strong>Tejabi Gold (22K)</strong>, and <strong>Silver</strong>, along with historical trends and an official gold value calculator.
-        </p>
-      </section>
+      
 
       {/* ─── NEW: Today&apos;s Gold Price at a Glance ─── */}
-      <section id="gold-at-a-glance" className="scroll-mt-24">
-        <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tighter mb-6">Today&apos;s Gold Price at a Glance</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5">
-          {[
-            { label: 'Hallmark Gold (24K)', value: hallmarkCurrent ? `Rs. ${fmt(hallmarkCurrent)}` : '—', sub: 'per Tola' },
-            { label: 'Tejabi Gold (22K)', value: tejabiCurrent && tejabiCurrent > 0 ? `Rs. ${fmt(tejabiCurrent)}` : 'Not Published', sub: 'per Tola' },
-            { label: 'Silver (Chandi)', value: silverCurrent ? `Rs. ${fmt(silverCurrent)}` : '—', sub: 'per Tola' },
-          ].map(({ label, value, sub }) => (
-            <div key={label} className="bg-amber-50 border border-amber-100 rounded-xl p-5 text-center">
-              <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">{label}</div>
-              <div className="text-2xl font-black text-slate-900">{value}</div>
-              <div className="text-[11px] text-slate-500 font-medium mt-1">{sub} · FENEGOSIDA</div>
-            </div>
-          ))}
-        </div>
-        <div className="bg-white border border-slate-200 rounded-xl p-5">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
-            {[
-              { label: "Today's Movement", value: rates?.gold?.tolaNPR ? 'See live board above' : '—' },
-              { label: 'Weekly Movement', value: 'See price history below' },
-              { label: 'Monthly High', value: rates?.gold?.tolaNPR?.high52w ? `Rs. ${fmt(rates.gold.tolaNPR.high52w)}` : 'See history' },
-              { label: 'Monthly Low', value: rates?.gold?.tolaNPR?.low52w ? `Rs. ${fmt(rates.gold.tolaNPR.low52w)}` : 'See history' },
-            ].map(({ label, value }) => (
-              <div key={label}>
-                <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">{label}</div>
-                <div className="text-sm font-bold text-slate-700">{value}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
 
       {/* ─── NEW: Full Gold Price Conversion Table ─── */}
-      <section id="gold-conversion-table" className="scroll-mt-24">
-        <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tighter mb-4">Gold Price Conversion Table</h3>
-        <p className="text-[14px] text-slate-600 font-medium mb-5 leading-relaxed">
-          Today&apos;s <a href="/calculator/gold-converter/" className="text-blue-600 hover:underline font-bold">Gold Price Calculator</a> automatically converts the official FENEGOSIDA rate into every common unit. Use this as a quick reference for 1 gram, 5 gram, 10 gram, Lal, Aana, half Tola, and Tola gold prices in Nepal today.
-        </p>
-        <div className="overflow-x-auto rounded-xl border border-slate-200">
-          <table className="w-full text-left text-sm">
-            <thead className="bg-slate-50 text-[10px] font-black text-slate-400 uppercase tracking-widest">
-              <tr>
-                <th className="py-3 px-5">Unit</th>
-                <th className="py-3 px-5 text-right">24K Hallmark</th>
-                <th className="py-3 px-5 text-right">22K Tejabi</th>
-                <th className="py-3 px-5"></th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-50">
-              {[
-                { unit: '1 Gram', divisor: 11.664 },
-                { unit: '5 Gram', divisor: 11.664 / 5 },
-                { unit: '10 Gram', divisor: 1.1664 },
-                { unit: '1 Lal (1/8 Tola)', divisor: 8 },
-                { unit: '1 Aana (1/16 Tola)', divisor: 16 },
-                { unit: 'Half Tola (½ Tola)', divisor: 2 },
-                { unit: '1 Tola', divisor: 1 },
-                { unit: '5 Tola', divisor: 0.2 },
-                { unit: '10 Tola', divisor: 0.1 },
-                { unit: '100 Gram', divisor: 0.11664 },
-              ].map(({ unit, divisor }) => (
-                <tr key={unit} className="hover:bg-slate-50">
-                  <td className="py-3 px-5 font-bold text-slate-700">{unit}</td>
-                  <td className="py-3 px-5 text-right font-black text-slate-900">
-                    {hallmarkCurrent ? `Rs. ${fmt(Math.round(hallmarkCurrent / divisor))}` : '—'}
-                  </td>
-                  <td className="py-3 px-5 text-right font-medium text-slate-600">
-                    {tejabiCurrent && tejabiCurrent > 0 ? `Rs. ${fmt(Math.round(tejabiCurrent / divisor))}` : '—'}
-                  </td>
-                  <td className="py-3 px-5">
-                    <a href="/calculator/gold-converter/" className="text-[10px] text-blue-600 font-bold hover:underline whitespace-nowrap">Convert →</a>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p className="text-[11px] text-slate-400 font-medium mt-3">Based on today&apos;s FENEGOSIDA benchmark. 1 Tola = 11.6638 grams. For advanced conversion, use our <a href="/calculator/gold-converter/" className="text-blue-600 hover:underline font-bold">Gold Value Calculator</a>.</p>
-      </section>
+      
 
       {/* ─── NEW: Gold Price Calculator Section ─── */}
       <section id="gold-price-calculator-info" className="scroll-mt-24 bg-slate-50 border border-slate-200 rounded-2xl p-6 md:p-8">
-        <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tighter mb-3">Gold Price Calculator Tool</h3>
+        <div className="text-xl sm:text-2xl font-black text-slate-900 tracking-tighter mb-3">About the Calculator</div>
         <p className="text-[14px] text-slate-700 font-medium leading-relaxed mb-4">
           Our <a href="/calculator/gold-converter/" className="text-blue-600 hover:underline font-bold">Gold Unit Converter</a> updates automatically using today&apos;s official FENEGOSIDA rate. It supports all standard Nepali gold units — <strong>Gram</strong>, <strong>Lal</strong>, <strong>Aana</strong>, and <strong>Tola</strong> — and allows you to select purity (24K Hallmark or 22K Tejabi) to calculate the exact gold value of any piece of jewellery or bullion.
         </p>
@@ -207,7 +128,7 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
             The official rate provided by FENEGOSIDA isn&apos;t just a direct conversion of the international market. It involves several compounding factors that establish the local floor price before retail jewelry stores even add their making charges.
           </p>
           <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 my-6">
-            <h4 className="text-[13px] font-black text-slate-800 tracking-widest uppercase mb-4">The Calculation Formula</h4>
+            <h3 className="text-[13px] font-black text-slate-800 tracking-widest uppercase mb-4">The Calculation Formula</h3>
             <code className="block bg-white border border-slate-200 text-slate-800 p-4 rounded-xl text-sm font-mono text-center">
               (International Spot Price × USD/NPR Exchange Rate) + 20% Customs Duty + Bank Handling Fees
             </code>
@@ -362,6 +283,27 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
           For historical trends and market insights, read our detailed <a href="/blog/nepal-gold-price-analysis-2083/" className="text-blue-700 hover:underline font-bold">Nepal Gold Price Analysis</a> or check the <Link href="/market-rates/silver-price-nepal/" className="text-blue-600 hover:underline font-bold">Live Silver Price</Link>.
         </p>
       </section>
+
+      {/* ─── Price Performance Widget ─── */}
+      <div className="not-prose mb-8">
+        <PricePerformanceWidget
+          asset="Gold"
+          source="FENEGOSIDA · NPR per Tola"
+          rows={[
+            {
+              period: 'Today',
+              amount: '—',
+              percent: '—',
+              isNegative: false,
+            },
+            { period: '30 Days',  amount: '+10,700',  percent: '+3.50%',    isNegative: false },
+            { period: '6 Months', amount: '-4,200',   percent: '-1.30%',    isNegative: true  },
+            { period: '1 Year',   amount: '+66,700',  percent: '+26.70%',   isNegative: false },
+            { period: '5 Year',   amount: '+176,700', percent: '+126.21%',  isNegative: false },
+            { period: '20 Year',  amount: '+300,700', percent: '+1877.60%', isNegative: false },
+          ]}
+        />
+      </div>
 
       {/* ─── ORIGINAL: Historical Data Section (Component) ─── */}
       <HistoricalData />

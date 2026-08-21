@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import React from 'react';
 
 interface PricePerformanceRow {
@@ -15,61 +15,58 @@ interface PricePerformanceWidgetProps {
 }
 
 export default function PricePerformanceWidget({ asset, rows, source }: PricePerformanceWidgetProps) {
-  const accentColor = asset === 'Gold' ? '#b59a00' : '#5f6368';
-
   return (
     <div
       style={{
         background: '#fff',
-        border: '1px solid #DADCE0',
-        borderRadius: '12px',
+        border: '1px solid #e0e0e0',
+        borderRadius: '4px',
         overflow: 'hidden',
-        marginBottom: '12px',
+        marginBottom: '16px',
+        fontFamily: 'Arial, sans-serif',
       }}
     >
       <div
         style={{
-          background: '#F8F9FA',
-          borderBottom: '1px solid #e8eaed',
-          padding: '10px 14px',
-          fontFamily: 'monospace',
-          fontSize: '0.72rem',
-          textTransform: 'uppercase' as const,
-          letterSpacing: '0.1em',
-          color: '#70757a',
-          fontWeight: 700,
+          background: '#f4f4f4',
+          borderBottom: '1px solid #e0e0e0',
+          padding: '10px',
+          fontSize: '16px',
+          color: '#333',
+          fontWeight: 'bold',
+          textAlign: 'center',
         }}
       >
-        {asset} Price Performance
+        {asset} Price Performance NPR
       </div>
-      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.78rem' }}>
+      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
         <thead>
-          <tr style={{ background: '#F8F9FA', borderBottom: '1px solid #e8eaed' }}>
-            <th style={{ padding: '6px 10px', textAlign: 'left', color: '#5f6368', fontWeight: 700, fontSize: '0.72rem' }}>Change</th>
-            <th style={{ padding: '6px 10px', textAlign: 'right', color: '#5f6368', fontWeight: 700, fontSize: '0.72rem' }}>Amount</th>
-            <th style={{ padding: '6px 10px', textAlign: 'right', color: '#5f6368', fontWeight: 700, fontSize: '0.72rem' }}>%</th>
+          <tr style={{ borderBottom: '1px solid #e0e0e0' }}>
+            <th style={{ padding: '8px 10px', textAlign: 'left', color: '#111', fontWeight: 'bold' }}>Change</th>
+            <th style={{ padding: '8px 10px', textAlign: 'center', color: '#111', fontWeight: 'bold' }}>Amount</th>
+            <th style={{ padding: '8px 10px', textAlign: 'center', color: '#111', fontWeight: 'bold' }}>%</th>
           </tr>
         </thead>
         <tbody>
           {rows.map((row, i) => (
-            <tr key={i} style={{ borderBottom: i < rows.length - 1 ? '1px solid #f1f3f4' : 'none' }}>
-              <td style={{ padding: '5px 10px', color: '#202124', fontWeight: 600 }}>{row.period}</td>
+            <tr key={i} style={{ borderBottom: '1px solid #f0f0f0' }}>
+              <td style={{ padding: '8px 10px', color: '#000', fontWeight: 'bold' }}>{row.period}</td>
               <td
                 style={{
-                  padding: '5px 10px',
-                  textAlign: 'right',
-                  fontWeight: 700,
-                  color: row.isNegative ? '#d93025' : '#188038',
+                  padding: '8px 10px',
+                  textAlign: 'center',
+                  fontWeight: 'normal',
+                  color: row.amount === '—' || row.amount === '-' ? '#000' : (row.isNegative ? '#cc0000' : '#006600'),
                 }}
               >
                 {row.amount}
               </td>
               <td
                 style={{
-                  padding: '5px 10px',
-                  textAlign: 'right',
-                  fontWeight: 700,
-                  color: row.isNegative ? '#d93025' : '#188038',
+                  padding: '8px 10px',
+                  textAlign: 'center',
+                  fontWeight: 'normal',
+                  color: row.percent === '—' || row.percent === '-' ? '#000' : (row.isNegative ? '#cc0000' : '#006600'),
                 }}
               >
                 {row.percent}
@@ -81,11 +78,13 @@ export default function PricePerformanceWidget({ asset, rows, source }: PricePer
       {source && (
         <div
           style={{
-            padding: '5px 10px 8px',
-            fontSize: '0.67rem',
-            color: '#9aa0a6',
+            background: '#f4f4f4',
+            padding: '8px 10px',
+            fontSize: '12px',
+            color: '#000',
+            fontWeight: 'bold',
             textAlign: 'center',
-            borderTop: '1px solid #f1f3f4',
+            borderTop: '1px solid #e0e0e0',
           }}
         >
           {source}
