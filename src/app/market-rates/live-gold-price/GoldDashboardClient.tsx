@@ -386,8 +386,8 @@ export default function GoldDashboardClient() {
             {[
               { label: "Today's Movement", value: rates?.gold?.tolaNPR ? 'See live board above' : '—' },
               { label: 'Weekly Movement', value: 'See price history below' },
-              { label: 'Monthly High', value: rates?.gold?.tolaNPR?.high52w ? `Rs. ${fmt(rates.gold.tolaNPR.high52w)}` : 'See history' },
-              { label: 'Monthly Low', value: rates?.gold?.tolaNPR?.low52w ? `Rs. ${fmt(rates.gold.tolaNPR.low52w)}` : 'See history' },
+              { label: 'Monthly High', value: (rates?.gold?.tolaNPR as any)?.high52w ? `Rs. ${fmt((rates.gold.tolaNPR as any).high52w)}` : 'See history' },
+              { label: 'Monthly Low', value: (rates?.gold?.tolaNPR as any)?.low52w ? `Rs. ${fmt((rates.gold.tolaNPR as any).low52w)}` : 'See history' },
             ].map(({ label, value }) => (
               <div key={label}>
                 <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">{label}</div>
