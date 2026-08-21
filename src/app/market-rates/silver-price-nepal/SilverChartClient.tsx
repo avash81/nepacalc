@@ -1,3 +1,4 @@
+﻿import PricePerformanceWidget from '@/components/widgets/PricePerformanceWidget';
 'use client';
 
 import React from 'react';
@@ -21,15 +22,32 @@ export default function SilverChartClient() {
       <p className="text-[11px] text-slate-500 mb-4">
         <em>* Nepal&apos;s official silver price is fixed once daily by FENEGOSIDA. This live chart tracks the international spot market which drives the daily local price changes.</em>
       </p>
-      <div className="w-full h-[340px] bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm relative">
-        <TradingViewWidget 
-          symbol="OANDA:XAGUSD"
-          theme="light"
-          containerId="tv_chart_silver_main"
-          chartStyle="3"
-          interval="D"
-        />
+            <div className="lg:grid lg:grid-cols-[1fr_300px] lg:gap-6">
+        <div className="w-full h-[340px] md:h-[400px] bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm relative mb-6 lg:mb-0">
+          <TradingViewWidget 
+            symbol="OANDA:XAGUSD"
+            theme="light"
+            containerId="tv_chart_silver_main"
+            chartStyle="3"
+            interval="D"
+          />
+        </div>
+        <div className="w-full">
+          <PricePerformanceWidget
+            asset="Silver"
+            source="silverprice.org - 14:31 NY Time"
+            rows={[
+              { period: 'Today', amount: '+1.51', percent: '+2.23%', isNegative: false },
+              { period: '30 Days', amount: '+10.25', percent: '+17.74%', isNegative: false },
+              { period: '6 Months', amount: '-18.77', percent: '-21.63%', isNegative: true },
+              { period: '1 Year', amount: '+29.14', percent: '+74.92%', isNegative: false },
+              { period: '5 Year', amount: '+45.03', percent: '+195.80%', isNegative: false },
+              { period: '20 Years', amount: '+55.82', percent: '+456.99%', isNegative: false },
+            ]}
+          />
+        </div>
       </div>
     </div>
   );
 }
+

@@ -572,20 +572,6 @@ export default async function Page() {
             
             
             <aside className="nb-toc">
-              <div className="mb-8">
-                <PricePerformanceWidget
-                  asset="Silver"
-                  source="silverprice.org - 14:31 NY Time"
-                  rows={[
-                    { period: 'Today', amount: '+1.51', percent: '+2.23%', isNegative: false },
-                    { period: '30 Days', amount: '+10.25', percent: '+17.74%', isNegative: false },
-                    { period: '6 Months', amount: '-18.77', percent: '-21.63%', isNegative: true },
-                    { period: '1 Year', amount: '+29.14', percent: '+74.92%', isNegative: false },
-                    { period: '5 Year', amount: '+45.03', percent: '+195.80%', isNegative: false },
-                    { period: '20 Years', amount: '+55.82', percent: '+456.99%', isNegative: false },
-                  ]}
-                />
-              </div>
               <SilverSeoToc />
             </aside>
 
@@ -595,6 +581,7 @@ export default async function Page() {
     </div>
   );
 }
+
 
 
 
