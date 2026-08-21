@@ -1,5 +1,5 @@
-﻿import PricePerformanceWidget from '@/components/widgets/PricePerformanceWidget';
-'use client';
+﻿'use client';
+import PricePerformanceWidget from '@/components/widgets/PricePerformanceWidget';
 
 import React from 'react';
 import TradingViewWidget from '@/components/market/TradingViewWidget';
@@ -50,4 +50,5 @@ export default function SilverChartClient() {
     </div>
   );
 }
+
 
