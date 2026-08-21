@@ -356,7 +356,7 @@ export default function GoldDashboardClient() {
             
       <span className="nb-toc-head">On this page</span>
       <ol>
-        {items.map((entry, idx) => {
+        {tocItems.map((entry, idx) => {
           if (entry.divider) {
             return <div key={`div-${idx}`} className="nb-toc-divider" />;
           }
@@ -646,7 +646,7 @@ export default function GoldDashboardClient() {
               
       <span className="nb-toc-head">On this page</span>
       <ol>
-        {items.map((entry, idx) => {
+        {tocItems.map((entry, idx) => {
           if (entry.divider) {
             return <div key={`div-${idx}`} className="nb-toc-divider" />;
           }
@@ -669,4 +669,5 @@ export default function GoldDashboardClient() {
 </div>
   );
 }
+
 
