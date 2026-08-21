@@ -30,72 +30,23 @@ const tocGroups = [
   }
 ];
 
+
 export function SilverSeoToc() {
   let counter = 0;
   return (
-    <div className="lg:sticky lg:top-[88px] lg:max-h-[calc(100vh-100px)] lg:overflow-y-auto lg:self-start scrollbar-thin">
-      {/* Silver Price Performance Widget */}
-      <PricePerformanceWidget
-        asset="Silver"
-        source="FENEGOSIDA · NPR per Tola"
-        rows={[
-          { period: 'Today',    amount: '—',      percent: '—',         isNegative: false },
-          { period: '30 Days',  amount: '+380',   percent: '+8.27%',    isNegative: false },
-          { period: '6 Months', amount: '-290',   percent: '-5.82%',    isNegative: true  },
-          { period: '1 Year',   amount: '+1,250', percent: '+36.23%',   isNegative: false },
-          { period: '5 Year',   amount: '+2,900', percent: '+160.00%',  isNegative: false },
-          { period: '20 Year',  amount: '+4,500', percent: '+2250.00%', isNegative: false },
-        ]}
-      />
-
-      {/* DESKTOP TOC */}
-      <nav
-        className="hidden lg:block pt-2"
-        aria-label="Table of Contents"
-      >
-      <span style={{
-        display: 'block',
-        fontFamily: 'monospace',
-        fontSize: '0.7rem',
-        textTransform: 'uppercase',
-        letterSpacing: '0.12em',
-        color: '#70757a',
-        marginBottom: '8px',
-        fontWeight: 700,
-      }}>On This Page</span>
-      <ol style={{ listStyle: 'none', margin: 0, padding: 0, borderLeft: '2px solid #e8eaed' }}>
+    <>
+      <span className="nb-toc-head">On this page</span>
+      <ol>
         {tocGroups.map((group, gi) => (
           <React.Fragment key={gi}>
-            {gi > 0 && (
-              <div style={{ height: '1px', background: '#e8eaed', margin: '8px 0' }} />
-            )}
-            {group.items.map((item) => {
+            {gi > 0 && <div className="nb-toc-divider" />}
+            {group.items.map((item, ii) => {
               counter++;
-              const num = String(counter).padStart(2, '0');
+              const numStr = counter.toString().padStart(2, '0');
               return (
                 <li key={item.id}>
-                  <a
-                    href={`#${item.id}`}
-                    className="hover:!text-[#1a73e8] hover:!border-l-[#1a73e8]"
-                    style={{
-                      display: 'block',
-                      padding: '6px 0 6px 14px',
-                      fontSize: '0.82rem',
-                      color: '#5f6368',
-                      textDecoration: 'none',
-                      borderLeft: '2px solid transparent',
-                      marginLeft: '-2px',
-                      lineHeight: 1.3,
-                      transition: 'color 0.15s, border-color 0.15s',
-                    }}
-                  >
-                    <span style={{
-                      fontFamily: 'monospace',
-                      fontSize: '0.67rem',
-                      color: '#b59a00',
-                      marginRight: '5px',
-                      fontWeight: 700,
-                    }}>{num}</span>
+                  <a href={`#${item.id}`}>
+                    <span className="nb-toc-num">{numStr}</span>
                     {item.label}
                   </a>
                 </li>
@@ -104,58 +55,7 @@ export function SilverSeoToc() {
           </React.Fragment>
         ))}
       </ol>
-      </nav>
-
-      {/* MOBILE TOC */}
-      <div className="lg:hidden mt-4">
-        <MobileCollapsible title="TABLE OF CONTENTS: 23 SECTIONS">
-          <ol style={{ listStyle: 'none', margin: 0, padding: 0, borderLeft: '2px solid #e8eaed' }}>
-            {(() => {
-              let mobCounter = 0;
-              return tocGroups.map((group, gi) => (
-                <React.Fragment key={`mob-${gi}`}>
-                  {gi > 0 && (
-                    <div style={{ height: '1px', background: '#e8eaed', margin: '8px 0' }} />
-                  )}
-                  {group.items.map((item) => {
-                    mobCounter++;
-                    const num = String(mobCounter).padStart(2, '0');
-                    return (
-                      <li key={`mob-${item.id}`}>
-                        <a
-                          href={`#${item.id}`}
-                          className="hover:!text-[#1a73e8] hover:!border-l-[#1a73e8]"
-                          style={{
-                            display: 'block',
-                            padding: '6px 0 6px 14px',
-                            fontSize: '0.82rem',
-                            color: '#5f6368',
-                            textDecoration: 'none',
-                            borderLeft: '2px solid transparent',
-                            marginLeft: '-2px',
-                            lineHeight: 1.3,
-                            transition: 'color 0.15s, border-color 0.15s',
-                          }}
-                        >
-                          <span style={{
-                            fontFamily: 'monospace',
-                            fontSize: '0.67rem',
-                            color: '#b59a00',
-                            marginRight: '5px',
-                            fontWeight: 700,
-                          }}>{num}</span>
-                          {item.label}
-                        </a>
-                      </li>
-                    );
-                  })}
-                </React.Fragment>
-              ));
-            })()}
-          </ol>
-        </MobileCollapsible>
-      </div>
-    </div>
+    </>
   );
 }
 
@@ -335,11 +235,7 @@ export function SilverSeoContent({ silverData, source, date }: { silverData: any
             <li>Daily Nepal silver market updates</li>
             <li>Real-time silver calculator</li>
             <li>Traditional Nepal silver weight conversion</li>
-          </ul>
-
-          <SilverHistoricalData />
-
-          <ul className="list-disc list-inside space-y-2 text-slate-700 font-medium mb-6">
+          </ul><ul className="list-disc list-inside space-y-2 text-slate-700 font-medium mb-6">
             <li>International silver spot prices (XAG/USD)</li>
             <li>Nepal Rastra Bank foreign exchange rates</li>
             <li>Import duties and customs charges</li>
@@ -493,25 +389,7 @@ export function SilverSeoContent({ silverData, source, date }: { silverData: any
             Using official benchmark rates helps ensure fair valuation during buying and selling transactions.
           </p>
 
-          {/* 11. Historical Trends */}
-          <h2 id="historical-silver-price-trends" className="text-2xl font-black text-slate-900 tracking-tighter mb-4 scroll-mt-20">
-            Historical Silver Price Trends
-          </h2>
-          <p className="text-slate-700 text-base leading-relaxed mb-4 font-medium">
-            Silver prices rarely move in a straight line. Historical trends are influenced by:
-          </p>
-          <ul className="list-disc list-inside space-y-2 text-slate-700 font-medium mb-6">
-            <li>Inflation</li>
-            <li>Interest rates</li>
-            <li>Economic growth</li>
-            <li><a href="https://www.nrb.org.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Nepal Rastra Bank</a> official foreign exchange rates</li>
-            <li>Industrial production</li>
-            <li>Precious metal demand</li>
-          </ul>
-          <p className="text-slate-700 text-base leading-relaxed mb-10 font-medium">
-            Reviewing historical trends can help users understand long-term market movements, although historical prices
-            should never be considered a guarantee of future performance.
-          </p>
+          
 
           {/* 12. Buying Silver */}
           <h2 id="buying-silver-nepal" className="text-2xl font-black text-slate-900 tracking-tighter mb-4 scroll-mt-20">
@@ -596,10 +474,24 @@ export function SilverSeoContent({ silverData, source, date }: { silverData: any
             Many investors prefer bullion products when purchasing silver primarily for investment purposes.
           </p>
 
-          {/* 16. International Market */}
-          <h2 id="international-silver-market" className="text-2xl font-black text-slate-900 tracking-tighter mb-4 scroll-mt-20">
-            International Silver Market
+          {/* Why Prices Change */}
+          <h2 id="why-prices-change" className="text-2xl font-black text-slate-900 tracking-tighter mb-4 scroll-mt-20">
+            Why Silver Prices Change in Nepal
           </h2>
+          <h3 className="text-xl font-bold text-slate-900 mb-4 tracking-tight">
+            Why Silver Prices Behave Differently Than Gold
+          </h3>
+          <p className="text-slate-700 text-base leading-relaxed mb-8 font-medium">
+            Silver prices in Nepal are influenced by a different combination of factors than gold. While both precious
+            metals follow international commodity markets, silver demand is also driven by industrial manufacturing, solar
+            energy production, electronics, medical equipment and investment demand. As a result, silver often experiences
+            larger percentage price movements than gold over shorter periods.
+          </p>
+
+          {/* 16. International Market */}
+          <h3 id="international-silver-market" className="text-xl font-bold text-slate-900 mb-4 tracking-tight scroll-mt-20">
+            International Silver Market
+          </h3>
           <p className="text-slate-700 text-base leading-relaxed mb-4 font-medium">
             The Nepal silver market closely follows international precious metal trading. Global silver prices are
             commonly quoted in US Dollars per Troy Ounce (XAG/USD).
@@ -614,9 +506,9 @@ export function SilverSeoContent({ silverData, source, date }: { silverData: any
           </p>
 
           {/* 17. Exchange Rate */}
-          <h2 id="silver-vs-exchange-rate" className="text-2xl font-black text-slate-900 tracking-tighter mb-4 scroll-mt-20">
+          <h3 id="silver-vs-exchange-rate" className="text-xl font-bold text-slate-900 mb-4 tracking-tight scroll-mt-20">
             Silver Price vs Exchange Rate
-          </h2>
+          </h3>
           <p className="text-slate-700 text-base leading-relaxed mb-4 font-medium">
             Exchange rates play an important role in determining silver prices in Nepal. Since silver is traded globally
             in US Dollars, changes in the <Link href="/market-rates/exchange-rate-nepal/" className="text-blue-600 hover:underline">Nepalese Rupee exchange rate</Link> directly affect local pricing.
@@ -628,9 +520,9 @@ export function SilverSeoContent({ silverData, source, date }: { silverData: any
           </p>
 
           {/* 18. Daily Volatility */}
-          <h2 id="daily-price-volatility" className="text-2xl font-black text-slate-900 tracking-tighter mb-4 scroll-mt-20">
+          <h3 id="daily-price-volatility" className="text-xl font-bold text-slate-900 mb-4 tracking-tight scroll-mt-20">
             Daily Price Volatility
-          </h2>
+          </h3>
           <p className="text-slate-700 text-base leading-relaxed mb-4 font-medium">
             Silver prices are naturally volatile because they respond to both investment demand and industrial
             consumption. Short-term fluctuations may occur due to:
@@ -718,6 +610,9 @@ export function SilverSeoContent({ silverData, source, date }: { silverData: any
     </div>
   );
 }
+
+
+
 
 
 

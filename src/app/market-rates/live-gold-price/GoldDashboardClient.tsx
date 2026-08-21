@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import { useLiveRates } from '@/hooks/useLiveRates';
@@ -107,7 +107,7 @@ export default function GoldDashboardClient() {
   ];
 
   return (
-    <div className="max-w-[1000px] mx-auto pb-12">
+    <div className="max-w-[1200px] lg:ml-0 lg:mr-auto pb-12">
       
       {/* Custom Header: Breadcrumbs + H1 (Left) & Big Live Price (Right) */}
       <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6 mb-8 border-b border-slate-200 pb-6">
@@ -353,7 +353,25 @@ export default function GoldDashboardClient() {
       <div className="lg:hidden mb-12">
         <MobileCollapsible title={`TABLE OF CONTENTS: ${tocItems.filter(i => !i.divider).length} SECTIONS`}>
           <ol style={{ listStyle: "none", margin: 0, padding: 0, borderLeft: "2px solid #e8eaed" }}>
-            {renderToc(tocItems)}
+            
+      <span className="nb-toc-head">On this page</span>
+      <ol>
+        {items.map((entry, idx) => {
+          if (entry.divider) {
+            return <div key={`div-${idx}`} className="nb-toc-divider" />;
+          }
+          const numStr = (idx + 1).toString().padStart(2, '0');
+          return (
+            <li key={entry.id}>
+              <a href={`#${entry.id}`}>
+                <span className="nb-toc-num">{numStr}</span>
+                {entry.label}
+              </a>
+            </li>
+          );
+        })}
+      </ol>
+
           </ol>
         </MobileCollapsible>
       </div>
@@ -625,7 +643,25 @@ export default function GoldDashboardClient() {
               fontWeight: 700,
             }}>On This Page</span>
             <ol style={{ listStyle: "none", margin: 0, padding: 0, borderLeft: "2px solid #e8eaed" }}>
-              {renderToc(tocItems)}
+              
+      <span className="nb-toc-head">On this page</span>
+      <ol>
+        {items.map((entry, idx) => {
+          if (entry.divider) {
+            return <div key={`div-${idx}`} className="nb-toc-divider" />;
+          }
+          const numStr = (idx + 1).toString().padStart(2, '0');
+          return (
+            <li key={entry.id}>
+              <a href={`#${entry.id}`}>
+                <span className="nb-toc-num">{numStr}</span>
+                {entry.label}
+              </a>
+            </li>
+          );
+        })}
+      </ol>
+
             </ol>
           </div>
         </aside>
@@ -633,3 +669,4 @@ export default function GoldDashboardClient() {
 </div>
   );
 }
+

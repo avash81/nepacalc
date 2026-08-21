@@ -1,7 +1,9 @@
-import { Metadata } from 'next';
+﻿import { Metadata } from 'next';
 import SilverChartClient from './SilverChartClient';
-import SilverCalculatorClient from './SilverCalculatorClient';
+
 import { SilverSeoContent, SilverSeoToc } from './SilverSeoSection';
+import SilverHistoricalData from './SilverHistoricalData';
+import PricePerformanceWidget from '@/components/widgets/PricePerformanceWidget';
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { Table, ShieldCheck, Zap } from 'lucide-react';
 
@@ -317,6 +319,35 @@ export default async function Page() {
 
   return (
     <div className="bg-white min-h-screen">
+      
+<style dangerouslySetInnerHTML={{ __html: `
+.nb-toc-mobile{max-width:1200px;margin:0 auto 14px;padding:0 24px;display:none;}
+.nb-toc-mobile details{border:1px solid #e2e8f0;background:#f8fafc;border-radius:8px;}
+.nb-toc-mobile summary{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:#0f172a;padding:12px 16px;cursor:pointer;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center;font-weight:700;}
+.nb-toc-mobile summary::after{content:'▼';font-size:0.6rem;transition:transform 0.2s;}
+.nb-toc-mobile details[open] summary::after{transform:rotate(180deg);}
+.nb-toc-mobile ol{list-style:none;margin:0;padding:0 16px 16px;columns:1;}
+.nb-toc-mobile li{break-inside:avoid;margin-bottom:8px;}
+.nb-toc-mobile a{display:block;font-size:0.875rem;color:#334155;text-decoration:none;line-height:1.4;font-weight:500;}
+.nb-toc-mobile a:hover{color:#2563eb;}
+.nb-toc-mobile .nb-toc-num{font-family:ui-monospace,SFMono-Regular,monospace;font-size:0.7rem;color:#94a3b8;margin-right:8px;font-weight:700;}
+
+.nb-toc{position:sticky;top:88px;align-self:start;overflow-y:auto;max-height:calc(100vh - 100px);scrollbar-width:thin;padding-right:12px;}
+.nb-toc::-webkit-scrollbar{width:4px;}
+.nb-toc::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:2px;}
+.nb-toc-head{font-family:ui-monospace,SFMono-Regular,monospace;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#64748b;margin:0 0 12px;display:block;}
+.nb-toc ol{list-style:none;margin:0;padding:0;border-left:2px solid #e2e8f0;}
+.nb-toc a{display:block;padding:6px 0 6px 14px;font-size:0.875rem;color:#475569;text-decoration:none;border-left:2px solid transparent;margin-left:-2px;line-height:1.4;font-weight:500;}
+.nb-toc a:hover{border-left-color:#2563eb;color:#2563eb;background:#f8fafc;}
+.nb-toc-num{font-family:ui-monospace,SFMono-Regular,monospace;font-size:0.7rem;color:#94a3b8;margin-right:8px;font-weight:700;}
+.nb-toc-divider{height:1px;background:#e2e8f0;margin:12px 0;}
+
+@media(max-width:1024px){
+  .nb-toc{display:none;}
+  .nb-toc-mobile{display:block;}
+}
+`}} />
+
       <link rel="preconnect" href="https://www.google-analytics.com" />
       <link rel="preconnect" href="https://s3.tradingview.com" />
       <link rel="dns-prefetch" href="https://www.google-analytics.com" />
@@ -498,16 +529,21 @@ export default async function Page() {
               </div>
 
               <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-8">
-                <div className="bg-slate-50 px-6 py-4 border-b border-slate-200">
+                <div id="silver-calculator" className="bg-slate-50 px-6 py-4 border-b border-slate-200 scroll-mt-24">
                   <h3 className="text-[13px] font-black uppercase tracking-[.2em] text-slate-800">Quick Valuation Calculator</h3>
                 </div>
                 <div className="p-6">
-                  <SilverCalculatorClient silverPerTola={currentSilver} />
+                  <a href="/calculator/silver-converter/" className="block p-6 rounded-xl border-2 border-dashed border-slate-300 hover:border-blue-500 hover:bg-blue-50 transition-colors text-center group">
+                    <span className="block text-lg font-black text-slate-700 group-hover:text-blue-700 mb-2">Open Silver Valuation Calculator</span>
+                    <span className="text-sm font-medium text-slate-500 group-hover:text-blue-600">Calculate exact value including making charges and wastage →</span>
+                  </a>
                 </div>
               </div>
 
           <div className="lg:grid lg:grid-cols-[1fr_320px] lg:gap-12 items-start">
             <article className="min-w-0">
+                            <SilverHistoricalData />
+
               <SilverSeoContent silverData={silverData} source={source} date={rate_date} />
 
               <div className="mt-6 px-4 py-4 bg-slate-50 border border-slate-200 rounded-xl text-[12px] text-slate-500 font-medium leading-relaxed space-y-4">
@@ -534,12 +570,32 @@ export default async function Page() {
               </div>
             </article>
             
-            <aside className="hidden lg:block sticky top-24 self-start">
+            
+            <aside className="nb-toc">
+              <div className="mb-8">
+                <PricePerformanceWidget
+                  asset="Silver"
+                  source="silverprice.org - 14:31 NY Time"
+                  rows={[
+                    { period: 'Today', amount: '+1.51', percent: '+2.23%', isNegative: false },
+                    { period: '30 Days', amount: '+10.25', percent: '+17.74%', isNegative: false },
+                    { period: '6 Months', amount: '-18.77', percent: '-21.63%', isNegative: true },
+                    { period: '1 Year', amount: '+29.14', percent: '+74.92%', isNegative: false },
+                    { period: '5 Year', amount: '+45.03', percent: '+195.80%', isNegative: false },
+                    { period: '20 Years', amount: '+55.82', percent: '+456.99%', isNegative: false },
+                  ]}
+                />
+              </div>
               <SilverSeoToc />
             </aside>
+
           </div>
         </div>
       </CalcWrapper>
     </div>
   );
 }
+
+
+
+
