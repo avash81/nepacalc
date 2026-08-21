@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import Link from 'next/link';
 import SilverHistoricalData from './SilverHistoricalData';
 import MobileCollapsible from '@/components/ui/MobileCollapsible';
@@ -688,10 +688,36 @@ export function SilverSeoContent({ silverData, source, date }: { silverData: any
             Together these indicators provide a more complete picture of the silver market.
           </p>
 
+          {/* 21. FAQ */}
+          <h2 id="faq" className="text-2xl font-black text-slate-900 tracking-tighter mb-4 scroll-mt-20">
+            Frequently Asked Questions
+          </h2>
+          <div className="space-y-6 mb-10">
+            <div>
+              <h3 className="text-lg font-bold text-slate-900 mb-2">How much is 1 Tola of silver in Nepal?</h3>
+              <p className="text-slate-700 font-medium">1 Tola of silver equals 11.6638 grams. You can check the current live rate per Tola at the top of this page.</p>
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-slate-900 mb-2">Where does the official silver rate come from?</h3>
+              <p className="text-slate-700 font-medium">The official rate is published daily by the Federation of Nepal Gold and Silver Dealers&apos; Association (FENEGOSIDA).</p>
+            </div>
+          </div>
+
+          {/* 22. Related Calculators */}
+          <h2 id="related-tools" className="text-2xl font-black text-slate-900 tracking-tighter mb-4 scroll-mt-20">
+            Related Calculators
+          </h2>
+          <ul className="list-disc list-inside space-y-2 text-slate-700 font-medium mb-10">
+            <li><Link href="/calculator/silver-converter/" className="text-blue-600 hover:underline">Silver Valuation Calculator</Link></li>
+            <li><Link href="/market-rates/live-gold-price/" className="text-blue-600 hover:underline">Live Gold Price in Nepal</Link></li>
+            <li><Link href="/market-rates/exchange-rate-nepal/" className="text-blue-600 hover:underline">Foreign Exchange Rates</Link></li>
+          </ul>
+
 
 
     </div>
   );
 }
+
 
 
