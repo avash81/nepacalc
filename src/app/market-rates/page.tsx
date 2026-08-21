@@ -14,7 +14,7 @@ export const metadata = calcMeta({
 const TAGS: Record<string, string> = {
   'market-rates/live-gold-price': 'PRECIOUS METALS',
   'gold-converter': 'PRECIOUS METALS',
-  'market-rates/live-silver-price': 'PRECIOUS METALS',
+  'market-rates/silver-price-nepal': 'PRECIOUS METALS',
   'silver-converter': 'PRECIOUS METALS',
   'market-rates/exchange-rate-nepal': 'FOREX',
   'currency-converter': 'FOREX',

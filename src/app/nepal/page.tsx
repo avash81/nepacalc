@@ -115,7 +115,7 @@ export default function NepalDirectoryPage() {
                 <li><Link href="/calculator/gold-tax/" className="text-[#1a73e8] hover:underline font-medium">Gold Tax Calculator Nepal</Link></li>
                 <li><Link href="/calculator/silver-converter/" className="text-[#1a73e8] hover:underline font-medium">Silver Converter</Link></li>
                 <li><Link href="/market-rates/live-gold-price/" className="text-[#1a73e8] hover:underline font-medium">Live Gold Price in Nepal</Link></li>
-                <li><Link href="/market-rates/live-silver-price/" className="text-[#1a73e8] hover:underline font-medium">Live Silver Price in Nepal</Link></li>
+                <li><Link href="/market-rates/silver-price-nepal/" className="text-[#1a73e8] hover:underline font-medium">Live Silver Price in Nepal</Link></li>
               </ul>
             </section>
 

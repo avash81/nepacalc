@@ -19,7 +19,7 @@ export function CategorySidebar() {
   const isPreciousMetalsPage = [
     '/market-rates/live-gold-price/',
     '/calculator/gold-converter/',
-    '/market-rates/live-silver-price/',
+    '/market-rates/silver-price-nepal/',
     '/calculator/silver-converter/',
   ].includes(pathname);
 
@@ -33,7 +33,7 @@ export function CategorySidebar() {
           <ul className="space-y-2">
             {[
               { name: 'Live Gold Price', slug: '/market-rates/live-gold-price/' },
-              { name: 'Live Silver Price', slug: '/market-rates/live-silver-price/' },
+              { name: 'Live Silver Price', slug: '/market-rates/silver-price-nepal/' },
               { name: 'Gold Converter', slug: '/calculator/gold-converter/' },
               { name: 'Silver Converter', slug: '/calculator/silver-converter/' },
               { name: 'Currency Converter', slug: '/calculator/currency-converter/' }

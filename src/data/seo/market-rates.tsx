@@ -48,7 +48,7 @@ export const marketRatesSEO: Record<string, SEOContent> = {
                     <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider">
                         <span className="text-slate-400">Quick Links:</span>
                                         <a href="/calculator/gold-tax/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Gold Import Tax Calculator</a>
-                <a href="/market-rates/live-silver-price/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Live Silver Price Calculator</a>
+                <a href="/market-rates/silver-price-nepal/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Live Silver Price Calculator</a>
                 <a href="/market-rates/exchange-rate-nepal/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Exchange Rate Converter</a>
                     </div>
                 </div>
@@ -383,7 +383,7 @@ export const marketRatesSEO: Record<string, SEOContent> = {
                         <span className="text-slate-400">Quick Links:</span>
                                         <a href="/market-rates/remittance/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Remittance Yield Calculator</a>
                 <a href="/market-rates/live-gold-price/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Live Gold Price Calculator</a>
-                <a href="/market-rates/live-silver-price/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Live Silver Price Calculator</a>
+                <a href="/market-rates/silver-price-nepal/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Live Silver Price Calculator</a>
                     </div>
                 </div>
             </div>
@@ -706,7 +706,7 @@ export const marketRatesSEO: Record<string, SEOContent> = {
                         <span className="text-slate-400">Quick Links:</span>
                                         <a href="/market-rates/exchange-rate-nepal/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Exchange Rate Converter</a>
                 <a href="/market-rates/live-gold-price/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Live Gold Price Calculator</a>
-                <a href="/market-rates/live-silver-price/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Live Silver Price Calculator</a>
+                <a href="/market-rates/silver-price-nepal/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Live Silver Price Calculator</a>
                     </div>
                 </div>
             </div>
@@ -1007,7 +1007,7 @@ export const marketRatesSEO: Record<string, SEOContent> = {
       { question: "What is FENEGOSIDA?", answer: "It is the Gold and Silver Dealers Association, unrelated to currency remittance." },
     ],
   },
-  'market-rates/live-silver-price': {
+  'market-rates/silver-price-nepal': {
     title: "Live Silver Price in Nepal | Chandi Tola Rates Today",
     description: "Real-time silver rates in Nepal today.",
     howToUse: { steps: ["1. Sync Rates.", "2. Enter Quantity.", "3. Check Results."] },

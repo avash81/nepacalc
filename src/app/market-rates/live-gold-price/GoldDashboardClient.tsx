@@ -297,7 +297,7 @@ export default function GoldDashboardClient() {
             <div className="mt-4 pt-3 border-t border-amber-200/50 flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-x-4 items-start sm:items-center text-[10px] font-bold text-amber-800">
               <div className="w-full sm:w-auto">Updated daily from FENEGOSIDA</div>
               <a href="/calculator/gold-converter/" className="text-blue-600 hover:underline">Gold Value Calculator →</a>
-              <a href="/market-rates/live-silver-price/" className="text-blue-600 hover:underline">Live Silver Price →</a>
+              <a href="/market-rates/silver-price-nepal/" className="text-blue-600 hover:underline">Live Silver Price →</a>
               <div className="w-full sm:w-auto mt-1 sm:mt-0 opacity-70">
                 Source: <span className="font-semibold text-slate-700">FENEGOSIDA</span>
               </div>

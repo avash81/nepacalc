@@ -194,20 +194,20 @@ export default function GoldTaxCalculator() {
         { question: "Is making charge taxable in Nepal?", answer: "Yes, 13% VAT is applied on the total sum of the gold price and the making charges." },
         { question: "What is the standard making charge in Nepal?", answer: "It usually starts from 8% for simple items like rings and can go up to 18-20% for complex bridal jewelry." },
         { question: "How much gold can I bring from abroad to Nepal?", answer: "NRIs can bring up to 50 grams of gold jewelry duty-free. For amounts above this, heavy import duties apply at the airport." },
-        { question: "Does this tax calculator apply to silver?", answer: "Yes, the VAT rules for silver jewelry are structurally identical to gold, meaning that the same 13% standard tax rate is applied to the combined total of the raw material cost and the jeweler's making charges. However, because the base value of silver is significantly lower than gold, the absolute tax amount paid will be much smaller. If you are calculating the tax obligations for silver ornaments, you must first ascertain the precise daily benchmark price before you run the numbers. To get the most accurate baseline for your calculations, you should check the <a href=\"/market-rates/live-silver-price/\" class=\"text-blue-600 font-bold hover:underline\">Live Silver Price Today</a>." }
+        { question: "Does this tax calculator apply to silver?", answer: "Yes, the VAT rules for silver jewelry are structurally identical to gold, meaning that the same 13% standard tax rate is applied to the combined total of the raw material cost and the jeweler's making charges. However, because the base value of silver is significantly lower than gold, the absolute tax amount paid will be much smaller. If you are calculating the tax obligations for silver ornaments, you must first ascertain the precise daily benchmark price before you run the numbers. To get the most accurate baseline for your calculations, you should check the <a href=\"/market-rates/silver-price-nepal/\" class=\"text-blue-600 font-bold hover:underline\">Live Silver Price Today</a>." }
       ]}
       sidebar={{
         title: "Market Hub",
         links: [
           { label: "Live Gold Rate", href: "/market-rates/live-gold-price/", icon: Gem },
-          { label: "Live Silver Rate", href: "/market-rates/live-silver-price/", icon: TrendingUp },
+          { label: "Live Silver Rate", href: "/market-rates/silver-price-nepal/", icon: TrendingUp },
           { label: "VAT Calculator", href: "/calculator/nepal-vat/", icon: Receipt },
           { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/", icon: Wallet },
         ],
       }}
       relatedTools={[
         { label: "Gold Price Nepal", href: "/market-rates/live-gold-price/" },
-        { label: "Silver Price Nepal", href: "/market-rates/live-silver-price/" },
+        { label: "Silver Price Nepal", href: "/market-rates/silver-price-nepal/" },
         { label: "VAT Calculator", href: "/calculator/nepal-vat/" }
       ]}
     />

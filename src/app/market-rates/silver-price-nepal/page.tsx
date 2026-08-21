@@ -56,7 +56,7 @@ export async function generateMetadata(): Promise<Metadata> {
       'FENEGOSIDA silver price',
     ],
     alternates: {
-      canonical: 'https://nepacalc.com/market-rates/live-silver-price/',
+      canonical: 'https://nepacalc.com/market-rates/silver-price-nepal/',
     },
     robots: {
       index: true,
@@ -69,7 +69,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: `Live Silver Price in Nepal Today (${year}) | Chandi Rate`,
       description,
       type: 'website',
-      url: 'https://nepacalc.com/market-rates/live-silver-price/',
+      url: 'https://nepacalc.com/market-rates/silver-price-nepal/',
       images: [
         {
           url: 'https://nepacalc.com/images/live-silver-price-nepal.webp',
@@ -113,21 +113,21 @@ const schemaGraph = {
     },
     {
       '@type': 'WebPage',
-      '@id': 'https://nepacalc.com/market-rates/live-silver-price/#webpage',
-      url: 'https://nepacalc.com/market-rates/live-silver-price/',
+      '@id': 'https://nepacalc.com/market-rates/silver-price-nepal/#webpage',
+      url: 'https://nepacalc.com/market-rates/silver-price-nepal/',
       name: 'Live Silver Price in Nepal Today',
       isPartOf: {
         '@id': 'https://nepacalc.com/#website',
       },
       primaryImageOfPage: {
-        '@id': 'https://nepacalc.com/market-rates/live-silver-price/#primaryimage',
+        '@id': 'https://nepacalc.com/market-rates/silver-price-nepal/#primaryimage',
       },
     },
     {
       '@type': 'Article',
-      '@id': 'https://nepacalc.com/market-rates/live-silver-price/#article',
+      '@id': 'https://nepacalc.com/market-rates/silver-price-nepal/#article',
       isPartOf: {
-        '@id': 'https://nepacalc.com/market-rates/live-silver-price/#webpage',
+        '@id': 'https://nepacalc.com/market-rates/silver-price-nepal/#webpage',
       },
       author: {
         '@id': 'https://nepacalc.com/#organization',
@@ -136,13 +136,13 @@ const schemaGraph = {
       datePublished: '2024-01-01T08:00:00+00:00',
       dateModified: '', 
       mainEntityOfPage: {
-        '@id': 'https://nepacalc.com/market-rates/live-silver-price/#webpage',
+        '@id': 'https://nepacalc.com/market-rates/silver-price-nepal/#webpage',
       },
       publisher: {
         '@id': 'https://nepacalc.com/#organization',
       },
       image: {
-        '@id': 'https://nepacalc.com/market-rates/live-silver-price/#primaryimage',
+        '@id': 'https://nepacalc.com/market-rates/silver-price-nepal/#primaryimage',
       },
       articleSection: 'Market Rates',
       keywords: [
@@ -166,14 +166,14 @@ const schemaGraph = {
     },
     {
       '@type': 'ImageObject',
-      '@id': 'https://nepacalc.com/market-rates/live-silver-price/#primaryimage',
+      '@id': 'https://nepacalc.com/market-rates/silver-price-nepal/#primaryimage',
       url: 'https://nepacalc.com/images/live-silver-price-nepal.webp',
       width: 1200,
       height: 630,
     },
     {
       '@type': 'BreadcrumbList',
-      '@id': 'https://nepacalc.com/market-rates/live-silver-price/#breadcrumb',
+      '@id': 'https://nepacalc.com/market-rates/silver-price-nepal/#breadcrumb',
       itemListElement: [
         {
           '@type': 'ListItem',
@@ -191,13 +191,13 @@ const schemaGraph = {
           '@type': 'ListItem',
           position: 3,
           name: 'Live Silver Price',
-          item: 'https://nepacalc.com/market-rates/live-silver-price/',
+          item: 'https://nepacalc.com/market-rates/silver-price-nepal/',
         },
       ],
     },
     {
       '@type': 'Dataset',
-      '@id': 'https://nepacalc.com/market-rates/live-silver-price/#dataset',
+      '@id': 'https://nepacalc.com/market-rates/silver-price-nepal/#dataset',
       name: 'Live Silver Price Nepal',
       description: 'Daily official silver price benchmark for Nepal published using FENEGOSIDA market data.',
       creator: {
@@ -226,7 +226,7 @@ const schemaGraph = {
     },
     {
       '@type': 'FAQPage',
-      '@id': 'https://nepacalc.com/market-rates/live-silver-price/#faqpage',
+      '@id': 'https://nepacalc.com/market-rates/silver-price-nepal/#faqpage',
       mainEntity: [
         {
           '@type': 'Question',

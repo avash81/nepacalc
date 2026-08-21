@@ -231,7 +231,7 @@ export default async function Page() {
           <h2 id="official-standard" className="text-2xl font-black text-slate-900 mt-12 mb-6">Official Nepal Gold Measurement Standard (FENEGOSIDA & NBSM)</h2>
           <div className="mb-6 space-y-4">
             <p>
-              Gold prices in Nepal change daily based on international bullion markets, USD exchange rates, and domestic demand. The <a href="https://www.fenegosida.org/" target="_blank" rel="nofollow noopener" className="text-blue-600 hover:underline">Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA)</a> publishes the official benchmark rates used by jewellery businesses across Nepal. This converter uses the official Nepal gold measurement system and is designed to work alongside the latest published market prices. Investors often compare precious metals before buying, so you can also view today's <Link href="/market-rates/live-silver-price/" className="text-blue-600 hover:underline">Live Silver Price in Nepal</Link>.
+              Gold prices in Nepal change daily based on international bullion markets, USD exchange rates, and domestic demand. The <a href="https://www.fenegosida.org/" target="_blank" rel="nofollow noopener" className="text-blue-600 hover:underline">Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA)</a> publishes the official benchmark rates used by jewellery businesses across Nepal. This converter uses the official Nepal gold measurement system and is designed to work alongside the latest published market prices. Investors often compare precious metals before buying, so you can also view today's <Link href="/market-rates/silver-price-nepal/" className="text-blue-600 hover:underline">Live Silver Price in Nepal</Link>.
             </p>
           </div>
 
@@ -257,7 +257,7 @@ export default async function Page() {
               <Link href="/calculator/silver-converter/" className="px-5 py-2.5 bg-slate-800 text-white font-semibold rounded-lg hover:bg-slate-700 transition-colors">
                 Silver Converter
               </Link>
-              <Link href="/market-rates/live-silver-price/" className="px-5 py-2.5 bg-white border border-slate-300 text-slate-700 font-semibold rounded-lg hover:bg-slate-50 transition-colors">
+              <Link href="/market-rates/silver-price-nepal/" className="px-5 py-2.5 bg-white border border-slate-300 text-slate-700 font-semibold rounded-lg hover:bg-slate-50 transition-colors">
                 Live Silver Price Today
               </Link>
             </div>

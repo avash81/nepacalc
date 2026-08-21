@@ -107,6 +107,16 @@ const nextConfig = {
         destination: '/market-rates/exchange-rate-nepal/',
         permanent: true,
       },
+      {
+        source: '/market-rates/live-silver-price/',
+        destination: '/market-rates/silver-price-nepal/',
+        permanent: true,
+      },
+      {
+        source: '/market-rates/live-silver-price',
+        destination: '/market-rates/silver-price-nepal/',
+        permanent: true,
+      },
       // ── Legacy / Removed Routes ────────────────────────────────────────
       // 301: /directory/ → /calculator/ (consolidated calculator hub)
       {

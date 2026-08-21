@@ -1687,7 +1687,7 @@ export default function NepalBudgetPage() {
                   <tr><td><a href="/calculator/nepal-loan-eligibility/">Nepal Loan Eligibility</a></td><td>NRB FOIR rules and income-based eligibility under the new slabs</td></tr>
                   <tr><td><a href="/calculator/gold-tax/">Gold Tax Calculator</a></td><td>VAT (13%) applies on gold jewellery purchases under this budget</td></tr>
                   <tr><td><a href="/market-rates/live-gold-price/">Live Gold Price Nepal</a></td><td>Track real-time gold rates as excise and import duty change</td></tr>
-                  <tr><td><a href="/market-rates/live-silver-price/">Live Silver Price Nepal</a></td><td>Live silver rate per tola and gram including current levy impact</td></tr>
+                  <tr><td><a href="/market-rates/silver-price-nepal/">Live Silver Price Nepal</a></td><td>Live silver rate per tola and gram including current levy impact</td></tr>
                   <tr><td><a href="/market-rates/remittance/">Remittance Board</a></td><td>Compare rates for remittances covered under the foreign employment provisions</td></tr>
                   <tr><td><a href="/calculator/currency-converter/">Currency Converter</a></td><td>Convert foreign earnings to NPR for tax computation</td></tr>
                   <tr><td><a href="/calculator/nepse-wacc/">NEPSE WACC Calculator</a></td><td>Weighted average cost of capital for shares under revised CGT rules</td></tr>

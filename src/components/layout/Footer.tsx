@@ -83,7 +83,7 @@ export function Footer() {
               {[
                 { name: 'All Market Rates', href: '/market-rates/' },
                 { name: 'Live Gold Price', href: '/market-rates/live-gold-price/' },
-                { name: 'Live Silver Price', href: '/market-rates/live-silver-price/' },
+                { name: 'Live Silver Price', href: '/market-rates/silver-price-nepal/' },
                 { name: 'Exchange Rate Nepal', href: '/market-rates/exchange-rate-nepal/' },
                 { name: 'Remittance Rates', href: '/market-rates/remittance/' },
               ].map((link) => (

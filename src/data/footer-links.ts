@@ -38,7 +38,7 @@ export const FOOTER_CATEGORIES: Record<string, FooterLinkGroup> = {
     heading: 'Gold & Precious Metals',
     links: [
       { name: 'Live Gold Price', href: '/market-rates/live-gold-price/' },
-      { name: 'Live Silver Price', href: '/market-rates/live-silver-price/' },
+      { name: 'Live Silver Price', href: '/market-rates/silver-price-nepal/' },
       { name: 'Gold Converter', href: '/calculator/gold-converter/' },
       { name: 'Silver Converter', href: '/calculator/silver-converter/' },
       { name: 'Currency Converter', href: '/calculator/currency-converter/' },
@@ -50,7 +50,7 @@ export const FOOTER_CATEGORIES: Record<string, FooterLinkGroup> = {
     heading: 'Silver Tools & Market Rates',
     links: [
       { name: 'Live Gold Price', href: '/market-rates/live-gold-price/' },
-      { name: 'Live Silver Price', href: '/market-rates/live-silver-price/' },
+      { name: 'Live Silver Price', href: '/market-rates/silver-price-nepal/' },
       { name: 'Gold Converter', href: '/calculator/gold-converter/' },
       { name: 'Silver Converter', href: '/calculator/silver-converter/' },
       { name: 'Currency Converter', href: '/calculator/currency-converter/' },
@@ -62,7 +62,7 @@ export const FOOTER_CATEGORIES: Record<string, FooterLinkGroup> = {
     heading: 'Market Rates & Tools',
     links: [
       { name: 'Live Gold Price', href: '/market-rates/live-gold-price/' },
-      { name: 'Live Silver Price', href: '/market-rates/live-silver-price/' },
+      { name: 'Live Silver Price', href: '/market-rates/silver-price-nepal/' },
       { name: 'Gold Converter', href: '/calculator/gold-converter/' },
       { name: 'Silver Converter', href: '/calculator/silver-converter/' },
       { name: 'Currency Converter', href: '/calculator/currency-converter/' },

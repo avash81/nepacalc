@@ -471,13 +471,13 @@ export default async function Page() {
 
                             <h2 className="text-2xl font-black text-[#202124] mt-8 mb-3 border-b border-[#DADCE0] pb-2">Explore Precious Metals</h2>
               <p className="text-[#5F6368] leading-relaxed">
-                Foreign exchange rates also significantly impact the local pricing of precious metals. If you're tracking international currencies, you may also want to monitor the latest <Link href="/market-rates/live-gold-price/" className="text-[#1a0dab] font-bold underline">Live Gold Price</Link> and <Link href="/market-rates/live-silver-price/" className="text-[#1a0dab] font-bold underline">Live Silver Price</Link>. You can also convert weight and calculate values using our <Link href="/calculator/gold-converter/" className="text-[#1a0dab] font-bold underline">Gold Converter</Link> and <Link href="/calculator/silver-converter/" className="text-[#1a0dab] font-bold underline">Silver Converter</Link>.
+                Foreign exchange rates also significantly impact the local pricing of precious metals. If you're tracking international currencies, you may also want to monitor the latest <Link href="/market-rates/live-gold-price/" className="text-[#1a0dab] font-bold underline">Live Gold Price</Link> and <Link href="/market-rates/silver-price-nepal/" className="text-[#1a0dab] font-bold underline">Live Silver Price</Link>. You can also convert weight and calculate values using our <Link href="/calculator/gold-converter/" className="text-[#1a0dab] font-bold underline">Gold Converter</Link> and <Link href="/calculator/silver-converter/" className="text-[#1a0dab] font-bold underline">Silver Converter</Link>.
               </p>
               <div className="flex flex-wrap gap-3 mt-4 mb-6">
                 <Link href="/market-rates/live-gold-price/" className="px-4 py-2 text-[13px] bg-slate-100 border border-slate-300 text-slate-700 font-semibold rounded-lg hover:bg-slate-200 transition-colors">
                   Gold Price
                 </Link>
-                <Link href="/market-rates/live-silver-price/" className="px-4 py-2 text-[13px] bg-slate-100 border border-slate-300 text-slate-700 font-semibold rounded-lg hover:bg-slate-200 transition-colors">
+                <Link href="/market-rates/silver-price-nepal/" className="px-4 py-2 text-[13px] bg-slate-100 border border-slate-300 text-slate-700 font-semibold rounded-lg hover:bg-slate-200 transition-colors">
                   Silver Price
                 </Link>
                 <Link href="/calculator/gold-converter/" className="px-4 py-2 text-[13px] bg-slate-100 border border-slate-300 text-slate-700 font-semibold rounded-lg hover:bg-slate-200 transition-colors">

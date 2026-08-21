@@ -1060,7 +1060,7 @@ export default function SilverCalculatorComponent() {
           {/* Live Silver Rate Link */}
           <div className="mt-3">
             <Link
-              href="/market-rates/live-silver-price/"
+              href="/market-rates/silver-price-nepal/"
               className="inline-flex items-center justify-center w-full py-2.5 px-4 bg-white border border-[#DADCE0] hover:bg-[#E8F0FE] hover:border-[#1A73E8] hover:text-[#1A73E8] rounded-md text-xs font-bold text-[#202124] transition-all shadow-sm"
               title="Check today's live silver rate before converting"
             >
@@ -1409,7 +1409,7 @@ export default function SilverCalculatorComponent() {
                   Total Value (NPR) = (Weight in Grams &divide; 11.6638) &times; Silver Rate Per Tola &times; Purity %
                 </div>
                 <p className="text-sm text-[#5F6368]">
-                  For exact daily market rates, check our dedicated <a href="/market-rates/live-silver-price/" className="text-[#1A73E8] underline font-semibold">Live Silver Price in Nepal</a> page. If you are converting precious metals alongside tax calculations, refer to the <a href="/calculator/gold-tax/" className="text-[#1A73E8] underline font-semibold">Nepal Customs & Gold Tax Calculator</a>.
+                  For exact daily market rates, check our dedicated <a href="/market-rates/silver-price-nepal/" className="text-[#1A73E8] underline font-semibold">Live Silver Price in Nepal</a> page. If you are converting precious metals alongside tax calculations, refer to the <a href="/calculator/gold-tax/" className="text-[#1A73E8] underline font-semibold">Nepal Customs & Gold Tax Calculator</a>.
                 </p>
               </div>
             </section>
@@ -1566,10 +1566,10 @@ export default function SilverCalculatorComponent() {
               <h2 className="text-2xl font-bold text-[#1967D2] mb-4">People Also Search For</h2>
               <ul className="flex flex-wrap gap-3 text-sm">
                 <li className="bg-[#F8F9FA] border border-[#DADCE0] rounded px-3 py-1 text-[#5F6368]">
-                  <Link href="/market-rates/live-silver-price/" className="hover:text-[#1A73E8]">Today&apos;s Silver Price in Nepal</Link>
+                  <Link href="/market-rates/silver-price-nepal/" className="hover:text-[#1A73E8]">Today&apos;s Silver Price in Nepal</Link>
                 </li>
                 <li className="bg-[#F8F9FA] border border-[#DADCE0] rounded px-3 py-1 text-[#5F6368]">
-                  <Link href="/market-rates/live-silver-price/" className="hover:text-[#1A73E8]">Live Silver Rate Nepal</Link>
+                  <Link href="/market-rates/silver-price-nepal/" className="hover:text-[#1A73E8]">Live Silver Rate Nepal</Link>
                 </li>
                 <li className="bg-[#F8F9FA] border border-[#DADCE0] rounded px-3 py-1 text-[#5F6368]">
                   <Link href="/calculator/silver-converter/" className="hover:text-[#1A73E8]">Silver Price Calculator</Link>
@@ -1669,7 +1669,7 @@ export default function SilverCalculatorComponent() {
         title: 'Precious Metal Tools',
         subtitle: 'Bullion Utilities',
         links: [
-          { label: 'Live Silver Price Nepal', href: '/market-rates/live-silver-price/', icon: TrendingUp },
+          { label: 'Live Silver Price Nepal', href: '/market-rates/silver-price-nepal/', icon: TrendingUp },
           { label: 'Gold Converter Nepal', href: '/calculator/gold-converter/', icon: Coins },
           { label: 'Customs & Gold Tax', href: '/calculator/gold-tax/', icon: Award },
           { label: 'Live Gold Price Nepal', href: '/market-rates/live-gold-price/', icon: TrendingUp }
