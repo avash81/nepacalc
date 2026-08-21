@@ -1,0 +1,105 @@
+{/* 1. Today's Silver Price */}
+      <h2 id="todays-silver-price" className="text-2xl font-black text-slate-900 tracking-tighter mb-6 scroll-mt-20">
+        Today&apos;s Silver Price
+      </h2>
+          <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
+            The silver price in Nepal is updated every working day based on the official rates published by the Federation
+            of Nepal Gold and Silver Dealers&apos; Association (FENEGOSIDA). These daily benchmark prices are widely used
+            by jewellery retailers, bullion traders, investors, and consumers throughout Nepal.
+          </p>
+          <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
+            The live silver price displayed on this page includes the latest Chandi rate per Tola, Gram and Kilogram,
+            allowing users to quickly check today&apos;s official market value before purchasing, selling, or valuing silver
+            items. Since silver prices fluctuate daily, checking the latest rate helps buyers avoid outdated pricing and
+            make informed financial decisions.
+          </p>
+          <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
+            Unlike fixed commodities, silver prices in Nepal are influenced by multiple economic factors, including
+            international bullion markets, the global silver spot price (XAG/USD), exchange rate movements between the
+            US Dollar and Nepalese Rupee (USD/NPR), import costs, and domestic market demand. Because Nepal imports
+            precious metals, changes in international markets are reflected in local prices through FENEGOSIDA&apos;s
+            daily pricing mechanism.
+          </p>
+          <p className="text-slate-700 text-base leading-relaxed mb-8 font-medium">
+            Whether you are purchasing silver jewellery, investment bars, silver coins, traditional utensils, or simply
+            checking today&apos;s Chandi rate, this page provides a reliable reference using official Nepal market
+            benchmarks together with an integrated silver value calculator and weight conversion tools.
+          </p>
+
+          {/* Market Snapshot */}
+          <div className="bg-blue-50 border border-blue-100 rounded-2xl p-6 mb-8 not-prose">
+            <h3 className="text-sm font-black uppercase tracking-widest text-blue-900 mb-4">Today&apos;s Market Snapshot</h3>
+            <ul className="space-y-3">
+              <li className="flex items-center justify-between text-sm text-blue-800">
+                <strong className="text-blue-900">Official Source:</strong>
+                <span>FENEGOSIDA</span>
+              </li>
+              <li className="flex items-center justify-between text-sm text-blue-800">
+                <strong className="text-blue-900">Published:</strong>
+                <span>{displayDate}</span>
+              </li>
+              <li className="flex items-center justify-between text-sm text-blue-800">
+                <strong className="text-blue-900">Last Updated:</strong>
+                <span>{displayTime} (Daily)</span>
+              </li>
+              <li className="flex items-center justify-between text-sm text-blue-800">
+                <strong className="text-blue-900">Current Trend:</strong>
+                <span className="font-bold text-emerald-600">Bullish</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Price Change */}
+          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 mb-10 not-prose">
+            <h3 className="text-sm font-black uppercase tracking-widest text-slate-900 mb-4">Today&apos;s Price Change</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+              <div className="flex flex-col">
+                <span className="text-xs text-slate-500 uppercase tracking-wider font-bold mb-1">Yesterday</span>
+                <span className="text-lg font-black text-slate-700">Rs. {yesterdaySilverPrice}</span>
+              </div>
+              <div className="flex flex-col border-l border-slate-200">
+                <span className="text-xs text-slate-500 uppercase tracking-wider font-bold mb-1">Today</span>
+                <span className="text-lg font-black text-slate-900">Rs. {currentSilverPrice}</span>
+              </div>
+              <div className="flex flex-col border-l border-slate-200">
+                <span className="text-xs text-slate-500 uppercase tracking-wider font-bold mb-1">Change</span>
+                <span className={`text-lg font-black ${isUp ? 'text-emerald-600' : 'text-red-500'}`}>
+                  {isUp ? '+' : '-'}Rs. {silverChange}
+                </span>
+              </div>
+              <div className="flex flex-col border-l border-slate-200">
+                <span className="text-xs text-slate-500 uppercase tracking-wider font-bold mb-1">% Change</span>
+                <span className={`text-lg font-black ${isUp ? 'text-emerald-600' : 'text-red-500'}`}>
+                  {isUp ? '+' : ''}{silverChangePercent}%
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Official Rate Info */}
+          <div className="bg-blue-50 border border-blue-100 rounded-2xl p-6 mb-8 not-prose">
+            <h3 className="text-sm font-black uppercase tracking-widest text-blue-900 mb-4">Official Silver Rate Information</h3>
+            <ul className="space-y-3">
+              <li className="flex items-center gap-3 text-sm text-blue-800"><strong className="text-blue-900">Data Source:</strong> Federation of Nepal Gold and Silver Dealers&apos; Association (FENEGOSIDA)</li>
+              <li className="flex items-center gap-3 text-sm text-blue-800"><strong className="text-blue-900">Market Coverage:</strong> Nepal</li>
+              <li className="flex items-center gap-3 text-sm text-blue-800"><strong className="text-blue-900">Asset:</strong> Fine Silver (Chandi)</li>
+              <li className="flex items-center gap-3 text-sm text-blue-800"><strong className="text-blue-900">Standard Unit:</strong> 1 Tola = 11.6638 grams</li>
+              <li className="flex items-center gap-3 text-sm text-blue-800"><strong className="text-blue-900">Update Frequency:</strong> Every working day (except public holidays and market closures)</li>
+            </ul>
+          </div>
+
+          <h3 className="text-xl font-bold text-slate-900 mb-4 tracking-tight">Key Highlights</h3>
+          <ul className="list-disc list-inside space-y-2 text-slate-700 font-medium mb-12">
+            <li>Live Silver Price in Nepal</li>
+            <li>Official FENEGOSIDA benchmark rates</li>
+            <li>Silver price per Tola</li>
+            <li>Silver price per Gram</li>
+            <li>Silver price per Kilogram</li>
+            <li>Daily Nepal silver market updates</li>
+            <li>Real-time silver calculator</li>
+            <li>Traditional Nepal silver weight conversion</li>
+          </ul>
+
+          <SilverHistoricalData />
+
+          
