@@ -8,44 +8,26 @@ const tocGroups = [
   {
     items: [
       { id: 'todays-silver-price', label: "Today's Silver Price" },
-      { id: 'silver-price-history', label: 'Silver Price History' },
-      { id: 'silver-market-guide', label: 'Silver Market Guide' },
-    ]
-  },
-  {
-    items: [
-      { id: 'what-determines-silver-prices', label: 'What Determines Silver Prices?' },
+      { id: 'silver-calculator', label: 'Quick Silver Valuation Calculator' },
+      { id: 'silver-price-history', label: 'Silver Price History in Nepal' },
       { id: 'silver-units-nepal', label: 'Silver Units Used in Nepal' },
       { id: 'silver-purity-standards', label: 'Silver Purity Standards' },
+      { id: 'why-prices-change', label: 'Why Silver Prices Change in Nepal' },
       { id: 'common-uses-silver-nepal', label: 'Common Uses of Silver in Nepal' },
-    ]
-  },
-  {
-    items: [
       { id: 'silver-as-investment', label: 'Silver as an Investment' },
       { id: 'gold-vs-silver-prices', label: 'Gold vs Silver Prices' },
-      { id: 'how-often-updated', label: 'How Often Are Prices Updated?' },
-      { id: 'who-uses-silver-price-data', label: 'Who Uses Silver Price Data?' },
-    ]
-  },
-  {
-    items: [
-      { id: 'historical-silver-price-trends', label: 'Historical Price Trends' },
       { id: 'buying-silver-nepal', label: 'Buying Silver in Nepal' },
       { id: 'selling-silver-nepal', label: 'Selling Silver in Nepal' },
       { id: 'silver-jewellery-pricing', label: 'Silver Jewellery Pricing' },
-    ]
-  },
-  {
-    items: [
-      { id: 'silver-coins-bullion', label: 'Silver Coins & Bullion' },
-      { id: 'international-silver-market', label: 'International Silver Market' },
-      { id: 'silver-vs-exchange-rate', label: 'Silver Price vs Exchange Rate' },
-      { id: 'daily-price-volatility', label: 'Daily Price Volatility' },
+      { id: 'silver-coins-bullion', label: 'Silver Coins and Bullion' },
+      { id: 'how-often-updated', label: 'How Often Are Silver Prices Updated?' },
+      { id: 'who-uses-silver-price-data', label: 'Who Uses Silver Price Data?' },
       { id: 'why-silver-prices-matter', label: 'Why Silver Prices Matter' },
-      { id: 'silver-metrics', label: 'Silver Metrics Monitored' },
+      { id: 'silver-metrics', label: 'Frequently Monitored Silver Metrics' },
+      { id: 'faq', label: 'Frequently Asked Questions' },
+      { id: 'related-tools', label: 'Related Calculators' },
     ]
-  },
+  }
 ];
 
 export function SilverSeoToc() {
