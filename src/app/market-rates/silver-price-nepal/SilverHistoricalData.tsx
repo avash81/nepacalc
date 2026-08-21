@@ -1,10 +1,25 @@
-﻿'use client';
+'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Download, Database, Info, AlertTriangle, History } from 'lucide-react';
 
 export default function SilverHistoricalData() {
   const [activeTab, setActiveTab] = useState<'yearly' | 'monthly' | 'daily'>('yearly');
+  const [dailyData, setDailyData] = useState<{date: string, price: number}[]>([]);
+
+  useEffect(() => {
+    fetch('/data/daily-history.json')
+      .then(res => res.json())
+      .then(data => {
+        // Map to { date: '16 Aug 2026', price: 4710 } and keep only 14 days
+        const mapped = data.slice(0, 14).map((d: any) => ({
+          date: new Date(d.date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
+          price: d.silver
+        }));
+        setDailyData(mapped);
+      })
+      .catch(console.error);
+  }, []);
 
   // UPDATE THESE WITH REAL HISTORICAL SILVER PRICES
   const yearlyData = [
@@ -73,7 +88,7 @@ export default function SilverHistoricalData() {
             <button
               key={tab}
               onClick={() => setActiveTab(tab as any)}
-              className={px-6 py-3 text-sm font-bold tracking-widest uppercase transition-colors border-b-2 }
+              className={`px-6 py-3 text-sm font-bold tracking-widest uppercase transition-colors border-b-2 ${activeTab === tab ? 'border-slate-800 text-slate-900' : 'border-transparent text-slate-400 hover:text-slate-600'}`}
             >
               {tab} History
             </button>
@@ -122,10 +137,32 @@ export default function SilverHistoricalData() {
               </tbody>
             </table>
           )}
-          {activeTab !== 'yearly' && (
+                    {activeTab === 'daily' && (
+            <table className="w-full text-left">
+              <thead>
+                <tr className="bg-slate-50 border-b border-slate-200 text-[11px] font-black text-slate-500 uppercase tracking-widest">
+                  <th className="py-4 px-4" scope="col">Date</th>
+                  <th className="py-4 px-4 text-right" scope="col">Silver Price (Per Tola)</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {dailyData.map((row) => (
+                  <tr key={row.date} className="hover:bg-slate-50/50 transition-colors">
+                    <td className="py-4 px-4">
+                      <span className="text-[14px] font-black text-slate-900">{row.date}</span>
+                    </td>
+                    <td className="py-4 px-4 text-right">
+                      <span className="text-[13px] font-bold text-slate-700">Rs. {fmt(row.price)}</span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+          {activeTab === 'monthly' && (
             <div className="p-8 text-center text-slate-500 font-medium text-sm">
               <Database className="w-8 h-8 text-slate-300 mx-auto mb-3" />
-              <p>Due to high row volume, {activeTab} historical records are paginated.</p>
+              <p>Due to high row volume, monthly historical records are paginated.</p>
               <p className="mt-1">Future versions will support infinite scrolling virtualization.</p>
             </div>
           )}
@@ -134,3 +171,7 @@ export default function SilverHistoricalData() {
     </div>
   );
 }
+
+
+
+

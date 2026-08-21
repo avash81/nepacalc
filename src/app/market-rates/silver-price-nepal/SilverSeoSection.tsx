@@ -1,5 +1,6 @@
-import React from 'react';
+﻿import React from 'react';
 import Link from 'next/link';
+import SilverHistoricalData from './SilverHistoricalData';
 
 const tocGroups = [
   {
@@ -292,112 +293,8 @@ export function SilverSeoContent({ silverData, source, date }: { silverData: any
             <li>Traditional Nepal silver weight conversion</li>
           </ul>
 
-          {/* 2. Silver Price History */}
-          <h2 id="silver-price-history" className="text-2xl font-black text-slate-900 tracking-tighter mb-4 scroll-mt-20">
-            Silver Price History
-          </h2>
-          <p className="text-slate-700 text-base leading-relaxed mb-4 font-medium">Last 30 Days</p>
-          <div className="overflow-x-auto mb-6 not-prose">
-            <table className="w-full text-left border-collapse min-w-[300px]">
-              <thead>
-                <tr className="bg-slate-100 border-y border-slate-200 text-sm font-black text-slate-700 uppercase tracking-widest">
-                  <th className="py-3 px-4">Date</th>
-                  <th className="py-3 px-4 text-right">Silver Price (Per Tola)</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100 text-slate-800 font-medium">
-                {historicalData.map((row, i) => (
-                  <tr key={i} className="hover:bg-slate-50">
-                    <td className="py-3 px-4">{row.date}</td>
-                    <td className="py-3 px-4 text-right">Rs. {row.price.toLocaleString()}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <SilverHistoricalData />
 
-          {/* Dataset Signals */}
-          <div className="bg-slate-50 rounded-xl p-5 mb-10 text-sm text-slate-600 not-prose">
-            <h4 className="font-bold text-slate-800 mb-2">Dataset Signals</h4>
-            <ul className="space-y-1">
-              <li><strong className="text-slate-700">Official Daily Silver Price Nepal</strong></li>
-              <li><strong className="text-slate-700">Coverage:</strong> Nepal</li>
-              <li><strong className="text-slate-700">Frequency:</strong> Daily</li>
-              <li><strong className="text-slate-700">Source:</strong> FENEGOSIDA</li>
-              <li><strong className="text-slate-700">Available Units:</strong> Tola, Gram, Kilogram, Aana, Lal</li>
-            </ul>
-          </div>
-
-          {/* Quick Facts */}
-          <div className="bg-slate-900 text-white rounded-2xl p-6 mb-14 not-prose">
-            <h3 className="text-lg font-black tracking-tight mb-4 text-white">Quick Facts</h3>
-            <ul className="space-y-3">
-              <li className="flex justify-between border-b border-slate-700 pb-2">
-                <span className="text-slate-300">Current Silver Price in Nepal</span>
-                <span className="font-bold">Updated Daily</span>
-              </li>
-              <li className="flex justify-between border-b border-slate-700 pb-2">
-                <span className="text-slate-300">Official Source</span>
-                <span className="font-bold">FENEGOSIDA</span>
-              </li>
-              <li className="flex justify-between border-b border-slate-700 pb-2">
-                <span className="text-slate-300">Traditional Unit</span>
-                <span className="font-bold">1 Tola = 11.6638 grams</span>
-              </li>
-              <li className="flex justify-between pt-2">
-                <span className="text-slate-300">Most searched conversion</span>
-                <div className="text-right font-bold text-sm">
-                  <div>Silver Price Per Tola</div>
-                  <div className="text-slate-400">Silver Price Per Gram</div>
-                  <div className="text-slate-500">Silver Price Per Kg</div>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          {/* Calculate Value Section */}
-          <div className="bg-blue-50 border border-blue-200 rounded-2xl p-8 mb-14 not-prose">
-            <h3 className="text-xl font-black tracking-tight mb-4 text-blue-900">Calculate the Value of Your Silver</h3>
-            <p className="text-blue-800 text-base leading-relaxed mb-6 font-medium">
-              Knowing today&apos;s silver price is only the first step. Use the <Link href="/calculator/silver-converter/" className="text-blue-700 underline font-bold hover:text-blue-900">Silver Converter</Link> to convert between Nepalese and international weight units, estimate silver value by purity, and calculate jewellery or investment value.
-            </p>
-            <div className="flex flex-wrap gap-4 mt-4">
-              <Link href="/calculator/silver-converter/" className="inline-flex items-center justify-center px-5 py-2.5 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors">
-                Silver Converter
-              </Link>
-              <Link href="/calculator/gold-converter/" className="inline-flex items-center justify-center px-5 py-2.5 bg-white text-blue-700 border border-blue-300 font-bold rounded-lg hover:bg-blue-50 transition-colors">
-                Gold Converter
-              </Link>
-            </div>
-          </div>
-
-          {/* ─── SILVER MARKET GUIDE ─── */}
-          <h2 id="silver-market-guide" className="text-2xl font-black text-slate-900 tracking-tighter mb-6 mt-4 pt-12 border-t border-slate-200 scroll-mt-20">
-            Silver Market Guide
-          </h2>
-
-          <h3 className="text-xl font-bold text-slate-900 mb-4">Understanding Silver Prices in Nepal</h3>
-          <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
-            The silver price in Nepal is officially published by the Federation of Nepal Gold and Silver Dealers&apos;
-            Association (FENEGOSIDA). Daily prices are determined by combining international silver spot prices, the
-            Nepalese Rupee exchange rate, import costs, and local market conditions.
-          </p>
-          <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
-            Silver prices are generally announced once each business day and are used as the reference benchmark by
-            jewellery shops, bullion dealers, investors, and consumers throughout Nepal.
-          </p>
-          <p className="text-slate-700 text-base leading-relaxed mb-10 font-medium">
-            This page provides the official Nepal silver rate together with live conversions, historical information,
-            and valuation tools for both buyers and sellers. You can also explore <Link href="/market-rates/" className="text-blue-600 hover:underline">all other market rates</Link> for additional financial data.
-          </p>
-
-          {/* 3. What Determines Silver Prices */}
-          <h2 id="what-determines-silver-prices" className="text-2xl font-black text-slate-900 tracking-tighter mb-4 scroll-mt-20">
-            What Determines Silver Prices in Nepal?
-          </h2>
-          <p className="text-slate-700 text-base leading-relaxed mb-4 font-medium">
-            Several factors influence the daily silver price in Nepal:
-          </p>
           <ul className="list-disc list-inside space-y-2 text-slate-700 font-medium mb-6">
             <li>International silver spot prices (XAG/USD)</li>
             <li>Nepal Rastra Bank foreign exchange rates</li>
@@ -752,3 +649,5 @@ export function SilverSeoContent({ silverData, source, date }: { silverData: any
     </div>
   );
 }
+
+

@@ -126,6 +126,37 @@ async function main() {
 
     writeRates(output);
 
+    // --- NEW: AUTOMATED DAILY HISTORY SYSTEM ---
+    const historyPath = path.join(__dirname, '../public/data/daily-history.json');
+    let history = [];
+    try {
+      if (fs.existsSync(historyPath)) {
+        history = JSON.parse(fs.readFileSync(historyPath, 'utf8'));
+      }
+    } catch (e) {
+      console.warn("Could not read daily-history.json", e);
+    }
+    
+    // Check if today's date is already in history
+    const existingIndex = history.findIndex(h => h.date === rateDate);
+    const newEntry = {
+      date: rateDate,
+      gold: goldTola,
+      silver: silverTola
+    };
+    
+    if (existingIndex >= 0) {
+      history[existingIndex] = newEntry; // Update if FENEGOSIDA changed it later in the day
+    } else {
+      history.unshift(newEntry); // Add to beginning
+    }
+    
+    // Keep last 365 days to prevent file bloat
+    if (history.length > 365) history = history.slice(0, 365);
+    
+    fs.writeFileSync(historyPath, JSON.stringify(history, null, 2));
+    // -------------------------------------------
+
     console.log(`✅ FENEGOSIDA rates fetched successfully`);
     console.log(`   24K Gold (1 Tola): Rs. ${goldTola.toLocaleString()}`);
     console.log(`   Silver   (1 Tola): Rs. ${silverTola.toLocaleString()}`);
@@ -160,3 +191,4 @@ main().catch(err => {
   console.error('fetch-rates.js fatal error:', err);
   process.exit(0);
 });
+
