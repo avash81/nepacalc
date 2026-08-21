@@ -44,7 +44,8 @@ RewriteRule ^\.well-known/apple-app-site-association/?$ / [L,R=301]
 RewriteRule ^apple-app-site-association/?$ / [L,R=301]
 
 # Structural Category Changes
-RewriteRule ^calculator/market-rates/live-silver-price/?$ /market-rates/live-silver-price/ [L,R=301]
+RewriteRule ^calculator/market-rates/live-silver-price/?$ /market-rates/silver-price-nepal/ [L,R=301]
+RewriteRule ^market-rates/live-silver-price/?$ /market-rates/silver-price-nepal/ [L,R=301]
 RewriteRule ^calculator/market-rates/live-gold-price/?$ /market-rates/live-gold-price/ [L,R=301]
 RewriteRule ^calculator/market-rates/exchange-rate/?$ /market-rates/exchange-rate-nepal/ [L,R=301]
 RewriteRule ^market-rates/exchange-rate/?$ /market-rates/exchange-rate-nepal/ [L,R=301]
