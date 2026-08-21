@@ -7,7 +7,7 @@ export default function HistoricalData() {
   const [activeTab, setActiveTab] = useState<'yearly' | 'monthly' | 'daily'>('yearly');
 
   const yearlyData = [
-    { year: 2083, maxTola: 311300, minTola: 285000, max10g: 266890, min10g: 244340, source: 'FENEGOSIDA' },
+    { year: 2083, maxTola: 316700, minTola: 285000, max10g: 271525, min10g: 244340, source: 'FENEGOSIDA' },
     { year: 2082, maxTola: 286000, minTola: 250000, max10g: 245200, min10g: 214300, source: 'FENEGOSIDA' },
     { year: 2081, maxTola: 250000, minTola: 180000, max10g: 214300, min10g: 154300, source: 'FENEGOSIDA' },
     { year: 2080, maxTola: 180000, minTola: 150000, max10g: 154300, min10g: 128600, source: 'FENEGOSIDA' },
