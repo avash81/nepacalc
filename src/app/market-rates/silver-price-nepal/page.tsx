@@ -347,7 +347,7 @@ export default async function Page() {
           { name: 'Nepal VAT Calculator', slug: '/calculator/nepal-vat/' }
         ]}
       >
-        <div className="max-w-[1000px] mx-auto pb-12">
+        <div className="max-w-[1200px] lg:ml-0 lg:mr-auto pb-12">
           
           <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6 mb-8 border-b border-slate-200 pb-6">
             <div className="flex-1">
@@ -397,12 +397,9 @@ export default async function Page() {
             </div>
           </div>
 
-          <div className="lg:grid lg:grid-cols-[1fr_280px] lg:gap-12 items-start">
-            <article className="min-w-0">
+
               <div className="lg:hidden mb-12">
-                <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-xl p-6">
-                  <SilverSeoToc />
-                </div>
+                <SilverSeoToc />
               </div>
               
               <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-6">
@@ -509,6 +506,8 @@ export default async function Page() {
                 </div>
               </div>
 
+          <div className="lg:grid lg:grid-cols-[1fr_320px] lg:gap-12 items-start">
+            <article className="min-w-0">
               <SilverSeoContent silverData={silverData} source={source} date={rate_date} />
 
               <div className="mt-6 px-4 py-4 bg-slate-50 border border-slate-200 rounded-xl text-[12px] text-slate-500 font-medium leading-relaxed space-y-4">
@@ -536,9 +535,7 @@ export default async function Page() {
             </article>
             
             <aside className="hidden lg:block sticky top-24 self-start">
-              <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-xl p-6">
-                <SilverSeoToc />
-              </div>
+              <SilverSeoToc />
             </aside>
           </div>
         </div>

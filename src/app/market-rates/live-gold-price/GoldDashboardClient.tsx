@@ -6,8 +6,11 @@ import QuickPriceEstimator from '@/app/market-rates/live-gold-price/QuickPriceEs
 import TradingViewWidget from '@/components/market/TradingViewWidget';
 import { Trophy, Table, History, Zap, ArrowLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
+import MobileCollapsible from '@/components/ui/MobileCollapsible';
+
 import SeoSections from './SeoSections';
 import { HilltopAds300x250 } from '@/components/ads/HilltopAds300x250';
+import PricePerformanceWidget from '@/components/widgets/PricePerformanceWidget';
 
 
 const renderToc = (items: any[]) => {
@@ -50,28 +53,41 @@ const renderToc = (items: any[]) => {
 };
 
 const tocItems = [
-            // Group 1 — Live data
-            { id: 'quick-answer-block', label: 'Quick Answer' },
-            { id: 'gold-at-a-glance', label: "Today's Gold Price at a Glance" },
-            { id: 'gold-conversion-table', label: 'Gold Price Conversion Table' },
-            { id: 'gold-price-calculator-info', label: 'Gold Price Calculator' },
-            { divider: true },
-            // Group 2 — Live rates & market
-            { id: 'live-price', label: 'Nepal Benchmark Rates' },
-            { id: 'calculator', label: 'Quick Valuation Calculator' },
-            { id: 'market-highlights', label: 'Market Highlights & Price Change' },
-            { id: 'ai-summary', label: 'Market Intelligence' },
-            { divider: true },
-            // Group 3 — Education
-            { id: 'how-its-calculated', label: 'How Gold Prices Are Calculated' },
-            { id: 'jewellery-pricing', label: 'What Affects Jewellery Prices?' },
-            { id: 'gold-vs-silver', label: 'Gold vs Silver Investment' },
-            { id: 'gold-milestones', label: 'Historic Price Milestones' },
-            { divider: true },
-            // Group 4 — Tools & FAQ
-            { id: 'useful-gold-tools', label: 'Useful Gold Tools' },
-            { id: 'faq', label: 'Frequently Asked Questions' },
-          ];
+  // Group 1 — Live data
+  { id: 'todays-gold-price', label: "Today's Gold Price" },
+  { id: 'gold-price-calculator', label: "Gold Price Calculator" },
+  { id: 'live-price', label: "Nepal Benchmark Gold Rates" },
+  { divider: true },
+  
+  // Group 2 — Education
+  { id: 'how-its-calculated', label: "How Gold Prices Are Calculated in Nepal" },
+  { id: 'jewellery-pricing', label: "What Affects Gold Prices and Jewellery Prices?" },
+  { id: 'buying-guide', label: "Before Buying Gold in Nepal" },
+  { id: 'compare-gold-silver', label: "Compare Gold and Silver Prices in Nepal" },
+  { id: 'gold-vs-silver', label: "Gold vs Silver Investment in Nepal" },
+  { divider: true },
+  
+  // Group 3 — History
+  { id: 'gold-price-history', label: "Gold Price History in Nepal" },
+  { id: 'historical-datasets', label: "Available Gold and Silver Historical Datasets" },
+  { id: 'gold-milestones', label: "Historic Gold Price Milestones in Nepal" },
+  { id: 'who-updates-prices', label: "Who Updates Gold Prices in Nepal?" },
+  { divider: true },
+  
+  // Group 4 — Tools & FAQ
+  { id: 'faq', label: "Frequently Asked Questions" },
+  { id: 'archives', label: "FENEGOSIDA Archives & Reports" },
+  { id: 'glossary', label: "Understanding Today's Gold Rate Terms" },
+  { id: 'useful-gold-tools', label: "Useful Gold Tools" },
+  { id: 'related-market-rates', label: "Related Market Rates & Tools" },
+  { id: 'people-also-search', label: "People Also Search" },
+  { divider: true },
+
+  // Group 5 — Governance
+  { id: 'why-trust', label: "Why Trust This Gold Price Data?" },
+  { id: 'editorial-review', label: "Editorial Review & Data Governance" },
+  { id: 'official-references', label: "Official Market References" },
+];
 
 export default function GoldDashboardClient() {
   const { rates, loading, error } = useLiveRates();
@@ -195,14 +211,13 @@ export default function GoldDashboardClient() {
       </div>
 
       
-      <div className="lg:grid lg:grid-cols-[1fr_280px] lg:gap-12 items-start">
-        <article className="min-w-0">
+
 {/* 2. Graph */}
       <div id="market-chart" className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-6 scroll-mt-24">
         <div className="bg-slate-50 px-6 py-4 border-b border-slate-200 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Trophy className="w-5 h-5 text-amber-500" />
-            <h2 className="text-sm font-black uppercase tracking-widest text-slate-900">International Spot Market (XAU/USD)</h2>
+            <div className="text-sm font-black uppercase tracking-widest text-slate-900">International Spot Market (XAU/USD)</div>
           </div>
           <div className="hidden sm:block px-3 py-1 bg-white border border-slate-200 rounded-full text-[10px] font-black text-slate-500 tracking-widest">
             WORLD GOLD COUNCIL INDEX
@@ -263,7 +278,7 @@ export default function GoldDashboardClient() {
           <Zap className="w-6 h-6" />
         </div>
         <div className="flex-1">
-          <h2 className="text-2xl font-black text-slate-900 tracking-tighter mb-4">Live Gold Price Summary</h2>
+          <h2 id="todays-gold-price" className="text-2xl font-black text-slate-900 tracking-tighter mb-4">Today's Gold Price</h2>
           <p className="text-[15px] text-slate-700 font-medium leading-relaxed mb-6">
             The official gold price in Nepal today is <strong>Rs. {fmt(tolaNPR.current)}</strong> per Tola for 24K Hallmark Gold (Chhapawal) and <strong>{tejabiDisplayRate}</strong> per Tola for 22K Tejabi Gold. Silver is priced at <strong>Rs. {fmt(silverTolaNPR)}</strong> per Tola. Prices are fixed by FENEGOSIDA.
           </p>
@@ -344,20 +359,54 @@ export default function GoldDashboardClient() {
       </div>
 
       
-      {/* MOBILE TOC */}
-      <nav className="lg:hidden bg-[#F8F9FA] border border-[#DADCE0] rounded-xl p-6 mb-12">
-        <p className="text-sm font-black text-[#202124] uppercase tracking-widest mb-4">Contents</p>
-        <ol style={{ listStyle: "none", margin: 0, padding: 0, borderLeft: "2px solid #e8eaed" }}>
-          {renderToc(tocItems)}
-        </ol>
-      </nav>
 
+      {/* MOBILE PRICE PERFORMANCE WIDGET */}
+      <div className="lg:hidden mb-6">
+        <PricePerformanceWidget
+          asset="Gold"
+          source="FENEGOSIDA · NPR per Tola"
+          rows={[
+            {
+              period: 'Today',
+              amount: tolaNPR.change24h != null ? `${tolaNPR.change24h >= 0 ? '+' : ''}${Math.round(tolaNPR.change24h).toLocaleString('en-IN')}` : '—',
+              percent: tolaNPR.changePercent24h != null ? `${tolaNPR.changePercent24h >= 0 ? '+' : ''}${tolaNPR.changePercent24h.toFixed(2)}%` : '—',
+              isNegative: (tolaNPR.changePercent24h ?? 0) < 0,
+            },
+            { period: '30 Days',  amount: '+10,700',  percent: '+3.50%',    isNegative: false },
+            { period: '6 Months', amount: '-4,200',   percent: '-1.30%',    isNegative: true  },
+            { period: '1 Year',   amount: '+66,700',  percent: '+26.70%',   isNegative: false },
+            { period: '5 Year',   amount: '+176,700', percent: '+126.21%',  isNegative: false },
+            { period: '20 Year',  amount: '+300,700', percent: '+1877.60%', isNegative: false },
+          ]}
+        />
+      </div>
+
+      {/* MOBILE TOC */}
+      <div className="lg:hidden mb-12">
+        <MobileCollapsible title={`TABLE OF CONTENTS: ${tocItems.filter(i => !i.divider).length} SECTIONS`}>
+          <ol style={{ listStyle: "none", margin: 0, padding: 0, borderLeft: "2px solid #e8eaed" }}>
+            {renderToc(tocItems)}
+          </ol>
+        </MobileCollapsible>
+      </div>
+
+
+      <h2 id="gold-price-calculator" className="text-2xl font-black text-slate-900 tracking-tighter mb-4 scroll-mt-24">Gold Price Calculator</h2>
+      {/* Calculator Integration */}
+      <div id="calculator" className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-8 scroll-mt-24">
+        <div className="bg-slate-50 px-6 py-4 border-b border-slate-200">
+          <h3 className="text-[13px] font-black uppercase tracking-[.2em] text-slate-800">Quick Valuation Calculator</h3>
+        </div>
+        <div className="p-6">
+          <QuickPriceEstimator />
+        </div>
+      </div>
 
       {/* 1. Live Price Table (Moved here) */}
       <div id="live-price" className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-6 scroll-mt-24">
         <div className="bg-slate-50 px-6 py-4 border-b border-slate-200 flex items-center gap-2">
           <Table className="w-5 h-5 text-amber-500" />
-          <h2 className="text-sm font-black uppercase tracking-widest text-slate-900">Nepal Benchmark Rates</h2>
+          <h2 className="text-sm font-black uppercase tracking-widest text-slate-900">Nepal Benchmark Gold Rates</h2>
         </div>
         <div className="p-0 overflow-x-auto">
           <table className="w-full text-left">
@@ -391,16 +440,6 @@ export default function GoldDashboardClient() {
       {/* HilltopAds 300×250 — test zone between rate table and calculator */}
       <div className="flex justify-center my-6 no-print">
         <HilltopAds300x250 />
-      </div>
-
-      {/* Calculator Integration */}
-      <div id="calculator" className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-8 scroll-mt-24">
-        <div className="bg-slate-50 px-6 py-4 border-b border-slate-200">
-          <h3 className="text-[13px] font-black uppercase tracking-[.2em] text-slate-800">Quick Valuation Calculator</h3>
-        </div>
-        <div className="p-6">
-          <QuickPriceEstimator />
-        </div>
       </div>
 
       {/* Market Highlights & Price Change Summary */}
@@ -474,16 +513,47 @@ export default function GoldDashboardClient() {
       </div>
 
       {/* 5. SEO Sections */}
-      <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-10 prose prose-slate max-w-none">
-        <SeoSections rates={rates} fmt={fmt} />
-      </div>
-
-    
+      <div className="lg:grid lg:grid-cols-[1fr_320px] lg:gap-12 items-start">
+        <article className="min-w-0">
+          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-10 prose prose-slate max-w-none">
+            <SeoSections rates={rates} fmt={fmt} />
+          </div>
         </article>
         
         {/* DESKTOP TOC */}
-        <aside className="hidden lg:block sticky top-24 self-start">
-          <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-xl p-6">
+        <aside
+          className="hidden lg:block"
+          style={{
+            position: 'sticky',
+            top: '88px',
+            maxHeight: 'calc(100vh - 100px)',
+            overflowY: 'auto',
+            scrollbarWidth: 'thin',
+            scrollbarColor: '#dadce0 transparent',
+            alignSelf: 'start',
+          }}
+        >
+          {/* Gold Price Performance Widget */}
+          <PricePerformanceWidget
+            asset="Gold"
+            source="FENEGOSIDA · NPR per Tola"
+            rows={[
+              {
+                period: 'Today',
+                amount: tolaNPR.change24h != null ? `${tolaNPR.change24h >= 0 ? '+' : ''}${Math.round(tolaNPR.change24h).toLocaleString('en-IN')}` : '—',
+                percent: tolaNPR.changePercent24h != null ? `${tolaNPR.changePercent24h >= 0 ? '+' : ''}${tolaNPR.changePercent24h.toFixed(2)}%` : '—',
+                isNegative: (tolaNPR.changePercent24h ?? 0) < 0,
+              },
+              { period: '30 Days',  amount: '+10,700',  percent: '+3.50%',    isNegative: false },
+              { period: '6 Months', amount: '-4,200',   percent: '-1.30%',    isNegative: true  },
+              { period: '1 Year',   amount: '+66,700',  percent: '+26.70%',   isNegative: false },
+              { period: '5 Year',   amount: '+176,700', percent: '+126.21%',  isNegative: false },
+              { period: '20 Year',  amount: '+300,700', percent: '+1877.60%', isNegative: false },
+            ]}
+          />
+
+          {/* TOC */}
+          <div className="pt-2">
             <span style={{
               display: "block",
               fontFamily: "monospace",

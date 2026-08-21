@@ -1,6 +1,8 @@
-﻿import React from 'react';
+import React from 'react';
 import Link from 'next/link';
 import SilverHistoricalData from './SilverHistoricalData';
+import MobileCollapsible from '@/components/ui/MobileCollapsible';
+import PricePerformanceWidget from '@/components/widgets/PricePerformanceWidget';
 
 const tocGroups = [
   {
@@ -49,17 +51,26 @@ const tocGroups = [
 export function SilverSeoToc() {
   let counter = 0;
   return (
-    <nav
-      aria-label="Table of Contents"
-      style={{
-        position: 'sticky',
-        top: '72px',
-        maxHeight: 'calc(100vh - 90px)',
-        overflowY: 'auto',
-        scrollbarWidth: 'thin',
-        scrollbarColor: '#dadce0 transparent',
-      }}
-    >
+    <div className="lg:sticky lg:top-[88px] lg:max-h-[calc(100vh-100px)] lg:overflow-y-auto lg:self-start scrollbar-thin">
+      {/* Silver Price Performance Widget */}
+      <PricePerformanceWidget
+        asset="Silver"
+        source="FENEGOSIDA · NPR per Tola"
+        rows={[
+          { period: 'Today',    amount: '—',      percent: '—',         isNegative: false },
+          { period: '30 Days',  amount: '+380',   percent: '+8.27%',    isNegative: false },
+          { period: '6 Months', amount: '-290',   percent: '-5.82%',    isNegative: true  },
+          { period: '1 Year',   amount: '+1,250', percent: '+36.23%',   isNegative: false },
+          { period: '5 Year',   amount: '+2,900', percent: '+160.00%',  isNegative: false },
+          { period: '20 Year',  amount: '+4,500', percent: '+2250.00%', isNegative: false },
+        ]}
+      />
+
+      {/* DESKTOP TOC */}
+      <nav
+        className="hidden lg:block pt-2"
+        aria-label="Table of Contents"
+      >
       <span style={{
         display: 'block',
         fontFamily: 'monospace',
@@ -111,7 +122,58 @@ export function SilverSeoToc() {
           </React.Fragment>
         ))}
       </ol>
-    </nav>
+      </nav>
+
+      {/* MOBILE TOC */}
+      <div className="lg:hidden mt-4">
+        <MobileCollapsible title="TABLE OF CONTENTS: 23 SECTIONS">
+          <ol style={{ listStyle: 'none', margin: 0, padding: 0, borderLeft: '2px solid #e8eaed' }}>
+            {(() => {
+              let mobCounter = 0;
+              return tocGroups.map((group, gi) => (
+                <React.Fragment key={`mob-${gi}`}>
+                  {gi > 0 && (
+                    <div style={{ height: '1px', background: '#e8eaed', margin: '8px 0' }} />
+                  )}
+                  {group.items.map((item) => {
+                    mobCounter++;
+                    const num = String(mobCounter).padStart(2, '0');
+                    return (
+                      <li key={`mob-${item.id}`}>
+                        <a
+                          href={`#${item.id}`}
+                          className="hover:!text-[#1a73e8] hover:!border-l-[#1a73e8]"
+                          style={{
+                            display: 'block',
+                            padding: '6px 0 6px 14px',
+                            fontSize: '0.82rem',
+                            color: '#5f6368',
+                            textDecoration: 'none',
+                            borderLeft: '2px solid transparent',
+                            marginLeft: '-2px',
+                            lineHeight: 1.3,
+                            transition: 'color 0.15s, border-color 0.15s',
+                          }}
+                        >
+                          <span style={{
+                            fontFamily: 'monospace',
+                            fontSize: '0.67rem',
+                            color: '#b59a00',
+                            marginRight: '5px',
+                            fontWeight: 700,
+                          }}>{num}</span>
+                          {item.label}
+                        </a>
+                      </li>
+                    );
+                  })}
+                </React.Fragment>
+              ));
+            })()}
+          </ol>
+        </MobileCollapsible>
+      </div>
+    </div>
   );
 }
 

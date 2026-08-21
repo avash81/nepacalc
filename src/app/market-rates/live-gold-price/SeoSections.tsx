@@ -25,7 +25,7 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
 
       {/* ─── NEW: Quick Answer Block (AI Overview / Featured Snippet) ─── */}
       <section id="quick-answer-block" className="scroll-mt-24 bg-blue-50 border border-blue-100 rounded-2xl p-6 md:p-8">
-        <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tighter mb-3">Quick Answer</h2>
+        <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tighter mb-3">Quick Answer</h3>
         <p className="text-[15px] text-slate-700 font-medium leading-relaxed">
           Today&apos;s official gold price in Nepal is published daily by <strong>FENEGOSIDA</strong> and reflects international gold prices (LBMA), USD/NPR exchange rates set by <strong>Nepal Rastra Bank</strong>, customs duties, and local market conditions. The live benchmark rates shown on this page include <strong>Hallmark Gold (24K)</strong>, <strong>Tejabi Gold (22K)</strong>, and <strong>Silver</strong>, along with historical trends and an official gold value calculator.
         </p>
@@ -33,7 +33,7 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
 
       {/* ─── NEW: Today&apos;s Gold Price at a Glance ─── */}
       <section id="gold-at-a-glance" className="scroll-mt-24">
-        <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tighter mb-6">Today&apos;s Gold Price at a Glance</h2>
+        <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tighter mb-6">Today&apos;s Gold Price at a Glance</h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5">
           {[
             { label: 'Hallmark Gold (24K)', value: hallmarkCurrent ? `Rs. ${fmt(hallmarkCurrent)}` : '—', sub: 'per Tola' },
@@ -66,7 +66,7 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
 
       {/* ─── NEW: Full Gold Price Conversion Table ─── */}
       <section id="gold-conversion-table" className="scroll-mt-24">
-        <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tighter mb-4">Gold Price Conversion Table</h2>
+        <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tighter mb-4">Gold Price Conversion Table</h3>
         <p className="text-[14px] text-slate-600 font-medium mb-5 leading-relaxed">
           Today&apos;s <a href="/calculator/gold-converter/" className="text-blue-600 hover:underline font-bold">Gold Price Calculator</a> automatically converts the official FENEGOSIDA rate into every common unit. Use this as a quick reference for 1 gram, 5 gram, 10 gram, Lal, Aana, half Tola, and Tola gold prices in Nepal today.
         </p>
@@ -114,7 +114,7 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
 
       {/* ─── NEW: Gold Price Calculator Section ─── */}
       <section id="gold-price-calculator-info" className="scroll-mt-24 bg-slate-50 border border-slate-200 rounded-2xl p-6 md:p-8">
-        <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tighter mb-3">Gold Price Calculator</h2>
+        <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tighter mb-3">Gold Price Calculator Tool</h3>
         <p className="text-[14px] text-slate-700 font-medium leading-relaxed mb-4">
           Our <a href="/calculator/gold-converter/" className="text-blue-600 hover:underline font-bold">Gold Unit Converter</a> updates automatically using today&apos;s official FENEGOSIDA rate. It supports all standard Nepali gold units — <strong>Gram</strong>, <strong>Lal</strong>, <strong>Aana</strong>, and <strong>Tola</strong> — and allows you to select purity (24K Hallmark or 22K Tejabi) to calculate the exact gold value of any piece of jewellery or bullion.
         </p>
@@ -227,7 +227,7 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
 
           {/* NEW: Why prices change every day */}
           <div className="bg-slate-50 border border-slate-200 rounded-xl p-5 mt-6">
-            <h3 className="text-[14px] font-black text-slate-800 mb-3">Why does Nepal&apos;s gold price change every day?</h3>
+            <h3 className="text-[14px] font-black text-slate-800 mb-3">Why Does Nepal&apos;s Gold Price Change Every Day?</h3>
             <ul className="space-y-2">
               {[
                 { label: 'International gold price', desc: 'LBMA spot price changes 24/7 based on global investment flows and geopolitical events.' },
@@ -249,7 +249,7 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
 
       {/* ─── NEW: What Affects Jewellery Prices ─── */}
       <section id="jewellery-pricing" className="scroll-mt-24 pt-8 border-t border-slate-200">
-        <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tighter mb-4">What Affects Jewellery Prices?</h2>
+        <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tighter mb-4">What Affects Gold Prices and Jewellery Prices?</h2>
         <p className="text-[14px] text-slate-700 font-medium leading-relaxed mb-5">
           The FENEGOSIDA gold rate is only the starting point. The final price you pay at a jewellery shop is always higher. Here is how the total price is built:
         </p>
@@ -309,9 +309,9 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
       </section>
 
       {/* ─── ORIGINAL: Looking for Silver Prices? ─── */}
-      <section className="scroll-mt-24 mb-8">
+      <section id="compare-gold-silver" className="scroll-mt-24 mb-8">
         <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tighter mb-4">
-          Compare today's gold and silver prices in Nepal
+          Compare Gold and Silver Prices in Nepal
         </h2>
         <div className="bg-slate-50 border border-slate-200 p-6 rounded-xl">
           <p className="text-base leading-relaxed text-slate-700 font-medium mb-5">
