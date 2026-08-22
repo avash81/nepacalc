@@ -379,7 +379,7 @@ export default async function Page() {
         ]}
       >
         <div className="max-w-[1400px] lg:ml-0 lg:mr-auto pb-12">
-          <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-6 items-start">
+          <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-8 items-start">
           <div className="min-w-0">
           
           <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6 mb-8 border-b border-slate-200 pb-6">

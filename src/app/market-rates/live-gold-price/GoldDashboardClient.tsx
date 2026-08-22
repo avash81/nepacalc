@@ -108,9 +108,9 @@ export default function GoldDashboardClient() {
 
   return (
     <div className="max-w-[1400px] lg:ml-0 lg:mr-auto pb-12">
-      {/* Page-level layout: main content + right sticky sidebar */}
-      <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-6 items-start">
-      {/* === MAIN CONTENT COLUMN === */}
+      {/* Page-level layout */}
+      <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-8 items-start">
+      {/* === MAIN === */}
       <div className="min-w-0">
       
       {/* Custom Header: Breadcrumbs + H1 (Left) & Big Live Price (Right) */}
@@ -249,7 +249,7 @@ export default function GoldDashboardClient() {
             <p className="text-[12px] text-slate-600 mb-4 font-medium">
               * Nepal's official gold price is fixed once daily by FENEGOSIDA. This live chart tracks the international spot market which drives the daily local price changes.
             </p>
-            <div className="w-full h-[400px] md:h-[500px] bg-slate-50/50 rounded-xl border border-slate-200 overflow-hidden relative">
+            <div className="w-full h-[400px] md:h-[500px] bg-slate-50/50 rounded-xl border border-slate-200 overflow-hidden relative mb-6 lg:mb-0">
                 <TradingViewWidget
                   symbol="OANDA:XAUUSD"
                   theme="light"
@@ -620,7 +620,7 @@ export default function GoldDashboardClient() {
         </aside>
       </div>
       </div>
-      {/* === RIGHT STICKY SIDEBAR === */}
+      {/* === SIDEBAR === */}
       <aside className="hidden lg:block" style={{ position: 'sticky', top: '96px', alignSelf: 'start', zIndex: 20 }}>
         <PricePerformanceWidget
           asset="Gold"
@@ -642,6 +642,7 @@ export default function GoldDashboardClient() {
         />
       </aside>
       </div>
+    </div>
   );
 }
 
