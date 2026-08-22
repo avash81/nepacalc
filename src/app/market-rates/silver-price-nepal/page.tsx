@@ -379,7 +379,7 @@ export default async function Page() {
         ]}
       >
         <div className="max-w-[1400px] lg:ml-0 lg:mr-auto pb-12">
-          <div className="block items-start">
+          <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-8 items-start">
           <div className="min-w-0">
           
           <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6 mb-8 border-b border-slate-200 pb-6">
@@ -542,8 +542,8 @@ export default async function Page() {
                 </div>
               </div>
 
-          <div className="lg:grid lg:grid-cols-[1fr_380px] lg:gap-12 items-start">
-            <article className="min-w-0">
+          <div className="nb-layout" style={{display:'grid',gridTemplateColumns:'minmax(0,1fr) 260px',gap:'36px',alignItems:'start'}}>
+            <article className="nb-main min-w-0">
                             <SilverHistoricalData />
 
               <SilverSeoContent silverData={silverData} source={source} date={rate_date} />
@@ -572,40 +572,38 @@ export default async function Page() {
               </div>
             </article>
             
-            
-            <aside className="nb-toc">
+            <aside className="nb-toc hidden lg:block" style={{position:'sticky',top:'88px',maxHeight:'calc(100vh - 100px)',overflowY:'auto',scrollbarWidth:'thin',alignSelf:'start'}}>
               <SilverSeoToc />
-              <div className="mt-6">
-                <PricePerformanceWidget
-                  asset="Silver"
-                  source="FENEGOSIDA"
-                  rows={[
-                    { period: 'Today',    priceTola: currentSilver, amount: Math.round(change24h), percent: `${changePercent24h >= 0 ? '+' : ''}${changePercent24h.toFixed(2)}%`, isNegative: changePercent24h < 0 },
-                    { period: '30 Days',  priceTola: 4785,  amount: 200,  percent: '+4.18%',   isNegative: false },
-                    { period: '6 Months', priceTola: 5135,  amount: -150, percent: '-2.92%',   isNegative: true  },
-                    { period: '1 Year',   priceTola: 4185,  amount: 800,  percent: '+19.11%',  isNegative: false },
-                    { period: '5 Year',   priceTola: 1485,  amount: 3500, percent: '+235.69%', isNegative: false },
-                    { period: '20 Years', priceTola: 485,   amount: 4500, percent: '+927.83%', isNegative: false },
-                  ]}
-                />
-                <PricePerformanceWidget
-                  asset="Gold"
-                  source="FENEGOSIDA"
-                  rows={[
-                    { period: 'Today',    priceTola: 316700, amount: 0,      percent: '+0.00%',    isNegative: false },
-                    { period: '30 Days',  priceTola: 306000, amount: 10700,  percent: '+3.50%',    isNegative: false },
-                    { period: '6 Months', priceTola: 320900, amount: -4200,  percent: '-1.30%',    isNegative: true  },
-                    { period: '1 Year',   priceTola: 250000, amount: 66700,  percent: '+26.70%',   isNegative: false },
-                    { period: '5 Year',   priceTola: 140000, amount: 176700, percent: '+126.21%',  isNegative: false },
-                    { period: '20 Year',  priceTola: 16000,  amount: 300700, percent: '+1877.60%', isNegative: false },
-                  ]}
-                />
-              </div>
             </aside>
-
           </div>
           </div>
-          </div>
+          {/* === SIDEBAR === */}
+          <aside className="hidden lg:block" style={{ position: 'sticky', top: '96px', alignSelf: 'start', zIndex: 20 }}>
+            <PricePerformanceWidget
+              asset="Silver"
+              source="FENEGOSIDA"
+              rows={[
+                { period: 'Today',    priceTola: currentSilver, amount: Math.round(change24h), percent: `${changePercent24h >= 0 ? '+' : ''}${changePercent24h.toFixed(2)}%`, isNegative: changePercent24h < 0 },
+                { period: '30 Days',  priceTola: 4785,  amount: 200,  percent: '+4.18%',   isNegative: false },
+                { period: '6 Months', priceTola: 5135,  amount: -150, percent: '-2.92%',   isNegative: true  },
+                { period: '1 Year',   priceTola: 4185,  amount: 800,  percent: '+19.11%',  isNegative: false },
+                { period: '5 Year',   priceTola: 1485,  amount: 3500, percent: '+235.69%', isNegative: false },
+                { period: '20 Years', priceTola: 485,   amount: 4500, percent: '+927.83%', isNegative: false },
+              ]}
+            />
+            <PricePerformanceWidget
+              asset="Gold"
+              source="FENEGOSIDA"
+              rows={[
+                { period: 'Today',    priceTola: 316700, amount: 0,      percent: '+0.00%',    isNegative: false },
+                { period: '30 Days',  priceTola: 306000, amount: 10700,  percent: '+3.50%',    isNegative: false },
+                { period: '6 Months', priceTola: 320900, amount: -4200,  percent: '-1.30%',    isNegative: true  },
+                { period: '1 Year',   priceTola: 250000, amount: 66700,  percent: '+26.70%',   isNegative: false },
+                { period: '5 Year',   priceTola: 140000, amount: 176700, percent: '+126.21%',  isNegative: false },
+                { period: '20 Year',  priceTola: 16000,  amount: 300700, percent: '+1877.60%', isNegative: false },
+              ]}
+            />
+          </aside>
         </div>
       </CalcWrapper>
     </div>
