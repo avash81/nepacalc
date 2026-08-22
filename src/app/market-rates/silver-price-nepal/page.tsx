@@ -322,7 +322,7 @@ export default async function Page() {
     <div className="bg-white min-h-screen">
       
 <style dangerouslySetInnerHTML={{ __html: `
-.nb-toc-mobile{max-width:1200px;margin:0 auto 14px;padding:0 24px;display:none;}
+.nb-toc-mobile{max-width:1200px;margin:0 auto 14px;padding:0 24px;display:block;}
 .nb-toc-mobile details{border:1px solid #e2e8f0;background:#f8fafc;border-radius:8px;}
 .nb-toc-mobile summary{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:#0f172a;padding:12px 16px;cursor:pointer;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center;font-weight:700;}
 .nb-toc-mobile summary::after{content:'▼';font-size:0.6rem;transition:transform 0.2s;}
@@ -332,21 +332,6 @@ export default async function Page() {
 .nb-toc-mobile a{display:block;font-size:0.875rem;color:#334155;text-decoration:none;line-height:1.4;font-weight:500;}
 .nb-toc-mobile a:hover{color:#2563eb;}
 .nb-toc-mobile .nb-toc-num{font-family:ui-monospace,SFMono-Regular,monospace;font-size:0.7rem;color:#94a3b8;margin-right:8px;font-weight:700;}
-
-.nb-toc{position:sticky;top:88px;align-self:start;overflow-y:auto;max-height:calc(100vh - 100px);scrollbar-width:thin;padding-right:12px;}
-.nb-toc::-webkit-scrollbar{width:4px;}
-.nb-toc::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:2px;}
-.nb-toc-head{font-family:ui-monospace,SFMono-Regular,monospace;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#64748b;margin:0 0 12px;display:block;}
-.nb-toc ol{list-style:none;margin:0;padding:0;border-left:2px solid #e2e8f0;}
-.nb-toc a{display:block;padding:6px 0 6px 14px;font-size:0.875rem;color:#475569;text-decoration:none;border-left:2px solid transparent;margin-left:-2px;line-height:1.4;font-weight:500;}
-.nb-toc a:hover{border-left-color:#2563eb;color:#2563eb;background:#f8fafc;}
-.nb-toc-num{font-family:ui-monospace,SFMono-Regular,monospace;font-size:0.7rem;color:#94a3b8;margin-right:8px;font-weight:700;}
-.nb-toc-divider{height:1px;background:#e2e8f0;margin:12px 0;}
-
-@media(max-width:1024px){
-  .nb-toc{display:none;}
-  .nb-toc-mobile{display:block;}
-}
 `}} />
 
       <link rel="preconnect" href="https://www.google-analytics.com" />
@@ -530,21 +515,19 @@ export default async function Page() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-8">
-                <div id="silver-calculator" className="bg-slate-50 px-6 py-4 border-b border-slate-200 scroll-mt-24">
-                  <h3 className="text-[13px] font-black uppercase tracking-[.2em] text-slate-800">Quick Valuation Calculator</h3>
+              <section id="silver-calculator" className="scroll-mt-24 bg-slate-50 border border-slate-200 rounded-2xl p-6 md:p-8 mb-8">
+                <div className="text-xl sm:text-2xl font-black text-slate-900 tracking-tighter mb-3">Silver Valuation Calculator</div>
+                <p className="text-[14px] text-slate-700 font-medium leading-relaxed mb-4">
+                  Our <a href="/calculator/silver-converter/" className="text-blue-600 hover:underline font-bold">Silver Unit Converter</a> updates automatically using today's official FENEGOSIDA rate. Calculate the exact value of any silver item in Tola, Gram, or Kg.
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <a href="/calculator/silver-converter/" className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-sm transition-colors">Open Silver Calculator →</a>
                 </div>
-                <div className="p-6">
-                  <a href="/calculator/silver-converter/" className="block p-6 rounded-xl border-2 border-dashed border-slate-300 hover:border-blue-500 hover:bg-blue-50 transition-colors text-center group">
-                    <span className="block text-lg font-black text-slate-700 group-hover:text-blue-700 mb-2">Open Silver Valuation Calculator</span>
-                    <span className="text-sm font-medium text-slate-500 group-hover:text-blue-600">Calculate exact value including making charges and wastage →</span>
-                  </a>
-                </div>
-              </div>
+              </section>
 
-          <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-9 items-start">
+          <div>
             <article className="nb-main min-w-0 overflow-hidden">
-                            <SilverHistoricalData />
+              <SilverHistoricalData />
 
               <SilverSeoContent silverData={silverData} source={source} date={rate_date} />
 
@@ -571,10 +554,6 @@ export default async function Page() {
                 </div>
               </div>
             </article>
-            
-            <aside className="nb-toc hidden lg:block" style={{position:'sticky',top:'88px',maxHeight:'calc(100vh - 100px)',overflowY:'auto',scrollbarWidth:'thin',alignSelf:'start'}}>
-              <SilverSeoToc />
-            </aside>
           </div>
           </div>
           {/* === SIDEBAR === */}

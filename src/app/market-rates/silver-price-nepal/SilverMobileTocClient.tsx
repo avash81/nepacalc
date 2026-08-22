@@ -32,7 +32,7 @@ export default function SilverMobileTocClient() {
   let counter = 0;
   const totalItems = tocGroups.reduce((s, g) => s + g.items.length, 0);
   return (
-    <div className="nb-toc-mobile lg:hidden mb-6">
+    <div className="nb-toc-mobile mb-6">
       <details id="silver-mobile-toc">
         <summary>On this page — {totalItems} sections</summary>
         <ol>
