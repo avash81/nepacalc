@@ -75,7 +75,7 @@ export default function GraphingGuidePage() {
             The first value identifies the horizontal position and the second identifies the vertical position.
           </p>
           <p>
-            For linear functions, the graph is a straight line. The slope describes the rate of vertical change compared with horizontal change, while the y-intercept identifies where the line crosses the y-axis. OpenStax defines slope using "rise over run" and explains how intercepts can be used when graphing linear functions. (<a href="https://openstax.org/books/contemporary-mathematics/pages/5-8-graphing-functions" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">OpenStax: Graphing Functions</a>)
+            For linear functions, the graph is a straight line. The slope describes the rate of vertical change compared with horizontal change, while the y-intercept identifies where the line crosses the y-axis. OpenStax defines slope using "rise over run" and explains how intercepts can be used when graphing linear functions. (OpenStax: Graphing Functions)
           </p>
 
           <h2 className="text-2xl font-bold text-slate-900 mt-10 mb-4 border-b border-slate-100 pb-2">Common Types of Functions</h2>
@@ -182,8 +182,10 @@ eq 0\). For the basic reciprocal form \(y = a/(x-h) + k\), there is a vertical a
           <h3 className="text-xl font-bold text-slate-900 mt-6 mb-3">Coordinate Geometry</h3>
           <ul className="list-disc pl-6 mb-4">
             <li><strong>Distance Between Two Points:</strong> \(d = \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}\)</li>
-            <li><strong>Midpoint:</strong> \(M\left(rac{x_1+x_2}{2}, rac{y_1+y_2}{2}ight)\)</li>
-            <li><strong>Section Formula:</strong> \(P\left(rac{mx_2+nx_1}{m+n}, rac{my_2+ny_1}{m+n}ight)\)</li>
+            <li><strong>Midpoint:</strong> \(M\left(rac{x_1+x_2}{2}, rac{y_1+y_2}{2}
+ight)\)</li>
+            <li><strong>Section Formula:</strong> \(P\left(rac{mx_2+nx_1}{m+n}, rac{my_2+ny_1}{m+n}
+ight)\)</li>
           </ul>
 
           <h3 className="text-xl font-bold text-slate-900 mt-6 mb-3">Function Transformations</h3>
@@ -284,8 +286,8 @@ eq 0\). For the basic reciprocal form \(y = a/(x-h) + k\), there is a vertical a
           <ul className="list-disc pl-6 mb-6">
             <li className="mb-4"><strong>\(y=2x+3\)</strong><br/>Produces a straight line with slope \(2\) and y-intercept \(3\).</li>
             <li className="mb-4"><strong>\(y=x^2-4\)</strong><br/>Produces a parabola opening upward with x-intercepts at \(x=-2\) and \(x=2\).</li>
-            <li className="mb-4"><strong>\(y=2^x\)</strong><br/>An increasing exponential function with y-intercept \((0,1)\) and horizontal asymptote \(y=0\). (<a href="https://openstax.org/books/algebra-and-trigonometry-2e/pages/6-2-graphs-of-exponential-functions" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">OpenStax: Graphs of Exponential Functions</a>)</li>
-            <li className="mb-4"><strong>\(y=\log_2(x)\)</strong><br/>A logarithmic function increasing for \(x &gt; 0\), with x-intercept \((1,0)\) and vertical asymptote \(x=0\). (<a href="https://openstax.org/books/algebra-and-trigonometry-2e/pages/6-4-graphs-of-logarithmic-functions" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">OpenStax: Graphs of Logarithmic Functions</a>)</li>
+            <li className="mb-4"><strong>\(y=2^x\)</strong><br/>An increasing exponential function with y-intercept \((0,1)\) and horizontal asymptote \(y=0\). (OpenStax: Graphs of Exponential Functions)</li>
+            <li className="mb-4"><strong>\(y=\log_2(x)\)</strong><br/>A logarithmic function increasing for \(x &gt; 0\), with x-intercept \((1,0)\) and vertical asymptote \(x=0\). (OpenStax: Graphs of Logarithmic Functions)</li>
           </ul>
           <p>These examples illustrate why the graph shape can reveal information that is not immediately obvious from the equation alone.</p>
 
@@ -309,11 +311,11 @@ eq 0\). For the basic reciprocal form \(y = a/(x-h) + k\), there is a vertical a
             </div>
             <div>
               <h3 className="font-bold text-slate-900 mb-1">Why are exponential graphs important?</h3>
-              <p className="text-slate-600">Exponential functions are used to represent growth and decay in areas such as finance, science, computing, and life sciences. Their graphs make the rate and direction of change easier to visualize. (<a href="https://openstax.org/books/algebra-and-trigonometry-2e/pages/6-2-graphs-of-exponential-functions" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">OpenStax: Graphs of Exponential Functions</a>)</p>
+              <p className="text-slate-600">Exponential functions are used to represent growth and decay in areas such as finance, science, computing, and life sciences. Their graphs make the rate and direction of change easier to visualize. (OpenStax: Graphs of Exponential Functions)</p>
             </div>
             <div>
               <h3 className="font-bold text-slate-900 mb-1">Why are logarithmic graphs useful?</h3>
-              <p className="text-slate-600">Logarithmic functions are inverse functions of exponentials and can be useful when the question involves finding an input from a known output. Their graphs also make domain restrictions and asymptotic behavior visible. (<a href="https://openstax.org/books/algebra-and-trigonometry-2e/pages/6-4-graphs-of-logarithmic-functions" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">OpenStax: Graphs of Logarithmic Functions</a>)</p>
+              <p className="text-slate-600">Logarithmic functions are inverse functions of exponentials and can be useful when the question involves finding an input from a known output. Their graphs also make domain restrictions and asymptotic behavior visible. (OpenStax: Graphs of Logarithmic Functions)</p>
             </div>
           </div>
           
@@ -325,27 +327,9 @@ eq 0\). For the basic reciprocal form \(y = a/(x-h) + k\), there is a vertical a
             </p>
           </div>
 
-          <h2 className="text-2xl font-bold text-slate-900 mt-10 mb-4 border-b border-slate-100 pb-2">Mathematical References</h2>
-          <p>For further study, consult authoritative mathematical resources:</p>
-          <ul className="list-disc pl-6 mb-10 text-slate-600">
-            <li><a href="https://openstax.org/books/contemporary-mathematics/pages/5-8-graphing-functions" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">OpenStax: Graphing Functions</a></li>
-            <li><a href="https://openstax.org/books/algebra-and-trigonometry-2e/pages/3-2-domain-and-range" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">OpenStax: Basic Functions and Identities</a></li>
-            <li><a href="https://openstax.org/books/algebra-and-trigonometry-2e/pages/6-2-graphs-of-exponential-functions" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">OpenStax: Graphs of Exponential Functions</a></li>
-            <li><a href="https://openstax.org/books/algebra-and-trigonometry-2e/pages/6-4-graphs-of-logarithmic-functions" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">OpenStax: Graphs of Logarithmic Functions</a></li>
-            <li><a href="https://dlmf.nist.gov/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">NIST Digital Library of Mathematical Functions (DLMF)</a></li>
-          </ul>
-
-          <h2 className="text-2xl font-bold text-slate-900 mt-10 mb-6 border-b border-slate-100 pb-2">Try the NepaCalc Graphing Calculator</h2>
           
-          <div className="bg-blue-50/50 rounded-xl p-8 border border-blue-100 not-prose text-center">
-            <h3 className="text-xl font-bold text-slate-900 mb-2">Ready to plot a function?</h3>
-            <p className="text-slate-600 mb-6 max-w-lg mx-auto">
-              Put the concepts from this guide into practice. Use the calculator to experiment with functions, compare equations, and connect the mathematical concepts in this guide with their graphical representations.
-            </p>
-            <Link href="/engineering/graphing/" className="inline-block px-8 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors shadow-sm">
-              Free Online Graphing Calculator
-            </Link>
-          </div>
+
+          
 
         </div>
       </div>
