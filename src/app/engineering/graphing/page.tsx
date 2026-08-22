@@ -47,11 +47,9 @@ export default function GraphingPage() {
         ]}
       />
 
+      <GraphingCalculatorClient />
+
       <div className="max-w-[1200px] mx-auto pb-12">
-        <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-8">Free Online Graphing Calculator</h1>
-
-        <GraphingCalculatorClient />
-
         <section className="mt-12 bg-white rounded-2xl p-6 md:p-10 border border-slate-200 shadow-sm">
           <div className="prose prose-slate max-w-none">
             <p className="lead text-lg text-slate-700 font-medium">
