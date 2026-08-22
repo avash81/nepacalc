@@ -109,7 +109,7 @@ export default function GoldDashboardClient() {
   return (
     <div className="max-w-[1400px] lg:ml-0 lg:mr-auto pb-12">
       {/* Page-level layout */}
-      <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-8 items-start">
+      <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-8 items-start">
       {/* === MAIN === */}
       <div className="min-w-0">
       
