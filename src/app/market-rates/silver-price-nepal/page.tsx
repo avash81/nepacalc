@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import SilverChartClient from './SilverChartClient';
 
 import { SilverSeoContent, SilverSeoToc } from './SilverSeoSection';
+import SilverMobileTocClient from './SilverMobileTocClient';
 import SilverHistoricalData from './SilverHistoricalData';
 import PricePerformanceWidget from '@/components/widgets/PricePerformanceWidget';
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
@@ -380,8 +381,8 @@ export default async function Page() {
       >
         <div className="max-w-[1400px] lg:ml-0 lg:mr-auto pb-12">
           <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-8 items-start">
-          <div className="min-w-0">
-          
+          <div className="min-w-0 w-full overflow-hidden">
+
           <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6 mb-8 border-b border-slate-200 pb-6">
             <div className="flex-1">
               <div className="mb-4 flex flex-wrap items-center gap-4">
@@ -431,10 +432,9 @@ export default async function Page() {
           </div>
 
 
-              <div className="lg:hidden mb-12">
-                <SilverSeoToc />
-              </div>
-              
+          {/* Mobile collapsible TOC */}
+          <SilverMobileTocClient />
+
               <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-6">
                 <div className="flex flex-col">
                   {!isFresh && (
@@ -542,8 +542,8 @@ export default async function Page() {
                 </div>
               </div>
 
-          <div className="nb-layout" style={{display:'grid',gridTemplateColumns:'minmax(0,1fr) 260px',gap:'36px',alignItems:'start'}}>
-            <article className="nb-main min-w-0">
+          <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-9 items-start">
+            <article className="nb-main min-w-0 overflow-hidden">
                             <SilverHistoricalData />
 
               <SilverSeoContent silverData={silverData} source={source} date={rate_date} />

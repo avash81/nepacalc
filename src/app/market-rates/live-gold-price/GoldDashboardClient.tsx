@@ -346,11 +346,9 @@ export default function GoldDashboardClient() {
 
       
 
-      
-
             {/* MOBILE TOC - Collapsible */}
       <div className="nb-toc-mobile lg:hidden mb-6">
-        <details>
+        <details id="gold-mobile-toc">
           <summary>On this page — {tocItems.filter(i => !i.divider).length} sections</summary>
           <ol>
             {(() => { let n=0; return tocItems.map((entry, idx) => {
@@ -359,7 +357,10 @@ export default function GoldDashboardClient() {
               const num = String(n).padStart(2,'0');
               return (
                 <li key={entry.id}>
-                  <a href={"#"+entry.id}>
+                  <a href={"#"+entry.id} onClick={() => {
+                    const d = document.getElementById('gold-mobile-toc') as HTMLDetailsElement | null;
+                    if (d) d.open = false;
+                  }}>
                     <span className="nb-toc-num">{num}</span>
                     {entry.label}
                   </a>
