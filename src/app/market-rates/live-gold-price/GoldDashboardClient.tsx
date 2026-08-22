@@ -356,32 +356,6 @@ export default function GoldDashboardClient() {
         </div>
       </div>
 
-      
-
-      {/* MOBILE TOC - Collapsible */}
-      <div className="nb-toc-mobile mb-6">
-        <details id="gold-mobile-toc">
-          <summary>On this page — {tocItems.filter(i => !i.divider).length} sections</summary>
-          <ol>
-            {(() => { let n=0; return tocItems.map((entry, idx) => {
-              if (entry.divider) return <div key={"div-"+idx} className="nb-toc-divider" />;
-              n++;
-              const num = String(n).padStart(2,'0');
-              return (
-                <li key={entry.id}>
-                  <a href={"#"+entry.id} onClick={() => {
-                    const d = document.getElementById('gold-mobile-toc') as HTMLDetailsElement | null;
-                    if (d) d.open = false;
-                  }}>
-                    <span className="nb-toc-num">{num}</span>
-                    {entry.label}
-                  </a>
-                </li>
-              );
-            }); })()}
-          </ol>
-        </details>
-      </div>
 
 <section id="quick-answer-block" className="scroll-mt-24 bg-blue-50 border border-blue-100 rounded-2xl p-6 md:p-8">
         <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tighter mb-3">Quick Answer</h3>
@@ -532,6 +506,31 @@ export default function GoldDashboardClient() {
           </div>
         </div>
                   
+      </div>
+
+      {/* TOC - Collapsible dropdown, placed directly below the chart */}
+      <div className="nb-toc-mobile mb-6">
+        <details id="gold-mobile-toc">
+          <summary>On this page — {tocItems.filter(i => !i.divider).length} sections</summary>
+          <ol>
+            {(() => { let n=0; return tocItems.map((entry, idx) => {
+              if (entry.divider) return <div key={"div-"+idx} className="nb-toc-divider" />;
+              n++;
+              const num = String(n).padStart(2,'0');
+              return (
+                <li key={entry.id}>
+                  <a href={"#"+entry.id} onClick={() => {
+                    const d = document.getElementById('gold-mobile-toc') as HTMLDetailsElement | null;
+                    if (d) d.open = false;
+                  }}>
+                    <span className="nb-toc-num">{num}</span>
+                    {entry.label}
+                  </a>
+                </li>
+              );
+            }); })()}
+          </ol>
+        </details>
       </div>
 
       {/* Market Highlights & Price Change Summary */}

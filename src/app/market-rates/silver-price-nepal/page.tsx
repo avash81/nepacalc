@@ -417,9 +417,6 @@ export default async function Page() {
           </div>
 
 
-          {/* Mobile collapsible TOC */}
-          <SilverMobileTocClient />
-
               <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-6">
                 <div className="flex flex-col">
                   {!isFresh && (
@@ -462,6 +459,11 @@ export default async function Page() {
 
                   <div className="mx-4 sm:mx-6 mt-4 p-4 bg-slate-100 border border-slate-200 rounded-xl text-slate-600 text-[11px] leading-relaxed font-medium">
                     <strong>Note:</strong> Rates shown on this page track the official benchmark rates published by FENEGOSIDA as closely as possible, including standard import duties. Retail purchase prices may vary slightly due to making charges (jyala), wastage (jarti), VAT, and individual jeweler pricing policies.
+                  </div>
+
+                  {/* Mobile collapsible TOC — placed directly below the chart */}
+                  <div className="px-4 sm:px-6 mt-4 mb-2">
+                    <SilverMobileTocClient />
                   </div>
 
                   <div id="quick-answer" className="quick-answer-block bg-slate-50/50 mt-4 p-6 border-y border-slate-100 flex flex-col md:flex-row gap-6 items-center">
