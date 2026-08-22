@@ -288,19 +288,14 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
       <div className="not-prose mb-8">
         <PricePerformanceWidget
           asset="Gold"
-          source="FENEGOSIDA · NPR per Tola"
+          source="FENEGOSIDA"
           rows={[
-            {
-              period: 'Today',
-              amount: '—',
-              percent: '—',
-              isNegative: false,
-            },
-            { period: '30 Days',  amount: '+10,700',  percent: '+3.50%',    isNegative: false },
-            { period: '6 Months', amount: '-4,200',   percent: '-1.30%',    isNegative: true  },
-            { period: '1 Year',   amount: '+66,700',  percent: '+26.70%',   isNegative: false },
-            { period: '5 Year',   amount: '+176,700', percent: '+126.21%',  isNegative: false },
-            { period: '20 Year',  amount: '+300,700', percent: '+1877.60%', isNegative: false },
+            { period: 'Today',    priceTola: 316700, amount: 0,      percent: '—',          isNegative: false },
+            { period: '30 Days',  priceTola: 306000, amount: 10700,  percent: '+3.50%',    isNegative: false },
+            { period: '6 Months', priceTola: 320900, amount: -4200,  percent: '-1.30%',    isNegative: true  },
+            { period: '1 Year',   priceTola: 250000, amount: 66700,  percent: '+26.70%',   isNegative: false },
+            { period: '5 Year',   priceTola: 140000, amount: 176700, percent: '+126.21%',  isNegative: false },
+            { period: '20 Year',  priceTola: 16000,  amount: 300700, percent: '+1877.60%', isNegative: false },
           ]}
         />
       </div>

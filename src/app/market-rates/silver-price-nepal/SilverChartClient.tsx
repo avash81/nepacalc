@@ -35,14 +35,14 @@ export default function SilverChartClient() {
         <div style={{ position: 'sticky', top: '96px', alignSelf: 'start', zIndex: 10 }}>
           <PricePerformanceWidget
             asset="Silver"
-            source="FENEGOSIDA · NPR per Tola"
+            source="FENEGOSIDA"
             rows={[
-              { period: 'Today', price: '4,985', amount: '+50', percent: '+1.01%', isNegative: false },
-              { period: '30 Days', price: '4,785', amount: '+200', percent: '+4.18%', isNegative: false },
-              { period: '6 Months', price: '5,135', amount: '-150', percent: '-2.92%', isNegative: true },
-              { period: '1 Year', price: '4,185', amount: '+800', percent: '+19.11%', isNegative: false },
-              { period: '5 Year', price: '1,485', amount: '+3,500', percent: '+235.69%', isNegative: false },
-              { period: '20 Years', price: '485', amount: '+4,500', percent: '+927.83%', isNegative: false },
+              { period: 'Today',    priceTola: 4985, amount: 50,   percent: '+1.01%',   isNegative: false },
+              { period: '30 Days',  priceTola: 4785, amount: 200,  percent: '+4.18%',   isNegative: false },
+              { period: '6 Months', priceTola: 5135, amount: -150, percent: '-2.92%',   isNegative: true  },
+              { period: '1 Year',   priceTola: 4185, amount: 800,  percent: '+19.11%',  isNegative: false },
+              { period: '5 Year',   priceTola: 1485, amount: 3500, percent: '+235.69%', isNegative: false },
+              { period: '20 Years', priceTola: 485,  amount: 4500, percent: '+927.83%', isNegative: false },
             ]}
           />
         </div>

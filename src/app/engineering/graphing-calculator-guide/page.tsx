@@ -239,15 +239,16 @@ eq 0\). For the basic reciprocal form \(y = a/(x-h) + k\), there is a vertical a
           <h3 className="text-xl font-bold text-slate-900 mt-6 mb-3">End Behavior</h3>
           <p>
             End behavior describes what happens to the function as \(x 	o \infty\) and \(x 	o -\infty\). For example, \(f(x)=x^3\) has \(x 	o \infty \Rightarrow f(x) 	o \infty\) and \(x 	o -\infty \Rightarrow f(x) 	o -\infty\). The leading term determines polynomial end behavior.
+            End behavior describes what happens to the function as \(x \to \infty\) and \(x \to -\infty\). For example, \(f(x)=x^3\) has \(x \to \infty \Rightarrow f(x) \to \infty\) and \(x \to -\infty \Rightarrow f(x) \to -\infty\). The leading term determines polynomial end behavior.
           </p>
 
           <h2 className="text-2xl font-bold text-slate-900 mt-10 mb-4 border-b border-slate-100 pb-2">Common Conic Graphs</h2>
           <p>The standard conic sections are defined by the following equations:</p>
           <ul className="list-disc pl-6 mb-4">
-            <li><strong>Circle:</strong> \((x-h)^2+(y-k)^2=r^2\)</li>
-            <li><strong>Ellipse:</strong> \(rac{(x-h)^2}{a^2} + rac{(y-k)^2}{b^2} = 1\)</li>
-            <li><strong>Hyperbola:</strong> \(rac{(x-h)^2}{a^2} - rac{(y-k)^2}{b^2} = 1\)</li>
-            <li><strong>Parabola:</strong> \(y = a(x-h)^2 + k\) or \(x = a(y-k)^2 + h\)</li>
+            <li><strong>Circle:</strong> {`\\((x-h)^2+(y-k)^2=r^2\\)`}</li>
+            <li><strong>Ellipse:</strong> {`\\(\\frac{(x-h)^2}{a^2} + \\frac{(y-k)^2}{b^2} = 1\\)`}</li>
+            <li><strong>Hyperbola:</strong> {`\\(\\frac{(x-h)^2}{a^2} - \\frac{(y-k)^2}{b^2} = 1\\)`}</li>
+            <li><strong>Parabola:</strong> {`\\(y = a(x-h)^2 + k\\)`} or {`\\(x = a(y-k)^2 + h\\)`}</li>
           </ul>
           <p>
             For interactive geometric constructions and coordinate visualization, see the <Link href="/engineering/geometry/" className="text-blue-600 hover:underline">Geometry Canvas Lab</Link>.
