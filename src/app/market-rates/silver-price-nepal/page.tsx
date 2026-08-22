@@ -605,6 +605,7 @@ export default async function Page() {
             />
           </aside>
         </div>
+        </div>
       </CalcWrapper>
     </div>
   );
