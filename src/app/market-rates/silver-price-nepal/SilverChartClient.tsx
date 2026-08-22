@@ -35,14 +35,14 @@ export default function SilverChartClient() {
         <div className="w-full">
           <PricePerformanceWidget
             asset="Silver"
-            source="silverprice.org - 14:31 NY Time"
+            source="FENEGOSIDA · NPR per Tola"
             rows={[
-              { period: 'Today', amount: '+1.51', percent: '+2.23%', isNegative: false },
-              { period: '30 Days', amount: '+10.25', percent: '+17.74%', isNegative: false },
-              { period: '6 Months', amount: '-18.77', percent: '-21.63%', isNegative: true },
-              { period: '1 Year', amount: '+29.14', percent: '+74.92%', isNegative: false },
-              { period: '5 Year', amount: '+45.03', percent: '+195.80%', isNegative: false },
-              { period: '20 Years', amount: '+55.82', percent: '+456.99%', isNegative: false },
+              { period: 'Today', amount: '+50', percent: '+1.01%', isNegative: false },
+              { period: '30 Days', amount: '+200', percent: '+4.18%', isNegative: false },
+              { period: '6 Months', amount: '-150', percent: '-2.92%', isNegative: true },
+              { period: '1 Year', amount: '+800', percent: '+19.11%', isNegative: false },
+              { period: '5 Year', amount: '+3,500', percent: '+235.69%', isNegative: false },
+              { period: '20 Years', amount: '+4,500', percent: '+927.83%', isNegative: false },
             ]}
           />
         </div>

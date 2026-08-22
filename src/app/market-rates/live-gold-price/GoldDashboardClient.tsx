@@ -130,7 +130,7 @@ export default function GoldDashboardClient() {
           </div>
           {/* H1 & Description */}
           <h1 className="text-3xl sm:text-4xl font-black text-[#202124] tracking-tight mb-2">
-            Gold Price in Nepal Today – Live 24K, 22K &amp; Silver Rates
+            Gold Price in Nepal Today – Live 24K, 22K
           </h1>
           <p className="text-[#5f6368] text-base font-medium leading-relaxed max-w-xl">
             Check today's official gold and silver prices in Nepal based on FENEGOSIDA benchmarks.
@@ -240,6 +240,41 @@ export default function GoldDashboardClient() {
         </div>
       </div>
 
+      {/* Inserted Chart Block */}
+      <div className="bg-white border border-slate-200 rounded-2xl p-6 mb-6 shadow-sm">
+            <p className="text-[12px] text-slate-600 mb-4 font-medium">
+              * Nepal's official gold price is fixed once daily by FENEGOSIDA. This live chart tracks the international spot market which drives the daily local price changes.
+            </p>
+            <div className="lg:grid lg:grid-cols-[1fr_300px] lg:gap-6">
+              <div className="w-full h-[400px] md:h-[500px] bg-slate-50/50 rounded-xl border border-slate-200 overflow-hidden relative mb-6 lg:mb-0">
+                <TradingViewWidget
+                  symbol="OANDA:XAUUSD"
+                  theme="light"
+                  containerId="tv_chart_gold_main"
+                />
+              </div>
+              <div className="w-full">
+                <PricePerformanceWidget
+                  asset="Gold"
+                  source="FENEGOSIDA · NPR per Tola"
+                  rows={[
+                    {
+                      period: 'Today',
+                      amount: tolaNPR.change24h != null ? `${tolaNPR.change24h >= 0 ? '+' : ''}${Math.round(tolaNPR.change24h).toLocaleString('en-IN')}` : '—',
+                      percent: tolaNPR.changePercent24h != null ? `${tolaNPR.changePercent24h >= 0 ? '+' : ''}${tolaNPR.changePercent24h.toFixed(2)}%` : '—',
+                      isNegative: (tolaNPR.changePercent24h ?? 0) < 0,
+                    },
+                    { period: '30 Days',  amount: '+10,700',  percent: '+3.50%',    isNegative: false },
+                    { period: '6 Months', amount: '-4,200',   percent: '-1.30%',    isNegative: true  },
+                    { period: '1 Year',   amount: '+66,700',  percent: '+26.70%',   isNegative: false },
+                    { period: '5 Year',   amount: '+176,700', percent: '+126.21%',  isNegative: false },
+                    { period: '20 Year',  amount: '+300,700', percent: '+1877.60%', isNegative: false },
+                  ]}
+                />
+              </div>
+            </div>
+          </div>
+
       {/* 4. Live Gold Price Summary */}
       <div id="quick-answer" className="bg-blue-50/50 rounded-2xl shadow-sm border border-blue-100 p-6 md:p-8 mb-6 flex flex-col md:flex-row gap-6 items-start">
         <div className="p-3 bg-blue-100 text-blue-600 rounded-full shrink-0">
@@ -328,26 +363,7 @@ export default function GoldDashboardClient() {
 
       
 
-      {/* MOBILE PRICE PERFORMANCE WIDGET */}
-      <div className="lg:hidden mb-6">
-        <PricePerformanceWidget
-          asset="Gold"
-          source="FENEGOSIDA · NPR per Tola"
-          rows={[
-            {
-              period: 'Today',
-              amount: tolaNPR.change24h != null ? `${tolaNPR.change24h >= 0 ? '+' : ''}${Math.round(tolaNPR.change24h).toLocaleString('en-IN')}` : '—',
-              percent: tolaNPR.changePercent24h != null ? `${tolaNPR.changePercent24h >= 0 ? '+' : ''}${tolaNPR.changePercent24h.toFixed(2)}%` : '—',
-              isNegative: (tolaNPR.changePercent24h ?? 0) < 0,
-            },
-            { period: '30 Days',  amount: '+10,700',  percent: '+3.50%',    isNegative: false },
-            { period: '6 Months', amount: '-4,200',   percent: '-1.30%',    isNegative: true  },
-            { period: '1 Year',   amount: '+66,700',  percent: '+26.70%',   isNegative: false },
-            { period: '5 Year',   amount: '+176,700', percent: '+126.21%',  isNegative: false },
-            { period: '20 Year',  amount: '+300,700', percent: '+1877.60%', isNegative: false },
-          ]}
-        />
-      </div>
+      
 
             {/* MOBILE TOC - Collapsible */}
       <div className="nb-toc-mobile lg:hidden mb-6">
@@ -519,34 +535,7 @@ export default function GoldDashboardClient() {
             WORLD GOLD COUNCIL INDEX
           </div>
         </div>
-                  <div className="p-6">
-            <p className="text-[12px] text-slate-600 mb-4 font-medium">
-              * Nepal's official gold price is fixed once daily by FENEGOSIDA. This live chart tracks the international spot market which drives the daily local price changes.
-            </p>
-            <div className="lg:grid lg:grid-cols-[1fr_300px] lg:gap-6">
-              <div className="w-full h-[400px] md:h-[500px] bg-slate-50/50 rounded-xl border border-slate-200 overflow-hidden relative mb-6 lg:mb-0">
-                <TradingViewWidget
-                  symbol="OANDA:XAUUSD"
-                  theme="light"
-                  containerId="tv_chart_gold_main"
-                />
-              </div>
-              <div className="w-full">
-                <PricePerformanceWidget
-                  asset="Gold"
-                  source="goldprice.org - 14:31 NY Time"
-                  rows={[
-                    { period: 'Today', amount: '+109.30', percent: '+2.42%', isNegative: false },
-                    { period: '30 Days', amount: '+465.82', percent: '+11.51%', isNegative: false },
-                    { period: '6 Months', amount: '-692.51', percent: '-13.30%', isNegative: true },
-                    { period: '1 Year', amount: '+1,140.80', percent: '+33.83%', isNegative: false },
-                    { period: '5 Year', amount: '+2,734.95', percent: '+153.78%', isNegative: false },
-                    { period: '20 Years', amount: '+3,888.82', percent: '+622.60%', isNegative: false },
-                  ]}
-                />
-              </div>
-            </div>
-          </div>
+                  
       </div>
 
       {/* Market Highlights & Price Change Summary */}
