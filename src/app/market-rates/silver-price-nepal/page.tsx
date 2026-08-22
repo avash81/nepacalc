@@ -578,7 +578,7 @@ export default async function Page() {
           </div>
           </div>
           {/* === SIDEBAR === */}
-          <aside className="hidden lg:block" style={{ position: 'sticky', top: '96px', alignSelf: 'start', zIndex: 20 }}>
+          <aside className="hidden lg:block pb-6 pr-1" style={{ position: 'sticky', top: '96px', alignSelf: 'start', zIndex: 20, maxHeight: 'calc(100vh - 120px)', overflowY: 'auto', scrollbarWidth: 'thin' }}>
             <PricePerformanceWidget
               asset="Silver"
               source="FENEGOSIDA"
