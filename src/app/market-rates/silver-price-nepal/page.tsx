@@ -1,4 +1,4 @@
-﻿import { Metadata } from 'next';
+import { Metadata } from 'next';
 import SilverChartClient from './SilverChartClient';
 
 import { SilverSeoContent, SilverSeoToc } from './SilverSeoSection';
@@ -575,24 +575,36 @@ export default async function Page() {
             
             <aside className="nb-toc">
               <SilverSeoToc />
+              <div className="mt-6">
+                <PricePerformanceWidget
+                  asset="Silver"
+                  source="FENEGOSIDA"
+                  rows={[
+                    { period: 'Today',    priceTola: currentSilver, amount: Math.round(change24h), percent: `${changePercent24h >= 0 ? '+' : ''}${changePercent24h.toFixed(2)}%`, isNegative: changePercent24h < 0 },
+                    { period: '30 Days',  priceTola: 4785,  amount: 200,  percent: '+4.18%',   isNegative: false },
+                    { period: '6 Months', priceTola: 5135,  amount: -150, percent: '-2.92%',   isNegative: true  },
+                    { period: '1 Year',   priceTola: 4185,  amount: 800,  percent: '+19.11%',  isNegative: false },
+                    { period: '5 Year',   priceTola: 1485,  amount: 3500, percent: '+235.69%', isNegative: false },
+                    { period: '20 Years', priceTola: 485,   amount: 4500, percent: '+927.83%', isNegative: false },
+                  ]}
+                />
+                <PricePerformanceWidget
+                  asset="Gold"
+                  source="FENEGOSIDA"
+                  rows={[
+                    { period: 'Today',    priceTola: 316700, amount: 0,      percent: '+0.00%',    isNegative: false },
+                    { period: '30 Days',  priceTola: 306000, amount: 10700,  percent: '+3.50%',    isNegative: false },
+                    { period: '6 Months', priceTola: 320900, amount: -4200,  percent: '-1.30%',    isNegative: true  },
+                    { period: '1 Year',   priceTola: 250000, amount: 66700,  percent: '+26.70%',   isNegative: false },
+                    { period: '5 Year',   priceTola: 140000, amount: 176700, percent: '+126.21%',  isNegative: false },
+                    { period: '20 Year',  priceTola: 16000,  amount: 300700, percent: '+1877.60%', isNegative: false },
+                  ]}
+                />
+              </div>
             </aside>
 
           </div>
           </div>
-          <aside className="hidden lg:block" style={{ position: 'sticky', top: '96px', alignSelf: 'start', zIndex: 20 }}>
-            <PricePerformanceWidget
-              asset="Silver"
-              source="FENEGOSIDA · NPR per Tola"
-              rows={[
-                { period: 'Today',    price: '4,985', amount: '+50',    percent: '+1.01%',   isNegative: false },
-                { period: '30 Days',  price: '4,785', amount: '+200',   percent: '+4.18%',   isNegative: false },
-                { period: '6 Months', price: '5,135', amount: '-150',   percent: '-2.92%',   isNegative: true  },
-                { period: '1 Year',   price: '4,185', amount: '+800',   percent: '+19.11%',  isNegative: false },
-                { period: '5 Year',   price: '1,485', amount: '+3,500', percent: '+235.69%', isNegative: false },
-                { period: '20 Years', price: '485',   amount: '+4,500', percent: '+927.83%', isNegative: false },
-              ]}
-            />
-          </aside>
           </div>
         </div>
       </CalcWrapper>

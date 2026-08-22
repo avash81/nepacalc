@@ -27,7 +27,7 @@ export default function GraphingGuidePage() {
       ]}
     >
       <JsonLd
-        type="Article"
+        type="article"
         headline="Graphing Calculator Guide: How to Graph Functions and Equations Online"
         description="Learn how to graph functions and equations online. Understand coordinate planes, intercepts, asymptotes, transformations, and common function types."
         url="https://nepacalc.com/engineering/graphing-calculator-guide/"
@@ -319,12 +319,25 @@ ight)\)</li>
             </div>
           </div>
           
-          <div className="mt-8 p-4 bg-slate-50 border border-slate-200 rounded-xl not-prose">
-            <span className="font-bold text-slate-900 block mb-2">Additional Math Tools</span>
-            <p className="text-slate-600 text-sm mb-4">
-              For numerical calculations that don't require graphing, see the <Link href="/calculator/scientific-calculator/" className="text-blue-600 hover:underline font-medium">Scientific Calculator</Link>. 
-              For matrix operations and related calculations, see the <Link href="/calculator/matrices/" className="text-blue-600 hover:underline font-medium">Matrix Calculator</Link>.
-            </p>
+          <h2 className="text-2xl font-bold text-slate-900 mt-10 mb-4 border-b border-slate-100 pb-2">Mathematical References</h2>
+          <p className="mb-8">
+            For further technical study and advanced mathematical definitions, consult the <a href="https://dlmf.nist.gov/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">NIST Digital Library of Mathematical Functions (DLMF)</a>.
+          </p>
+
+          <h2 className="text-2xl font-bold text-slate-900 mt-10 mb-6 border-b border-slate-100 pb-2">Related Math &amp; Engineering Tools</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-10 not-prose">
+            <Link href="/calculator/scientific-calculator/" className="block p-4 bg-slate-50 border border-slate-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 transition-colors group">
+              <span className="font-bold text-slate-800 group-hover:text-blue-700 block mb-1">Scientific Calculator</span>
+              <span className="text-sm text-slate-500">Perform numerical calculations and evaluate common mathematical functions.</span>
+            </Link>
+            <Link href="/calculator/matrices/" className="block p-4 bg-slate-50 border border-slate-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 transition-colors group">
+              <span className="font-bold text-slate-800 group-hover:text-blue-700 block mb-1">Matrix Calculator</span>
+              <span className="text-sm text-slate-500">Work with matrices and common matrix operations.</span>
+            </Link>
+            <Link href="/calculator/geometry-3d/" className="block p-4 bg-slate-50 border border-slate-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 transition-colors group">
+              <span className="font-bold text-slate-800 group-hover:text-blue-700 block mb-1">3D Geometry</span>
+              <span className="text-sm text-slate-500">Explore three-dimensional geometric calculations and relationships.</span>
+            </Link>
           </div>
 
           
