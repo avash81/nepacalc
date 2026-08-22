@@ -3,6 +3,7 @@ import React from 'react';
 
 interface PricePerformanceRow {
   period: string;
+  price?: string;
   amount: string;
   percent: string;
   isNegative: boolean;
@@ -34,27 +35,29 @@ export default function PricePerformanceWidget({ asset, rows, source }: PricePer
           fontSize: '16px',
           color: '#333',
           fontWeight: 'bold',
-          textAlign: 'center',
+          textAlign: 'right',
         }}
       >
         {asset} Price Performance NPR
       </div>
       <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
-        <thead>
+                <thead>
           <tr style={{ borderBottom: '1px solid #e0e0e0' }}>
             <th style={{ padding: '8px 10px', textAlign: 'left', color: '#111', fontWeight: 'bold' }}>Change</th>
-            <th style={{ padding: '8px 10px', textAlign: 'center', color: '#111', fontWeight: 'bold' }}>Amount</th>
-            <th style={{ padding: '8px 10px', textAlign: 'center', color: '#111', fontWeight: 'bold' }}>%</th>
+            {rows.some(r => r.price) && <th style={{ padding: '8px 10px', textAlign: 'right', color: '#111', fontWeight: 'bold' }}>Price</th>}
+            <th style={{ padding: '8px 10px', textAlign: 'right', color: '#111', fontWeight: 'bold' }}>Amount</th>
+            <th style={{ padding: '8px 10px', textAlign: 'right', color: '#111', fontWeight: 'bold' }}>%</th>
           </tr>
         </thead>
         <tbody>
           {rows.map((row, i) => (
             <tr key={i} style={{ borderBottom: '1px solid #f0f0f0' }}>
-              <td style={{ padding: '8px 10px', color: '#000', fontWeight: 'bold' }}>{row.period}</td>
+                            <td style={{ padding: '8px 10px', color: '#000', fontWeight: 'bold' }}>{row.period}</td>
+              {rows.some(r => r.price) && <td style={{ padding: '8px 10px', textAlign: 'right', color: '#333' }}>{row.price || '—'}</td>}
               <td
                 style={{
                   padding: '8px 10px',
-                  textAlign: 'center',
+                  textAlign: 'right',
                   fontWeight: 'normal',
                   color: row.amount === '—' || row.amount === '-' ? '#000' : (row.isNegative ? '#cc0000' : '#006600'),
                 }}
@@ -64,7 +67,7 @@ export default function PricePerformanceWidget({ asset, rows, source }: PricePer
               <td
                 style={{
                   padding: '8px 10px',
-                  textAlign: 'center',
+                  textAlign: 'right',
                   fontWeight: 'normal',
                   color: row.percent === '—' || row.percent === '-' ? '#000' : (row.isNegative ? '#cc0000' : '#006600'),
                 }}
@@ -83,7 +86,7 @@ export default function PricePerformanceWidget({ asset, rows, source }: PricePer
             fontSize: '12px',
             color: '#000',
             fontWeight: 'bold',
-            textAlign: 'center',
+            textAlign: 'right',
             borderTop: '1px solid #e0e0e0',
           }}
         >
@@ -93,3 +96,4 @@ export default function PricePerformanceWidget({ asset, rows, source }: PricePer
     </div>
   );
 }
+

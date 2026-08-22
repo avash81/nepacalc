@@ -245,7 +245,7 @@ export default function GoldDashboardClient() {
             <p className="text-[12px] text-slate-600 mb-4 font-medium">
               * Nepal's official gold price is fixed once daily by FENEGOSIDA. This live chart tracks the international spot market which drives the daily local price changes.
             </p>
-            <div className="lg:grid lg:grid-cols-[1fr_300px] lg:gap-6">
+            <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-6 items-start">
               <div className="w-full h-[400px] md:h-[500px] bg-slate-50/50 rounded-xl border border-slate-200 overflow-hidden relative mb-6 lg:mb-0">
                 <TradingViewWidget
                   symbol="OANDA:XAUUSD"
@@ -255,22 +255,23 @@ export default function GoldDashboardClient() {
               </div>
               <div className="w-full">
                 <PricePerformanceWidget
-                  asset="Gold"
-                  source="FENEGOSIDA · NPR per Tola"
-                  rows={[
-                    {
-                      period: 'Today',
-                      amount: tolaNPR.change24h != null ? `${tolaNPR.change24h >= 0 ? '+' : ''}${Math.round(tolaNPR.change24h).toLocaleString('en-IN')}` : '—',
-                      percent: tolaNPR.changePercent24h != null ? `${tolaNPR.changePercent24h >= 0 ? '+' : ''}${tolaNPR.changePercent24h.toFixed(2)}%` : '—',
-                      isNegative: (tolaNPR.changePercent24h ?? 0) < 0,
-                    },
-                    { period: '30 Days',  amount: '+10,700',  percent: '+3.50%',    isNegative: false },
-                    { period: '6 Months', amount: '-4,200',   percent: '-1.30%',    isNegative: true  },
-                    { period: '1 Year',   amount: '+66,700',  percent: '+26.70%',   isNegative: false },
-                    { period: '5 Year',   amount: '+176,700', percent: '+126.21%',  isNegative: false },
-                    { period: '20 Year',  amount: '+300,700', percent: '+1877.60%', isNegative: false },
-                  ]}
-                />
+                    asset="Gold"
+                    source="FENEGOSIDA · NPR per Tola"
+                    rows={[
+                      {
+                        period: 'Today',
+                        price: fmt(tolaNPR.current),
+                        amount: tolaNPR.change24h != null ? `${tolaNPR.change24h >= 0 ? '+' : ''}${Math.round(tolaNPR.change24h).toLocaleString('en-IN')}` : '—',
+                        percent: tolaNPR.changePercent24h != null ? `${tolaNPR.changePercent24h >= 0 ? '+' : ''}${tolaNPR.changePercent24h.toFixed(2)}%` : '—',
+                        isNegative: (tolaNPR.changePercent24h ?? 0) < 0,
+                      },
+                      { period: '30 Days',  price: '3,06,000', amount: '+10,700',  percent: '+3.50%',    isNegative: false },
+                      { period: '6 Months', price: '3,20,900', amount: '-4,200',   percent: '-1.30%',    isNegative: true  },
+                      { period: '1 Year',   price: '2,50,000', amount: '+66,700',  percent: '+26.70%',   isNegative: false },
+                      { period: '5 Year',   price: '1,40,000', amount: '+176,700', percent: '+126.21%',  isNegative: false },
+                      { period: '20 Year',  price: '16,000',   amount: '+300,700', percent: '+1877.60%', isNegative: false },
+                    ]}
+                  />
               </div>
             </div>
           </div>
