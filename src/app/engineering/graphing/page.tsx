@@ -46,38 +46,51 @@ export default function GraphingPage() {
           { question: "Do I need to download software?", answer: "No separate download is required. The calculator is provided through the NepaCalc website in the browser." }
         ]}
       />
-      
+
       <div className="max-w-[1200px] mx-auto pb-12">
         <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-8">Free Online Graphing Calculator</h1>
-        
+
         <GraphingCalculatorClient />
-      
+
         <section className="mt-12 bg-white rounded-2xl p-6 md:p-10 border border-slate-200 shadow-sm">
           <div className="prose prose-slate max-w-none">
             <p className="lead text-lg text-slate-700 font-medium">
-              Plot functions and equations online with NepaCalc's free graphing calculator. Enter a supported mathematical expression and visualize it on an interactive coordinate graph directly in your browser. You can compare multiple functions, zoom and pan the graph, and explore mathematical relationships visually without downloading a separate application.
+              Plot functions and equations online with NepaCalc&apos;s free graphing calculator. Enter a supported mathematical expression and visualize it on an interactive coordinate graph directly in your browser. You can compare multiple functions, zoom and pan the graph, and explore mathematical relationships visually without downloading a separate application.
             </p>
             <p>
-              Learn more about <Link href="/engineering/graphing-calculator-guide/" className="text-blue-600 hover:underline">how to graph functions and equations online</Link>, including common function types, graphing examples, and how to interpret graphs.
+              For a deeper understanding of function types, graph features, and mathematical formulas,
+              read the <Link href="/engineering/graphing-calculator-guide/" className="text-blue-600 hover:underline font-semibold">Graphing Calculator Guide</Link>.
             </p>
 
             <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4 border-b border-slate-100 pb-2">How to Use the Graphing Calculator</h2>
-            
+
             <h3 className="text-xl font-bold text-slate-900 mt-6 mb-3">Enter a Function or Equation</h3>
             <p>
-              Enter a function or equation to visualize its behavior on the coordinate plane. For equations that need algebraic solving before graphing, you can also use the 
-              
+              Type a mathematical expression into the input field to plot it on the coordinate plane. For linear equations such as <code>y = 2x + 3</code> or quadratic expressions such as <code>y = x^2 - 4</code>, the graph will render immediately. You can also use the{' '}
+              <Link href="/calculator/quadratic-solver/" className="text-blue-600 hover:underline font-semibold">Quadratic Solver</Link> to find roots before graphing.
+            </p>
+
+            <h3 className="text-xl font-bold text-slate-900 mt-6 mb-3">Supported Function Types</h3>
+            <p>
+              The graphing calculator supports common function families including linear, quadratic, polynomial, trigonometric (sin, cos, tan), exponential, and logarithmic expressions. For linear equations that need solving first, use the{' '}
+              <Link href="/calculator/linear-solver/" className="text-blue-600 hover:underline font-semibold">Linear Equations Solver</Link>.
+            </p>
+
+            <h3 className="text-xl font-bold text-slate-900 mt-6 mb-3">Zoom, Pan, and Compare</h3>
+            <p>
+              Use the zoom and pan controls to explore different regions of the coordinate plane. You can add multiple functions to compare their shapes and intersections on the same graph.
+            </p>
+
+            <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4 border-b border-slate-100 pb-2">Related Engineering Tools</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-10 not-prose">
+              <Link href="/engineering/3d/" className="flex items-center p-4 bg-slate-50 border border-slate-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 transition-colors group">
+                <span className="font-bold text-slate-700 group-hover:text-blue-700">3D Surface Plotter</span>
+              </Link>
               <Link href="/calculator/matrices/" className="flex items-center p-4 bg-slate-50 border border-slate-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 transition-colors group">
                 <span className="font-bold text-slate-700 group-hover:text-blue-700">Matrix Calculator</span>
               </Link>
-              <Link href="/calculator/geometry-3d/" className="flex items-center p-4 bg-slate-50 border border-slate-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 transition-colors group">
-                <span className="font-bold text-slate-700 group-hover:text-blue-700">3D Geometry</span>
-              </Link>
-            </div>
-
-            
-              <Link href="/engineering/graphing-calculator-guide/" className="shrink-0 px-5 py-2.5 bg-white border border-slate-200 text-blue-600 font-bold rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors text-sm text-center">
-                Graphing Calculator Guide
+              <Link href="/engineering/formulas/" className="flex items-center p-4 bg-slate-50 border border-slate-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 transition-colors group">
+                <span className="font-bold text-slate-700 group-hover:text-blue-700">Mathematical Formula Library</span>
               </Link>
             </div>
           </div>
