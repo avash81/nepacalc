@@ -151,10 +151,10 @@ eq 0\). For the basic reciprocal form \(y = a/(x-h) + k\), there is a vertical a
           
           <h3 className="text-xl font-bold text-slate-900 mt-6 mb-3">Linear Function</h3>
           <ul className="list-disc pl-6 mb-4">
-            <li><strong>Slope-Intercept Form:</strong> \(y = mx + b\)</li>
-            <li><strong>Point-Slope Form:</strong> \(y - y_1 = m(x - x_1)\)</li>
-            <li><strong>Parallel Lines:</strong> \(m_1 = m_2\)</li>
-            <li><strong>Perpendicular Lines:</strong> \(m_1 \cdot m_2 = -1\)</li>
+            <li><strong>Slope-Intercept Form:</strong> {`\\(y = mx + b\\)`}</li>
+            <li><strong>Point-Slope Form:</strong> {`\\(y - y_1 = m(x - x_1)\\)`}</li>
+            <li><strong>Parallel Lines:</strong> {`\\(m_1 = m_2\\)`}</li>
+            <li><strong>Perpendicular Lines:</strong> {`\\(m_1 \\cdot m_2 = -1\\)`}</li>
           </ul>
 
           <h3 className="text-xl font-bold text-slate-900 mt-6 mb-3">Quadratic Function</h3>
@@ -182,15 +182,13 @@ eq 0\). For the basic reciprocal form \(y = a/(x-h) + k\), there is a vertical a
           </ul>
 
           <h3 className="text-xl font-bold text-slate-900 mt-6 mb-3">Tangent Function</h3>
-          <p>For \(y = A	an(Bx+C)+D\), the period is \(\pi / |B|\).</p>
+          <p>For \(y = A\tan(Bx+C)+D\), the period is \(\pi / |B|\).</p>
 
           <h3 className="text-xl font-bold text-slate-900 mt-6 mb-3">Coordinate Geometry</h3>
           <ul className="list-disc pl-6 mb-4">
-            <li><strong>Distance Between Two Points:</strong> \(d = \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}\)</li>
-            <li><strong>Midpoint:</strong> \(M\left(rac{x_1+x_2}{2}, rac{y_1+y_2}{2}
-ight)\)</li>
-            <li><strong>Section Formula:</strong> \(P\left(rac{mx_2+nx_1}{m+n}, rac{my_2+ny_1}{m+n}
-ight)\)</li>
+            <li><strong>Distance Between Two Points:</strong> {'\\(d = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}\\)'}</li>
+            <li><strong>Midpoint:</strong> {'\\(M\\left(\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2}\\right)\\)'}</li>
+            <li><strong>Section Formula:</strong> {'\\(P\\left(\\frac{mx_2+nx_1}{m+n}, \\frac{my_2+ny_1}{m+n}\\right)\\)'}</li>
           </ul>
 
           <h3 className="text-xl font-bold text-slate-900 mt-6 mb-3">Function Transformations</h3>
@@ -269,7 +267,7 @@ ight)\)</li>
             <li><strong>Roots and Intersections:</strong> Finding exact points where curves cross.</li>
             <li><strong>Derivatives:</strong> The derivative \(f'(x)\) represents the slope of the tangent to the graph. The second derivative \(f''(x)\) indicates concavity.</li>
             <li><strong>Integrals:</strong> \(\int_a^b f(x)dx\) represents the signed area under the curve between \(a\) and \(b\).</li>
-            <li><strong>Regression:</strong> Fitting a line like \(y=b_0+b_1x\) to approximate relationships in observed data.</li>
+            <li><strong>Regression:</strong> Fitting a line like {`\\(y=b_0+b_1x\\)`} to approximate relationships in observed data.</li>
           </ul>
           <p>
             For three-dimensional surface visualization, see the <Link href="/engineering/3d/" className="text-blue-600 hover:underline">3D Surface Plotter</Link>.
@@ -292,7 +290,7 @@ ight)\)</li>
             <li className="mb-4"><strong>\(y=2x+3\)</strong><br/>Produces a straight line with slope \(2\) and y-intercept \(3\).</li>
             <li className="mb-4"><strong>\(y=x^2-4\)</strong><br/>Produces a parabola opening upward with x-intercepts at \(x=-2\) and \(x=2\).</li>
             <li className="mb-4"><strong>\(y=2^x\)</strong><br/>An increasing exponential function with y-intercept \((0,1)\) and horizontal asymptote \(y=0\). (OpenStax: Graphs of Exponential Functions)</li>
-            <li className="mb-4"><strong>\(y=\log_2(x)\)</strong><br/>A logarithmic function increasing for \(x &gt; 0\), with x-intercept \((1,0)\) and vertical asymptote \(x=0\). (OpenStax: Graphs of Logarithmic Functions)</li>
+            <li className="mb-4"><strong>{`\\(y=\\log_2(x)\\)`}</strong><br/>A logarithmic function increasing for {`\\(x > 0\\)`}, with x-intercept {`\\((1,0)\\)`} and vertical asymptote {`\\(x=0\\)`}. (OpenStax: Graphs of Logarithmic Functions)</li>
           </ul>
           <p>These examples illustrate why the graph shape can reveal information that is not immediately obvious from the equation alone.</p>
 
