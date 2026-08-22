@@ -27,10 +27,15 @@ export default function GraphingGuidePage() {
       ]}
     >
       <JsonLd
-        type="article"
-        headline="Graphing Calculator Guide: How to Graph Functions and Equations Online"
+        type="unified"
+        name="Graphing Calculator Guide"
         description="Learn how to graph functions and equations online. Understand coordinate planes, intercepts, asymptotes, transformations, and common function types."
         url="https://nepacalc.com/engineering/graphing-calculator-guide/"
+        breadcrumbItems={[
+          { name: 'Home', item: 'https://nepacalc.com' },
+          { name: 'Engineering', item: 'https://nepacalc.com/engineering/' },
+          { name: 'Graphing Calculator Guide', item: 'https://nepacalc.com/engineering/graphing-calculator-guide/' }
+        ]}
       />
       
       <div className="max-w-[1000px] mx-auto pb-12">
