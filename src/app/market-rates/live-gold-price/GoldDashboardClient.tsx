@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React from 'react';
 import { useLiveRates } from '@/hooks/useLiveRates';
@@ -245,7 +245,7 @@ export default function GoldDashboardClient() {
             <p className="text-[12px] text-slate-600 mb-4 font-medium">
               * Nepal's official gold price is fixed once daily by FENEGOSIDA. This live chart tracks the international spot market which drives the daily local price changes.
             </p>
-            <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-6 items-start">
+            <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-6 items-start">
               <div className="w-full h-[400px] md:h-[500px] bg-slate-50/50 rounded-xl border border-slate-200 overflow-hidden relative mb-6 lg:mb-0">
                 <TradingViewWidget
                   symbol="OANDA:XAUUSD"
@@ -253,7 +253,7 @@ export default function GoldDashboardClient() {
                   containerId="tv_chart_gold_main"
                 />
               </div>
-              <div className="w-full">
+              <div style={{ position: 'sticky', top: '96px', alignSelf: 'start', zIndex: 10 }}>
                 <PricePerformanceWidget
                     asset="Gold"
                     source="FENEGOSIDA · NPR per Tola"

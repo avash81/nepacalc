@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 import PricePerformanceWidget from '@/components/widgets/PricePerformanceWidget';
 
 import React from 'react';
@@ -22,7 +22,7 @@ export default function SilverChartClient() {
       <p className="text-[11px] text-slate-500 mb-4">
         <em>* Nepal&apos;s official silver price is fixed once daily by FENEGOSIDA. This live chart tracks the international spot market which drives the daily local price changes.</em>
       </p>
-            <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-6 items-start">
+            <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-6 items-start">
         <div className="w-full h-[340px] md:h-[400px] bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm relative mb-6 lg:mb-0">
           <TradingViewWidget 
             symbol="OANDA:XAGUSD"
@@ -32,7 +32,7 @@ export default function SilverChartClient() {
             interval="D"
           />
         </div>
-        <div className="w-full">
+        <div style={{ position: 'sticky', top: '96px', alignSelf: 'start', zIndex: 10 }}>
           <PricePerformanceWidget
             asset="Silver"
             source="FENEGOSIDA · NPR per Tola"
