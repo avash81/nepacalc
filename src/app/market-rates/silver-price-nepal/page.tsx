@@ -3,6 +3,7 @@ import SilverChartClient from './SilverChartClient';
 
 import { SilverSeoContent, SilverSeoToc } from './SilverSeoSection';
 import SilverMobileTocClient from './SilverMobileTocClient';
+import SilverPriceUpdater from './SilverPriceUpdater';
 import SilverHistoricalData from './SilverHistoricalData';
 import PricePerformanceWidget from '@/components/widgets/PricePerformanceWidget';
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
@@ -344,6 +345,7 @@ export default async function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(dynamicSchema) }}
       />
       
+      <SilverPriceUpdater />
       <CalcWrapper
         title="Live Silver Price Today Nepal (2083/84)"
         description={
@@ -403,12 +405,12 @@ export default async function Page() {
               </div>
               <div className="flex items-baseline gap-2 mt-3">
                 <span className="text-xl font-bold text-slate-400">Rs.</span>
-                <span className="text-4xl font-black tracking-tighter text-slate-900">{fmt(currentSilver)}</span>
+                <span className="text-4xl font-black tracking-tighter text-slate-900" id="silver-main-price">{fmt(currentSilver)}</span>
               </div>
               {changePercent24h !== undefined && (
                 <div className="mt-3 flex items-center justify-between border-t border-slate-100 pt-3">
                   <span className="text-[11px] font-bold text-slate-500 uppercase tracking-widest">24H Change</span>
-                  <div className={`px-2 py-0.5 rounded text-xs font-black flex items-center gap-1 ${changePercent24h >= 0 ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600'}`}>
+                  <div id="silver-main-percent" className={`px-2 py-0.5 rounded text-xs font-black flex items-center gap-1 ${changePercent24h >= 0 ? \'bg-emerald-50 text-emerald-600\' : \'bg-rose-50 text-rose-600\'}`}>
                     {changePercent24h >= 0 ? '+' : ''}{changePercent24h.toFixed(2)}%
                   </div>
                 </div>
@@ -506,7 +508,7 @@ export default async function Page() {
                               </td>
                               <td className="py-4 px-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">{row.unit}</td>
                               <td className="py-4 px-4 text-right">
-                                <span className="text-[17px] font-black text-slate-900 tracking-tighter">Rs. {fmt(row.rate)}</span>
+                                <span className="text-[17px] font-black text-slate-900 tracking-tighter" id={i === 0 ? "silver-main-price" : "silver-gram-price"}>Rs. {fmt(row.rate)}</span>
                               </td>
                             </tr>
                           ))}

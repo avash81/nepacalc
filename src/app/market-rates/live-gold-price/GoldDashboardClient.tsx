@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLiveRates } from '@/hooks/useLiveRates';
 import QuickPriceEstimator from '@/app/market-rates/live-gold-price/QuickPriceEstimator';
 import TradingViewWidget from '@/components/market/TradingViewWidget';
@@ -82,6 +82,44 @@ const tocItems: { id?: string; label?: string; divider?: boolean }[] = [
 
 export default function GoldDashboardClient() {
   const { rates, loading, error } = useLiveRates();
+
+  useEffect(() => {
+    if (rates?.gold?.tolaNPR?.current) {
+      const livePrice = rates.gold.tolaNPR.current;
+      const formattedPrice = `Rs.${livePrice.toLocaleString('en-IN')}`;
+      const newDesc = `Today's live gold price in Nepal from FENEGOSIDA: 24K Hallmark ${formattedPrice} per Tola. Check 22K Tejabi, silver, history and gold calculator.`;
+      
+      // Dynamically update the meta description for client-side crawlers
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.setAttribute('content', newDesc);
+      
+      // Dynamically update open graph tags
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      if (ogDesc) ogDesc.setAttribute('content', newDesc);
+      
+      // Update JSON-LD schema
+      const scripts = document.querySelectorAll('script[type="application/ld+json"]');
+      scripts.forEach(script => {
+        try {
+          if (script.textContent && script.textContent.includes('Gold Price in Nepal Today')) {
+            const schema = JSON.parse(script.textContent);
+            let updated = false;
+            if (schema.webpage) {
+              schema.webpage.description = newDesc;
+              updated = true;
+            }
+            if (schema.article) {
+              schema.article.description = newDesc;
+              updated = true;
+            }
+            if (updated) {
+              script.textContent = JSON.stringify(schema);
+            }
+          }
+        } catch(e) {}
+      });
+    }
+  }, [rates]);
 
   if (loading || !rates?.gold) {
      return <div className="min-h-[400px] bg-slate-50 flex items-center justify-center rounded-2xl">
