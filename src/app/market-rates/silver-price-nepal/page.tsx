@@ -410,7 +410,7 @@ export default async function Page() {
               {changePercent24h !== undefined && (
                 <div className="mt-3 flex items-center justify-between border-t border-slate-100 pt-3">
                   <span className="text-[11px] font-bold text-slate-500 uppercase tracking-widest">24H Change</span>
-                  <div id="silver-main-percent" className={`px-2 py-0.5 rounded text-xs font-black flex items-center gap-1 ${changePercent24h >= 0 ? \'bg-emerald-50 text-emerald-600\' : \'bg-rose-50 text-rose-600\'}`}>
+                  <div id="silver-main-percent" className={`px-2 py-0.5 rounded text-xs font-black flex items-center gap-1 ${changePercent24h >= 0 ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600'}`}>
                     {changePercent24h >= 0 ? '+' : ''}{changePercent24h.toFixed(2)}%
                   </div>
                 </div>
