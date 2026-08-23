@@ -1,37 +1,36 @@
-import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
-export const metadata = calcMeta({
-  title: "Nepali Date Converter | AD to BS & BS to AD NepaCalc",
-  description: "Accurate Gregorian (AD) to Bikram Sambat (BS) date converter. Syncs directly with Nepal Panchanga for accurate days, months, and leap years.",
-  slug: 'nepali-date',
-  keywords: ["nepali date converter", "ad to bs converter", "bs to ad converter", "english to nepali date", "bikram sambat calculator", "nepali calendar converter"],
-});
+export const metadata = {
+  title: "BS to AD & AD to BS Date Converter | NepaCalc",
+  description: "Convert BS to AD and AD to BS with NepaCalc's free Nepali date converter. Get fast, accurate date conversions online.",
+  alternates: {
+    canonical: "https://nepacalc.com/calculator/nepali-date/",
+  },
+  robots: "index,follow",
+  openGraph: {
+    title: "BS to AD & AD to BS Date Converter | NepaCalc",
+    description: "Convert BS to AD and AD to BS with NepaCalc's free Nepali date converter. Get fast, accurate date conversions online.",
+    url: "https://nepacalc.com/calculator/nepali-date/",
+    type: "website",
+    siteName: "NepaCalc",
+    images: [{ url: "https://nepacalc.com/images/og/default-og.png" }]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "BS to AD & AD to BS Date Converter | NepaCalc",
+    description: "Convert BS to AD and AD to BS with NepaCalc's free Nepali date converter. Get fast, accurate date conversions online.",
+    images: ["https://nepacalc.com/images/og/default-og.png"]
+  }
+};
 const singleSchema = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "WebApplication",
-      "@id": "https://nepacalc.com/calculator/nepali-date/#webapp",
-      "name": "Nepali Date Converter",
+      "@type": "WebPage",
+      "@id": "https://nepacalc.com/calculator/nepali-date/#webpage",
       "url": "https://nepacalc.com/calculator/nepali-date/",
-      "description": "Convert a single date between the English (AD/Gregorian) calendar and the Nepali (BS/Bikram Sambat) calendar, instantly and free.",
-      "applicationCategory": "UtilitiesApplication",
-      "operatingSystem": "Any (web browser)",
-      "browserRequirements": "Requires JavaScript",
-      "isAccessibleForFree": true,
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "featureList": [
-        "AD to BS date conversion",
-        "BS to AD date conversion",
-        "Today's date in both calendars",
-        "Nepali weekday name display"
-      ],
-      "inLanguage": ["en", "ne"],
-      "publisher": { "@id": "https://nepacalc.com/#organization" },
+      "name": "BS to AD & AD to BS Date Converter | NepaCalc",
+      "description": "Convert BS to AD and AD to BS with NepaCalc's free Nepali date converter. Get fast, accurate date conversions online.",
+      "inLanguage": "en-NP",
       "isPartOf": { "@id": "https://nepacalc.com/#website" }
     },
     {
@@ -39,15 +38,8 @@ const singleSchema = {
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nepacalc.com/" },
         { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://nepacalc.com/calculators/" },
-        { "@type": "ListItem", "position": 3, "name": "Nepali Date" }
+        { "@type": "ListItem", "position": 3, "name": "Nepali Date Converter", "item": "https://nepacalc.com/calculator/nepali-date/" }
       ]
-    },
-    {
-      "@type": "DefinedTerm",
-      "name": "Bikram Sambat",
-      "alternateName": "BS calendar",
-      "description": "The official Hindu lunisolar calendar of Nepal, currently around 56-57 years ahead of the Gregorian (AD) calendar.",
-      "inDefinedTermSet": "https://nepacalc.com/calculator/nepali-date/"
     }
   ]
 };

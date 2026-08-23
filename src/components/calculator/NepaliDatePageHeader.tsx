@@ -26,8 +26,8 @@ const CRUMBS_BULK = [
 
 const META = {
   single: {
-    title: 'Nepali Date Converter',
-    subtitle: 'Convert any single date between English (AD/Gregorian) and Nepali (BS/Bikram Sambat) calendars.',
+    title: 'Nepali Date Converter (BS ↔ AD)',
+    subtitle: 'Convert dates between Bikram Sambat (BS) and the Gregorian (AD) calendar. Use the converter below to convert BS to AD or AD to BS for any supported date.',
   },
   bulk: {
     title: 'Bulk Nepali Date Converter (BS ⇄ AD)',
