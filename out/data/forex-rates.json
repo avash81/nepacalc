@@ -1,0 +1,208 @@
+{
+  "rates": [
+    {
+      "currency": {
+        "iso3": "INR",
+        "name": "Indian Rupee",
+        "unit": 100
+      },
+      "buy": "160.00",
+      "sell": "160.15"
+    },
+    {
+      "currency": {
+        "iso3": "USD",
+        "name": "U.S. Dollar",
+        "unit": 1
+      },
+      "buy": "152.84",
+      "sell": "153.44"
+    },
+    {
+      "currency": {
+        "iso3": "EUR",
+        "name": "European Euro",
+        "unit": 1
+      },
+      "buy": "178.91",
+      "sell": "179.61"
+    },
+    {
+      "currency": {
+        "iso3": "GBP",
+        "name": "UK Pound Sterling",
+        "unit": 1
+      },
+      "buy": "208.55",
+      "sell": "209.37"
+    },
+    {
+      "currency": {
+        "iso3": "CHF",
+        "name": "Swiss Franc",
+        "unit": 1
+      },
+      "buy": "192.06",
+      "sell": "192.81"
+    },
+    {
+      "currency": {
+        "iso3": "AUD",
+        "name": "Australian Dollar",
+        "unit": 1
+      },
+      "buy": "108.93",
+      "sell": "109.36"
+    },
+    {
+      "currency": {
+        "iso3": "CAD",
+        "name": "Canadian Dollar",
+        "unit": 1
+      },
+      "buy": "111.02",
+      "sell": "111.46"
+    },
+    {
+      "currency": {
+        "iso3": "SGD",
+        "name": "Singapore Dollar",
+        "unit": 1
+      },
+      "buy": "120.29",
+      "sell": "120.77"
+    },
+    {
+      "currency": {
+        "iso3": "JPY",
+        "name": "Japanese Yen",
+        "unit": 10
+      },
+      "buy": "9.65",
+      "sell": "9.69"
+    },
+    {
+      "currency": {
+        "iso3": "CNY",
+        "name": "Chinese Yuan",
+        "unit": 1
+      },
+      "buy": "22.74",
+      "sell": "22.83"
+    },
+    {
+      "currency": {
+        "iso3": "SAR",
+        "name": "Saudi Arabian Riyal",
+        "unit": 1
+      },
+      "buy": "40.71",
+      "sell": "40.87"
+    },
+    {
+      "currency": {
+        "iso3": "QAR",
+        "name": "Qatari Riyal",
+        "unit": 1
+      },
+      "buy": "41.93",
+      "sell": "42.10"
+    },
+    {
+      "currency": {
+        "iso3": "THB",
+        "name": "Thai Baht",
+        "unit": 1
+      },
+      "buy": "4.65",
+      "sell": "4.67"
+    },
+    {
+      "currency": {
+        "iso3": "AED",
+        "name": "UAE Dirham",
+        "unit": 1
+      },
+      "buy": "41.61",
+      "sell": "41.78"
+    },
+    {
+      "currency": {
+        "iso3": "MYR",
+        "name": "Malaysian Ringgit",
+        "unit": 1
+      },
+      "buy": "37.79",
+      "sell": "37.94"
+    },
+    {
+      "currency": {
+        "iso3": "KRW",
+        "name": "South Korean Won",
+        "unit": 100
+      },
+      "buy": "10.97",
+      "sell": "11.01"
+    },
+    {
+      "currency": {
+        "iso3": "SEK",
+        "name": "Swedish Kroner",
+        "unit": 1
+      },
+      "buy": "16.17",
+      "sell": "16.24"
+    },
+    {
+      "currency": {
+        "iso3": "DKK",
+        "name": "Danish Kroner",
+        "unit": 1
+      },
+      "buy": "23.93",
+      "sell": "24.03"
+    },
+    {
+      "currency": {
+        "iso3": "HKD",
+        "name": "Hong Kong Dollar",
+        "unit": 1
+      },
+      "buy": "19.49",
+      "sell": "19.56"
+    },
+    {
+      "currency": {
+        "iso3": "KWD",
+        "name": "Kuwaity Dinar",
+        "unit": 1
+      },
+      "buy": "498.26",
+      "sell": "500.21"
+    },
+    {
+      "currency": {
+        "iso3": "BHD",
+        "name": "Bahrain Dinar",
+        "unit": 1
+      },
+      "buy": "405.40",
+      "sell": "406.99"
+    },
+    {
+      "currency": {
+        "iso3": "OMR",
+        "name": "Omani Rial",
+        "unit": 1
+      },
+      "buy": "397.00",
+      "sell": "398.56"
+    }
+  ],
+  "source": "Nepal Rastra Bank (NRB)",
+  "source_url": "https://www.nrb.org.np/api/forex/v1/rates?page=1&per_page=1&from=2026-08-21&to=2026-08-21",
+  "published_at": "2026-08-21",
+  "updated_at": "2026-08-21T06:59:31.317Z",
+  "fetched_at": "2026-08-21T04:46:09.572Z",
+  "status": "retained_fallback"
+}
