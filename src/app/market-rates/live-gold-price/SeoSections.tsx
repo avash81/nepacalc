@@ -285,20 +285,45 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
       </section>
 
       {/* ─── Price Performance Widget ─── */}
-      <div className="not-prose mb-8">
-        <PricePerformanceWidget
-          asset="Gold"
-          source="FENEGOSIDA"
-          rows={[
-            { period: 'Today',    priceTola: 316700, amount: 0,      percent: '—',          isNegative: false },
-            { period: '30 Days',  priceTola: 306000, amount: 10700,  percent: '+3.50%',    isNegative: false },
-            { period: '6 Months', priceTola: 320900, amount: -4200,  percent: '-1.30%',    isNegative: true  },
-            { period: '1 Year',   priceTola: 250000, amount: 66700,  percent: '+26.70%',   isNegative: false },
-            { period: '5 Year',   priceTola: 140000, amount: 176700, percent: '+126.21%',  isNegative: false },
-            { period: '20 Year',  priceTola: 16000,  amount: 300700, percent: '+1877.60%', isNegative: false },
-          ]}
-        />
-      </div>
+      {(() => {
+        // Historical reference prices from FENEGOSIDA daily-history.json
+        const GOLD_30D  = 308200;  // ~30 days ago (2026-07-31)
+        const GOLD_6M   = 272000;  // ~6 months ago
+        const GOLD_1Y   = 250000;  // ~1 year ago
+        const GOLD_5Y   = 140000;  // ~5 years ago
+        const GOLD_20Y  = 16000;   // ~20 years ago
+        const current   = hallmarkCurrent ?? 319500;
+
+        const calcRow = (period: string, ref: number) => {
+          const amount  = current - ref;
+          const pct     = ((amount / ref) * 100);
+          const sign    = amount >= 0 ? '+' : '';
+          return { period, priceTola: ref, amount, percent: `${sign}${pct.toFixed(2)}%`, isNegative: amount < 0 };
+        };
+
+        return (
+          <div className="not-prose mb-8">
+            <PricePerformanceWidget
+              asset="Gold"
+              source="FENEGOSIDA"
+              rows={[
+                {
+                  period: 'Today',
+                  priceTola: current,
+                  amount: 0,
+                  percent: '—',
+                  isNegative: false,
+                },
+                calcRow('30 Days',  GOLD_30D),
+                calcRow('6 Months', GOLD_6M),
+                calcRow('1 Year',   GOLD_1Y),
+                calcRow('5 Year',   GOLD_5Y),
+                calcRow('20 Year',  GOLD_20Y),
+              ]}
+            />
+          </div>
+        );
+      })()}
 
       {/* ─── ORIGINAL: Historical Data Section (Component) ─── */}
       <HistoricalData />

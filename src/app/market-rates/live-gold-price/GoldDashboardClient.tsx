@@ -640,36 +640,43 @@ export default function GoldDashboardClient() {
       </div>
       {/* === SIDEBAR === */}
       <aside className="hidden lg:block pb-6 pr-1" style={{ position: 'sticky', top: '96px', alignSelf: 'start', zIndex: 20, maxHeight: 'calc(100vh - 120px)', overflowY: 'auto', scrollbarWidth: 'thin' }}>
-        <PricePerformanceWidget
-          asset="Gold"
-          source="FENEGOSIDA"
-          rows={[
-            {
-              period: 'Today',
-              priceTola: tolaNPR.current,
-              amount: tolaNPR.change24h != null ? Math.round(tolaNPR.change24h) : 0,
-              percent: tolaNPR.changePercent24h != null ? `${tolaNPR.changePercent24h >= 0 ? '+' : ''}${tolaNPR.changePercent24h.toFixed(2)}%` : '—',
-              isNegative: (tolaNPR.changePercent24h ?? 0) < 0,
-            },
-            { period: '30 Days',  priceTola: 306000, amount: 10700,  percent: '+3.50%',    isNegative: false },
-            { period: '6 Months', priceTola: 320900, amount: -4200,  percent: '-1.30%',    isNegative: true  },
-            { period: '1 Year',   priceTola: 250000, amount: 66700,  percent: '+26.70%',   isNegative: false },
-            { period: '5 Year',   priceTola: 140000, amount: 176700, percent: '+126.21%',  isNegative: false },
-            { period: '20 Year',  priceTola: 16000,  amount: 300700, percent: '+1877.60%', isNegative: false },
-          ]}
-        />
-        <PricePerformanceWidget
-          asset="Silver"
-          source="FENEGOSIDA"
-          rows={[
-            { period: 'Today',    priceTola: 4985,  amount: 50,   percent: '+1.01%',   isNegative: false },
-            { period: '30 Days',  priceTola: 4785,  amount: 200,  percent: '+4.18%',   isNegative: false },
-            { period: '6 Months', priceTola: 5135,  amount: -150, percent: '-2.92%',   isNegative: true  },
-            { period: '1 Year',   priceTola: 4185,  amount: 800,  percent: '+19.11%',  isNegative: false },
-            { period: '5 Year',   priceTola: 1485,  amount: 3500, percent: '+235.69%', isNegative: false },
-            { period: '20 Years', priceTola: 485,   amount: 4500, percent: '+927.83%', isNegative: false },
-          ]}
-        />
+        {(() => {
+          // Historical reference prices from FENEGOSIDA daily-history.json
+          const GOLD_30D = 308200;  // ~30 days ago (2026-07-31)
+          const GOLD_6M  = 272000;  // ~6 months ago
+          const GOLD_1Y  = 250000;  // ~1 year ago
+          const GOLD_5Y  = 140000;  // ~5 years ago
+          const GOLD_20Y = 16000;   // ~20 years ago
+          const current  = tolaNPR.current;
+
+          const calcRow = (period: string, ref: number) => {
+            const amount = current - ref;
+            const pct    = (amount / ref) * 100;
+            const sign   = amount >= 0 ? '+' : '';
+            return { period, priceTola: ref, amount: Math.round(amount), percent: `${sign}${pct.toFixed(2)}%`, isNegative: amount < 0 };
+          };
+
+          return (
+            <PricePerformanceWidget
+              asset="Gold"
+              source="FENEGOSIDA"
+              rows={[
+                {
+                  period: 'Today',
+                  priceTola: current,
+                  amount: tolaNPR.change24h != null ? Math.round(tolaNPR.change24h) : 0,
+                  percent: tolaNPR.changePercent24h != null ? `${tolaNPR.changePercent24h >= 0 ? '+' : ''}${tolaNPR.changePercent24h.toFixed(2)}%` : '—',
+                  isNegative: (tolaNPR.changePercent24h ?? 0) < 0,
+                },
+                calcRow('30 Days',  GOLD_30D),
+                calcRow('6 Months', GOLD_6M),
+                calcRow('1 Year',   GOLD_1Y),
+                calcRow('5 Year',   GOLD_5Y),
+                calcRow('20 Year',  GOLD_20Y),
+              ]}
+            />
+          );
+        })()}
       </aside>
       </div>
     </div>

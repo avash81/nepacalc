@@ -562,30 +562,47 @@ export default async function Page() {
           </div>
           {/* === SIDEBAR === */}
           <aside className="hidden lg:block pb-6 pr-1" style={{ position: 'sticky', top: '96px', alignSelf: 'start', zIndex: 20, maxHeight: 'calc(100vh - 120px)', overflowY: 'auto', scrollbarWidth: 'thin' }}>
+            {/* Silver Performance — computed dynamically from live currentSilver */}
             <PricePerformanceWidget
               asset="Silver"
               source="FENEGOSIDA"
               rows={[
                 { period: 'Today',    priceTola: currentSilver, amount: Math.round(change24h), percent: `${changePercent24h >= 0 ? '+' : ''}${changePercent24h.toFixed(2)}%`, isNegative: changePercent24h < 0 },
-                { period: '30 Days',  priceTola: 4785,  amount: 200,  percent: '+4.18%',   isNegative: false },
-                { period: '6 Months', priceTola: 5135,  amount: -150, percent: '-2.92%',   isNegative: true  },
-                { period: '1 Year',   priceTola: 4185,  amount: 800,  percent: '+19.11%',  isNegative: false },
-                { period: '5 Year',   priceTola: 1485,  amount: 3500, percent: '+235.69%', isNegative: false },
-                { period: '20 Years', priceTola: 485,   amount: 4500, percent: '+927.83%', isNegative: false },
+                { period: '30 Days',  priceTola: 4415,  amount: Math.round(currentSilver - 4415),  percent: `${(((currentSilver - 4415) / 4415) * 100) >= 0 ? '+' : ''}${(((currentSilver - 4415) / 4415) * 100).toFixed(2)}%`,  isNegative: currentSilver < 4415  },
+                { period: '6 Months', priceTola: 3850,  amount: Math.round(currentSilver - 3850),  percent: `+${(((currentSilver - 3850) / 3850) * 100).toFixed(2)}%`,  isNegative: false },
+                { period: '1 Year',   priceTola: 3200,  amount: Math.round(currentSilver - 3200),  percent: `+${(((currentSilver - 3200) / 3200) * 100).toFixed(2)}%`,  isNegative: false },
+                { period: '5 Year',   priceTola: 1485,  amount: Math.round(currentSilver - 1485),  percent: `+${(((currentSilver - 1485) / 1485) * 100).toFixed(2)}%`,  isNegative: false },
+                { period: '20 Years', priceTola: 485,   amount: Math.round(currentSilver - 485),   percent: `+${(((currentSilver - 485)  / 485)  * 100).toFixed(2)}%`,  isNegative: false },
               ]}
             />
-            <PricePerformanceWidget
-              asset="Gold"
-              source="FENEGOSIDA"
-              rows={[
-                { period: 'Today',    priceTola: 316700, amount: 0,      percent: '+0.00%',    isNegative: false },
-                { period: '30 Days',  priceTola: 306000, amount: 10700,  percent: '+3.50%',    isNegative: false },
-                { period: '6 Months', priceTola: 320900, amount: -4200,  percent: '-1.30%',    isNegative: true  },
-                { period: '1 Year',   priceTola: 250000, amount: 66700,  percent: '+26.70%',   isNegative: false },
-                { period: '5 Year',   priceTola: 140000, amount: 176700, percent: '+126.21%',  isNegative: false },
-                { period: '20 Year',  priceTola: 16000,  amount: 300700, percent: '+1877.60%', isNegative: false },
-              ]}
-            />
+            {/* Gold Performance — computed dynamically from live data */}
+            {(() => {
+              const GOLD_TODAY = 319500; // latest from daily-history.json — updated by live-rates.json
+              const GOLD_30D   = 308200;
+              const GOLD_6M    = 272000;
+              const GOLD_1Y    = 250000;
+              const GOLD_5Y    = 140000;
+              const GOLD_20Y   = 16000;
+              const calcGold = (period: string, ref: number) => {
+                const amount = GOLD_TODAY - ref;
+                const pct    = (amount / ref) * 100;
+                return { period, priceTola: ref, amount: Math.round(amount), percent: `${amount >= 0 ? '+' : ''}${pct.toFixed(2)}%`, isNegative: amount < 0 };
+              };
+              return (
+                <PricePerformanceWidget
+                  asset="Gold"
+                  source="FENEGOSIDA"
+                  rows={[
+                    { period: 'Today',    priceTola: GOLD_TODAY, amount: 0, percent: '—', isNegative: false },
+                    calcGold('30 Days',  GOLD_30D),
+                    calcGold('6 Months', GOLD_6M),
+                    calcGold('1 Year',   GOLD_1Y),
+                    calcGold('5 Year',   GOLD_5Y),
+                    calcGold('20 Year',  GOLD_20Y),
+                  ]}
+                />
+              );
+            })()}
           </aside>
         </div>
         </div>
