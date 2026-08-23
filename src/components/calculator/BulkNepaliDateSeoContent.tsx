@@ -2,8 +2,8 @@ import Link from 'next/link';
 
 export function BulkNepaliDateSeoContent() {
   return (
-    <div className="mt-8 bg-white rounded-lg p-6 sm:p-10 shadow-sm border border-[#DADCE0]">
-      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 relative">
+    <div className="mt-8 bg-white rounded-lg p-6 shadow-sm border border-[#DADCE0]">
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 relative">
         {/* Mobile TOC (Dropdown) */}
         <div className="lg:hidden w-full mb-6">
           <details className="group border border-[#DADCE0] rounded-lg bg-[#F8F9FA] overflow-hidden">
@@ -151,7 +151,7 @@ export function BulkNepaliDateSeoContent() {
         </div>
 
         {/* Desktop TOC (Sticky Sidebar) */}
-        <div className="hidden lg:block w-72 flex-shrink-0">
+        <div className="hidden lg:block w-52 flex-shrink-0">
           <div className="sticky top-24 bg-[#F8F9FA] rounded-xl border border-[#DADCE0] p-6 shadow-sm">
             <h4 className="text-[13px] font-black text-[#5F6368] uppercase tracking-wider mb-4 flex items-center gap-2">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7"/></svg>

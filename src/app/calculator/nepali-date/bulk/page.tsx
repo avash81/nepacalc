@@ -66,7 +66,7 @@ export default function BulkNepaliDatePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(bulkSchema) }}
       />
       <BulkCalculator />
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-10">
+      <div className="max-w-[1280px] mx-auto px-4 pt-0 pb-10">
         <BulkNepaliDateSeoContent />
         <div className="mt-6 mb-4 p-4 bg-white border border-[#DADCE0] rounded-lg text-sm text-[#5F6368]">
           Need to convert a single date? Use the{" "}
