@@ -198,72 +198,148 @@ export default function NepaliDateConverter() {
         </div>
       }
       seoContent={
-        <div className="mt-12 bg-white rounded-lg p-6 sm:p-10 shadow-sm border border-[#DADCE0] prose prose-slate max-w-none prose-headings:font-black prose-h2:text-2xl prose-h3:text-lg prose-a:text-[#1A73E8]">
-          <h2 id="how-to-convert">How to Convert BS to AD and AD to BS</h2>
-          <p>NepaCalc supports conversion in both directions. Select BS to AD to convert a Nepali Bikram Sambat date into its Gregorian equivalent, or select AD to BS to find the corresponding Nepali date.</p>
-          
-          <h3 id="convert-bs-to-ad">Convert BS to AD</h3>
-          <p>Select the Bikram Sambat year, month, and day in the BS to AD converter. The calculator returns the corresponding Gregorian date automatically.</p>
-          
-          <h3 id="convert-ad-to-bs">Convert AD to BS</h3>
-          <p>Select the Gregorian year, month, and day in the AD to BS converter. NepaCalc calculates the corresponding Bikram Sambat date automatically.</p>
+        <div className="mt-12 bg-white rounded-lg p-6 sm:p-10 shadow-sm border border-[#DADCE0]">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 relative">
+            {/* Mobile TOC (Dropdown) */}
+            <div className="lg:hidden w-full mb-6">
+              <details className="group border border-[#DADCE0] rounded-lg bg-[#F8F9FA] overflow-hidden">
+                <summary className="flex items-center justify-between p-4 cursor-pointer font-bold text-[#202124] list-none">
+                  <span className="flex items-center gap-2">
+                    <svg className="w-5 h-5 text-[#1A73E8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7"/></svg>
+                    Table of Contents
+                  </span>
+                  <span className="transition group-open:rotate-180">
+                    <svg fill="none" height="24" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                  </span>
+                </summary>
+                <div className="p-4 pt-0 border-t border-[#DADCE0] bg-white">
+                  <ul className="space-y-3 text-[15px]">
+                    <li><a href="#how-to-convert" className="text-[#1A73E8] hover:underline font-medium">How to Convert</a></li>
+                    <li><a href="#how-dates-work" className="text-[#1A73E8] hover:underline font-medium">How Dates Work</a></li>
+                    <li><a href="#bs-to-ad-conversion" className="text-[#1A73E8] hover:underline font-medium">BS to AD Conversion</a></li>
+                    <li><a href="#today" className="text-[#1A73E8] hover:underline font-medium">Today's Date</a></li>
+                    <li><a href="#historical-conversion" className="text-[#1A73E8] hover:underline font-medium">Historical Conversion</a></li>
+                    <li><a href="#multiple-dates" className="text-[#1A73E8] hover:underline font-medium">Multiple Dates</a></li>
+                    <li><a href="#faqs" className="text-[#1A73E8] hover:underline font-medium">FAQs</a></li>
+                    <li><a href="#official-reference" className="text-[#1A73E8] hover:underline font-medium">Official Reference</a></li>
+                  </ul>
+                </div>
+              </details>
+            </div>
 
-          <h3 id="why-exact-date-matters">Why Exact Date Conversion Matters</h3>
-          <p>BS and AD are different calendar systems, so the exact relationship between a date in one calendar and a date in the other depends on the calendar date rather than a single fixed year difference. For documents, records, applications, birthdays, and other important dates, use an exact date conversion instead of a rough year-only calculation.</p>
+            {/* Main Content Area */}
+            <div className="flex-1 max-w-none text-[#3C4043] leading-relaxed space-y-6">
+              
+              <div>
+                <h2 id="how-to-convert" className="text-2xl font-black text-[#202124] mb-4 pb-2 border-b border-[#F1F3F4] scroll-mt-24">How to Convert BS to AD and AD to BS</h2>
+                <p className="mb-4">NepaCalc supports conversion in both directions. Select BS to AD to convert a Nepali Bikram Sambat date into its Gregorian equivalent, or select AD to BS to find the corresponding Nepali date.</p>
+                
+                <h3 id="convert-bs-to-ad" className="text-[19px] font-bold text-[#202124] mt-6 mb-3">Convert BS to AD</h3>
+                <p className="mb-4">Select the Bikram Sambat year, month, and day in the BS to AD converter. The calculator returns the corresponding Gregorian date automatically.</p>
+                
+                <h3 id="convert-ad-to-bs" className="text-[19px] font-bold text-[#202124] mt-6 mb-3">Convert AD to BS</h3>
+                <p className="mb-4">Select the Gregorian year, month, and day in the AD to BS converter. NepaCalc calculates the corresponding Bikram Sambat date automatically.</p>
 
-          <h2 id="how-dates-work">How BS and AD Dates Work</h2>
-          <h3 id="bikram-sambat">Bikram Sambat (BS)</h3>
-          <p>Bikram Sambat is the calendar system used for Nepal's civil dates. Nepali dates are commonly written with the BS year, month, and day, and the calendar year begins at a different point in the year from the Gregorian calendar.</p>
+                <h3 id="why-exact-date-matters" className="text-[19px] font-bold text-[#202124] mt-6 mb-3">Why Exact Date Conversion Matters</h3>
+                <p className="mb-4">BS and AD are different calendar systems, so the exact relationship between a date in one calendar and a date in the other depends on the calendar date rather than a single fixed year difference. For documents, records, applications, birthdays, and other important dates, use an exact date conversion instead of a rough year-only calculation.</p>
+              </div>
 
-          <h3 id="gregorian-calendar">Gregorian Calendar (AD)</h3>
-          <p>The Gregorian calendar is the calendar system used internationally for most civil and administrative dates. NepaCalc uses Gregorian AD dates as the corresponding conversion system for BS dates.</p>
+              <div>
+                <h2 id="how-dates-work" className="text-2xl font-black text-[#202124] mb-4 pb-2 border-b border-[#F1F3F4] scroll-mt-24">How BS and AD Dates Work</h2>
+                
+                <h3 id="bikram-sambat" className="text-[19px] font-bold text-[#202124] mt-6 mb-3">Bikram Sambat (BS)</h3>
+                <p className="mb-4">Bikram Sambat is the calendar system used for Nepal's civil dates. Nepali dates are commonly written with the BS year, month, and day, and the calendar year begins at a different point in the year from the Gregorian calendar.</p>
 
-          <h3 id="variable-months">Nepali Months and Variable Month Lengths</h3>
-          <p>Nepali months do not all have the same number of days. The number of days in a month can vary by year, which is one reason an exact BS to AD conversion should use the complete date rather than a fixed year-offset formula.</p>
+                <h3 id="gregorian-calendar" className="text-[19px] font-bold text-[#202124] mt-6 mb-3">Gregorian Calendar (AD)</h3>
+                <p className="mb-4">The Gregorian calendar is the calendar system used internationally for most civil and administrative dates. NepaCalc uses Gregorian AD dates as the corresponding conversion system for BS dates.</p>
 
-          <h2 id="bs-to-ad-conversion">BS to AD Conversion</h2>
-          <h3 id="quick-approximation">Quick BS to AD Approximation</h3>
-          <p>A rough year comparison is sometimes used for mental estimates because Bikram Sambat is approximately 56–57 years ahead of the Gregorian calendar. However, this is only an approximation and should not be used as the exact conversion method.</p>
+                <h3 id="variable-months" className="text-[19px] font-bold text-[#202124] mt-6 mb-3">Nepali Months and Variable Month Lengths</h3>
+                <p className="mb-4">Nepali months do not all have the same number of days. The number of days in a month can vary by year, which is one reason an exact BS to AD conversion should use the complete date rather than a fixed year-offset formula.</p>
+              </div>
 
-          <h3 id="why-formula-not-exact">Why a Simple Year Formula Is Not Exact</h3>
-          <p>A BS year cannot be converted accurately to AD by subtracting one fixed number from the year. The corresponding Gregorian date depends on the specific BS month and day. Nepali calendar months also have variable lengths, so exact conversion requires a date-based calendar calculation.</p>
+              <div>
+                <h2 id="bs-to-ad-conversion" className="text-2xl font-black text-[#202124] mb-4 pb-2 border-b border-[#F1F3F4] scroll-mt-24">BS to AD Conversion</h2>
+                
+                <h3 id="quick-approximation" className="text-[19px] font-bold text-[#202124] mt-6 mb-3">Quick BS to AD Approximation</h3>
+                <p className="mb-4">A rough year comparison is sometimes used for mental estimates because Bikram Sambat is approximately 56–57 years ahead of the Gregorian calendar. However, this is only an approximation and should not be used as the exact conversion method.</p>
 
-          <h2 id="today">Today's Nepali Date</h2>
-          <p>Today in AD: {todayAD}</p>
-          <p>Today in BS: {todayBS}</p>
+                <h3 id="why-formula-not-exact" className="text-[19px] font-bold text-[#202124] mt-6 mb-3">Why a Simple Year Formula Is Not Exact</h3>
+                <p className="mb-4">A BS year cannot be converted accurately to AD by subtracting one fixed number from the year. The corresponding Gregorian date depends on the specific BS month and day. Nepali calendar months also have variable lengths, so exact conversion requires a date-based calendar calculation.</p>
+              </div>
 
-          <h2 id="historical-conversion">Historical Date Conversion</h2>
-          <p>You can use the converter for historical dates as long as the selected date is within the supported range of the conversion system. Historical conversion is useful for birth dates, older records, applications, family records, documents, and research.</p>
-          <p>If you need to calculate the time between two dates, use our <Link href="/calculator/date-duration/">Date Duration Calculator</Link>.</p>
-          <p>For age calculations based on a date of birth, use the <Link href="/calculator/age-calculator/">Age Calculator</Link>.</p>
+              <div>
+                <h2 id="today" className="text-2xl font-black text-[#202124] mb-4 pb-2 border-b border-[#F1F3F4] scroll-mt-24">Today's Nepali Date</h2>
+                <div className="bg-[#F8F9FA] p-4 rounded-md border border-[#DADCE0] mb-4">
+                  <p className="mb-1"><strong>Today in AD:</strong> {todayAD}</p>
+                  <p className="mb-0"><strong>Today in BS:</strong> {todayBS}</p>
+                </div>
+              </div>
 
-          <h2 id="multiple-dates">Need to Convert Multiple Dates?</h2>
-          <p>Need to convert several dates at once? Use our <Link href="/calculator/nepali-date/bulk/">Bulk Nepali Date Converter</Link> to convert multiple BS and AD dates in one place.</p>
+              <div>
+                <h2 id="historical-conversion" className="text-2xl font-black text-[#202124] mb-4 pb-2 border-b border-[#F1F3F4] scroll-mt-24">Historical Date Conversion</h2>
+                <p className="mb-4">You can use the converter for historical dates as long as the selected date is within the supported range of the conversion system. Historical conversion is useful for birth dates, older records, applications, family records, documents, and research.</p>
+                <p className="mb-4">If you need to calculate the time between two dates, use our <Link href="/calculator/date-duration/" className="text-[#1A73E8] hover:underline font-medium">Date Duration Calculator</Link>.</p>
+                <p className="mb-4">For age calculations based on a date of birth, use the <Link href="/calculator/age-calculator/" className="text-[#1A73E8] hover:underline font-medium">Age Calculator</Link>.</p>
+              </div>
 
-          <h2 id="faqs">Frequently Asked Questions</h2>
-          <h3 id="faq-bs">What is Bikram Sambat?</h3>
-          <p>Bikram Sambat (BS) is the calendar system used for Nepal's civil dates.</p>
+              <div>
+                <h2 id="multiple-dates" className="text-2xl font-black text-[#202124] mb-4 pb-2 border-b border-[#F1F3F4] scroll-mt-24">Need to Convert Multiple Dates?</h2>
+                <p className="mb-4">Need to convert several dates at once? Use our <Link href="/calculator/nepali-date/bulk/" className="text-[#1A73E8] hover:underline font-medium">Bulk Nepali Date Converter</Link> to convert multiple BS and AD dates in one place.</p>
+              </div>
 
-          <h3 id="faq-diff">What is the difference between BS and AD?</h3>
-          <p>BS and AD are different calendar systems. The same day has a different year, month, and date representation in each system.</p>
-          
-          <h3 id="faq-how-bs-ad">How do I convert BS to AD?</h3>
-          <p>Select the BS year, month, and day in the BS to AD converter and the corresponding Gregorian date will be calculated for you.</p>
+              <div>
+                <h2 id="faqs" className="text-2xl font-black text-[#202124] mb-4 pb-2 border-b border-[#F1F3F4] scroll-mt-24">Frequently Asked Questions</h2>
+                
+                <h3 id="faq-bs" className="text-[19px] font-bold text-[#202124] mt-6 mb-2">What is Bikram Sambat?</h3>
+                <p className="mb-4">Bikram Sambat (BS) is the calendar system used for Nepal's civil dates.</p>
 
-          <h3 id="faq-how-ad-bs">How do I convert AD to BS?</h3>
-          <p>Select the Gregorian year, month, and day in the AD to BS converter to obtain the corresponding BS date.</p>
+                <h3 id="faq-diff" className="text-[19px] font-bold text-[#202124] mt-6 mb-2">What is the difference between BS and AD?</h3>
+                <p className="mb-4">BS and AD are different calendar systems. The same day has a different year, month, and date representation in each system.</p>
+                
+                <h3 id="faq-how-bs-ad" className="text-[19px] font-bold text-[#202124] mt-6 mb-2">How do I convert BS to AD?</h3>
+                <p className="mb-4">Select the BS year, month, and day in the BS to AD converter and the corresponding Gregorian date will be calculated for you.</p>
 
-          <h3 id="faq-historical">Can I convert historical BS dates?</h3>
-          <p>Yes, provided the selected date is within the range supported by the NepaCalc conversion system.</p>
+                <h3 id="faq-how-ad-bs" className="text-[19px] font-bold text-[#202124] mt-6 mb-2">How do I convert AD to BS?</h3>
+                <p className="mb-4">Select the Gregorian year, month, and day in the AD to BS converter to obtain the corresponding BS date.</p>
 
-          <h3 id="faq-subtract-years">Why can't I simply subtract 56 or 57 years?</h3>
-          <p>A fixed year subtraction is only an approximation. Exact conversion depends on the complete date because the BS and Gregorian calendars do not align by a constant number of years for every date.</p>
+                <h3 id="faq-historical" className="text-[19px] font-bold text-[#202124] mt-6 mb-2">Can I convert historical BS dates?</h3>
+                <p className="mb-4">Yes, provided the selected date is within the range supported by the NepaCalc conversion system.</p>
 
-          <h3 id="faq-bulk">Can I convert multiple dates at once?</h3>
-          <p>Yes. Use the <Link href="/calculator/nepali-date/bulk/">Bulk Nepali Date Converter</Link> to process multiple dates together.</p>
+                <h3 id="faq-subtract-years" className="text-[19px] font-bold text-[#202124] mt-6 mb-2">Why can't I simply subtract 56 or 57 years?</h3>
+                <p className="mb-4">A fixed year subtraction is only an approximation. Exact conversion depends on the complete date because the BS and Gregorian calendars do not align by a constant number of years for every date.</p>
 
-          <h2 id="official-reference">Official Calendar Reference</h2>
-          <p>For official Panchanga and calendar-related information in Nepal, consult the <a href="https://npns.gov.np/" target="_blank" rel="noopener noreferrer">Nepal Panchanga Nirnayak Development Committee</a>, under the Ministry of Culture, Tourism and Civil Aviation, Government of Nepal.</p>
+                <h3 id="faq-bulk" className="text-[19px] font-bold text-[#202124] mt-6 mb-2">Can I convert multiple dates at once?</h3>
+                <p className="mb-4">Yes. Use the <Link href="/calculator/nepali-date/bulk/" className="text-[#1A73E8] hover:underline font-medium">Bulk Nepali Date Converter</Link> to process multiple dates together.</p>
+              </div>
+
+              <div>
+                <h2 id="official-reference" className="text-2xl font-black text-[#202124] mb-4 pb-2 border-b border-[#F1F3F4] scroll-mt-24">Official Calendar Reference</h2>
+                <p className="mb-4">For official Panchanga and calendar-related information in Nepal, consult the <a href="https://npns.gov.np/" target="_blank" rel="noopener noreferrer" className="text-[#1A73E8] hover:underline font-medium">Nepal Panchanga Nirnayak Development Committee</a>, under the Ministry of Culture, Tourism and Civil Aviation, Government of Nepal.</p>
+              </div>
+            </div>
+
+            {/* Desktop TOC (Sticky Sidebar) */}
+            <div className="hidden lg:block w-72 flex-shrink-0">
+              <div className="sticky top-24 bg-[#F8F9FA] rounded-xl border border-[#DADCE0] p-6 shadow-sm">
+                <h4 className="text-[13px] font-black text-[#5F6368] uppercase tracking-wider mb-4 flex items-center gap-2">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7"/></svg>
+                  Table of Contents
+                </h4>
+                <nav>
+                  <ul className="space-y-3 text-[14px]">
+                    <li><a href="#how-to-convert" className="text-[#3C4043] hover:text-[#1A73E8] hover:underline font-medium transition-colors">How to Convert</a></li>
+                    <li><a href="#how-dates-work" className="text-[#3C4043] hover:text-[#1A73E8] hover:underline font-medium transition-colors">How Dates Work</a></li>
+                    <li><a href="#bs-to-ad-conversion" className="text-[#3C4043] hover:text-[#1A73E8] hover:underline font-medium transition-colors">BS to AD Conversion</a></li>
+                    <li><a href="#today" className="text-[#3C4043] hover:text-[#1A73E8] hover:underline font-medium transition-colors">Today's Date</a></li>
+                    <li><a href="#historical-conversion" className="text-[#3C4043] hover:text-[#1A73E8] hover:underline font-medium transition-colors">Historical Conversion</a></li>
+                    <li><a href="#multiple-dates" className="text-[#3C4043] hover:text-[#1A73E8] hover:underline font-medium transition-colors">Multiple Dates</a></li>
+                    <li><a href="#faqs" className="text-[#3C4043] hover:text-[#1A73E8] hover:underline font-medium transition-colors">FAQs</a></li>
+                    <li><a href="#official-reference" className="text-[#3C4043] hover:text-[#1A73E8] hover:underline font-medium transition-colors">Official Reference</a></li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
         </div>
       }
     />
