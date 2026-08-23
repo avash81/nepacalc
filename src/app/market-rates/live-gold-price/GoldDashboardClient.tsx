@@ -334,10 +334,7 @@ export default function GoldDashboardClient() {
       </div>
 
       {/* 4. Live Gold Price Summary */}
-      <div id="quick-answer" className="bg-blue-50/50 rounded-2xl shadow-sm border border-blue-100 p-6 md:p-8 mb-6 flex flex-col md:flex-row gap-6 items-start">
-        <div className="p-3 bg-blue-100 text-blue-600 rounded-full shrink-0">
-          <Zap className="w-6 h-6" />
-        </div>
+      <div id="quick-answer" className="bg-blue-50/50 rounded-2xl shadow-sm border border-blue-100 p-6 md:p-8 mb-6">
         <div className="flex-1">
           <h2 id="todays-gold-price" className="text-2xl font-black text-slate-900 tracking-tighter mb-4">Today's Gold Price</h2>
           <p className="text-[15px] text-slate-700 font-medium leading-relaxed mb-6">

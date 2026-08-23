@@ -468,10 +468,7 @@ export default async function Page() {
                     <SilverMobileTocClient />
                   </div>
 
-                  <div id="quick-answer" className="quick-answer-block bg-slate-50/50 mt-4 p-6 border-y border-slate-100 flex flex-col md:flex-row gap-6 items-center">
-                    <div className="p-3 bg-slate-200 text-slate-600 rounded-full shrink-0">
-                      <Zap className="w-6 h-6" />
-                    </div>
+                  <div id="quick-answer" className="quick-answer-block bg-slate-50/50 mt-4 p-6 border-y border-slate-100">
                     <div className="flex-1">
                       <h2 className="text-xl font-black text-slate-900 tracking-tighter mb-2">Today&apos;s Rate Summary</h2>
                       <p className="text-sm text-slate-700 font-medium leading-relaxed m-0">
