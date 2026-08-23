@@ -34,7 +34,7 @@ export default function SilverMobileTocClient() {
   return (
     <div className="nb-toc-mobile mb-6">
       <details id="silver-mobile-toc">
-        <summary>On this page — {totalItems} sections</summary>
+        <summary>TABLE OF CONTENTS — {totalItems} SECTIONS</summary>
         <ol>
           {tocGroups.map((group, gi) => (
             <React.Fragment key={gi}>
