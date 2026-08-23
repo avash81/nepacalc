@@ -24,17 +24,13 @@ function getLiveData() {
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { date: rawDate, gold24k, gold22k } = getLiveData();
-  const year = rawDate.split('-')[0];
+  const { gold24k } = getLiveData();
 
-  const priceSnippet = gold24k
-    ? `Today's 24K gold rate is Rs.${(gold24k as number).toLocaleString('en-IN')} per Tola and 22K Tejabi is Rs.${(gold22k as number)?.toLocaleString('en-IN') ?? ''} per Tola.`
-    : '';
-
-  const description = `Check today's live gold price in Nepal updated from FENEGOSIDA. ${priceSnippet} View 24K Hallmark, 22K Tejabi and silver rates, historical price charts, market analysis and gold price calculator.`;
+  const priceStr = gold24k ? ` Rs.${(gold24k as number).toLocaleString('en-IN')}` : '';
+  const description = `Today's live gold price in Nepal from FENEGOSIDA: 24K Hallmark${priceStr} per Tola. Check 22K Tejabi, silver, history and gold calculator.`;
 
   return {
-    title: `Gold Price in Nepal Today (${year}) – Live FENEGOSIDA Gold Rate`,
+    title: "Gold Price in Nepal Today | Live FENEGOSIDA Rate",
     description,
     keywords: [
       'gold price nepal today', 'gold rate nepal', 'live gold price nepal',
@@ -42,7 +38,7 @@ export async function generateMetadata(): Promise<Metadata> {
       'fenegosida gold rate', 'gold price per gram nepal'
     ],
     openGraph: {
-      title: `Gold Price in Nepal Today (${year}) – Live FENEGOSIDA Gold Rate`,
+      title: "Gold Price in Nepal Today | Live FENEGOSIDA Rate",
       description,
       url: 'https://nepacalc.com/market-rates/live-gold-price/',
       siteName: 'NepaCalc',
@@ -51,7 +47,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title: `Gold Price in Nepal Today (${year}) – Live FENEGOSIDA Gold Rate`,
+      title: "Gold Price in Nepal Today | Live FENEGOSIDA Rate",
       description,
       images: ['https://nepacalc.com/images/og/gold-price-nepal.png?date=2024-01-01']
     },
