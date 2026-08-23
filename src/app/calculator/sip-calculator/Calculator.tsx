@@ -169,7 +169,7 @@ export default function SIPCalculator() {
             <>
               <div className="p-6 bg-[#f8f9fa] border border-[#DADCE0] rounded-lg text-center">
                 <div className="text-[11px] font-bold text-[#1A73E8] uppercase tracking-wider mb-2">Maturity Value (Pre-Tax)</div>
-                <div className="text-4xl font-black text-[#202124] tracking-tight">{formatNPR(result.fv)}</div>
+                <div className="text-3xl sm:text-4xl font-black text-[#202124] tracking-tight">{formatNPR(result.fv)}</div>
                 <div className="text-[10px] text-[#5F6368] font-medium mt-2">After {years} Years of Investing</div>
               </div>
 
