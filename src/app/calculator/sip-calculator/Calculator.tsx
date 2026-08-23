@@ -64,11 +64,18 @@ export default function SIPCalculator() {
       });
       currentMonthly = currentMonthly * (1 + s);
     }
+    
+    const totalGains = fv - totalInvested;
+    const cgtTax = totalGains > 0 ? totalGains * 0.05 : 0;
+    const netFv = fv - cgtTax;
+    
     return { 
       success: true as const,
       fv, 
       totalInvested, 
-      returns: fv - totalInvested, 
+      returns: totalGains, 
+      cgtTax,
+      netFv,
       schedule,
       monthlySchedule
     };
@@ -86,6 +93,11 @@ export default function SIPCalculator() {
       icon={TrendingUp}
       inputs={
         <div className="space-y-6">
+          <div className="flex flex-wrap gap-2 mb-2">
+            <button onClick={() => updateState({ monthly: 5000, years: 10 })} className="px-3 py-1.5 text-[11px] font-bold bg-[#E8EAED] text-[#5F6368] hover:bg-[#DADCE0] rounded-full transition-colors">Rs. 5,000 / mo</button>
+            <button onClick={() => updateState({ monthly: 10000, years: 10 })} className="px-3 py-1.5 text-[11px] font-bold bg-[#E8EAED] text-[#5F6368] hover:bg-[#DADCE0] rounded-full transition-colors">Rs. 10,000 / mo</button>
+            <button onClick={() => updateState({ years: 10 })} className="px-3 py-1.5 text-[11px] font-bold bg-[#E8EAED] text-[#5F6368] hover:bg-[#DADCE0] rounded-full transition-colors">10 Years</button>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="space-y-2">
               <label className={labelCls}>Monthly Investment (NPR)</label>
@@ -101,7 +113,7 @@ export default function SIPCalculator() {
               </div>
             </div>
             <div className="space-y-2">
-              <label className={labelCls}>Return Rate (p.a.)</label>
+              <label className={labelCls}>Expected Return / Interest Rate (p.a.)</label>
               <div className="relative">
                 <input 
                   type="number" 
@@ -113,6 +125,7 @@ export default function SIPCalculator() {
                 />
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A] font-bold">%</span>
               </div>
+              <p className="text-[9px] text-[#70757A] leading-tight">Note: Historical mutual fund returns in Nepal average 12% - 18%.</p>
             </div>
           </div>
 
@@ -155,23 +168,27 @@ export default function SIPCalculator() {
           {result.success ? (
             <>
               <div className="p-6 bg-[#f8f9fa] border border-[#DADCE0] rounded-lg text-center">
-                <div className="text-[11px] font-bold text-[#1A73E8] uppercase tracking-wider mb-2">Estimated Maturity Value</div>
+                <div className="text-[11px] font-bold text-[#1A73E8] uppercase tracking-wider mb-2">Maturity Value (Pre-Tax)</div>
                 <div className="text-4xl font-black text-[#202124] tracking-tight">{formatNPR(result.fv)}</div>
                 <div className="text-[10px] text-[#5F6368] font-medium mt-2">After {years} Years of Investing</div>
               </div>
 
-              <div className="grid grid-cols-3 gap-3">
-                 <div className="border border-[#DADCE0] rounded-md p-3 text-center bg-white col-span-3 sm:col-span-1">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                 <div className="border border-[#DADCE0] rounded-md p-3 text-center bg-white">
                    <div className="text-[9px] font-bold text-[#5F6368] uppercase tracking-wider mb-1">Total Invested</div>
-                   <div className="text-base font-black text-[#202124]">{formatNPR(result.totalInvested)}</div>
+                   <div className="text-[13px] font-black text-[#202124]">{formatNPR(result.totalInvested)}</div>
                  </div>
-                 <div className="border border-[#DADCE0] rounded-md p-3 text-center bg-white col-span-3 sm:col-span-1">
-                   <div className="text-[9px] font-bold text-[#188038] uppercase tracking-wider mb-1">Total Gains</div>
-                   <div className="text-base font-black text-[#188038]">+{formatNPR(result.returns)}</div>
+                 <div className="border border-[#DADCE0] rounded-md p-3 text-center bg-white">
+                   <div className="text-[9px] font-bold text-[#188038] uppercase tracking-wider mb-1">Gross Gains</div>
+                   <div className="text-[13px] font-black text-[#188038]">+{formatNPR(result.returns)}</div>
                  </div>
-                 <div className="border border-[#DADCE0] rounded-md p-3 text-center bg-[#FFF7E0] col-span-3 sm:col-span-1">
-                   <div className="text-[9px] font-bold text-[#F29900] uppercase tracking-wider mb-1">Wealth Multiplier</div>
-                   <div className="text-base font-black text-[#F29900]">{(result.fv / result.totalInvested).toFixed(2)}x</div>
+                 <div className="border border-[#DADCE0] rounded-md p-3 text-center bg-[#FFF1F0]">
+                   <div className="text-[9px] font-bold text-[#D93025] uppercase tracking-wider mb-1">CGT Tax (5%)</div>
+                   <div className="text-[13px] font-black text-[#D93025]">-{formatNPR(result.cgtTax)}</div>
+                 </div>
+                 <div className="border border-[#188038] rounded-md p-3 text-center bg-[#E6F4EA]">
+                   <div className="text-[9px] font-bold text-[#188038] uppercase tracking-wider mb-1">Net In Hand</div>
+                   <div className="text-[13px] font-black text-[#188038]">{formatNPR(result.netFv)}</div>
                  </div>
               </div>
 
@@ -206,11 +223,19 @@ export default function SIPCalculator() {
       }
       details={result.success && (
         <div className="space-y-6">
-           <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-md flex gap-3 items-center">
-              <Globe className="w-5 h-5 text-[#188038] shrink-0" />
-              <p className="text-[9px] text-[#5F6368] font-bold leading-relaxed uppercase">
-                 Overseas Investors: If remitting funds for SIPs, verify <a href="/market-rates/exchange-rate-nepal/" className="text-[#1A73E8] underline font-bold">Exchange Rate Nepal</a> to optimize your cost basis.
-              </p>
+           <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-md flex flex-col gap-2">
+              <div className="flex gap-3 items-center">
+                <Globe className="w-5 h-5 text-[#188038] shrink-0" />
+                <p className="text-[9px] text-[#5F6368] font-bold leading-relaxed uppercase">
+                  Overseas Investors: If remitting funds for SIPs, verify <a href="/market-rates/exchange-rate-nepal/" className="text-[#1A73E8] underline font-bold">Exchange Rate Nepal</a> to optimize your cost basis.
+                </p>
+              </div>
+              <div className="flex gap-3 items-center mt-2 pt-2 border-t border-[#DADCE0]">
+                <Info className="w-5 h-5 text-[#1A73E8] shrink-0" />
+                <p className="text-[9px] text-[#5F6368] font-bold leading-relaxed uppercase">
+                  This compounding calculator projects returns for open-ended mutual funds managed by NIMB Ace Capital, Nabil Invest, Nepal Bank Limited, and others in Nepal.
+                </p>
+              </div>
            </div>
           {/* Row 1: Pie + Stacked Bar Chart (matches loan-emi exactly) */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
