@@ -322,16 +322,16 @@ export default async function Page() {
     <div className="bg-white min-h-screen">
       
 <style dangerouslySetInnerHTML={{ __html: `
-.nb-toc-mobile{max-width:1200px;margin:0 auto 14px;padding:0 24px;display:block;}
-.nb-toc-mobile details{border:1px solid #e2e8f0;background:#f8fafc;border-radius:8px;}
-.nb-toc-mobile summary{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:#0f172a;padding:12px 16px;cursor:pointer;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center;font-weight:700;}
-.nb-toc-mobile summary::after{content:'▼';font-size:0.6rem;transition:transform 0.2s;}
+.nb-toc-mobile{display:block;margin-bottom:14px;}
+.nb-toc-mobile details{border:2px solid #bfdbfe;background:#eff6ff;border-radius:10px;box-shadow:0 4px 6px -1px rgba(59,130,246,0.1),0 2px 4px -2px rgba(59,130,246,0.1);transition:all 0.2s;}
+.nb-toc-mobile summary{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:#1e3a8a;padding:14px 18px;cursor:pointer;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center;font-weight:800;}
+.nb-toc-mobile summary::after{content:'▼';font-size:0.6rem;transition:transform 0.2s;color:#3b82f6;}
 .nb-toc-mobile details[open] summary::after{transform:rotate(180deg);}
-.nb-toc-mobile ol{list-style:none;margin:0;padding:0 16px 16px;columns:1;}
+.nb-toc-mobile ol{list-style:none;margin:0;padding:0 18px 18px;columns:1;}
 .nb-toc-mobile li{break-inside:avoid;margin-bottom:8px;}
-.nb-toc-mobile a{display:block;font-size:0.875rem;color:#334155;text-decoration:none;line-height:1.4;font-weight:500;}
-.nb-toc-mobile a:hover{color:#2563eb;}
-.nb-toc-mobile .nb-toc-num{font-family:ui-monospace,SFMono-Regular,monospace;font-size:0.7rem;color:#94a3b8;margin-right:8px;font-weight:700;}
+.nb-toc-mobile a{display:block;font-size:0.875rem;color:#1e40af;text-decoration:none;line-height:1.4;font-weight:600;}
+.nb-toc-mobile a:hover{color:#2563eb;text-decoration:underline;}
+.nb-toc-mobile .nb-toc-num{font-family:ui-monospace,SFMono-Regular,monospace;font-size:0.7rem;color:#60a5fa;margin-right:8px;font-weight:700;}
 `}} />
 
       <link rel="preconnect" href="https://www.google-analytics.com" />

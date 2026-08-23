@@ -109,16 +109,16 @@ export default function GoldDashboardClient() {
   return (
     <div className="max-w-[1400px] lg:ml-0 lg:mr-auto pb-12">
       <style dangerouslySetInnerHTML={{ __html: `
-.nb-toc-mobile{max-width:1200px;margin:0 auto 14px;padding:0 24px;display:block;}
-.nb-toc-mobile details{border:1px solid #e2e8f0;background:#f8fafc;border-radius:8px;}
-.nb-toc-mobile summary{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:#0f172a;padding:12px 16px;cursor:pointer;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center;font-weight:700;}
-.nb-toc-mobile summary::after{content:'▼';font-size:0.6rem;transition:transform 0.2s;}
+.nb-toc-mobile{display:block;margin-bottom:14px;}
+.nb-toc-mobile details{border:2px solid #bfdbfe;background:#eff6ff;border-radius:10px;box-shadow:0 4px 6px -1px rgba(59,130,246,0.1),0 2px 4px -2px rgba(59,130,246,0.1);transition:all 0.2s;}
+.nb-toc-mobile summary{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:#1e3a8a;padding:14px 18px;cursor:pointer;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center;font-weight:800;}
+.nb-toc-mobile summary::after{content:'▼';font-size:0.6rem;transition:transform 0.2s;color:#3b82f6;}
 .nb-toc-mobile details[open] summary::after{transform:rotate(180deg);}
-.nb-toc-mobile ol{list-style:none;margin:0;padding:0 16px 16px;columns:1;}
+.nb-toc-mobile ol{list-style:none;margin:0;padding:0 18px 18px;columns:1;}
 .nb-toc-mobile li{break-inside:avoid;margin-bottom:8px;}
-.nb-toc-mobile a{display:block;font-size:0.875rem;color:#334155;text-decoration:none;line-height:1.4;font-weight:500;}
-.nb-toc-mobile a:hover{color:#2563eb;}
-.nb-toc-mobile .nb-toc-num{font-family:ui-monospace,SFMono-Regular,monospace;font-size:0.7rem;color:#94a3b8;margin-right:8px;font-weight:700;}
+.nb-toc-mobile a{display:block;font-size:0.875rem;color:#1e40af;text-decoration:none;line-height:1.4;font-weight:600;}
+.nb-toc-mobile a:hover{color:#2563eb;text-decoration:underline;}
+.nb-toc-mobile .nb-toc-num{font-family:ui-monospace,SFMono-Regular,monospace;font-size:0.7rem;color:#60a5fa;margin-right:8px;font-weight:700;}
 `}} />
       {/* Page-level layout */}
       <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-8 items-start">
@@ -269,6 +269,31 @@ export default function GoldDashboardClient() {
                 />
               </div>
           </div>
+
+      {/* TOC - Collapsible dropdown, placed directly below the chart */}
+      <div className="nb-toc-mobile mb-6">
+        <details id="gold-mobile-toc">
+          <summary>On this page — {tocItems.filter(i => !i.divider).length} sections</summary>
+          <ol>
+            {(() => { let n=0; return tocItems.map((entry, idx) => {
+              if (entry.divider) return <div key={"div-"+idx} className="nb-toc-divider" />;
+              n++;
+              const num = String(n).padStart(2,'0');
+              return (
+                <li key={entry.id}>
+                  <a href={"#"+entry.id} onClick={() => {
+                    const d = document.getElementById('gold-mobile-toc') as HTMLDetailsElement | null;
+                    if (d) d.open = false;
+                  }}>
+                    <span className="nb-toc-num">{num}</span>
+                    {entry.label}
+                  </a>
+                </li>
+              );
+            }); })()}
+          </ol>
+        </details>
+      </div>
 
       {/* 4. Live Gold Price Summary */}
       <div id="quick-answer" className="bg-blue-50/50 rounded-2xl shadow-sm border border-blue-100 p-6 md:p-8 mb-6 flex flex-col md:flex-row gap-6 items-start">
@@ -494,44 +519,7 @@ export default function GoldDashboardClient() {
         <HilltopAds300x250 />
       </div>
 
-      {/* 2. Graph */}
-      <div id="market-chart" className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-6 scroll-mt-24">
-        <div className="bg-slate-50 px-6 py-4 border-b border-slate-200 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Trophy className="w-5 h-5 text-amber-500" />
-            <div className="text-sm font-black uppercase tracking-widest text-slate-900">International Spot Market (XAU/USD)</div>
-          </div>
-          <div className="hidden sm:block px-3 py-1 bg-white border border-slate-200 rounded-full text-[10px] font-black text-slate-500 tracking-widest">
-            WORLD GOLD COUNCIL INDEX
-          </div>
-        </div>
-                  
-      </div>
 
-      {/* TOC - Collapsible dropdown, placed directly below the chart */}
-      <div className="nb-toc-mobile mb-6">
-        <details id="gold-mobile-toc">
-          <summary>On this page — {tocItems.filter(i => !i.divider).length} sections</summary>
-          <ol>
-            {(() => { let n=0; return tocItems.map((entry, idx) => {
-              if (entry.divider) return <div key={"div-"+idx} className="nb-toc-divider" />;
-              n++;
-              const num = String(n).padStart(2,'0');
-              return (
-                <li key={entry.id}>
-                  <a href={"#"+entry.id} onClick={() => {
-                    const d = document.getElementById('gold-mobile-toc') as HTMLDetailsElement | null;
-                    if (d) d.open = false;
-                  }}>
-                    <span className="nb-toc-num">{num}</span>
-                    {entry.label}
-                  </a>
-                </li>
-              );
-            }); })()}
-          </ol>
-        </details>
-      </div>
 
       {/* Market Highlights & Price Change Summary */}
       <div id="market-highlights" className="scroll-mt-24 grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
