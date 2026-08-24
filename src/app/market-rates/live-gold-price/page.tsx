@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import GoldDashboardClient from './GoldDashboardClient';
+import LiveGoldPriceBoxClient from './LiveGoldPriceBoxClient';
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { JsonLd } from '@/components/seo/JsonLd';
 
@@ -93,8 +94,7 @@ export default async function Page() {
 
       {/* ── Server-rendered SEO header: visible to Googlebot in raw HTML ── */}
       {/* This ensures H1, current price and breadcrumb appear WITHOUT JavaScript */}
-      <div className="sr-seo-header max-w-[94%] mx-auto px-4 sm:px-6 pt-6 pb-2 border-b border-slate-200">
-        {/* Breadcrumb nav — crawlable server-side links */}
+            <div className="max-w-[94%] mx-auto px-4 sm:px-6 pt-6 pb-4 border-b border-slate-200">
         <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-2 text-[13px] font-medium text-[#5f6368] mb-4">
           <a href="/" className="hover:text-blue-600 hover:underline">Home</a>
           <span className="text-slate-300">/</span>
@@ -103,35 +103,41 @@ export default async function Page() {
           <span className="text-[#202124] font-bold">Gold Price</span>
         </nav>
 
-        {/* H1 — primary keyword heading, visible in raw HTML for Googlebot */}
-        <h1 className="text-3xl sm:text-4xl font-black text-[#202124] tracking-tight mb-2">
-          Gold Price in Nepal Today – Live 24K &amp; 22K Gold Rates
-        </h1>
-        <p className="text-[#5f6368] text-base font-medium leading-relaxed max-w-xl mb-4">
-          Check today's official gold and silver prices in Nepal based on FENEGOSIDA benchmarks.
-        </p>
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          <div className="flex-1 sr-seo-header">
+            <h1 className="text-3xl sm:text-4xl font-black text-[#202124] tracking-tight mb-2">
+              Gold Price in Nepal Today – Live 24K &amp; 22K Gold Rates
+            </h1>
+            <p className="text-[#5f6368] text-base font-medium leading-relaxed max-w-xl mb-4">
+              Check today's official gold and silver prices in Nepal based on FENEGOSIDA benchmarks.
+            </p>
 
-        {/* Build-time price summary — gives Googlebot the current price in raw HTML */}
-        {gold24k && (
-          <div className="flex flex-wrap gap-4 text-sm font-semibold text-slate-700 mb-2">
-            <span>
-              <span className="text-slate-500 font-medium">24K Hallmark (per Tola):</span>{' '}
-              <strong className="text-slate-900">Rs. {fmt(gold24k as number)}</strong>
-            </span>
-            {gold22k && gold22k > 0 && (
-              <span>
-                <span className="text-slate-500 font-medium">22K Tejabi (per Tola):</span>{' '}
-                <strong className="text-slate-900">Rs. {fmt(gold22k as number)}</strong>
-              </span>
-            )}
-            {silver && (
-              <span>
-                <span className="text-slate-500 font-medium">Silver (per Tola):</span>{' '}
-                <strong className="text-slate-900">Rs. {fmt(silver as number)}</strong>
-              </span>
+            {gold24k && (
+              <div className="flex flex-wrap gap-4 text-sm font-semibold text-slate-700 mb-2">
+                <span>
+                  <span className="text-slate-500 font-medium">24K Hallmark (per Tola):</span>{' '}
+                  <strong className="text-slate-900">Rs. {fmt(gold24k as number)}</strong>
+                </span>
+                {gold22k && gold22k > 0 && (
+                  <span>
+                    <span className="text-slate-500 font-medium">22K Tejabi (per Tola):</span>{' '}
+                    <strong className="text-slate-900">Rs. {fmt(gold22k as number)}</strong>
+                  </span>
+                )}
+                {silver && (
+                  <span>
+                    <span className="text-slate-500 font-medium">Silver (per Tola):</span>{' '}
+                    <strong className="text-slate-900">Rs. {fmt(silver as number)}</strong>
+                  </span>
+                )}
+              </div>
             )}
           </div>
-        )}
+          
+          <div className="w-full lg:w-auto shrink-0 mt-4 lg:mt-0">
+             <LiveGoldPriceBoxClient initialGold={gold24k as number | undefined} />
+          </div>
+        </div>
       </div>
 
       {/* ── Interactive dashboard (client component) ── */}

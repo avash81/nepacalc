@@ -574,33 +574,7 @@ export default async function Page() {
               ]}
             />
             {/* Gold Performance — computed dynamically from live data */}
-            {(() => {
-              const GOLD_TODAY = (gold as number) || 319500; // latest from live-rates.json
-              const GOLD_30D   = 308200;
-              const GOLD_6M    = 272000;
-              const GOLD_1Y    = 250000;
-              const GOLD_5Y    = 140000;
-              const GOLD_20Y   = 16000;
-              const calcGold = (period: string, ref: number) => {
-                const amount = GOLD_TODAY - ref;
-                const pct    = (amount / ref) * 100;
-                return { period, priceTola: ref, amount: Math.round(amount), percent: `${amount >= 0 ? '+' : ''}${pct.toFixed(2)}%`, isNegative: amount < 0 };
-              };
-              return (
-                <PricePerformanceWidget
-                  asset="Gold"
-                  source="FENEGOSIDA"
-                  rows={[
-                    { period: 'Today',    priceTola: GOLD_TODAY, amount: 0, percent: '—', isNegative: false },
-                    calcGold('30 Days',  GOLD_30D),
-                    calcGold('6 Months', GOLD_6M),
-                    calcGold('1 Year',   GOLD_1Y),
-                    calcGold('5 Year',   GOLD_5Y),
-                    calcGold('20 Year',  GOLD_20Y),
-                  ]}
-                />
-              );
-            })()}
+            
           </aside>
         </div>
         </div>
