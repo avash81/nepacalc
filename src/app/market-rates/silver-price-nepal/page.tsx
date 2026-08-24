@@ -21,6 +21,7 @@ function getLiveData() {
     return {
       date: json.date || new Date().toISOString().split('T')[0],
       silver: json.silver?.tolaNPR?.current || null,
+      gold: json.gold?.tolaNPR?.current || null,
       silverData: json.silver || null,
       source: json.source || 'FENEGOSIDA',
       source_name: json.source_name || 'FENEGOSIDA',
@@ -30,7 +31,7 @@ function getLiveData() {
       status: json.status || 'verified',
     };
   } catch (e) {
-    return { date: new Date().toISOString().split('T')[0], silver: null, silverData: null, source: 'FENEGOSIDA', source_name: 'FENEGOSIDA', rate_date: new Date().toISOString().split('T')[0], published_at: null, fetched_at: null, status: 'error' };
+    return { date: new Date().toISOString().split('T')[0], silver: null, gold: null, silverData: null, source: 'FENEGOSIDA', source_name: 'FENEGOSIDA', rate_date: new Date().toISOString().split('T')[0], published_at: null, fetched_at: null, status: 'error' };
   }
 }
 
@@ -294,7 +295,7 @@ const schemaGraph = {
 };
 
 export default async function Page() {
-  const { date: rawDate, silver, silverData, source, source_name, rate_date, status } = getLiveData();
+  const { date: rawDate, silver, gold, silverData, source, source_name, rate_date, status } = getLiveData();
 
   const priceSnippet = silver
     ? `Current Chandi price: Rs.${(silver as number).toLocaleString('en-IN')} per tola, updated daily with per gram and kg prices.`
@@ -574,7 +575,7 @@ export default async function Page() {
             />
             {/* Gold Performance — computed dynamically from live data */}
             {(() => {
-              const GOLD_TODAY = 319500; // latest from daily-history.json — updated by live-rates.json
+              const GOLD_TODAY = (gold as number) || 319500; // latest from live-rates.json
               const GOLD_30D   = 308200;
               const GOLD_6M    = 272000;
               const GOLD_1Y    = 250000;

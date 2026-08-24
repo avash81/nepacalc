@@ -19,6 +19,16 @@ function getLiveDate() {
   }
 }
 
+function getForexRates() {
+  try {
+    const data = fs.readFileSync(path.join(process.cwd(), 'public', 'data', 'forex-rates.json'), 'utf8');
+    const json = JSON.parse(data);
+    return json.rates;
+  } catch (e) {
+    return null;
+  }
+}
+
 export async function generateMetadata() {
   const rawDate = getLiveDate();
   const year = rawDate.split('-')[0];
@@ -48,6 +58,12 @@ export async function generateMetadata() {
 
 export default async function Page() {
   const rawDate = getLiveDate();
+  const forexRates = getForexRates();
+  const initialRates = forexRates || { NPR: 134.0, EUR: 0.92, GBP: 0.79, AUD: 1.53, CAD: 1.36, JPY: 151, INR: 83.75, AED: 3.67, QAR: 3.64, SAR: 3.75 };
+
+  const fmt = (val: number) => (initialRates.NPR / val).toFixed(2);
+  const fmtBuy = (val: number) => ((initialRates.NPR / val) * 0.995).toFixed(2);
+
   return (
     <div className="bg-white min-h-screen">
       <CalcWrapper
@@ -77,7 +93,7 @@ export default async function Page() {
         ]}
       >
         {/* LIVE DASHBOARD — kept intact */}
-        <ForexDashboardClient />
+        <ForexDashboardClient initialRates={initialRates} />
 
         {/* SERVER-RENDERED: Static currency table for Googlebot indexability */}
         <div className="hp-container pt-10 pb-4">
@@ -98,13 +114,13 @@ export default async function Page() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 bg-white">
-                  <tr><td className="px-4 py-3 font-semibold">US Dollar</td><td className="px-4 py-3 text-slate-500">USD</td><td className="px-4 py-3">132.50</td><td className="px-4 py-3">133.10</td></tr>
-                  <tr><td className="px-4 py-3 font-semibold">Euro</td><td className="px-4 py-3 text-slate-500">EUR</td><td className="px-4 py-3">144.20</td><td className="px-4 py-3">144.90</td></tr>
-                  <tr><td className="px-4 py-3 font-semibold">UK Pound Sterling</td><td className="px-4 py-3 text-slate-500">GBP</td><td className="px-4 py-3">168.40</td><td className="px-4 py-3">169.20</td></tr>
-                  <tr><td className="px-4 py-3 font-semibold">Australian Dollar</td><td className="px-4 py-3 text-slate-500">AUD</td><td className="px-4 py-3">85.30</td><td className="px-4 py-3">85.90</td></tr>
-                  <tr><td className="px-4 py-3 font-semibold">UAE Dirham</td><td className="px-4 py-3 text-slate-500">AED</td><td className="px-4 py-3">36.10</td><td className="px-4 py-3">36.40</td></tr>
-                  <tr><td className="px-4 py-3 font-semibold">Qatari Riyal</td><td className="px-4 py-3 text-slate-500">QAR</td><td className="px-4 py-3">36.40</td><td className="px-4 py-3">36.70</td></tr>
-                  <tr><td className="px-4 py-3 font-semibold">Saudi Riyal</td><td className="px-4 py-3 text-slate-500">SAR</td><td className="px-4 py-3">35.30</td><td className="px-4 py-3">35.60</td></tr>
+                  <tr><td className="px-4 py-3 font-semibold">US Dollar</td><td className="px-4 py-3 text-slate-500">USD</td><td className="px-4 py-3">{fmtBuy(1)}</td><td className="px-4 py-3">{fmt(1)}</td></tr>
+                  <tr><td className="px-4 py-3 font-semibold">Euro</td><td className="px-4 py-3 text-slate-500">EUR</td><td className="px-4 py-3">{fmtBuy(initialRates.EUR)}</td><td className="px-4 py-3">{fmt(initialRates.EUR)}</td></tr>
+                  <tr><td className="px-4 py-3 font-semibold">UK Pound Sterling</td><td className="px-4 py-3 text-slate-500">GBP</td><td className="px-4 py-3">{fmtBuy(initialRates.GBP)}</td><td className="px-4 py-3">{fmt(initialRates.GBP)}</td></tr>
+                  <tr><td className="px-4 py-3 font-semibold">Australian Dollar</td><td className="px-4 py-3 text-slate-500">AUD</td><td className="px-4 py-3">{fmtBuy(initialRates.AUD)}</td><td className="px-4 py-3">{fmt(initialRates.AUD)}</td></tr>
+                  <tr><td className="px-4 py-3 font-semibold">UAE Dirham</td><td className="px-4 py-3 text-slate-500">AED</td><td className="px-4 py-3">{fmtBuy(initialRates.AED)}</td><td className="px-4 py-3">{fmt(initialRates.AED)}</td></tr>
+                  <tr><td className="px-4 py-3 font-semibold">Qatari Riyal</td><td className="px-4 py-3 text-slate-500">QAR</td><td className="px-4 py-3">{fmtBuy(initialRates.QAR)}</td><td className="px-4 py-3">{fmt(initialRates.QAR)}</td></tr>
+                  <tr><td className="px-4 py-3 font-semibold">Saudi Riyal</td><td className="px-4 py-3 text-slate-500">SAR</td><td className="px-4 py-3">{fmtBuy(initialRates.SAR)}</td><td className="px-4 py-3">{fmt(initialRates.SAR)}</td></tr>
                   <tr><td className="px-4 py-3 font-semibold">Indian Rupee</td><td className="px-4 py-3 text-slate-500">INR</td><td className="px-4 py-3 text-slate-400" colSpan={2}>Fixed: 100 INR = 160 NPR</td></tr>
                 </tbody>
               </table>

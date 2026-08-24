@@ -150,17 +150,6 @@ export default function Page() {
 
   return (
     <>
-      <link rel="canonical" href="https://nepacalc.com/calculator/nepal-vehicle-tax/" />
-      <meta property="og:title" content="Vehicle Tax Calculator Nepal (2083/84)" />
-      <meta property="og:description" content="Calculate vehicle tax, bluebook renewal charges, EV road tax and EV import duty in Nepal using latest FY 2083/84 rates." />
-      <meta property="og:image" content="https://nepacalc.com/assets/images/vehicle-tax-calculator-nepal-2083-84.webp" />
-      <meta property="og:type" content="website" />
-      
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="Vehicle Tax Calculator Nepal (2083/84)" />
-      <meta name="twitter:description" content="Calculate vehicle tax, bluebook renewal charges, EV road tax and EV import duty in Nepal using latest FY 2083/84 rates." />
-      <meta name="twitter:image" content="https://nepacalc.com/assets/images/vehicle-tax-calculator-nepal-2083-84.webp" />
-
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppSchema) }} />

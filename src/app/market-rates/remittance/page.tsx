@@ -18,6 +18,16 @@ function getLiveDate() {
   }
 }
 
+function getForexRates() {
+  try {
+    const data = fs.readFileSync(path.join(process.cwd(), 'public', 'data', 'forex-rates.json'), 'utf8');
+    const json = JSON.parse(data);
+    return json.rates;
+  } catch (e) {
+    return null;
+  }
+}
+
 export async function generateMetadata(): Promise<Metadata> {
   const rawDate = getLiveDate();
   return {
@@ -38,6 +48,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Page() {
   const rawDate = getLiveDate();
+  const forexRates = getForexRates();
+  const initialRates = forexRates || { NPR: 134.0, EUR: 0.92, GBP: 0.79, AUD: 1.53, CAD: 1.36, JPY: 151, INR: 83.75, AED: 3.67, QAR: 3.64, SAR: 3.75 };
+  
   return (
     <div className="bg-white min-h-screen">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "WebPage", "dateModified": new Date(rawDate).toISOString() }) }} />
@@ -52,7 +65,7 @@ export default async function Page() {
           { name: 'Income Tax', slug: '/calculator/nepal-income-tax/' }
         ]}
       >
-        <RemittanceDashboardClient />
+        <RemittanceDashboardClient initialRates={initialRates} />
         <div className="max-w-3xl mx-auto px-4 py-6">
           <p className="text-[13px] text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed mb-4">
             Remittance inflows significantly influence Nepal&apos;s foreign currency reserves, which in turn affect precious metal import quotas. Track the daily benchmark via the <a href="/market-rates/live-gold-price/" className="text-blue-700 font-bold underline hover:text-blue-900">current gold rate</a>.

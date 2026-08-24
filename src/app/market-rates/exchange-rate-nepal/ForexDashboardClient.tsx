@@ -6,27 +6,39 @@ import { useLiveRates } from '@/hooks/useLiveRates';
 import CurrencyConverter from '@/app/calculator/currency-converter/Calculator';
 import { Landmark, Search, ArrowRightLeft, Globe2, ListFilter, TrendingDown, TrendingUp } from 'lucide-react';
 
-export default function ForexDashboardClient() {
+export default function ForexDashboardClient({ initialRates }: { initialRates?: any }) {
   const { rates, loading } = useLiveRates();
   const [search, setSearch] = useState('');
 
-  if (loading || !rates?.forex) {
-     return <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+  // Use live rates if available, otherwise fallback to build-time initial rates
+  const activeForex = rates?.forex || (initialRates ? {
+    usd: { current: initialRates.NPR, changePercent24h: 0 },
+    inr: { current: initialRates.NPR / initialRates.INR, changePercent24h: 0 },
+    gbp: { current: initialRates.NPR / initialRates.GBP, changePercent24h: 0 },
+    eur: { current: initialRates.NPR / initialRates.EUR, changePercent24h: 0 },
+    aud: { current: initialRates.NPR / initialRates.AUD, changePercent24h: 0 },
+    cad: { current: initialRates.NPR / initialRates.CAD, changePercent24h: 0 },
+    jpy: { current: initialRates.NPR / initialRates.JPY, changePercent24h: 0 },
+    date: new Date().toISOString()
+  } : null);
+
+  if (!activeForex) {
+     return <div className="min-h-[50vh] bg-slate-50 flex items-center justify-center">
         <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
      </div>;
   }
 
   const fmt = (n: number) => n.toFixed(2);
-  const usd = rates.forex.usd;
+  const usd = activeForex.usd;
 
   const currencyList = [
-    { code: 'USD', name: 'US Dollar', flag: '🇺🇸', unit: 1, stats: rates.forex.usd },
-    { code: 'INR', name: 'Indian Rupee', flag: '🇮🇳', unit: 1, stats: rates.forex.inr },
-    { code: 'GBP', name: 'UK Pound', flag: '🇬🇧', unit: 1, stats: rates.forex.gbp },
-    { code: 'EUR', name: 'Euro', flag: '🇪🇺', unit: 1, stats: rates.forex.eur },
-    { code: 'AUD', name: 'Australian Dollar', flag: '🇦🇺', unit: 1, stats: rates.forex.aud },
-    { code: 'CAD', name: 'Canadian Dollar', flag: '🇨🇦', unit: 1, stats: rates.forex.cad },
-    { code: 'JPY', name: 'Japanese Yen', flag: '🇯🇵', unit: 10, stats: rates.forex.jpy },
+    { code: 'USD', name: 'US Dollar', flag: '🇺🇸', unit: 1, stats: activeForex.usd },
+    { code: 'INR', name: 'Indian Rupee', flag: '🇮🇳', unit: 1, stats: activeForex.inr },
+    { code: 'GBP', name: 'UK Pound', flag: '🇬🇧', unit: 1, stats: activeForex.gbp },
+    { code: 'EUR', name: 'Euro', flag: '🇪🇺', unit: 1, stats: activeForex.eur },
+    { code: 'AUD', name: 'Australian Dollar', flag: '🇦🇺', unit: 1, stats: activeForex.aud },
+    { code: 'CAD', name: 'Canadian Dollar', flag: '🇨🇦', unit: 1, stats: activeForex.cad },
+    { code: 'JPY', name: 'Japanese Yen', flag: '🇯🇵', unit: 10, stats: activeForex.jpy },
   ];
 
   const filtered = currencyList.filter(c => 
@@ -40,7 +52,7 @@ export default function ForexDashboardClient() {
       description="Official daily buying and selling rates against the Nepalese Rupee (NPR). Synchronized with NRB market indices for cross-border transactions and remittance projections."
       liveRate={fmt(usd.current)}
       changePercent={usd.changePercent24h}
-      lastUpdated={new Date(rates.forex.date).toLocaleDateString()}
+      lastUpdated={new Date(activeForex.date).toLocaleDateString()}
       accentColor="#059669"
       mainBoard={
         <div className="flex flex-col">

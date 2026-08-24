@@ -5,16 +5,21 @@ import { MarketDashboardLayout } from '@/components/market/MarketDashboardLayout
 import { useLiveRates } from '@/hooks/useLiveRates';
 import { Landmark, Wallet, Globe, ArrowRight, ShieldCheck, HelpCircle } from 'lucide-react';
 
-export default function RemittanceDashboardClient() {
+export default function RemittanceDashboardClient({ initialRates }: { initialRates?: any }) {
   const { rates, loading } = useLiveRates();
 
-  if (loading || !rates?.forex) {
-     return <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+  const activeForex = rates?.forex || (initialRates ? {
+    usd: { current: initialRates.NPR, changePercent24h: 0 },
+    date: new Date().toISOString()
+  } : null);
+
+  if (!activeForex) {
+     return <div className="min-h-[50vh] bg-slate-50 flex items-center justify-center">
         <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
      </div>;
   }
 
-  const usd = rates.forex.usd.current;
+  const usd = activeForex.usd.current;
   const fmt = (n: number) => n.toFixed(2);
 
   const providers = [
@@ -29,7 +34,7 @@ export default function RemittanceDashboardClient() {
       title="Remittance to Nepal"
       description="Compare live sending rates from the USA, Gulf, and Europe to Nepal. Find the highest NPR payout for your hard-earned money with zero hidden fees."
       liveRate={fmt(usd)}
-      changePercent={rates.forex.usd.changePercent24h}
+      changePercent={activeForex.usd.changePercent24h}
       lastUpdated={new Date().toLocaleDateString()}
       accentColor="#4361ee"
       mainBoard={
