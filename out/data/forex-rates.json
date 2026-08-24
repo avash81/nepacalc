@@ -1,208 +1,176 @@
 {
-  "rates": [
-    {
-      "currency": {
-        "iso3": "INR",
-        "name": "Indian Rupee",
-        "unit": 100
-      },
-      "buy": "160.00",
-      "sell": "160.15"
-    },
-    {
-      "currency": {
-        "iso3": "USD",
-        "name": "U.S. Dollar",
-        "unit": 1
-      },
-      "buy": "152.82",
-      "sell": "153.42"
-    },
-    {
-      "currency": {
-        "iso3": "EUR",
-        "name": "European Euro",
-        "unit": 1
-      },
-      "buy": "178.50",
-      "sell": "179.20"
-    },
-    {
-      "currency": {
-        "iso3": "GBP",
-        "name": "UK Pound Sterling",
-        "unit": 1
-      },
-      "buy": "208.41",
-      "sell": "209.23"
-    },
-    {
-      "currency": {
-        "iso3": "CHF",
-        "name": "Swiss Franc",
-        "unit": 1
-      },
-      "buy": "190.79",
-      "sell": "191.54"
-    },
-    {
-      "currency": {
-        "iso3": "AUD",
-        "name": "Australian Dollar",
-        "unit": 1
-      },
-      "buy": "109.66",
-      "sell": "110.09"
-    },
-    {
-      "currency": {
-        "iso3": "CAD",
-        "name": "Canadian Dollar",
-        "unit": 1
-      },
-      "buy": "111.01",
-      "sell": "111.44"
-    },
-    {
-      "currency": {
-        "iso3": "SGD",
-        "name": "Singapore Dollar",
-        "unit": 1
-      },
-      "buy": "120.36",
-      "sell": "120.84"
-    },
-    {
-      "currency": {
-        "iso3": "JPY",
-        "name": "Japanese Yen",
-        "unit": 10
-      },
-      "buy": "9.61",
-      "sell": "9.65"
-    },
-    {
-      "currency": {
-        "iso3": "CNY",
-        "name": "Chinese Yuan",
-        "unit": 1
-      },
-      "buy": "22.74",
-      "sell": "22.83"
-    },
-    {
-      "currency": {
-        "iso3": "SAR",
-        "name": "Saudi Arabian Riyal",
-        "unit": 1
-      },
-      "buy": "40.70",
-      "sell": "40.86"
-    },
-    {
-      "currency": {
-        "iso3": "QAR",
-        "name": "Qatari Riyal",
-        "unit": 1
-      },
-      "buy": "41.93",
-      "sell": "42.09"
-    },
-    {
-      "currency": {
-        "iso3": "THB",
-        "name": "Thai Baht",
-        "unit": 1
-      },
-      "buy": "4.67",
-      "sell": "4.69"
-    },
-    {
-      "currency": {
-        "iso3": "AED",
-        "name": "UAE Dirham",
-        "unit": 1
-      },
-      "buy": "41.61",
-      "sell": "41.77"
-    },
-    {
-      "currency": {
-        "iso3": "MYR",
-        "name": "Malaysian Ringgit",
-        "unit": 1
-      },
-      "buy": "37.84",
-      "sell": "37.99"
-    },
-    {
-      "currency": {
-        "iso3": "KRW",
-        "name": "South Korean Won",
-        "unit": 100
-      },
-      "buy": "11.03",
-      "sell": "11.07"
-    },
-    {
-      "currency": {
-        "iso3": "SEK",
-        "name": "Swedish Kroner",
-        "unit": 1
-      },
-      "buy": "16.14",
-      "sell": "16.21"
-    },
-    {
-      "currency": {
-        "iso3": "DKK",
-        "name": "Danish Kroner",
-        "unit": 1
-      },
-      "buy": "23.88",
-      "sell": "23.97"
-    },
-    {
-      "currency": {
-        "iso3": "HKD",
-        "name": "Hong Kong Dollar",
-        "unit": 1
-      },
-      "buy": "19.49",
-      "sell": "19.57"
-    },
-    {
-      "currency": {
-        "iso3": "KWD",
-        "name": "Kuwaity Dinar",
-        "unit": 1
-      },
-      "buy": "498.19",
-      "sell": "500.15"
-    },
-    {
-      "currency": {
-        "iso3": "BHD",
-        "name": "Bahrain Dinar",
-        "unit": 1
-      },
-      "buy": "405.36",
-      "sell": "406.95"
-    },
-    {
-      "currency": {
-        "iso3": "OMR",
-        "name": "Omani Rial",
-        "unit": 1
-      },
-      "buy": "396.95",
-      "sell": "398.51"
-    }
-  ],
-  "source": "Nepal Rastra Bank (NRB)",
-  "source_url": "https://www.nrb.org.np/api/forex/v1/rates?page=1&per_page=1&from=2026-08-24&to=2026-08-24",
-  "published_at": "2026-08-24",
-  "updated_at": "2026-08-24T07:41:44.031Z",
-  "fetched_at": "2026-08-24T07:41:44.031Z",
-  "status": "verified"
+  "provider": "https://www.exchangerate-api.com",
+  "WARNING_UPGRADE_TO_V6": "https://www.exchangerate-api.com/docs/free",
+  "terms": "https://www.exchangerate-api.com/terms",
+  "base": "USD",
+  "date": "2026-08-24",
+  "time_last_updated": 1787529601,
+  "rates": {
+    "USD": 1,
+    "AED": 3.67,
+    "AFN": 65.13,
+    "ALL": 79.13,
+    "AMD": 363.76,
+    "ANG": 1.79,
+    "AOA": 917.36,
+    "ARS": 1497.45,
+    "AUD": 1.4,
+    "AWG": 1.79,
+    "AZN": 1.7,
+    "BAM": 1.67,
+    "BBD": 2,
+    "BDT": 122.31,
+    "BGN": 1.67,
+    "BHD": 0.376,
+    "BIF": 2972.35,
+    "BMD": 1,
+    "BND": 1.27,
+    "BOB": 11.51,
+    "BRL": 5.17,
+    "BSD": 1,
+    "BTN": 95.79,
+    "BWP": 13.38,
+    "BYN": 2.99,
+    "BZD": 2,
+    "CAD": 1.38,
+    "CDF": 2282.58,
+    "CHF": 0.801,
+    "CLF": 0.0233,
+    "CLP": 920.47,
+    "CNH": 6.72,
+    "CNY": 6.73,
+    "COP": 3060.43,
+    "CRC": 451.79,
+    "CUP": 24,
+    "CVE": 94.41,
+    "CZK": 20.64,
+    "DJF": 177.72,
+    "DKK": 6.4,
+    "DOP": 58.48,
+    "DZD": 132.62,
+    "EGP": 50.86,
+    "ERN": 15,
+    "ETB": 160.92,
+    "EUR": 0.856,
+    "FJD": 2.19,
+    "FKP": 0.733,
+    "FOK": 6.4,
+    "GBP": 0.733,
+    "GEL": 2.6,
+    "GGP": 0.733,
+    "GHS": 11.02,
+    "GIP": 0.733,
+    "GMD": 74.42,
+    "GNF": 8735.81,
+    "GTQ": 7.62,
+    "GYD": 208.28,
+    "HKD": 7.84,
+    "HNL": 26.77,
+    "HRK": 6.45,
+    "HTG": 130.34,
+    "HUF": 310.51,
+    "IDR": 17693.86,
+    "ILS": 2.99,
+    "IMP": 0.733,
+    "INR": 95.79,
+    "IQD": 1304.6,
+    "IRR": 1523203.23,
+    "ISK": 121.19,
+    "JEP": 0.733,
+    "JMD": 157.96,
+    "JOD": 0.709,
+    "JPY": 158.91,
+    "KES": 129.39,
+    "KGS": 87.37,
+    "KHR": 4020.23,
+    "KID": 1.4,
+    "KMF": 421.24,
+    "KRW": 1385.48,
+    "KWD": 0.307,
+    "KYD": 0.833,
+    "KZT": 458.76,
+    "LAK": 22295.68,
+    "LBP": 89500,
+    "LKR": 329.47,
+    "LRD": 181.06,
+    "LSL": 16.02,
+    "LYD": 6.33,
+    "MAD": 9.21,
+    "MDL": 17.14,
+    "MGA": 4286.18,
+    "MKD": 52.47,
+    "MMK": 2095.14,
+    "MNT": 3560.87,
+    "MOP": 8.08,
+    "MRU": 39.97,
+    "MUR": 46.57,
+    "MVR": 15.42,
+    "MWK": 1727.96,
+    "MXN": 16.92,
+    "MYR": 4.04,
+    "MZN": 63.64,
+    "NAD": 16.02,
+    "NGN": 1345.21,
+    "NIO": 36.69,
+    "NOK": 9.3,
+    "NPR": 153.27,
+    "NZD": 1.67,
+    "OMR": 0.384,
+    "PAB": 1,
+    "PEN": 3.35,
+    "PGK": 4.42,
+    "PHP": 61.7,
+    "PKR": 277.51,
+    "PLN": 3.69,
+    "PYG": 6008.87,
+    "QAR": 3.64,
+    "RON": 4.49,
+    "RSD": 100.35,
+    "RUB": 82.8,
+    "RWF": 1466.21,
+    "SAR": 3.75,
+    "SBD": 7.91,
+    "SCR": 14.25,
+    "SDG": 505.78,
+    "SEK": 9.47,
+    "SGD": 1.27,
+    "SHP": 0.733,
+    "SLE": 24.32,
+    "SLL": 24315.52,
+    "SOS": 568.72,
+    "SRD": 37.78,
+    "SSP": 5619.23,
+    "STN": 20.98,
+    "SYP": 121.5,
+    "SZL": 16.02,
+    "THB": 32.66,
+    "TJS": 9.16,
+    "TMT": 3.47,
+    "TND": 2.89,
+    "TOP": 2.36,
+    "TRY": 48.09,
+    "TTD": 6.76,
+    "TVD": 1.4,
+    "TWD": 31.8,
+    "TZS": 2627.89,
+    "UAH": 44.69,
+    "UGX": 3709.41,
+    "UYU": 40.01,
+    "UZS": 11765.92,
+    "VES": 784.66,
+    "VND": 26052.84,
+    "VUV": 117.62,
+    "WST": 2.68,
+    "XAF": 561.66,
+    "XCD": 2.7,
+    "XCG": 1.79,
+    "XDR": 0.727,
+    "XOF": 561.66,
+    "XPF": 102.18,
+    "YER": 236.55,
+    "ZAR": 16.01,
+    "ZMW": 18.8,
+    "ZWG": 26.63,
+    "ZWL": 26.63
+  }
 }
