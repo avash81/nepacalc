@@ -368,9 +368,6 @@ export default async function Page() {
         ]}
       >
         <div className="max-w-[1400px] lg:ml-0 lg:mr-auto pb-12">
-          <div className="lg:grid lg:grid-cols-[minmax(0,1fr)] lg:gap-8 items-start">
-          <div className="min-w-0 w-full overflow-hidden">
-
           {/* ── Header row: Title LEFT, Live price card RIGHT ── */}
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-6 border-b border-slate-200 pb-6">
             <div className="flex-1">
@@ -423,21 +420,9 @@ export default async function Page() {
             </div>
           </div>
 
-          {/* ── Silver Price Performance — full width below header ── */}
-          <div className="mb-8">
-            <PricePerformanceWidget
-              asset="Silver"
-              source="FENEGOSIDA"
-              rows={[
-                { period: 'Today',    priceTola: currentSilver, amount: Math.round(change24h), percent: `${changePercent24h >= 0 ? '+' : ''}${changePercent24h.toFixed(2)}%`, isNegative: changePercent24h < 0 },
-                { period: '30 Days',  priceTola: 4415,  amount: Math.round(currentSilver - 4415),  percent: `${(((currentSilver - 4415) / 4415) * 100) >= 0 ? '+' : ''}${(((currentSilver - 4415) / 4415) * 100).toFixed(2)}%`,  isNegative: currentSilver < 4415  },
-                { period: '6 Months', priceTola: 3850,  amount: Math.round(currentSilver - 3850),  percent: `+${(((currentSilver - 3850) / 3850) * 100).toFixed(2)}%`,  isNegative: false },
-                { period: '1 Year',   priceTola: 3200,  amount: Math.round(currentSilver - 3200),  percent: `+${(((currentSilver - 3200) / 3200) * 100).toFixed(2)}%`,  isNegative: false },
-                { period: '5 Year',   priceTola: 1485,  amount: Math.round(currentSilver - 1485),  percent: `+${(((currentSilver - 1485) / 1485) * 100).toFixed(2)}%`,  isNegative: false },
-                { period: '20 Years', priceTola: 485,   amount: Math.round(currentSilver - 485),   percent: `+${(((currentSilver - 485)  / 485)  * 100).toFixed(2)}%`,  isNegative: false },
-              ]}
-            />
-          </div>
+          {/* ── Grid: Main (left) & Sidebar (right) ── */}
+          <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-8 items-start">
+            <div className="min-w-0 w-full overflow-hidden">
 
               <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-6">
                 <div className="flex flex-col">
@@ -577,8 +562,23 @@ export default async function Page() {
             </article>
           </div>
           </div>
-          </div>
-          </div>
+          {/* === SIDEBAR === */}
+          <aside className="hidden lg:block pb-6 pr-1" style={{ position: 'sticky', top: '96px', alignSelf: 'start', zIndex: 20, maxHeight: 'calc(100vh - 120px)', overflowY: 'auto', scrollbarWidth: 'thin' }}>
+            <PricePerformanceWidget
+              asset="Silver"
+              source="FENEGOSIDA"
+              rows={[
+                { period: 'Today',    priceTola: currentSilver, amount: Math.round(change24h), percent: `${changePercent24h >= 0 ? '+' : ''}${changePercent24h.toFixed(2)}%`, isNegative: changePercent24h < 0 },
+                { period: '30 Days',  priceTola: 4415,  amount: Math.round(currentSilver - 4415),  percent: `${(((currentSilver - 4415) / 4415) * 100) >= 0 ? '+' : ''}${(((currentSilver - 4415) / 4415) * 100).toFixed(2)}%`,  isNegative: currentSilver < 4415  },
+                { period: '6 Months', priceTola: 3850,  amount: Math.round(currentSilver - 3850),  percent: `+${(((currentSilver - 3850) / 3850) * 100).toFixed(2)}%`,  isNegative: false },
+                { period: '1 Year',   priceTola: 3200,  amount: Math.round(currentSilver - 3200),  percent: `+${(((currentSilver - 3200) / 3200) * 100).toFixed(2)}%`,  isNegative: false },
+                { period: '5 Year',   priceTola: 1485,  amount: Math.round(currentSilver - 1485),  percent: `+${(((currentSilver - 1485) / 1485) * 100).toFixed(2)}%`,  isNegative: false },
+                { period: '20 Years', priceTola: 485,   amount: Math.round(currentSilver - 485),   percent: `+${(((currentSilver - 485)  / 485)  * 100).toFixed(2)}%`,  isNegative: false },
+              ]}
+            />
+          </aside>
+        </div>
+        </div>
 
       </CalcWrapper>
     </div>
