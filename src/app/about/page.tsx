@@ -30,7 +30,10 @@ export default function AboutPage() {
           
           <h2>Welcome to NepaCalc</h2>
           <p>
-            NepaCalc is a Nepal-focused digital platform that provides accurate calculators, converters, financial tools, engineering utilities, academic resources, and market information designed specifically for Nepal.
+            NepaCalc is a global digital platform providing accurate calculators, converters, financial tools, engineering utilities, academic resources, health tools, and market information for users around the world.
+          </p>
+          <p>
+            While NepaCalc provides general-purpose calculators and tools for international users, we also specialize in tools designed specifically for Nepal, including Nepal tax calculators, salary and loan tools, gold and silver rates, traditional land measurements, utility bills, government fees, and other Nepal-specific calculations.
           </p>
           <p>
             Our mission is to simplify everyday calculations by providing reliable, easy-to-use tools based on Nepal's official standards, regulations, and measurement systems.
@@ -42,8 +45,10 @@ export default function AboutPage() {
           <div className="bg-gray-50 border border-gray-200 rounded-lg p-5 my-6 not-prose">
             <h3 className="font-bold text-gray-900 mb-3 text-lg">Why Trust NepaCalc?</h3>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm text-gray-700">
-              <div className="flex items-center gap-2"><span className="text-green-500 font-bold">✓</span> Independent Publisher</div>
-              <div className="flex items-center gap-2"><span className="text-green-500 font-bold">✓</span> Nepal-focused</div>
+              <div className="flex items-center gap-2"><span className="text-green-500 font-bold">✓</span> Global Calculator Platform
+              </div>
+              <div className="flex items-center gap-2"><span className="text-green-500 font-bold">✓</span> Nepal-Specialized Tools</div>
+              <div className="flex items-center gap-2"><span className="text-green-500 font-bold">✓</span> Independently Developed</div>
               <div className="flex items-center gap-2"><span className="text-green-500 font-bold">✓</span> Regularly Updated</div>
               <div className="flex items-center gap-2"><span className="text-green-500 font-bold">✓</span> Privacy First</div>
               <div className="flex items-center gap-2"><span className="text-green-500 font-bold">✓</span> Mobile Friendly</div>

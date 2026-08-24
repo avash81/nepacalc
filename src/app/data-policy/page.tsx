@@ -36,7 +36,10 @@ export default function DataPolicyPage() {
               <ShieldCheck className="w-5 h-5 text-blue-500" /> Official Data Sources
             </h2>
             <p className="text-slate-600 mb-4 leading-relaxed">
-              Our financial, taxation, and utility calculators rely on data published by authoritative bodies in Nepal. We regularly verify our constants and algorithms against official circulars from:
+              Our Nepal-specific financial, taxation, market, and utility calculators rely on data published by authoritative organizations in Nepal.
+          </p>
+          <p>
+            For international and general-purpose calculators, NepaCalc uses recognized mathematical, scientific, engineering, financial, health, and measurement standards, together with appropriate authoritative references. We regularly verify our constants and algorithms against official circulars from:
             </p>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
@@ -68,7 +71,7 @@ export default function DataPolicyPage() {
                 <tbody className="divide-y divide-slate-100">
                   <tr>
                     <td className="px-4 py-3 font-medium text-slate-800">Gold & Silver Rates</td>
-                    <td className="px-4 py-3 text-slate-600">Daily (11:00 AM NPT)</td>
+                    <td className="px-4 py-3 text-slate-600">Daily / when official rates are released</td>
                     <td className="px-4 py-3 text-slate-500">Official FENEGOSIDA releases</td>
                   </tr>
                   <tr>
@@ -94,7 +97,7 @@ export default function DataPolicyPage() {
           <section>
             <h2 className="text-xl font-bold text-slate-900 mb-4">Mathematical Methodology</h2>
             <p className="text-slate-600 mb-4 leading-relaxed">
-              Our engineering, scientific, and health calculators utilize standard, peer-reviewed mathematical formulas.
+              Our calculators use established mathematical, scientific, financial, engineering, health, statistical, and measurement methodologies appropriate to each tool. Where applicable, formulas are based on recognized standards, authoritative guidance, or established mathematical relationships.
             </p>
             <ul className="space-y-3">
               <li className="flex gap-3">
@@ -115,7 +118,7 @@ export default function DataPolicyPage() {
           <section>
             <h2 className="text-xl font-bold text-slate-900 mb-4">Disclaimer</h2>
             <p className="text-slate-600 leading-relaxed">
-              While we strive for 100% accuracy, NepaCalc is an informational platform. Calculated results should be used for reference and planning purposes only. We recommend consulting with certified financial planners, tax consultants, or relevant professionals before making significant financial or engineering decisions. For more details, please read our <Link href="/disclaimer/" className="text-blue-600 hover:underline">full disclaimer</Link>.
+              We strive to provide accurate and reliable information, but NepaCalc is an informational platform. Calculated results should be used for reference and planning purposes only. We recommend consulting with certified financial planners, tax consultants, or relevant professionals before making significant financial or engineering decisions. For more details, please read our <Link href="/disclaimer/" className="text-blue-600 hover:underline">full disclaimer</Link>.
             </p>
           </section>
         </div>

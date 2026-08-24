@@ -27,7 +27,7 @@ export default function EditorialPolicyPage() {
         <div className="bg-white rounded-xl p-6 md:p-10 shadow-sm border border-gray-100 prose prose-sm md:prose-base max-w-none text-gray-600 prose-headings:text-gray-900 prose-a:text-blue-600 hover:prose-a:text-blue-800">
           
           <p className="lead text-gray-700 font-medium text-lg mt-0">
-            At <strong>NepaCalc</strong>, our goal is to provide accurate, transparent, and reliable calculators, educational resources, and market information designed specifically for Nepal.
+            At <strong>NepaCalc</strong>, our goal is to provide accurate, transparent, and reliable calculators, converters, educational resources, financial tools, engineering utilities, and market information for users worldwide, including specialized tools for Nepal.
           </p>
           <p>
             This Editorial Policy explains how our content is researched, created, reviewed, maintained, and updated.

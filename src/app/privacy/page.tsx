@@ -102,7 +102,7 @@ export default function PrivacyPage() {
               <li>Click behaviour and session duration</li>
             </ul>
           </div>
-          <p>This information is collected in aggregated form and is used to understand how visitors use our website and improve the overall user experience.</p>
+          <p>This information is collected and used to measure site performance and is used to understand how visitors use our website and improve the overall user experience.</p>
 
           <h3 className="text-lg font-bold mt-8">Calculator Inputs</h3>
           <p>Most NepaCalc calculators perform calculations entirely within your web browser.</p>
@@ -173,7 +173,7 @@ export default function PrivacyPage() {
           <p>These cookies are required for the website to function properly. They support features such as navigation, security, session management, and calculator functionality. Essential cookies cannot be disabled through our website because they are necessary for basic operation.</p>
 
           <h3 className="text-lg font-bold mt-6">Analytics Cookies</h3>
-          <p>Analytics cookies help us understand how visitors use NepaCalc. They allow us to measure popular calculators, visitor behaviour, device usage, traffic sources, and performance improvements. This information is collected in aggregated form and is not used to personally identify visitors.</p>
+          <p>Analytics cookies help us understand how visitors use NepaCalc. They allow us to measure popular calculators, visitor behaviour, device usage, traffic sources, and performance improvements. This information is collected and used to measure site performance and is not used to personally identify visitors.</p>
 
           <h3 className="text-lg font-bold mt-6">Advertising Cookies</h3>
           <p>Advertising cookies may be placed by Google and other advertising partners. These cookies help display advertisements, limit repeated advertisements, measure advertising performance, and personalize advertising where permitted. Users may control advertising preferences through Google's Ads Settings and browser privacy controls.</p>
@@ -190,7 +190,7 @@ export default function PrivacyPage() {
           </ul>
           <p>Google may use the <strong>DoubleClick Cookie</strong> to serve personalized advertisements.</p>
           <p>You can learn more about Google's advertising technologies and manage your advertising preferences through <a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer">Google's Ads Settings</a>.</p>
-          <p>NepaCalc does not control the advertisements shown by Google or other advertising partners. We do not receive personal information about individual users from Google AdSense. Advertising providers operate according to their own privacy policies and terms of service.</p>
+          <p>NepaCalc does not control the advertisements shown by Google or other advertising partners. Depending on the user's location, applicable law, and the advertising configuration used on NepaCalc, advertising may be personalized or non-personalized. Where legally required, consent or other applicable privacy choices may be requested before certain cookies or advertising technologies are used. Advertising providers operate according to their own privacy policies and terms of service.</p>
 
           <hr className="my-10" />
 
@@ -211,7 +211,7 @@ export default function PrivacyPage() {
               <li>User interactions</li>
             </ul>
           </div>
-          <p>This information is collected in an aggregated and anonymized manner and is used solely to improve website performance, usability, and content quality.</p>
+          <p>Google Analytics may collect technical and interaction information about how visitors use NepaCalc. The data is used to understand traffic, measure performance, and improve the website. Google processes this information according to its own policies and applicable settings. and is used solely to improve website performance, usability, and content quality.</p>
           <p>We do not use Google Analytics to identify individual users.</p>
           <p>For more information about how Google processes analytics data, please visit: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a>.</p>
           <p>You may also opt out of Google Analytics by installing the official browser add-on provided by Google.</p>

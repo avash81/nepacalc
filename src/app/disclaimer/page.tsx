@@ -96,7 +96,7 @@ export default function DisclaimerPage() {
           <hr className="my-10" />
 
           <h2>Government Information</h2>
-          <p>Many NepaCalc calculators reference publicly available information from government departments and regulatory organizations.</p>
+          <p>Many NepaCalc calculators reference publicly available information from government departments and regulatory organizations. Some NepaCalc tools use country-specific laws, regulations, tariffs, rates, or official data. Where a calculator is designed for a specific country or jurisdiction, its results should be interpreted within that jurisdiction. Official government or regulatory publications remain authoritative if there is any discrepancy.</p>
           <p>While we regularly review official publications, NepaCalc is not affiliated with, endorsed by, or operated by any government authority, unless explicitly stated.</p>
           <p>Official government publications remain the authoritative source in case of any discrepancy.</p>
 

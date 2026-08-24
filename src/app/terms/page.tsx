@@ -62,7 +62,7 @@ export default function TermsPage() {
               <li>Educational resources</li>
             </ul>
           </div>
-          <p>Our services are provided for informational and educational purposes.</p>
+          <p>Our services are provided for informational and educational purposes. Some services are designed for general international use, while others incorporate country-specific regulations, rates, standards, or market data.</p>
 
           <hr className="my-10" />
 
