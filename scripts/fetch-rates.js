@@ -160,7 +160,6 @@ async function main() {
     // ── Auto-patch FALLBACK constants in useLiveRates.ts ──────────────────────
     // This keeps the static fallback (shown when /data/live-rates.json is unreachable)
     // always in sync with the latest verified FENEGOSIDA rate.
-    const tejabiTola = tejabiGoldTola || Math.round(goldTola * 0.9978);
     const liveRatesHookPath = path.join(__dirname, '../src/hooks/useLiveRates.ts');
     if (fs.existsSync(liveRatesHookPath)) {
       let hookSrc = fs.readFileSync(liveRatesHookPath, 'utf8');
