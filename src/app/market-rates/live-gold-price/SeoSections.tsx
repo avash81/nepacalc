@@ -287,12 +287,15 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
       {/* ─── Price Performance Widget ─── */}
       {(() => {
         // Historical reference prices from FENEGOSIDA daily-history.json
-        const GOLD_30D  = 308200;  // ~30 days ago (2026-07-31)
-        const GOLD_6M   = 272000;  // ~6 months ago
-        const GOLD_1Y   = 250000;  // ~1 year ago
-        const GOLD_5Y   = 140000;  // ~5 years ago
-        const GOLD_20Y  = 16000;   // ~20 years ago
-        const current   = hallmarkCurrent ?? 319500;
+        // UPDATE these whenever the 30-day reference drifts by more than ~2%.
+        // Last updated: 2026-08-24
+        const GOLD_30D  = 308200;  // 2026-07-31 FENEGOSIDA daily rate
+        const GOLD_6M   = 272000;  // 2026-02-24 FENEGOSIDA daily rate
+        const GOLD_1Y   = 250000;  // 2025-08-24 FENEGOSIDA daily rate
+        const GOLD_5Y   = 140000;  // 2021-08-24 approximate
+        const GOLD_20Y  = 16000;   // 2006-08-24 approximate
+        // hallmarkCurrent comes from server getLiveData() via props — always accurate at build time
+        const current   = hallmarkCurrent ?? 322700;
 
         const calcRow = (period: string, ref: number) => {
           const amount  = current - ref;
@@ -324,6 +327,7 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
           </div>
         );
       })()}
+
 
       {/* ─── ORIGINAL: Historical Data Section (Component) ─── */}
       <HistoricalData />

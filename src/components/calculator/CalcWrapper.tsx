@@ -82,10 +82,13 @@ export function CalcWrapper({
 
   // Opt-in: only render SoftwareApplication if explicitly requested.
   const shouldRenderSoftwareSchema = enableSchema && !disableSchema;
+  // When disableSchema is set the page owns its own JSON-LD — suppress CalcWrapper's
+  // entire unified block to prevent duplicate @id WebPage / BreadcrumbList conflicts.
+  const shouldRenderJsonLd = !disableSchema;
 
   return (
     <div lang={isNepal ? 'ne' : 'en'} className="min-h-screen bg-white">
-      <JsonLd
+      {shouldRenderJsonLd && <JsonLd
         type="unified"
         data={{
           url: pageUrl,
@@ -118,7 +121,7 @@ export function CalcWrapper({
           ...(dataset ? { dataset } : {}),
           ...(faqs ? { faqs } : {}),
         }}
-      />
+      />}
 
       <div className="max-w-[94%] mx-auto px-4 sm:px-6 pt-4">
         

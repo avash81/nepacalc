@@ -51,10 +51,13 @@ export interface LiveRates {
 // Primary live data: /data/live-rates.json  written by market-engine.php cron
 // API endpoint:      /api/rates.php         reads live-rates.json
 // These are ONLY used when the server is totally unreachable.
-const FALLBACK_GOLD_TOLA   = 284000;  // FENEGOSIDA 2026-07-30
-const FALLBACK_TEJABI_TOLA = 283300;  // FENEGOSIDA 2026-07-30
-const FALLBACK_SILVER_TOLA = 4310;    // FENEGOSIDA 2026-07-30
-const FALLBACK_DATE        = '2026-07-30';
+// IMPORTANT: Update these every time a new build is cut so the static fallback
+// stays within ~1% of the current market price.
+// Last updated: 2026-08-24 (automated build)
+const FALLBACK_GOLD_TOLA   = 322700;  // FENEGOSIDA 2026-08-24
+const FALLBACK_TEJABI_TOLA = 322000;  // FENEGOSIDA 2026-08-24
+const FALLBACK_SILVER_TOLA = 4965;    // FENEGOSIDA 2026-08-24
+const FALLBACK_DATE        = '2026-08-24';
 const FALLBACK_USD         = 133.5;
 
 // ─── Polling intervals ───────────────────────────────────────────────────────
@@ -62,8 +65,9 @@ const VERSION_POLL_MS  = 10_000;   // Check rates-version.txt every 10 seconds
 const FULL_FETCH_MS    = 300_000;  // Full re-fetch every 5 min (safety net)
 const FOREX_REFRESH_MS = 3_600_000; // Forex: once per hour
 
-const LS_KEY         = 'nepacalc_verified_rates_v3';
-const LS_VERSION_KEY = 'nepacalc_rate_version';
+const LS_KEY         = 'nepacalc_verified_rates_v4';  // v4: 2026-08-24 cache bust
+const LS_VERSION_KEY = 'nepacalc_rate_version_v4';
+
 
 // ─── localStorage helpers ────────────────────────────────────────────────────
 interface StoredRates {
@@ -80,8 +84,9 @@ function readStored(): StoredRates | null {
     const raw = localStorage.getItem(LS_KEY);
     if (!raw) return null;
     const parsed = JSON.parse(raw) as StoredRates;
+    // 12h TTL — FENEGOSIDA publishes once/twice per day; never serve data older than 12h
     const ageHours = (Date.now() - new Date(parsed.updatedAt).getTime()) / 3_600_000;
-    if (ageHours > 36) return null;
+    if (ageHours > 12) return null;
     return parsed;
   } catch { return null; }
 }

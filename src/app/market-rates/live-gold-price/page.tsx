@@ -6,7 +6,8 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import fs from 'fs';
 import path from 'path';
 
-export const revalidate = 3600; // 1 hour
+// NOTE: revalidate has no effect under `output: 'export'` (static export mode).
+// Data freshness is achieved by the CI re-running `npm run build` daily with fresh rates.
 
 function getLiveData() {
   try {
@@ -58,10 +59,12 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page() {
-  const { date: rawDate } = getLiveData();
+  const { date: rawDate, gold24k, gold22k, silver } = getLiveData();
+  const fmt = (n: number) => n.toLocaleString('en-IN');
 
   return (
     <div className="bg-white min-h-screen">
+      {/* ── Single authoritative JSON-LD block (no duplicates) ── */}
       <JsonLd 
         type="unified" 
         data={{
@@ -87,6 +90,52 @@ export default async function Page() {
           }
         }} 
       />
+
+      {/* ── Server-rendered SEO header: visible to Googlebot in raw HTML ── */}
+      {/* This ensures H1, current price and breadcrumb appear WITHOUT JavaScript */}
+      <div className="sr-seo-header max-w-[94%] mx-auto px-4 sm:px-6 pt-6 pb-2 border-b border-slate-200">
+        {/* Breadcrumb nav — crawlable server-side links */}
+        <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-2 text-[13px] font-medium text-[#5f6368] mb-4">
+          <a href="/" className="hover:text-blue-600 hover:underline">Home</a>
+          <span className="text-slate-300">/</span>
+          <a href="/market-rates/" className="hover:text-blue-600 hover:underline">Market Rates</a>
+          <span className="text-slate-300">/</span>
+          <span className="text-[#202124] font-bold">Gold Price</span>
+        </nav>
+
+        {/* H1 — primary keyword heading, visible in raw HTML for Googlebot */}
+        <h1 className="text-3xl sm:text-4xl font-black text-[#202124] tracking-tight mb-2">
+          Gold Price in Nepal Today – Live 24K &amp; 22K Gold Rates
+        </h1>
+        <p className="text-[#5f6368] text-base font-medium leading-relaxed max-w-xl mb-4">
+          Check today's official gold and silver prices in Nepal based on FENEGOSIDA benchmarks.
+        </p>
+
+        {/* Build-time price summary — gives Googlebot the current price in raw HTML */}
+        {gold24k && (
+          <div className="flex flex-wrap gap-4 text-sm font-semibold text-slate-700 mb-2">
+            <span>
+              <span className="text-slate-500 font-medium">24K Hallmark (per Tola):</span>{' '}
+              <strong className="text-slate-900">Rs. {fmt(gold24k as number)}</strong>
+            </span>
+            {gold22k && gold22k > 0 && (
+              <span>
+                <span className="text-slate-500 font-medium">22K Tejabi (per Tola):</span>{' '}
+                <strong className="text-slate-900">Rs. {fmt(gold22k as number)}</strong>
+              </span>
+            )}
+            {silver && (
+              <span>
+                <span className="text-slate-500 font-medium">Silver (per Tola):</span>{' '}
+                <strong className="text-slate-900">Rs. {fmt(silver as number)}</strong>
+              </span>
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* ── Interactive dashboard (client component) ── */}
+      {/* disableSchema prevents CalcWrapper from emitting a duplicate JSON-LD block */}
       <CalcWrapper
         title="Gold Price in Nepal Today"
         titleClassName="text-2xl md:text-3xl font-black text-slate-900 tracking-tight"
@@ -94,6 +143,7 @@ export default async function Page() {
         isNepal={true}
         compactHeader={true}
         hideHeader={true}
+        disableSchema={true}
         relatedCalcs={[
           { name: 'Nepal Income Tax Calculator', slug: '/calculator/nepal-income-tax/' },
           { name: 'Nepal Salary Calculator', slug: '/calculator/nepal-salary/' },
@@ -104,8 +154,13 @@ export default async function Page() {
           { name: 'Nepal VAT Calculator', slug: '/calculator/nepal-vat/' }
         ]}
       >
-        <GoldDashboardClient />
+        <GoldDashboardClient 
+          initialGold={gold24k as number | undefined}
+          initialSilver={silver as number | undefined}
+          initialDate={rawDate}
+        />
       </CalcWrapper>
     </div>
   );
 }
+

@@ -157,6 +157,39 @@ async function main() {
     fs.writeFileSync(historyPath, JSON.stringify(history, null, 2));
     // -------------------------------------------
 
+    // ── Auto-patch FALLBACK constants in useLiveRates.ts ──────────────────────
+    // This keeps the static fallback (shown when /data/live-rates.json is unreachable)
+    // always in sync with the latest verified FENEGOSIDA rate.
+    const tejabiTola = tejabiGoldTola || Math.round(goldTola * 0.9978);
+    const liveRatesHookPath = path.join(__dirname, '../src/hooks/useLiveRates.ts');
+    if (fs.existsSync(liveRatesHookPath)) {
+      let hookSrc = fs.readFileSync(liveRatesHookPath, 'utf8');
+      hookSrc = hookSrc
+        .replace(
+          /const FALLBACK_GOLD_TOLA\s+=\s+\d+;.*$/m,
+          `const FALLBACK_GOLD_TOLA   = ${goldTola};  // FENEGOSIDA ${rateDate}`
+        )
+        .replace(
+          /const FALLBACK_TEJABI_TOLA\s+=\s+\d+;.*$/m,
+          `const FALLBACK_TEJABI_TOLA = ${tejabiTola};  // FENEGOSIDA ${rateDate}`
+        )
+        .replace(
+          /const FALLBACK_SILVER_TOLA\s+=\s+\d+;.*$/m,
+          `const FALLBACK_SILVER_TOLA = ${silverTola};    // FENEGOSIDA ${rateDate}`
+        )
+        .replace(
+          /const FALLBACK_DATE\s+=\s+'[^']+';/m,
+          `const FALLBACK_DATE        = '${rateDate}';`
+        )
+        .replace(
+          /\/\/ Last updated: \d{4}-\d{2}-\d{2} \(automated build\)/,
+          `// Last updated: ${rateDate} (automated build)`
+        );
+      fs.writeFileSync(liveRatesHookPath, hookSrc);
+      console.log(`   ✓ FALLBACK constants patched in useLiveRates.ts → ${goldTola} / ${silverTola}`);
+    }
+    // ── End auto-patch ─────────────────────────────────────────────────────────
+
     console.log(`✅ FENEGOSIDA rates fetched successfully`);
     console.log(`   24K Gold (1 Tola): Rs. ${goldTola.toLocaleString()}`);
     console.log(`   Silver   (1 Tola): Rs. ${silverTola.toLocaleString()}`);

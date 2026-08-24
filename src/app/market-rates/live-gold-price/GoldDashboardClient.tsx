@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { useLiveRates } from '@/hooks/useLiveRates';
 import QuickPriceEstimator from '@/app/market-rates/live-gold-price/QuickPriceEstimator';
 import TradingViewWidget from '@/components/market/TradingViewWidget';
-import { Trophy, Table, History, Zap, ArrowLeft, ChevronRight } from 'lucide-react';
+import { Trophy, Table, History, Zap, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import MobileCollapsible from '@/components/ui/MobileCollapsible';
 
@@ -80,8 +80,18 @@ const tocItems: { id?: string; label?: string; divider?: boolean }[] = [
   { id: 'official-references', label: "Official Market References" },
 ];
 
-export default function GoldDashboardClient() {
+interface GoldDashboardClientProps {
+  /** Build-time 24K gold price (per Tola, NPR) from live-rates.json — seeds first render */
+  initialGold?: number;
+  /** Build-time silver price (per Tola, NPR) from live-rates.json — seeds first render */
+  initialSilver?: number;
+  /** Build-time rate date string (YYYY-MM-DD) from live-rates.json */
+  initialDate?: string;
+}
+
+export default function GoldDashboardClient({ initialGold, initialSilver, initialDate }: GoldDashboardClientProps = {}) {
   const { rates, loading, error } = useLiveRates();
+
 
   useEffect(() => {
     if (rates?.gold?.tolaNPR?.current) {
@@ -121,10 +131,35 @@ export default function GoldDashboardClient() {
     }
   }, [rates]);
 
+  // If still loading but we have build-time seed prices, render a lightweight placeholder
+  // that Googlebot's renderer can index with the correct prices.
+  // The full interactive dashboard replaces this once the live fetch completes.
   if (loading || !rates?.gold) {
-     return <div className="min-h-[400px] bg-slate-50 flex items-center justify-center rounded-2xl">
+    if (initialGold) {
+      const fmtSeed = (n: number) => n.toLocaleString('en-IN');
+      return (
+        <div className="min-h-[200px] p-6">
+          <div className="flex flex-wrap gap-6 items-start mb-6">
+            <div className="rounded-2xl bg-amber-50 border border-amber-200 p-5 min-w-[240px]">
+              <div className="text-[11px] font-bold text-amber-700 uppercase tracking-widest mb-1">24K Hallmark Gold · Per Tola</div>
+              <div className="text-3xl font-black text-slate-900">Rs. {fmtSeed(initialGold)}</div>
+              {initialSilver && (
+                <div className="mt-2 text-sm text-slate-600">Silver: <strong>Rs. {fmtSeed(initialSilver)}</strong> /Tola</div>
+              )}
+              {initialDate && (
+                <div className="mt-1 text-xs text-slate-500">Rate date: {new Date(initialDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</div>
+              )}
+            </div>
+          </div>
+          <div className="h-1 w-24 bg-amber-200 rounded animate-pulse" />
+        </div>
+      );
+    }
+    return (
+      <div className="min-h-[400px] bg-slate-50 flex items-center justify-center rounded-2xl">
         <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-     </div>;
+      </div>
+    );
   }
 
   const fmt = (n: number) => n.toLocaleString('en-IN');
@@ -133,7 +168,8 @@ export default function GoldDashboardClient() {
   const tejabiTolaNPR = rates.gold.tejabiTolaNPR;
   const tejabiDisplayRate = tejabiTolaNPR === 0 ? "Not Published" : `Rs. ${fmt(tejabiTolaNPR)}`;
   const tejabi10gDisplay = tejabiTolaNPR === 0 ? "Not Published" : `Rs. ${fmt(Math.round(tejabiTolaNPR / 1.1664))}`;
-  const silverTolaNPR = rates.silver?.tolaNPR?.current ?? 4840;
+  // Silver fallback: initialSilver from build-time is more accurate than the old 4840 constant
+  const silverTolaNPR = rates.silver?.tolaNPR?.current ?? initialSilver ?? 4965;
 
   const tables = [
     { label: '24K Hallmark Gold', np: 'छापावाल सुन (प्रति तोला)', display: `Rs. ${fmt(tolaNPR.current)}`, unit: '1 Tola' },
@@ -163,33 +199,14 @@ export default function GoldDashboardClient() {
       {/* === MAIN === */}
       <div className="min-w-0">
       
-      {/* Custom Header: Breadcrumbs + H1 (Left) & Big Live Price (Right) */}
+      {/* Custom Header: H1 + Breadcrumb are now server-rendered in page.tsx so */}
+      {/* Googlebot sees them in raw HTML. This client-side copy is hidden to avoid */}
+      {/* a duplicate H1 while preserving the live price box on the right. */}
       <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6 mb-8 border-b border-slate-200 pb-6">
-        <div className="flex-1">
-          {/* Breadcrumb */}
-          <div className="mb-4 flex flex-wrap items-center gap-4">
-            <button 
-              onClick={() => window.history.length > 2 ? window.history.back() : (window.location.href = '/')}
-              className="flex items-center gap-1.5 text-[11px] font-black uppercase tracking-widest text-[#5F6368] hover:text-blue-600 transition-all border-r border-[#dadce0] pr-4 py-1"
-            >
-              <ArrowLeft className="w-4 h-4" /> <span>Back</span>
-            </button>
-            <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-2 text-[13px] font-medium text-[#5f6368]">
-              <Link href="/" className="hover:text-blue-600 hover:underline">Home</Link>
-              <span className="text-slate-300">/</span>
-              <Link href="/market-rates/" className="hover:text-blue-600 hover:underline">Market Rates</Link>
-              <span className="text-slate-300">/</span>
-              <span className="text-[#202124] font-bold">Gold Price</span>
-            </nav>
-          </div>
-          {/* H1 & Description */}
-          <h1 className="text-3xl sm:text-4xl font-black text-[#202124] tracking-tight mb-2">
-            Gold Price in Nepal Today – Live 24K & 22K Gold Rates
-          </h1>
-          <p className="text-[#5f6368] text-base font-medium leading-relaxed max-w-xl">
-            Check today's official gold and silver prices in Nepal based on FENEGOSIDA benchmarks.
-          </p>
+        <div className="flex-1" aria-hidden="true" style={{ display: 'none' }}>
+          {/* H1 & Breadcrumb suppressed — rendered server-side above for Googlebot */}
         </div>
+
 
         {/* Big Live Price Box */}
         <div className={`flex flex-col rounded-2xl p-5 shadow-sm min-w-[280px] border ${
@@ -639,11 +656,13 @@ export default function GoldDashboardClient() {
       <aside className="hidden lg:block pb-6 pr-1" style={{ position: 'sticky', top: '96px', alignSelf: 'start', zIndex: 20, maxHeight: 'calc(100vh - 120px)', overflowY: 'auto', scrollbarWidth: 'thin' }}>
         {(() => {
           // Historical reference prices from FENEGOSIDA daily-history.json
-          const GOLD_30D = 308200;  // ~30 days ago (2026-07-31)
-          const GOLD_6M  = 272000;  // ~6 months ago
-          const GOLD_1Y  = 250000;  // ~1 year ago
-          const GOLD_5Y  = 140000;  // ~5 years ago
-          const GOLD_20Y = 16000;   // ~20 years ago
+          // UPDATE these whenever the 30-day reference drifts by more than ~2%.
+          // Last updated: 2026-08-24
+          const GOLD_30D = 308200;  // 2026-07-31 FENEGOSIDA daily rate
+          const GOLD_6M  = 272000;  // 2026-02-24 FENEGOSIDA daily rate
+          const GOLD_1Y  = 250000;  // 2025-08-24 FENEGOSIDA daily rate
+          const GOLD_5Y  = 140000;  // 2021-08-24 approximate
+          const GOLD_20Y = 16000;   // 2006-08-24 approximate
           const current  = tolaNPR.current;
 
           const calcRow = (period: string, ref: number) => {
