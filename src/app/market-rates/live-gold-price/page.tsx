@@ -140,6 +140,13 @@ export default async function Page() {
         </div>
       </div>
 
+      {/* ── Static SEO Headings (Visible in raw HTML before React hydration) ── */}
+      <div className="sr-only">
+        <h2>Today's Gold Rate in Nepal (FENEGOSIDA Official Rates)</h2>
+        <h2>Gold Price History &amp; Performance</h2>
+        <h2>Frequently Asked Questions About Gold Price in Nepal</h2>
+      </div>
+
       {/* ── Interactive dashboard (client component) ── */}
       {/* disableSchema prevents CalcWrapper from emitting a duplicate JSON-LD block */}
       <CalcWrapper

@@ -31,7 +31,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/contact',
     '/privacy',
     '/terms',
-    '/directory',
     '/electricity/nepal-unit-price',
     '/electricity/nea-tariff-rates',
     '/engineering',
@@ -55,7 +54,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: 'weekly' as const,
     priority: route === '' ? 1.0 :
               route === '/engineering/3d' ? 0.95 :
-              route === '/directory' ? 0.95 :
               route === '/nepal/nepal-budget' ? 0.95 :
               (route === '/about/editorial-policy' || route === '/about/math-team' || route === '/changelog') ? 0.8 :
               (route === '/electricity/nea-tariff-rates' || route === '/electricity/nepal-unit-price') ? 0.85 : 0.85,

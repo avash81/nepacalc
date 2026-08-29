@@ -424,100 +424,92 @@ export default async function Page() {
           <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-8 items-start">
             <div className="min-w-0 w-full overflow-hidden">
 
-              <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-6">
-                <div className="flex flex-col">
-                  {!isFresh && (
-                    <div className="mx-4 sm:mx-6 mt-4 p-3 bg-amber-50 border border-amber-200 rounded-xl flex items-center gap-3">
-                      <span className="text-amber-600 text-lg">⚠️</span>
-                      <div>
-                        <p className="text-[12px] font-bold text-amber-800">Showing last verified FENEGOSIDA rate</p>
-                        <p className="text-[11px] text-amber-700">Official rate as of {rate_date}. Today&apos;s rate will appear once FENEGOSIDA publishes (~11 AM NPT).</p>
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="mx-4 sm:mx-6 mt-4 p-3 bg-white border border-slate-200 rounded-xl flex flex-wrap gap-4 items-center justify-between text-[10px] font-black uppercase tracking-widest text-slate-500">
-                    <div className="flex items-center gap-2">
-                      <div className={`w-2 h-2 rounded-full ${!isFresh ? 'bg-amber-400' : 'animate-pulse bg-green-500'}`}></div>
-                      {!isFresh ? 'Last Verified Rate' : 'Live · Today'}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      Source:{' '}
-                      <span className="normal-case text-slate-600 font-black">{source_name}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      {!isFresh ? 'Last verified' : 'Rate date'}: {new Date(rate_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
-                    </div>
-                    {isFresh && (
-                      <div className="flex items-center gap-2">
-                        Next Update: ~11:00 AM NPT
-                      </div>
-                    )}
-                    <div className={`flex items-center gap-2 px-2 py-0.5 rounded text-[10px] ${!isFresh ? 'text-amber-600 bg-amber-50' : 'text-green-600 bg-green-50'}`}>
-                      {!isFresh ? '⚠️ Update pending' : 'Fresh ✓'}
+              {/* ── Card 1: Data Status Block & Note ── */}
+              <div className="bg-white border border-slate-200 rounded-2xl p-6 mb-6 shadow-sm">
+                {!isFresh && (
+                  <div className="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-xl flex items-center gap-3">
+                    <span className="text-amber-600 text-lg">⚠️</span>
+                    <div>
+                      <p className="text-[12px] font-bold text-amber-800">Showing last verified FENEGOSIDA rate</p>
+                      <p className="text-[11px] text-amber-700">Official rate as of {rate_date}. Today&apos;s rate will appear once FENEGOSIDA publishes (~11 AM NPT).</p>
                     </div>
                   </div>
-
-                  <div className="mx-4 sm:mx-6 mt-3 mb-2 text-[11px] text-slate-500 font-medium leading-relaxed">
-                    Official Nepal silver rate updated daily from FENEGOSIDA. International spot silver (XAG/USD) is shown for global market reference only.
+                )}
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-4 text-[11px] font-black uppercase tracking-widest text-slate-600 mb-6">
+                  <div className="flex items-center gap-2">
+                    <div className={`w-2 h-2 rounded-full animate-pulse ${isFresh ? 'bg-green-500' : 'bg-amber-400'}`}></div>
+                    {isFresh ? 'Live · Today' : 'Last Verified'}
                   </div>
-
-                  <SilverChartClient />
-
-                  <div className="mx-4 sm:mx-6 mt-4 p-4 bg-slate-100 border border-slate-200 rounded-xl text-slate-600 text-[11px] leading-relaxed font-medium">
-                    <strong>Note:</strong> Rates shown on this page track the official benchmark rates published by FENEGOSIDA as closely as possible, including standard import duties. Retail purchase prices may vary slightly due to making charges (jyala), wastage (jarti), VAT, and individual jeweler pricing policies.
+                  <div>Source: FENEGOSIDA</div>
+                  <div>Rate Date: {rate_date}</div>
+                  <div>Next Update: ~11:00 AM NPT</div>
+                  <div className={isFresh ? 'text-green-600' : 'text-amber-600'}>
+                    {isFresh ? 'Fresh ✓' : 'Cached'}
                   </div>
+                </div>
+                <div className="p-4 bg-slate-50 border border-slate-100 rounded-xl text-slate-700 text-[13px] leading-relaxed font-medium">
+                  <strong>Note:</strong> Rates shown on this page track the official benchmark rates published by FENEGOSIDA as closely as possible, including standard import duties. Retail purchase prices may vary slightly due to making charges (jyala), wastage (jarti), VAT, and individual jeweler pricing policies.
+                </div>
+              </div>
 
-                  {/* Mobile collapsible TOC — placed directly below the chart */}
-                  <div className="px-4 sm:px-6 mt-4 mb-2">
-                    <SilverMobileTocClient />
-                  </div>
+              {/* ── Card 2: Chart Block ── */}
+              <div className="bg-white border border-slate-200 rounded-2xl p-6 mb-6 shadow-sm">
+                <p className="text-[12px] text-slate-600 mb-4 font-medium">
+                  * Nepal's official silver price is fixed once daily by FENEGOSIDA. This live chart tracks the international spot market which drives the daily local price changes.
+                </p>
+                <SilverChartClient />
+              </div>
 
-                  <div id="quick-answer" className="quick-answer-block bg-slate-50/50 mt-4 p-6 border-y border-slate-100">
-                    <div className="flex-1">
-                      <h2 className="text-xl font-black text-slate-900 tracking-tighter mb-2">Today&apos;s Rate Summary</h2>
-                      <p className="text-sm text-slate-700 font-medium leading-relaxed m-0">
-                        The official silver (Chandi) price in Nepal today is <strong>Rs. {fmt(currentSilver)}</strong> per Tola and <strong>Rs. {fmt(Math.round(currentSilver / 1.1664))}</strong> per 10 Grams. Prices closely reflect FENEGOSIDA benchmarks and include all standard Nepal customs and import duties.
-                      </p>
-                      <p className="text-sm text-slate-700 font-medium leading-relaxed m-0 mt-3">
-                        <strong>Note:</strong> Since import costs dictate the final price, you should also check <a href="/market-rates/exchange-rate-nepal/" className="text-slate-900 underline font-bold hover:text-blue-600">Today&apos;s NRB Exchange Rate</a> and <a href="/market-rates/live-gold-price/" className="text-slate-900 underline font-bold hover:text-blue-600">Live Gold Prices</a>.
-                      </p>
-                    </div>
-                  </div>
+              {/* ── Mobile TOC ── */}
+              <div className="nb-toc-mobile mb-6">
+                <SilverMobileTocClient />
+              </div>
 
-                  <div className="p-8">
-                    <div className="flex items-center gap-2 mb-6">
-                      <Table className="w-4 h-4 text-slate-500" />
-                      <div className="text-[12px] font-black uppercase tracking-widest text-slate-900">Nepal Benchmark Rates</div>
-                    </div>
-                    <div className="overflow-x-auto">
-                      <table className="w-full text-left">
-                        <thead>
-                          <tr className="border-b border-slate-100 text-[10px] font-black text-slate-400 uppercase tracking-widest">
-                            <th className="pb-4 px-4">Standard</th>
-                            <th className="pb-4 px-4">Unit</th>
-                            <th className="pb-4 px-4 text-right">Rate (NPR)</th>
-                          </tr>
-                        </thead>
-                        <tbody className="divide-y divide-slate-50">
-                          {tables.map((row, i) => (
-                            <tr key={i} className="group hover:bg-slate-50/50 transition-colors">
-                              <td className="py-4 px-4">
-                                <div className="flex flex-col">
-                                  <span className="text-[14px] font-black text-slate-800">{row.label}</span>
-                                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{row.np}</span>
-                                </div>
-                              </td>
-                              <td className="py-4 px-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">{row.unit}</td>
-                              <td className="py-4 px-4 text-right">
-                                <span className="text-[17px] font-black text-slate-900 tracking-tighter" id={i === 0 ? "silver-main-price" : "silver-gram-price"}>Rs. {fmt(row.rate)}</span>
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
+              {/* ── Card 3: Today's Rate Summary (Quick Answer) ── */}
+              <div id="quick-answer" className="bg-blue-50/50 rounded-2xl shadow-sm border border-blue-100 p-6 md:p-8 mb-6">
+                <div className="flex-1">
+                  <h2 className="text-xl font-black text-slate-900 tracking-tighter mb-4">Today&apos;s Rate Summary</h2>
+                  <p className="text-[15px] text-slate-700 font-medium leading-relaxed mb-6">
+                    The official silver (Chandi) price in Nepal today is <strong>Rs. {fmt(currentSilver)}</strong> per Tola and <strong>Rs. {fmt(Math.round(currentSilver / 1.1664))}</strong> per 10 Grams. Prices closely reflect FENEGOSIDA benchmarks and include all standard Nepal customs and import duties.
+                  </p>
+                  <p className="text-[14px] text-slate-700 font-medium leading-relaxed m-0">
+                    <strong>Note:</strong> Since import costs dictate the final price, you should also check <a href="/market-rates/exchange-rate-nepal/" className="text-blue-600 underline font-bold hover:text-blue-600">Today&apos;s NRB Exchange Rate</a> and <a href="/market-rates/live-gold-price/" className="text-blue-600 underline font-bold hover:text-blue-600">Live Gold Prices</a>.
+                  </p>
+                </div>
+              </div>
+
+              {/* ── Card 4: Nepal Benchmark Rates Table ── */}
+              <div className="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 mb-6 shadow-sm">
+                <div className="flex items-center gap-2 mb-6">
+                  <Table className="w-4 h-4 text-slate-500" />
+                  <div className="text-[12px] font-black uppercase tracking-widest text-slate-900">Nepal Benchmark Rates</div>
+                </div>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-sm">
+                    <thead>
+                      <tr className="border-b border-slate-100 text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                        <th className="pb-4 px-4">Standard</th>
+                        <th className="pb-4 px-4">Unit</th>
+                        <th className="pb-4 px-4 text-right">Rate (NPR)</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-50">
+                      {tables.map((row, i) => (
+                        <tr key={i} className="group hover:bg-slate-50/50 transition-colors">
+                          <td className="py-4 px-4">
+                            <div className="flex flex-col">
+                              <span className="text-[14px] font-black text-slate-800">{row.label}</span>
+                              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{row.np}</span>
+                            </div>
+                          </td>
+                          <td className="py-4 px-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">{row.unit}</td>
+                          <td className="py-4 px-4 text-right">
+                            <span className="text-[17px] font-black text-slate-900 tracking-tighter" id={i === 0 ? "silver-main-price" : "silver-gram-price"}>Rs. {fmt(row.rate)}</span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               </div>
 
