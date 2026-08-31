@@ -1,0 +1,180 @@
+RewriteEngine On
+
+# 1. Force HTTPS and non-www (www → non-www MUST come first)
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# 1b. Remove double slashes from URLs (Google Search Console Fix)
+RewriteCond %{REQUEST_URI} ^(.*)//(.*)$
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [L,R=301]
+
+# ============================================================
+# 2. BING 404 FIX — 301 Redirects for moved tools
+# ============================================================
+
+# Deleted blog post → permanent redirect to canonical electricity page
+RewriteRule ^blog/nea-tariff-rates-2083-84/?$ /electricity/nepal-unit-price/ [L,R=301]
+
+# ============================================================
+# 2b. Missing image redirects (404 image paths → logo fallback)
+# ============================================================
+# assets/images path never existed — redirect to logo
+RewriteRule ^assets/images/(.*)$ /logo.png [L,R=301]
+# Missing /images/og/ dynamic images → og-image.png
+RewriteRule ^images/og/(.*)$ /og-image.png [L,R=301]
+# Missing individual images → logo fallback
+RewriteRule ^images/nrb-exchange-rate-today-nepal\.webp$ /logo.png [L,R=301]
+RewriteRule ^images/nepacalc-logo\.webp$ /logo.png [L,R=301]
+RewriteRule ^images/age-calculator\.webp$ /logo.png [L,R=301]
+RewriteRule ^images/salary-tax-calculator-nepal\.webp$ /logo.png [L,R=301]
+RewriteRule ^images/momo-calorie-calculator\.webp$ /logo.png [L,R=301]
+RewriteRule ^images/kukl-water-bill-calculator\.webp$ /logo.png [L,R=301]
+RewriteRule ^images/nepal-income-tax-calculator-2083-2084\.webp$ /logo.png [L,R=301]
+RewriteRule ^images/how-to-calculate-income-tax-nepal-2083-84\.webp$ /logo.png [L,R=301]
+RewriteRule ^images/nepal-income-tax-slab-2083-84\.webp$ /logo.png [L,R=301]
+RewriteRule ^images/3d-graph-calculator-preview\.webp$ /logo.png [L,R=301]
+RewriteRule ^images/cone-3d-graph\.webp$ /logo.png [L,R=301]
+RewriteRule ^images/seo/(.*)$ /og-image.png [L,R=301]
+RewriteRule ^images/calculators/nepal-tds-calculator\.webp$ /logo.png [L,R=301]
+# .well-known apple-app-site-association (no app) → 404 is fine but avoid crawl waste
+RewriteRule ^\.well-known/apple-app-site-association/?$ / [L,R=301]
+RewriteRule ^apple-app-site-association/?$ / [L,R=301]
+
+# Structural Category Changes
+RewriteRule ^calculator/market-rates/live-silver-price/?$ /market-rates/silver-price-nepal/ [L,R=301]
+RewriteRule ^market-rates/live-silver-price/?$ /market-rates/silver-price-nepal/ [L,R=301]
+RewriteRule ^calculator/market-rates/live-gold-price/?$ /market-rates/live-gold-price/ [L,R=301]
+RewriteRule ^calculator/market-rates/exchange-rate/?$ /market-rates/exchange-rate-nepal/ [L,R=301]
+RewriteRule ^market-rates/exchange-rate/?$ /market-rates/exchange-rate-nepal/ [L,R=301]
+RewriteRule ^calculator/market-rates/remittance/?$ /market-rates/remittance/ [L,R=301]
+
+RewriteRule ^calculator/math-tools/programmer/?$ /math-tools/programmer/ [L,R=301]
+RewriteRule ^calculator/math-tools/statistics/?$ /math-tools/statistics/ [L,R=301]
+RewriteRule ^calculator/math-tools/calculus/?$ /math-tools/calculus/ [L,R=301]
+RewriteRule ^calculator/math-tools/scientific/?$ /math-tools/scientific/ [L,R=301]
+RewriteRule ^calculator/math-tools/matrix/?$ /math-tools/matrix/ [L,R=301]
+
+RewriteRule ^calculator/engineering/graphing/?$ /engineering/graphing/ [L,R=301]
+RewriteRule ^calculator/engineering/3d/?$ /engineering/3d/ [L,R=301]
+
+# Specific Tool Renames (Same content, different slug)
+RewriteRule ^calculator/nepal-tax-calculator/?$ /calculator/nepal-income-tax/ [L,R=301]
+RewriteRule ^calculator/income-tax/?$ /calculator/nepal-income-tax/ [L,R=301]
+RewriteRule ^calculator/age/?$ /calculator/age-calculator/ [L,R=301]
+RewriteRule ^calculator/scientific/?$ /calculator/scientific-calculator/ [L,R=301]
+RewriteRule ^calculator/fraction/?$ /calculator/fraction-calculator/ [L,R=301]
+RewriteRule ^calculator/date-add-subtract/?$ /calculator/date-duration/ [L,R=301]
+RewriteRule ^calculator/date-time/?$ /calculator/date-duration/ [L,R=301]
+RewriteRule ^calculator/date-calculator/?$ /calculator/date-duration/ [L,R=301]
+RewriteRule ^calculator/nepal-tds-calculator/?$ /calculator/nepal-tds/ [L,R=301]
+RewriteRule ^calculator/nepal-neb-gpa/?$ /calculator/gpa/ [L,R=301]
+RewriteRule ^calculator/gpa-to-percentage/?$ /calculator/cgpa/ [L,R=301]
+RewriteRule ^calculator/engineering-gpa-calculator/?$ /calculator/engineering-gpa/ [L,R=301]
+RewriteRule ^calculator/matrix/?$ /calculator/matrices/ [L,R=301]
+RewriteRule ^calculator/binary-converter/?$ /calculator/base-converter/ [L,R=301]
+RewriteRule ^calculator/bmi-calculator/?$ /calculator/bmi/ [L,R=301]
+RewriteRule ^calculator/percentage-calculator/?$ /calculator/percentage/ [L,R=301]
+RewriteRule ^calculator/pregnancy/?$ /calculator/pregnancy-due-date/ [L,R=301]
+RewriteRule ^calculator/ovulation-calculator/?$ /calculator/pregnancy-due-date/ [L,R=301]
+RewriteRule ^calculator/period-calculator/?$ /calculator/pregnancy-due-date/ [L,R=301]
+RewriteRule ^calculator/blood-pressure/?$ /calculator/bmi/ [L,R=301]
+# silver-converter has its own dedicated page — no redirect needed
+RewriteRule ^calculator/week-calculator/?$ /calculator/date-duration/ [L,R=301]
+RewriteRule ^calculator/lumpsum-calculator/?$ /calculator/sip-calculator/ [L,R=301]
+RewriteRule ^calculator/capital-gains-tax/?$ /calculator/nepse-bonus-tax/ [L,R=301]
+RewriteRule ^calculator/nepal-capital-gains-tax/?$ /calculator/nepse-bonus-tax/ [L,R=301]
+RewriteRule ^calculator/swp-calculator/?$ /calculator/sip-calculator/ [L,R=301]
+RewriteRule ^calculator/retirement/?$ /calculator/sip-calculator/ [L,R=301]
+RewriteRule ^calculator/formulas-lab/?$ /engineering/formulas/ [L,R=301]
+RewriteRule ^calculator/engineering-gpa-calculator/?$ /engineering/ [L,R=301]
+RewriteRule ^calculator/finance/?$ /finance/ [L,R=301]
+RewriteRule ^calculator/utility/?$ /calculator/ [L,R=301]
+RewriteRule ^calculator/category/(.*)$ /calculator/ [L,R=301]
+RewriteRule ^market/?$ /market-rates/ [L,R=301]
+RewriteRule ^utility/?$ /calculator/ [L,R=301]
+RewriteRule ^calculators/?$ /calculator/ [L,R=301]
+RewriteRule ^directory/?$ /calculator/ [L,R=301]
+RewriteRule ^investment/?$ /finance/ [L,R=301]
+RewriteRule ^guides/how-to-calculate-income-tax/?$ /income-tax/how-to-calculate-income-tax-nepal/ [L,R=301]
+
+# Fix malformed double-domain URLs (e.g. /https:/nepacalc.com/calculator/...)
+RewriteRule ^https:/nepacalc\.com/(.*)$ /$1 [L,R=301]
+
+# Redirect /api/og/ dynamic OG image generator (no longer exists) → homepage
+RewriteRule ^api/og/?$ / [L,R=301]
+RewriteRule ^api/og\?(.*)$ / [L,R=301]
+
+# Sitemap Fix
+RewriteRule ^sitemap\.html$ /sitemap/ [L,R=301]
+
+# Geometry & 3D Consolidation
+RewriteRule ^math-tools/3d/?$ /engineering/3d/ [L,R=301]
+RewriteRule ^math-tools/geometry/?$ /engineering/geometry/ [L,R=301]
+RewriteRule ^math-tools/geometry\.html$ /engineering/geometry/ [L,R=301]
+# /calculator/geometry-3d/ is a real page - no redirect needed
+
+# Wrong top-level paths
+RewriteRule ^exchange-rates/?$ /market-rates/exchange-rate-nepal/ [L,R=301]
+RewriteRule ^education/?$ /math-tools/ [L,R=301]
+RewriteRule ^calculator/sitemap\.html$ /sitemap/ [L,R=301]
+
+# ============================================================
+# 3. Force Trailing Slash (matches Next.js trailingSlash: true)
+# ============================================================
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !(.*)/$
+RewriteCond %{REQUEST_URI} !^/404
+RewriteCond %{REQUEST_URI} !^/_next/
+RewriteCond %{REQUEST_URI} !\.(js|css|json|txt|rsc|png|jpg|jpeg|gif|svg|ico|woff|woff2|webp)$ [NC]
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1/ [L,R=301]
+
+# 4. Handle Clean URLs
+DirectoryIndex index.html
+
+# 5. Error Handling
+ErrorDocument 404 /404/index.html
+
+# 6. Browser Caching
+<IfModule mod_expires.c>
+  ExpiresActive On
+  # Default fallback (static assets)
+  ExpiresDefault "access plus 1 month"
+  # HTML pages — 1 hour (matches CI rebuild frequency)
+  ExpiresByType text/html "access plus 1 hour"
+  # JSON data files — 1 hour so live rate data stays fresh for Googlebot's renderer
+  ExpiresByType application/json "access plus 1 hour"
+  # XML (sitemap) — 1 day so Google sees lastmod updates promptly
+  ExpiresByType text/xml "access plus 1 day"
+  ExpiresByType application/xml "access plus 1 day"
+  # Static assets — long-lived caching is fine
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/jpg "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+</IfModule>
+
+# 6b. Explicit Cache-Control for live data files (belt-and-suspenders)
+<IfModule mod_headers.c>
+  # JSON data files: 1-hour cache, must revalidate — prevents stale rate data
+  <FilesMatch "\.(json)$">
+    Header set Cache-Control "public, max-age=3600, must-revalidate"
+  </FilesMatch>
+  # Sitemap: 1-day cache so lastmod changes are picked up quickly
+  <FilesMatch "sitemap\.xml$">
+    Header set Cache-Control "public, max-age=86400, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# 7. Compression (saves bandwidth)
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json font/woff font/woff2
+</IfModule>
