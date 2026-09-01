@@ -265,10 +265,6 @@ export function IncomeTaxSeoContent() {
             a: 'Eligible deductions include SSF, EPF, CIT (combined retirement cap: Rs. 5 lakh), Life Insurance (Rs. 40,000), Medical Insurance (Rs. 20,000), Building Insurance (Rs. 10,000), Education (Rs. 25,000), Donation (Rs. 3 lakh) and CSR (1% of taxable income) — all subject to the Finance Act 2083 limits.',
           },
           {
-            q: 'Is this calculator updated for the latest Finance Act?',
-            a: 'Yes. The calculator follows Finance Act 2083 and Budget 2083/84, including revised tax slabs, updated deduction limits and all personal income tax rule changes published at the time of this update.',
-          },
-          {
             q: 'Does this calculator include the female tax rebate?',
             a: 'Yes. Female taxpayers receive a 10% rebate on their final income tax liability. This is automatically applied when you select the female option in the Tax Settings section of the calculator.',
           },

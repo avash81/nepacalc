@@ -40,8 +40,7 @@ export default function Page() {
     { q: "Does this calculator support education deductions?",   a: "Yes. Eligible tuition fees may qualify for an education deduction of 25% of tuition, subject to a maximum annual deduction of Rs. 25,000 as permitted under the Finance Act 2083." },
     { q: "Can donations reduce my income tax?",                  a: "Yes. Approved donations to eligible tax-exempt institutions may be deducted up to Rs. 3,00,000, subject to limits prescribed under the Inland Revenue Department guidelines." },
     { q: "Is there a different tax slab for married couples?",   a: "No. Beginning FY 2083/84, Nepal follows a single personal income tax slab structure for all resident individuals." },
-    { q: "How is income tax calculated in Nepal?",               a: "Income tax is calculated by first determining annual taxable income after eligible deductions. The FY 2083/84 progressive tax slabs are then applied to each portion of taxable income separately to determine the total annual tax liability." },
-    { q: "Is this calculator updated for Budget 2083/84?",       a: "Yes. The calculator follows the latest FY 2083/84 Finance Act and Nepal Government Budget provisions, including revised tax slabs, updated deduction limits and current personal income tax rules." }
+    { q: "How is income tax calculated in Nepal?",               a: "Income tax is calculated by first determining annual taxable income after eligible deductions. The FY 2083/84 progressive tax slabs are then applied to each portion of taxable income separately to determine the total annual tax liability." }
   ];
 
   return (

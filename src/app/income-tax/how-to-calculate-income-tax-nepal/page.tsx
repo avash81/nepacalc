@@ -123,7 +123,7 @@ export default function Page() {
               <p className="text-sm text-slate-700 m-0">📍 <strong>Applies to:</strong> All resident individuals in Nepal, FY 2083/84</p>
             </div>
 
-            <p>Learning how to calculate income tax in Nepal is essential for every salaried employee, self-employed professional, and business owner. Nepal uses a progressive income tax system administered by the Inland Revenue Department (IRD), where different portions of your income are taxed at different rates. The FY 2083/84 Finance Act introduced a completely unified 5-band structure — making the calculation simpler than previous years. This guide walks through every step with formulas, worked examples across multiple salary levels, and common mistakes to avoid.</p>
+            <p>Nepal uses a progressive income tax system administered by the Inland Revenue Department (IRD), where different portions of your income are taxed at different rates. The FY 2083/84 Finance Act introduced a completely unified 5-band structure — making the calculation simpler than previous years. This guide walks through every step with formulas, worked examples across multiple salary levels, and common mistakes to avoid.</p>
             
             <p><strong>Skip to calculator:</strong> Use the <Link href="/calculator/nepal-income-tax/" className="text-blue-600 hover:underline font-bold">Income Tax Calculator Nepal</Link> to get your exact result instantly.</p>
 

@@ -53,6 +53,7 @@ function fetchJson(url, timeoutMs = 12000) {
         'Referer': 'https://www.fenegosida.org/',
       }
     }, (res) => {
+      res.setEncoding('utf8');
       let data = '';
       res.on('data', chunk => data += chunk);
       res.on('end', () => {
