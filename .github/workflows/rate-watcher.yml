@@ -41,7 +41,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/avash81/nepacalc.git
-          git add public/data/live-rates.json public/data/market-rates.json public/data/forex-rates.json public/data/daily-history.json
+          git add public/data/live-rates.json public/data/market-rates.json public/data/forex-rates.json public/data/daily-history.json src/hooks/useLiveRates.ts
           git commit -m "data: auto-update official rates (Smart Window)"
           git push origin HEAD
 
