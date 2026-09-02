@@ -67,7 +67,8 @@ export default function NepalDirectoryPage() {
                 <li><Link href="/calculator/nepal-vat/" className="text-[#1a73e8] hover:underline font-medium">Nepal VAT Calculator</Link></li>
                 <li><Link href="/calculator/tds-calculator/" className="text-[#1a73e8] hover:underline font-medium">Nepal TDS Calculator</Link></li>
                 <li><Link href="/calculator/gold-tax/" className="text-[#1a73e8] hover:underline font-medium">Gold Tax Calculator Nepal</Link></li>
-                <li><Link href="/calculator/property-tax/" className="text-[#1a73e8] hover:underline font-medium">Capital Gains &amp; Property Tax Calculator</Link></li>
+                <li><Link href="/calculator/nepal-vehicle-tax/" className="text-[#1a73e8] hover:underline font-medium">Nepal Vehicle Tax Calculator</Link></li>
+                <li><Link href="/nepal/nepal-budget/" className="text-[#1a73e8] hover:underline font-medium">Nepal Budget Highlights</Link></li>
               </ul>
             </section>
 
@@ -112,7 +113,6 @@ export default function NepalDirectoryPage() {
               <p className="text-[#5f6368] mb-4">Convert precious-metal units and calculate gold and silver values using Nepal units.</p>
               <ul className="list-disc pl-5 space-y-2 text-[#202124] marker:text-[#0d6e6a]">
                 <li><Link href="/calculator/gold-converter/" className="text-[#1a73e8] hover:underline font-medium">Nepal Gold Unit Converter</Link></li>
-                <li><Link href="/calculator/gold-tax/" className="text-[#1a73e8] hover:underline font-medium">Gold Tax Calculator Nepal</Link></li>
                 <li><Link href="/calculator/silver-converter/" className="text-[#1a73e8] hover:underline font-medium">Silver Converter</Link></li>
                 <li><Link href="/market-rates/live-gold-price/" className="text-[#1a73e8] hover:underline font-medium">Live Gold Price in Nepal</Link></li>
                 <li><Link href="/market-rates/silver-price-nepal/" className="text-[#1a73e8] hover:underline font-medium">Live Silver Price in Nepal</Link></li>
@@ -166,9 +166,6 @@ export default function NepalDirectoryPage() {
               <h2 className="text-2xl font-bold text-[#202124] mb-2 border-b border-[#dadce0] pb-2">Nepal Converters</h2>
               <p className="text-[#5f6368] mb-4">Convert Nepal-specific units and currencies for everyday calculations.</p>
               <ul className="list-disc pl-5 space-y-2 text-[#202124] marker:text-[#0d6e6a]">
-                <li><Link href="/calculator/nepal-land/" className="text-[#1a73e8] hover:underline font-medium">Nepal Land Unit Converter</Link></li>
-                <li><Link href="/calculator/gold-converter/" className="text-[#1a73e8] hover:underline font-medium">Gold Unit Converter</Link></li>
-                <li><Link href="/calculator/silver-converter/" className="text-[#1a73e8] hover:underline font-medium">Silver Converter</Link></li>
                 <li><Link href="/calculator/currency-converter/" className="text-[#1a73e8] hover:underline font-medium">Currency Converter</Link></li>
                 <li><Link href="/market-rates/exchange-rate-nepal/" className="text-[#1a73e8] hover:underline font-medium">Nepal Exchange Rates</Link></li>
               </ul>
