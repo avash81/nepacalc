@@ -2,8 +2,8 @@ name: Smart Window Rate Watcher
 
 on:
   schedule:
-    # Run every minute from 03:00 UTC (08:45 NPT) to 06:59 UTC (12:44 NPT) Monday-Friday
-    - cron: '* 3-6 * * 1-5'
+    # Run every 5 minutes from 03:00 UTC (08:45 NPT) to 06:59 UTC (12:44 NPT) Monday-Friday
+    - cron: '*/5 3-6 * * 1-5'
   workflow_dispatch:
 
 permissions:
