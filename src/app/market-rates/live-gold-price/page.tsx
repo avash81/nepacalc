@@ -28,8 +28,8 @@ function getLiveData() {
 export async function generateMetadata(): Promise<Metadata> {
   const { gold24k } = getLiveData();
 
-  const priceStr = gold24k ? ` Rs.${(gold24k as number).toLocaleString('en-IN')}` : '';
-  const description = `Today's live gold price in Nepal from FENEGOSIDA: 24K Hallmark${priceStr} per Tola. Check 22K Tejabi, silver, history and gold calculator.`;
+  const priceStr = gold24k ? ` Rs. ${(gold24k as number).toLocaleString('en-IN')}` : '';
+  const description = `Today's live gold price in Nepal from FENEGOSIDA: 24K Hallmark${priceStr} per tola. Check 22K Tejabi, silver, history and gold calculator.`;
 
   return {
     title: "Gold Price in Nepal Today | Live FENEGOSIDA Rate",
@@ -106,7 +106,7 @@ export default async function Page() {
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div className="flex-1 sr-seo-header">
             <h1 className="text-3xl sm:text-4xl font-black text-[#202124] tracking-tight mb-2">
-              Gold Price in Nepal Today – Live 24K &amp; 22K Gold Rates
+              Today's Gold Price in Nepal | Live FENEGOSIDA Rate
             </h1>
             <p className="text-[#5f6368] text-base font-medium leading-relaxed max-w-xl mb-4">
               Check today's official gold and silver prices in Nepal based on FENEGOSIDA benchmarks.
