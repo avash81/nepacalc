@@ -1,26 +1,48 @@
 # NepaCalc - AI Navigation Guide
 
-NepaCalc is a comprehensive suite of online calculators and digital tools specialized for Nepal.
+NepaCalc is a free, comprehensive suite of online calculators, converters, and live market rate tools built for Nepal and general use worldwide.
 
 ## Core Pages
-- Homepage: https://nepacalc.com/
-- Directory: https://nepacalc.com/directory/
-- Search: https://nepacalc.com/search/
+- [Homepage](https://nepacalc.com/)
+- [Calculator Directory](https://nepacalc.com/calculator/)
+- [Search](https://nepacalc.com/search/)
 
 ## Categories
-- Nepal Specific Tools: https://nepacalc.com/nepal/
-- Finance & Tax: https://nepacalc.com/finance/
-- Math Tools: https://nepacalc.com/math-tools/
-- Converters: https://nepacalc.com/converters/
-- Health: https://nepacalc.com/health/
-- Engineering: https://nepacalc.com/engineering/
-- Market Rates: https://nepacalc.com/market-rates/
+- [Nepal Specific Tools](https://nepacalc.com/nepal/)
+- [Finance & Tax](https://nepacalc.com/finance/)
+- [Math Tools](https://nepacalc.com/math-tools/)
+- [Unit Converters](https://nepacalc.com/converters/)
+- [Health Calculators](https://nepacalc.com/health/)
+- [Engineering Tools](https://nepacalc.com/engineering/)
+- [Market Rates](https://nepacalc.com/market-rates/)
+
+## Popular Nepal Calculators
+- [Nepal Electricity Bill Calculator (NEA)](https://nepacalc.com/calculator/nea-bill/)
+- [Vehicle Tax Calculator Nepal](https://nepacalc.com/calculator/nepal-vehicle-tax/)
+- [Nepal Salary Calculator 2083/84](https://nepacalc.com/calculator/nepal-salary/)
+- [Nepal Income Tax Calculator](https://nepacalc.com/calculator/nepal-income-tax/)
+- [TDS Calculator Nepal](https://nepacalc.com/calculator/tds-calculator/)
+- [NEPSE Stock Trading Calculator](https://nepacalc.com/calculator/nepal-stocks/)
+- [Nepal Land Area Converter](https://nepacalc.com/calculator/nepal-land/)
+- [Property Registration Fee Calculator](https://nepacalc.com/calculator/property-registration/)
+- [KUKL Water Bill Calculator](https://nepacalc.com/calculator/kukl-bill/)
+- [Nepal Home Loan EMI Calculator](https://nepacalc.com/calculator/nepal-home-loan/)
+- [SEE GPA Calculator](https://nepacalc.com/calculator/see-gpa/)
+- [Lok Sewa Age Calculator](https://nepacalc.com/calculator/lok-sewa-age/)
+- [Nepali Date Converter (BS to AD)](https://nepacalc.com/calculator/nepali-date/)
+
+## Live Market Rates
+- [Live Gold Price Nepal](https://nepacalc.com/market-rates/live-gold-price/)
+- [Live Silver Price Nepal](https://nepacalc.com/market-rates/silver-price-nepal/)
+- [Foreign Exchange Rates Nepal](https://nepacalc.com/market-rates/exchange-rate-nepal/)
+- [Gold Unit Converter (Tola, Lal, Gram)](https://nepacalc.com/calculator/gold-converter/)
+- [Remittance Rate Comparison](https://nepacalc.com/market-rates/remittance/)
 
 ## Company & Methodology
-- About Us: https://nepacalc.com/about/
-- Data Sources & Methodology: https://nepacalc.com/data-policy/
-- Editorial Policy: https://nepacalc.com/about/editorial-policy/
-- Privacy Policy: https://nepacalc.com/privacy/
-- Terms & Conditions: https://nepacalc.com/terms/
-- Disclaimer: https://nepacalc.com/disclaimer/
-- Contact: https://nepacalc.com/contact/
+- [About Us](https://nepacalc.com/about/)
+- [Data Sources & Methodology](https://nepacalc.com/data-policy/)
+- [Editorial Policy](https://nepacalc.com/about/editorial-policy/)
+- [Privacy Policy](https://nepacalc.com/privacy/)
+- [Terms & Conditions](https://nepacalc.com/terms/)
+- [Disclaimer](https://nepacalc.com/disclaimer/)
+- [Contact](https://nepacalc.com/contact/)

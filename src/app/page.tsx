@@ -82,7 +82,8 @@ export default function HomePage() {
               const catHref = cat.id === 'education' ? '/math-tools/' : cat.id === 'utility' ? '/converters/' : cat.id === 'market' ? '/market-rates/' : `/${cat.id}/`;
               return (
                 <div key={cat.id} className="bg-white p-4 border border-[#dadce0] rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col h-full">
-                  <Link href={catHref} className="block pb-2 mb-3 shrink-0">
+                  {/* Phase 3 perf: prefetch=false stops eager JS chunk download for every linked page */}
+                  <Link href={catHref} prefetch={false} className="block pb-2 mb-3 shrink-0">
                     <h2 className={`${cat.id === 'engineering' ? 'text-[#4361ee]' : 'text-[#1a73e8]'} text-[11px] font-black uppercase tracking-wider border-b border-[#f1f3f4] pb-2 hover:underline`}>
                       {cat.name}
                     </h2>
@@ -94,6 +95,7 @@ export default function HomePage() {
                         <li key={calc.id}>
                           <Link
                             href={href}
+                            prefetch={false}
                             className="text-[13px] text-[#3c4043] hover:text-[#1a73e8] hover:underline truncate flex items-center justify-between py-1.5 group"
                           >
                             <span className="truncate">{calc.name}</span>
@@ -106,7 +108,7 @@ export default function HomePage() {
                     })}
                   </ul>
                   <div className="mt-auto pt-3 border-t border-[#f1f3f4] shrink-0">
-                    <Link href={catHref} className="text-[9px] font-bold text-[#1a73e8] hover:underline uppercase tracking-widest flex items-center gap-1">
+                    <Link href={catHref} prefetch={false} className="text-[9px] font-bold text-[#1a73e8] hover:underline uppercase tracking-widest flex items-center gap-1">
                       View All &rarr;
                     </Link>
                   </div>
@@ -123,8 +125,3 @@ export default function HomePage() {
     </>
   );
 }
-
-
-
-
-

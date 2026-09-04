@@ -44,6 +44,8 @@ export const Logo: React.FC<LogoProps> = ({ size = 'md', theme = 'indigo', class
             className="object-contain"
             width={73}
             height={38}
+            fetchPriority="high"
+            loading="eager"
             style={{
               height: h,
               width: 'auto',

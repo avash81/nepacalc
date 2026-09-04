@@ -27,6 +27,8 @@ const nextConfig = {
       'clsx',
       'tailwind-merge',
       '@heroicons/react',
+      'recharts',
+      'react-katex',
     ],
     // optimizeCss requires 'critters' package — disabled until installed
     optimizeCss: false,
