@@ -35,16 +35,22 @@ export const Logo: React.FC<LogoProps> = ({ size = 'md', theme = 'indigo', class
             : 'bg-transparent'
         }`}
       >
-        <img 
-          src="/logo.png?v=final" 
-          alt="NepaCalc Logo" 
-          className="object-contain" 
-          style={{ 
-            height: h, 
-            width: 'auto',
-            objectPosition: 'center'
-          }}
-        />
+        {/* Phase 1 perf: WebP + explicit dimensions to prevent layout shift */}
+        <picture>
+          <source srcSet="/logo.webp" type="image/webp" />
+          <img
+            src="/logo.png"
+            alt="NepaCalc Logo"
+            className="object-contain"
+            width={73}
+            height={38}
+            style={{
+              height: h,
+              width: 'auto',
+              objectPosition: 'center'
+            }}
+          />
+        </picture>
       </div>
     </div>
   );

@@ -1,6 +1,8 @@
 name: Daily Auto-Deploy to cPanel
 
 on:
+  push:
+    branches: [main]
   repository_dispatch:
     types: [rates_updated]
   workflow_dispatch:
