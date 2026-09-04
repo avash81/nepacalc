@@ -37,17 +37,16 @@ function getLiveData() {
 
 // ─── METADATA ────────────────────────────────────────────────────────────────
 export async function generateMetadata(): Promise<Metadata> {
-  const { date: rawDate, silver } = getLiveData();
-  const year = rawDate.split('-')[0];
+  const { silver } = getLiveData();
 
   const priceSnippet = silver
-    ? `Current Chandi price: Rs.${(silver as number).toLocaleString('en-IN')} per tola, updated daily with per gram and kg prices.`
-    : 'Updated daily with per gram and kg prices.';
+    ? `Rs. ${(silver as number).toLocaleString('en-IN')}`
+    : 'Rs. 4,765';
 
-  const description = `Live silver price in Nepal today with official FENEGOSIDA rates. ${priceSnippet}`;
+  const description = `Today's live silver price in Nepal from FENEGOSIDA: ${priceSnippet} per tola. Check the current Chandi rate per gram and kg.`;
   
   return {
-    title: `Live Silver Price in Nepal Today (${year}) | Chandi Rate Per Tola & Gram`,
+    title: `Live Silver Price in Nepal Today | Chandi Rate Per Tola & Gram`,
     description,
     keywords: [
       'live silver price nepal',
@@ -298,9 +297,9 @@ export default async function Page() {
   const { date: rawDate, silver, gold, silverData, source, source_name, rate_date, status } = getLiveData();
 
   const priceSnippet = silver
-    ? `Current Chandi price: Rs.${(silver as number).toLocaleString('en-IN')} per tola, updated daily with per gram and kg prices.`
-    : 'Updated daily with per gram and kg prices.';
-  const dynamicDescription = `Live silver price in Nepal today with official FENEGOSIDA rates. ${priceSnippet}`;
+    ? `Rs. ${(silver as number).toLocaleString('en-IN')}`
+    : 'Rs. 4,765';
+  const dynamicDescription = `Today's live silver price in Nepal from FENEGOSIDA: ${priceSnippet} per tola. Check the current Chandi rate per gram and kg.`;
 
   const dynamicSchema = JSON.parse(JSON.stringify(schemaGraph));
   if (dynamicSchema['@graph'] && dynamicSchema['@graph'][3]) {
@@ -387,7 +386,7 @@ export default async function Page() {
                 </nav>
               </div>
               <h1 className="text-3xl sm:text-4xl font-black text-[#202124] tracking-tight mb-2">
-                Silver Price in Nepal Today – Live Chandi Rates
+                Today's Silver Price in Nepal | Chandi Rate Per Tola
               </h1>
               <p className="text-[#5f6368] text-base font-medium leading-relaxed max-w-xl">
                 Daily verified silver (Chandi) rates in Nepal. High-precision benchmarks based on international industrial spot markets and official FENEGOSIDA price mandates.

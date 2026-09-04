@@ -9,8 +9,8 @@ export default function SilverPriceUpdater() {
   useEffect(() => {
     if (rates?.silver?.tolaNPR?.current) {
       const liveSilver = rates.silver.tolaNPR.current;
-      const formattedPrice = `Rs.${liveSilver.toLocaleString('en-IN')}`;
-      const newDesc = `Live silver price in Nepal today with official FENEGOSIDA rates. Current Chandi price: ${formattedPrice} per tola, updated daily with per gram and kg prices.`;
+      const formattedPrice = `Rs. ${(liveSilver).toLocaleString('en-IN')}`;
+      const newDesc = `Today's live silver price in Nepal from FENEGOSIDA: ${formattedPrice} per tola. Check the current Chandi rate per gram and kg.`;
 
       // 1. Update SEO Meta
       const metaDesc = document.querySelector('meta[name="description"]');
