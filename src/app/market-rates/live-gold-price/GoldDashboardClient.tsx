@@ -96,8 +96,8 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
   useEffect(() => {
     if (rates?.gold?.tolaNPR?.current) {
       const livePrice = rates.gold.tolaNPR.current;
-      const formattedPrice = `Rs.${livePrice.toLocaleString('en-IN')}`;
-      const newDesc = `Today's live gold price in Nepal from FENEGOSIDA: 24K Hallmark ${formattedPrice} per Tola. Check 22K Tejabi, silver, history and gold calculator.`;
+      const formattedPrice = `Rs. ${livePrice.toLocaleString('en-IN')}`;
+      const newDesc = `Today's live gold price in Nepal from FENEGOSIDA: 24K Hallmark ${formattedPrice} per tola. Check 22K Tejabi, silver, history and gold calculator.`;
       
       // Dynamically update the meta description for client-side crawlers
       const metaDesc = document.querySelector('meta[name="description"]');
