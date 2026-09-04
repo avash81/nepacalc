@@ -2,8 +2,9 @@ name: Smart Window Rate Watcher
 
 on:
   schedule:
-    # Run every 5 minutes from 03:00 UTC (08:45 NPT) to 06:59 UTC (12:44 NPT) Monday-Friday
-    - cron: '*/5 3-6 * * 1-5'
+    # Run precisely at 10:45, 10:55, 11:05, and 11:20 AM NPT (05:00, 05:10, 05:20, 05:35 UTC) Monday-Friday
+    # This avoids GitHub Actions dropping our schedule due to excessive high-frequency polling.
+    - cron: '0,10,20,35 5 * * 1-5'
   workflow_dispatch:
 
 permissions:
