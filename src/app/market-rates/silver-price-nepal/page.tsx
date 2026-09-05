@@ -70,7 +70,7 @@ export async function generateMetadata(): Promise<Metadata> {
       'max-video-preview': -1,
     },
     openGraph: {
-      title: `Live Silver Price in Nepal Today (${year}) | Chandi Rate`,
+      title: 'Live Silver Price in Nepal Today | Chandi Rate Per Tola & Gram',
       description,
       type: 'website',
       url: 'https://nepacalc.com/market-rates/silver-price-nepal/',
@@ -85,7 +85,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title: `Live Silver Price in Nepal Today (${year})`,
+      title: 'Live Silver Price in Nepal Today | Chandi Rate Per Tola & Gram',
       description,
     },
   };
