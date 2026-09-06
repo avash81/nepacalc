@@ -330,7 +330,7 @@ export default function BluebookRenewalPage() {
             },
             {
               name: 'Madhesh Province',
-              body: 'Madhesh also has a provincial EDL/VRS portal with vehicle-registration, tax-payment and ownership-transfer functionality. The relevant transport authority should be used to confirm the current tax schedule, applicable renewal charge, overdue treatment and current service procedure. Do not transfer a Bagmati or another province's motorcycle/car tax figure directly to Madhesh.',
+              body: 'Madhesh also has a provincial EDL/VRS portal with vehicle-registration, tax-payment and ownership-transfer functionality. The relevant transport authority should be used to confirm the current tax schedule, applicable renewal charge, overdue treatment and current service procedure. Do not transfer a Bagmati or another province\u0027s motorcycle/car tax figure directly to Madhesh.',
             },
             {
               name: 'Bagmati Province',
@@ -835,7 +835,7 @@ export default function BluebookRenewalPage() {
             {[
               {
                 q: 'What is Bluebook renewal in Nepal?',
-                a: 'Bluebook renewal is the process of renewing a vehicle's registration certificate and completing the applicable tax, fee, insurance and other requirements.',
+                a: "Bluebook renewal is the process of renewing a vehicle's registration certificate and completing the applicable tax, fee, insurance and other requirements.",
               },
               {
                 q: 'Is Bluebook renewal the same as road tax?',
@@ -851,7 +851,7 @@ export default function BluebookRenewalPage() {
               },
               {
                 q: 'How much is bike Bluebook renewal?',
-                a: 'It depends on the motorcycle's applicable province, engine-capacity category, renewal charge, insurance and other applicable costs.',
+                a: "It depends on the motorcycle's applicable province, engine-capacity category, renewal charge, insurance and other applicable costs.",
               },
               {
                 q: 'Can I pay vehicle tax online?',
