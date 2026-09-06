@@ -34,13 +34,19 @@ export const metadata: Metadata = {
       'Learn how Bluebook renewal works in Nepal, including vehicle tax, renewal fees, late charges, required documents, online payment, provincial rules and the renewal process.',
     url: 'https://nepacalc.com/guide/bluebook-renewal-nepal/',
     siteName: 'NepaCalc',
-    images: [{ url: 'https://nepacalc.com/logo.png?v=final' }],
+    images: [
+      {
+        url: 'https://nepacalc.com/images/bluebook-renewal-nepal-process.webp',
+        alt: 'Bluebook renewal process in Nepal showing province, vehicle tax, requirements, payment and registration renewal steps',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Bluebook Renewal in Nepal: Tax, Fees, Fine & Online Process',
     description:
       'Learn how Bluebook renewal works in Nepal, including vehicle tax, renewal fees, late charges, required documents, online payment, provincial rules and the renewal process.',
+    images: ['https://nepacalc.com/images/bluebook-renewal-nepal-process.webp'],
   },
   alternates: {
     canonical: 'https://nepacalc.com/guide/bluebook-renewal-nepal/',
@@ -48,7 +54,7 @@ export const metadata: Metadata = {
 };
 
 // ─── SCHEMA ──────────────────────────────────────────────────────────────────
-const schemaGraph = {
+const pageSchema = {
   '@context': 'https://schema.org',
   '@graph': [
     {
@@ -69,12 +75,10 @@ const schemaGraph = {
       publisher: {
         '@type': 'Organization',
         name: 'NepaCalc',
-        logo: {
-          '@type': 'ImageObject',
-          url: 'https://nepacalc.com/logo.png?v=final',
-        },
       },
-      image: 'https://nepacalc.com/logo.png?v=final',
+      datePublished: '2026-09-06',
+      dateModified: '2026-09-06',
+      image: 'https://nepacalc.com/images/bluebook-renewal-nepal-process.webp',
     },
     {
       '@type': 'BreadcrumbList',
@@ -93,48 +97,65 @@ const schemaGraph = {
   ],
 };
 
-// ─── REUSABLE SECTION COMPONENTS ─────────────────────────────────────────────
-function SectionHeading({ id, children }: { id?: string; children: React.ReactNode }) {
-  return (
-    <h2 id={id} className="text-xl sm:text-2xl font-bold text-slate-900 mt-10 mb-3 scroll-mt-24">
-      {children}
-    </h2>
-  );
-}
+// ─── SHARED STYLE CONSTANTS ───────────────────────────────────────────────────
+const prose = 'text-slate-600 leading-relaxed';
+const h2 = 'text-xl sm:text-2xl font-bold text-slate-900 mt-12 mb-4 scroll-mt-24';
+const h3 = 'text-base sm:text-lg font-semibold text-slate-800 mt-6 mb-2';
+const extLink = 'text-blue-600 hover:underline';
+const intLink = 'text-emerald-700 font-medium hover:underline';
 
-function SubHeading({ children }: { children: React.ReactNode }) {
-  return <h3 className="text-base sm:text-lg font-semibold text-slate-800 mt-6 mb-2">{children}</h3>;
-}
-
-function InfoBox({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 my-6 text-sm text-amber-900 leading-relaxed">
-      {children}
-    </div>
-  );
-}
-
-function CalcCTA() {
-  return (
-    <div className="my-8 rounded-2xl bg-gradient-to-r from-green-50 to-emerald-50 border border-emerald-200 p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-      <div className="flex-1">
-        <div className="text-xs font-bold text-emerald-700 uppercase tracking-wide mb-1">Estimation Tool</div>
-        <p className="font-semibold text-slate-900 text-sm">
-          Estimate your vehicle tax and Bluebook-renewal liability before payment.
-        </p>
-        <p className="text-xs text-slate-500 mt-1">
-          The calculator is an estimate only. The government assessment is the final authority.
-        </p>
-      </div>
-      <Link
-        href="/calculator/nepal-vehicle-tax/"
-        className="inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold rounded-xl transition-colors whitespace-nowrap"
-      >
-        Calculate Vehicle Tax →
-      </Link>
-    </div>
-  );
-}
+// ─── PROVINCE DATA ────────────────────────────────────────────────────────────
+const provinces = [
+  {
+    name: 'Koshi Province',
+    portal: 'https://edlvrs.koshi.gov.np/',
+    portalLabel: 'Koshi EDL/VRS Portal',
+    status: 'The Koshi provincial EDL/VRS portal provides the government entry point for vehicle registration, tax payment and ownership-transfer services.',
+    verify: 'Verify the current Koshi provincial vehicle-tax schedule, your vehicle category, renewal status and the latest service instructions through the portal or the responsible Koshi Province transport office.',
+  },
+  {
+    name: 'Madhesh Province',
+    portal: 'https://edlvrs.madhesh.gov.np/',
+    portalLabel: 'Madhesh EDL/VRS Portal',
+    status: 'The Madhesh provincial EDL/VRS portal provides the government entry point for vehicle-registration, tax-payment and ownership-transfer functionality.',
+    verify: "Verify the current Madhesh provincial tax schedule and service procedure before payment. A rate published for another province should not automatically be used for Madhesh.",
+  },
+  {
+    name: 'Bagmati Province',
+    portal: 'https://edlvrs.bagamati.gov.np/',
+    portalLabel: 'Bagmati EDL/VRS Portal',
+    status: "The Bagmati provincial EDL/VRS portal provides the government entry point for vehicle registration, tax payment and ownership transfer. Bagmati covers Kathmandu Valley and surrounding areas. Bagmati's vehicle-tax schedule is province-specific and should not be treated as the nationwide rate.",
+    verify: 'Verify the current Bagmati provincial schedule and service availability through the portal or the relevant Bagmati Province transport office before payment.',
+  },
+  {
+    name: 'Gandaki Province',
+    portal: 'https://edlvrs.gandaki.gov.np/',
+    portalLabel: 'Gandaki EDL/VRS Portal',
+    status: 'The Gandaki provincial EDL/VRS portal provides the government entry point for vehicle-registration, tax-payment and ownership-transfer services. The applicable provincial legal framework, including the current economic legislation, determines the Gandaki vehicle-tax schedule.',
+    verify: 'Check the current Gandaki provincial economic legislation and the relevant transport-office notices before payment.',
+  },
+  {
+    name: 'Lumbini Province',
+    portal: 'https://edlvrs.lumbini.gov.np/',
+    portalLabel: 'Lumbini EDL/VRS Portal',
+    status: 'The Lumbini provincial EDL/VRS portal provides the government entry point for vehicle registration and transport services. The current detailed service availability should be verified directly, as some specific online functions may still be in the rollout phase.',
+    verify: 'Check current service status and the applicable Lumbini provincial tax schedule before relying on online payment for a complete Lumbini renewal.',
+  },
+  {
+    name: 'Karnali Province',
+    portal: 'https://edlvrs.karnali.gov.np/',
+    portalLabel: 'Karnali EDL/VRS Portal',
+    status: 'The Karnali provincial EDL/VRS portal provides the government entry point for vehicle-registration, tax-payment and ownership-transfer services.',
+    verify: 'Verify the current Karnali provincial economic legislation and the latest transport-office instructions before calculating or paying vehicle tax.',
+  },
+  {
+    name: 'Sudurpashchim Province',
+    portal: 'https://edlvrs.sudurpashchim.gov.np/',
+    portalLabel: 'Sudurpashchim EDL/VRS Portal',
+    status: "The Sudurpashchim provincial EDL/VRS portal provides the government entry point at the portal level. As of the date this guide was last reviewed, the detailed VRS page for Sudurpashchim currently marks vehicle registration and tax payment as 'Coming Soon'. Service availability may change; always check the current portal status before attempting an online transaction.",
+    verify: 'For Sudurpashchim, check current portal availability and contact the relevant provincial transport office to confirm the applicable process.',
+  },
+];
 
 // ─── PAGE ─────────────────────────────────────────────────────────────────────
 export default function BluebookRenewalPage() {
@@ -144,786 +165,981 @@ export default function BluebookRenewalPage() {
       <script
         type="application/ld+json"
         suppressHydrationWarning
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaGraph) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }}
       />
 
       <div className="min-h-screen bg-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 pb-20">
+        <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8 pb-24">
 
           {/* ── BREADCRUMB ── */}
           <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-1.5 text-[13px] text-slate-500 mb-6">
-            <Link href="/" className="hover:text-blue-600 hover:underline">Home</Link>
+            <Link href="/" className={extLink}>Home</Link>
             <span className="text-slate-300">/</span>
-            <Link href="/guide/" className="hover:text-blue-600 hover:underline">Guide</Link>
+            <Link href="/guide/" className={extLink}>Guide</Link>
             <span className="text-slate-300">/</span>
             <span className="text-slate-700 font-medium">Bluebook Renewal in Nepal</span>
           </nav>
 
-          {/* ── HERO ── */}
-          <div className="mb-8">
-            <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1.5 rounded-full mb-4 uppercase tracking-wide">
+          {/* ── META BAR ── */}
+          <div className="flex flex-wrap items-center gap-3 mb-6 text-xs text-slate-500">
+            <span className="bg-blue-50 text-blue-700 font-bold px-3 py-1.5 rounded-full uppercase tracking-wide">
               Transport Guide · Nepal
-            </div>
-            <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-4 leading-tight">
-              Bluebook Renewal in Nepal
-            </h1>
-            <p className="text-base text-slate-600 leading-relaxed max-w-2xl">
-              Bluebook renewal in Nepal is the process of keeping a vehicle's registration certificate current by
-              completing the applicable renewal requirements, including vehicle tax and other required charges or
-              documents.
-            </p>
-            <p className="text-base text-slate-600 leading-relaxed mt-3 max-w-2xl">
-              The exact amount you need to pay and the steps you need to follow depend on several factors, including
-              your province, vehicle category, engine capacity or other applicable vehicle specification, renewal
-              status, insurance and any overdue charges.
-            </p>
-            <p className="text-base text-slate-600 leading-relaxed mt-3 max-w-2xl">
-              There is no single vehicle-tax amount that applies identically to every vehicle throughout Nepal. Vehicle
-              taxation and many transport-related charges are administered through the provincial framework, while the
-              national vehicle and transport laws provide the broader registration and renewal framework.
-            </p>
-            <p className="text-base text-slate-600 leading-relaxed mt-3 max-w-2xl">
-              This guide explains the national rules, provincial differences, online-service options, required
-              documents, late renewal, vehicle-tax calculation and the practical steps vehicle owners should check
-              before renewing a Bluebook.
-            </p>
+            </span>
+            <span>By <Link href="/about/editorial-policy/" className={extLink}>NepaCalc Editorial Team</Link></span>
+            <span>·</span>
+            <span>Last reviewed: 6 September 2026</span>
           </div>
 
-          <InfoBox>
-            <strong>Important:</strong> NepaCalc is an independent information and calculation platform, not a
-            government transport office. Government laws, provincial tax schedules, fees, penalties, online services
-            and office procedures can change. Use this guide to understand the process, then verify the final amount
-            and current service requirements with the relevant government authority.
-          </InfoBox>
+          {/* ── H1 ── */}
+          <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-6 leading-tight">
+            Bluebook Renewal in Nepal
+          </h1>
+
+          {/* ── WHAT THIS PAGE DOES / DOESN'T DO ── */}
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 mb-8 text-sm">
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div>
+                <p className="font-bold text-slate-900 mb-2">What this guide covers</p>
+                <ul className="space-y-1 text-slate-600">
+                  {[
+                    'Bluebook and vehicle registration',
+                    'Vehicle tax and renewal fees',
+                    'Late renewal and overdue cases',
+                    'Required documents and insurance',
+                    'Province-by-province system map',
+                    'Online payment and its limits',
+                    'Vehicle-category differences',
+                  ].map((i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="text-emerald-500 mt-0.5">✓</span>{i}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p className="font-bold text-slate-900 mb-2">What this guide does not do</p>
+                <ul className="space-y-1 text-slate-600">
+                  {[
+                    'Issue or renew a government certificate',
+                    'Determine the legally final payable amount',
+                    'Replace a transport-office decision',
+                    'Guarantee online services in every province',
+                    'Publish current tax tables (use gov source)',
+                  ].map((i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="text-rose-400 mt-0.5">✗</span>{i}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* ── FIND YOUR SITUATION ── */}
+          <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5 mb-8">
+            <p className="font-bold text-slate-900 mb-3 text-sm">Find your situation</p>
+            <div className="grid sm:grid-cols-2 gap-2 text-sm">
+              {[
+                { label: 'I want to calculate my vehicle tax', href: '/calculator/nepal-vehicle-tax/', ext: true },
+                { label: 'I want to renew a bike or scooter', href: '#bike', ext: false },
+                { label: 'I want to renew a car or jeep', href: '#car', ext: false },
+                { label: 'My Bluebook is expired or overdue', href: '#late-renewal', ext: false },
+                { label: 'I want to pay vehicle tax online', href: '#online', ext: false },
+                { label: 'I have an electric vehicle', href: '#ev', ext: false },
+                { label: 'I need the government source', href: '#sources', ext: false },
+              ].map(({ label, href, ext }) =>
+                ext ? (
+                  <Link key={label} href={href} className="flex items-center gap-2 bg-white rounded-lg px-3 py-2 border border-emerald-200 text-emerald-700 font-medium hover:bg-emerald-100 transition-colors">
+                    <span>→</span>{label}
+                  </Link>
+                ) : (
+                  <a key={label} href={href} className="flex items-center gap-2 bg-white rounded-lg px-3 py-2 border border-emerald-200 text-slate-700 hover:bg-emerald-100 transition-colors">
+                    <span className="text-emerald-500">↓</span>{label}
+                  </a>
+                )
+              )}
+            </div>
+          </div>
 
           {/* ── QUICK ANSWER ── */}
-          <SectionHeading id="quick-answer">Bluebook Renewal: Quick Answer</SectionHeading>
-          <p className="text-slate-600 leading-relaxed">
-            In Nepal, a Bluebook generally refers to the vehicle registration certificate. Renewing a Bluebook means
-            completing the requirements needed to keep that vehicle registration valid. Depending on the vehicle and
-            province, the renewal process can involve:
-          </p>
-          <ul className="list-disc pl-6 mt-3 space-y-1 text-slate-600">
-            <li>vehicle tax;</li>
-            <li>registration renewal charges;</li>
-            <li>required insurance;</li>
-            <li>pollution or other required certification;</li>
-            <li>route-permit requirements for applicable vehicles;</li>
-            <li>late charges or penalties where renewal is overdue; and</li>
-            <li>other prescribed fees.</li>
-          </ul>
-          <p className="text-slate-600 leading-relaxed mt-3">
-            The national vehicle law establishes the registration-renewal framework, while provincial laws and
-            transport systems determine many of the taxes and practical service arrangements.
-          </p>
+          <section id="quick-answer" className="scroll-mt-24">
+            <h2 className={h2}>Quick Answer</h2>
+            <p className={prose}>
+              In Nepal, the Bluebook is the common name for a vehicle&apos;s registration certificate. Renewing it
+              means completing the applicable requirements to keep that certificate valid. The total amount and process
+              depend on the vehicle, the province, the renewal status and any other requirements such as insurance.
+              There is no single nationwide vehicle-tax rate or renewal fee. Vehicle taxation is administered through
+              each province&apos;s legal framework, while national law provides the registration and renewal structure.
+              The applicable government authority determines the final legally correct amount.
+            </p>
 
-          {/* ── WHAT IS A BLUEBOOK ── */}
-          <SectionHeading id="what-is-bluebook">What Is a Bluebook in Nepal?</SectionHeading>
-          <p className="text-slate-600 leading-relaxed">
-            The Bluebook is the commonly used name for a vehicle's registration certificate. An official Department
-            of Transport Management resource describes the vehicle registration certificate/Blue Book as a certificate
-            containing the description of the vehicle.
-          </p>
-          <p className="text-slate-600 leading-relaxed mt-3">
-            The registration record is different from a driver's licence. It is also different from:
-          </p>
-          <ul className="list-disc pl-6 mt-3 space-y-1 text-slate-600">
-            <li>vehicle insurance;</li>
-            <li>road or vehicle tax;</li>
-            <li>route permits;</li>
-            <li>pollution certification; and</li>
-            <li>vehicle ownership-transfer documents.</li>
-          </ul>
-          <p className="text-slate-600 leading-relaxed mt-3">
-            These things can be connected during vehicle administration or renewal, but they are not the same document.
-          </p>
-
-          {/* ── WHAT DOES RENEWAL MEAN ── */}
-          <SectionHeading id="what-does-renewal-mean">What Does Bluebook Renewal Mean?</SectionHeading>
-          <p className="text-slate-600 leading-relaxed">
-            Bluebook renewal means renewing the vehicle's registration certificate after its validity period. Under
-            the national Motor Vehicles and Transport Management Act, the registration certificate is renewed through
-            the prescribed application and payment process. The Act also contains provisions concerning delayed
-            renewal and multi-year renewal for eligible vehicle categories.
-          </p>
-          <p className="text-slate-600 leading-relaxed mt-3">
-            The practical process can differ between provinces because vehicle tax and transport-service administration
-            operate within the provincial system. That means a vehicle owner should not assume that an instruction,
-            tax amount or online procedure found for one province automatically applies to another province.
-          </p>
-
-          {/* ── SAME AS VEHICLE TAX? ── */}
-          <SectionHeading id="vs-vehicle-tax">Is Bluebook Renewal the Same as Vehicle Tax?</SectionHeading>
-          <p className="text-slate-600 leading-relaxed font-semibold">No. This distinction causes a lot of confusion.</p>
-
-          <SubHeading>Vehicle tax</SubHeading>
-          <p className="text-slate-600 leading-relaxed">
-            Vehicle tax is the recurring tax applicable to the registered vehicle under the relevant provincial law.
-            Depending on the vehicle and the province, the tax schedule can be based on factors such as: engine
-            capacity; vehicle type; motor power; seating capacity; carrying capacity; or another category specified
-            by the applicable law.
-          </p>
-
-          <SubHeading>Bluebook renewal fee</SubHeading>
-          <p className="text-slate-600 leading-relaxed">
-            This is the applicable charge associated with renewing the registration certificate.
-          </p>
-
-          <SubHeading>Insurance</SubHeading>
-          <p className="text-slate-600 leading-relaxed">
-            Required insurance is separate from vehicle tax. The national law makes required insurance a condition
-            for registration-certificate renewal.
-          </p>
-
-          <SubHeading>Pollution or other certification</SubHeading>
-          <p className="text-slate-600 leading-relaxed">
-            Where the applicable rules require a pollution certificate or other technical documentation, those
-            requirements are separate from the vehicle tax itself.
-          </p>
-
-          <SubHeading>Total amount</SubHeading>
-          <p className="text-slate-600 leading-relaxed">
-            Therefore, the amount a vehicle owner pays during a renewal transaction can be greater than the annual
-            vehicle-tax amount alone.
-          </p>
-
-          {/* ── WHO SETS VEHICLE TAX ── */}
-          <SectionHeading id="who-sets-vehicle-tax">Who Sets Vehicle Tax in Nepal?</SectionHeading>
-          <p className="text-slate-600 leading-relaxed">
-            Vehicle tax is administered within the provincial framework. The Department of Transport Management's
-            official material provides provincial tax-law references, including separate economic acts for Bagmati,
-            Gandaki, Karnali, Lumbini, Madhesh and Sudurpashchim and the former Province No. 1/Koshi framework.
-          </p>
-          <p className="text-slate-600 leading-relaxed mt-3">
-            This is why a vehicle-tax table should always identify the province and the applicable legal schedule. A
-            rate shown for Bagmati should not automatically be described as the "Nepal vehicle tax rate."
-          </p>
-
-          {/* ── WHY DIFFERS BY PROVINCE ── */}
-          <SectionHeading id="province-differences">Why Vehicle Tax Can Differ Between Provinces</SectionHeading>
-          <p className="text-slate-600 leading-relaxed">
-            Nepal's seven provinces have their own provincial legal and administrative frameworks. For a vehicle owner,
-            this means two otherwise similar vehicles can have different tax obligations depending on the provincial
-            schedule that applies.
-          </p>
-          <p className="text-slate-600 leading-relaxed mt-3">The correct question is therefore not:</p>
-          <blockquote className="border-l-4 border-slate-300 pl-4 my-3 text-slate-500 italic">
-            "How much is vehicle tax in Nepal?"
-          </blockquote>
-          <p className="text-slate-600 leading-relaxed">but:</p>
-          <blockquote className="border-l-4 border-emerald-400 pl-4 my-3 text-slate-700 font-medium">
-            "What is the current vehicle tax and renewal requirement for my vehicle under the applicable province and
-            vehicle category?"
-          </blockquote>
-          <p className="text-slate-600 leading-relaxed mt-2">
-            This distinction is especially important for motorcycles and scooters; private cars and jeeps; commercial
-            vehicles; public transport; electric vehicles; and vehicles with overdue renewal.
-          </p>
-
-          {/* ── PROVINCE GUIDE ── */}
-          <SectionHeading id="provinces">Bluebook Renewal Across Nepal's Seven Provinces</SectionHeading>
-
-          {[
-            {
-              name: 'Koshi Province',
-              body: 'Koshi has a provincial vehicle-registration and service framework, and the current government EDL/VRS portal provides a vehicle-registration system with options covering registration, tax payment and ownership transfer. Vehicle owners should verify the current Koshi provincial tax schedule and the latest instructions from the relevant transport office before payment. The official Department of Transport Management network also lists Koshi-related transport offices and tax/circular resources.',
-            },
-            {
-              name: 'Madhesh Province',
-              body: 'Madhesh also has a provincial EDL/VRS portal with vehicle-registration, tax-payment and ownership-transfer functionality. The relevant transport authority should be used to confirm the current tax schedule, applicable renewal charge, overdue treatment and current service procedure. Do not transfer a Bagmati or another province\u0027s motorcycle/car tax figure directly to Madhesh.',
-            },
-            {
-              name: 'Bagmati Province',
-              body: 'Bagmati has a provincial vehicle-registration system and current EDL/VRS portal. The portal identifies VRS as the vehicle-registration system for vehicle registration, tax payment and ownership transfer. Bagmati is particularly important for vehicle owners in Kathmandu Valley and surrounding areas, but its tax schedule should still be treated as a Bagmati-specific schedule, not a nationwide rate.',
-            },
-            {
-              name: 'Gandaki Province',
-              body: 'Gandaki has a provincial EDL/VRS portal for vehicle registration, tax payment and ownership transfer. The provincial legal framework also includes its own economic legislation covering vehicle taxation and transport-related charges. The provincial gazette is therefore an important source when verifying applicable rates.',
-            },
-            {
-              name: 'Lumbini Province',
-              body: 'Lumbini has its own government EDL/VRS portal for vehicle registration, tax payment and ownership transfer. The portal exists, but current detailed VRS availability can change, so vehicle owners should check the current government service status rather than assuming every digital function is available at all times. The detailed VRS interface currently indicates that some services are still being introduced.',
-            },
-            {
-              name: 'Karnali Province',
-              body: 'Karnali has a government EDL/VRS portal that includes the vehicle-registration, tax-payment and ownership-transfer system. Vehicle owners should verify the current provincial economic-law provisions and the latest transport-office instructions before calculating or paying tax.',
-            },
-            {
-              name: 'Sudurpashchim Province',
-              body: 'Sudurpashchim has a government EDL/VRS portal covering vehicle-registration administration, tax payment and ownership transfer at the portal level. However, the current detailed VRS page indicates that some functions, including vehicle registration and tax payment, are marked "Coming Soon." That is why online-service claims on an evergreen guide should always be qualified by current government availability.',
-            },
-          ].map(({ name, body }) => (
-            <div key={name} className="mt-6 border-l-4 border-emerald-200 pl-4">
-              <h3 className="font-bold text-slate-900 mb-1">{name}</h3>
-              <p className="text-slate-600 text-sm leading-relaxed">{body}</p>
-            </div>
-          ))}
-
-          {/* ── WHEN TO RENEW ── */}
-          <SectionHeading id="when-to-renew">When Should You Renew Your Bluebook?</SectionHeading>
-          <p className="text-slate-600 leading-relaxed">
-            The safest approach is to renew before the registration certificate expires. The national Act provides a
-            three-month period after the expiry of the registration certificate for renewal before the
-            delayed-renewal provisions apply.
-          </p>
-          <p className="text-slate-600 leading-relaxed mt-3">
-            This should not be interpreted as a recommendation to wait. Renewing before expiry reduces the risk of:
-          </p>
-          <ul className="list-disc pl-6 mt-3 space-y-1 text-slate-600">
-            <li>late charges;</li>
-            <li>additional paperwork;</li>
-            <li>service delays;</li>
-            <li>insurance problems; and</li>
-            <li>uncertainty about the amount due.</li>
-          </ul>
-
-          {/* ── LATE RENEWAL ── */}
-          <SectionHeading id="late-renewal">What Happens When Bluebook Renewal Is Late?</SectionHeading>
-          <p className="text-slate-600 leading-relaxed">
-            Late renewal can result in additional charges. The national Act contains provisions for additional
-            charges when registration renewal is delayed and provides escalating additional charges depending on the
-            length of the delay.
-          </p>
-          <p className="text-slate-600 leading-relaxed mt-3">
-            Long-overdue cases require more care because the registration can eventually reach the statutory
-            cancellation stage. Therefore, there is an important difference between <em>slightly overdue renewal</em>{' '}
-            and <em>registration that has remained unrenewed long enough to trigger cancellation provisions</em>.
-          </p>
-          <p className="text-slate-600 leading-relaxed mt-3">
-            A vehicle owner should not assume that a long-overdue vehicle can simply be renewed by multiplying one
-            year's tax by the number of missed years.
-          </p>
-
-          {/* ── CANCELLED REGISTRATION ── */}
-          <SectionHeading id="cancelled-registration">
-            Can a Cancelled Vehicle Registration Be Restored?
-          </SectionHeading>
-          <p className="text-slate-600 leading-relaxed">
-            Long-overdue registration is different from an ordinary late renewal. The national Act contains
-            provisions dealing with automatic cancellation after the prescribed period and subsequent re-registration
-            procedures subject to the applicable legal requirements and charges. Because the financial and procedural
-            consequences depend on the circumstances, owners of long-overdue vehicles should contact the relevant
-            transport authority instead of relying on a generic online calculator.
-          </p>
-
-          {/* ── INSURANCE ── */}
-          <SectionHeading id="insurance">Is Insurance Required for Bluebook Renewal?</SectionHeading>
-          <p className="text-slate-600 leading-relaxed">
-            Yes, where the required vehicle insurance applies. The Motor Vehicles and Transport Management Act
-            provides that required insurance must be obtained and that the registration certificate will not be
-            renewed when the required insurance has not been obtained. Insurance is therefore not simply an optional
-            addition to the renewal calculation. However, the insurance premium itself is separate from the
-            provincial vehicle-tax amount.
-          </p>
-
-          {/* ── POLLUTION ── */}
-          <SectionHeading id="pollution">Is Pollution Certification Required?</SectionHeading>
-          <p className="text-slate-600 leading-relaxed">
-            For vehicles subject to applicable pollution-testing requirements, the renewal documentation includes
-            pollution-test information. The Transport Management Rules' registration-renewal documentation
-            specifically includes pollution-related information for applicable vehicles. The exact practical
-            requirements can depend on vehicle type, age, fuel type and current transport-office procedures.
-          </p>
-
-          {/* ── DOCUMENTS ── */}
-          <SectionHeading id="documents">What Documents Are Needed for Bluebook Renewal?</SectionHeading>
-          <p className="text-slate-600 leading-relaxed">
-            The precise checklist can vary by vehicle category and service process. Commonly relevant documents or
-            information can include:
-          </p>
-          <ul className="list-disc pl-6 mt-3 space-y-1 text-slate-600">
-            <li>original Bluebook/registration certificate;</li>
-            <li>vehicle-tax payment evidence;</li>
-            <li>valid required insurance;</li>
-            <li>pollution certificate where applicable;</li>
-            <li>route permit for applicable public or hired vehicles;</li>
-            <li>ownership or identification documents where required;</li>
-            <li>payment receipts; and</li>
-            <li>other documents specified by the relevant transport office.</li>
-          </ul>
-          <InfoBox>
-            <strong>Before visiting an office:</strong> Check the latest notice from the relevant transport authority.
-            Do not rely on a checklist copied from an old article when the government service process may have changed.
-          </InfoBox>
-
-          {/* ── ONLINE PAYMENT ── */}
-          <SectionHeading id="online-payment">Can You Pay Vehicle Tax Online in Nepal?</SectionHeading>
-          <p className="text-slate-600 leading-relaxed">
-            In some provincial systems and service channels, yes. But there is an important distinction:{' '}
-            <strong>online tax payment is not automatically the same thing as completely renewing the Bluebook online.</strong>
-          </p>
-          <p className="text-slate-600 leading-relaxed mt-3">
-            Government EDL/VRS portals currently exist for all seven provinces and expose vehicle-registration and
-            tax-payment functionality at the portal level. However, service readiness can change. For example, the
-            current detailed Sudurpashchim VRS page says vehicle registration and tax payment are "Coming Soon,"
-            while the Lumbini VRS page likewise currently shows those functions as "Coming Soon."
-          </p>
-          <p className="text-slate-600 leading-relaxed mt-3">
-            So the correct statement is: online vehicle-tax and registration systems are being used or introduced
-            through provincial digital transport systems, but availability and the exact end-to-end renewal workflow
-            vary.
-          </p>
-
-          {/* ── PORTAL TABLE ── */}
-          <SectionHeading id="portals">Government Vehicle Registration and Tax Portals</SectionHeading>
-          <p className="text-slate-600 leading-relaxed mb-4">
-            The official provincial portal network currently includes:
-          </p>
-          <div className="overflow-x-auto rounded-xl border border-slate-200">
-            <table className="w-full text-sm">
-              <thead className="bg-slate-50 border-b border-slate-200">
-                <tr>
-                  <th className="text-left px-4 py-3 font-semibold text-slate-700">Province</th>
-                  <th className="text-left px-4 py-3 font-semibold text-slate-700">Portal</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100">
-                {[
-                  ['Koshi Province', 'Government EDL/VRS portal'],
-                  ['Madhesh Province', 'Government EDL/VRS portal'],
-                  ['Bagmati Province', 'Government EDL/VRS portal'],
-                  ['Gandaki Province', 'Government EDL/VRS portal'],
-                  ['Lumbini Province', 'Government EDL/VRS portal'],
-                  ['Karnali Province', 'Government EDL/VRS portal'],
-                  ['Sudurpashchim Province', 'Government EDL/VRS portal'],
-                ].map(([province, portal]) => (
-                  <tr key={province} className="hover:bg-slate-50">
-                    <td className="px-4 py-3 text-slate-700 font-medium">{province}</td>
-                    <td className="px-4 py-3 text-slate-500">{portal}</td>
+            {/* At a glance table */}
+            <div className="mt-5 overflow-x-auto rounded-xl border border-slate-200">
+              <table className="w-full text-sm">
+                <thead className="bg-slate-50 border-b border-slate-200">
+                  <tr>
+                    <th className="text-left px-4 py-3 font-semibold text-slate-700">Question</th>
+                    <th className="text-left px-4 py-3 font-semibold text-slate-700">Answer</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <InfoBox>
-            These are provided as government entry points. The services available inside each portal can change, and
-            a portal existing does not guarantee that every vehicle transaction can currently be completed entirely
-            online.
-          </InfoBox>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {[
+                    ['What is a Bluebook?', 'Vehicle registration certificate'],
+                    ['What is renewal?', 'Renewing the validity of that certificate'],
+                    ['Is vehicle tax the same thing?', 'No — they are separate but often handled together'],
+                    ['Does tax vary by province?', 'Yes — provincial law determines the applicable rate'],
+                    ['Is insurance relevant?', 'Yes — required insurance is a renewal prerequisite'],
+                    ['Can everything be done online?', 'Depends on province and current service availability'],
+                    ['Where is the final amount confirmed?', 'The applicable government transport authority'],
+                  ].map(([q, a]) => (
+                    <tr key={q} className="hover:bg-slate-50">
+                      <td className="px-4 py-3 text-slate-700 font-medium">{q}</td>
+                      <td className="px-4 py-3 text-slate-600">{a}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
 
-          {/* ── HOW MUCH DOES IT COST ── */}
-          <SectionHeading id="cost">How Much Does Bluebook Renewal Cost?</SectionHeading>
-          <p className="text-slate-600 leading-relaxed">
-            There is no single amount that applies to every vehicle in Nepal. A useful way to think about the total is:
-          </p>
-          <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 my-4 text-sm text-slate-700 font-mono">
-            Total = vehicle tax + renewal fee + required insurance + applicable certification charges + late charges
-            (if any) + other prescribed fees
-          </div>
-          <p className="text-slate-600 leading-relaxed">
-            The exact components and amounts depend on the vehicle and applicable provincial rules. That is why an
-            online article that says "Bluebook renewal costs Rs. X in Nepal" without identifying the province and
-            vehicle category is incomplete.
-          </p>
-
-          <CalcCTA />
-
-          {/* ── HOW IS TAX CALCULATED ── */}
-          <SectionHeading id="tax-calculation">How Is Vehicle Tax Calculated?</SectionHeading>
-          <p className="text-slate-600 leading-relaxed">
-            The applicable provincial schedule determines the calculation. For motorcycles and scooters, engine
-            capacity is commonly an important classification factor. For other vehicle categories, the relevant law
-            can use different characteristics, such as: vehicle type; seating capacity; carrying capacity; engine
-            displacement; motor power; or another legally defined category. Electric vehicles require particular care
-            because provinces may use different tax classifications or calculation methods.
-          </p>
-
-          {/* ── BIKE RENEWAL ── */}
-          <SectionHeading id="bike-renewal">Bike and Scooter Bluebook Renewal</SectionHeading>
-          <p className="text-slate-600 leading-relaxed">
-            Motorcycle and scooter owners should check: engine capacity; vehicle category; private/commercial
-            classification; applicable province; current annual vehicle tax; renewal fee; insurance; pollution
-            requirements where applicable; renewal status; and late charges, if any.
-          </p>
-          <p className="text-slate-600 leading-relaxed mt-3">
-            A 125cc bike should not automatically be assumed to have the same renewal liability as a 200cc bike.
-            Likewise, a motorcycle-tax amount published for one province should not automatically be used for another
-            province.
-          </p>
-
-          {/* ── CAR RENEWAL ── */}
-          <SectionHeading id="car-renewal">Car and Jeep Bluebook Renewal</SectionHeading>
-          <p className="text-slate-600 leading-relaxed">
-            Private car and jeep renewal costs depend on the applicable provincial vehicle-tax schedule and the
-            vehicle's classification. Before payment, confirm: provincial vehicle tax; registration renewal charge;
-            insurance; pollution or inspection requirements where applicable; late charges; and other prescribed fees.
-            Do not use a generic national car-tax figure when the applicable province uses a different schedule.
-          </p>
-
-          {/* ── EV RENEWAL ── */}
-          <SectionHeading id="ev-renewal">Electric Vehicle Bluebook Renewal</SectionHeading>
-          <p className="text-slate-600 leading-relaxed">
-            Electric vehicles need particular attention because several different charges are often confused.
-          </p>
-          <ul className="list-disc pl-6 mt-3 space-y-2 text-slate-600">
-            <li>
-              <strong>Annual vehicle tax</strong> — the recurring tax associated with the registered vehicle.
-            </li>
-            <li>
-              <strong>EV import taxation</strong> — applies during vehicle importation and is a separate matter.
-            </li>
-            <li>
-              <strong>Registration and renewal</strong> — relates to keeping the vehicle's registration current.
-            </li>
-          </ul>
-          <p className="text-slate-600 leading-relaxed mt-3">
-            A statement such as "EV tax in Nepal is Rs. X" is incomplete unless it specifies what tax, which province,
-            which vehicle category and which legal schedule.
-          </p>
-
-          {/* ── PUBLIC VEHICLES ── */}
-          <SectionHeading id="public-commercial">Public and Commercial Vehicles</SectionHeading>
-          <p className="text-slate-600 leading-relaxed">
-            Public and commercial vehicles can have additional regulatory requirements. Depending on the vehicle and
-            service, these may include: route permit; insurance; pollution certification; vehicle tax; registration
-            renewal; inspection or other technical requirements; and other transport-management documents. A
-            private-car renewal guide should not be assumed to describe every requirement for a public bus, taxi,
-            truck or other commercial vehicle.
-          </p>
-
-          {/* ── KEY DISTINCTIONS ── */}
-          <SectionHeading id="distinctions">Key Distinctions</SectionHeading>
-
-          <SubHeading>Bluebook Renewal and Route Permit Are Different</SubHeading>
-          <p className="text-slate-600 leading-relaxed">
-            A Bluebook renewal concerns the vehicle registration certificate. A route permit is a separate transport
-            authorization relevant to applicable public or hired vehicles. They may be handled through the same
-            transport administration, but one does not automatically replace the other.
-          </p>
-
-          <SubHeading>Bluebook Renewal and Driving Licence Renewal Are Different</SubHeading>
-          <p className="text-slate-600 leading-relaxed">
-            A driver's licence belongs to the driver. A Bluebook belongs to the vehicle registration. Renewing a
-            driver's licence does not renew the vehicle's registration certificate. These are separate administrative
-            processes under the transport framework.
-          </p>
-
-          {/* ── MULTI YEAR RENEWAL ── */}
-          <SectionHeading id="multi-year">Can You Renew a Bluebook for Multiple Years?</SectionHeading>
-          <p className="text-slate-600 leading-relaxed">
-            The national Motor Vehicles and Transport Management Act includes a provision allowing eligible vehicle
-            owners, including private vehicles under the relevant conditions, to renew registration for up to five
-            years by paying the applicable renewal charges for that period. The actual availability and practical
-            procedure should still be confirmed with the responsible transport authority.
-          </p>
-
-          {/* ── DIFFERENT OFFICE ── */}
-          <SectionHeading id="different-office">Can You Renew a Bluebook From Another Office?</SectionHeading>
-          <p className="text-slate-600 leading-relaxed">
-            The national Transport Management Rules provide circumstances under which a registration certificate can
-            be renewed through an office other than the original registration office, with the relevant information
-            being communicated according to the prescribed process. However, service arrangements and exceptions can
-            apply. Always confirm with the current transport office before travelling to a different district.
-          </p>
-
-          {/* ── PRE-PAYMENT CHECKLIST ── */}
-          <SectionHeading id="pre-payment-checklist">What Should You Check Before Paying?</SectionHeading>
-          <div className="space-y-4 mt-4">
-            {[
-              { step: '1. Identify the province', desc: 'Know which provincial vehicle-tax schedule applies.' },
-              {
-                step: '2. Identify your vehicle',
-                desc: 'Confirm whether it is a bike/scooter, car/jeep, taxi, bus, truck, tractor, EV or another category.',
-              },
-              {
-                step: '3. Check the vehicle specification',
-                desc: 'For example: CC, kW, seats, tonnes or other applicable classification.',
-              },
-              {
-                step: '4. Check renewal status',
-                desc: 'Determine whether the Bluebook is current, within the applicable post-expiry period, or significantly overdue.',
-              },
-              { step: '5. Check insurance', desc: 'Make sure required insurance is valid.' },
-              {
-                step: '6. Check applicable certification',
-                desc: 'For example, pollution certification where required.',
-              },
-              {
-                step: '7. Check current government notices',
-                desc: 'A temporary waiver, concession, system change or special procedure can change the amount or process.',
-              },
-              { step: '8. Keep the receipt', desc: 'Retain the government payment receipt and digital confirmation.' },
-            ].map(({ step, desc }) => (
-              <div key={step} className="flex gap-3">
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold flex items-center justify-center mt-0.5">
-                  ✓
-                </div>
-                <div>
-                  <p className="font-semibold text-slate-900 text-sm">{step}</p>
-                  <p className="text-slate-600 text-sm">{desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* ── COMMON MISTAKES ── */}
-          <SectionHeading id="common-mistakes">Common Bluebook Renewal Mistakes</SectionHeading>
-          <div className="space-y-4 mt-4">
-            {[
-              {
-                title: 'Using an old tax table',
-                desc: 'Vehicle-tax rates can change through provincial economic legislation and subsequent government decisions.',
-              },
-              {
-                title: 'Applying Bagmati rates nationwide',
-                desc: 'Provincial tax schedules are not interchangeable.',
-              },
-              {
-                title: 'Treating tax as the total renewal cost',
-                desc: 'Tax, renewal fees, insurance and other charges can be separate.',
-              },
-              {
-                title: 'Assuming online payment means the entire process is complete',
-                desc: 'Some services may be digital while other steps still depend on the transport office.',
-              },
-              {
-                title: 'Forgetting insurance',
-                desc: 'Required insurance is part of the legal renewal framework.',
-              },
-              {
-                title: 'Ignoring late charges',
-                desc: 'Overdue renewal can create additional liabilities.',
-              },
-              {
-                title: 'Treating a long-overdue vehicle as an ordinary renewal',
-                desc: 'Long delays can eventually involve cancellation and re-registration provisions.',
-              },
-              {
-                title: 'Using an unofficial source as the final authority',
-                desc: 'Use government legislation and transport-office notices to verify the final legal requirement.',
-              },
-            ].map(({ title, desc }) => (
-              <div key={title} className="border-l-4 border-rose-200 pl-4">
-                <p className="font-semibold text-slate-900 text-sm">{title}</p>
-                <p className="text-slate-600 text-sm">{desc}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* ── DECISION GUIDE ── */}
-          <SectionHeading id="decision-guide">A Simple Bluebook Renewal Decision Guide</SectionHeading>
-          <div className="space-y-4 mt-4">
-            {[
-              {
-                situation: 'My Bluebook is still valid',
-                action:
-                  'Check the current provincial tax, insurance and applicable renewal requirements and renew before expiry.',
-                color: 'emerald',
-              },
-              {
-                situation: 'My Bluebook has recently expired',
-                action:
-                  'Check the applicable post-expiry rules and any additional charges before payment.',
-                color: 'amber',
-              },
-              {
-                situation: 'My Bluebook is overdue by a long period',
-                action:
-                  'Do not assume the amount can be calculated with a simple annual-tax multiplication. Check the legal status of the registration and the relevant transport office.',
-                color: 'rose',
-              },
-              {
-                situation: 'My vehicle is electric',
-                action:
-                  'Check the province-specific EV tax classification and do not confuse annual vehicle tax with import taxation.',
-                color: 'blue',
-              },
-              {
-                situation: 'My vehicle is public or commercial',
-                action: 'Check route permits and additional transport requirements.',
-                color: 'purple',
-              },
-              {
-                situation: 'I want to pay online',
-                action:
-                  'Check the official provincial VRS/payment service first and verify whether the transaction is fully digital or requires additional office processing.',
-                color: 'slate',
-              },
-            ].map(({ situation, action }) => (
-              <div key={situation} className="bg-slate-50 rounded-xl p-4 border border-slate-200">
-                <p className="font-semibold text-slate-900 text-sm mb-1">{situation}</p>
-                <p className="text-slate-600 text-sm">{action}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* ── OFFICIAL SOURCES ── */}
-          <SectionHeading id="official-sources">Official Sources for Bluebook and Vehicle Tax Information</SectionHeading>
-          <p className="text-slate-600 leading-relaxed mb-4">
-            For legal and procedural accuracy, use the following source hierarchy.
-          </p>
-
-          <SubHeading>National legal framework</SubHeading>
-          <ul className="space-y-2 text-slate-600 text-sm">
-            <li>
-              <a
-                href="https://www.lawcommission.gov.np/en/wp-content/uploads/2021/08/motor-vehicles-and-transport-management-act-2049-1993.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline"
+            {/* Early calculator CTA */}
+            <div className="mt-6 rounded-xl bg-gradient-to-r from-emerald-50 to-green-50 border border-emerald-200 p-4 flex flex-col sm:flex-row items-start sm:items-center gap-3">
+              <p className="text-sm text-slate-700 flex-1">
+                Need to estimate your vehicle-tax liability? Use the{' '}
+                <Link href="/calculator/nepal-vehicle-tax/" className={intLink}>NepaCalc Vehicle Tax Calculator</Link>,
+                then verify the final amount against the applicable provincial government schedule.
+              </p>
+              <Link
+                href="/calculator/nepal-vehicle-tax/"
+                className="flex-shrink-0 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold rounded-lg transition-colors whitespace-nowrap"
               >
-                Nepal Law Commission — Motor Vehicles and Transport Management Act
-              </a>{' '}
-              — the primary source for national registration, renewal, insurance and related legal provisions.
-            </li>
-            <li>
-              <a
-                href="https://www.lawcommission.gov.np/en/archives/category/documents/prevailing-law/rules/motor-vehicle-and-transport-management-rules"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline"
-              >
-                Nepal Law Commission — Motor Vehicles and Transport Management Rules
-              </a>{' '}
-              — important administrative and documentation requirements for vehicle-related services.
-            </li>
-          </ul>
+                Calculate →
+              </Link>
+            </div>
+          </section>
 
-          <SubHeading>Department of Transport Management</SubHeading>
-          <ul className="space-y-2 text-slate-600 text-sm">
-            <li>
-              <a
-                href="https://www.dotm.gov.np/en/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline"
-              >
-                Department of Transport Management (DoTM)
-              </a>{' '}
-              — publishes tax-rate circulars, provincial economic-law references, office information and other
-              vehicle-service materials.
-            </li>
-          </ul>
-
-          <SubHeading>Provincial government systems</SubHeading>
-          <p className="text-slate-600 text-sm">
-            Use the applicable province's government transport/VRS portal and current economic legislation to verify
-            the current vehicle-tax and service arrangements.
-          </p>
-
-          {/* ── RENEWAL CHECKLIST ── */}
-          <SectionHeading id="renewal-checklist">Bluebook Renewal Checklist</SectionHeading>
-          <p className="text-slate-600 leading-relaxed mb-4">Before you complete the process, check:</p>
-          <div className="bg-slate-50 rounded-xl border border-slate-200 p-5">
-            <ul className="space-y-2">
+          {/* ── TABLE OF CONTENTS ── */}
+          <nav aria-label="Table of contents" className="mt-10 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <p className="font-bold text-slate-900 mb-3 text-sm uppercase tracking-wide">On this page</p>
+            <ol className="grid sm:grid-cols-2 gap-x-8 gap-y-1.5 text-sm">
               {[
-                'Registration certificate / Bluebook',
-                'Applicable provincial vehicle tax',
-                'Renewal charge',
-                'Valid required insurance',
-                'Pollution certificate where applicable',
-                'Route permit where applicable',
-                'Late charges if overdue',
-                'Current government notice',
-                'Payment receipt',
-                'Any additional document required by the transport office',
-              ].map((item) => (
-                <li key={item} className="flex items-center gap-2 text-sm text-slate-700">
-                  <span className="w-5 h-5 rounded border-2 border-slate-300 flex-shrink-0 inline-block" />
-                  {item}
+                ['#quick-answer', 'Quick Answer'],
+                ['#what-is-bluebook', 'What Is a Bluebook?'],
+                ['#what-renewal-means', 'What Does Bluebook Renewal Mean?'],
+                ['#tax-vs-renewal', 'Bluebook Renewal vs Vehicle Tax'],
+                ['#who-sets-tax', 'Who Sets Vehicle Tax in Nepal?'],
+                ['#province-guide', "Nepal's Seven Provinces"],
+                ['#when-to-renew', 'When Should You Renew?'],
+                ['#late-renewal', 'What Happens When Renewal Is Late?'],
+                ['#documents', 'Documents and Requirements'],
+                ['#insurance', 'Insurance and Pollution Requirements'],
+                ['#online', 'Online Vehicle Tax and Renewal'],
+                ['#bike', 'Motorcycle and Scooter Renewal'],
+                ['#car', 'Car and Jeep Renewal'],
+                ['#ev', 'Electric Vehicle Renewal'],
+                ['#commercial', 'Public and Commercial Vehicles'],
+                ['#calculate', 'How to Estimate the Cost'],
+                ['#mistakes', 'Common Mistakes'],
+                ['#faq', 'Frequently Asked Questions'],
+                ['#sources', 'Official Sources & Verification'],
+              ].map(([href, label]) => (
+                <li key={href}>
+                  <a href={href} className="text-blue-600 hover:underline">{label}</a>
                 </li>
               ))}
-            </ul>
+            </ol>
+          </nav>
+
+          {/* ── IMPORTANT NOTE ── */}
+          <div className="mt-8 rounded-xl bg-amber-50 border border-amber-200 p-4 text-sm text-amber-900">
+            <strong>Independent guide:</strong> NepaCalc is an independent information and calculation platform, not
+            a government transport office. This guide is based on published national laws and government-published
+            sources. Tax schedules, fees, penalties, online services and office procedures can change. Verify the
+            final amount and current requirements with the relevant government authority before payment.{' '}
+            <Link href="/data-policy/" className="underline">Data Sources &amp; Methodology</Link>
           </div>
 
-          {/* ── ESTIMATE CTA (REPEATED) ── */}
-          <CalcCTA />
+          {/* ── WHAT IS A BLUEBOOK ── */}
+          <section id="what-is-bluebook" className="scroll-mt-24">
+            <h2 className={h2}>What Is a Bluebook?</h2>
+            <p className={prose}>
+              The Bluebook is the commonly used name for a vehicle&apos;s registration certificate. An official
+              Department of Transport Management resource describes it as a certificate containing the description of
+              the vehicle.
+            </p>
+            <p className={`${prose} mt-3`}>
+              The Bluebook is not the same as:
+            </p>
+            <ul className="list-disc pl-6 mt-3 space-y-1 text-slate-600">
+              <li>a driver&apos;s licence (which belongs to the driver, not the vehicle);</li>
+              <li>vehicle insurance;</li>
+              <li>vehicle tax or road tax;</li>
+              <li>a route permit (for applicable public or hired vehicles);</li>
+              <li>a pollution or emissions certificate; or</li>
+              <li>an ownership-transfer document.</li>
+            </ul>
+            <p className={`${prose} mt-3`}>
+              These are connected during vehicle administration and renewal, but each is a separate document or
+              obligation.
+            </p>
+          </section>
 
-          {/* ── FAQ ── */}
-          <SectionHeading id="faq">Frequently Asked Questions</SectionHeading>
-          <div className="space-y-6 mt-4">
-            {[
-              {
-                q: 'What is Bluebook renewal in Nepal?',
-                a: "Bluebook renewal is the process of renewing a vehicle's registration certificate and completing the applicable tax, fee, insurance and other requirements.",
-              },
-              {
-                q: 'Is Bluebook renewal the same as road tax?',
-                a: 'No. Vehicle tax and registration-renewal charges are separate components, although they may be paid during the same renewal transaction.',
-              },
-              {
-                q: 'Does vehicle tax differ by province in Nepal?',
-                a: 'Yes. Provincial governments administer vehicle taxation through their applicable laws and schedules.',
-              },
-              {
-                q: 'How much does Bluebook renewal cost in Nepal?',
-                a: 'There is no single nationwide amount. The total depends on the province, vehicle category, applicable tax, renewal fee, insurance, certification requirements and any late charges.',
-              },
-              {
-                q: 'How much is bike Bluebook renewal?',
-                a: "It depends on the motorcycle's applicable province, engine-capacity category, renewal charge, insurance and other applicable costs.",
-              },
-              {
-                q: 'Can I pay vehicle tax online?',
-                a: 'Online vehicle-registration and tax-payment systems are being used or introduced through provincial government systems, but availability and workflow differ.',
-              },
-              {
-                q: 'Can I completely renew my Bluebook online?',
-                a: 'Not necessarily. Online tax payment does not always mean every registration-renewal step can be completed without additional government processing.',
-              },
-              {
-                q: 'Is insurance required for Bluebook renewal?',
-                a: 'The required vehicle insurance must be in place, and the national Act provides that registration renewal cannot proceed without the required insurance.',
-              },
-              {
-                q: 'Is a pollution certificate required?',
-                a: 'Where the applicable rules require pollution certification, the relevant certificate or information must be available for the renewal process.',
-              },
-              {
-                q: 'What happens if my Bluebook renewal is late?',
-                a: 'Additional charges can apply, and prolonged non-renewal can eventually lead to registration-cancellation consequences under the national law.',
-              },
-              {
-                q: 'Can I renew my Bluebook for five years?',
-                a: 'The national Act provides a multi-year renewal provision for eligible categories, including private vehicles under the applicable conditions.',
-              },
-              {
-                q: 'Is Bluebook renewal the same as driving licence renewal?',
-                a: 'No. A Bluebook concerns vehicle registration; a driving licence concerns the driver.',
-              },
-              {
-                q: 'Is Bluebook renewal the same as route-permit renewal?',
-                a: 'No. A route permit is a separate transport authorization for applicable vehicles.',
-              },
-              {
-                q: 'Does the same vehicle tax apply throughout Nepal?',
-                a: 'No. Check the applicable provincial schedule.',
-              },
-              {
-                q: 'Where should I check the final amount?',
-                a: 'Check the latest applicable provincial government schedule and the relevant Transport Management Office. A calculator can provide an estimate, but the government assessment/receipt is the final authority.',
-              },
-            ].map(({ q, a }) => (
-              <div key={q} className="border-b border-slate-100 pb-5">
-                <h3 className="font-semibold text-slate-900 text-sm sm:text-base mb-2">{q}</h3>
-                <p className="text-slate-600 text-sm leading-relaxed">{a}</p>
+          {/* ── WHAT RENEWAL MEANS ── */}
+          <section id="what-renewal-means" className="scroll-mt-24">
+            <h2 className={h2}>What Does Bluebook Renewal Mean?</h2>
+            <p className={prose}>
+              Bluebook renewal means renewing the validity of the vehicle registration certificate after it expires.
+              Under the national{' '}
+              <a href="https://repository.lawcommission.gov.np/np/category/documents/prevailing-law/statutes-acts/" target="_blank" rel="noopener noreferrer" className={extLink}>
+                Motor Vehicles and Transport Management Act
+              </a>
+              , registration certificates must be renewed through the prescribed application and payment process.
+              Section 31 of the Act addresses registration-certificate renewal, while Sections 33–35 address
+              multi-year renewal, cancellation and re-registration.
+            </p>
+            <p className={`${prose} mt-3`}>
+              The practical process differs between provinces because vehicle tax and transport-service administration
+              operate within each province&apos;s own legal framework. An instruction, tax amount or online procedure
+              verified for one province may not apply to another.
+            </p>
+          </section>
+
+          {/* ── TAX VS RENEWAL ── */}
+          <section id="tax-vs-renewal" className="scroll-mt-24">
+            <h2 className={h2}>Bluebook Renewal vs Vehicle Tax</h2>
+            <p className={prose}>
+              This distinction is a frequent source of confusion. Bluebook renewal and vehicle tax are not the same
+              thing, although they are often handled during the same transaction.
+            </p>
+
+            <div className="mt-5 overflow-x-auto rounded-xl border border-slate-200">
+              <table className="w-full text-sm">
+                <thead className="bg-slate-50 border-b border-slate-200">
+                  <tr>
+                    <th className="text-left px-4 py-3 font-semibold text-slate-700">Item</th>
+                    <th className="text-left px-4 py-3 font-semibold text-slate-700">What it relates to</th>
+                    <th className="text-left px-4 py-3 font-semibold text-slate-700">Usually handled during renewal?</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {[
+                    ['Bluebook', 'Vehicle registration certificate', 'Yes — the document being renewed'],
+                    ['Vehicle tax', 'Provincial vehicle-tax obligation', 'Often — as a renewal prerequisite'],
+                    ['Renewal fee', 'Registration renewal administration charge', 'Yes'],
+                    ['Insurance', 'Required vehicle insurance (per national law)', 'Relevant prerequisite'],
+                    ['Pollution certificate', 'Emissions/vehicle requirement where applicable', 'Where required'],
+                    ['Route permit', 'Transport authorisation for public/hired vehicles', 'Where applicable'],
+                  ].map(([item, what, when]) => (
+                    <tr key={item} className="hover:bg-slate-50">
+                      <td className="px-4 py-3 font-medium text-slate-800">{item}</td>
+                      <td className="px-4 py-3 text-slate-600">{what}</td>
+                      <td className="px-4 py-3 text-slate-600">{when}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <h3 className={h3}>Vehicle tax</h3>
+            <p className={prose}>
+              Vehicle tax is the recurring tax applicable to a registered vehicle under the relevant provincial law.
+              Depending on the vehicle and province, the tax schedule can be based on engine capacity, motor power,
+              seating capacity, carrying capacity, vehicle type or another applicable specification.
+            </p>
+
+            <h3 className={h3}>Renewal fee</h3>
+            <p className={prose}>
+              This is the charge associated with renewing the registration certificate itself, separate from the
+              vehicle-tax amount. Check the applicable government source for the current renewal-fee schedule.
+            </p>
+
+            <h3 className={h3}>Insurance</h3>
+            <p className={prose}>
+              The Motor Vehicles and Transport Management Act provides that required insurance must be obtained and
+              that a registration certificate will not be renewed without it. Insurance is therefore a legal
+              prerequisite, not an optional cost. The{' '}
+              <a href="https://nia.gov.np/" target="_blank" rel="noopener noreferrer" className={extLink}>
+                Nepal Insurance Authority
+              </a>{' '}
+              is the current regulatory body for vehicle insurance in Nepal and publishes relevant insurance
+              circulars. Insurance premiums are separate from the provincial vehicle-tax amount.
+            </p>
+
+            <h3 className={h3}>Pollution certification</h3>
+            <p className={prose}>
+              The{' '}
+              <a href="https://repository.lawcommission.gov.np/np/category/documents/prevailing-law/rules-and-regulations/" target="_blank" rel="noopener noreferrer" className={extLink}>
+                Motor Vehicles and Transport Management Rules
+              </a>{' '}
+              include pollution-related information for applicable vehicles within the renewal-documentation framework.
+              Where applicable rules require a pollution certificate, this must be available for renewal. Requirements
+              depend on vehicle type, age, fuel type and current transport-office procedure.
+            </p>
+
+            <h3 className={h3}>Route permit</h3>
+            <p className={prose}>
+              A route permit is a separate transport authorisation for public or hired vehicles. It is not a Bluebook.
+              Renewing a Bluebook does not renew a route permit. The Transport Management Rules include route-permit
+              information for applicable vehicles within the renewal-documentation framework.
+            </p>
+          </section>
+
+          {/* ── WHO SETS VEHICLE TAX ── */}
+          <section id="who-sets-tax" className="scroll-mt-24">
+            <h2 className={h2}>Who Sets Vehicle Tax in Nepal?</h2>
+            <p className={prose}>
+              Vehicle tax is administered within Nepal&apos;s seven provinces, each of which has its own applicable
+              provincial economic legislation and transport-service framework. The{' '}
+              <a href="https://www.dotm.gov.np/" target="_blank" rel="noopener noreferrer" className={extLink}>
+                Department of Transport Management
+              </a>{' '}
+              provides transport-office references, tax-rate circulars and provincial economic-law references
+              including separate legal schedules for each province.
+            </p>
+            <p className={`${prose} mt-3`}>
+              This means that asking &ldquo;how much is vehicle tax in Nepal?&rdquo; without specifying the province
+              and vehicle category is not a complete question. The correct question is:
+            </p>
+            <blockquote className="border-l-4 border-emerald-400 pl-4 my-4 text-slate-700 font-medium italic">
+              What is the current vehicle tax and renewal requirement for my vehicle under the applicable province
+              and vehicle category?
+            </blockquote>
+            <p className={prose}>
+              A rate published for Bagmati Province should not automatically be presented as the rate for all of
+              Nepal. The existing NepaCalc{' '}
+              <Link href="/calculator/nepal-vehicle-tax/" className={intLink}>Vehicle Tax Calculator</Link> is
+              explicitly Bagmati-based for its current calculation tables.
+            </p>
+          </section>
+
+          {/* ── PROVINCE GUIDE ── */}
+          <section id="province-guide" className="scroll-mt-24">
+            <h2 className={h2}>Bluebook Renewal Across Nepal&apos;s Seven Provinces</h2>
+            <p className={prose}>
+              Each of Nepal&apos;s seven provinces has its own vehicle-registration system, tax authority and online
+              service arrangements. The table below provides the government entry point for each province.
+              Government portal status was checked as of 6 September 2026.
+            </p>
+
+            {/* Province comparison table */}
+            <div className="mt-5 overflow-x-auto rounded-xl border border-slate-200 mb-8">
+              <table className="w-full text-sm">
+                <thead className="bg-slate-50 border-b border-slate-200">
+                  <tr>
+                    <th className="text-left px-4 py-3 font-semibold text-slate-700">Province</th>
+                    <th className="text-left px-4 py-3 font-semibold text-slate-700">Government vehicle-system entry</th>
+                    <th className="text-left px-4 py-3 font-semibold text-slate-700">Tax verification</th>
+                    <th className="text-left px-4 py-3 font-semibold text-slate-700">Online availability</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {provinces.map(({ name, portal, portalLabel }) => (
+                    <tr key={name} className="hover:bg-slate-50">
+                      <td className="px-4 py-3 font-medium text-slate-800 whitespace-nowrap">{name}</td>
+                      <td className="px-4 py-3">
+                        <a href={portal} target="_blank" rel="noopener noreferrer" className={extLink}>{portalLabel}</a>
+                      </td>
+                      <td className="px-4 py-3 text-slate-600">Check current provincial schedule</td>
+                      <td className="px-4 py-3 text-slate-600">Verify current status</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Individual province blocks */}
+            {provinces.map(({ name, portal, portalLabel, status, verify }) => (
+              <div key={name} className="mt-6 scroll-mt-24" id={name.toLowerCase().replace(/\s+/g, '-')}>
+                <h3 className={h3}>{name}</h3>
+                <p className={prose}>{status}</p>
+                <p className={`${prose} mt-2`}>{verify}</p>
+                <p className="mt-2 text-sm">
+                  <a href={portal} target="_blank" rel="noopener noreferrer" className={extLink}>
+                    Open {portalLabel} →
+                  </a>
+                </p>
               </div>
             ))}
+
+            <div className="mt-6 rounded-xl bg-amber-50 border border-amber-200 p-4 text-sm text-amber-900">
+              <strong>Important:</strong> A portal existing at the province level does not guarantee that every
+              vehicle transaction can currently be completed entirely online. Service rollout is ongoing. Always
+              verify current availability with the relevant provincial transport office.
+            </div>
+          </section>
+
+          {/* ── WHAT CHANGES BY PROVINCE ── */}
+          <section id="what-changes-by-province" className="scroll-mt-24">
+            <h2 className={h2}>What Changes by Province?</h2>
+            <p className={prose}>Provincial differences may affect:</p>
+            <ul className="list-disc pl-6 mt-3 space-y-1 text-slate-600">
+              <li>vehicle-tax rates and the applicable category classification;</li>
+              <li>additional provincial charges beyond the basic tax;</li>
+              <li>online service availability and the extent of digital renewal;</li>
+              <li>payment workflows and accepted payment methods;</li>
+              <li>any concessions, waivers or special notices in effect; and</li>
+              <li>transport-office procedures and processing times.</li>
+            </ul>
+            <p className={`${prose} mt-3`}>What does not change by province:</p>
+            <ul className="list-disc pl-6 mt-3 space-y-1 text-slate-600">
+              <li>the basic concept of vehicle registration and renewal;</li>
+              <li>the national legal framework (Motor Vehicles and Transport Management Act);</li>
+              <li>the distinction between a Bluebook and a driving licence; and</li>
+              <li>the requirement to comply with applicable law regardless of province.</li>
+            </ul>
+          </section>
+
+          {/* ── WHAT CHANGES BY VEHICLE ── */}
+          <section id="what-changes-by-vehicle" className="scroll-mt-24">
+            <h2 className={h2}>What Changes by Vehicle?</h2>
+            <p className={prose}>
+              Vehicle category substantially affects the applicable tax and requirements:
+            </p>
+            <div className="mt-4 grid sm:grid-cols-2 gap-4">
+              {[
+                { cat: 'Motorcycle / scooter', note: 'Engine capacity (CC) is typically the primary classification factor for provincial tax.' },
+                { cat: 'Private car / jeep', note: 'Vehicle type, engine capacity or another applicable provincial classification determines the tax.' },
+                { cat: 'Electric vehicle', note: 'EV annual road tax and EV import taxation are completely different obligations. Provincial EV tax classifications may differ.' },
+                { cat: 'Public / commercial', note: 'Route permits, passenger or load capacity, and additional transport requirements apply. Not comparable to private-vehicle renewal.' },
+              ].map(({ cat, note }) => (
+                <div key={cat} className="rounded-xl border border-slate-200 p-4">
+                  <p className="font-semibold text-slate-900 text-sm mb-1">{cat}</p>
+                  <p className="text-slate-600 text-sm">{note}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* ── WHEN TO RENEW ── */}
+          <section id="when-to-renew" className="scroll-mt-24">
+            <h2 className={h2}>When Should You Renew?</h2>
+            <p className={prose}>
+              The safest approach is to renew before the registration certificate expires. The national Motor
+              Vehicles and Transport Management Act provides a period after expiry within which renewal can still
+              proceed before delayed-renewal provisions apply. However, this should not be read as a recommendation
+              to wait until after expiry. Renewing before expiry avoids:
+            </p>
+            <ul className="list-disc pl-6 mt-3 space-y-1 text-slate-600">
+              <li>late charges and penalties;</li>
+              <li>additional paperwork and documentation requirements;</li>
+              <li>service delays at transport offices;</li>
+              <li>potential insurance complications; and</li>
+              <li>uncertainty about the exact amount due.</li>
+            </ul>
+          </section>
+
+          {/* ── LATE RENEWAL ── */}
+          <section id="late-renewal" className="scroll-mt-24">
+            <h2 className={h2}>What Happens When Renewal Is Late?</h2>
+            <p className={prose}>
+              This area requires careful distinction between two separate legal frameworks.
+            </p>
+
+            <h3 className={h3}>National registration-renewal law</h3>
+            <p className={prose}>
+              The{' '}
+              <a href="https://repository.lawcommission.gov.np/np/category/documents/prevailing-law/statutes-acts/" target="_blank" rel="noopener noreferrer" className={extLink}>
+                Motor Vehicles and Transport Management Act
+              </a>{' '}
+              provides a period after a certificate&apos;s stated validity for renewal before delayed-renewal
+              provisions apply. The Act specifies escalating additional charges for delayed renewal depending on
+              the length of delay, and contains provisions for eventual cancellation and re-registration where a
+              vehicle remains unrenewed for an extended period.
+            </p>
+
+            <h3 className={h3}>Provincial vehicle-tax late-payment rules</h3>
+            <p className={prose}>
+              Provincial economic legislation and transport rules may separately specify the treatment of late
+              vehicle-tax payments. These are different from the national registration-renewal law. A calculator
+              that describes a specific province&apos;s late-payment penalty is describing that province&apos;s
+              tax law, not necessarily a nationwide rule.
+            </p>
+
+            <h3 className={h3}>Long-overdue or cancelled registrations</h3>
+            <p className={prose}>
+              There is an important legal difference between a registration that is slightly overdue and one that
+              has remained unrenewed long enough to reach statutory cancellation. A vehicle owner should not assume
+              that a long-overdue vehicle can simply be renewed by multiplying one year&apos;s tax by the number of
+              missed years. The Act contains distinct provisions for cancellation and re-registration. Owners of
+              long-overdue vehicles should contact the relevant transport authority rather than relying on a
+              generic online estimate.
+            </p>
+          </section>
+
+          {/* ── DOCUMENTS ── */}
+          <section id="documents" className="scroll-mt-24">
+            <h2 className={h2}>Documents and Requirements</h2>
+            <p className={prose}>
+              Rule 8 of the{' '}
+              <a href="https://repository.lawcommission.gov.np/np/category/documents/prevailing-law/rules-and-regulations/" target="_blank" rel="noopener noreferrer" className={extLink}>
+                Motor Vehicles and Transport Management Rules
+              </a>{' '}
+              addresses renewal of the registration certificate, and Schedule 11 of the Rules specifies the
+              information submitted with a renewal application, including vehicle registration details, owner
+              information, expiry, tax evidence, route-permit details for hired vehicles, and pollution information
+              where applicable.
+            </p>
+            <p className={`${prose} mt-3`}>
+              Requirements vary by vehicle, transaction and current office procedure. Commonly relevant items include:
+            </p>
+            <ul className="list-disc pl-6 mt-3 space-y-1 text-slate-600">
+              <li>original Bluebook/registration certificate;</li>
+              <li>vehicle-tax payment evidence;</li>
+              <li>valid required insurance certificate;</li>
+              <li>pollution certificate where applicable;</li>
+              <li>route permit for applicable public or hired vehicles;</li>
+              <li>ownership or identification documents where required;</li>
+              <li>payment receipts; and</li>
+              <li>any other documents specified by the relevant transport office.</li>
+            </ul>
+            <div className="mt-4 rounded-xl bg-amber-50 border border-amber-200 p-4 text-sm text-amber-900">
+              The checklist above reflects the general legal framework. Always check the current notice from the
+              relevant transport authority before visiting. Office requirements and procedures can change.
+            </div>
+          </section>
+
+          {/* ── INSURANCE AND POLLUTION ── */}
+          <section id="insurance" className="scroll-mt-24">
+            <h2 className={h2}>Insurance and Pollution Requirements</h2>
+
+            <h3 className={h3}>Insurance</h3>
+            <p className={prose}>
+              The Motor Vehicles and Transport Management Act provides that required insurance must be obtained and
+              that registration renewal cannot proceed without it. The{' '}
+              <a href="https://nia.gov.np/" target="_blank" rel="noopener noreferrer" className={extLink}>
+                Nepal Insurance Authority
+              </a>{' '}
+              is the current regulatory body and publishes applicable insurance circulars including third-party
+              vehicle insurance requirements. Insurance premiums are separate from provincial vehicle tax and
+              from the renewal fee. Do not publish fixed insurance amounts without verifying against a current
+              Nepal Insurance Authority circular or applicable insurer schedule.
+            </p>
+
+            <h3 className={h3}>Pollution certification</h3>
+            <p className={prose}>
+              Where the applicable rules require pollution testing or certification, the relevant certificate must
+              be available for renewal. Requirements depend on vehicle type, age, fuel type and current
+              transport-office procedure. Check the current requirements from the relevant transport authority.
+            </p>
+          </section>
+
+          {/* ── ONLINE ── */}
+          <section id="online" className="scroll-mt-24">
+            <h2 className={h2}>Online Vehicle Tax and Renewal</h2>
+            <p className={prose}>
+              Online vehicle-registration and tax-payment systems are being deployed through provincial government
+              systems, but the services available and the extent to which a transaction can be completed online
+              vary by province and may change.
+            </p>
+            <p className={`${prose} mt-3`}>
+              Do not assume that online tax payment automatically means the entire Bluebook-renewal process is
+              complete. Some provinces currently provide full digital workflows; others have systems where tax
+              payment can be initiated online but certain steps still require transport-office processing.
+            </p>
+            <p className={`${prose} mt-3`}>
+              As of this guide&apos;s last review (6 September 2026), the Sudurpashchim provincial VRS page
+              marks vehicle registration and tax payment as &ldquo;Coming Soon.&rdquo; The Lumbini provincial VRS
+              page similarly shows some functions as still being introduced. Both portals exist at the entry level
+              but detailed service availability is not yet uniform.
+            </p>
+            <p className={`${prose} mt-3`}>
+              Always check the applicable provincial portal directly and confirm with the transport office before
+              relying on an online transaction as the complete renewal.
+            </p>
+          </section>
+
+          {/* ── BIKE ── */}
+          <section id="bike" className="scroll-mt-24">
+            <h2 className={h2}>Motorcycle and Scooter Renewal</h2>
+            <p className={prose}>
+              Motorcycle and scooter owners should confirm:
+            </p>
+            <ul className="list-disc pl-6 mt-3 space-y-1 text-slate-600">
+              <li>the applicable province;</li>
+              <li>engine capacity (CC) — this is typically the primary classification factor;</li>
+              <li>private or commercial classification;</li>
+              <li>the current applicable provincial vehicle-tax schedule;</li>
+              <li>the renewal fee for the applicable category;</li>
+              <li>required insurance status;</li>
+              <li>pollution requirements where applicable;</li>
+              <li>renewal status (current, slightly overdue, or significantly overdue); and</li>
+              <li>any applicable late charges.</li>
+            </ul>
+            <p className={`${prose} mt-3`}>
+              A 125cc motorcycle and a 200cc motorcycle do not automatically have the same renewal liability. A
+              rate published for one province should not be applied to another.
+            </p>
+          </section>
+
+          {/* ── CAR ── */}
+          <section id="car" className="scroll-mt-24">
+            <h2 className={h2}>Car and Jeep Renewal</h2>
+            <p className={prose}>
+              Private car and jeep renewal costs depend on the applicable provincial vehicle-tax schedule and
+              the vehicle&apos;s classification. Before payment, confirm:
+            </p>
+            <ul className="list-disc pl-6 mt-3 space-y-1 text-slate-600">
+              <li>provincial vehicle tax for the applicable vehicle category;</li>
+              <li>registration renewal charge;</li>
+              <li>required insurance;</li>
+              <li>pollution or inspection requirements where applicable;</li>
+              <li>late charges if applicable; and</li>
+              <li>any other prescribed fees.</li>
+            </ul>
+            <p className={`${prose} mt-3`}>
+              Do not use a generic national car-tax figure when the applicable province uses a different schedule.
+            </p>
+          </section>
+
+          {/* ── EV ── */}
+          <section id="ev" className="scroll-mt-24">
+            <h2 className={h2}>Electric Vehicle Renewal</h2>
+            <p className={prose}>
+              Electric vehicles require particular attention because several different charges are frequently
+              confused:
+            </p>
+            <ul className="list-disc pl-6 mt-3 space-y-2 text-slate-600">
+              <li>
+                <strong className="text-slate-800">Annual vehicle tax</strong> — the recurring annual tax for a
+                registered EV. This is determined by the applicable provincial schedule, typically based on motor
+                power (kW) rather than engine capacity.
+              </li>
+              <li>
+                <strong className="text-slate-800">EV import taxation</strong> — a one-time charge when the
+                vehicle enters Nepal. Includes customs duty and other applicable import charges. This is entirely
+                separate from the annual renewal tax.
+              </li>
+              <li>
+                <strong className="text-slate-800">Registration and renewal</strong> — keeping the vehicle
+                registration certificate valid, subject to the same general renewal framework as other vehicles.
+              </li>
+            </ul>
+            <p className={`${prose} mt-3`}>
+              A statement such as &ldquo;EV tax in Nepal is Rs. X&rdquo; is incomplete without specifying which
+              charge, which province, which vehicle classification and which legal schedule applies.
+            </p>
+          </section>
+
+          {/* ── COMMERCIAL ── */}
+          <section id="commercial" className="scroll-mt-24">
+            <h2 className={h2}>Public and Commercial Vehicles</h2>
+            <p className={prose}>
+              Public and commercial vehicles have additional regulatory requirements beyond private-vehicle renewal.
+              Depending on the vehicle and service, these may include: route permits; passenger or carrying-capacity
+              classifications; higher insurance requirements; additional inspection or certification; and
+              other transport-management documents. The renewal framework for a private car does not describe
+              the requirements for a public bus, taxi, truck or other commercial vehicle. Check the applicable
+              transport authority for current requirements.
+            </p>
+          </section>
+
+          {/* ── HOW TO ESTIMATE ── */}
+          <section id="calculate" className="scroll-mt-24">
+            <h2 className={h2}>How to Estimate the Cost</h2>
+            <p className={prose}>
+              The total amount payable during a renewal transaction is not a single nationwide figure. Think of
+              it as:
+            </p>
+            <div className="my-4 rounded-xl bg-slate-50 border border-slate-200 p-4 font-mono text-sm text-slate-700">
+              Total = vehicle tax (provincial) + renewal fee + required insurance + applicable certification
+              charges + late charges (if any) + other prescribed fees
+            </div>
+            <p className={prose}>
+              Each component depends on the vehicle and applicable provincial rules. The government assessment
+              or receipt is the final authority.
+            </p>
+
+            <div className="mt-6 rounded-2xl bg-gradient-to-r from-emerald-50 to-green-50 border border-emerald-200 p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              <div className="flex-1">
+                <p className="font-semibold text-slate-900 text-sm">Want to estimate your vehicle-tax amount?</p>
+                <p className="text-slate-600 text-sm mt-1">
+                  Use the{' '}
+                  <Link href="/calculator/nepal-vehicle-tax/" className={intLink}>NepaCalc Vehicle Tax Calculator</Link>
+                  {' '}for an estimate. The calculator is a calculation tool — the applicable government schedule
+                  and transport authority determine the final legally correct amount.
+                </p>
+              </div>
+              <Link
+                href="/calculator/nepal-vehicle-tax/"
+                className="flex-shrink-0 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold rounded-xl transition-colors whitespace-nowrap"
+              >
+                Calculate Vehicle Tax →
+              </Link>
+            </div>
+          </section>
+
+          {/* ── BEFORE YOU PAY ── */}
+          <section id="before-you-pay" className="scroll-mt-24">
+            <h2 className={h2}>Before You Pay — Checklist</h2>
+            <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <ul className="space-y-2">
+                {[
+                  'Identify the province and applicable provincial vehicle-tax schedule',
+                  'Confirm vehicle category (bike, car, EV, commercial)',
+                  'Confirm engine capacity (CC), motor power (kW) or other applicable specification',
+                  'Check renewal status — current, recently expired, or significantly overdue',
+                  'Confirm required insurance is valid',
+                  'Check pollution certification requirements where applicable',
+                  'Check route-permit requirements for commercial/public vehicles',
+                  'Check for any current government notices, waivers or special procedures',
+                  'Verify the total amount with the applicable government source before payment',
+                  'Keep the government payment receipt and any digital confirmation',
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-slate-700">
+                    <span className="mt-0.5 w-5 h-5 rounded border-2 border-slate-300 flex-shrink-0 inline-block" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+
+          {/* ── COMMON MISTAKES ── */}
+          <section id="mistakes" className="scroll-mt-24">
+            <h2 className={h2}>What Users Should Not Assume</h2>
+            <div className="mt-4 space-y-3">
+              {[
+                ['A Bagmati rate applies nationwide', 'Bagmati is one province. Its tax schedule is province-specific.'],
+                ['An old blog table is the current rate', 'Provincial tax schedules can change through annual economic legislation.'],
+                ['Vehicle tax equals total renewal cost', 'Tax, renewal fee, insurance and other charges are separate.'],
+                ['Online tax payment means renewal is complete', 'Some steps may still require transport-office processing depending on the province.'],
+                ['Every province has the same digital service', 'Online availability varies and is still being rolled out in some provinces.'],
+                ['A long-overdue vehicle can be calculated as (tax × years)', 'Prolonged non-renewal can eventually involve cancellation and re-registration law, not ordinary late fees.'],
+                ['EV import tax equals EV annual road tax', 'These are completely different charges at different stages of vehicle ownership.'],
+                ['The same documents apply to every vehicle and province', 'Requirements vary by vehicle category and current office procedure.'],
+              ].map(([mistake, why]) => (
+                <div key={mistake} className="border-l-4 border-rose-200 pl-4 py-1">
+                  <p className="font-semibold text-slate-900 text-sm">Do not assume: {mistake}</p>
+                  <p className="text-slate-600 text-sm mt-0.5">{why}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* ── FAQ ── */}
+          <section id="faq" className="scroll-mt-24">
+            <h2 className={h2}>Frequently Asked Questions</h2>
+            <div className="space-y-6 mt-4">
+              {[
+                {
+                  q: 'What is Bluebook renewal in Nepal?',
+                  a: "Bluebook renewal is the process of renewing a vehicle's registration certificate and completing applicable tax, fee, insurance and other requirements to keep the registration valid.",
+                },
+                {
+                  q: 'Is Bluebook renewal the same as vehicle tax?',
+                  a: 'No. Vehicle tax is a recurring provincial tax obligation. Renewal refers to the registration-certificate process. They can be handled in the same transaction but are legally separate.',
+                },
+                {
+                  q: 'Does vehicle tax differ by province in Nepal?',
+                  a: "Yes. Each of Nepal's seven provinces administers vehicle taxation through its own applicable legal schedule.",
+                },
+                {
+                  q: 'How much does Bluebook renewal cost in Nepal?',
+                  a: 'There is no single nationwide amount. The total depends on the province, vehicle category, applicable tax, renewal fee, insurance, certification requirements and any late charges.',
+                },
+                {
+                  q: 'Can I pay vehicle tax online in Nepal?',
+                  a: 'In some provinces, yes. Online vehicle-tax and registration systems are operational or being rolled out through provincial government portals, but current availability varies.',
+                },
+                {
+                  q: 'Can I completely renew my Bluebook online?',
+                  a: 'Not always. Online tax payment does not automatically mean every step is complete. Some provinces may require additional office processing for registration to be fully renewed.',
+                },
+                {
+                  q: 'Is insurance required for Bluebook renewal?',
+                  a: 'The Motor Vehicles and Transport Management Act provides that required insurance must be in place and that registration renewal cannot proceed without it.',
+                },
+                {
+                  q: 'Is a pollution certificate required for renewal?',
+                  a: 'Where applicable rules require pollution certification, the relevant certificate must be available for renewal. This depends on vehicle type, age, fuel type and current procedure.',
+                },
+                {
+                  q: 'What happens if my Bluebook renewal is late?',
+                  a: 'Additional charges apply under both national registration-renewal law and potentially provincial tax-law provisions. Prolonged non-renewal can eventually lead to cancellation consequences under national law. These are two separate legal frameworks.',
+                },
+                {
+                  q: 'Can I renew my Bluebook for multiple years?',
+                  a: 'The Motor Vehicles and Transport Management Act provides a multi-year renewal provision for eligible vehicle categories, including private vehicles under applicable conditions, for up to five years. Confirm the current procedure with the responsible transport authority.',
+                },
+                {
+                  q: 'Is Bluebook renewal the same as driving licence renewal?',
+                  a: 'No. A Bluebook concerns vehicle registration. A driving licence concerns the driver. These are separate documents under the transport-management framework.',
+                },
+                {
+                  q: 'Is Bluebook renewal the same as route-permit renewal?',
+                  a: 'No. A route permit is a separate transport authorisation relevant to public or hired vehicles.',
+                },
+                {
+                  q: 'Who is the insurance regulator in Nepal?',
+                  a: 'The Nepal Insurance Authority (NIA) is the current regulatory body for vehicle insurance in Nepal and publishes applicable insurance circulars.',
+                },
+                {
+                  q: 'Where should I verify the final renewal amount?',
+                  a: 'Check the latest applicable provincial government schedule and the relevant Transport Management Office. A calculator provides an estimate; the government assessment or receipt is the final authority.',
+                },
+              ].map(({ q, a }) => (
+                <div key={q} className="border-b border-slate-100 pb-5">
+                  <h3 className="font-semibold text-slate-900 text-sm sm:text-base mb-2">{q}</h3>
+                  <p className="text-slate-600 text-sm leading-relaxed">{a}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* ── IN BRIEF ── */}
+          <section className="mt-10 rounded-2xl bg-slate-900 text-white p-6">
+            <h2 className="text-lg font-bold mb-3">In Brief</h2>
+            <p className="text-slate-300 leading-relaxed text-sm">
+              Bluebook renewal is a vehicle-registration renewal process. The national Motor Vehicles and Transport
+              Management Act provides the registration framework, while provincial rules determine vehicle-tax
+              obligations and many practical service arrangements. The exact amount depends on the vehicle, province
+              and renewal status. Use the current government source for the final legal amount and service
+              requirements, and use the{' '}
+              <Link href="/calculator/nepal-vehicle-tax/" className="text-emerald-400 hover:underline font-medium">
+                NepaCalc Vehicle Tax Calculator
+              </Link>{' '}
+              when you need an estimate.
+            </p>
+          </section>
+
+          {/* ── OFFICIAL SOURCES ── */}
+          <section id="sources" className="scroll-mt-24">
+            <h2 className={h2}>Official Sources &amp; Verification</h2>
+            <p className={`${prose} mb-4`}>
+              For legal and procedural accuracy, use the following source hierarchy.
+            </p>
+            <div className="overflow-x-auto rounded-xl border border-slate-200">
+              <table className="w-full text-sm">
+                <thead className="bg-slate-50 border-b border-slate-200">
+                  <tr>
+                    <th className="text-left px-4 py-3 font-semibold text-slate-700">Source</th>
+                    <th className="text-left px-4 py-3 font-semibold text-slate-700">What it is used to verify</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {[
+                    {
+                      source: 'Nepal Law Commission — Motor Vehicles and Transport Management Act',
+                      url: 'https://repository.lawcommission.gov.np/np/category/documents/prevailing-law/statutes-acts/',
+                      what: 'National registration and renewal law, delayed-renewal provisions, multi-year renewal, cancellation and re-registration',
+                    },
+                    {
+                      source: 'Nepal Law Commission — Transport Management Rules',
+                      url: 'https://repository.lawcommission.gov.np/np/category/documents/prevailing-law/rules-and-regulations/',
+                      what: 'Renewal procedure, documentation framework, pollution and route-permit documentation requirements',
+                    },
+                    {
+                      source: 'Department of Transport Management',
+                      url: 'https://www.dotm.gov.np/',
+                      what: 'Transport-office network, tax-rate circulars, provincial law references, government transport notices',
+                    },
+                    {
+                      source: 'Provincial governments (all seven)',
+                      url: '#province-guide',
+                      what: 'Current vehicle-tax schedule, provincial legal framework, online service availability',
+                    },
+                    {
+                      source: 'Provincial EDL/VRS portals',
+                      url: '#province-guide',
+                      what: 'Current online vehicle-service availability and registration/tax-payment workflow',
+                    },
+                    {
+                      source: 'Nepal Insurance Authority',
+                      url: 'https://nia.gov.np/',
+                      what: 'Vehicle insurance regulatory requirements, applicable insurance circulars',
+                    },
+                  ].map(({ source, url, what }) => (
+                    <tr key={source} className="hover:bg-slate-50">
+                      <td className="px-4 py-3">
+                        {url.startsWith('http') ? (
+                          <a href={url} target="_blank" rel="noopener noreferrer" className={extLink}>{source}</a>
+                        ) : (
+                          <a href={url} className={extLink}>{source}</a>
+                        )}
+                      </td>
+                      <td className="px-4 py-3 text-slate-600">{what}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          {/* ── MORE NEPAL TOOLS ── */}
+          <div className="mt-10 rounded-2xl bg-emerald-50 border border-emerald-200 p-5 text-sm">
+            <p className="font-semibold text-slate-900 mb-2">More Nepal-specific tools</p>
+            <p className="text-slate-600">
+              Explore more Nepal-specific calculators and tools in our{' '}
+              <Link href="/nepal/" className={intLink}>Nepal Calculators</Link> section.
+            </p>
           </div>
 
-          {/* ── EDITORIAL NOTE ── */}
-          <div className="mt-12 rounded-2xl bg-slate-50 border border-slate-200 p-6">
-            <h2 className="font-bold text-slate-900 text-base mb-2">Editorial Note</h2>
+          {/* ── EDITORIAL METHODOLOGY ── */}
+          <section className="mt-10 rounded-2xl border border-slate-200 bg-slate-50 p-6">
+            <h2 className="font-bold text-slate-900 text-base mb-3">How We Research This Guide</h2>
             <p className="text-slate-600 text-sm leading-relaxed">
-              This guide is designed to explain Nepal's Bluebook-renewal system using the national legal framework,
-              provincial transport systems and government-published information. Because transport laws, provincial
-              tax schedules, online services, penalties and administrative procedures can change, this page should
-              be reviewed whenever a relevant law, provincial economic act, official tax schedule or
-              transport-system procedure changes.
+              This guide separates national vehicle-registration rules from provincial vehicle-tax and
+              transport-service requirements. National legal claims are checked against Nepal&apos;s published
+              vehicle and transport laws and rules where available. Province-specific information is checked against
+              government-published sources. Because tax schedules and digital services can change, we identify the
+              applicable authority rather than presenting a potentially outdated amount as a permanent nationwide rule.
+              When a number cannot be confidently verified from a current primary source, we direct users to the
+              applicable government source instead of publishing the figure.
             </p>
-            <p className="text-slate-600 text-sm leading-relaxed mt-2">
+            <p className="text-slate-500 text-xs mt-3">
+              <Link href="/data-policy/" className="hover:underline">Data Sources &amp; Methodology</Link>
+              {' '}·{' '}
+              <Link href="/about/editorial-policy/" className="hover:underline">NepaCalc Editorial Policy</Link>
+            </p>
+          </section>
+
+          {/* ── EDITORIAL NOTE ── */}
+          <div className="mt-6 rounded-2xl border border-slate-200 p-5 text-sm text-slate-600">
+            <p className="font-semibold text-slate-900 mb-2">Editorial Note</p>
+            <p className="leading-relaxed">
+              This guide is designed to explain Nepal&apos;s Bluebook-renewal system using the national legal
+              framework, provincial transport systems and government-published information. It is an independent
+              resource based on published sources, not a government document. Because transport laws, provincial
+              tax schedules, online services, penalties and administrative procedures can change, this page is
+              reviewed when a relevant law, provincial economic act, official tax schedule or transport-system
+              procedure changes.
+            </p>
+            <p className="mt-2 leading-relaxed">
               NepaCalc provides calculations and explanatory information as an independent platform. It does not
-              replace the authority of Nepal's federal or provincial governments.
+              replace the authority of Nepal&apos;s federal or provincial governments.
             </p>
-            <p className="text-xs text-slate-400 mt-3">
+            <p className="text-slate-400 text-xs mt-3">
               Published by{' '}
-              <Link href="/about/editorial-policy/" className="hover:underline text-slate-500">
+              <Link href="/about/editorial-policy/" className="text-slate-500 hover:underline">
                 NepaCalc Editorial Team
               </Link>
             </p>
           </div>
 
-        </div>
+          {/* ── CHANGE HISTORY ── */}
+          <section className="mt-6 rounded-2xl border border-slate-200 p-5">
+            <h2 className="font-bold text-slate-900 text-base mb-3">Page Change History</h2>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead className="border-b border-slate-200">
+                  <tr>
+                    <th className="text-left py-2 pr-6 font-semibold text-slate-700 whitespace-nowrap">Date</th>
+                    <th className="text-left py-2 font-semibold text-slate-700">Change</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  <tr>
+                    <td className="py-2 pr-6 text-slate-500 whitespace-nowrap">6 Sep 2026</td>
+                    <td className="py-2 text-slate-600">
+                      Initial publication. National renewal framework, provincial online-service map and
+                      government portal links reviewed. All seven provincial EDL/VRS portal statuses checked.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+        </main>
       </div>
     </>
   );
