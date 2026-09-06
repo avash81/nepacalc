@@ -42,7 +42,7 @@ export function SalarySeoContent() {
         </div>
         <p className="text-[#3C4043] text-sm leading-relaxed bg-[#F8F9FA] p-4 rounded-lg border border-[#DADCE0]">
           If your only income comes from employment, use this Salary Calculator.
-          If you have additional taxable income sources, we highly recommend using the <Link href="/calculator/nepal-income-tax/" className="text-[#1A73E8] font-bold hover:underline">Nepal Income Tax Calculator</Link> to accurately assess your overall liability across all income streams.
+          If you have additional taxable income sources, we highly recommend using the <Link href="/calculator/nepal-income-tax/" className="text-[#1A73E8] font-bold hover:underline">Nepal Income Tax Calculator</Link> to accurately assess your overall liability across all income streams. Additionally, if you need to calculate other annual expenses like <Link href="/guide/bluebook-renewal-nepal/" className="text-[#1A73E8] font-bold hover:underline">annual vehicle renewal fees</Link>, check our dedicated guides.
         </p>
       </section>
 

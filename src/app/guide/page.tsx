@@ -25,9 +25,13 @@ export default function GuidesPage() {
             calculators ,  updated for the latest fiscal mandates.
           </p>
         </div>
-        <div className="text-center py-12 text-gray-400">
-          < BookOpen className="w-8 h-8 mx-auto mb-2" />
-          <p className="text-sm">Guides coming soon.</p>
+        <div className="grid gap-4 md:grid-cols-2 mt-8">
+          <Link href="/guide/bluebook-renewal-nepal/" className="block bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+            <h2 className="font-bold text-lg text-gray-900 mb-2">Bluebook Renewal in Nepal</h2>
+            <p className="text-gray-600 text-sm">Comprehensive guide on vehicle tax, renewal fees, late charges, and online payment across all seven provinces.</p>
+          </Link>
+        </div>
+        <div className="text-center py-8">
           <Link href="/blog/" className="text-blue-600 hover:underline text-sm mt-2 block">
             Browse Blog Posts →
           </Link>
