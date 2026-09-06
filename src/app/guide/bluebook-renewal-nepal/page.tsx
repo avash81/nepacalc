@@ -240,7 +240,7 @@ export default function BluebookRenewalPage() {
             <p className="font-bold text-slate-900 mb-3 text-sm">What are you trying to do?</p>
             <div className="grid sm:grid-cols-2 gap-2 text-sm">
               {[
-                { label: 'I want to calculate my vehicle tax', href: '/calculator/nepal-vehicle-tax/', ext: true },
+                { label: 'I want to calculate my vehicle tax', href: '#calculate', ext: false },
                 { label: 'I want to renew a bike or scooter', href: '#bike', ext: false },
                 { label: 'I want to renew a car or jeep', href: '#car', ext: false },
                 { label: 'My Bluebook is expired or overdue', href: '#late-renewal', ext: false },
@@ -309,7 +309,7 @@ export default function BluebookRenewalPage() {
                 then verify the final amount against the applicable provincial government schedule.
               </p>
               <Link
-                href="/calculator/nepal-vehicle-tax/"
+                href="#calculate"
                 className="flex-shrink-0 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold rounded-lg transition-colors whitespace-nowrap"
               >
                 Calculate →
@@ -404,9 +404,9 @@ export default function BluebookRenewalPage() {
             <p className={prose}>
               Bluebook renewal means renewing the validity of the vehicle registration certificate after it expires.
               Under the national{' '}
-              <a href="https://repository.lawcommission.gov.np/np/category/documents/prevailing-law/statutes-acts/" target="_blank" rel="noopener noreferrer" className={extLink}>
+              <span className="font-semibold text-slate-900">
                 Motor Vehicles and Transport Management Act
-              </a>
+              </span>
               , registration certificates must be renewed through the prescribed application and payment process.
               Section 31 of the Act addresses registration-certificate renewal, while Sections 33–35 address
               multi-year renewal, cancellation and re-registration.
@@ -472,9 +472,9 @@ export default function BluebookRenewalPage() {
               The Motor Vehicles and Transport Management Act provides that required insurance must be obtained and
               that a registration certificate will not be renewed without it. Insurance is therefore a legal
               prerequisite, not an optional cost. The{' '}
-              <a href="https://nia.gov.np/" target="_blank" rel="noopener noreferrer" className={extLink}>
+              <span className="font-semibold text-slate-900">
                 Nepal Insurance Authority
-              </a>{' '}
+              </span>{' '}
               is the current regulatory body for vehicle insurance in Nepal and publishes relevant insurance
               circulars. Insurance premiums are separate from the provincial vehicle-tax amount.
             </p>
@@ -482,9 +482,9 @@ export default function BluebookRenewalPage() {
             <h3 className={h3}>Pollution certification</h3>
             <p className={prose}>
               The{' '}
-              <a href="https://repository.lawcommission.gov.np/np/category/documents/prevailing-law/rules-and-regulations/" target="_blank" rel="noopener noreferrer" className={extLink}>
+              <span className="font-semibold text-slate-900">
                 Motor Vehicles and Transport Management Rules
-              </a>{' '}
+              </span>{' '}
               include pollution-related information for applicable vehicles within the renewal-documentation framework.
               Where applicable rules require a pollution certificate, this must be available for renewal. Requirements
               depend on vehicle type, age, fuel type and current transport-office procedure.
@@ -521,7 +521,7 @@ export default function BluebookRenewalPage() {
             <p className={prose}>
               A rate published for Bagmati Province should not automatically be presented as the rate for all of
               Nepal. The existing NepaCalc{' '}
-              <Link href="/calculator/nepal-vehicle-tax/" className={intLink}>Vehicle Tax Calculator</Link> is
+              <span className="font-semibold text-slate-900">Vehicle Tax Calculator</span> is
               explicitly Bagmati-based for its current calculation tables.
             </p>
           </section>
@@ -652,9 +652,9 @@ export default function BluebookRenewalPage() {
             <h3 className={h3}>National registration-renewal law</h3>
             <p className={prose}>
               The{' '}
-              <a href="https://repository.lawcommission.gov.np/np/category/documents/prevailing-law/statutes-acts/" target="_blank" rel="noopener noreferrer" className={extLink}>
+              <span className="font-semibold text-slate-900">
                 Motor Vehicles and Transport Management Act
-              </a>{' '}
+              </span>{' '}
               provides a period after a certificate&apos;s stated validity for renewal before delayed-renewal
               provisions apply. The Act specifies escalating additional charges for delayed renewal depending on
               the length of delay, and contains provisions for eventual cancellation and re-registration where a
@@ -685,9 +685,9 @@ export default function BluebookRenewalPage() {
             <h2 className={h2}>Documents and Requirements</h2>
             <p className={prose}>
               Rule 8 of the{' '}
-              <a href="https://repository.lawcommission.gov.np/np/category/documents/prevailing-law/rules-and-regulations/" target="_blank" rel="noopener noreferrer" className={extLink}>
+              <span className="font-semibold text-slate-900">
                 Motor Vehicles and Transport Management Rules
-              </a>{' '}
+              </span>{' '}
               addresses renewal of the registration certificate, and Schedule 11 of the Rules specifies the
               information submitted with a renewal application, including vehicle registration details, owner
               information, expiry, tax evidence, route-permit details for hired vehicles, and pollution information
@@ -720,9 +720,9 @@ export default function BluebookRenewalPage() {
             <p className={prose}>
               The Motor Vehicles and Transport Management Act provides that required insurance must be obtained and
               that registration renewal cannot proceed without it. The{' '}
-              <a href="https://nia.gov.np/" target="_blank" rel="noopener noreferrer" className={extLink}>
+              <span className="font-semibold text-slate-900">
                 Nepal Insurance Authority
-              </a>{' '}
+              </span>{' '}
               is the current regulatory body and publishes applicable insurance circulars including third-party
               vehicle insurance requirements. Insurance premiums are separate from provincial vehicle tax and
               from the renewal fee. Do not publish fixed insurance amounts without verifying against a current
@@ -868,17 +868,17 @@ export default function BluebookRenewalPage() {
                 <p className="font-semibold text-slate-900 text-sm">Want to estimate your vehicle-tax amount?</p>
                 <p className="text-slate-600 text-sm mt-1">
                   Use the{' '}
-                  <Link href="/calculator/nepal-vehicle-tax/" className={intLink}>NepaCalc Vehicle Tax Calculator</Link>
+                  <span className="font-semibold text-slate-900">NepaCalc Vehicle Tax Calculator</span>
                   {' '}for an estimate. The calculator is a calculation tool - the applicable government schedule
                   and transport authority determine the final legally correct amount.
                 </p>
               </div>
-              <Link
-                href="/calculator/nepal-vehicle-tax/"
+              <a
+                href="#calculate"
                 className="flex-shrink-0 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold rounded-xl transition-colors whitespace-nowrap"
               >
                 Calculate Vehicle Tax →
-              </Link>
+              </a>
             </div>
           </section>
 
@@ -1008,9 +1008,9 @@ export default function BluebookRenewalPage() {
               obligations and many practical service arrangements. The exact amount depends on the vehicle, province
               and renewal status. Use the current government source for the final legal amount and service
               requirements, and use the{' '}
-              <Link href="/calculator/nepal-vehicle-tax/" className="text-emerald-400 hover:underline font-medium">
+              <span className="font-medium text-emerald-400">
                 NepaCalc Vehicle Tax Calculator
-              </Link>{' '}
+              </span>{' '}
               when you need an estimate.
             </p>
           </section>
@@ -1094,9 +1094,9 @@ export default function BluebookRenewalPage() {
               We separate national vehicle-registration rules from provincial vehicle-tax and transport-service requirements. National legal claims are checked against Nepal's published vehicle and transport laws and rules. Province-specific information is checked against government-published sources where available. When a tax amount or online service is subject to change, we identify the applicable authority rather than presenting an old amount as a permanent nationwide rule.
             </p>
             <p className="text-slate-500 text-xs mt-3">
-              <Link href="/data-policy/" className="hover:underline">Data Sources &amp; Methodology</Link>
+              <span className="font-medium text-slate-900">Data Sources &amp; Methodology</span>
               {' '}·{' '}
-              <Link href="/about/editorial-policy/" className="hover:underline">NepaCalc Editorial Policy</Link>
+              <span className="font-medium text-slate-900">NepaCalc Editorial Policy</span>
             </p>
           </section>
 
@@ -1117,9 +1117,9 @@ export default function BluebookRenewalPage() {
             </p>
             <p className="text-slate-400 text-xs mt-3">
               Published by{' '}
-              <Link href="/about/editorial-policy/" className="text-slate-500 hover:underline">
+              <span className="text-slate-500 font-medium">
                 NepaCalc Editorial Team
-              </Link>
+              </span>
             </p>
           </div>
 
