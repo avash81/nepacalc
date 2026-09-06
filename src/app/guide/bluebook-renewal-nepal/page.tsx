@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 
 // ─── METADATA ────────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
@@ -385,6 +386,21 @@ export default function BluebookRenewalPage() {
           {/* ── WHAT RENEWAL MEANS ── */}
           <section id="what-renewal-means" className="scroll-mt-24">
             <h2 className={h2}>What Does Bluebook Renewal Mean?</h2>
+            
+            <figure className="my-8 rounded-xl overflow-hidden border border-slate-200 shadow-sm bg-white">
+              <Image
+                src="/images/bluebook-renewal-nepal-process.webp"
+                alt="Bluebook renewal process in Nepal showing province, vehicle tax, requirements, payment and registration renewal steps"
+                width={1200}
+                height={675}
+                className="w-full h-auto"
+                priority
+              />
+              <figcaption className="text-center text-xs text-slate-500 py-3 border-t border-slate-100 bg-slate-50">
+                The standard vehicle registration renewal workflow in Nepal
+              </figcaption>
+            </figure>
+
             <p className={prose}>
               Bluebook renewal means renewing the validity of the vehicle registration certificate after it expires.
               Under the national{' '}
