@@ -169,7 +169,7 @@ export default function BluebookRenewalPage() {
       />
 
       <div className="min-h-screen bg-white">
-        <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8 pb-24">
+        <main className="w-full mx-auto px-4 sm:px-6 lg:px-16 xl:px-[96px] py-8 pb-24">
 
           {/* ── BREADCRUMB ── */}
           <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-1.5 text-[13px] text-slate-500 mb-6">
@@ -437,8 +437,8 @@ export default function BluebookRenewalPage() {
                 </thead>
                 <tbody className="divide-y divide-slate-100">
                   {[
-                    ['Bluebook', 'Vehicle registration certificate', 'Yes — the document being renewed'],
-                    ['Vehicle tax', 'Provincial vehicle-tax obligation', 'Often — as a renewal prerequisite'],
+                    ['Bluebook', 'Vehicle registration certificate', 'Yes - the document being renewed'],
+                    ['Vehicle tax', 'Provincial vehicle-tax obligation', 'Often - as a renewal prerequisite'],
                     ['Renewal fee', 'Registration renewal administration charge', 'Yes'],
                     ['Insurance', 'Required vehicle insurance (per national law)', 'Relevant prerequisite'],
                     ['Pollution certificate', 'Emissions/vehicle requirement where applicable', 'Where required'],
@@ -770,7 +770,7 @@ export default function BluebookRenewalPage() {
             </p>
             <ul className="list-disc pl-6 mt-3 space-y-1 text-slate-600">
               <li>the applicable province;</li>
-              <li>engine capacity (CC) — this is typically the primary classification factor;</li>
+              <li>engine capacity (CC) - this is typically the primary classification factor;</li>
               <li>private or commercial classification;</li>
               <li>the current applicable provincial vehicle-tax schedule;</li>
               <li>the renewal fee for the applicable category;</li>
@@ -814,17 +814,17 @@ export default function BluebookRenewalPage() {
             </p>
             <ul className="list-disc pl-6 mt-3 space-y-2 text-slate-600">
               <li>
-                <strong className="text-slate-800">Annual vehicle tax</strong> — the recurring annual tax for a
+                <strong className="text-slate-800">Annual vehicle tax</strong> - the recurring annual tax for a
                 registered EV. This is determined by the applicable provincial schedule, typically based on motor
                 power (kW) rather than engine capacity.
               </li>
               <li>
-                <strong className="text-slate-800">EV import taxation</strong> — a one-time charge when the
+                <strong className="text-slate-800">EV import taxation</strong> - a one-time charge when the
                 vehicle enters Nepal. Includes customs duty and other applicable import charges. This is entirely
                 separate from the annual renewal tax.
               </li>
               <li>
-                <strong className="text-slate-800">Registration and renewal</strong> — keeping the vehicle
+                <strong className="text-slate-800">Registration and renewal</strong> - keeping the vehicle
                 registration certificate valid, subject to the same general renewal framework as other vehicles.
               </li>
             </ul>
@@ -869,7 +869,7 @@ export default function BluebookRenewalPage() {
                 <p className="text-slate-600 text-sm mt-1">
                   Use the{' '}
                   <Link href="/calculator/nepal-vehicle-tax/" className={intLink}>NepaCalc Vehicle Tax Calculator</Link>
-                  {' '}for an estimate. The calculator is a calculation tool — the applicable government schedule
+                  {' '}for an estimate. The calculator is a calculation tool - the applicable government schedule
                   and transport authority determine the final legally correct amount.
                 </p>
               </div>
@@ -884,14 +884,14 @@ export default function BluebookRenewalPage() {
 
           {/* ── BEFORE YOU PAY ── */}
           <section id="before-you-pay" className="scroll-mt-24">
-            <h2 className={h2}>Before You Pay — Checklist</h2>
+            <h2 className={h2}>Before You Pay - Checklist</h2>
             <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-5">
               <ul className="space-y-2">
                 {[
                   'Identify the province and applicable provincial vehicle-tax schedule',
                   'Confirm vehicle category (bike, car, EV, commercial)',
                   'Confirm engine capacity (CC), motor power (kW) or other applicable specification',
-                  'Check renewal status — current, recently expired, or significantly overdue',
+                  'Check renewal status - current, recently expired, or significantly overdue',
                   'Confirm required insurance is valid',
                   'Check pollution certification requirements where applicable',
                   'Check route-permit requirements for commercial/public vehicles',
@@ -1032,12 +1032,12 @@ export default function BluebookRenewalPage() {
                 <tbody className="divide-y divide-slate-100">
                   {[
                     {
-                      source: 'Nepal Law Commission — Motor Vehicles and Transport Management Act',
+                      source: 'Nepal Law Commission - Motor Vehicles and Transport Management Act',
                       url: 'https://repository.lawcommission.gov.np/np/category/documents/prevailing-law/statutes-acts/',
                       what: 'National registration and renewal law, delayed-renewal provisions, multi-year renewal, cancellation and re-registration',
                     },
                     {
-                      source: 'Nepal Law Commission — Transport Management Rules',
+                      source: 'Nepal Law Commission - Transport Management Rules',
                       url: 'https://repository.lawcommission.gov.np/np/category/documents/prevailing-law/rules-and-regulations/',
                       what: 'Renewal procedure, documentation framework, pollution and route-permit documentation requirements',
                     },
@@ -1152,6 +1152,9 @@ export default function BluebookRenewalPage() {
     </>
   );
 }
+
+
+
 
 
 
