@@ -387,7 +387,7 @@ export default function BluebookRenewalPage() {
           <section id="what-renewal-means" className="scroll-mt-24">
             <h2 className={h2}>What Does Bluebook Renewal Mean?</h2>
             
-            <figure className="my-8 rounded-xl overflow-hidden border border-slate-200 shadow-sm bg-white">
+            <figure className="my-8 max-w-4xl mx-auto w-[90%] sm:w-[85%] lg:w-[70%] rounded-xl overflow-hidden border border-slate-200 shadow-sm bg-white">
               <Image
                 src="/images/bluebook-renewal-nepal-process.webp"
                 alt="Bluebook renewal process in Nepal showing province, vehicle tax, requirements, payment and registration renewal steps"
@@ -504,9 +504,9 @@ export default function BluebookRenewalPage() {
             <p className={prose}>
               Vehicle tax is administered within Nepal&apos;s seven provinces, each of which has its own applicable
               provincial economic legislation and transport-service framework. The{' '}
-              <a href="https://www.dotm.gov.np/" target="_blank" rel="noopener noreferrer" className={extLink}>
+              <span className="font-semibold text-slate-900">
                 Department of Transport Management
-              </a>{' '}
+              </span>{' '}
               provides transport-office references, tax-rate circulars and provincial economic-law references
               including separate legal schedules for each province.
             </p>
@@ -656,7 +656,7 @@ export default function BluebookRenewalPage() {
                 Motor Vehicles and Transport Management Act
               </span>{' '}
               provides a period after a certificate&apos;s stated validity for renewal before delayed-renewal
-              provisions apply. The Act specifies escalating additional charges for delayed renewal depending on
+              provisions apply. You can use our <Link href="/calculator/nepali-date/" className="text-emerald-700 hover:underline font-medium">Nepali Date Converter</Link> to accurately track your exact Bikram Sambat deadlines and avoid these penalties. The Act specifies escalating additional charges for delayed renewal depending on
               the length of delay, and contains provisions for eventual cancellation and re-registration where a
               vehicle remains unrenewed for an extended period.
             </p>
@@ -691,7 +691,7 @@ export default function BluebookRenewalPage() {
               addresses renewal of the registration certificate, and Schedule 11 of the Rules specifies the
               information submitted with a renewal application, including vehicle registration details, owner
               information, expiry, tax evidence, route-permit details for hired vehicles, and pollution information
-              where applicable.
+              where applicable. For newly imported vehicles, retaining customs clearance documents (and tracking the <Link href="/market-rates/exchange-rate-nepal/" className="text-emerald-700 hover:underline font-medium">Exchange Rate Nepal</Link> for your import valuation) is also crucial during initial registration and first-time tax assessment.
             </p>
             <p className={`${prose} mt-3`}>
               Requirements vary by vehicle, transaction and current office procedure. Commonly relevant items include:
@@ -726,7 +726,7 @@ export default function BluebookRenewalPage() {
               is the current regulatory body and publishes applicable insurance circulars including third-party
               vehicle insurance requirements. Insurance premiums are separate from provincial vehicle tax and
               from the renewal fee. Do not publish fixed insurance amounts without verifying against a current
-              Nepal Insurance Authority circular or applicable insurer schedule.
+              Nepal Insurance Authority circular or applicable insurer schedule. If you plan to finance a new vehicle purchase before handling its registration, check our <Link href="/calculator/nepal-loan-eligibility/" className="text-emerald-700 hover:underline font-medium">Nepal Loan Eligibility calculator</Link> to ensure you meet the required NRB guidelines.
             </p>
 
             <h3 className={h3}>Pollution certification</h3>
@@ -860,7 +860,7 @@ export default function BluebookRenewalPage() {
             </div>
             <p className={prose}>
               Each component depends on the vehicle and applicable provincial rules. The government assessment
-              or receipt is the final authority.
+              or receipt is the final authority. For personal finance planning, building these annual vehicle expenses into your monthly budget using our <Link href="/calculator/nepal-salary/" className="text-emerald-700 hover:underline font-medium">Nepal Salary Calculator</Link> can help manage cash flow.
             </p>
 
             <div className="mt-6 rounded-2xl bg-gradient-to-r from-emerald-50 to-green-50 border border-emerald-200 p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
@@ -894,12 +894,12 @@ export default function BluebookRenewalPage() {
                   'Check renewal status - current, recently expired, or significantly overdue',
                   'Confirm required insurance is valid',
                   'Check pollution certification requirements where applicable',
-                  'Check route-permit requirements for commercial/public vehicles',
+                  <span key="commercial">Check route-permit requirements for commercial/public vehicles (and use the <Link href="/calculator/nepal-income-tax/" className="text-emerald-700 hover:underline font-medium">Nepal Income Tax calculator</Link> if claiming commercial vehicle depreciation deductions)</span>,
                   'Check for any current government notices, waivers or special procedures',
                   'Verify the total amount with the applicable government source before payment',
                   'Keep the government payment receipt and any digital confirmation',
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-slate-700">
+                ].map((item, index) => (
+                  <li key={index} className="flex items-start gap-3 text-sm text-slate-700">
                     <span className="mt-0.5 w-5 h-5 rounded border-2 border-slate-300 flex-shrink-0 inline-block" />
                     {item}
                   </li>
