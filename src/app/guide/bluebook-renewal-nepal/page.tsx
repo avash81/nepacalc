@@ -54,48 +54,47 @@ export const metadata: Metadata = {
 };
 
 // ─── SCHEMA ──────────────────────────────────────────────────────────────────
-const pageSchema = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'Article',
-      '@id': 'https://nepacalc.com/guide/bluebook-renewal-nepal/#article',
-      mainEntityOfPage: {
-        '@type': 'WebPage',
-        '@id': 'https://nepacalc.com/guide/bluebook-renewal-nepal/',
-      },
-      headline: 'Bluebook Renewal in Nepal: Tax, Fees, Fine & Online Process',
-      description:
-        'Learn how Bluebook renewal works in Nepal, including vehicle tax, renewal fees, late charges, required documents, online payment, provincial rules and the renewal process.',
-      author: {
-        '@type': 'Organization',
-        name: 'NepaCalc Editorial Team',
-        url: 'https://nepacalc.com/about/editorial-policy/',
-      },
-      publisher: {
-        '@type': 'Organization',
-        name: 'NepaCalc',
-      },
-      datePublished: '2026-09-06',
-      dateModified: '2026-09-06',
-      image: 'https://nepacalc.com/images/bluebook-renewal-nepal-process.webp',
+const pageSchema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': 'https://nepacalc.com/guide/bluebook-renewal-nepal/#article',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': 'https://nepacalc.com/guide/bluebook-renewal-nepal/',
     },
-    {
-      '@type': 'BreadcrumbList',
-      '@id': 'https://nepacalc.com/guide/bluebook-renewal-nepal/#breadcrumb',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://nepacalc.com/' },
-        { '@type': 'ListItem', position: 2, name: 'Guide', item: 'https://nepacalc.com/guide/' },
-        {
-          '@type': 'ListItem',
-          position: 3,
-          name: 'Bluebook Renewal in Nepal',
-          item: 'https://nepacalc.com/guide/bluebook-renewal-nepal/',
-        },
-      ],
+    headline: 'Bluebook Renewal in Nepal: Tax, Fees, Fine & Online Process',
+    description:
+      'Learn how Bluebook renewal works in Nepal, including vehicle tax, renewal fees, late charges, required documents, online payment, provincial rules and the renewal process.',
+    author: {
+      '@type': 'Organization',
+      name: 'NepaCalc Editorial Team',
+      url: 'https://nepacalc.com/about/editorial-policy/',
     },
-  ],
-};
+    publisher: {
+      '@type': 'Organization',
+      name: 'NepaCalc',
+    },
+    datePublished: '2026-09-06',
+    dateModified: '2026-09-06',
+    image: 'https://nepacalc.com/images/bluebook-renewal-nepal-process.webp',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    '@id': 'https://nepacalc.com/guide/bluebook-renewal-nepal/#breadcrumb',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://nepacalc.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Guide', item: 'https://nepacalc.com/guide/' },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'Bluebook Renewal in Nepal',
+        item: 'https://nepacalc.com/guide/bluebook-renewal-nepal/',
+      },
+    ],
+  },
+];
 
 // ─── SHARED STYLE CONSTANTS ───────────────────────────────────────────────────
 const prose = 'text-slate-600 leading-relaxed';
@@ -237,7 +236,7 @@ export default function BluebookRenewalPage() {
 
           {/* ── FIND YOUR SITUATION ── */}
           <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5 mb-8">
-            <p className="font-bold text-slate-900 mb-3 text-sm">Find your situation</p>
+            <p className="font-bold text-slate-900 mb-3 text-sm">What are you trying to do?</p>
             <div className="grid sm:grid-cols-2 gap-2 text-sm">
               {[
                 { label: 'I want to calculate my vehicle tax', href: '/calculator/nepal-vehicle-tax/', ext: true },
@@ -285,12 +284,12 @@ export default function BluebookRenewalPage() {
                 <tbody className="divide-y divide-slate-100">
                   {[
                     ['What is a Bluebook?', 'Vehicle registration certificate'],
-                    ['What is renewal?', 'Renewing the validity of that certificate'],
-                    ['Is vehicle tax the same thing?', 'No — they are separate but often handled together'],
-                    ['Does tax vary by province?', 'Yes — provincial law determines the applicable rate'],
-                    ['Is insurance relevant?', 'Yes — required insurance is a renewal prerequisite'],
-                    ['Can everything be done online?', 'Depends on province and current service availability'],
-                    ['Where is the final amount confirmed?', 'The applicable government transport authority'],
+                    ['What is renewal?', "Renewal of the vehicle's registration"],
+                    ['Is vehicle tax the same thing?', 'No'],
+                    ['Does tax vary by province?', 'Yes'],
+                    ['Is insurance relevant?', 'Yes, where required'],
+                    ['Can everything be done online?', 'Depends on province/service availability'],
+                    ['Where is the final amount confirmed?', 'Applicable government authority'],
                   ].map(([q, a]) => (
                     <tr key={q} className="hover:bg-slate-50">
                       <td className="px-4 py-3 text-slate-700 font-medium">{q}</td>
@@ -319,7 +318,7 @@ export default function BluebookRenewalPage() {
 
           {/* ── TABLE OF CONTENTS ── */}
           <nav aria-label="Table of contents" className="mt-10 rounded-2xl border border-slate-200 bg-slate-50 p-5">
-            <p className="font-bold text-slate-900 mb-3 text-sm uppercase tracking-wide">On this page</p>
+            <h2 className="font-bold text-slate-900 mb-3 text-sm uppercase tracking-wide">On this page</h2>
             <ol className="grid sm:grid-cols-2 gap-x-8 gap-y-1.5 text-sm">
               {[
                 ['#quick-answer', 'Quick Answer'],
@@ -327,7 +326,7 @@ export default function BluebookRenewalPage() {
                 ['#what-renewal-means', 'What Does Bluebook Renewal Mean?'],
                 ['#tax-vs-renewal', 'Bluebook Renewal vs Vehicle Tax'],
                 ['#who-sets-tax', 'Who Sets Vehicle Tax in Nepal?'],
-                ['#province-guide', "Nepal's Seven Provinces"],
+                ['#province-guide', "Bluebook Renewal Across Nepal's Seven Provinces"],
                 ['#when-to-renew', 'When Should You Renew?'],
                 ['#late-renewal', 'What Happens When Renewal Is Late?'],
                 ['#documents', 'Documents and Requirements'],
@@ -526,7 +525,7 @@ export default function BluebookRenewalPage() {
                 <thead className="bg-slate-50 border-b border-slate-200">
                   <tr>
                     <th className="text-left px-4 py-3 font-semibold text-slate-700">Province</th>
-                    <th className="text-left px-4 py-3 font-semibold text-slate-700">Government vehicle-system entry</th>
+                    <th className="text-left px-4 py-3 font-semibold text-slate-700">Government vehicle-system entry point</th>
                     <th className="text-left px-4 py-3 font-semibold text-slate-700">Tax verification</th>
                     <th className="text-left px-4 py-3 font-semibold text-slate-700">Online availability</th>
                   </tr>
@@ -989,8 +988,7 @@ export default function BluebookRenewalPage() {
           <section className="mt-10 rounded-2xl bg-slate-900 text-white p-6">
             <h2 className="text-lg font-bold mb-3">In Brief</h2>
             <p className="text-slate-300 leading-relaxed text-sm">
-              Bluebook renewal is a vehicle-registration renewal process. The national Motor Vehicles and Transport
-              Management Act provides the registration framework, while provincial rules determine vehicle-tax
+              Bluebook renewal is a vehicle-registration renewal process. The national vehicle law provides the registration framework, while provincial rules determine vehicle-tax
               obligations and many practical service arrangements. The exact amount depends on the vehicle, province
               and renewal status. Use the current government source for the final legal amount and service
               requirements, and use the{' '}
@@ -1077,13 +1075,7 @@ export default function BluebookRenewalPage() {
           <section className="mt-10 rounded-2xl border border-slate-200 bg-slate-50 p-6">
             <h2 className="font-bold text-slate-900 text-base mb-3">How We Research This Guide</h2>
             <p className="text-slate-600 text-sm leading-relaxed">
-              This guide separates national vehicle-registration rules from provincial vehicle-tax and
-              transport-service requirements. National legal claims are checked against Nepal&apos;s published
-              vehicle and transport laws and rules where available. Province-specific information is checked against
-              government-published sources. Because tax schedules and digital services can change, we identify the
-              applicable authority rather than presenting a potentially outdated amount as a permanent nationwide rule.
-              When a number cannot be confidently verified from a current primary source, we direct users to the
-              applicable government source instead of publishing the figure.
+              We separate national vehicle-registration rules from provincial vehicle-tax and transport-service requirements. National legal claims are checked against Nepal's published vehicle and transport laws and rules. Province-specific information is checked against government-published sources where available. When a tax amount or online service is subject to change, we identify the applicable authority rather than presenting an old amount as a permanent nationwide rule.
             </p>
             <p className="text-slate-500 text-xs mt-3">
               <Link href="/data-policy/" className="hover:underline">Data Sources &amp; Methodology</Link>
@@ -1144,3 +1136,8 @@ export default function BluebookRenewalPage() {
     </>
   );
 }
+
+
+
+
+
