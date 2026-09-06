@@ -68,6 +68,7 @@ export default function NepalDirectoryPage() {
                 <li><Link href="/calculator/tds-calculator/" className="text-[#1a73e8] hover:underline font-medium">Nepal TDS Calculator</Link></li>
                 <li><Link href="/calculator/gold-tax/" className="text-[#1a73e8] hover:underline font-medium">Gold Tax Calculator Nepal</Link></li>
                 <li><Link href="/calculator/nepal-vehicle-tax/" className="text-[#1a73e8] hover:underline font-medium">Nepal Vehicle Tax Calculator</Link></li>
+                <li><Link href="/guide/bluebook-renewal-nepal/" className="text-[#1a73e8] hover:underline font-medium">Bluebook Renewal in Nepal – Complete Guide</Link></li>
                 <li><Link href="/nepal/nepal-budget/" className="text-[#1a73e8] hover:underline font-medium">Nepal Budget Highlights</Link></li>
               </ul>
             </section>
