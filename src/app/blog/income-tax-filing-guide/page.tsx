@@ -368,13 +368,17 @@ export default function IncomeTaxGuidePage() {
           <div className="mt-12 p-8 bg-[#1A1A2E] rounded-2xl text-white">
             <h3 className="text-xl font-black mb-4">Verify Your Income Tax &amp; Deductions Instantly</h3>
             <p className="text-slate-400 mb-6">Before submitting your D01/D03 return on the IRD Taxpayer Portal, double-check your numbers to ensure absolute compliance and prevent penalties.</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <Link href="/calculator/nepal-income-tax/" className="flex items-center justify-between p-4 bg-white/10 rounded-lg hover:bg-white/20 transition-all text-white no-underline">
                 <span className="font-bold">Income Tax Calculator 2082/83</span>
                 <ArrowRight className="w-4 h-4 text-blue-400" />
               </Link>
               <Link href="/calculator/nepal-salary/" className="flex items-center justify-between p-4 bg-white/10 rounded-lg hover:bg-white/20 transition-all text-white no-underline">
                 <span className="font-bold">Salary Take-Home Calculator</span>
+                <ArrowRight className="w-4 h-4 text-blue-400" />
+              </Link>
+              <Link href="/guide/bluebook-renewal-nepal/" className="flex items-center justify-between p-4 bg-white/10 rounded-lg hover:bg-white/20 transition-all text-white no-underline">
+                <span className="font-bold">Bluebook Renewal Guide</span>
                 <ArrowRight className="w-4 h-4 text-blue-400" />
               </Link>
             </div>

@@ -379,7 +379,7 @@ export default function BaseRateTrendsPage() {
             <div className="p-6 bg-slate-50 rounded-2xl border border-slate-200">
               <h5 className="font-black text-slate-900 mb-2">🚗 Auto Loan Borrowers (EV vs Fuel)</h5>
               <p className="text-xs text-slate-600 leading-relaxed">
-                To promote green transportation, Nepal Rastra Bank and commercial banks offer massive interest subsidies for Electric Vehicles (EVs). EV auto loans feature premium caps (often base rate + 1.5% to 2.5%) and a high Loan-to-Value (LTV) limit of up to 80%. Standard internal combustion engine vehicles, by contrast, are capped at 50% LTV and carry higher premiums.
+                To promote green transportation, Nepal Rastra Bank and commercial banks offer massive interest subsidies for Electric Vehicles (EVs). EV auto loans feature premium caps (often base rate + 1.5% to 2.5%) and a high Loan-to-Value (LTV) limit of up to 80%. Standard internal combustion engine vehicles, by contrast, are capped at 50% LTV and carry higher premiums. After purchasing a vehicle, make sure you also understand the annual <Link href="/guide/bluebook-renewal-nepal/" className="text-blue-600 underline">Bluebook renewal</Link> process — including provincial vehicle tax, required documents, and late-penalty rules.
               </p>
             </div>
             <div className="p-6 bg-slate-50 rounded-2xl border border-slate-200">

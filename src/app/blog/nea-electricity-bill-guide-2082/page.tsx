@@ -560,17 +560,17 @@ export default function NeaBillGuideBlog() {
           <div className="mt-12 border-t border-slate-200 pt-8">
             <h3 className="text-sm font-black text-slate-900 uppercase tracking-wider mb-6">Related calculators</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <Link href="/calculator/nepal-vehicle-tax/" className="p-4 bg-slate-50 rounded-xl border border-slate-100 hover:border-blue-300 hover:bg-blue-50/20 transition-all text-center group">
+                <span className="text-2xl block mb-2">🚗</span>
+                <span className="text-xs font-black text-slate-900 group-hover:text-blue-600 uppercase tracking-wider block">Vehicle Tax Calculator</span>
+              </Link>
+              <Link href="/guide/bluebook-renewal-nepal/" className="p-4 bg-slate-50 rounded-xl border border-slate-100 hover:border-blue-300 hover:bg-blue-50/20 transition-all text-center group">
+                <span className="text-2xl block mb-2">📋</span>
+                <span className="text-xs font-black text-slate-900 group-hover:text-blue-600 uppercase tracking-wider block">Bluebook Renewal Guide</span>
+              </Link>
               <Link href="/calculator/nepal-income-tax/" className="p-4 bg-slate-50 rounded-xl border border-slate-100 hover:border-blue-300 hover:bg-blue-50/20 transition-all text-center group">
                 <span className="text-2xl block mb-2">📊</span>
                 <span className="text-xs font-black text-slate-900 group-hover:text-blue-600 uppercase tracking-wider block">Income Tax Calculator</span>
-              </Link>
-              <Link href="/market-rates/" className="p-4 bg-slate-50 rounded-xl border border-slate-100 hover:border-blue-300 hover:bg-blue-50/20 transition-all text-center group">
-                <span className="text-2xl block mb-2">💹</span>
-                <span className="text-xs font-black text-slate-900 group-hover:text-blue-600 uppercase tracking-wider block">Nepal Market Rates</span>
-              </Link>
-              <Link href="/" className="p-4 bg-slate-50 rounded-xl border border-slate-100 hover:border-blue-300 hover:bg-blue-50/20 transition-all text-center group">
-                <span className="text-2xl block mb-2">🧮</span>
-                <span className="text-xs font-black text-slate-900 group-hover:text-blue-600 uppercase tracking-wider block">All Nepal Calculators</span>
               </Link>
             </div>
           </div>
