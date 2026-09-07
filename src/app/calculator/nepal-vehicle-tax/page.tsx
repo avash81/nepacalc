@@ -232,7 +232,7 @@ export default function Page() {
           <h2 id="annual-road-tax" className="text-2xl font-black text-slate-900 mt-12 mb-4">Annual Vehicle Tax (Bluebook Renewal)</h2>
           <div className="vehicle-tax-summary mb-6">
             <p className="mb-3">Annual Vehicle Tax is the recurring yearly tax that every vehicle owner in Nepal must pay to renew their bluebook (Vehicle Registration Certificate). It is collected by provincial governments and is based on vehicle type, engine capacity (CC) or motor power (kW).</p>
-            <p className="mb-3">This is <strong>not</strong> the same as EV import duty. Annual road tax applies to all registered vehicles : petrol, diesel and electric : every fiscal year.</p>
+            <p className="mb-3">This is <strong>not</strong> the same as EV import duty. Annual road tax applies to all registered vehicles : petrol, diesel and electric : every fiscal year. To understand the complete renewal workflow, penalties, and required documents, read our <Link href="/guide/bluebook-renewal-nepal/" className="text-blue-600 hover:underline">Complete Guide to Bluebook Renewal in Nepal</Link>.</p>
           </div>
 
           {/* ── How Vehicle Tax Works ── */}
