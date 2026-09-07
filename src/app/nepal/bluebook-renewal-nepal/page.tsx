@@ -347,14 +347,6 @@ export default function BluebookRenewalPage() {
             </ol>
           </nav>
 
-          {/* ── IMPORTANT NOTE ── */}
-          <div className="mt-8 rounded-xl bg-amber-50 border border-amber-200 p-4 text-sm text-amber-900">
-            <strong>Independent guide:</strong> NepaCalc is an independent information and calculation platform, not
-            a government transport office. This guide is based on published national laws and government-published
-            sources. Tax schedules, fees, penalties, online services and office procedures can change. Verify the
-            final amount and current requirements with the relevant government authority before payment.{' '}
-            <Link href="/data-policy/" className="underline">Data Sources &amp; Methodology</Link>
-          </div>
 
           {/* ── WHAT IS A BLUEBOOK ── */}
           <section id="what-is-bluebook" className="scroll-mt-24">
