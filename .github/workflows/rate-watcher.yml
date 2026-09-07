@@ -2,12 +2,11 @@ name: Smart Window Rate Watcher
 
 on:
   schedule:
-    # Early check: 10:30 AM NPT (04:45 UTC)
-    - cron: '45 4 * * 1-5'
-    # Core publishing window: 10:45, 10:55, 11:05, 11:20, 11:35 AM NPT
-    - cron: '0,10,20,35,50 5 * * 1-5'
-    # Late verification/fallback: 12:15 PM NPT (06:30 UTC)
-    - cron: '30 6 * * 1-5'
+    # 10:45, 11:00, 11:15, 11:30 AM NPT (05:00, 05:15, 05:30, 05:45 UTC)
+    - cron: '0,15,30,45 5 * * 1-5'
+    # Early and late checks
+    - cron: '30 4 * * 1-5'
+    - cron: '0 7 * * 1-5'
   workflow_dispatch:
 
 permissions:
@@ -35,7 +34,7 @@ jobs:
       - name: Check for Rate Changes
         id: git-check
         run: |
-          git diff --quiet public/data/live-rates.json public/data/market-rates.json public/data/forex-rates.json public/data/daily-history.json || echo "changed=true" >> $GITHUB_OUTPUT
+          git diff --quiet public/data/live-rates.json public/data/market-rates.json public/data/forex-rates.json public/data/daily-history.json src/hooks/useLiveRates.ts || echo "changed=true" >> $GITHUB_OUTPUT
 
       - name: Commit Updated Rates and Trigger Deploy
         if: steps.git-check.outputs.changed == 'true'
