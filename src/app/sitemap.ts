@@ -45,7 +45,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/nepal/nepal-budget',
     '/market-rates',
     '/guide',
-    '/guide/bluebook-renewal-nepal',
+    '/nepal/bluebook-renewal-nepal',
     '/income-tax',
     '/income-tax/nepal-income-tax-slab-2083-84',
     '/income-tax/how-to-calculate-income-tax-nepal',
@@ -56,7 +56,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route === '' ? 1.0 :
               route === '/engineering/3d' ? 0.95 :
               route === '/nepal/nepal-budget' ? 0.95 :
-              route === '/guide/bluebook-renewal-nepal' ? 0.9 :
+              route === '/nepal/bluebook-renewal-nepal' ? 0.9 :
               (route === '/about/editorial-policy' || route === '/about/math-team' || route === '/changelog') ? 0.8 :
               (route === '/electricity/nea-tariff-rates' || route === '/electricity/nepal-unit-price') ? 0.85 : 0.85,
   }));

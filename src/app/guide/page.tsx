@@ -26,7 +26,7 @@ export default function GuidesPage() {
           </p>
         </div>
         <div className="grid gap-4 md:grid-cols-2 mt-8">
-          <Link href="/guide/bluebook-renewal-nepal/" className="block bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+          <Link href="/nepal/bluebook-renewal-nepal/" className="block bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
             <h2 className="font-bold text-lg text-gray-900 mb-2">Bluebook Renewal in Nepal</h2>
             <p className="text-gray-600 text-sm">Comprehensive guide on vehicle tax, renewal fees, late charges, and online payment across all seven provinces.</p>
           </Link>

@@ -44,6 +44,7 @@ RewriteRule ^\.well-known/apple-app-site-association/?$ / [L,R=301]
 RewriteRule ^apple-app-site-association/?$ / [L,R=301]
 
 # Structural Category Changes
+RewriteRule ^guide/bluebook-renewal-nepal/?$ /nepal/bluebook-renewal-nepal/ [L,R=301]
 RewriteRule ^calculator/market-rates/live-silver-price/?$ /market-rates/silver-price-nepal/ [L,R=301]
 RewriteRule ^market-rates/live-silver-price/?$ /market-rates/silver-price-nepal/ [L,R=301]
 RewriteRule ^calculator/market-rates/live-gold-price/?$ /market-rates/live-gold-price/ [L,R=301]

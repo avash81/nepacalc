@@ -170,7 +170,7 @@ export default function Page() {
           </div>
 
           <p className="text-lg leading-relaxed mb-10">
-            Calculate vehicle tax, bluebook renewal charges, road tax penalties and electric vehicle tax using the latest Nepal vehicle tax rates for FY 2083/84. This Vehicle Tax Calculator Nepal supports motorcycles, scooters, cars, jeeps, buses, trucks and EVs using guidelines set by the Department of Transport Management (DOTM) and the Bagmati Province Finance Act. For a broader explanation of the renewal process, documents, late renewal and provincial procedures, see our <Link href="/guide/bluebook-renewal-nepal/" className="text-blue-600 hover:underline">Bluebook Renewal in Nepal</Link> guide.
+            Calculate vehicle tax, bluebook renewal charges, road tax penalties and electric vehicle tax using the latest Nepal vehicle tax rates for FY 2083/84. This Vehicle Tax Calculator Nepal supports motorcycles, scooters, cars, jeeps, buses, trucks and EVs using guidelines set by the Department of Transport Management (DOTM) and the Bagmati Province Finance Act. For a broader explanation of the renewal process, documents, late renewal and provincial procedures, see our <Link href="/nepal/bluebook-renewal-nepal/" className="text-blue-600 hover:underline">Bluebook Renewal in Nepal</Link> guide.
           </p>
 
           {/* ── Table of Contents (Mobile) ── */}

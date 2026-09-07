@@ -241,7 +241,7 @@ export default function NepaliDateConverter() {
                 <p className="mb-4">Select the Gregorian year, month, and day in the AD to BS converter. NepaCalc calculates the corresponding Bikram Sambat date automatically.</p>
 
                 <h3 id="why-exact-date-matters" className="text-[19px] font-bold text-[#202124] mt-6 mb-3">Why Exact Date Conversion Matters</h3>
-                <p className="mb-4">BS and AD are different calendar systems, so the exact relationship between a date in one calendar and a date in the other depends on the calendar date rather than a single fixed year difference. For documents, records, applications, birthdays, and other important dates, use an exact date conversion instead of a rough year-only calculation. This is especially useful for managing official timelines, such as tracking your <Link href="/guide/bluebook-renewal-nepal/" className="text-[#1A73E8] hover:underline font-medium">vehicle registration deadlines</Link> before late penalties apply.</p>
+                <p className="mb-4">BS and AD are different calendar systems, so the exact relationship between a date in one calendar and a date in the other depends on the calendar date rather than a single fixed year difference. For documents, records, applications, birthdays, and other important dates, use an exact date conversion instead of a rough year-only calculation. This is especially useful for managing official timelines, such as tracking your <Link href="/nepal/bluebook-renewal-nepal/" className="text-[#1A73E8] hover:underline font-medium">vehicle registration deadlines</Link> before late penalties apply.</p>
               </div>
 
               <div>

@@ -52,7 +52,7 @@ export function IncomeTaxSeoContent() {
       {/* SECTION: INCOME TYPES SUPPORTED */}
       <h2 id="supported-types" className="text-2xl font-black text-[#202124] mt-12 mb-4 scroll-mt-24">Income Types Supported</h2>
       <p className="text-base text-[#3C4043] mb-4">
-        This calculator supports personal income earned from multiple sources under Nepal's Income Tax Act. If you also own a private vehicle, you can check our <Link href="/guide/bluebook-renewal-nepal/" className="text-[#1A73E8] hover:underline font-medium">vehicle tax obligations and Bluebook registration guide</Link> to budget your annual government taxes accurately.
+        This calculator supports personal income earned from multiple sources under Nepal's Income Tax Act. If you also own a private vehicle, you can check our <Link href="/nepal/bluebook-renewal-nepal/" className="text-[#1A73E8] hover:underline font-medium">vehicle tax obligations and Bluebook registration guide</Link> to budget your annual government taxes accurately.
       </p>
       <div className="overflow-x-auto my-6">
         <table className="min-w-full text-sm text-left border border-[#DADCE0] rounded-lg">
