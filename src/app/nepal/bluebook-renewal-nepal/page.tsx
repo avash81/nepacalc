@@ -1147,6 +1147,37 @@ export default function BluebookRenewalPage() {
             </div>
           </section>
 
+          {/* ── RELATED TOOLS & GUIDES ── */}
+          <section className="mt-10 mb-2">
+            <h2 className="font-bold text-slate-900 text-lg mb-4">Related Nepal Calculators &amp; Guides</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <Link href="/calculator/nepal-vehicle-tax/" className="group p-4 rounded-xl border border-slate-200 bg-white hover:border-blue-200 hover:shadow-sm transition-all duration-200">
+                <h3 className="font-semibold text-blue-700 group-hover:text-blue-800 mb-1">Nepal Vehicle Tax Calculator</h3>
+                <p className="text-sm text-slate-600">Estimate your annual vehicle tax by province and engine capacity.</p>
+              </Link>
+              <Link href="/calculator/nepal-income-tax/" className="group p-4 rounded-xl border border-slate-200 bg-white hover:border-blue-200 hover:shadow-sm transition-all duration-200">
+                <h3 className="font-semibold text-blue-700 group-hover:text-blue-800 mb-1">Nepal Income Tax Calculator</h3>
+                <p className="text-sm text-slate-600">Calculate your personal income tax liability based on the latest slabs.</p>
+              </Link>
+              <Link href="/calculator/nepal-salary/" className="group p-4 rounded-xl border border-slate-200 bg-white hover:border-blue-200 hover:shadow-sm transition-all duration-200">
+                <h3 className="font-semibold text-blue-700 group-hover:text-blue-800 mb-1">Nepal Salary Tax Calculator</h3>
+                <p className="text-sm text-slate-600">Convert gross salary to net take-home pay with SSF, EPF and tax deductions.</p>
+              </Link>
+              <Link href="/calculator/nea-bill/" className="group p-4 rounded-xl border border-slate-200 bg-white hover:border-blue-200 hover:shadow-sm transition-all duration-200">
+                <h3 className="font-semibold text-blue-700 group-hover:text-blue-800 mb-1">NEA Electricity Bill Calculator</h3>
+                <p className="text-sm text-slate-600">Estimate your monthly electricity bill based on NEA domestic tariff rates.</p>
+              </Link>
+              <Link href="/calculator/nepali-date/" className="group p-4 rounded-xl border border-slate-200 bg-white hover:border-blue-200 hover:shadow-sm transition-all duration-200">
+                <h3 className="font-semibold text-blue-700 group-hover:text-blue-800 mb-1">Nepali Date Converter</h3>
+                <p className="text-sm text-slate-600">Accurately convert dates between Bikram Sambat (BS) and Gregorian (AD).</p>
+              </Link>
+              <Link href="/nepal/nepal-budget/" className="group p-4 rounded-xl border border-slate-200 bg-white hover:border-blue-200 hover:shadow-sm transition-all duration-200">
+                <h3 className="font-semibold text-blue-700 group-hover:text-blue-800 mb-1">Nepal Budget Highlights</h3>
+                <p className="text-sm text-slate-600">Review major financial highlights, tax changes and provisions from the national budget.</p>
+              </Link>
+            </div>
+          </section>
+
         </main>
       </div>
     </>
