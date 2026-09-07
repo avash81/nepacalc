@@ -2,6 +2,7 @@ name: Smart Window Rate Watcher
 
 # Runs Mon–Fri from 10:00 AM to 12:30 PM NPT (04:15–07:00 UTC)
 # Every 15 minutes inside the window — catches FENEGOSIDA publishing at any time
+# On rate change: commits data → triggers daily-deploy.yml via repository_dispatch
 
 on:
   schedule:
@@ -33,21 +34,18 @@ permissions:
   contents: write
 
 jobs:
-  fetch-and-deploy:
+  check-rates:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 5
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
 
       - name: Fetch Official Rates (FENEGOSIDA + Forex)
         run: |
@@ -59,10 +57,10 @@ jobs:
         run: |
           if git diff --quiet public/data/live-rates.json public/data/market-rates.json public/data/forex-rates.json public/data/daily-history.json src/hooks/useLiveRates.ts; then
             echo "changed=false" >> $GITHUB_OUTPUT
-            echo "⏭️  No rate changes detected. Skipping build."
+            echo "⏭️  No rate changes — skipping deploy."
           else
             echo "changed=true" >> $GITHUB_OUTPUT
-            echo "✅ Rate changes detected. Proceeding with build and deploy."
+            echo "✅ Rate changes detected — triggering build and deploy."
           fi
 
       - name: Commit updated rate data
@@ -78,64 +76,45 @@ jobs:
           git commit -m "data: auto-update official rates [skip ci]"
           git push origin HEAD
 
-      - name: Install dependencies
-        if: steps.git-check.outputs.changed == 'true'
-        run: npm ci
-
-      - name: Build static site with fresh rates
-        if: steps.git-check.outputs.changed == 'true'
-        run: npm run build
-        env:
-          NODE_ENV: production
-          NEXT_PUBLIC_SITE_URL: "https://nepacalc.com"
-          NEXT_PUBLIC_FIREBASE_PROJECT_ID: "calcpro-e1dd9"
-          NEXT_PUBLIC_FIREBASE_DATABASE_ID: "ai-studio-d5cad48c-3132-4615-96f7-ef198596220d"
-          NEXT_PUBLIC_FIREBASE_API_KEY: "AIzaSyAUAbGWU1eMw7eePLTG0D1gbQRssGqw6V8"
-          NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: "calcpro-e1dd9.firebaseapp.com"
-          NEXT_PUBLIC_FIREBASE_APP_ID: "1:369907965034:web:71504a7c24a9b3690dfe13"
-          NEXT_PUBLIC_GA_ID: "G-G78ED8CZ3D"
-
-      - name: Commit built output to main
+      - name: Trigger full build and cPanel deploy
         if: steps.git-check.outputs.changed == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/avash81/nepacalc.git
-          git pull --rebase origin main
-          git add -f out/
-          git add public/data/live-rates.json public/data/market-rates.json public/data/forex-rates.json public/data/daily-history.json
-          git diff --staged --quiet || git commit -m "ci: auto-deploy fresh rates build [skip ci]"
-          git push --force-with-lease origin main
+          echo "🚀 Dispatching rates_updated event to trigger daily-deploy..."
+          HTTP_STATUS=$(curl -s -o /tmp/dispatch_response.json -w "%{http_code}" \
+            -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token ${GITHUB_TOKEN}" \
+            https://api.github.com/repos/${{ github.repository }}/dispatches \
+            -d '{"event_type": "rates_updated"}')
+          echo "Dispatch HTTP status: $HTTP_STATUS"
+          cat /tmp/dispatch_response.json || true
+          if [ "$HTTP_STATUS" = "204" ]; then
+            echo "✅ Deploy triggered successfully."
+          else
+            echo "⚠️  Unexpected dispatch status: $HTTP_STATUS"
+          fi
 
-      - name: Deploy to cPanel — pull from GitHub
-        if: steps.git-check.outputs.changed == 'true'
+      - name: Show current rates
         run: |
-          echo "🚀 Triggering cPanel git pull..."
-          PULL_STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" \
-            -H "Authorization: cpanel nepacalc:${{ secrets.CPANEL_API_TOKEN }}" \
-            "https://194.233.72.227:2083/execute/VersionControl/update?repository_root=%2Fhome%2Fnepacalc%2Frepositories%2Fnepacalc-live")
-          echo "cPanel pull HTTP status: $PULL_STATUS"
-
-      - name: Deploy to cPanel — deploy to public_html
-        if: steps.git-check.outputs.changed == 'true'
-        run: |
-          echo "🚀 Triggering cPanel deploy to public_html..."
-          DEPLOY_STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" \
-            -H "Authorization: cpanel nepacalc:${{ secrets.CPANEL_API_TOKEN }}" \
-            "https://194.233.72.227:2083/execute/VersionControlDeployment/create?repository_root=%2Fhome%2Fnepacalc%2Frepositories%2Fnepacalc-live")
-          echo "cPanel deploy HTTP status: $DEPLOY_STATUS"
-
-      - name: Log final status
-        run: |
-          echo "=== Rate Watcher Complete ==="
-          echo "Changed: ${{ steps.git-check.outputs.changed }}"
+          echo "=== Current market-rates.json ==="
           cat public/data/market-rates.json | python3 -c "
           import sys, json
           d = json.load(sys.stdin)
-          print(f'Gold (1 Tola):   NPR {d[\"gold\"][\"tolaNPR\"][\"current\"]:,}')
-          print(f'Silver (1 Tola): NPR {d[\"silver\"][\"tolaNPR\"][\"current\"]:,}')
-          print(f'Status:          {d[\"status\"]}')
-          print(f'Rate Date:       {d[\"rate_date\"]}')
+          print(f'  Gold (1 Tola):   NPR {d[\"gold\"][\"tolaNPR\"][\"current\"]:,}')
+          print(f'  Silver (1 Tola): NPR {d[\"silver\"][\"tolaNPR\"][\"current\"]:,}')
+          print(f'  Status:          {d[\"status\"]}')
+          print(f'  Rate Date:       {d[\"rate_date\"]}')
           " 2>/dev/null || cat public/data/market-rates.json
+          echo ""
+          echo "=== Current forex-rates.json ==="
+          cat public/data/forex-rates.json | python3 -c "
+          import sys, json
+          d = json.load(sys.stdin)
+          r = d.get('rates', {})
+          print(f'  1 USD = NPR {r.get(\"NPR\", \"N/A\")}')
+          print(f'  1 USD = INR {r.get(\"INR\", \"N/A\")}')
+          print(f'  Source: {d.get(\"source\", \"N/A\")}')
+          print(f'  Date:   {d.get(\"date\", \"N/A\")}')
+          " 2>/dev/null || cat public/data/forex-rates.json
