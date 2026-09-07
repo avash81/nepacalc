@@ -170,7 +170,7 @@ export default function Page() {
           </div>
 
           <p className="text-lg leading-relaxed mb-10">
-            Calculate vehicle tax, bluebook renewal charges, road tax penalties and electric vehicle tax using the latest Nepal vehicle tax rates for FY 2083/84. This Vehicle Tax Calculator Nepal supports motorcycles, scooters, cars, jeeps, buses, trucks and EVs using guidelines set by the Department of Transport Management (DOTM) and the Bagmati Province Finance Act. For a complete explanation of Bluebook renewal, provincial differences, documents and online services, read our <Link href="/guide/bluebook-renewal-nepal/" className="text-blue-600 hover:underline">Bluebook Renewal in Nepal guide</Link>. If you are a salaried employee or business owner, use our <Link href="/calculator/nepal-income-tax/" className="text-blue-600 hover:underline">Nepal Income Tax Calculator</Link> to estimate your annual income tax liability alongside your vehicle ownership costs.
+            Calculate vehicle tax, bluebook renewal charges, road tax penalties and electric vehicle tax using the latest Nepal vehicle tax rates for FY 2083/84. This Vehicle Tax Calculator Nepal supports motorcycles, scooters, cars, jeeps, buses, trucks and EVs using guidelines set by the Department of Transport Management (DOTM) and the Bagmati Province Finance Act. For a broader explanation of the renewal process, documents, late renewal and provincial procedures, see our <Link href="/guide/bluebook-renewal-nepal/" className="text-blue-600 hover:underline">Bluebook Renewal in Nepal</Link> guide.
           </p>
 
           {/* ── Table of Contents (Mobile) ── */}
@@ -232,7 +232,7 @@ export default function Page() {
           <h2 id="annual-road-tax" className="text-2xl font-black text-slate-900 mt-12 mb-4">Annual Vehicle Tax (Bluebook Renewal)</h2>
           <div className="vehicle-tax-summary mb-6">
             <p className="mb-3">Annual Vehicle Tax is the recurring yearly tax that every vehicle owner in Nepal must pay to renew their bluebook (Vehicle Registration Certificate). It is collected by provincial governments and is based on vehicle type, engine capacity (CC) or motor power (kW).</p>
-            <p className="mb-3">This is <strong>not</strong> the same as EV import duty. Annual road tax applies to all registered vehicles : petrol, diesel and electric : every fiscal year. To understand the complete renewal workflow, penalties, and required documents, read our <Link href="/guide/bluebook-renewal-nepal/" className="text-blue-600 hover:underline">Complete Guide to Bluebook Renewal in Nepal</Link>.</p>
+            <p className="mb-3">This is <strong>not</strong> the same as EV import duty. Annual road tax applies to all registered vehicles — petrol, diesel and electric — every fiscal year.</p>
           </div>
 
           {/* ── How Vehicle Tax Works ── */}
