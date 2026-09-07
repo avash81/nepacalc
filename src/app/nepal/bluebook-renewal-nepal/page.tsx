@@ -863,23 +863,6 @@ export default function BluebookRenewalPage() {
               or receipt is the final authority.
             </p>
 
-            <div className="mt-6 rounded-2xl bg-gradient-to-r from-emerald-50 to-green-50 border border-emerald-200 p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-              <div className="flex-1">
-                <p className="font-semibold text-slate-900 text-sm">Want to estimate your vehicle-tax amount?</p>
-                <p className="text-slate-600 text-sm mt-1">
-                  Use the{' '}
-                  <span className="font-semibold text-slate-900">NepaCalc Vehicle Tax Calculator</span>
-                  {' '}for an estimate. The calculator is a calculation tool - the applicable government schedule
-                  and transport authority determine the final legally correct amount.
-                </p>
-              </div>
-              <a
-                href="#calculate"
-                className="flex-shrink-0 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold rounded-xl transition-colors whitespace-nowrap"
-              >
-                Calculate Vehicle Tax →
-              </a>
-            </div>
           </section>
 
           {/* ── BEFORE YOU PAY ── */}
@@ -1151,9 +1134,9 @@ export default function BluebookRenewalPage() {
           <section className="mt-10 mb-2">
             <h2 className="font-bold text-slate-900 text-lg mb-4">Related Nepal Calculators &amp; Guides</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <Link href="/calculator/nepal-vehicle-tax/" className="group p-4 rounded-xl border border-slate-200 bg-white hover:border-blue-200 hover:shadow-sm transition-all duration-200">
-                <h3 className="font-semibold text-blue-700 group-hover:text-blue-800 mb-1">Nepal Vehicle Tax Calculator</h3>
-                <p className="text-sm text-slate-600">Estimate your annual vehicle tax by province and engine capacity.</p>
+              <Link href="/calculator/nepal-tds/" className="group p-4 rounded-xl border border-slate-200 bg-white hover:border-blue-200 hover:shadow-sm transition-all duration-200">
+                <h3 className="font-semibold text-blue-700 group-hover:text-blue-800 mb-1">Nepal TDS Calculator</h3>
+                <p className="text-sm text-slate-600">Calculate Tax Deducted at Source on rent, service, contracts and other payments.</p>
               </Link>
               <Link href="/calculator/nepal-income-tax/" className="group p-4 rounded-xl border border-slate-200 bg-white hover:border-blue-200 hover:shadow-sm transition-all duration-200">
                 <h3 className="font-semibold text-blue-700 group-hover:text-blue-800 mb-1">Nepal Income Tax Calculator</h3>
