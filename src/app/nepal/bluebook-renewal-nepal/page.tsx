@@ -304,15 +304,13 @@ export default function BluebookRenewalPage() {
             {/* Early calculator CTA */}
             <div className="mt-6 rounded-xl bg-gradient-to-r from-emerald-50 to-green-50 border border-emerald-200 p-4 flex flex-col sm:flex-row items-start sm:items-center gap-3">
               <p className="text-sm text-slate-700 flex-1">
-                Need to estimate your vehicle-tax liability? Use the{' '}
-                <Link href="/calculator/nepal-vehicle-tax/" className={intLink}>NepaCalc Vehicle Tax Calculator</Link>,
-                then verify the final amount against the applicable provincial government schedule.
+                To calculate manually using the formula, see the <Link href="#calculate" className={intLink}>breakdown below</Link>. Or use the NepaCalc Vehicle Tax Calculator to automate the calculation.
               </p>
               <Link
-                href="#calculate"
+                href="/calculator/nepal-vehicle-tax/"
                 className="flex-shrink-0 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold rounded-lg transition-colors whitespace-nowrap"
               >
-                Calculate →
+                Automate Calculation →
               </Link>
             </div>
           </section>
