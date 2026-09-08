@@ -1,33 +1,13 @@
 name: Smart Window Rate Watcher
 
-# Runs Mon–Fri from 10:00 AM to 12:30 PM NPT (04:15–07:00 UTC)
-# Every 15 minutes inside the window — catches FENEGOSIDA publishing at any time
-# On rate change: commits data → triggers daily-deploy.yml via repository_dispatch
+# Runs Mon–Fri at 11:00 AM NPT (05:15 UTC) — FENEGOSIDA publishes by 10:55 AM NPT daily
+# Single reliable cron avoids GitHub scheduler throttling from multiple schedule entries
+# Manual trigger available via workflow_dispatch
 
 on:
   schedule:
-    # 10:00 AM NPT = 04:15 UTC
-    - cron: '15 4 * * 1-5'
-    # 10:15 AM NPT = 04:30 UTC
-    - cron: '30 4 * * 1-5'
-    # 10:30 AM NPT = 04:45 UTC
-    - cron: '45 4 * * 1-5'
-    # 10:45 AM NPT = 05:00 UTC
-    - cron: '0 5 * * 1-5'
-    # 11:00 AM NPT = 05:15 UTC
+    # 11:00 AM NPT = 05:15 UTC  (Mon–Fri)
     - cron: '15 5 * * 1-5'
-    # 11:15 AM NPT = 05:30 UTC
-    - cron: '30 5 * * 1-5'
-    # 11:30 AM NPT = 05:45 UTC
-    - cron: '45 5 * * 1-5'
-    # 11:45 AM NPT = 06:00 UTC
-    - cron: '0 6 * * 1-5'
-    # 12:00 PM NPT = 06:15 UTC
-    - cron: '15 6 * * 1-5'
-    # 12:15 PM NPT = 06:30 UTC
-    - cron: '30 6 * * 1-5'
-    # 12:30 PM NPT = 06:45 UTC
-    - cron: '45 6 * * 1-5'
   workflow_dispatch:
 
 permissions:
