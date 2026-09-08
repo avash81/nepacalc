@@ -1,21 +1,21 @@
-name: Smart Window Rate Watcher
+name: Rate Backup (Safety Net)
 
-# PRIMARY: Runs Mon–Fri at 11:00 AM NPT (05:15 UTC)
-# FENEGOSIDA always publishes by 10:55 AM NPT
-# Backup workflow rate-backup.yml fires at 11:45 AM NPT as safety net
-# Single cron avoids GitHub scheduler throttling
+# Backup safety net — runs Mon–Fri at 11:45 AM NPT (06:00 UTC)
+# Fires 45 minutes after the primary rate-watcher.yml (11:00 AM NPT)
+# Ensures rates are ALWAYS updated even if GitHub skips the primary run
+# Independent workflow = not subject to same throttle as rate-watcher.yml
 
 on:
   schedule:
-    # 11:00 AM NPT = 05:15 UTC  (Mon–Fri)
-    - cron: '15 5 * * 1-5'
+    # 11:45 AM NPT = 06:00 UTC  (Mon–Fri)
+    - cron: '0 6 * * 1-5'
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  check-rates:
+  backup-rates:
     runs-on: ubuntu-latest
     timeout-minutes: 5
 
@@ -38,10 +38,10 @@ jobs:
         run: |
           if git diff --quiet public/data/live-rates.json public/data/market-rates.json public/data/forex-rates.json public/data/daily-history.json src/hooks/useLiveRates.ts; then
             echo "changed=false" >> $GITHUB_OUTPUT
-            echo "⏭️  No rate changes — skipping deploy."
+            echo "⏭️  Backup: No rate changes — primary watcher already handled it."
           else
             echo "changed=true" >> $GITHUB_OUTPUT
-            echo "✅ Rate changes detected — triggering build and deploy."
+            echo "⚠️  Backup: Rate changes found — primary watcher missed this! Triggering deploy."
           fi
 
       - name: Commit updated rate data
@@ -54,7 +54,7 @@ jobs:
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/avash81/nepacalc.git
           git pull --rebase origin main
           git add public/data/live-rates.json public/data/market-rates.json public/data/forex-rates.json public/data/daily-history.json src/hooks/useLiveRates.ts
-          git commit -m "data: auto-update official rates [skip ci]"
+          git commit -m "data: backup-watcher rate update [skip ci]"
           git push origin HEAD
 
       - name: Trigger full build and cPanel deploy
@@ -62,7 +62,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "🚀 Dispatching rates_updated event to trigger daily-deploy..."
+          echo "🚀 Backup watcher dispatching rates_updated event..."
           HTTP_STATUS=$(curl -s -o /tmp/dispatch_response.json -w "%{http_code}" \
             -X POST \
             -H "Accept: application/vnd.github.v3+json" \
@@ -70,9 +70,8 @@ jobs:
             https://api.github.com/repos/${{ github.repository }}/dispatches \
             -d '{"event_type": "rates_updated"}')
           echo "Dispatch HTTP status: $HTTP_STATUS"
-          cat /tmp/dispatch_response.json || true
           if [ "$HTTP_STATUS" = "204" ]; then
-            echo "✅ Deploy triggered successfully."
+            echo "✅ Backup deploy triggered successfully."
           else
             echo "⚠️  Unexpected dispatch status: $HTTP_STATUS"
           fi
@@ -85,17 +84,6 @@ jobs:
           d = json.load(sys.stdin)
           print(f'  Gold (1 Tola):   NPR {d[\"gold\"][\"tolaNPR\"][\"current\"]:,}')
           print(f'  Silver (1 Tola): NPR {d[\"silver\"][\"tolaNPR\"][\"current\"]:,}')
-          print(f'  Status:          {d[\"status\"]}')
           print(f'  Rate Date:       {d[\"rate_date\"]}')
+          print(f'  Status:          {d[\"status\"]}')
           " 2>/dev/null || cat public/data/market-rates.json
-          echo ""
-          echo "=== Current forex-rates.json ==="
-          cat public/data/forex-rates.json | python3 -c "
-          import sys, json
-          d = json.load(sys.stdin)
-          r = d.get('rates', {})
-          print(f'  1 USD = NPR {r.get(\"NPR\", \"N/A\")}')
-          print(f'  1 USD = INR {r.get(\"INR\", \"N/A\")}')
-          print(f'  Source: {d.get(\"source\", \"N/A\")}')
-          print(f'  Date:   {d.get(\"date\", \"N/A\")}')
-          " 2>/dev/null || cat public/data/forex-rates.json
