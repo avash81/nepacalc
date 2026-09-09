@@ -1,16 +1,16 @@
 name: Smart Window Rate Watcher
 
-# PRIMARY: Runs Mon–Fri at 11:00 AM NPT (05:15 UTC)
-# FENEGOSIDA always publishes by 10:55 AM NPT
-# Backup workflow rate-backup.yml fires at 11:45 AM NPT as safety net
-# Single cron avoids GitHub scheduler throttling
+# Runs Mon–Fri every 15 mins from 10:30 AM to 12:45 PM NPT
+# 10:30 AM NPT = 04:45 UTC
+# 10:45 AM - 12:30 PM NPT = 05:00 - 06:45 UTC
+# 12:45 PM NPT = 07:00 UTC
+# Syncs repository BEFORE fetching rates to guarantee zero Git conflicts.
 
 on:
   schedule:
-    # 11:00 AM NPT = 05:15 UTC  (Mon–Fri)
-    - cron: '15 5 * * 1-5'
-    # 12:15 PM NPT = 06:30 UTC  (Mon–Fri) — second check
-    - cron: '30 6 * * 1-5'
+    - cron: '45 4 * * 1-5'
+    - cron: '*/15 5-6 * * 1-5'
+    - cron: '0 7 * * 1-5'
   workflow_dispatch:
 
 permissions:
@@ -24,11 +24,22 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+
+      - name: Sync with latest main (Zero Conflicts)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/avash81/nepacalc.git
+          git pull origin main --rebase
 
       - name: Fetch Official Rates (FENEGOSIDA + Forex)
         run: |
@@ -46,15 +57,9 @@ jobs:
             echo "✅ Rate changes detected — triggering build and deploy."
           fi
 
-      - name: Commit updated rate data
+      - name: Commit and push updated rate data
         if: steps.git-check.outputs.changed == 'true'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/avash81/nepacalc.git
-          git pull --rebase origin main
           git add public/data/live-rates.json public/data/market-rates.json public/data/forex-rates.json public/data/daily-history.json src/hooks/useLiveRates.ts
           git commit -m "data: auto-update official rates [skip ci]"
           git push origin HEAD
@@ -72,32 +77,8 @@ jobs:
             https://api.github.com/repos/${{ github.repository }}/dispatches \
             -d '{"event_type": "rates_updated"}')
           echo "Dispatch HTTP status: $HTTP_STATUS"
-          cat /tmp/dispatch_response.json || true
           if [ "$HTTP_STATUS" = "204" ]; then
             echo "✅ Deploy triggered successfully."
           else
             echo "⚠️  Unexpected dispatch status: $HTTP_STATUS"
           fi
-
-      - name: Show current rates
-        run: |
-          echo "=== Current market-rates.json ==="
-          cat public/data/market-rates.json | python3 -c "
-          import sys, json
-          d = json.load(sys.stdin)
-          print(f'  Gold (1 Tola):   NPR {d[\"gold\"][\"tolaNPR\"][\"current\"]:,}')
-          print(f'  Silver (1 Tola): NPR {d[\"silver\"][\"tolaNPR\"][\"current\"]:,}')
-          print(f'  Status:          {d[\"status\"]}')
-          print(f'  Rate Date:       {d[\"rate_date\"]}')
-          " 2>/dev/null || cat public/data/market-rates.json
-          echo ""
-          echo "=== Current forex-rates.json ==="
-          cat public/data/forex-rates.json | python3 -c "
-          import sys, json
-          d = json.load(sys.stdin)
-          r = d.get('rates', {})
-          print(f'  1 USD = NPR {r.get(\"NPR\", \"N/A\")}')
-          print(f'  1 USD = INR {r.get(\"INR\", \"N/A\")}')
-          print(f'  Source: {d.get(\"source\", \"N/A\")}')
-          print(f'  Date:   {d.get(\"date\", \"N/A\")}')
-          " 2>/dev/null || cat public/data/forex-rates.json
