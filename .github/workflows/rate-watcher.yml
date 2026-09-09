@@ -4,7 +4,7 @@ name: Smart Window Rate Watcher
 # 10:30 AM NPT = 04:45 UTC
 # 10:45 AM - 12:30 PM NPT = 05:00 - 06:45 UTC
 # 12:45 PM NPT = 07:00 UTC
-# Syncs repository BEFORE fetching rates to guarantee zero Git conflicts.
+# Features a robust git commit/rebase/push sequence to prevent any unstaged changes or push rejections.
 
 on:
   schedule:
@@ -25,21 +25,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
+          ref: main       # Ensure we check out the actual branch, not a detached HEAD
           fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-
-      - name: Sync with latest main (Zero Conflicts)
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/avash81/nepacalc.git
-          git pull origin main --rebase
 
       - name: Fetch Official Rates (FENEGOSIDA + Forex)
         run: |
@@ -59,10 +51,23 @@ jobs:
 
       - name: Commit and push updated rate data
         if: steps.git-check.outputs.changed == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          # 1. Setup git config
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/avash81/nepacalc.git
+          
+          # 2. Stage and commit FIRST (solves the unstaged changes crash)
           git add public/data/live-rates.json public/data/market-rates.json public/data/forex-rates.json public/data/daily-history.json src/hooks/useLiveRates.ts
           git commit -m "data: auto-update official rates [skip ci]"
-          git push origin HEAD
+          
+          # 3. Pull latest with rebase (solves push rejections if someone else pushed in the last minute)
+          git pull --rebase origin main
+          
+          # 4. Push safely
+          git push origin main
 
       - name: Trigger full build and cPanel deploy
         if: steps.git-check.outputs.changed == 'true'
