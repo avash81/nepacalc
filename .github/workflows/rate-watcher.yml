@@ -9,6 +9,8 @@ on:
   schedule:
     # 11:00 AM NPT = 05:15 UTC  (Mon–Fri)
     - cron: '15 5 * * 1-5'
+    # 12:15 PM NPT = 06:30 UTC  (Mon–Fri) — second check
+    - cron: '30 6 * * 1-5'
   workflow_dispatch:
 
 permissions:

@@ -9,6 +9,8 @@ on:
   schedule:
     # 11:45 AM NPT = 06:00 UTC  (Mon–Fri)
     - cron: '0 6 * * 1-5'
+    # 12:45 PM NPT = 07:00 UTC  (Mon–Fri) — second backup check
+    - cron: '0 7 * * 1-5'
   workflow_dispatch:
 
 permissions:
