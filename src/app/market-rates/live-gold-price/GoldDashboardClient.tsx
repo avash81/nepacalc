@@ -9,7 +9,6 @@ import Link from 'next/link';
 import MobileCollapsible from '@/components/ui/MobileCollapsible';
 
 import SeoSections from './SeoSections';
-import { HilltopAds300x250 } from '@/components/ads/HilltopAds300x250';
 import PricePerformanceWidget from '@/components/widgets/PricePerformanceWidget';
 
 
@@ -491,11 +490,6 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
             </tbody>
           </table>
         </div>
-      </div>
-
-      {/* HilltopAds 300×250 — test zone between rate table and calculator */}
-      <div className="flex justify-center my-6 no-print">
-        <HilltopAds300x250 />
       </div>
 
 
