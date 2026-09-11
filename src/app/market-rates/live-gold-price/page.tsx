@@ -28,8 +28,7 @@ function getLiveData() {
 export async function generateMetadata(): Promise<Metadata> {
   const { gold24k } = getLiveData();
 
-  const priceStr = gold24k ? ` Rs. ${(gold24k as number).toLocaleString('en-IN')}` : '';
-  const description = `Today's live gold price in Nepal from FENEGOSIDA: 24K Hallmark${priceStr} per tola. Check 22K Tejabi, silver, history and gold calculator.`;
+  const description = "Check today's live gold price in Nepal. Get official FENEGOSIDA rates for 24K Hallmark and 22K Tejabi gold per tola and 10 grams, with daily market trends.";
 
   return {
     title: "Gold Price in Nepal Today | Live FENEGOSIDA Rate",
