@@ -63,8 +63,8 @@ jobs:
           git add public/data/live-rates.json public/data/market-rates.json public/data/forex-rates.json public/data/daily-history.json src/hooks/useLiveRates.ts
           git commit -m "data: auto-update official rates [skip ci]"
           
-          # 3. Pull latest with rebase (solves push rejections if someone else pushed in the last minute)
-          git pull --rebase origin main
+          # 3. Pull latest with rebase and auto-resolve any data conflicts in our favor
+          git pull --rebase -X theirs origin main
           
           # 4. Push safely
           git push origin main
