@@ -39,7 +39,9 @@ const FENEGOSIDA_URL = 'https://www.fenegosida.org';
 // Nepali rateType identifiers
 const TYPES = {
   GOLD_TOLA:    'छापावाल सुन (१ तोला)',
+  GOLD_10G:     'छापावाल सुन (१० ग्राम)',
   SILVER_TOLA:  'असली चाँदी दर (१ तोला)',
+  SILVER_10G:   'असली चाँदी दर (१० ग्राम)',
   GOLD_TEJABI:  'तेजाबी सुन (१ तोला)',
 };
 
@@ -94,16 +96,20 @@ async function main() {
     }
 
     // Parse each rate type
-    const goldEntry    = data.find(d => d.rateType === TYPES.GOLD_TOLA);
-    const silverEntry  = data.find(d => d.rateType === TYPES.SILVER_TOLA);
-    const tejabiEntry  = data.find(d => d.rateType === TYPES.GOLD_TEJABI);
+    const goldEntry      = data.find(d => d.rateType === TYPES.GOLD_TOLA);
+    const gold10gEntry   = data.find(d => d.rateType === TYPES.GOLD_10G);
+    const silverEntry    = data.find(d => d.rateType === TYPES.SILVER_TOLA);
+    const silver10gEntry = data.find(d => d.rateType === TYPES.SILVER_10G);
+    const tejabiEntry    = data.find(d => d.rateType === TYPES.GOLD_TEJABI);
 
     if (!goldEntry || !silverEntry) {
       throw new Error(`Missing required rate types. Got: ${data.map(d => d.rateType).join(', ')}`);
     }
 
     const goldTola    = goldEntry.todayBaseRatePerGram;
+    const gold10g     = gold10gEntry   ? gold10gEntry.todayBaseRatePerGram   : Math.round(goldTola / 1.1664);
     const silverTola  = silverEntry.todayBaseRatePerGram;
+    const silver10g   = silver10gEntry ? silver10gEntry.todayBaseRatePerGram : Math.round(silverTola / 1.1664);
     const tejabiTola  = tejabiEntry ? tejabiEntry.todayBaseRatePerGram : Math.round(goldTola - 700);
     const publishedAt = goldEntry.todayDate; // ISO timestamp from FENEGOSIDA
     const rateDate    = publishedAt.split('T')[0];
@@ -111,14 +117,16 @@ async function main() {
     const output = {
       gold: {
         tolaNPR:       { current: goldTola,   previous: goldEntry.yestardayBaseRatePerGram },
+        tenGramNPR:    gold10g,
         tejabiTolaNPR: tejabiTola,
       },
       silver: {
-        tolaNPR: { current: silverTola, previous: silverEntry.yestardayBaseRatePerGram },
+        tolaNPR:    { current: silverTola, previous: silverEntry.yestardayBaseRatePerGram },
+        tenGramNPR: silver10g,
       },
       source:      'FENEGOSIDA',
       source_url:  FENEGOSIDA_API,
-      source_name: 'Federation of Nepal Gold & Silver Dealers\u2019 Association',
+      source_name: 'Federation of Nepal Gold \u0026 Silver Dealers\u2019 Association',
       rate_date:   rateDate,
       published_at: publishedAt,
       fetched_at:  fetchedAt,
