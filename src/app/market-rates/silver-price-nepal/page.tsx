@@ -39,7 +39,7 @@ function getLiveData() {
 export async function generateMetadata(): Promise<Metadata> {
   const { silver } = getLiveData();
 
-  const description = "Check today's live silver (Chandi) price in Nepal. View official FENEGOSIDA silver rates per tola, 10 grams, and kg, updated daily with market history.";
+  const description = "Live silver price in Nepal today with official FENEGOSIDA Chandi rates. Check per tola, gram and kilogram prices with daily updates and trends.";
   
   return {
     title: `Live Silver Price in Nepal Today | Chandi Rate Per Tola & Gram`,

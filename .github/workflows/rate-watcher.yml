@@ -9,8 +9,8 @@ name: Smart Window Rate Watcher
 on:
   schedule:
     - cron: '15,30,45 4 * * *'
-    - cron: '*/15 5-6 * * *'
-    - cron: '0 7 * * *'
+    - cron: '*/15 5-8 * * *'
+    - cron: '0 9 * * *'
   workflow_dispatch:
 
 permissions:
