@@ -170,13 +170,16 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
   // Silver fallback: initialSilver from build-time is more accurate than the old 4840 constant
   const silverTolaNPR = rates.silver?.tolaNPR?.current ?? initialSilver ?? 4965;
 
+  const gold10gNPR = rates.gold.tenGramNPR || Math.round(tolaNPR.current / 1.1664);
+  const silver10gNPR = rates.silver?.tenGramNPR || Math.round(silverTolaNPR / 1.1664);
+
   const tables = [
     { label: '24K Hallmark Gold', np: 'छापावाल सुन (प्रति तोला)', display: `Rs. ${fmt(tolaNPR.current)}`, unit: '1 Tola' },
-    { label: '24K Hallmark Gold', np: 'छापावाल सुन (१० ग्राम)', display: `Rs. ${fmt(Math.round(tolaNPR.current / 1.1664))}`, unit: '10 Gram' },
+    { label: '24K Hallmark Gold', np: 'छापावाल सुन (१० ग्राम)', display: `Rs. ${fmt(gold10gNPR)}`, unit: '10 Gram' },
     { label: '22K Tejabi Gold', np: 'तेजाबी सुन (प्रति तोला)', display: tejabiDisplayRate, unit: '1 Tola', isTejabi: true },
     { label: '22K Tejabi Gold', np: 'तेजाबी सुन (१० ग्राम)', display: tejabi10gDisplay, unit: '10 Gram', isTejabi: true },
     { label: 'Silver (Chandi)', np: 'चाँदी (प्रति तोला)', display: `Rs. ${fmt(silverTolaNPR)}`, unit: '1 Tola' },
-    { label: 'Silver (Chandi)', np: 'चाँदी (१० ग्राम)', display: `Rs. ${fmt(Math.round(silverTolaNPR / 1.1664))}`, unit: '10 Gram' },
+    { label: 'Silver (Chandi)', np: 'चाँदी (१० ग्राम)', display: `Rs. ${fmt(silver10gNPR)}`, unit: '10 Gram' },
   ];
 
   return (
@@ -335,7 +338,7 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
                 <tbody className="divide-y divide-slate-50">
                   {[
                     { unit: '1 Tola', divisor: 1 },
-                    { unit: '10 Gram', divisor: 1.1664 },
+                    { unit: '10 Gram', divisor: tolaNPR.current / gold10gNPR },
                     { unit: '1 Gram', divisor: 11.664 },
                     { unit: '1 Lal (1/8 Tola)', divisor: 8 },
                     { unit: '1 Aana (1/16 Tola)', divisor: 16 },
@@ -418,7 +421,7 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
               {[
                 { unit: '1 Gram', divisor: 11.664 },
                 { unit: '5 Gram', divisor: 11.664 / 5 },
-                { unit: '10 Gram', divisor: 1.1664 },
+                { unit: '10 Gram', divisor: tolaNPR.current / gold10gNPR },
                 { unit: '1 Lal (1/8 Tola)', divisor: 8 },
                 { unit: '1 Aana (1/16 Tola)', divisor: 16 },
                 { unit: 'Half Tola (½ Tola)', divisor: 2 },

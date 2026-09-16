@@ -309,10 +309,12 @@ export default async function Page() {
   const change24h = silverData?.tolaNPR?.change24h ?? (currentSilver - previousSilver);
   const changePercent24h = silverData?.tolaNPR?.changePercent24h ?? ((change24h / previousSilver) * 100);
   const isFresh = status === 'verified';
+  
+  const currentSilver10g = silverData?.tenGramNPR || Math.round(currentSilver / 1.1664);
 
   const tables = [
     { label: 'Fine Silver (Chandi)', np: 'शुद्ध चाँदी (प्रति तोला)', rate: currentSilver, unit: '1 Tola' },
-    { label: 'Fine Silver (Chandi)', np: 'शुद्ध चाँदी (१० ग्राम)', rate: Math.round(currentSilver / 1.1664), unit: '10 Gram' },
+    { label: 'Fine Silver (Chandi)', np: 'शुद्ध चाँदी (१० ग्राम)', rate: currentSilver10g, unit: '10 Gram' },
   ];
 
   return (
@@ -465,7 +467,7 @@ export default async function Page() {
                 <div className="flex-1">
                   <h2 className="text-xl font-black text-slate-900 tracking-tighter mb-4">Today&apos;s Rate Summary</h2>
                   <p className="text-[15px] text-slate-700 font-medium leading-relaxed mb-6">
-                    The official silver (Chandi) price in Nepal today is <strong>Rs. {fmt(currentSilver)}</strong> per Tola and <strong>Rs. {fmt(Math.round(currentSilver / 1.1664))}</strong> per 10 Grams. Prices closely reflect FENEGOSIDA benchmarks and include all standard Nepal customs and import duties.
+                    The official silver (Chandi) price in Nepal today is <strong>Rs. {fmt(currentSilver)}</strong> per Tola and <strong>Rs. {fmt(currentSilver10g)}</strong> per 10 Grams. Prices closely reflect FENEGOSIDA benchmarks and include all standard Nepal customs and import duties.
                   </p>
                   <p className="text-[14px] text-slate-700 font-medium leading-relaxed m-0">
                     <strong>Note:</strong> Since import costs dictate the final price, you should also check <a href="/market-rates/exchange-rate-nepal/" className="text-blue-600 underline font-bold hover:text-blue-600">Today&apos;s NRB Exchange Rate</a> and <a href="/market-rates/live-gold-price/" className="text-blue-600 underline font-bold hover:text-blue-600">Live Gold Prices</a>.

@@ -26,6 +26,7 @@ export interface LiveRates {
   gold: {
     tolaNPR: RateStats;
     tejabiTolaNPR: number;
+    tenGramNPR?: number;
     tolaInternationalNPR: number;
     spotUSD: number;
     provider: string;
@@ -43,6 +44,7 @@ export interface LiveRates {
   };
   silver: {
     tolaNPR: RateStats;
+    tenGramNPR?: number;
     tolaInternationalNPR: number;
   };
 }
