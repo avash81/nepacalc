@@ -337,17 +337,17 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
                 </thead>
                 <tbody className="divide-y divide-slate-50">
                   {[
-                    { unit: '1 Tola', divisor: 1 },
-                    { unit: '10 Gram', divisor: tolaNPR.current / gold10gNPR },
-                    { unit: '1 Gram', divisor: 11.664 },
-                    { unit: '1 Lal (1/8 Tola)', divisor: 8 },
-                    { unit: '1 Aana (1/16 Tola)', divisor: 16 },
-                    { unit: '100 Gram', divisor: 0.11664 },
-                    { unit: '1 Kg', divisor: 0.011664 },
-                  ].map(({ unit, divisor }) => (
+                    { unit: '1 Tola', value: tolaNPR.current },
+                    { unit: '10 Gram', value: gold10gNPR },
+                    { unit: '1 Gram', value: gold10gNPR / 10 },
+                    { unit: '1 Lal (1/100 Tola)', value: tolaNPR.current / 100 },
+                    { unit: '1 Aana (1/16 Tola)', value: tolaNPR.current / 16 },
+                    { unit: '100 Gram', value: gold10gNPR * 10 },
+                    { unit: '1 Kg', value: gold10gNPR * 100 },
+                  ].map(({ unit, value }) => (
                     <tr key={unit} className="hover:bg-slate-50">
                       <td className="py-2 pr-2 sm:pr-4 font-bold text-slate-700 whitespace-nowrap">{unit}</td>
-                      <td className="py-2 text-right font-black text-slate-900">Rs. {fmt(Math.round(tolaNPR.current / divisor))}</td>
+                      <td className="py-2 text-right font-black text-slate-900">Rs. {fmt(Math.round(value))}</td>
                       <td className="py-2 pl-2 sm:pl-3 whitespace-nowrap"><a href="/calculator/gold-converter/" className="text-[10px] text-blue-600 font-bold hover:underline">Convert →</a></td>
                     </tr>
                   ))}
@@ -419,24 +419,24 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
             </thead>
             <tbody className="divide-y divide-slate-50">
               {[
-                { unit: '1 Gram', divisor: 11.664 },
-                { unit: '5 Gram', divisor: 11.664 / 5 },
-                { unit: '10 Gram', divisor: tolaNPR.current / gold10gNPR },
-                { unit: '1 Lal (1/8 Tola)', divisor: 8 },
-                { unit: '1 Aana (1/16 Tola)', divisor: 16 },
-                { unit: 'Half Tola (½ Tola)', divisor: 2 },
-                { unit: '1 Tola', divisor: 1 },
-                { unit: '5 Tola', divisor: 0.2 },
-                { unit: '10 Tola', divisor: 0.1 },
-                { unit: '100 Gram', divisor: 0.11664 },
-              ].map(({ unit, divisor }) => (
+                { unit: '1 Gram', hallmark: gold10gNPR / 10, tejabi: tejabiTolaNPR / 11.664 },
+                { unit: '5 Gram', hallmark: gold10gNPR / 2, tejabi: (tejabiTolaNPR / 11.664) * 5 },
+                { unit: '10 Gram', hallmark: gold10gNPR, tejabi: (tejabiTolaNPR / 11.664) * 10 },
+                { unit: '1 Lal (1/100 Tola)', hallmark: tolaNPR.current / 100, tejabi: tejabiTolaNPR / 100 },
+                { unit: '1 Aana (1/16 Tola)', hallmark: tolaNPR.current / 16, tejabi: tejabiTolaNPR / 16 },
+                { unit: 'Half Tola (½ Tola)', hallmark: tolaNPR.current / 2, tejabi: tejabiTolaNPR / 2 },
+                { unit: '1 Tola', hallmark: tolaNPR.current, tejabi: tejabiTolaNPR },
+                { unit: '5 Tola', hallmark: tolaNPR.current * 5, tejabi: tejabiTolaNPR * 5 },
+                { unit: '10 Tola', hallmark: tolaNPR.current * 10, tejabi: tejabiTolaNPR * 10 },
+                { unit: '100 Gram', hallmark: gold10gNPR * 10, tejabi: (tejabiTolaNPR / 11.664) * 100 },
+              ].map(({ unit, hallmark, tejabi }) => (
                 <tr key={unit} className="hover:bg-slate-50">
                   <td className="py-3 px-5 font-bold text-slate-700">{unit}</td>
                   <td className="py-3 px-5 text-right font-black text-slate-900">
-                    {tolaNPR.current ? `Rs. ${fmt(Math.round(tolaNPR.current / divisor))}` : '—'}
+                    {tolaNPR.current ? `Rs. ${fmt(Math.round(hallmark))}` : '—'}
                   </td>
                   <td className="py-3 px-5 text-right font-medium text-slate-600">
-                    {tejabiTolaNPR && tejabiTolaNPR > 0 ? `Rs. ${fmt(Math.round(tejabiTolaNPR / divisor))}` : '—'}
+                    {tejabiTolaNPR && tejabiTolaNPR > 0 ? `Rs. ${fmt(Math.round(tejabi))}` : '—'}
                   </td>
                   <td className="py-3 px-5">
                     <a href="/calculator/gold-converter/" className="text-[10px] text-blue-600 font-bold hover:underline whitespace-nowrap">Convert →</a>
