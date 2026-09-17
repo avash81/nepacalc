@@ -1,15 +1,15 @@
 name: Smart Window Rate Watcher
 
-# Runs every day every 15 mins from 10:00 AM to 12:45 PM NPT
-# 10:00 AM - 10:30 AM NPT = 04:15, 04:30, 04:45 UTC
-# 10:45 AM - 12:30 PM NPT = 05:00 - 06:45 UTC
-# 12:45 PM NPT = 07:00 UTC
+# Runs every day every 15 mins from 9:00 AM to 12:45 PM NPT
+# 09:00 AM - 09:45 AM NPT = 03:15, 03:30, 03:45 UTC (1 hour early)
+# 10:00 AM - 10:45 AM NPT = 04:00, 04:15, 04:30, 04:45 UTC
+# 11:00 AM - 12:45 PM NPT = 05:15 - 07:00 UTC
 # Features a robust git commit/rebase/push sequence to prevent any unstaged changes or push rejections.
 
 on:
   schedule:
-    - cron: '15,30,45 4 * * *'
-    - cron: '*/15 5-8 * * *'
+    - cron: '15,30,45 3 * * *'
+    - cron: '*/15 4-8 * * *'
     - cron: '0 9 * * *'
   workflow_dispatch:
 

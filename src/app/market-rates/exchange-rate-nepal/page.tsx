@@ -23,12 +23,24 @@ function getForexRates() {
   try {
     const data = fs.readFileSync(path.join(process.cwd(), 'public', 'data', 'forex-rates.json'), 'utf8');
     const json = JSON.parse(data);
-    return json.rates;
+    // v3 format: { nrb_date, nrb_rates[], cross_rates{} }
+    if (json.nrb_rates && Array.isArray(json.nrb_rates)) return json;
+    // legacy format fallback
+    if (json.rates) return { nrb_rates: [], cross_rates: json.rates, nrb_date: json.date };
+    return null;
   } catch (e) {
     return null;
   }
 }
 
+// helpers for server-side static table — reads NRB official buy/sell
+function getNRBRate(nrbRates: any[], iso3: string) {
+  return nrbRates?.find((r: any) => r.iso3 === iso3) ?? null;
+}
+function fmtNRB(val: number | null) {
+  return val != null && val > 0 ? val.toFixed(2) : '—';
+}
+ 
 export async function generateMetadata() {
   const rawDate = getLiveDate();
   const year = rawDate.split('-')[0];
@@ -58,11 +70,17 @@ export async function generateMetadata() {
 
 export default async function Page() {
   const rawDate = getLiveDate();
-  const forexRates = getForexRates();
-  const initialRates = forexRates || { NPR: 134.0, EUR: 0.92, GBP: 0.79, AUD: 1.53, CAD: 1.36, JPY: 151, INR: 83.75, AED: 3.67, QAR: 3.64, SAR: 3.75 };
+  const forexData = getForexRates();
 
-  const fmt = (val: number) => (initialRates.NPR / val).toFixed(2);
-  const fmtBuy = (val: number) => ((initialRates.NPR / val) * 0.995).toFixed(2);
+  // Build initialRates in the new v3 shape expected by ForexDashboardClient
+  const initialRates = forexData ?? {
+    nrb_date: rawDate,
+    nrb_rates: [],
+    cross_rates: { NPR: 134.0, USD: 134.0, INR: 1.60 },
+  };
+
+  // Server-side helpers for the static SEO table below the dashboard
+  const nrbRatesArr: any[] = initialRates.nrb_rates ?? [];
 
   return (
     <div className="bg-white min-h-screen">
@@ -114,20 +132,43 @@ export default async function Page() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 bg-white">
-                  <tr><td className="px-4 py-3 font-semibold">US Dollar</td><td className="px-4 py-3 text-slate-500">USD</td><td className="px-4 py-3">{fmtBuy(1)}</td><td className="px-4 py-3">{fmt(1)}</td></tr>
-                  <tr><td className="px-4 py-3 font-semibold">Euro</td><td className="px-4 py-3 text-slate-500">EUR</td><td className="px-4 py-3">{fmtBuy(initialRates.EUR)}</td><td className="px-4 py-3">{fmt(initialRates.EUR)}</td></tr>
-                  <tr><td className="px-4 py-3 font-semibold">UK Pound Sterling</td><td className="px-4 py-3 text-slate-500">GBP</td><td className="px-4 py-3">{fmtBuy(initialRates.GBP)}</td><td className="px-4 py-3">{fmt(initialRates.GBP)}</td></tr>
-                  <tr><td className="px-4 py-3 font-semibold">Australian Dollar</td><td className="px-4 py-3 text-slate-500">AUD</td><td className="px-4 py-3">{fmtBuy(initialRates.AUD)}</td><td className="px-4 py-3">{fmt(initialRates.AUD)}</td></tr>
-                  <tr><td className="px-4 py-3 font-semibold">UAE Dirham</td><td className="px-4 py-3 text-slate-500">AED</td><td className="px-4 py-3">{fmtBuy(initialRates.AED)}</td><td className="px-4 py-3">{fmt(initialRates.AED)}</td></tr>
-                  <tr><td className="px-4 py-3 font-semibold">Qatari Riyal</td><td className="px-4 py-3 text-slate-500">QAR</td><td className="px-4 py-3">{fmtBuy(initialRates.QAR)}</td><td className="px-4 py-3">{fmt(initialRates.QAR)}</td></tr>
-                  <tr><td className="px-4 py-3 font-semibold">Saudi Riyal</td><td className="px-4 py-3 text-slate-500">SAR</td><td className="px-4 py-3">{fmtBuy(initialRates.SAR)}</td><td className="px-4 py-3">{fmt(initialRates.SAR)}</td></tr>
-                  <tr><td className="px-4 py-3 font-semibold">Indian Rupee</td><td className="px-4 py-3 text-slate-500">INR</td><td className="px-4 py-3 text-slate-400" colSpan={2}>Fixed: 100 INR = 160 NPR</td></tr>
+                  {[
+                    { name: 'US Dollar',         iso3: 'USD', flag: '🇺🇸' },
+                    { name: 'Euro',              iso3: 'EUR', flag: '🇪🇺' },
+                    { name: 'UK Pound Sterling', iso3: 'GBP', flag: '🇬🇧' },
+                    { name: 'Australian Dollar', iso3: 'AUD', flag: '🇦🇺' },
+                    { name: 'Canadian Dollar',   iso3: 'CAD', flag: '🇨🇦' },
+                    { name: 'Swiss Franc',       iso3: 'CHF', flag: '🇨🇭' },
+                    { name: 'Japanese Yen',      iso3: 'JPY', flag: '🇯🇵' },
+                    { name: 'Singapore Dollar',  iso3: 'SGD', flag: '🇸🇬' },
+                    { name: 'Chinese Yuan',      iso3: 'CNY', flag: '🇨🇳' },
+                    { name: 'UAE Dirham',        iso3: 'AED', flag: '🇦🇪' },
+                    { name: 'Qatari Riyal',      iso3: 'QAR', flag: '🇶🇦' },
+                    { name: 'Saudi Riyal',       iso3: 'SAR', flag: '🇸🇦' },
+                    { name: 'Kuwaiti Dinar',     iso3: 'KWD', flag: '🇰🇼' },
+                    { name: 'Bahraini Dinar',    iso3: 'BHD', flag: '🇧🇭' },
+                    { name: 'Malaysian Ringgit', iso3: 'MYR', flag: '🇲🇾' },
+                    { name: 'South Korean Won',  iso3: 'KRW', flag: '🇰🇷' },
+                    { name: 'Thai Baht',         iso3: 'THB', flag: '🇹🇭' },
+                    { name: 'Indian Rupee',      iso3: 'INR', flag: '🇮🇳' },
+                  ].map(({ name, iso3, flag }) => {
+                    const r = getNRBRate(nrbRatesArr, iso3);
+                    return (
+                      <tr key={iso3} id={`static-${iso3.toLowerCase()}`}>
+                        <td className="px-4 py-3 font-semibold">{flag} {name}</td>
+                        <td className="px-4 py-3 text-slate-500">{iso3}</td>
+                        <td className="px-4 py-3">{r ? fmtNRB(r.buy) : '—'}</td>
+                        <td className="px-4 py-3">{r ? fmtNRB(r.sell) : '—'}</td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
-            <p className="text-xs text-slate-400 mt-2">* Indicative rates based on <a href="https://www.nrb.org.np" target="_blank" rel="noopener noreferrer" className="underline">Nepal Rastra Bank</a> reference benchmarks. Updated automatically after NRB publishes daily exchange rates.</p>
+            <p className="text-xs text-slate-400 mt-2">* Official rates published by <a href="https://www.nrb.org.np" target="_blank" rel="noopener noreferrer" className="underline">Nepal Rastra Bank (NRB)</a>. Updated every banking day. Retail counter rates at banks may vary.</p>
           </div>
         </div>
+
 
         {/* ── PART 1 CONTENT STARTS HERE ── */}
         <div className="hp-container pb-24 border-t border-slate-100 pt-20">
@@ -228,8 +269,8 @@ export default async function Page() {
                 <li>Online international purchases</li>
                 <li>Monitoring the US Dollar against the Nepalese Rupee</li>
               </ul>
-              <p className="text-[#5F6368] leading-relaxed">Using official Nepal Rastra Bank rates helps users make informed financial decisions while avoiding outdated or inaccurate exchange information. If you&apos;re planning your finances around foreign income, our <Link href="/calculator/nepal-income-tax/" className="text-[#1a0dab] underline font-bold">Nepal Income Tax Calculator</Link> can help you calculate your tax liability.</p>
-              <p className="text-[#5F6368] leading-relaxed">For long-term planning, consider estimating your returns with our <Link href="/calculator/savings/" className="text-[#1a0dab] underline font-bold">Savings Calculator</Link>.</p>
+              <p className="text-[#5F6368] leading-relaxed">Using official Nepal Rastra Bank rates helps users make informed financial decisions while avoiding outdated or inaccurate exchange information.</p>
+
 
               {/* ── PART 2 CONTENT ── */}
 
