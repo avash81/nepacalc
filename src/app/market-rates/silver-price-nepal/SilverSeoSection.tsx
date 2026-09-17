@@ -220,7 +220,7 @@ export function SilverSeoContent({ silverData, source, date }: { silverData: any
               <li className="flex items-center gap-3 text-sm text-blue-800"><strong className="text-blue-900">Data Source:</strong> Federation of Nepal Gold and Silver Dealers&apos; Association (FENEGOSIDA)</li>
               <li className="flex items-center gap-3 text-sm text-blue-800"><strong className="text-blue-900">Market Coverage:</strong> Nepal</li>
               <li className="flex items-center gap-3 text-sm text-blue-800"><strong className="text-blue-900">Asset:</strong> Fine Silver (Chandi)</li>
-              <li className="flex items-center gap-3 text-sm text-blue-800"><strong className="text-blue-900">Standard Unit:</strong> 1 Tola = 11.6638 grams</li>
+              <li className="flex items-center gap-3 text-sm text-blue-800"><strong className="text-blue-900">Standard Unit:</strong> 1 Tola = 11.664 grams</li>
               <li className="flex items-center gap-3 text-sm text-blue-800"><strong className="text-blue-900">Update Frequency:</strong> Every working day (except public holidays and market closures)</li>
             </ul>
           </div>
@@ -261,7 +261,7 @@ export function SilverSeoContent({ silverData, source, date }: { silverData: any
             Official metric conversions are:
           </p>
           <ul className="list-none space-y-2 text-slate-700 font-medium mb-6 bg-slate-50 p-6 rounded-2xl border border-slate-200 not-prose">
-            <li><strong>1 Tola</strong> = 11.6638 grams</li>
+            <li><strong>1 Tola</strong> = 11.664 grams</li>
             <li><strong>1 Aana</strong> = 0.729 grams</li>
             <li><strong>1 Lal</strong> = 0.116638 grams</li>
             <li><strong>100 Lal</strong> = 1 Tola</li>
@@ -587,7 +587,7 @@ export function SilverSeoContent({ silverData, source, date }: { silverData: any
           <div className="space-y-6 mb-10">
             <div>
               <h3 className="text-lg font-bold text-slate-900 mb-2">How much is 1 Tola of silver in Nepal?</h3>
-              <p className="text-slate-700 font-medium">1 Tola of silver equals 11.6638 grams. You can check the current live rate per Tola at the top of this page.</p>
+              <p className="text-slate-700 font-medium">1 Tola of silver equals 11.664 grams. You can check the current live rate per Tola at the top of this page.</p>
             </div>
             <div>
               <h3 className="text-lg font-bold text-slate-900 mb-2">Where does the official silver rate come from?</h3>

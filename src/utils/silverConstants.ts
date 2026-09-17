@@ -19,7 +19,7 @@ export const SILVER_UNITS: Record<string, number> = {
   Milligram: 0.001,
   
   // Nepalese units
-  Tola: 11.6638038,
+  Tola: 11.664,
   Aana: 0.7289877,
   Lal: 0.116638038,
   Ratti: 0.1822469,

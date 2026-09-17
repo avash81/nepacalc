@@ -72,7 +72,7 @@ const faqSchema = {
       "name": "How many grams are in 1 Tola of gold in Nepal?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "One Tola of gold equals 11.6638 grams according to the official Nepal gold measurement system. One Tola is also equal to 100 Lal or 16 Aana."
+        "text": "One Tola of gold equals 11.664 grams according to the official Nepal gold measurement system. One Tola is also equal to 100 Lal or 16 Aana."
       }
     },
     {
@@ -80,7 +80,7 @@ const faqSchema = {
       "name": "How many Lal are in 1 Gram?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "1 Gram equals approximately 8.5735 Lal using the official Nepal gold measurement standard. You can convert Gram to Lal instantly using the Nepal Gold Unit Converter, which uses the official conversion factor based on 1 Tola = 11.6638 grams = 100 Lal."
+        "text": "1 Gram equals approximately 8.5735 Lal using the official Nepal gold measurement standard. You can convert Gram to Lal instantly using the Nepal Gold Unit Converter, which uses the official conversion factor based on 1 Tola = 11.664 grams = 100 Lal."
       }
     },
     {
@@ -193,7 +193,7 @@ export default async function Page() {
             <ul className="list-disc pl-5 mb-4 space-y-1">
               <li>1 Tola = 100 Lal</li>
               <li>1 Tola = 16 Aana</li>
-              <li>1 Tola = 11.6638 Grams</li>
+              <li>1 Tola = 11.664 Grams</li>
               <li>1 Aana = 6.25 Lal</li>
               <li>1 Lal = 0.116638 Grams (commonly rounded to 0.1166g)</li>
             </ul>
@@ -222,7 +222,7 @@ export default async function Page() {
                 <tr><td className="py-2 px-4 border-b bg-slate-50">50 Lal (8 Aana)</td><td className="py-2 px-4 border-b bg-slate-50">50 Lal</td><td className="py-2 px-4 border-b bg-slate-50">5.8319 g</td><td className="py-2 px-4 border-b bg-slate-50">0.50 Tola</td></tr>
                 <tr><td className="py-2 px-4 border-b">75 Lal (12 Aana)</td><td className="py-2 px-4 border-b">75 Lal</td><td className="py-2 px-4 border-b">8.7479 g</td><td className="py-2 px-4 border-b">0.75 Tola</td></tr>
                 <tr><td className="py-2 px-4 border-b bg-slate-50">90 Lal</td><td className="py-2 px-4 border-b bg-slate-50">90 Lal</td><td className="py-2 px-4 border-b bg-slate-50">10.4974 g</td><td className="py-2 px-4 border-b bg-slate-50">0.90 Tola</td></tr>
-                <tr><td className="py-2 px-4 border-b font-bold">100 Lal (1 Tola)</td><td className="py-2 px-4 border-b">100 Lal</td><td className="py-2 px-4 border-b">11.6638 g</td><td className="py-2 px-4 border-b">1.00 Tola</td></tr>
+                <tr><td className="py-2 px-4 border-b font-bold">100 Lal (1 Tola)</td><td className="py-2 px-4 border-b">100 Lal</td><td className="py-2 px-4 border-b">11.664 g</td><td className="py-2 px-4 border-b">1.00 Tola</td></tr>
               </tbody>
             </table>
           </div>
@@ -237,7 +237,7 @@ export default async function Page() {
           <h2 id="formulas" className="text-2xl font-black text-slate-900 mt-12 mb-6">Gold Conversion Formulas</h2>
           <div className="mb-6">
             <h3 className="font-bold text-slate-900 mb-2">How to Convert Lal to Gram</h3>
-            <p className="mb-2">Because 1 Tola equals 100 Lal and weighs exactly 11.6638 grams, a single Lal is exceptionally light.</p>
+            <p className="mb-2">Because 1 Tola equals 100 Lal and weighs exactly 11.664 grams, a single Lal is exceptionally light.</p>
             <div className="bg-slate-50 p-4 rounded-lg font-mono text-sm border border-slate-200 mb-4 text-slate-800">Weight in Grams = Total Lal × 0.116638</div>
             <p className="mb-6"><strong>Example:</strong> If you want to find out how many grams are in 15 Lal: 15 × 0.116638 = 1.7495 grams.</p>
 

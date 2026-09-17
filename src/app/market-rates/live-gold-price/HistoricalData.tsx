@@ -1,11 +1,11 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useEffect } from 'react';
 import { Download, Database, Info, AlertTriangle, History, TrendingUp, TrendingDown, Minus } from 'lucide-react';
 
 type UnitMode = 'tola' | '10g' | 'kg';
 
-const TOLA_TO_GRAM = 11.6638;
+const TOLA_TO_GRAM = 11.664;
 
 function convertPrice(tolaPrize: number, unit: UnitMode): number {
   if (unit === 'tola') return tolaPrize;

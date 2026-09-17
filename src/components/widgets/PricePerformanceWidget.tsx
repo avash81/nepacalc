@@ -17,7 +17,7 @@ interface PricePerformanceWidgetProps {
 
 type Unit = 'tola' | '10gram' | 'gram';
 
-const TOLA_TO_GRAM = 11.6638;
+const TOLA_TO_GRAM = 11.664;
 
 function convertPrice(priceTola: number, unit: Unit): number {
   if (unit === 'tola') return priceTola;

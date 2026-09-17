@@ -7,7 +7,7 @@ type SilverPurity = '999' | '925';
 type SilverUnit  = 'tola' | 'gram' | 'kg';
 
 const PURITY_FACTOR: Record<SilverPurity, number> = { '999': 1, '925': 0.925 };
-const GRAM_PER_TOLA = 11.6638;
+const GRAM_PER_TOLA = 11.664;
 
 export default function SilverCalculatorClient({ silverPerTola }: { silverPerTola: number }) {
   const [purity,     setPurity]     = useState<SilverPurity>('999');

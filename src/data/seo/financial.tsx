@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { SEOContent } from './types';
 
 export const financialSEO: Record<string, SEOContent> = {

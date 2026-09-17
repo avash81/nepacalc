@@ -75,7 +75,7 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
               </tr>
               <tr>
                 <th className="py-3 px-4 font-bold text-slate-700 bg-slate-50/30" scope="row">Measurement System</th>
-                <td className="py-3 px-4 text-slate-600 font-medium">Traditional Tola (1 Tola = 11.6638 grams)</td>
+                <td className="py-3 px-4 text-slate-600 font-medium">Traditional Tola (1 Tola = 11.664 grams)</td>
               </tr>
               <tr>
                 <th className="py-3 px-4 font-bold text-slate-700 bg-slate-50/30" scope="row">Global Benchmark</th>
@@ -413,7 +413,7 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
             <div>
               <h3 className="text-sm font-bold text-blue-700 mb-2">How many grams are in 1 Tola?</h3>
               <p className="text-[13px] text-slate-600 leading-relaxed font-medium">
-                In Nepal, 1 Tola is precisely equal to 11.6638 grams. For quick math, 10 grams equals roughly 0.857 Tola. Need to convert today&apos;s gold rate into Grams, Lal, Aana or Tola? Use our <a href="/calculator/gold-converter/" className="text-blue-700 hover:underline font-bold">Gold Unit Converter</a> to calculate the exact value of any jewellery weight instantly.
+                In Nepal, 1 Tola is precisely equal to 11.664 grams. For quick math, 10 grams equals roughly 0.857 Tola. Need to convert today&apos;s gold rate into Grams, Lal, Aana or Tola? Use our <a href="/calculator/gold-converter/" className="text-blue-700 hover:underline font-bold">Gold Unit Converter</a> to calculate the exact value of any jewellery weight instantly.
               </p>
             </div>
             <div>
@@ -533,7 +533,7 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
             { term: 'Hallmark Gold (24K)', def: '99.99% pure gold. Also called Chhapawal (छापावाल). Used for bars, biscuits, and investment bullion.' },
             { term: 'Tejabi Gold (22K)', def: '91.6% pure gold. Alloyed for strength. Preferred for jewellery making in Nepal.' },
             { term: 'Fine Gold / Bullion', def: 'Another term for 24K/999.9 pure gold used in the international bullion market, traded as bars or coins.' },
-            { term: 'Tola', def: 'Traditional Nepali gold unit. 1 Tola = 11.6638 grams. The standard unit FENEGOSIDA uses for pricing.' },
+            { term: 'Tola', def: 'Traditional Nepali gold unit. 1 Tola = 11.664 grams. The standard unit FENEGOSIDA uses for pricing.' },
             { term: '10 Gram', def: 'A commonly used international unit. Equal to approximately 0.857 Tola in Nepal.' },
             { term: 'LBMA', def: 'London Bullion Market Association. Sets the global gold and silver spot price benchmark used by FENEGOSIDA each day.' },
             { term: 'FENEGOSIDA', def: "Federation of Nepal Gold and Silver Dealers' Association. The official body that sets and publishes Nepal's daily gold and silver benchmark rate." },

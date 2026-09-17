@@ -4,7 +4,7 @@ import React, { useState, useMemo } from 'react';
 import { useLiveRates } from '@/hooks/useLiveRates';
 import { Zap, ArrowRight, Calculator } from 'lucide-react';
 
-const TOLA_GRAMS = 11.66381;
+const TOLA_GRAMS = 11.664;
 
 function formatNPR(n: number) {
   return 'Rs. ' + Math.round(n).toLocaleString('en-IN');
@@ -152,7 +152,7 @@ export default function QuickPriceEstimator() {
             <tbody className="divide-y divide-slate-100">
                <tr>
                   <th className="py-2 px-4 font-bold text-slate-700">1 Tola</th>
-                  <td className="py-2 px-4 text-slate-600">11.6638 grams</td>
+                  <td className="py-2 px-4 text-slate-600">11.664 grams</td>
                </tr>
                <tr>
                   <th className="py-2 px-4 font-bold text-slate-700">10 Grams</th>

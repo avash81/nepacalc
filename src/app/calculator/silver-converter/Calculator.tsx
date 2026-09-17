@@ -1077,7 +1077,7 @@ export default function SilverCalculatorComponent() {
             <div className="bg-[#E8F0FE] border border-[#1A73E8] rounded-lg p-5 scroll-mt-24" id="feature-summary">
               <h2 className="font-bold text-[#1A73E8] mb-2 text-lg">Quick Answer: Silver Measurement Standards</h2>
               <p className="text-[#202124] text-base leading-relaxed">
-                In Nepal, <strong>1 Tola of silver equals exactly 11.6638 grams</strong> (100 Lal, 16 Aana, or 64 Ratti) as standardized by FENEGOSIDA and the Nepal Bureau of Standards &amp; Metrology (NBSM). Internationally, silver is traded in <strong>Troy Ounces</strong>, where 1 Troy Ounce equals <strong>31.1035 grams</strong> or approximately 2.6667 Tolas.
+                In Nepal, <strong>1 Tola of silver equals exactly 11.664 grams</strong> (100 Lal, 16 Aana, or 64 Ratti) as standardized by FENEGOSIDA and the Nepal Bureau of Standards &amp; Metrology (NBSM). Internationally, silver is traded in <strong>Troy Ounces</strong>, where 1 Troy Ounce equals <strong>31.1035 grams</strong> or approximately 2.6667 Tolas.
               </p>
               <p className="text-[#5F6368] text-sm mt-3">
                 Last updated: July 2026 &bull; Measurements verified against official FENEGOSIDA and LBMA international standards.
@@ -1113,13 +1113,13 @@ export default function SilverCalculatorComponent() {
               <h2 className="text-2xl font-bold text-[#1967D2] mb-4">Most Common Nepali Silver Conversions</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
-                  { from: '1 Tola', to: 'One Tola of silver weighs exactly 11.6638 grams.' },
+                  { from: '1 Tola', to: 'One Tola of silver weighs exactly 11.664 grams.' },
                   { from: '1 Tola to Lal', to: 'One Tola of silver contains 100 Lal.' },
                   { from: '1 Tola to Aana', to: 'One Tola of silver contains 16 Aana.' },
                   { from: '1 Lal', to: 'One Lal of silver weighs 0.116638 grams.' },
                   { from: '1 Aana', to: 'One Aana of silver contains 6.25 Lal.' },
                   { from: '50 Lal', to: '50 Lal of silver weighs 5.8319 grams.' },
-                  { from: '100 Lal', to: '100 Lal of silver equals 1 Tola or 11.6638 grams.' },
+                  { from: '100 Lal', to: '100 Lal of silver equals 1 Tola or 11.664 grams.' },
                   { from: '1 Kilogram', to: 'One kilogram of silver equals 85.735 Tolas.' },
                   { from: '1 Troy Ounce', to: 'One Troy Ounce of silver equals 2.6667 Tolas.' },
                 ].map(({ from, to }) => (
@@ -1157,7 +1157,7 @@ export default function SilverCalculatorComponent() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-4">
                   <h3 className="font-bold text-[#202124] mb-1">1 Tola</h3>
-                  <p className="text-sm font-bold text-[#1A73E8] mb-2">= 11.6638 Grams</p>
+                  <p className="text-sm font-bold text-[#1A73E8] mb-2">= 11.664 Grams</p>
                   <p className="text-xs text-[#5F6368]">Standard unit for silver coins, bars, and heavy ornaments in Nepal.</p>
                 </div>
                 <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-4">
@@ -1209,7 +1209,7 @@ export default function SilverCalculatorComponent() {
                   <tbody>
                     <tr>
                       <td className="px-5 py-3 font-bold border-t border-[#DADCE0]">1 Tola</td>
-                      <td className="px-5 py-3 border-t border-[#DADCE0] border-l font-mono">11.6638 g</td>
+                      <td className="px-5 py-3 border-t border-[#DADCE0] border-l font-mono">11.664 g</td>
                       <td className="px-5 py-3 border-t border-[#DADCE0] border-l font-mono">1.0000 Tola</td>
                       <td className="px-5 py-3 border-t border-[#DADCE0] border-l font-mono">0.3750 t oz</td>
                       <td className="px-5 py-3 border-t border-[#DADCE0] border-l">Nepal bullion & jewellery</td>
@@ -1256,7 +1256,7 @@ export default function SilverCalculatorComponent() {
                   <li><strong>100 Lal = 1 Tola</strong> — the base relationship every jeweller uses</li>
                   <li><strong>16 Aana = 1 Tola</strong></li>
                   <li><strong>1 Aana = 6.25 Lal</strong></li>
-                  <li><strong>1 Tola = 11.6638 Grams</strong> — the metric equivalent</li>
+                  <li><strong>1 Tola = 11.664 Grams</strong> — the metric equivalent</li>
                 </ul>
                 <p>These standards are set by <strong>FENEGOSIDA</strong> (Federation of Nepal Gold and Silver Dealers Association) and verified by the <strong>Nepal Bureau of Standards and Metrology (NBSM)</strong>. The same system applies to all precious metals traded in Nepal&apos;s bullion and jewellery market.</p>
               </div>
@@ -1287,7 +1287,7 @@ export default function SilverCalculatorComponent() {
                       { lal: '75 Lal', g: '8.748 g', t: '0.75 Tola' },
                       { lal: '80 Lal', g: '9.331 g', t: '0.80 Tola' },
                       { lal: '90 Lal', g: '10.497 g', t: '0.90 Tola' },
-                      { lal: '100 Lal', g: '11.6638 g', t: '1 Tola' },
+                      { lal: '100 Lal', g: '11.664 g', t: '1 Tola' },
                       { lal: '150 Lal', g: '17.496 g', t: '1.5 Tola' },
                     ].map((row, i) => (
                       <tr key={row.lal} className={i % 2 === 1 ? 'bg-[#F8F9FA]' : ''}>
@@ -1306,16 +1306,16 @@ export default function SilverCalculatorComponent() {
                 <div className="border border-[#DADCE0] rounded-lg p-4 bg-[#F8F9FA]">
                   <h3 className="font-bold text-[#202124] mb-2">Tola to Grams</h3>
                   <div className="font-mono text-sm bg-white p-2.5 border rounded mb-2 text-[#1A73E8]">
-                    Grams = Tolas &times; 11.6638
+                    Grams = Tolas &times; 11.664
                   </div>
-                  <p className="text-xs text-[#5F6368]">Example: 5 Tola &times; 11.6638 = 58.319 Grams</p>
+                  <p className="text-xs text-[#5F6368]">Example: 5 Tola &times; 11.664 = 58.319 Grams</p>
                 </div>
                 <div className="border border-[#DADCE0] rounded-lg p-4 bg-[#F8F9FA]">
                   <h3 className="font-bold text-[#202124] mb-2">Grams to Tola</h3>
                   <div className="font-mono text-sm bg-white p-2.5 border rounded mb-2 text-[#1A73E8]">
-                    Tolas = Grams &divide; 11.6638
+                    Tolas = Grams &divide; 11.664
                   </div>
-                  <p className="text-xs text-[#5F6368]">Example: 50 Grams &divide; 11.6638 = 4.286 Tola</p>
+                  <p className="text-xs text-[#5F6368]">Example: 50 Grams &divide; 11.664 = 4.286 Tola</p>
                 </div>
                 <div className="border border-[#DADCE0] rounded-lg p-4 bg-[#F8F9FA]">
                   <h3 className="font-bold text-[#202124] mb-2">Troy Ounce to Grams</h3>
@@ -1406,7 +1406,7 @@ export default function SilverCalculatorComponent() {
               </p>
               <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-5 space-y-3">
                 <div className="font-mono text-sm text-[#1A73E8] font-bold">
-                  Total Value (NPR) = (Weight in Grams &divide; 11.6638) &times; Silver Rate Per Tola &times; Purity %
+                  Total Value (NPR) = (Weight in Grams &divide; 11.664) &times; Silver Rate Per Tola &times; Purity %
                 </div>
                 <p className="text-sm text-[#5F6368]">
                   For exact daily market rates, check our dedicated <a href="/market-rates/silver-price-nepal/" className="text-[#1A73E8] underline font-semibold">Live Silver Price in Nepal</a> page. If you are converting precious metals alongside tax calculations, refer to the <a href="/calculator/gold-tax/" className="text-[#1A73E8] underline font-semibold">Nepal Customs & Gold Tax Calculator</a>.
@@ -1593,7 +1593,7 @@ export default function SilverCalculatorComponent() {
                 <div>
                   <h3 className="text-lg font-bold text-[#202124] mb-2">How much does 1 Tola of silver weigh?</h3>
                   <p className="text-[#5F6368] text-base leading-relaxed">
-                    One Tola of silver weighs exactly 11.6638 grams according to Nepal&apos;s official bullion measurement standard.
+                    One Tola of silver weighs exactly 11.664 grams according to Nepal&apos;s official bullion measurement standard.
                   </p>
                 </div>
                 <div>

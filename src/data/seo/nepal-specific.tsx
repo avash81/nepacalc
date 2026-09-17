@@ -22,7 +22,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
     formula: {
       title: "Gold Conversion Factors",
       description: "In Nepal, gold is traditionally measured in Tolas and Lals.",
-      raw: "1 Tola = 11.6638 grams | 1 Tola = 100 Lal",
+      raw: "1 Tola = 11.664 grams | 1 Tola = 100 Lal",
       variables: ["Weight = The mass of gold.", "Rate = The current market price."]
     },
     content: null,

@@ -9,7 +9,7 @@ import {
   PieChart as RePieChart, Pie, Cell, Tooltip, ResponsiveContainer
 } from 'recharts';
 
-const TOLA_GRAMS  = 11.66381;   // official FENEGOSIDA standard
+const TOLA_GRAMS  = 11.6641;   // official FENEGOSIDA standard
 const LAL_GRAMS   = TOLA_GRAMS / 100;  // 0.1166381
 const AANA_LAL    = 6.25;
 const AANA_GRAMS  = AANA_LAL * LAL_GRAMS;  // 0.72899
@@ -132,10 +132,10 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
         <label className="text-[11px] font-black text-[#5F6368] uppercase tracking-wider">Enter Any Unit — All Others Auto-Calculate</label>
         <div className="grid grid-cols-2 gap-3">
           {[
-            { label: 'Tola (तोला)', val: state.tola, fn: handleTola, hint: '1 Tola = 11.6638g' },
+            { label: 'Tola (तोला)', val: state.tola, fn: handleTola, hint: '1 Tola = 11.664g' },
             { label: 'Lal (लाल)', val: state.lal, fn: handleLal, hint: '100 Lal = 1 Tola' },
             { label: 'Aana (आना)', val: state.aana, fn: handleAana, hint: '16 Aana = 1 Tola' },
-            { label: 'Gram (ग्राम)', val: state.gram, fn: handleGram, hint: '11.6638g = 1 Tola' },
+            { label: 'Gram (ग्राम)', val: state.gram, fn: handleGram, hint: '11.664g = 1 Tola' },
           ].map(({ label, val, fn, hint }) => (
             <div key={label} className="space-y-1">
               <div className="text-[9px] font-black text-[#5F6368] uppercase tracking-wider">{label}</div>

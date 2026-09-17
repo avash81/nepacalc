@@ -446,7 +446,7 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
             </tbody>
           </table>
         </div>
-        <p className="text-[11px] text-slate-400 font-medium mt-3">Based on today&apos;s FENEGOSIDA benchmark. 1 Tola = 11.6638 grams. For advanced conversion, use our <a href="/calculator/gold-converter/" className="text-blue-600 hover:underline font-bold">Gold Value Calculator</a>.</p>
+        <p className="text-[11px] text-slate-400 font-medium mt-3">Based on today&apos;s FENEGOSIDA benchmark. 1 Tola = 11.664 grams. For advanced conversion, use our <a href="/calculator/gold-converter/" className="text-blue-600 hover:underline font-bold">Gold Value Calculator</a>.</p>
       </section>
 
       <h2 id="gold-price-calculator" className="text-2xl font-black text-slate-900 tracking-tighter mb-4 scroll-mt-24">Gold Price Calculator</h2>

@@ -11,7 +11,7 @@ const UNITS: Record<string, { name: string; factor: number }> = {
   mg:   { name: 'Milligram (mg)',     factor: 0.001 },
   lb:   { name: 'Pound (lb)',         factor: 453.592 },
   oz:   { name: 'Ounce (oz)',         factor: 28.3495 },
-  tola: { name: 'Tola (Nepal Gold)',  factor: 11.6638 },
+  tola: { name: 'Tola (Nepal Gold)',  factor: 11.664 },
   ton:  { name: 'Metric Ton',         factor: 1000000 },
 };
 
@@ -94,7 +94,7 @@ export default function WeightConverter() {
               <div>
                 <div className="text-xs font-black uppercase tracking-widest text-amber-800 mb-1">Nepal Gold Standard</div>
                 <p className="text-xs text-amber-700 leading-relaxed font-medium">
-                  In Nepal and South Asia, precious metals are measured in Tola. <strong>1 Tola = exactly 11.6638 grams</strong>.
+                  In Nepal and South Asia, precious metals are measured in Tola. <strong>1 Tola = exactly 11.664 grams</strong>.
                 </p>
               </div>
             </div>
@@ -188,7 +188,7 @@ export default function WeightConverter() {
                   The world operates on two primary mass measurement systems in daily life. The <strong className="text-[#202124]">Metric (SI) system</strong>, anchored by the Kilogram, is the global scientific and commercial standard used by 195 countries. It is based on powers of 10, making scaling (grams to kilograms to metric tons) intuitive and computationally clean. Our <strong className="text-[#202124]">weight converter</strong> handles all conversions through a centralized Gram-based pivot for mathematical precision.
                 </p>
                 <p>
-                  Uniquely for Nepal and South Asia, our tool also integrates the <strong className="text-[#202124]">Tola</strong>, a traditional precious metal measurement still universally used in jewelry markets across Nepal, India, and Pakistan. The Tola is now legally defined as exactly 11.6638 grams, bridging the traditional and modern worlds of mass measurement seamlessly.
+                  Uniquely for Nepal and South Asia, our tool also integrates the <strong className="text-[#202124]">Tola</strong>, a traditional precious metal measurement still universally used in jewelry markets across Nepal, India, and Pakistan. The Tola is now legally defined as exactly 11.664 grams, bridging the traditional and modern worlds of mass measurement seamlessly.
                 </p>
               </div>
             </div>
@@ -198,7 +198,7 @@ export default function WeightConverter() {
               <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
                 <li><strong className="text-[#1A73E8]">Metric (SI) System:</strong> Powers of 10 architecture. 1 kg = 1,000 g = 1,000,000 mg. Used exclusively in all scientific, medical, and officially international commercial applications globally.</li>
                 <li><strong className="text-[#188038]">Imperial System (UK/US):</strong> Non-decimal structure. 1 pound (lb) = 16 ounces (oz). 2,000 lbs = 1 short ton (US). Used commercially in the USA and in everyday UK life. All values are anchored to: 1 lb = exactly 453.59237 grams by international treaty.</li>
-                <li><strong className="text-[#D93025]">The Tola (South Asian Standard):</strong> The Tola predates both modern systems, originating from the mass of a silver rupee coin during the Mughal era. Its current value of 11.6638 grams was standardized under British India. Today, all gold pricing in Nepal (e.g., 'price per tola') references this exact definition.</li>
+                <li><strong className="text-[#D93025]">The Tola (South Asian Standard):</strong> The Tola predates both modern systems, originating from the mass of a silver rupee coin during the Mughal era. Its current value of 11.664 grams was standardized under British India. Today, all gold pricing in Nepal (e.g., 'price per tola') references this exact definition.</li>
               </ul>
             </div>
           </div>
@@ -206,7 +206,7 @@ export default function WeightConverter() {
         faqs={[
           {
             question: "What exactly is a Tola and why is it used for gold in Nepal?",
-            answer: "The Tola is a traditional South Asian unit of mass standardized as exactly 11.6638038 grams. It has been the universal precious metals standard in Nepal, India, and Pakistan for centuries because gold and silver merchants historically kept their scales calibrated in Tola. All gold prices quoted in Nepal (e.g., daily rates from the Nepal Gold & Silver Dealers' Association) are per Tola."
+            answer: "The Tola is a traditional South Asian unit of mass standardized as exactly 11.664 grams. It has been the universal precious metals standard in Nepal, India, and Pakistan for centuries because gold and silver merchants historically kept their scales calibrated in Tola. All gold prices quoted in Nepal (e.g., daily rates from the Nepal Gold & Silver Dealers' Association) are per Tola."
           },
           {
             question: "What is the difference between a weight ounce and a fluid ounce?",

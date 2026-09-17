@@ -249,7 +249,7 @@ const schemaGraph = {
           name: 'How much does one tola of silver weigh?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'One Nepal Tola equals 11.6638 grams. This traditional measurement is the standard unit used for pricing silver and gold throughout Nepal.',
+            text: 'One Nepal Tola equals 11.664 grams. This traditional measurement is the standard unit used for pricing silver and gold throughout Nepal.',
           },
         },
         {
