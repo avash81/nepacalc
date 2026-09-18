@@ -12,24 +12,25 @@ import path from 'path';
 
 function getLiveData() {
   try {
-    const data = fs.readFileSync(path.join(process.cwd(), 'public', 'data', 'live-rates.json'), 'utf8');
+    const data = fs.readFileSync(path.join(process.cwd(), 'public', 'data', 'market-rates.json'), 'utf8');
     const json = JSON.parse(data);
     return {
       date: json.date || new Date().toISOString().split('T')[0],
       gold24k: json.gold?.tolaNPR?.current || null,
       gold22k: json.gold?.tejabiTolaNPR || null,
+      gold10g: json.gold?.tenGramNPR || null,
       silver: json.silver?.tolaNPR?.current || null,
     };
   } catch (e) {
-    return { date: new Date().toISOString().split('T')[0], gold24k: null, gold22k: null, silver: null };
+    return { date: new Date().toISOString().split('T')[0], gold24k: null, gold22k: null, gold10g: null, silver: null };
   }
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { gold24k, gold22k } = getLiveData();
+  const { gold24k, gold22k, gold10g } = getLiveData();
 
   const priceSnippet = gold24k
-    ? `Today's live gold price in Nepal: 24K Hallmark is Rs. ${gold24k.toLocaleString('en-IN')} and 22K Tejabi is Rs. ${gold22k?.toLocaleString('en-IN') ?? ''} per Tola. Official FENEGOSIDA rate, updated daily.`
+    ? `Today's live gold price in Nepal: 24K Hallmark Rs. ${gold24k.toLocaleString('en-IN')} per Tola, Rs. ${gold10g?.toLocaleString('en-IN') ?? ''} per 10g. 22K Tejabi Rs. ${gold22k?.toLocaleString('en-IN') ?? ''} per Tola. Official FENEGOSIDA rate.`
     : `Check today's live gold price in Nepal. Get official FENEGOSIDA rates for 24K Hallmark and 22K Tejabi gold per tola and 10 grams.`;
 
   const description = priceSnippet;

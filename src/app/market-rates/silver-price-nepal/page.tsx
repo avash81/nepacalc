@@ -16,11 +16,12 @@ export const revalidate = 3600; // 1 hour
 
 function getLiveData() {
   try {
-    const data = fs.readFileSync(path.join(process.cwd(), 'public', 'data', 'live-rates.json'), 'utf8');
+    const data = fs.readFileSync(path.join(process.cwd(), 'public', 'data', 'market-rates.json'), 'utf8');
     const json = JSON.parse(data);
     return {
       date: json.date || new Date().toISOString().split('T')[0],
       silver: json.silver?.tolaNPR?.current || null,
+      silver10g: json.silver?.tenGramNPR || null,
       gold: json.gold?.tolaNPR?.current || null,
       silverData: json.silver || null,
       source: json.source || 'FENEGOSIDA',
@@ -31,16 +32,16 @@ function getLiveData() {
       status: json.status || 'verified',
     };
   } catch (e) {
-    return { date: new Date().toISOString().split('T')[0], silver: null, gold: null, silverData: null, source: 'FENEGOSIDA', source_name: 'FENEGOSIDA', rate_date: new Date().toISOString().split('T')[0], published_at: null, fetched_at: null, status: 'error' };
+    return { date: new Date().toISOString().split('T')[0], silver: null, silver10g: null, gold: null, silverData: null, source: 'FENEGOSIDA', source_name: 'FENEGOSIDA', rate_date: new Date().toISOString().split('T')[0], published_at: null, fetched_at: null, status: 'error' };
   }
 }
 
 // ─── METADATA ────────────────────────────────────────────────────────────────
 export async function generateMetadata(): Promise<Metadata> {
-  const { silver } = getLiveData();
+  const { silver, silver10g } = getLiveData();
 
   const priceSnippet = silver
-    ? `Today's live silver price in Nepal: official FENEGOSIDA Chandi rate is Rs. ${silver.toLocaleString('en-IN')} per Tola. Includes per-gram, Aana and Lal conversions.`
+    ? `Today's live silver price in Nepal: FENEGOSIDA Chandi rate Rs. ${silver.toLocaleString('en-IN')} per Tola, Rs. ${silver10g?.toLocaleString('en-IN') ?? ''} per 10g. Official rate, includes Aana and Lal conversions.`
     : 'Check per tola, gram and kilogram prices with daily updates and trends.';
 
   const description = priceSnippet;
