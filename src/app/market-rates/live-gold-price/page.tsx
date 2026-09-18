@@ -29,7 +29,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const { gold24k, gold22k } = getLiveData();
 
   const priceSnippet = gold24k
-    ? `Today's live gold price in Nepal: 24K Hallmark is Rs. ${gold24k.toLocaleString('en-IN')} and 22K Tejabi is Rs. ${gold22k?.toLocaleString('en-IN') ?? ''} per Tola. Check today's gold rate and the latest FENEGOSIDA gold price in Nepal.`
+    ? `Today's live gold price in Nepal: 24K Hallmark is Rs. ${gold24k.toLocaleString('en-IN')} and 22K Tejabi is Rs. ${gold22k?.toLocaleString('en-IN') ?? ''} per Tola. Official FENEGOSIDA rate, updated daily.`
     : `Check today's live gold price in Nepal. Get official FENEGOSIDA rates for 24K Hallmark and 22K Tejabi gold per tola and 10 grams.`;
 
   const description = priceSnippet;
