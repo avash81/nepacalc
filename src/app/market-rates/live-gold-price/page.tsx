@@ -34,7 +34,7 @@ export async function generateMetadata(): Promise<Metadata> {
   if (gold24k) {
     const tenGramStr = gold10g ? `, Rs. ${gold10g.toLocaleString('en-IN')} per 10g` : '';
     const tejabiStr = gold22k ? `. 22K Tejabi Rs. ${gold22k.toLocaleString('en-IN')} per Tola` : '';
-    priceSnippet = `Today's live gold price in Nepal: 24K Hallmark Rs. ${gold24k.toLocaleString('en-IN')} per Tola${tenGramStr}${tejabiStr}. Official FENEGOSIDA rate.`;
+    priceSnippet = `Today's live gold price in Nepal: 24K Hallmark Rs. ${gold24k.toLocaleString('en-IN')} per Tola${tenGramStr}${tejabiStr}. Official FENEGOSIDA gold rate.`;
   }
 
   const description = priceSnippet;
