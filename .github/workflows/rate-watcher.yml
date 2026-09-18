@@ -1,16 +1,15 @@
 name: Smart Window Rate Watcher
 
-# Runs every day every 15 mins from 9:00 AM to 12:45 PM NPT
-# 09:00 AM - 09:45 AM NPT = 03:15, 03:30, 03:45 UTC (1 hour early)
-# 10:00 AM - 10:45 AM NPT = 04:00, 04:15, 04:30, 04:45 UTC
-# 11:00 AM - 12:45 PM NPT = 05:15 - 07:00 UTC
-# Features a robust git commit/rebase/push sequence to prevent any unstaged changes or push rejections.
+# FENEGOSIDA publishes daily between 04:52 - 05:02 UTC (10:37-10:47 AM NPT).
+# This watcher starts at 05:15 UTC (right AFTER FENEGOSIDA publishes) and checks
+# every 15 minutes until 07:00 UTC (12:45 PM NPT) as a safety net.
+# If rates changed → commits data → dispatches rates_updated → triggers full build + cPanel deploy.
+# The full site rebuild injects the new prices into all meta descriptions automatically.
 
 on:
   schedule:
-    - cron: '15,30,45 3 * * *'
-    - cron: '*/15 4-8 * * *'
-    - cron: '0 9 * * *'
+    - cron: '15,30,45 5 * * *'   # 05:15, 05:30, 05:45 UTC = 11:00, 11:15, 11:30 AM NPT
+    - cron: '*/15 6-7 * * *'     # every 15 min from 06:00-07:59 UTC = 11:45 AM - 1:44 PM NPT
   workflow_dispatch:
 
 permissions:
