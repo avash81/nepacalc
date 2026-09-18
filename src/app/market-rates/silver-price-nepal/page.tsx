@@ -40,9 +40,12 @@ function getLiveData() {
 export async function generateMetadata(): Promise<Metadata> {
   const { silver, silver10g } = getLiveData();
 
-  const priceSnippet = silver
-    ? `Today's live silver price in Nepal: FENEGOSIDA Chandi rate Rs. ${silver.toLocaleString('en-IN')} per Tola, Rs. ${silver10g?.toLocaleString('en-IN') ?? ''} per 10g. Official rate, includes Aana and Lal conversions.`
-    : 'Check per tola, gram and kilogram prices with daily updates and trends.';
+  let priceSnippet = 'Check per tola, gram and kilogram prices with daily updates and trends.';
+
+  if (silver) {
+    const tenGramStr = silver10g ? `, Rs. ${silver10g.toLocaleString('en-IN')} per 10g` : '';
+    priceSnippet = `Today's live silver price in Nepal: FENEGOSIDA Chandi rate Rs. ${silver.toLocaleString('en-IN')} per Tola${tenGramStr}. Official rate, includes Aana and Lal conversions.`;
+  }
 
   const description = priceSnippet;
   
