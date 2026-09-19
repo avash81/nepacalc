@@ -245,7 +245,7 @@ const provinces = [
     latePenalty: 'Per provincial economic act',
     sourceLabel: 'Sudurpashchim Economic Act FY2082/83',
     description:
-      'Sudurpashchim Province covers the far-western region including Dhangadhi and Mahendranagar. It has the lowest vehicle tax rates in Nepal. Note: the detailed VRS page currently marks certain online services as "Coming Soon" - check the current portal status before attempting an online transaction.',
+      'Sudurpashchim Province covers the far-western region including Dhangadhi and Mahendranagar. It has the lowest vehicle tax rates in Nepal. Note: the detailed VRS page currently marks certain online services as "Coming Soon", check the current portal status before attempting an online transaction.',
     taxNote: 'Sudurpashchim has the lowest vehicle tax rates in Nepal. Bike tax for engines up to 125cc is Rs 2,500. Cars up to 1000cc are taxed at Rs 19,000. Verify current portal availability before relying on online services.',
   },
 ];
@@ -261,7 +261,7 @@ const renewalSteps = [
   {
     step: 2,
     title: 'Identify Your Province and Vehicle Category',
-    desc: 'Confirm which of the seven provinces your vehicle is registered in - this determines your tax rate. Know your engine capacity (CC for bikes/cars) or motor power (kW for EVs), as these set the slab.',
+    desc: 'Confirm which of the seven provinces your vehicle is registered in, this determines your tax rate. Know your engine capacity (CC for bikes/cars) or motor power (kW for EVs), as these set the slab.',
     icon: '',
   },
   {
@@ -285,7 +285,7 @@ const renewalSteps = [
   {
     step: 6,
     title: 'Submit at the Transport Management Office',
-    desc: 'Present all documents - tax receipt, insurance, pollution cert, and Bluebook - at your relevant TMO. The office will stamp and renew your registration certificate. Keep all original receipts.',
+    desc: 'Present all documents, tax receipt, insurance, pollution cert, and Bluebook, at your relevant TMO. The office will stamp and renew your registration certificate. Keep all original receipts.',
     icon: '',
   },
 ];
@@ -326,10 +326,10 @@ export default function BluebookRenewalPage() {
                   {[
                     { q: 'Bike renewal cost (Bagmati, ≤125cc)?', a: 'Rs 3,000 tax + Rs 300 renewal fee = Rs 3,300' },
                     { q: 'Car renewal cost (Bagmati, ≤1000cc)?', a: 'Rs 22,000 tax + Rs 500 renewal fee = Rs 22,500' },
-                    { q: 'Lowest province vehicle tax?', a: 'Sudurpashchim - bike Rs 2,500, car Rs 19,000' },
+                    { q: 'Lowest province vehicle tax?', a: 'Sudurpashchim, bike Rs 2,500, car Rs 19,000' },
                     { q: 'Late fine (Bagmati)?', a: 'Rs 200/month (first 6 months), Rs 300/month after' },
-                    { q: 'Can I renew online?', a: 'Yes - via Nagarik App or provincial EDL/VRS portal' },
-                    { q: 'Is insurance required?', a: 'Yes - mandatory by law before renewal is processed' },
+                    { q: 'Can I renew online?', a: 'Yes, via Nagarik App or provincial EDL/VRS portal' },
+                    { q: 'Is insurance required?', a: 'Yes, mandatory by law before renewal is processed' },
                   ].map(({ q, a }) => (
                     <div key={q} className="bg-white rounded-xl border border-emerald-100 px-4 py-3">
                       <p className="text-slate-500 text-xs mb-0.5">{q}</p>
@@ -347,7 +347,7 @@ export default function BluebookRenewalPage() {
               The <strong>Bluebook</strong> is the common name for a vehicle&apos;s <strong>registration certificate</strong> in Nepal. Every registered vehicle must have a valid Bluebook to legally operate on the road. Renewing it means completing the applicable payment and documentation process to keep that registration certificate valid for another year (or multiple years where applicable).
             </p>
             <p className={`${prose} mt-3`}>
-              In Nepal, <strong>vehicle tax</strong> is set by each of the seven provinces - not the federal government - through their annual <Link href="/nepal/nepal-budget/" className={intLink}>economic legislation (Arthik Adhiniyam)</Link>. This means that the answer to &ldquo;how much does Bluebook renewal cost?&rdquo; depends on <strong>which province your vehicle is registered in</strong> and what engine capacity or vehicle type it is.
+              In Nepal, <strong>vehicle tax</strong> is set by each of the seven provinces, not the federal government, through their annual <Link href="/nepal/nepal-budget/" className={intLink}>economic legislation (Arthik Adhiniyam)</Link>. This means that the answer to &ldquo;how much does Bluebook renewal cost?&rdquo; depends on <strong>which province your vehicle is registered in</strong> and what engine capacity or vehicle type it is.
             </p>
 
             {/* At a glance table */}
@@ -363,10 +363,10 @@ export default function BluebookRenewalPage() {
                   {[
                     ['What is a Bluebook?', 'Vehicle registration certificate (Yantrachalan Praman Patra)'],
                     ['What is renewal?', 'Renewing the vehicle\'s registration certificate annually'],
-                    ['Is vehicle tax the same nationwide?', 'No - each province sets its own tax schedule'],
+                    ['Is vehicle tax the same nationwide?', 'No, each province sets its own tax schedule'],
                     ['Who sets vehicle tax?', 'Provincial governments via their annual Economic Act'],
-                    ['Is insurance mandatory?', 'Yes - required by law before renewal is processed'],
-                    ['Can everything be done online?', 'Partially - tax can be paid online, office visit usually required'],
+                    ['Is insurance mandatory?', 'Yes, required by law before renewal is processed'],
+                    ['Can everything be done online?', 'Partially, tax can be paid online, office visit usually required'],
                     ['Where is the final amount confirmed?', 'Applicable Transport Management Office'],
                   ].map(([q, a]) => (
                     <tr key={q} className="hover:bg-slate-50">
@@ -429,7 +429,7 @@ export default function BluebookRenewalPage() {
             </div>
 
             <div className="mt-4 rounded-xl bg-amber-50 border border-amber-200 p-4 text-sm text-amber-900">
-              <strong>Note:</strong> If your Bluebook is expired, additional late-payment charges apply <em>before</em> the office will process renewal. Calculate the fine first - see the <a href="#late-renewal" className="underline">Late Renewal section</a> below.
+              <strong>Note:</strong> If your Bluebook is expired, additional late-payment charges apply <em>before</em> the office will process renewal. Calculate the fine first, see the <a href="#late-renewal" className="underline">Late Renewal section</a> below.
             </div>
           </section>
 
@@ -496,10 +496,10 @@ export default function BluebookRenewalPage() {
           <section id="bike" className="scroll-mt-24">
             <h2 className={h2}>Motorcycle and Scooter Renewal</h2>
             <p className={prose}>
-              Motorcycle and scooter vehicle tax in Nepal is determined by engine capacity (CC). Each province has its own CC-based slab. Below is the detailed Bagmati Province slab for FY2082/83 - the most commonly referenced because it covers Kathmandu Valley.
+              Motorcycle and scooter vehicle tax in Nepal is determined by engine capacity (CC). Each province has its own CC-based slab. Below is the detailed Bagmati Province slab for FY2082/83, the most commonly referenced because it covers Kathmandu Valley.
             </p>
 
-            <h3 className={h3}>Bagmati Province - Bike Tax Slabs (FY2082/83)</h3>
+            <h3 className={h3}>Bagmati Province: Bike Tax Slabs (FY2082/83)</h3>
             <div className="mt-3 overflow-x-auto rounded-xl border border-slate-200">
               <table className="w-full text-sm">
                 <thead className="bg-slate-50 border-b border-slate-200">
@@ -550,7 +550,7 @@ export default function BluebookRenewalPage() {
               Private car and jeep vehicle tax in Nepal is also set by each province separately. The most widely used benchmark is Bagmati Province (which covers Kathmandu), where the FY2082/83 rates are:
             </p>
 
-            <h3 className={h3}>Bagmati Province - Car Tax Slabs (FY2082/83)</h3>
+            <h3 className={h3}>Bagmati Province: Car Tax Slabs (FY2082/83)</h3>
             <div className="mt-3 overflow-x-auto rounded-xl border border-slate-200">
               <table className="w-full text-sm">
                 <thead className="bg-slate-50 border-b border-slate-200">
@@ -581,7 +581,7 @@ export default function BluebookRenewalPage() {
             <p className="mt-3 text-xs text-slate-500">Source: Bagmati Province Economic Act FY2082/83. Rates are for private cars. Insurance and any pollution certification are additional.</p>
 
             <div className="mt-4 rounded-xl bg-blue-50 border border-blue-200 p-4 text-sm text-blue-900">
-              <strong>Other provinces:</strong> Koshi Province charges Rs 23,000 for cars up to 1000cc - slightly higher than most other provinces. Karnali charges Rs 21,000. Sudurpashchim charges the lowest at Rs 19,000. Do not apply a Bagmati rate to vehicles registered in other provinces.
+              <strong>Other provinces:</strong> Koshi Province charges Rs 23,000 for cars up to 1000cc, slightly higher than most other provinces. Karnali charges Rs 21,000. Sudurpashchim charges the lowest at Rs 19,000. Do not apply a Bagmati rate to vehicles registered in other provinces.
             </div>
 
             <div className="mt-4 rounded-xl bg-gradient-to-r from-emerald-50 to-green-50 border border-emerald-200 p-4 flex flex-col sm:flex-row items-start sm:items-center gap-3">
@@ -628,11 +628,11 @@ export default function BluebookRenewalPage() {
                 </thead>
                 <tbody className="divide-y divide-slate-100">
                   {[
-                    ['Up to 3 months / Ashadh end', 'Grace period - no late fee (conditions apply)'],
+                    ['Up to 3 months / Ashadh end', 'Grace period, no late fee (conditions apply)'],
                     ['Missed deadline – 6 months', 'Rs 200 per month'],
                     ['6 months – 12 months', 'Rs 300 per month'],
                     ['Over 12 months', '100% of annual vehicle tax as additional penalty'],
-                    ['Prolonged (years)', 'May trigger statutory cancellation - re-registration required'],
+                    ['Prolonged (years)', 'May trigger statutory cancellation, re-registration required'],
                   ].map(([period, charge]) => (
                     <tr key={period} className="hover:bg-slate-50">
                       <td className="px-4 py-3 font-medium text-slate-800">{period}</td>
@@ -650,13 +650,13 @@ export default function BluebookRenewalPage() {
             </p>
 
             <div className="mt-4 rounded-xl bg-rose-50 border border-rose-200 p-4 text-sm text-rose-900">
-              <strong>Caution:</strong> The longer you delay renewal, the higher the penalty - and after a certain threshold, the vehicle registration is legally cancelled. If your renewal is already late, check the current provincial rule before paying.
+              <strong>Caution:</strong> The longer you delay renewal, the higher the penalty, and after a certain threshold, the vehicle registration is legally cancelled. If your renewal is already late, check the current provincial rule before paying.
             </div>
           </section>
 
           {/* ── ONLINE RENEWAL ── */}
           <section id="online" className="scroll-mt-24">
-            <h2 className={h2}>Online Renewal - Nagarik App &amp; Provincial Portals</h2>
+            <h2 className={h2}>Online Renewal, Nagarik App &amp; Provincial Portals</h2>
             <p className={prose}>
               Vehicle tax payment can be completed online in most provinces. The two main channels are the <strong>Nagarik App</strong> (national) and the <strong>provincial EDL/VRS portals</strong>.
             </p>
@@ -715,7 +715,7 @@ export default function BluebookRenewalPage() {
           <section id="documents" className="scroll-mt-24">
             <h2 className={h2}>Required Documents for Bluebook Renewal</h2>
             <p className={prose}>
-              Rule 8 of the Motor Vehicles and Transport Management Rules addresses renewal of the registration certificate, and Schedule 11 specifies the documents required. Always check the current notice from the relevant transport authority before visiting - office requirements can change.
+              Rule 8 of the Motor Vehicles and Transport Management Rules addresses renewal of the registration certificate, and Schedule 11 specifies the documents required. Always check the current notice from the relevant transport authority before visiting, office requirements can change.
             </p>
             <p className={`${prose} mt-3`}>
               For example, the official Bagmati Transport Management Office citizen charter explicitly lists the following items for a standard renewal:
@@ -753,7 +753,7 @@ export default function BluebookRenewalPage() {
           <section id="calculate" className="scroll-mt-24">
             <h2 className={h2}>How to Estimate the Total Renewal Cost</h2>
             <p className={prose}>
-              The total amount payable during a renewal transaction is the sum of multiple components - not a single fixed number. Use this formula:
+              The total amount payable during a renewal transaction is the sum of multiple components, not a single fixed number. Use this formula:
             </p>
             <div className="my-4 rounded-xl bg-slate-900 text-white p-5 font-mono text-sm leading-relaxed">
               <p className="text-emerald-400 mb-1">// Total Renewal Cost</p>
@@ -765,7 +765,7 @@ export default function BluebookRenewalPage() {
               <p className="pl-8">+ <span className="text-yellow-300">Other Prescribed Fees</span></p>
             </div>
             <p className={prose}>
-              <strong>Example (Bagmati, 125cc bike, on time):</strong> Rs 3,000 (tax) + Rs 300 (renewal fee) + ~Rs 2,000–3,000 (insurance estimate) = approximately <strong>Rs 5,300–6,300 total</strong>. Insurance premiums vary by insurer and vehicle value - always get a current quote.
+              <strong>Example (Bagmati, 125cc bike, on time):</strong> Rs 3,000 (tax) + Rs 300 (renewal fee) + ~Rs 2,000–3,000 (insurance estimate) = approximately <strong>Rs 5,300–6,300 total</strong>. Insurance premiums vary by insurer and vehicle value, always get a current quote.
             </p>
 
             <div className="mt-4 rounded-xl bg-gradient-to-r from-emerald-50 to-green-50 border border-emerald-200 p-4 flex flex-col sm:flex-row items-start sm:items-center gap-3">
@@ -783,7 +783,7 @@ export default function BluebookRenewalPage() {
 
           {/* ── TAX VS RENEWAL ── */}
           <section id="tax-vs-renewal" className="scroll-mt-24">
-            <h2 className={h2}>Bluebook Renewal vs Vehicle Tax - What&apos;s the Difference?</h2>
+            <h2 className={h2}>Bluebook Renewal vs Vehicle Tax: What&apos;s the Difference?</h2>
             <p className={prose}>
               These are frequently confused. Bluebook renewal and vehicle tax are <strong>not the same thing</strong>, although they are handled in the same transaction.
             </p>
@@ -825,13 +825,13 @@ export default function BluebookRenewalPage() {
             </p>
             <ul className="list-disc pl-6 mt-3 space-y-2 text-slate-600">
               <li>
-                <strong className="text-slate-800">Annual vehicle tax</strong> - the recurring annual tax for a registered EV, set by each province and typically based on <strong>motor power (kW)</strong> rather than engine CC. This is paid during Bluebook renewal.
+                <strong className="text-slate-800">Annual vehicle tax</strong>, the recurring annual tax for a registered EV, set by each province and typically based on <strong>motor power (kW)</strong> rather than engine CC. This is paid during Bluebook renewal.
               </li>
               <li>
-                <strong className="text-slate-800">EV import taxation</strong> - a one-time charge when the vehicle enters Nepal, including customs duty and applicable import charges. <strong>This is entirely separate from the annual renewal tax.</strong>
+                <strong className="text-slate-800">EV import taxation</strong>, a one-time charge when the vehicle enters Nepal, including customs duty and applicable import charges. <strong>This is entirely separate from the annual renewal tax.</strong>
               </li>
               <li>
-                <strong className="text-slate-800">Registration and renewal</strong> - keeping the vehicle registration certificate valid, subject to the same general renewal framework as other vehicles.
+                <strong className="text-slate-800">Registration and renewal</strong>, keeping the vehicle registration certificate valid, subject to the same general renewal framework as other vehicles.
               </li>
             </ul>
             <p className={`${prose} mt-3`}>
@@ -849,7 +849,7 @@ export default function BluebookRenewalPage() {
               Public and commercial vehicles have additional regulatory requirements beyond private-vehicle renewal. Depending on the vehicle and service, these may include:
             </p>
             <ul className="list-disc pl-6 mt-3 space-y-1 text-slate-600">
-              <li>route permits (separate transport authorisation - not the same as a Bluebook);</li>
+              <li>route permits (separate transport authorisation, not the same as a Bluebook);</li>
               <li>passenger or carrying-capacity classifications for tax;</li>
               <li>higher insurance requirements and premiums;</li>
               <li>additional inspection or certification; and</li>
@@ -868,7 +868,7 @@ export default function BluebookRenewalPage() {
             <p className={prose}>
               The Motor Vehicles and Transport Management Act provides that required insurance must be obtained and that a registration certificate <strong>will not be renewed without it</strong>. Insurance is therefore a legal prerequisite, not an optional cost. The{' '}
               <span className="font-semibold text-slate-900">Nepal Insurance Authority (NIA)</span>{' '}
-              is the current regulatory body and publishes applicable insurance circulars including third-party vehicle insurance requirements. Insurance premiums are separate from provincial vehicle tax and the renewal fee - always get a current quote from a licensed insurer.
+              is the current regulatory body and publishes applicable insurance circulars including third-party vehicle insurance requirements. Insurance premiums are separate from provincial vehicle tax and the renewal fee, always get a current quote from a licensed insurer.
             </p>
 
             <h3 className={h3}>Pollution Certification</h3>
@@ -891,7 +891,7 @@ export default function BluebookRenewalPage() {
                 ['Thinking vehicle tax equals total renewal cost', 'Tax, renewal fee, insurance, and any certification costs are all separate components.'],
                 ['Assuming online tax payment = renewal complete', 'In some provinces, you still need to visit the TMO for the registration stamp. Confirm with your province.'],
                 ['Using an old blog/table as the current rate', 'Provincial tax schedules change with each annual Economic Act. Always verify the current FY rate.'],
-                ['Thinking a long-overdue vehicle just needs (tax × years)', 'Prolonged non-renewal triggers cancellation and re-registration law - not just ordinary late fees. Contact your TMO.'],
+                ['Thinking a long-overdue vehicle just needs (tax × years)', 'Prolonged non-renewal triggers cancellation and re-registration law, not just ordinary late fees. Contact your TMO.'],
                 ['Confusing EV import tax with EV annual road tax', 'These are completely different charges at different stages of vehicle ownership.'],
                 ['Treating a Bagmati Province rate as nationwide', 'No single nationwide rate exists. Each province sets its own schedule.'],
               ].map(([mistake, why]) => (
@@ -938,7 +938,7 @@ export default function BluebookRenewalPage() {
                 },
                 {
                   q: 'Can I pay vehicle tax online in Nepal?',
-                  a: 'Yes - via the Nagarik App or your province\'s EDL/VRS portal. However, some provinces may still require an in-person visit to the Transport Management Office to complete the registration renewal.',
+                  a: 'Yes, via the Nagarik App or your province\'s EDL/VRS portal. However, some provinces may still require an in-person visit to the Transport Management Office to complete the registration renewal.',
                 },
                 {
                   q: 'How do I use the Nagarik App for vehicle tax payment?',
@@ -950,7 +950,7 @@ export default function BluebookRenewalPage() {
                 },
                 {
                   q: 'Can I renew my Bluebook for multiple years?',
-                  a: 'The Motor Vehicles and Transport Management Act provides a multi-year renewal provision for eligible private vehicle categories - up to five years. Confirm the current procedure with your relevant Transport Management Office.',
+                  a: 'The Motor Vehicles and Transport Management Act provides a multi-year renewal provision for eligible private vehicle categories, up to five years. Confirm the current procedure with your relevant Transport Management Office.',
                 },
                 {
                   q: 'Is insurance required for Bluebook renewal?',
@@ -1001,7 +1001,7 @@ export default function BluebookRenewalPage() {
           <section className="mt-10 rounded-2xl bg-slate-900 text-white p-6">
             <h2 className="text-lg font-bold mb-3">In Brief</h2>
             <p className="text-slate-300 leading-relaxed text-sm">
-              Bluebook renewal is a vehicle-registration renewal process in Nepal. The national vehicle law provides the registration framework, while provincial economic legislation determines vehicle-tax obligations and practical service arrangements. The exact cost depends on your province, vehicle category, and renewal status. In Bagmati Province (FY2082/83), a 125cc bike costs Rs 3,300 (tax + fee) and a car up to 1000cc costs Rs 22,500 - plus mandatory insurance. Use the{' '}
+              Bluebook renewal is a vehicle-registration renewal process in Nepal. The national vehicle law provides the registration framework, while provincial economic legislation determines vehicle-tax obligations and practical service arrangements. The exact cost depends on your province, vehicle category, and renewal status. In Bagmati Province (FY2082/83), a 125cc bike costs Rs 3,300 (tax + fee) and a car up to 1000cc costs Rs 22,500, plus mandatory insurance. Use the{' '}
               <span className="font-medium text-emerald-400">NepaCalc Vehicle Tax Calculator</span>{' '}
               for a quick estimate, and always verify the final amount with the applicable government source.
             </p>
@@ -1024,12 +1024,12 @@ export default function BluebookRenewalPage() {
                 <tbody className="divide-y divide-slate-100">
                   {[
                     {
-                      source: 'Nepal Law Commission - Motor Vehicles and Transport Management Act',
+                      source: 'Nepal Law Commission, Motor Vehicles and Transport Management Act',
                       url: 'https://lawcommission.gov.np/',
                       what: 'National registration and renewal law, late-renewal provisions, multi-year renewal, cancellation and re-registration',
                     },
                     {
-                      source: 'Nepal Law Commission - Transport Management Rules',
+                      source: 'Nepal Law Commission, Transport Management Rules',
                       url: 'https://lawcommission.gov.np/',
                       what: 'Renewal procedure, documentation framework, pollution and route-permit requirements',
                     },
