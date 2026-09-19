@@ -12,13 +12,13 @@ export default function SilverPriceUpdater() {
       // 1. Update DOM Prices
       const mainPrices = document.querySelectorAll('#silver-main-price');
       mainPrices.forEach(el => {
-        el.textContent = `Rs. ${liveSilver.toLocaleString('en-IN')}`;
+        el.textContent = liveSilver.toLocaleString('en-IN');
       });
 
       const gramPrice = document.getElementById('silver-gram-price');
       if (gramPrice) {
         const live10g = rates.silver.tenGramNPR || Math.round(liveSilver / 1.1664);
-        gramPrice.textContent = `Rs. ${live10g.toLocaleString('en-IN')}`;
+        gramPrice.textContent = live10g.toLocaleString('en-IN');
       }
       
       // Update the 24H change
