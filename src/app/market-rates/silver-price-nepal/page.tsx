@@ -399,7 +399,7 @@ export default async function Page() {
                 Today's Silver Price in Nepal | Chandi Rate Per Tola
               </h1>
               <p className="text-[#5f6368] text-base font-medium leading-relaxed max-w-xl mb-3">
-                Check today&apos;s official silver prices in Nepal based on FENEGOSIDA benchmarks.
+                Check live silver price in Nepal based on FENEGOSIDA benchmarks.
               </p>
               <div className="flex flex-col gap-1 text-sm font-bold text-slate-800">
                 <div>Silver price per Tola: <span className="text-slate-900 font-black">Rs. {fmt(currentSilver)}</span></div>
