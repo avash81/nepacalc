@@ -256,37 +256,37 @@ const renewalSteps = [
     step: 1,
     title: 'Gather Your Documents',
     desc: 'Collect your original Bluebook (vehicle registration certificate), your citizenship/identity document, existing insurance certificate, and any pollution certificate if applicable to your vehicle type.',
-    icon: '📋',
+    icon: '',
   },
   {
     step: 2,
     title: 'Identify Your Province and Vehicle Category',
     desc: 'Confirm which of the seven provinces your vehicle is registered in - this determines your tax rate. Know your engine capacity (CC for bikes/cars) or motor power (kW for EVs), as these set the slab.',
-    icon: '📍',
+    icon: '',
   },
   {
     step: 3,
     title: 'Pay Vehicle Tax',
     desc: 'Pay the applicable provincial vehicle tax online via the Nagarik App or your province\'s EDL/VRS portal, or offline at your provincial Transport Management Office (TMO). Get a payment receipt.',
-    icon: '💳',
+    icon: '',
   },
   {
     step: 4,
     title: 'Renew Vehicle Insurance',
     desc: 'Valid vehicle insurance is a mandatory legal prerequisite for renewal under the Motor Vehicles and Transport Management Act. Renew third-party insurance before going to the transport office.',
-    icon: '🛡️',
+    icon: '',
   },
   {
     step: 5,
     title: 'Obtain Pollution Certificate (If Required)',
     desc: 'Petrol and diesel vehicles in areas where pollution testing is required must have a valid pollution/emission certificate. Check the current requirement at your local transport office.',
-    icon: '🌿',
+    icon: '',
   },
   {
     step: 6,
     title: 'Submit at the Transport Management Office',
     desc: 'Present all documents - tax receipt, insurance, pollution cert, and Bluebook - at your relevant TMO. The office will stamp and renew your registration certificate. Keep all original receipts.',
-    icon: '🏛️',
+    icon: '',
   },
 ];
 
@@ -672,7 +672,7 @@ export default function BluebookRenewalPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-900 text-white text-sm font-medium hover:bg-slate-700 transition-colors"
               >
-                <span>▶</span> Get Nagarik App (Android)
+                Get Nagarik App (Android)
               </a>
               <a
                 href="https://apps.apple.com/np/app/nagarik/id1531440521"
@@ -680,7 +680,7 @@ export default function BluebookRenewalPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-900 text-white text-sm font-medium hover:bg-slate-700 transition-colors"
               >
-                <span>🍎</span> Get Nagarik App (iOS)
+                Get Nagarik App (iOS)
               </a>
             </div>
 
@@ -896,7 +896,7 @@ export default function BluebookRenewalPage() {
                 ['Treating a Bagmati Province rate as nationwide', 'No single nationwide rate exists. Each province sets its own schedule.'],
               ].map(([mistake, why]) => (
                 <div key={mistake} className="border-l-4 border-rose-200 pl-4 py-1">
-                  <p className="font-semibold text-slate-900 text-sm">❌ {mistake}</p>
+                  <p className="font-semibold text-slate-900 text-sm"> {mistake}</p>
                   <p className="text-slate-600 text-sm mt-0.5">{why}</p>
                 </div>
               ))}
