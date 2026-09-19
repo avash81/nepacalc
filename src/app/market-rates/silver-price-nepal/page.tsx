@@ -401,9 +401,11 @@ export default async function Page() {
               <p className="text-[#5f6368] text-base font-medium leading-relaxed max-w-xl mb-3">
                 Check live silver price in Nepal based on FENEGOSIDA benchmarks.
               </p>
-              <div className="flex flex-col gap-1 text-sm font-bold text-slate-800">
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-bold text-slate-800">
                 <div>Silver price per Tola: <span className="text-slate-900 font-black">Rs. {fmt(currentSilver)}</span></div>
+                <span className="hidden sm:inline text-slate-300">•</span>
                 <div>Silver price per 10 Grams: <span className="text-slate-900 font-black">Rs. {fmt(currentSilver10g)}</span></div>
+                <span className="hidden sm:inline text-slate-300">•</span>
                 <div>Silver price per Gram: <span className="text-slate-900 font-black">Rs. {currentSilver1g.toFixed(2)}</span></div>
               </div>
             </div>
