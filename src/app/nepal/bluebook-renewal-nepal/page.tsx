@@ -316,7 +316,7 @@ export default function BluebookRenewalPage() {
 
               {/* ── H1 ── */}
               <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-6 leading-tight">
-                Bluebook Renewal in Nepal: Cost, Process &amp; Online Guide
+                Bluebook Renewal in Nepal
               </h1>
 
               {/* ── QUICK ANSWERS HERO BLOCK ── */}
