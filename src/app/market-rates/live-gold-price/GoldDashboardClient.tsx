@@ -98,29 +98,12 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
   // that Googlebot's renderer can index with the correct prices.
   // The full interactive dashboard replaces this once the live fetch completes.
   if (loading || !rates?.gold) {
-    if (initialGold) {
-      const fmtSeed = (n: number) => n.toLocaleString('en-IN');
-      return (
-        <div className="min-h-[200px] p-6">
-          <div className="flex flex-wrap gap-6 items-start mb-6">
-            <div className="rounded-2xl bg-amber-50 border border-amber-200 p-5 min-w-[240px]">
-              <div className="text-[11px] font-bold text-amber-700 uppercase tracking-widest mb-1">24K Hallmark Gold · Per Tola</div>
-              <div className="text-3xl font-black text-slate-900">Rs. {fmtSeed(initialGold)}</div>
-              {initialSilver && (
-                <div className="mt-2 text-sm text-slate-600">Silver: <strong>Rs. {fmtSeed(initialSilver)}</strong> /Tola</div>
-              )}
-              {initialDate && (
-                <div className="mt-1 text-xs text-slate-500">Rate date: {new Date(initialDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</div>
-              )}
-            </div>
-          </div>
-          <div className="h-1 w-24 bg-amber-200 rounded animate-pulse" />
-        </div>
-      );
-    }
     return (
-      <div className="min-h-[400px] bg-slate-50 flex items-center justify-center rounded-2xl">
-        <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+      <div className="min-h-[400px] bg-slate-50 border border-slate-200 rounded-2xl p-6 animate-pulse mb-6 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-8 h-8 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
+          <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">Loading Live Market Dashboard...</p>
+        </div>
       </div>
     );
   }
