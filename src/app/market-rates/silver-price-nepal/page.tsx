@@ -318,6 +318,7 @@ export default async function Page() {
   const changePercent24h = silverData?.tolaNPR?.changePercent24h ?? ((change24h / previousSilver) * 100);
   const isFresh = status === 'verified';
   
+  const currentSilver10g = silverData?.tenGramNPR || Math.round(currentSilver / 1.1664);
   const currentSilver1g = Number((currentSilver10g / 10).toFixed(2));
   const currentSilverKg = currentSilver10g * 100;
 
