@@ -9,39 +9,7 @@ export default function SilverPriceUpdater() {
   useEffect(() => {
     if (rates?.silver?.tolaNPR?.current) {
       const liveSilver = rates.silver.tolaNPR.current;
-      const formattedPrice = `Rs. ${(liveSilver).toLocaleString('en-IN')}`;
-      const newDesc = `Today's live silver price in Nepal from FENEGOSIDA: ${formattedPrice} per tola. Check the current Chandi rate per gram and kg.`;
-
-      // 1. Update SEO Meta
-      const metaDesc = document.querySelector('meta[name="description"]');
-      if (metaDesc) metaDesc.setAttribute('content', newDesc);
-      
-      const ogDesc = document.querySelector('meta[property="og:description"]');
-      if (ogDesc) ogDesc.setAttribute('content', newDesc);
-      
-      // 2. Update JSON-LD
-      const scripts = document.querySelectorAll('script[type="application/ld+json"]');
-      scripts.forEach(script => {
-        try {
-          if (script.textContent && script.textContent.includes('Silver Price in Nepal Today')) {
-            const schema = JSON.parse(script.textContent);
-            let updated = false;
-            if (schema['@graph']) {
-              schema['@graph'].forEach((node: any) => {
-                if (node['@type'] === 'WebPage' || node['@type'] === 'Article') {
-                  node.description = newDesc;
-                  updated = true;
-                }
-              });
-            }
-            if (updated) {
-              script.textContent = JSON.stringify(schema);
-            }
-          }
-        } catch(e) {}
-      });
-
-      // 3. Update DOM Prices
+      // 1. Update DOM Prices
       const mainPrices = document.querySelectorAll('#silver-main-price');
       mainPrices.forEach(el => {
         el.textContent = `Rs. ${liveSilver.toLocaleString('en-IN')}`;

@@ -92,43 +92,7 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
   const { rates, loading, error } = useLiveRates();
 
 
-  useEffect(() => {
-    if (rates?.gold?.tolaNPR?.current) {
-      const livePrice = rates.gold.tolaNPR.current;
-      const formattedPrice = `Rs. ${livePrice.toLocaleString('en-IN')}`;
-      const newDesc = `Today's live gold price in Nepal from FENEGOSIDA: 24K Hallmark ${formattedPrice} per tola. Check 22K Tejabi, silver, history and gold calculator.`;
-      
-      // Dynamically update the meta description for client-side crawlers
-      const metaDesc = document.querySelector('meta[name="description"]');
-      if (metaDesc) metaDesc.setAttribute('content', newDesc);
-      
-      // Dynamically update open graph tags
-      const ogDesc = document.querySelector('meta[property="og:description"]');
-      if (ogDesc) ogDesc.setAttribute('content', newDesc);
-      
-      // Update JSON-LD schema
-      const scripts = document.querySelectorAll('script[type="application/ld+json"]');
-      scripts.forEach(script => {
-        try {
-          if (script.textContent && script.textContent.includes('Gold Price in Nepal Today')) {
-            const schema = JSON.parse(script.textContent);
-            let updated = false;
-            if (schema.webpage) {
-              schema.webpage.description = newDesc;
-              updated = true;
-            }
-            if (schema.article) {
-              schema.article.description = newDesc;
-              updated = true;
-            }
-            if (updated) {
-              script.textContent = JSON.stringify(schema);
-            }
-          }
-        } catch(e) {}
-      });
-    }
-  }, [rates]);
+
 
   // If still loading but we have build-time seed prices, render a lightweight placeholder
   // that Googlebot's renderer can index with the correct prices.
