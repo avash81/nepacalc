@@ -122,27 +122,27 @@ export default async function Page() {
 
             {gold24k && (
               <div className="flex flex-wrap gap-4 text-sm font-semibold text-slate-700 mb-2">
-                <span>
+                <div>
                   <span className="text-slate-500 font-medium">24K Hallmark (per Tola):</span>{' '}
                   <strong className="text-slate-900">Rs. {fmt(gold24k as number)}</strong>
-                </span>
+                </div>
                 {gold22k && gold22k > 0 && (
-                  <span>
+                  <div>
                     <span className="text-slate-500 font-medium">22K Tejabi (per Tola):</span>{' '}
                     <strong className="text-slate-900">Rs. {fmt(gold22k as number)}</strong>
-                  </span>
+                  </div>
                 )}
                 {gold10g && gold10g > 0 && (
-                  <span>
+                  <div>
                     <span className="text-slate-500 font-medium">24K Hallmark (per 10 Grams):</span>{' '}
                     <strong className="text-slate-900">Rs. {fmt(gold10g as number)}</strong>
-                  </span>
+                  </div>
                 )}
                 {silver && (
-                  <span>
+                  <div>
                     <span className="text-slate-500 font-medium">Fine Silver (Chandi) per Tola:</span>{' '}
                     <strong className="text-slate-900">Rs. {fmt(silver as number)}</strong>
-                  </span>
+                  </div>
                 )}
               </div>
             )}

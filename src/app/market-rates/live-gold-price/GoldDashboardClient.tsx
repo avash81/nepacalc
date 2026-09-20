@@ -179,7 +179,7 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
           <div>Rate Date: {rates.gold.dataDate}</div>
           <div>Next Update: ~11:00 AM NPT</div>
           <div className={rates.gold.isFresh ? 'text-green-600' : 'text-amber-600'}>
-            {rates.gold.isFresh ? 'Fresh ✓' : 'Cached'}
+            {rates.gold.isFresh ? 'Updated Today ✓' : 'Cached'}
           </div>
         </div>
         <div className="p-4 bg-slate-50 border border-slate-100 rounded-xl text-slate-700 text-[13px] leading-relaxed font-medium">
