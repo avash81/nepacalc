@@ -8,8 +8,9 @@ name: Smart Window Rate Watcher
 
 on:
   schedule:
-    - cron: '12,27,42,57 4 * * *'   # 09:57, 10:12, 10:27, 10:42 AM NPT
-    - cron: '12,27,42,57 5-7 * * *' # 10:57 AM - 1:42 PM NPT
+    # Highly optimized for GitHub Free Tier (Uses ~270 mins/month out of 2000 limit)
+    # Checks every 20 mins starting slightly before 10 AM until 12:37 PM NPT
+    - cron: '12,32,52 4-6 * * *'
   workflow_dispatch:
 
 permissions:
