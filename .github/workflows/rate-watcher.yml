@@ -8,9 +8,9 @@ name: Smart Window Rate Watcher
 
 on:
   schedule:
-    # Highly optimized for GitHub Free Tier (Uses ~270 mins/month out of 2000 limit)
-    # Checks every 20 mins starting slightly before 10 AM until 12:37 PM NPT
-    - cron: '12,32,52 4-6 * * *'
+    # Highly optimized for GitHub Free Tier (~450 mins/month out of 2000 limit)
+    # Checks every 20 mins from 7:57 AM until 12:37 PM NPT (covers Forex morning & Gold midday)
+    - cron: '12,32,52 2-6 * * *'
   workflow_dispatch:
 
 permissions:
