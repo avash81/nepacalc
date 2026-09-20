@@ -8,6 +8,7 @@ a:I[34845,["231","static/chunks/231-4d5411c705f5b8da.js","7601","static/chunks/a
 b:I[49896,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-3debf12bfc30f8e2.js","596","static/chunks/596-2f1d3b7e5ec628d5.js","3185","static/chunks/app/layout-5ca1cbd8112ae626.js"],"FooterScrollTop"]
 c:"$Sreact.suspense"
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 d:I[10912,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-3debf12bfc30f8e2.js","596","static/chunks/596-2f1d3b7e5ec628d5.js","3185","static/chunks/app/layout-5ca1cbd8112ae626.js"],"BailoutToCSR"]
 e:I[21195,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-3debf12bfc30f8e2.js","596","static/chunks/596-2f1d3b7e5ec628d5.js","3185","static/chunks/app/layout-5ca1cbd8112ae626.js"],"MobileNav",1]
 f:I[74043,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-3debf12bfc30f8e2.js","596","static/chunks/596-2f1d3b7e5ec628d5.js","3185","static/chunks/app/layout-5ca1cbd8112ae626.js"],"GoogleAnalytics",1]
@@ -19,6 +20,8 @@ f:I[74043,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7
 17:I[53374,["231","static/chunks/231-4d5411c705f5b8da.js","8399","static/chunks/8399-84801acf0019eacf.js","1008","static/chunks/app/market-rates/silver-price-nepal/page-78ccec567e0a4d41.js"],"default"]
 18:I[61934,["231","static/chunks/231-4d5411c705f5b8da.js","8399","static/chunks/8399-84801acf0019eacf.js","1008","static/chunks/app/market-rates/silver-price-nepal/page-78ccec567e0a4d41.js"],"default"]
 =======
+=======
+>>>>>>> Stashed changes
 d:I[10912,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-3debf12bfc30f8e2.js","596","static/chunks/596-2f1d3b7e5ec628d5.js","3185","static/chunks/app/layout-649626654869b6d7.js"],"BailoutToCSR"]
 e:I[21195,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-3debf12bfc30f8e2.js","596","static/chunks/596-2f1d3b7e5ec628d5.js","3185","static/chunks/app/layout-649626654869b6d7.js"],"MobileNav",1]
 f:I[74043,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-3debf12bfc30f8e2.js","596","static/chunks/596-2f1d3b7e5ec628d5.js","3185","static/chunks/app/layout-649626654869b6d7.js"],"GoogleAnalytics",1]
@@ -29,7 +32,6 @@ f:I[74043,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7
 16:I[71426,["231","static/chunks/231-4d5411c705f5b8da.js","8399","static/chunks/8399-84801acf0019eacf.js","1008","static/chunks/app/market-rates/silver-price-nepal/page-6a1a3fb5a7591157.js"],"default"]
 17:I[53374,["231","static/chunks/231-4d5411c705f5b8da.js","8399","static/chunks/8399-84801acf0019eacf.js","1008","static/chunks/app/market-rates/silver-price-nepal/page-6a1a3fb5a7591157.js"],"default"]
 18:I[61934,["231","static/chunks/231-4d5411c705f5b8da.js","8399","static/chunks/8399-84801acf0019eacf.js","1008","static/chunks/app/market-rates/silver-price-nepal/page-6a1a3fb5a7591157.js"],"default"]
->>>>>>> Stashed changes
 11:T4a8,
 .nb-toc-mobile{display:block;margin-bottom:14px;}
 .nb-toc-mobile details{border:2px solid #006845;background:#f0faf5;border-radius:10px;box-shadow:0 4px 6px -1px rgba(0,104,69,0.12),0 2px 4px -2px rgba(0,104,69,0.08);transition:all 0.2s;}
