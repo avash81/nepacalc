@@ -69,7 +69,7 @@ export default function LiveGoldPriceBoxClient({ initialGold }: { initialGold?: 
       <div className="mt-4 flex items-center justify-between border-t border-slate-100 pt-3">
         <span className="text-xs font-bold text-slate-500 tracking-wider">24H CHANGE</span>
         <div className={`flex items-center gap-1 text-xs font-bold px-2 py-0.5 rounded-md ${badgeClass}`}>
-          {isUp ? '+' : isDown ? '-' : '+'}Rs. {fmt(Math.abs(changeValue))} ({isUp ? '+' : isDown ? '-' : '+'}{changePct.toFixed(2)}%)
+          {isUp ? '+' : isDown ? '-' : '+'}Rs. {fmt(Math.abs(changeValue))} ({isUp ? '+' : isDown ? '-' : '+'}{Math.abs(changePct).toFixed(2)}%)
         </div>
       </div>
 

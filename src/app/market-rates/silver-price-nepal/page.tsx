@@ -423,13 +423,25 @@ export default async function Page() {
                   <span className="text-4xl font-black tracking-tighter text-slate-900" id="silver-main-price">{fmt(currentSilver)}</span>
                 </div>
                 {changePercent24h !== undefined && (
-                  <div className="mt-3 flex items-center justify-between border-t border-slate-100 pt-3">
-                    <span className="text-[11px] font-bold text-slate-500 uppercase tracking-widest">24H Change</span>
-                    <div id="silver-main-percent" className={`px-2 py-0.5 rounded text-xs font-black flex items-center gap-1 ${changePercent24h >= 0 ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600'}`}>
-                      {changePercent24h >= 0 ? '+' : ''}{changePercent24h.toFixed(2)}%
-                    </div>
-                  </div>
-                )}
+                    <>
+                      <div className="mt-3 flex items-center justify-between border-t border-slate-100 pt-3">
+                        <span className="text-[11px] font-bold text-slate-500 uppercase tracking-widest">24H Change</span>
+                        <div id="silver-main-percent" className={`px-2 py-0.5 rounded text-xs font-black flex items-center gap-1 ${changePercent24h >= 0 ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600'}`}>
+                          {changePercent24h > 0 ? '+' : changePercent24h < 0 ? '-' : '+'}Rs. {fmt(Math.abs(change24h))} ({changePercent24h > 0 ? '+' : changePercent24h < 0 ? '-' : '+'}{Math.abs(changePercent24h).toFixed(2)}%)
+                        </div>
+                      </div>
+                      <div className="mt-3 flex flex-col gap-1 text-[10px] font-bold text-slate-400 tracking-widest uppercase">
+                        <div className="flex justify-between">
+                          <div>Source</div>
+                          <div className="text-slate-500">{source_name || source || 'FENEGOSIDA'}</div>
+                        </div>
+                        <div className="flex justify-between">
+                          <div>Rate date</div>
+                          <div className="text-slate-500">{new Date(rate_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</div>
+                        </div>
+                      </div>
+                    </>
+                  )}
               </div>
             </div>
           </div>
