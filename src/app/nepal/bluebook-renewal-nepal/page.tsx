@@ -762,7 +762,13 @@ export default function BluebookRenewalPage() {
               <li>Office stamping</li>
             </ul>
             <p className={`${prose} mt-3`}>
-              Service availability, coverage, and charges can change, so check the provider&apos;s current service information before paying.
+              For example, eSewa has offered a <strong>Bluebook renewal and third-party insurance service in Kathmandu Valley</strong>. The service can calculate the tax, renewal fee and insurance amount, arrange Bluebook pickup, process the renewal and deliver the renewed Bluebook and documents.
+            </p>
+            <p className={`${prose} mt-3`}>
+              The eSewa service may take <strong>3 to 4 working days</strong>, and third-party insurance is required for its applicable renewal service.
+            </p>
+            <p className={`${prose} mt-3`}>
+              <strong>Service availability, coverage, processing time and charges can change</strong>, so check the provider&apos;s current app or website before paying.
             </p>
 
             <h3 className={h3}>Important: Online Payment Does Not Always Mean Full Renewal</h3>
