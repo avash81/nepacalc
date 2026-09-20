@@ -4,9 +4,9 @@ import Image from 'next/image';
 
 // ─── METADATA ────────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
-  title: 'Bluebook Renewal in Nepal: Cost, Process & Online Guide',
+  title: 'Bluebook Renewal in Nepal: Cost, Process & Online Payment',
   description:
-    'Learn Bluebook renewal costs, vehicle tax, online renewal, required documents and late fines in Nepal. Check province wise rates and renewal steps.',
+    'Learn Bluebook renewal costs, vehicle tax, online payment, required documents and late fines in Nepal. Check province-wise rates and renewal steps.',
   keywords: [
     'bluebook renewal nepal',
     'bluebook renewal cost nepal',
@@ -35,9 +35,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'article',
-    title: 'Bluebook Renewal in Nepal: Cost, Process & Online Guide',
+    title: 'Bluebook Renewal in Nepal: Cost, Process & Online Payment',
     description:
-      'Learn Bluebook renewal costs, vehicle tax, online renewal, required documents and late fines in Nepal. Check province wise rates and renewal steps.',
+      'Learn Bluebook renewal costs, vehicle tax, online payment, required documents and late fines in Nepal. Check province-wise rates and renewal steps.',
     url: 'https://nepacalc.com/nepal/bluebook-renewal-nepal/',
     siteName: 'NepaCalc',
     images: [
@@ -49,9 +49,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Bluebook Renewal in Nepal: Cost, Process & Online Guide',
+    title: 'Bluebook Renewal in Nepal: Cost, Process & Online Payment',
     description:
-      'Learn Bluebook renewal costs, vehicle tax, online renewal, required documents and late fines in Nepal. Check province wise rates and renewal steps.',
+      'Learn Bluebook renewal costs, vehicle tax, online payment, required documents and late fines in Nepal. Check province-wise rates and renewal steps.',
     images: ['https://nepacalc.com/images/bluebook-renewal-nepal-process.webp'],
   },
   alternates: {
@@ -69,9 +69,9 @@ const pageSchema = [
       '@type': 'WebPage',
       '@id': 'https://nepacalc.com/nepal/bluebook-renewal-nepal/',
     },
-    headline: 'Bluebook Renewal in Nepal: Cost, Process & Online Guide',
+    headline: 'Bluebook Renewal in Nepal: Cost, Process & Online Payment',
     description:
-      'Learn Bluebook renewal costs, vehicle tax, online renewal, required documents and late fines in Nepal. Check province wise rates and renewal steps.',
+      'Learn Bluebook renewal costs, vehicle tax, online payment, required documents and late fines in Nepal. Check province-wise rates and renewal steps.',
     author: {
       '@type': 'Organization',
       name: 'NepaCalc Editorial Team',
@@ -318,6 +318,46 @@ export default function BluebookRenewalPage() {
               <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-6 leading-tight">
                 Bluebook Renewal in Nepal
               </h1>
+
+              {/* ── MOBILE TOC ── */}
+              <div className="lg:hidden mb-8">
+                <details className="group border border-slate-200 rounded-xl bg-white overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+                  <summary className="flex items-center justify-between p-4 font-semibold text-slate-800 cursor-pointer bg-slate-50 hover:bg-slate-100 transition-colors list-none">
+                    <span>Table of Contents</span>
+                    <span className="transition duration-300 group-open:-rotate-180">
+                      <svg fill="none" height="24" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                    </span>
+                  </summary>
+                  <div className="p-4 border-t border-slate-100">
+                    <ol className="space-y-3">
+                      {[
+                        ['#quick-answer', 'What is Bluebook Renewal?'],
+                        ['#steps', 'Step-by-Step Renewal Guide'],
+                        ['#province-guide', "Province-by-Province Tax Rates"],
+                        ['#bike', 'Motorcycle & Scooter Renewal'],
+                        ['#car', 'Car & Jeep Renewal'],
+                        ['#late-renewal', 'Late Renewal Fines & Penalties'],
+                        ['#online', 'Online Vehicle Tax Payment & Bluebook Renewal'],
+                        ['#documents', 'Required Documents'],
+                        ['#calculate', 'How to Estimate Total Cost'],
+                        ['#tax-vs-renewal', 'Tax vs Renewal'],
+                        ['#ev', 'Electric Vehicle Renewal'],
+                        ['#commercial', 'Public & Commercial Vehicles'],
+                        ['#insurance', 'Insurance & Pollution Requirements'],
+                        ['#mistakes', 'Common Mistakes to Avoid'],
+                        ['#faq', 'Frequently Asked Questions'],
+                        ['#sources', 'Official Sources & Verification'],
+                      ].map(([href, label]) => (
+                        <li key={href}>
+                          <a href={href} className="block text-sm text-slate-600 hover:text-[#1a73e8] transition-colors">
+                            {label}
+                          </a>
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                </details>
+              </div>
 
               {/* ── QUICK ANSWERS HERO BLOCK ── */}
               <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5 mb-8">
@@ -656,59 +696,59 @@ export default function BluebookRenewalPage() {
 
           {/* ── ONLINE RENEWAL ── */}
           <section id="online" className="scroll-mt-24">
-            <h2 className={h2}>Online Renewal, Nagarik App &amp; Provincial Portals</h2>
+            <h2 className={h2}>Online Vehicle Tax Payment &amp; Bluebook Renewal</h2>
             <p className={prose}>
-              Vehicle tax payment can be completed online in most provinces. The two main channels are the <strong>Nagarik App</strong> (national) and the <strong>provincial EDL/VRS portals</strong>.
+              You can start your Bluebook renewal online, but <strong>online payment and complete Bluebook renewal are not always the same thing</strong>.
             </p>
 
-            <h3 className={h3}>Nagarik App</h3>
+            <h3 className={h3}>1. Pay Vehicle Tax Online</h3>
             <p className={prose}>
-              The Nagarik App is a national digital government services platform where you can pay vehicle tax and access other government services. It is available on both Android and iOS. Steps: open the app → go to Transport Services → select Vehicle Tax Payment → enter your vehicle number and confirm payment.
+              You can pay your vehicle tax through:
             </p>
-            <div className="mt-3 flex flex-wrap gap-3">
-              <a
-                href="https://play.google.com/store/apps/details?id=np.gov.nagarik"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-900 text-white text-sm font-medium hover:bg-slate-700 transition-colors"
-              >
-                Get Nagarik App (Android)
-              </a>
-              <a
-                href="https://apps.apple.com/np/app/nagarik/id1531440521"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-900 text-white text-sm font-medium hover:bg-slate-700 transition-colors"
-              >
-                Get Nagarik App (iOS)
-              </a>
-            </div>
-
-            <h3 className={h3}>Provincial EDL/VRS Portals</h3>
-            <p className={`${prose} mb-4`}>
-              Each province operates its own Electronic Driver Licence and Vehicle Registration System (EDL/VRS) portal for tax payment and registration services:
+            <ul className="list-disc pl-6 mt-3 space-y-1 text-slate-600">
+              <li><strong>Nagarik App</strong></li>
+              <li><strong>Provincial EDL/VRS portal</strong></li>
+              <li><strong>Supported payment gateways</strong> such as eSewa, Khalti or connectIPS, when available</li>
+            </ul>
+            <p className={`${prose} mt-3`}>
+              <strong>Basic process:</strong><br />
+              Enter your vehicle details → check the calculated amount → make the payment → save the payment receipt.
             </p>
-            <div className="grid sm:grid-cols-2 gap-3">
-              {provinces.map(({ name, portal, portalLabel }) => (
-                <a
-                  key={name}
-                  href={portal}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between p-3 rounded-xl border border-slate-200 hover:border-blue-300 hover:bg-blue-50 transition-colors group"
-                >
-                  <div>
-                    <p className="text-sm font-semibold text-slate-800 group-hover:text-blue-700">{name}</p>
-                    <p className="text-xs text-slate-500">{portalLabel}</p>
-                  </div>
-                  <span className="text-blue-400 group-hover:text-blue-600">→</span>
-                </a>
-              ))}
-            </div>
 
-            <div className="mt-5 rounded-xl bg-amber-50 border border-amber-200 p-4 text-sm text-amber-900">
-              <strong>Important:</strong> Online tax payment does <em>not</em> automatically mean the entire Bluebook-renewal process is complete. In some provinces, you still need to visit the Transport Management Office to get the physical stamp on your Bluebook. Sudurpashchim&apos;s VRS portal currently lists some services as &ldquo;Coming Soon.&rdquo; Always check the current status of your provincial portal before relying on a fully online renewal.
-            </div>
+            <h3 className={h3}>2. Use a Third-Party Renewal Service</h3>
+            <p className={prose}>
+              Some services such as <strong>eSewa and Khalti</strong> may offer managed Bluebook renewal services in supported areas.
+            </p>
+            <p className={`${prose} mt-3`}>
+              Depending on the service, they may handle:
+            </p>
+            <ul className="list-disc pl-6 mt-3 space-y-1 text-slate-600">
+              <li>Vehicle tax payment</li>
+              <li>Insurance payment</li>
+              <li>Renewal processing</li>
+              <li>Pickup and delivery</li>
+              <li>Office stamping/processing</li>
+            </ul>
+            <p className={`${prose} mt-3`}>
+              <strong>Service availability, coverage and charges can change</strong>, so check the provider&apos;s current app or website before paying.
+            </p>
+
+            <h3 className={h3}>3. Important: Online Payment ≠ Complete Renewal</h3>
+            <p className={prose}>
+              Paying vehicle tax online <strong>does not always mean your Bluebook is fully renewed</strong>.
+            </p>
+            <p className={`${prose} mt-3`}>
+              Depending on your province and vehicle:
+            </p>
+            <ul className="list-disc pl-6 mt-3 space-y-1 text-slate-600">
+              <li>You may still need to visit the Transport Management Office (TMO).</li>
+              <li>You may need the original Bluebook and insurance documents.</li>
+              <li>Physical verification or stamping may still be required.</li>
+            </ul>
+            <p className={`${prose} mt-3`}>
+              <strong>In short:</strong><br />
+              <strong>Government portal/App → Pay tax online → Complete any remaining renewal steps required by your province.</strong>
+            </p>
           </section>
 
           {/* ── DOCUMENTS ── */}
@@ -1196,7 +1236,7 @@ export default function BluebookRenewalPage() {
                   ['#bike', 'Motorcycle & Scooter Renewal'],
                   ['#car', 'Car & Jeep Renewal'],
                   ['#late-renewal', 'Late Renewal Fines & Penalties'],
-                  ['#online', 'Online Renewal (Nagarik App & Portals)'],
+                  ['#online', 'Online Vehicle Tax Payment & Bluebook Renewal'],
                   ['#documents', 'Required Documents'],
                   ['#calculate', 'How to Estimate Total Cost'],
                   ['#tax-vs-renewal', 'Tax vs Renewal'],
