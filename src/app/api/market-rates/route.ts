@@ -86,8 +86,8 @@ export async function GET() {
     console.error('Error fetching market rates:', error);
     return NextResponse.json({
       success: false,
-      gold: { tolaNPR: 287400, tejabiTolaNPR: 246400 },
-      silver: { tolaNPR: 4640 },
+      gold: { tolaNPR: 305200, tejabiTolaNPR: 304500, tenGramNPR: 261660 },
+      silver: { tolaNPR: 4795, tenGramNPR: 4111 },
       provider: 'Error Fallback',
       updatedAt: new Date().toISOString()
     }, { status: 500 });
