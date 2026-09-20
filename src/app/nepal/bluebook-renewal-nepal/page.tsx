@@ -583,14 +583,17 @@ export default function BluebookRenewalPage() {
             </ul>
           </section>
 
-          {/* ── CAR & JEEP ── */}
+          {/* ╌╌ VEHICLE TAX RATES BY PROVINCE ╌╌ */}
           <section id="car" className="scroll-mt-24">
-            <h2 className={h2}>Car and Jeep Renewal</h2>
+            <h2 className={h2}>Vehicle Tax Rates in Nepal by Province</h2>
             <p className={prose}>
-              Private car and jeep vehicle tax in Nepal is also set by each province separately. The most widely used benchmark is Bagmati Province (which covers Kathmandu), where the FY2082/83 rates are:
+              Vehicle tax in Nepal depends on the vehicle type, engine capacity or motor power, vehicle use, and registration province. The rates below are based on the FY 2082/83 Provincial Economic Acts.
             </p>
+            <div className="mt-3 rounded-xl bg-amber-50 border border-amber-200 p-4 text-sm text-amber-900">
+              Vehicle tax information is based on FY 2082/83 Provincial Economic Acts. Tax rates, renewal fees and online services may change when a new fiscal-year budget or Economic Act is introduced. Always verify the payable amount through the relevant provincial transport authority before payment.
+            </div>
 
-            <h3 className={h3}>Bagmati Province: Car Tax Slabs (FY2082/83)</h3>
+            <h3 className={h3}>1. Bike and Scooter Tax Rates</h3>
             <div className="mt-3 overflow-x-auto rounded-xl border border-slate-200">
               <table className="w-full text-sm">
                 <thead className="bg-slate-50 border-b border-slate-200">
