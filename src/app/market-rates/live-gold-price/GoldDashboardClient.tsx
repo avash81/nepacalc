@@ -310,44 +310,7 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
               </div>
           </div>
 
-      <section id="quick-answer-block" className="scroll-mt-24 bg-blue-50 border border-blue-100 rounded-2xl p-6 md:p-8">
-        <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tighter mb-3">Quick Answer</h3>
-        <p className="text-[15px] text-slate-700 font-medium leading-relaxed">
-          Today&apos;s official gold price in Nepal is published daily by <strong>FENEGOSIDA</strong> and reflects international gold prices (LBMA), USD/NPR exchange rates set by <strong>Nepal Rastra Bank</strong>, customs duties, and local market conditions. The live benchmark rates shown on this page include <strong>Hallmark Gold (24K)</strong>, <strong>Tejabi Gold (22K)</strong>, and <strong>Silver</strong>, along with historical trends and an official gold value calculator.
-        </p>
-      </section>
-
-<section id="gold-at-a-glance" className="scroll-mt-24">
-        <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tighter mb-6">Today&apos;s Gold Price at a Glance</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5">
-          {[
-            { label: 'Hallmark Gold (24K)', value: tolaNPR.current ? `Rs. ${fmt(tolaNPR.current)}` : '—', sub: 'per Tola' },
-            { label: 'Tejabi Gold (22K)', value: tejabiTolaNPR && tejabiTolaNPR > 0 ? `Rs. ${fmt(tejabiTolaNPR)}` : 'Not Published', sub: 'per Tola' },
-            { label: 'Silver (Chandi)', value: silverTolaNPR ? `Rs. ${fmt(silverTolaNPR)}` : '—', sub: 'per Tola' },
-          ].map(({ label, value, sub }) => (
-            <div key={label} className="bg-amber-50 border border-amber-100 rounded-xl p-5 text-center">
-              <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">{label}</div>
-              <div className="text-2xl font-black text-slate-900">{value}</div>
-              <div className="text-[11px] text-slate-500 font-medium mt-1">{sub} · FENEGOSIDA</div>
-            </div>
-          ))}
-        </div>
-        <div className="bg-white border border-slate-200 rounded-xl p-5">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
-            {[
-              { label: "Today's Movement", value: rates?.gold?.tolaNPR ? 'See live board above' : '—' },
-              { label: 'Weekly Movement', value: 'See price history below' },
-              { label: 'Monthly High', value: (rates?.gold?.tolaNPR as any)?.high52w ? `Rs. ${fmt((rates.gold.tolaNPR as any).high52w)}` : 'See history' },
-              { label: 'Monthly Low', value: (rates?.gold?.tolaNPR as any)?.low52w ? `Rs. ${fmt((rates.gold.tolaNPR as any).low52w)}` : 'See history' },
-            ].map(({ label, value }) => (
-              <div key={label}>
-                <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">{label}</div>
-                <div className="text-sm font-bold text-slate-700">{value}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
 
 <section id="gold-conversion-table" className="scroll-mt-24">
         <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tighter mb-4">Gold Price Conversion Table</h3>
