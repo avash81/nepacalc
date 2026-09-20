@@ -68,7 +68,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page() {
-  const { date: rawDate, gold24k, gold22k, silver } = getLiveData();
+  const { date: rawDate, gold24k, gold22k, silver, gold10g } = getLiveData();
   const fmt = (n: number) => n.toLocaleString('en-IN');
 
   return (
@@ -130,6 +130,12 @@ export default async function Page() {
                   <span>
                     <span className="text-slate-500 font-medium">22K Tejabi (per Tola):</span>{' '}
                     <strong className="text-slate-900">Rs. {fmt(gold22k as number)}</strong>
+                  </span>
+                )}
+                {gold10g && gold10g > 0 && (
+                  <span>
+                    <span className="text-slate-500 font-medium">24K Hallmark (per 10 Grams):</span>{' '}
+                    <strong className="text-slate-900">Rs. {fmt(gold10g as number)}</strong>
                   </span>
                 )}
                 {silver && (
