@@ -402,9 +402,9 @@ export default async function Page() {
                 Check live silver price in Nepal based on FENEGOSIDA benchmarks.
               </p>
               <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-bold text-slate-800">
-                <div>Silver price per Tola: <span className="text-slate-900 font-black">Rs. {fmt(currentSilver)}</span></div>
-                <div>Silver price per 10 Grams: <span className="text-slate-900 font-black">Rs. {fmt(currentSilver10g)}</span></div>
-                <div>Silver price per Gram: <span className="text-slate-900 font-black">Rs. {currentSilver1g.toFixed(2)}</span></div>
+                <div>Fine Silver (Chandi) per Tola: <span className="text-slate-900 font-black">Rs. {fmt(currentSilver)}</span></div>
+                <div>Fine Silver (Chandi) per 10 Grams: <span className="text-slate-900 font-black">Rs. {fmt(currentSilver10g)}</span></div>
+                <div>Fine Silver (Chandi) per Gram: <span className="text-slate-900 font-black">Rs. {currentSilver1g.toFixed(2)}</span></div>
               </div>
             </div>
 

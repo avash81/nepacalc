@@ -140,7 +140,7 @@ export default async function Page() {
                 )}
                 {silver && (
                   <span>
-                    <span className="text-slate-500 font-medium">Silver (per Tola):</span>{' '}
+                    <span className="text-slate-500 font-medium">Fine Silver (Chandi) per Tola:</span>{' '}
                     <strong className="text-slate-900">Rs. {fmt(silver as number)}</strong>
                   </span>
                 )}
