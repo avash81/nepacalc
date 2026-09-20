@@ -17,14 +17,8 @@
   "source": "FENEGOSIDA",
   "source_url": "https://api.fenegosida.org/api/website/v1/Dashboard/today",
   "source_name": "Federation of Nepal Gold & Silver Dealers’ Association",
-<<<<<<< Updated upstream
-  "rate_date": "2026-09-18",
-  "published_at": "2026-09-18T04:52:27.951+00:00",
-  "fetched_at": "2026-09-20T01:50:09.093Z",
-=======
   "rate_date": "2026-09-20",
   "published_at": "2026-09-20T04:38:10.763+00:00",
-  "fetched_at": "2026-09-20T04:57:45.479Z",
->>>>>>> Stashed changes
+  "fetched_at": "2026-09-20T05:02:40.874Z",
   "status": "verified"
 }
