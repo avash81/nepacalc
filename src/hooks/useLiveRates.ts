@@ -73,13 +73,17 @@ const LS_VERSION_KEY = 'nepacalc_rate_version_v4';
 
 
 // ─── localStorage helpers ────────────────────────────────────────────────────
-interface StoredRates {
+
+
+export interface StoredRates {
   gold: number;
   tejabi: number;
   silver: number;
   date: string;
   version: string;
   updatedAt: string;
+  goldPrev?: number;
+  silverPrev?: number;
 }
 
 function readStored(): StoredRates | null {
@@ -94,9 +98,9 @@ function readStored(): StoredRates | null {
   } catch { return null; }
 }
 
-function writeStored(gold: number, tejabi: number, silver: number, date: string, version: string) {
+function writeStored(gold: number, tejabi: number, silver: number, date: string, version: string, goldPrev?: number, silverPrev?: number) {
   try {
-    const payload: StoredRates = { gold, tejabi, silver, date, version, updatedAt: new Date().toISOString() };
+    const payload: StoredRates = { gold, tejabi, silver, date, version, goldPrev, silverPrev, updatedAt: new Date().toISOString() };
     localStorage.setItem(LS_KEY, JSON.stringify(payload));
     localStorage.setItem(LS_VERSION_KEY, version);
   } catch { /* ignore */ }
@@ -120,7 +124,9 @@ function buildRates(
   isFresh: boolean,
   rateStatus: string = 'verified',
   rateDate: string = dataDate,
-  sourceName: string = 'FENEGOSIDA'
+  sourceName: string = 'FENEGOSIDA',
+  goldPrev?: number,
+  silverPrev?: number
 ): LiveRates {
   const flat = (v: number): RateStats => ({
     current: v, high24h: v, low24h: v, change24h: 0, changePercent24h: 0
@@ -139,7 +145,7 @@ function buildRates(
       date: updatedAt,
     },
     gold: {
-      tolaNPR: flat(gold),
+      tolaNPR: { current: gold, previous: goldPrev ?? gold },
       tejabiTolaNPR: tejabi,
       tolaInternationalNPR: Math.round(2350 * 0.375 * nprUsd),
       spotUSD: 2350,
@@ -152,7 +158,7 @@ function buildRates(
       isFresh,
     },
     silver: {
-      tolaNPR: flat(silver),
+      tolaNPR: { current: silver, previous: silverPrev ?? silver },
       tolaInternationalNPR: Math.round(28.5 * 0.375 * nprUsd),
     },
   };
@@ -198,10 +204,10 @@ export function useLiveRates() {
   }, []);
 
   // ── Broadcast helper ────────────────────────────────────────────────────────
-  const broadcastUpdate = useCallback((gold: number, tejabi: number, silver: number, date: string, version: string, provider: string) => {
+  const broadcastUpdate = useCallback((gold: number, tejabi: number, silver: number, date: string, version: string, provider: string, goldPrev?: number, silverPrev?: number) => {
     broadcastRef.current?.postMessage({
       type: 'RATES_UPDATED',
-      gold, tejabi, silver, date, version, provider,
+      gold, tejabi, silver, date, version, provider, goldPrev, silverPrev,
       updatedAt: new Date().toISOString(),
     });
   }, []);
@@ -273,10 +279,10 @@ export function useLiveRates() {
       setError(null);
 
       // Persist to localStorage
-      writeStored(gold, tejabi, silver, date, ver);
+      writeStored(gold, tejabi, silver, date, ver, json.gold?.tolaNPR?.previous, json.silver?.tolaNPR?.previous);
 
       // Broadcast to other tabs
-      broadcastUpdate(gold, tejabi, silver, date, ver, provider);
+      broadcastUpdate(gold, tejabi, silver, date, ver, provider, json.gold?.tolaNPR?.previous, json.silver?.tolaNPR?.previous);
 
     } catch (e) {
       if (trigger === 'init') {
