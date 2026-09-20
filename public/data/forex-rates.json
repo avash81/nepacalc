@@ -1,6 +1,10 @@
 {
   "nrb_date": "2026-09-20",
+<<<<<<< Updated upstream
   "fetched_at": "2026-09-20T08:41:58.172Z",
+=======
+  "fetched_at": "2026-09-20T04:57:46.687Z",
+>>>>>>> Stashed changes
   "source_status": "nrb_official",
   "nrb_rates": [
     {
