@@ -33,14 +33,14 @@ export default function LiveGoldPriceBoxClient({ initialGold }: { initialGold?: 
   }
 
   const fmt = (n: number) => n.toLocaleString('en-IN');
-  const livePrice = rates.gold.tolaNPR.current;
-  const previousPrice = rates.gold.tolaNPR.previous || livePrice;
-  const changeValue = livePrice - previousPrice;
-  const isUp = changeValue > 0;
-  const isDown = changeValue < 0;
-  const changePct = previousPrice ? (changeValue / previousPrice) * 100 : 0;
+  const livePrice: number = rates.gold.tolaNPR.current;
+  // change24h from the type-safe RateStats field
+  const rawChange: number = rates.gold.tolaNPR.change24h ?? 0;
+  const rawChangePct: number = rates.gold.tolaNPR.changePercent24h ?? 0;
+  const isUp = rawChange > 0;
+  const isDown = rawChange < 0;
   const isRetained = rates.gold.rateStatus === 'retained_fallback';
-  
+
   const boxClass = isRetained ? 'bg-amber-50 border-amber-300' : 'bg-white border-slate-200';
   const badgeClass = isUp ? 'text-emerald-700 bg-emerald-100' : isDown ? 'text-rose-700 bg-rose-100' : 'text-slate-600 bg-slate-100';
 
@@ -69,7 +69,7 @@ export default function LiveGoldPriceBoxClient({ initialGold }: { initialGold?: 
       <div className="mt-4 flex items-center justify-between border-t border-slate-100 pt-3">
         <span className="text-xs font-bold text-slate-500 tracking-wider">24H CHANGE</span>
         <div className={`flex items-center gap-1 text-xs font-bold px-2 py-0.5 rounded-md ${badgeClass}`}>
-          {isUp ? '+' : isDown ? '-' : '+'}Rs. {fmt(Math.abs(changeValue))} ({isUp ? '+' : isDown ? '-' : '+'}{Math.abs(changePct).toFixed(2)}%)
+          {isUp ? '+' : isDown ? '-' : '+'}Rs. {fmt(Math.abs(rawChange))} ({isUp ? '+' : isDown ? '-' : '+'}{Math.abs(rawChangePct).toFixed(2)}%)
         </div>
       </div>
 

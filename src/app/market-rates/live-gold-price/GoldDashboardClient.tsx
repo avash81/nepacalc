@@ -312,12 +312,12 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
         </p>
         <div className="overflow-x-auto rounded-xl border border-slate-200">
           <table className="w-full text-left text-sm">
-            <thead className="bg-slate-50 text-[10px] font-black text-slate-400 uppercase tracking-widest">
+            <thead className="bg-slate-50 text-[10px] font-black text-slate-400 uppercase tracking-widest text-xs">
               <tr>
-                <th className="py-3 px-5">Unit</th>
-                <th className="py-3 px-5 text-right">24K Hallmark</th>
-                <th className="py-3 px-5 text-right">22K Tejabi</th>
-                <th className="py-3 px-5"></th>
+                <th className="py-3 px-2 sm:px-4">Unit</th>
+                <th className="py-3 px-2 sm:px-4 text-right">24K Hallmark</th>
+                <th className="py-3 px-2 sm:px-4 text-right hidden sm:table-cell">22K Tejabi</th>
+                <th className="py-3 px-2 sm:px-4"></th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-50">
@@ -334,14 +334,14 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
                 { unit: '100 Gram', hallmark: gold10gNPR * 10, tejabi: (tejabiTolaNPR / 11.664) * 100 },
               ].map(({ unit, hallmark, tejabi }) => (
                 <tr key={unit} className="hover:bg-slate-50">
-                  <td className="py-3 px-5 font-bold text-slate-700">{unit}</td>
-                  <td className="py-3 px-5 text-right font-black text-slate-900">
+                  <td className="py-2 px-2 sm:px-4 font-bold text-slate-700 text-sm">{unit}</td>
+                  <td className="py-2 px-2 sm:px-4 text-right font-black text-slate-900 whitespace-nowrap">
                     {tolaNPR.current ? `Rs. ${fmt(Math.round(hallmark))}` : '—'}
                   </td>
-                  <td className="py-3 px-5 text-right font-medium text-slate-600">
+                  <td className="py-2 px-2 sm:px-4 text-right font-medium text-slate-600 whitespace-nowrap hidden sm:table-cell">
                     {tejabiTolaNPR && tejabiTolaNPR > 0 ? `Rs. ${fmt(Math.round(tejabi))}` : '—'}
                   </td>
-                  <td className="py-3 px-5">
+                  <td className="py-3 px-2 sm:px-4">
                     <a href="/calculator/gold-converter/" className="text-[10px] text-blue-600 font-bold hover:underline whitespace-nowrap">Convert →</a>
                   </td>
                 </tr>
