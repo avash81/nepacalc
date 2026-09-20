@@ -53,7 +53,6 @@ const renderToc = (items: any[]) => {
 
 const tocItems: { id?: string; label?: string; divider?: boolean }[] = [
   { id: 'todays-gold-price', label: "Today's Gold Price" },
-  { id: 'gold-price-calculator', label: "Gold Price Calculator" },
   { id: 'live-price', label: "Nepal Benchmark Gold Rates" },
   { divider: true },
   { id: 'how-its-calculated', label: "How Gold Prices Are Calculated in Nepal" },

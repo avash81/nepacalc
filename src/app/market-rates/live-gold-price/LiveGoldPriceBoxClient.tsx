@@ -34,9 +34,11 @@ export default function LiveGoldPriceBoxClient({ initialGold }: { initialGold?: 
 
   const fmt = (n: number) => n.toLocaleString('en-IN');
   const livePrice = rates.gold.tolaNPR.current;
-  const isUp = rates.gold.tolaNPR.change24h > 0;
-  const isDown = rates.gold.tolaNPR.change24h < 0;
-  const changePct = rates.gold.tolaNPR.changePercent24h || 0;
+  const previousPrice = rates.gold.tolaNPR.previous || livePrice;
+  const changeValue = livePrice - previousPrice;
+  const isUp = changeValue > 0;
+  const isDown = changeValue < 0;
+  const changePct = previousPrice ? (changeValue / previousPrice) * 100 : 0;
   const isRetained = rates.gold.rateStatus === 'retained_fallback';
   
   const boxClass = isRetained ? 'bg-amber-50 border-amber-300' : 'bg-white border-slate-200';
@@ -67,18 +69,18 @@ export default function LiveGoldPriceBoxClient({ initialGold }: { initialGold?: 
       <div className="mt-4 flex items-center justify-between border-t border-slate-100 pt-3">
         <span className="text-xs font-bold text-slate-500 tracking-wider">24H CHANGE</span>
         <div className={`flex items-center gap-1 text-xs font-bold px-2 py-0.5 rounded-md ${badgeClass}`}>
-          {isUp ? '+' : isDown ? '-' : '+'}Rs. {fmt(Math.abs(rates.gold.tolaNPR.change24h))} ({isUp ? '+' : isDown ? '-' : '+'}{changePct.toFixed(2)}%)
+          {isUp ? '+' : isDown ? '-' : '+'}Rs. {fmt(Math.abs(changeValue))} ({isUp ? '+' : isDown ? '-' : '+'}{changePct.toFixed(2)}%)
         </div>
       </div>
 
       <div className="mt-3 flex flex-col gap-1 text-[10px] font-bold text-slate-400 tracking-widest uppercase">
         <div className="flex justify-between">
-          <span>Source</span>
-          <span className="text-slate-500">FENEGOSIDA</span>
+          <div>Source</div>
+          <div className="text-slate-500">FENEGOSIDA</div>
         </div>
         <div className="flex justify-between">
-          <span>Rate date</span>
-          <span className="text-slate-500">{new Date(rates.gold.rateDate || rates.gold.dataDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+          <div>Rate date</div>
+          <div className="text-slate-500">{new Date(rates.gold.rateDate || rates.gold.dataDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</div>
         </div>
       </div>
     </div>
