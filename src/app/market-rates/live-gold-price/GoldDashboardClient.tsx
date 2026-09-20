@@ -187,45 +187,6 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
         </div>
       </div>
 
-      {/* Inserted Chart Block */}
-      <div className="bg-white border border-slate-200 rounded-2xl p-6 mb-6 shadow-sm">
-            <p className="text-[12px] text-slate-600 mb-4 font-medium">
-              * Nepal's official gold price is fixed once daily by FENEGOSIDA. This live chart tracks the international spot market which drives the daily local price changes.
-            </p>
-            <div className="w-full h-[400px] md:h-[500px] bg-slate-50/50 rounded-xl border border-slate-200 overflow-hidden relative mb-6 lg:mb-0">
-                <TradingViewWidget
-                  symbol="OANDA:XAUUSD"
-                  theme="light"
-                  containerId="tv_chart_gold_main"
-                />
-              </div>
-          </div>
-
-      {/* TOC - Collapsible dropdown, placed directly below the chart */}
-      <div className="nb-toc-mobile mb-6">
-        <details id="gold-mobile-toc">
-          <summary>TABLE OF CONTENTS — {tocItems.filter(i => !i.divider).length} SECTIONS</summary>
-          <ol>
-            {(() => { let n=0; return tocItems.map((entry, idx) => {
-              if (entry.divider) return <div key={"div-"+idx} className="nb-toc-divider" />;
-              n++;
-              const num = String(n).padStart(2,'0');
-              return (
-                <li key={entry.id}>
-                  <a href={"#"+entry.id} onClick={() => {
-                    const d = document.getElementById('gold-mobile-toc') as HTMLDetailsElement | null;
-                    if (d) d.open = false;
-                  }}>
-                    <span className="nb-toc-num">{num}</span>
-                    {entry.label}
-                  </a>
-                </li>
-              );
-            }); })()}
-          </ol>
-        </details>
-      </div>
-
       {/* 4. Live Gold Price Summary */}
       <div id="quick-answer" className="bg-blue-50/50 rounded-2xl shadow-sm border border-blue-100 p-6 md:p-8 mb-6">
         <div className="flex-1">
@@ -310,7 +271,46 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
       </div>
 
 
-<section id="quick-answer-block" className="scroll-mt-24 bg-blue-50 border border-blue-100 rounded-2xl p-6 md:p-8">
+{/* TOC - Collapsible dropdown, placed directly below the chart */}
+      <div className="nb-toc-mobile mb-6">
+        <details id="gold-mobile-toc">
+          <summary>TABLE OF CONTENTS — {tocItems.filter(i => !i.divider).length} SECTIONS</summary>
+          <ol>
+            {(() => { let n=0; return tocItems.map((entry, idx) => {
+              if (entry.divider) return <div key={"div-"+idx} className="nb-toc-divider" />;
+              n++;
+              const num = String(n).padStart(2,'0');
+              return (
+                <li key={entry.id}>
+                  <a href={"#"+entry.id} onClick={() => {
+                    const d = document.getElementById('gold-mobile-toc') as HTMLDetailsElement | null;
+                    if (d) d.open = false;
+                  }}>
+                    <span className="nb-toc-num">{num}</span>
+                    {entry.label}
+                  </a>
+                </li>
+              );
+            }); })()}
+          </ol>
+        </details>
+      </div>
+
+      {/* Inserted Chart Block */}
+      <div className="bg-white border border-slate-200 rounded-2xl p-6 mb-6 shadow-sm">
+            <p className="text-[12px] text-slate-600 mb-4 font-medium">
+              * Nepal's official gold price is fixed once daily by FENEGOSIDA. This live chart tracks the international spot market which drives the daily local price changes.
+            </p>
+            <div className="w-full h-[400px] md:h-[500px] bg-slate-50/50 rounded-xl border border-slate-200 overflow-hidden relative mb-6 lg:mb-0">
+                <TradingViewWidget
+                  symbol="OANDA:XAUUSD"
+                  theme="light"
+                  containerId="tv_chart_gold_main"
+                />
+              </div>
+          </div>
+
+      <section id="quick-answer-block" className="scroll-mt-24 bg-blue-50 border border-blue-100 rounded-2xl p-6 md:p-8">
         <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tighter mb-3">Quick Answer</h3>
         <p className="text-[15px] text-slate-700 font-medium leading-relaxed">
           Today&apos;s official gold price in Nepal is published daily by <strong>FENEGOSIDA</strong> and reflects international gold prices (LBMA), USD/NPR exchange rates set by <strong>Nepal Rastra Bank</strong>, customs duties, and local market conditions. The live benchmark rates shown on this page include <strong>Hallmark Gold (24K)</strong>, <strong>Tejabi Gold (22K)</strong>, and <strong>Silver</strong>, along with historical trends and an official gold value calculator.
