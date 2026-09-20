@@ -8,8 +8,8 @@ name: Smart Window Rate Watcher
 
 on:
   schedule:
-    - cron: '15,30,45 4 * * *'   # 04:15, 04:30, 04:45 UTC = 10:00, 10:15, 10:30 AM NPT
-    - cron: '*/15 5-7 * * *'     # every 15 min from 05:00-07:59 UTC = 10:45 AM - 1:44 PM NPT
+    - cron: '12,27,42,57 4 * * *'   # 09:57, 10:12, 10:27, 10:42 AM NPT
+    - cron: '12,27,42,57 5-7 * * *' # 10:57 AM - 1:42 PM NPT
   workflow_dispatch:
 
 permissions:
