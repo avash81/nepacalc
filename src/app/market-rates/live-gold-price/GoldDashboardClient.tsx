@@ -75,7 +75,7 @@ const tocItems: { id?: string; label?: string; divider?: boolean }[] = [
 interface GoldDashboardClientProps {
   /** Build-time 24K gold price (per Tola, NPR) from live-rates.json seeds first render */
   initialGold?: number;
-  /** Build-time silver price (per Tola, NPR) from live-rates.json — seeds first render */
+  /** Build-time silver price (per Tola, NPR) from live-rates.json seeds first render */
   initialSilver?: number;
   /** Build-time rate date string (YYYY-MM-DD) from live-rates.json */
   initialDate?: string;
@@ -224,16 +224,16 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
             </div>
           </div>
 
-          {/* Live Conversion Table */}
-          <div className="bg-white p-4 sm:p-5 rounded-xl border border-blue-100 mb-6">
+                    {/* Live Conversion Table — inline, full width */}
+          <div className="mt-6 pt-4 border-t border-amber-200/50">
             <h3 className="text-[13px] font-bold text-slate-800 mb-3">Today&apos;s Gold Price by Unit (24K Hallmark)</h3>
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm">
                 <thead>
                   <tr className="border-b border-slate-100 text-[10px] font-black text-slate-400 uppercase tracking-widest">
-                    <th className="py-2 pr-2 sm:pr-4">Unit</th>
-                    <th className="py-2 text-right">Today&apos;s Value</th>
-                    <th className="py-2"></th>
+                    <th className="py-2 pr-3">Unit</th>
+                    <th className="py-2 text-right pr-3">Today&apos;s Value</th>
+                    <th className="py-2 text-right">Convert</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-50">
@@ -246,10 +246,10 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
                     { unit: '100 Gram', value: gold10gNPR * 10 },
                     { unit: '1 Kg', value: gold10gNPR * 100 },
                   ].map(({ unit, value }) => (
-                    <tr key={unit} className="hover:bg-slate-50">
-                      <td className="py-2 pr-2 sm:pr-4 font-bold text-slate-700 whitespace-nowrap">{unit}</td>
-                      <td className="py-2 text-right font-black text-slate-900">Rs. {fmt(Math.round(value))}</td>
-                      <td className="py-2 pl-2 sm:pl-3 whitespace-nowrap"><a href="/calculator/gold-converter/" className="text-[10px] text-blue-600 font-bold hover:underline">Convert →</a></td>
+                    <tr key={unit} className="hover:bg-amber-50/30">
+                      <td className="py-2 pr-3 font-bold text-slate-700 whitespace-nowrap">{unit}</td>
+                      <td className="py-2 pr-3 text-right font-black text-slate-900 whitespace-nowrap">Rs. {fmt(Math.round(value))}</td>
+                      <td className="py-2 text-right whitespace-nowrap"><a href="/calculator/gold-converter/" className="text-[11px] text-blue-600 font-bold hover:underline">→</a></td>
                     </tr>
                   ))}
                 </tbody>
