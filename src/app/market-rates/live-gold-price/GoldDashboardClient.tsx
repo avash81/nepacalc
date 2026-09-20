@@ -359,16 +359,7 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
         <p className="text-[11px] text-slate-400 font-medium mt-3">Based on today&apos;s FENEGOSIDA benchmark. 1 Tola = 11.664 grams. For advanced conversion, use our <a href="/calculator/gold-converter/" className="text-blue-600 hover:underline font-bold">Gold Value Calculator</a>.</p>
       </section>
 
-      <h2 id="gold-price-calculator" className="text-2xl font-black text-slate-900 tracking-tighter mb-4 scroll-mt-24">Gold Price Calculator</h2>
-      {/* Calculator Integration */}
-      <div id="calculator" className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-8 scroll-mt-24">
-        <div className="bg-slate-50 px-6 py-4 border-b border-slate-200">
-          <h3 className="text-[13px] font-black uppercase tracking-[.2em] text-slate-800">Quick Valuation Calculator</h3>
-        </div>
-        <div className="p-6">
-          <QuickPriceEstimator />
-        </div>
-      </div>
+      
 
       {/* 1. Live Price Table (Moved here) */}
       <div id="live-price" className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-6 scroll-mt-24">
