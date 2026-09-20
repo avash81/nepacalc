@@ -37,7 +37,7 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
       <section id="gold-price-calculator-info" className="scroll-mt-24 bg-slate-50 border border-slate-200 rounded-2xl p-6 md:p-8">
         <div className="text-xl sm:text-2xl font-black text-slate-900 tracking-tighter mb-3">About the Calculator</div>
         <p className="text-[14px] text-slate-700 font-medium leading-relaxed mb-4">
-          Our <a href="/calculator/gold-converter/" className="text-blue-600 hover:underline font-bold">Gold Unit Converter</a> updates automatically using today&apos;s official FENEGOSIDA rate. It supports all standard Nepali gold units — <strong>Gram</strong>, <strong>Lal</strong>, <strong>Aana</strong>, and <strong>Tola</strong> — and allows you to select purity (24K Hallmark or 22K Tejabi) to calculate the exact gold value of any piece of jewellery or bullion.
+          Our <a href="/calculator/gold-converter/" className="text-blue-600 hover:underline font-bold">Gold Unit Converter</a> updates automatically using today&apos;s official FENEGOSIDA rate. It supports all standard Nepali gold units  <strong>Gram</strong>, <strong>Lal</strong>, <strong>Aana</strong>, and <strong>Tola</strong>  and allows you to select purity (24K Hallmark or 22K Tejabi) to calculate the exact gold value of any piece of jewellery or bullion.
         </p>
         <div className="flex flex-wrap gap-3">
           <a href="/calculator/gold-converter/" className="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-lg text-sm transition-colors">Gold Unit Converter →</a>
@@ -263,7 +263,7 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
             </thead>
             <tbody className="divide-y divide-slate-100">
               {[
-                { f: "Today's Rate (per Tola)", g: hallmarkCurrent ? `Rs. ${fmt(hallmarkCurrent)}` : '—', s: silverCurrent ? `Rs. ${fmt(silverCurrent)}` : '—' },
+                { f: "Today's Rate (per Tola)", g: hallmarkCurrent ? `Rs. ${fmt(hallmarkCurrent)}` : '', s: silverCurrent ? `Rs. ${fmt(silverCurrent)}` : '' },
                 { f: 'Investment', g: 'Preferred store of value', s: 'Industrial + investment' },
                 { f: 'Jewellery', g: '24K (pure) & 22K Tejabi', s: 'Common, lower cost' },
                 { f: 'Volatility', g: 'Lower volatility', s: 'Higher volatility' },
@@ -294,7 +294,7 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
         const GOLD_1Y   = 250000;  // 2025-08-24 FENEGOSIDA daily rate
         const GOLD_5Y   = 140000;  // 2021-08-24 approximate
         const GOLD_20Y  = 16000;   // 2006-08-24 approximate
-        // hallmarkCurrent comes from server getLiveData() via props — always accurate at build time
+        // hallmarkCurrent comes from server getLiveData() via props  always accurate at build time
         const current   = hallmarkCurrent ?? 322700;
 
         const calcRow = (period: string, ref: number) => {
@@ -314,7 +314,7 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
                   period: 'Today',
                   priceTola: current,
                   amount: 0,
-                  percent: '—',
+                  percent: '',
                   isNegative: false,
                 },
                 calcRow('30 Days',  GOLD_30D),
@@ -337,7 +337,7 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
         <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tighter mb-4">Gold Price Statistics (24K Hallmark)</h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
-            { label: 'Current Price', value: hallmarkCurrent ? `Rs. ${fmt(hallmarkCurrent)}` : '—', note: 'per Tola today' },
+            { label: 'Current Price', value: hallmarkCurrent ? `Rs. ${fmt(hallmarkCurrent)}` : '', note: 'per Tola today' },
             { label: '52-Week High', value: rates?.gold?.tolaNPR?.high52w ? `Rs. ${fmt(rates.gold.tolaNPR.high52w)}` : 'See history', note: 'FENEGOSIDA record' },
             { label: '52-Week Low', value: rates?.gold?.tolaNPR?.low52w ? `Rs. ${fmt(rates.gold.tolaNPR.low52w)}` : 'See history', note: 'FENEGOSIDA record' },
             { label: '30-Day Average', value: rates?.gold?.tolaNPR?.avg30d ? `Rs. ${fmt(rates.gold.tolaNPR.avg30d)}` : 'See history', note: 'rolling average' },
@@ -425,7 +425,7 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
             <div>
               <h3 className="text-sm font-bold text-blue-700 mb-2">Why does jewellery cost more than today&apos;s gold price?</h3>
               <p className="text-[13px] text-slate-600 leading-relaxed font-medium">
-                The FENEGOSIDA rate is only the raw gold benchmark. When you buy jewellery, the final price includes Jyala (making charges: 5–15%), Jarti (wastage), and 13% VAT — set independently by each jeweller.
+                The FENEGOSIDA rate is only the raw gold benchmark. When you buy jewellery, the final price includes Jyala (making charges: 5–15%), Jarti (wastage), and 13% VAT  set independently by each jeweller.
               </p>
             </div>
             <div>
@@ -443,7 +443,7 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
             <div>
               <h3 className="text-sm font-bold text-blue-700 mb-2">Does Nepal follow international gold prices?</h3>
               <p className="text-[13px] text-slate-600 leading-relaxed font-medium">
-                Yes. Nepal&apos;s gold price is directly derived from the international LBMA spot price, converted to NPR using NRB exchange rates, and adjusted for customs duty. When global prices rise or fall, Nepal&apos;s price follows — usually with a one-day lag.
+                Yes. Nepal&apos;s gold price is directly derived from the international LBMA spot price, converted to NPR using NRB exchange rates, and adjusted for customs duty. When global prices rise or fall, Nepal&apos;s price follows  usually with a one-day lag.
               </p>
             </div>
           </div>
@@ -538,7 +538,7 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
             { term: 'LBMA', def: 'London Bullion Market Association. Sets the global gold and silver spot price benchmark used by FENEGOSIDA each day.' },
             { term: 'FENEGOSIDA', def: "Federation of Nepal Gold and Silver Dealers' Association. The official body that sets and publishes Nepal's daily gold and silver benchmark rate." },
             { term: 'Nepal Rastra Bank (NRB)', def: "Nepal's central bank. Publishes the daily USD/NPR exchange rate used in the gold price calculation." },
-            { term: 'Jyala', def: "Making charges added by jewellers. Typically 5–15% of the gold value — not included in the FENEGOSIDA rate." },
+            { term: 'Jyala', def: "Making charges added by jewellers. Typically 5–15% of the gold value  not included in the FENEGOSIDA rate." },
             { term: 'Jarti', def: 'Wastage allowance charged by jewellers for gold lost during the crafting process.' },
           ].map(({ term, def }) => (
             <div key={term} className="bg-slate-50 border border-slate-200 p-4 rounded-xl">
@@ -628,7 +628,7 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <div className="bg-green-50 border border-green-100 p-4 rounded-xl">
             <h3 className="text-xs font-black text-green-700 uppercase tracking-widest mb-2">Official Source</h3>
-            <p className="text-[13px] text-slate-700 font-medium">All rates originate directly from FENEGOSIDA — the official federation governing gold and silver dealers in Nepal. No third-party estimation is used.</p>
+            <p className="text-[13px] text-slate-700 font-medium">All rates originate directly from FENEGOSIDA  the official federation governing gold and silver dealers in Nepal. No third-party estimation is used.</p>
           </div>
           <div className="bg-blue-50 border border-blue-100 p-4 rounded-xl">
             <h3 className="text-xs font-black text-blue-700 uppercase tracking-widest mb-2">Exact Historical Preservation</h3>
@@ -675,10 +675,10 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
           <div className="bg-slate-50 border border-slate-200 p-5 rounded-xl">
             <h3 className="text-xs font-black text-slate-500 uppercase tracking-widest mb-3">Page Change History</h3>
             <ul className="space-y-2 text-[12px] font-medium text-slate-600">
-              <li><span className="font-bold text-slate-800">2083-04-14</span> — Added Gold Buying Guide, Glossary, People Also Search, and 12 new FAQ items.</li>
-              <li><span className="font-bold text-slate-800">2083-03-05</span> — Automated dynamic sync with FENEGOSIDA added.</li>
-              <li><span className="font-bold text-slate-800">2083-02-15</span> — Added Silver Price history dataset integration.</li>
-              <li><span className="font-bold text-slate-800">2083-01-10</span> — Updated multi-language FAQ section for better clarity.</li>
+              <li><span className="font-bold text-slate-800">2083-04-14</span>  Added Gold Buying Guide, Glossary, People Also Search, and 12 new FAQ items.</li>
+              <li><span className="font-bold text-slate-800">2083-03-05</span>  Automated dynamic sync with FENEGOSIDA added.</li>
+              <li><span className="font-bold text-slate-800">2083-02-15</span>  Added Silver Price history dataset integration.</li>
+              <li><span className="font-bold text-slate-800">2083-01-10</span>  Updated multi-language FAQ section for better clarity.</li>
             </ul>
           </div>
         </div>
