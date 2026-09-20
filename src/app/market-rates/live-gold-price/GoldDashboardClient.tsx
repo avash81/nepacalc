@@ -73,7 +73,7 @@ const tocItems: { id?: string; label?: string; divider?: boolean }[] = [
   ];
 
 interface GoldDashboardClientProps {
-  /** Build-time 24K gold price (per Tola, NPR) from live-rates.json — seeds first render */
+  /** Build-time 24K gold price (per Tola, NPR) from live-rates.json seeds first render */
   initialGold?: number;
   /** Build-time silver price (per Tola, NPR) from live-rates.json — seeds first render */
   initialSilver?: number;

@@ -47,10 +47,10 @@ export function MarketRateTicker() {
 
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-      <RateTile label="Gold 24K" value={rates.gold.tolaNPR.current} change={rates.gold.tolaNPR.changePercent24h} href="/market-rates/live-gold-price/" />
-      <RateTile label="Gold 22K" value={Math.round(rates.gold.tolaNPR.current * 0.916)} change={rates.gold.tolaNPR.changePercent24h} href="/market-rates/live-gold-price/" />
-      <RateTile label="Silver" value={rates.silver.tolaNPR.current} change={rates.silver.tolaNPR.changePercent24h} href="/market-rates/silver-price-nepal/" />
-      <RateTile label="USD/NPR" value={rates.forex.usd.current} change={rates.forex.usd.changePercent24h} href="/market-rates/exchange-rate-nepal/" isForex />
+      <RateTile label="Gold 24K" value={rates.gold.tolaNPR.current} change={(() => { const chg = rates.gold.tolaNPR.current - (rates.gold.tolaNPR.previous ?? rates.gold.tolaNPR.current); const prev = rates.gold.tolaNPR.previous ?? rates.gold.tolaNPR.current; return prev > 0 ? (chg / prev) * 100 : 0; })()} href="/market-rates/live-gold-price/" />
+      <RateTile label="Gold 22K" value={Math.round(rates.gold.tolaNPR.current * 0.916)} change={(() => { const chg = rates.gold.tolaNPR.current - (rates.gold.tolaNPR.previous ?? rates.gold.tolaNPR.current); const prev = rates.gold.tolaNPR.previous ?? rates.gold.tolaNPR.current; return prev > 0 ? (chg / prev) * 100 : 0; })()} href="/market-rates/live-gold-price/" />
+      <RateTile label="Silver" value={rates.silver.tolaNPR.current} change={(() => { const chg = rates.silver.tolaNPR.current - (rates.silver.tolaNPR.previous ?? rates.silver.tolaNPR.current); const prev = rates.silver.tolaNPR.previous ?? rates.silver.tolaNPR.current; return prev > 0 ? (chg / prev) * 100 : 0; })()} href="/market-rates/silver-price-nepal/" />
+      <RateTile label="USD/NPR" value={rates.forex.usd.current} change={rates.forex.usd.changePercent24h ?? 0} href="/market-rates/exchange-rate-nepal/" isForex />
     </div>
   );
 }

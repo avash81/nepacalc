@@ -34,9 +34,12 @@ export default function LiveGoldPriceBoxClient({ initialGold }: { initialGold?: 
 
   const fmt = (n: number) => n.toLocaleString('en-IN');
   const livePrice: number = rates.gold.tolaNPR.current;
-  // change24h from the type-safe RateStats field
-  const rawChange: number = rates.gold.tolaNPR.change24h ?? 0;
-  const rawChangePct: number = rates.gold.tolaNPR.changePercent24h ?? 0;
+  const prevPrice: number = rates.gold.tolaNPR.previous ?? livePrice;
+
+  // Compute change from current vs previous (more reliable than change24h field which may be 0)
+  const rawChange: number = livePrice - prevPrice;
+  const rawChangePct: number = prevPrice > 0 ? (rawChange / prevPrice) * 100 : 0;
+
   const isUp = rawChange > 0;
   const isDown = rawChange < 0;
   const isRetained = rates.gold.rateStatus === 'retained_fallback';

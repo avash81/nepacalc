@@ -4,10 +4,11 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 
 export interface RateStats {
   current: number;
-  high24h: number;
-  low24h: number;
-  change24h: number;
-  changePercent24h: number;
+  previous?: number;
+  high24h?: number;
+  low24h?: number;
+  change24h?: number;
+  changePercent24h?: number;
 }
 
 export interface LiveRates {
