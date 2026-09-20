@@ -70,13 +70,7 @@ const tocItems: { id?: string; label?: string; divider?: boolean }[] = [
   { id: 'archives', label: "FENEGOSIDA Archives & Reports" },
   { id: 'glossary', label: "Understanding Today's Gold Rate Terms" },
   { id: 'useful-gold-tools', label: "Useful Gold Tools" },
-  { id: 'related-market-rates', label: "Related Market Rates & Tools" },
-  { id: 'people-also-search', label: "People Also Search" },
-  { divider: true },
-  { id: 'why-trust', label: "Why Trust This Gold Price Data?" },
-  { id: 'editorial-review', label: "Editorial Review & Data Governance" },
-  { id: 'official-references', label: "Official Market References" },
-];
+  ];
 
 interface GoldDashboardClientProps {
   /** Build-time 24K gold price (per Tola, NPR) from live-rates.json — seeds first render */
