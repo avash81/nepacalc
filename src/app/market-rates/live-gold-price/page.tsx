@@ -150,24 +150,7 @@ export default async function Page() {
             )}
 
             {/* ── Dynamic 24H Change Sentence — server-rendered, 100% visible to bots ── */}
-            {(() => {
-              const g24k = gold24k as number | null;
-              const gPrev = gold24kPrev as number | null;
-              const sil = silver as number | null;
-              const sPrev = silverPrev as number | null;
-              if (!g24k || !gPrev || g24k === gPrev) return null;
-              const goldChg = g24k - gPrev;
-              const goldPct = Math.abs((goldChg / gPrev) * 100).toFixed(2);
-              const silverChg = sil && sPrev && sil !== sPrev ? sil - sPrev : null;
-              const silverPct = silverChg && sPrev ? Math.abs((silverChg / sPrev) * 100).toFixed(2) : null;
-              const goldDir = goldChg > 0 ? 'increased' : 'decreased';
-              const silverDir = silverChg !== null ? (silverChg > 0 ? 'increased' : 'decreased') : null;
-              const goldSign = goldChg > 0 ? '+' : '−';
-              const silverSign = silverChg !== null ? (silverChg > 0 ? '+' : '−') : '';
-              return (
-                
-              );
-            })()}
+            
           </div>
           
           <div className="w-full lg:w-auto shrink-0 mt-4 lg:mt-0">
