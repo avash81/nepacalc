@@ -284,49 +284,7 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
         </p>
       </section>
 
-      {/* ─── Price Performance Widget ─── */}
-      {(() => {
-        // Historical reference prices from FENEGOSIDA daily-history.json
-        // UPDATE these whenever the 30-day reference drifts by more than ~2%.
-        // Last updated: 2026-08-24
-        const GOLD_30D  = 308200;  // 2026-07-31 FENEGOSIDA daily rate
-        const GOLD_6M   = 272000;  // 2026-02-24 FENEGOSIDA daily rate
-        const GOLD_1Y   = 250000;  // 2025-08-24 FENEGOSIDA daily rate
-        const GOLD_5Y   = 140000;  // 2021-08-24 approximate
-        const GOLD_20Y  = 16000;   // 2006-08-24 approximate
-        // hallmarkCurrent comes from server getLiveData() via props  always accurate at build time
-        const current   = hallmarkCurrent ?? 322700;
 
-        const calcRow = (period: string, ref: number) => {
-          const amount  = current - ref;
-          const pct     = ((amount / ref) * 100);
-          const sign    = amount >= 0 ? '+' : '';
-          return { period, priceTola: ref, amount, percent: `${sign}${pct.toFixed(2)}%`, isNegative: amount < 0 };
-        };
-
-        return (
-          <div className="not-prose mb-8">
-            <PricePerformanceWidget
-              asset="Gold"
-              source="FENEGOSIDA"
-              rows={[
-                {
-                  period: 'Today',
-                  priceTola: current,
-                  amount: 0,
-                  percent: '',
-                  isNegative: false,
-                },
-                calcRow('30 Days',  GOLD_30D),
-                calcRow('6 Months', GOLD_6M),
-                calcRow('1 Year',   GOLD_1Y),
-                calcRow('5 Year',   GOLD_5Y),
-                calcRow('20 Year',  GOLD_20Y),
-              ]}
-            />
-          </div>
-        );
-      })()}
 
 
       {/* ─── ORIGINAL: Historical Data Section (Component) ─── */}
@@ -504,21 +462,21 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
           FENEGOSIDA Weekly Market Reports provide official updates on Nepal&apos;s gold and silver market trends, federation activities, pricing movements, and industry developments. These archives are maintained for transparency and public access.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          <a href="#" className="flex flex-col p-4 bg-slate-50 border border-slate-200 rounded-xl hover:bg-white hover:border-blue-300 hover:shadow-sm transition-all group">
+          <div className="flex flex-col p-4 bg-slate-50 border border-slate-200 rounded-xl">
             <span className="text-xs font-black text-slate-400 tracking-widest uppercase mb-1">Archive</span>
-            <span className="text-sm font-bold text-blue-700 group-hover:text-blue-800">Weekly Market Reports</span>
+            <span className="text-sm font-bold text-slate-700">Weekly Market Reports</span>
             <span className="text-[11px] text-slate-500 mt-2 font-medium">Explore weekly trends and official federation statements.</span>
-          </a>
-          <a href="#" className="flex flex-col p-4 bg-slate-50 border border-slate-200 rounded-xl hover:bg-white hover:border-blue-300 hover:shadow-sm transition-all group">
+          </div>
+          <div className="flex flex-col p-4 bg-slate-50 border border-slate-200 rounded-xl">
             <span className="text-xs font-black text-slate-400 tracking-widest uppercase mb-1">Archive</span>
-            <span className="text-sm font-bold text-blue-700 group-hover:text-blue-800">Official Notices</span>
+            <span className="text-sm font-bold text-slate-700">Official Notices</span>
             <span className="text-[11px] text-slate-500 mt-2 font-medium">Regulatory updates and customs duty adjustments.</span>
-          </a>
-          <a href="#" className="flex flex-col p-4 bg-slate-50 border border-slate-200 rounded-xl hover:bg-white hover:border-blue-300 hover:shadow-sm transition-all group">
+          </div>
+          <div className="flex flex-col p-4 bg-slate-50 border border-slate-200 rounded-xl">
             <span className="text-xs font-black text-slate-400 tracking-widest uppercase mb-1">Archive</span>
-            <span className="text-sm font-bold text-blue-700 group-hover:text-blue-800">Election Documents</span>
+            <span className="text-sm font-bold text-slate-700">Election Documents</span>
             <span className="text-[11px] text-slate-500 mt-2 font-medium">Public federation governance and committee records.</span>
-          </a>
+          </div>
         </div>
       </section>
 
