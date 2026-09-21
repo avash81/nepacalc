@@ -102,7 +102,15 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
   }
 
   const fmt = (n: number) => n.toLocaleString('en-IN');
-  const tolaNPR = rates.gold.tolaNPR;
+  const rawTola = rates.gold.tolaNPR;
+  const _prev = rawTola.previous ?? rawTola.current;
+  const _chg = rawTola.current - _prev;
+  const _pct = _prev > 0 ? (_chg / _prev) * 100 : 0;
+  const tolaNPR = {
+    ...rawTola,
+    change24h: _chg,
+    changePercent24h: Number(_pct.toFixed(2)) // Force 2 decimal places to match expected behavior
+  };
   
   const tejabiTolaNPR = rates.gold.tejabiTolaNPR;
   const tejabiDisplayRate = tejabiTolaNPR === 0 ? "Not Published" : `Rs. ${fmt(tejabiTolaNPR)}`;
@@ -446,11 +454,11 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
                     <div className="text-[10px] text-slate-400">{note}</div>
                   </td>
                   <td className="py-2 text-right">
-                    {period === 'Today' && tolaNPR.changePercent24h !== undefined ? (
-                      <span className={`font-black text-sm ${tolaNPR.changePercent24h >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
-                        {tolaNPR.changePercent24h >= 0 ? '+' : ''}{tolaNPR.changePercent24h}%
-                      </span>
-                    ) : (
+                    {period === 'Today' ? (
+                        <span className={`font-black text-sm ${isUp ? 'text-emerald-600' : isDown ? 'text-rose-600' : 'text-slate-600'}`}>
+                          {isUp ? '+' : isDown ? '-' : '+'}{Math.abs(rawChangePct).toFixed(2)}%
+                        </span>
+                      ) : (
                       <a href="#gold-price-history" className="text-[11px] text-blue-600 font-bold hover:underline">See history →</a>
                     )}
                   </td>
