@@ -1,7 +1,7 @@
 name: Smart Window Rate Watcher
 
 # FENEGOSIDA publishes daily between 04:52 - 05:02 UTC (10:37-10:47 AM NPT).
-# This watcher starts at 04:15 UTC (10:00 AM NPT) and checks
+# This watcher starts early at 00:04 UTC (05:49 AM NPT) and checks every 15 mins to avoid GitHub queue delays.
 # every 20 minutes until 06:55 UTC (12:40 PM NPT) to catch early updates.
 # If rates changed → commits data → dispatches rates_updated → triggers full build + cPanel deploy.
 # The full site rebuild injects the new prices into all meta descriptions automatically.
@@ -9,8 +9,8 @@ name: Smart Window Rate Watcher
 on:
   schedule:
     # Highly optimized for GitHub Free Tier
-    # Checks every 20 mins exactly from 10:00 AM until 12:40 PM NPT (Sunday - Friday only)
-    - cron: '15,35,55 4-6 * * 0-5'
+    # Checks randomly at 9:49, 10:02, 10:18, 10:33, 10:49... up to 12:33 PM NPT (Sunday - Friday only)
+    - cron: '4,17,33,48 0,1,4,5,6 * * 0-5'
   workflow_dispatch:
 
 permissions:
