@@ -194,7 +194,9 @@ export function useLiveRates() {
           msg.provider ?? 'FENEGOSIDA',
           msg.updatedAt ?? new Date().toISOString(),
           msg.date ?? new Date().toISOString().split('T')[0],
-          true
+          true,
+          'verified', msg.date ?? new Date().toISOString().split('T')[0], 'FENEGOSIDA',
+          msg.goldPrev, msg.silverPrev
         );
         setRates(updated);
         lastVersionRef.current = msg.version ?? lastVersionRef.current;
@@ -322,10 +324,12 @@ export function useLiveRates() {
       const stored = readStored();
       if (stored && stored.gold > 200000) {
         setRates(buildRates(
-          stored.gold, stored.tejabi, stored.silver,
-          FALLBACK_USD, {}, 'FENEGOSIDA (cached)',
-          stored.updatedAt, stored.date, false
-        ));
+            stored.gold, stored.tejabi, stored.silver,
+            FALLBACK_USD, {}, 'FENEGOSIDA (cached)',
+            stored.updatedAt, stored.date, false,
+            'verified', stored.date, 'FENEGOSIDA',
+            stored.goldPrev, stored.silverPrev
+          ));
         setLoading(false);
       }
 
