@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 
@@ -68,8 +68,8 @@ const VERSION_POLL_MS  = 10_000;   // Check rates-version.txt every 10 seconds
 const FULL_FETCH_MS    = 300_000;  // Full re-fetch every 5 min (safety net)
 const FOREX_REFRESH_MS = 3_600_000; // Forex: once per hour
 
-const LS_KEY         = 'nepacalc_verified_rates_v4';  // v4: 2026-08-24 cache bust
-const LS_VERSION_KEY = 'nepacalc_rate_version_v4';
+const LS_KEY         = 'nepacalc_verified_rates_v5';  // v4: 2026-08-24 cache bust
+const LS_VERSION_KEY = 'nepacalc_rate_version_v5';
 
 
 // ─── localStorage helpers ────────────────────────────────────────────────────
