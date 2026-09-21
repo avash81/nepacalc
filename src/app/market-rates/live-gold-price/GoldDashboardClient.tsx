@@ -423,7 +423,7 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
 
 
       {/* Market Highlights & Price Change Summary */}
-      <div id="market-highlights" className="scroll-mt-24 max-w-md mb-6">
+      <div id="market-highlights" className="scroll-mt-24 mb-6">
         {/* Today's Market Highlights */}
         <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
           <div className="text-[11px] font-black text-slate-500 uppercase tracking-widest mb-4">Today&apos;s Market Highlights</div>
@@ -431,19 +431,19 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
             <li className="flex items-center justify-between text-[13px]">
               <span className="text-slate-600 font-medium">24K Gold (24H)</span>
               <span className={`font-black px-2 py-0.5 rounded text-xs ${(tolaNPR.changePercent24h ?? 0) >= 0 ? 'bg-emerald-50 text-emerald-700' : 'bg-rose-50 text-rose-700'}`}>
-                {(tolaNPR.changePercent24h ?? 0) >= 0 ? '▲' : '▼'} Rs. {fmt(Math.abs(tolaNPR.change24h))} ({Math.abs(tolaNPR.changePercent24h ?? 0)}%)
-              </span>
+                  {(tolaNPR.changePercent24h ?? 0) >= 0 ? '▲ +Rs.' : '▼ -Rs.'} {fmt(Math.abs(tolaNPR.change24h))} ({Math.abs(tolaNPR.changePercent24h ?? 0)}%)
+                </span>
             </li>
             <li className="flex items-center justify-between text-[13px]">
                 <span className="text-slate-600 font-medium">Silver (24H)</span>
                 <span className={`font-black px-2 py-0.5 rounded text-xs ${isSilverUp ? 'bg-emerald-50 text-emerald-700' : isSilverDown ? 'bg-rose-50 text-rose-700' : 'bg-slate-50 text-slate-700'}`}>
-                  {isSilverUp ? '▲' : isSilverDown ? '▼' : ''} {isSilverUp || isSilverDown ? `Rs. ${fmt(Math.abs(silverChg))} (${Math.abs(silverPct).toFixed(2)}%)` : '0%'}
-                </span>
+                    {isSilverUp ? '▲ +Rs.' : isSilverDown ? '▼ -Rs.' : ''} {isSilverUp || isSilverDown ? `${fmt(Math.abs(silverChg))} (${Math.abs(silverPct).toFixed(2)}%)` : '0%'}
+                  </span>
               </li>
               <li className="flex items-center justify-between text-[13px]">
                 <span className="text-slate-600 font-medium">International Spot</span>
                 <span className="font-black text-blue-600">
-                  <a href="#international-spot" className="hover:underline">XAU/USD Live →</a>
+                  <a href="/market-rates/live-gold-price/#international-spot" className="hover:underline">XAU/USD Live →</a>
                 </span>
               </li>
             <li className="flex items-center justify-between text-[13px]">
