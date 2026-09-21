@@ -114,6 +114,15 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
   const rawChangePct = _pct;
   const isUp = _chg > 0;
   const isDown = _chg < 0;
+
+  // Compute Silver 24H change manually
+  const rawSilver = rates.silver?.tolaNPR;
+  const silverLive = rawSilver?.current ?? (initialSilver ?? 4965);
+  const silverPrev = rawSilver?.previous ?? silverLive;
+  const silverChg = silverLive - silverPrev;
+  const silverPct = silverPrev > 0 ? (silverChg / silverPrev) * 100 : 0;
+  const isSilverUp = silverChg > 0;
+  const isSilverDown = silverChg < 0;
   
   const tejabiTolaNPR = rates.gold.tejabiTolaNPR;
   const tejabiDisplayRate = tejabiTolaNPR === 0 ? "Not Published" : `Rs. ${fmt(tejabiTolaNPR)}`;
@@ -305,7 +314,7 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
             <p className="text-[12px] text-slate-600 mb-4 font-medium">
               * Nepal's official gold price is fixed once daily by FENEGOSIDA. This live chart tracks the international spot market which drives the daily local price changes.
             </p>
-            <div className="w-full h-[400px] md:h-[500px] bg-slate-50/50 rounded-xl border border-slate-200 overflow-hidden relative mb-6 lg:mb-0">
+            <div id="international-spot" className="scroll-mt-24 w-full h-[400px] md:h-[500px] bg-slate-50/50 rounded-xl border border-slate-200 overflow-hidden relative mb-6 lg:mb-0">
                 <TradingViewWidget
                   symbol="OANDA:XAUUSD"
                   theme="light"
@@ -415,13 +424,17 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
               </span>
             </li>
             <li className="flex items-center justify-between text-[13px]">
-              <span className="text-slate-600 font-medium">Silver (24H)</span>
-              <span className="font-black px-2 py-0.5 rounded text-xs bg-slate-50 text-slate-600">See live board</span>
-            </li>
-            <li className="flex items-center justify-between text-[13px]">
-              <span className="text-slate-600 font-medium">International Spot</span>
-              <span className="font-black text-slate-800">XAU/USD Live</span>
-            </li>
+                <span className="text-slate-600 font-medium">Silver (24H)</span>
+                <span className={`font-black px-2 py-0.5 rounded text-xs ${isSilverUp ? 'bg-emerald-50 text-emerald-700' : isSilverDown ? 'bg-rose-50 text-rose-700' : 'bg-slate-50 text-slate-700'}`}>
+                  {isSilverUp ? '▲' : isSilverDown ? '▼' : ''} {isSilverUp || isSilverDown ? Math.abs(silverPct).toFixed(2) + '%' : '0%'}
+                </span>
+              </li>
+              <li className="flex items-center justify-between text-[13px]">
+                <span className="text-slate-600 font-medium">International Spot</span>
+                <span className="font-black text-blue-600">
+                  <a href="#international-spot" className="hover:underline">XAU/USD Live →</a>
+                </span>
+              </li>
             <li className="flex items-center justify-between text-[13px]">
               <span className="text-slate-600 font-medium">Exchange Rate</span>
               <span className="font-black text-blue-600"><a href="/market-rates/exchange-rate-nepal/" className="hover:underline">NRB Rate →</a></span>
