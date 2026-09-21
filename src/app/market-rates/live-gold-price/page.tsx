@@ -166,13 +166,17 @@ export default async function Page() {
               const silverSign = silverChg !== null ? (silverChg > 0 ? '+' : '−') : '';
               return (
                 <p className="mt-3 text-[13px] text-slate-600 font-medium leading-relaxed">
-                  Gold prices <span className={goldChg > 0 ? 'text-emerald-700 font-bold' : 'text-rose-700 font-bold'}>{goldDir}</span>{' '}
-                  by <strong>Rs. {Math.abs(goldChg).toLocaleString('en-IN')} ({goldSign}{goldPct}%)</strong> per Tola
+                  <strong>24K Hallmark and 22K Tejabi Gold</strong> both{' '}
+                  <span className={goldChg > 0 ? 'text-emerald-700 font-bold' : 'text-rose-700 font-bold'}>{goldDir}</span>{' '}
+                  by <strong>Rs. {Math.abs(goldChg).toLocaleString('en-IN')} ({goldSign}{goldPct}%) per Tola</strong>
                   {silverChg !== null && silverDir ? (
-                    <> and silver <span className={silverChg > 0 ? 'text-emerald-700 font-bold' : 'text-rose-700 font-bold'}>{silverDir}</span>{' '}
-                    by <strong>Rs. {Math.abs(silverChg).toLocaleString('en-IN')} ({silverSign}{silverPct}%)</strong> per Tola</>
-                  ) : null}
-                  {' '}compared to the previous trading session. Source: FENEGOSIDA.
+                    <> compared with the previous trading session. <strong>Silver</strong>{' '}
+                    <span className={silverChg > 0 ? 'text-emerald-700 font-bold' : 'text-rose-700 font-bold'}>{silverDir}</span>{' '}
+                    by <strong>Rs. {Math.abs(silverChg).toLocaleString('en-IN')} ({silverSign}{silverPct}%) per Tola</strong>.</>
+                  ) : (
+                    <> compared with the previous trading session.</>
+                  )}
+                  {' '}Source: FENEGOSIDA.
                 </p>
               );
             })()}
