@@ -20,9 +20,11 @@ function getLiveData() {
       gold22k: json.gold?.tejabiTolaNPR || null,
       gold10g: json.gold?.tenGramNPR || null,
       silver: json.silver?.tolaNPR?.current || null,
+      gold24kPrev: json.gold?.tolaNPR?.previous || null,
+      silverPrev: json.silver?.tolaNPR?.previous || null,
     };
   } catch (e) {
-    return { date: new Date().toISOString().split('T')[0], gold24k: null, gold22k: null, gold10g: null, silver: null };
+    return { date: new Date().toISOString().split('T')[0], gold24k: null, gold22k: null, gold10g: null, silver: null, gold24kPrev: null, silverPrev: null };
   }
 }
 
@@ -68,7 +70,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page() {
-  const { date: rawDate, gold24k, gold22k, silver, gold10g } = getLiveData();
+  const { date: rawDate, gold24k, gold22k, silver, gold10g, gold24kPrev, silverPrev } = getLiveData();
   const fmt = (n: number) => n.toLocaleString('en-IN');
 
   return (
@@ -146,6 +148,34 @@ export default async function Page() {
                 )}
               </div>
             )}
+
+            {/* ── Dynamic 24H Change Sentence — server-rendered, 100% visible to bots ── */}
+            {(() => {
+              const g24k = gold24k as number | null;
+              const gPrev = gold24kPrev as number | null;
+              const sil = silver as number | null;
+              const sPrev = silverPrev as number | null;
+              if (!g24k || !gPrev || g24k === gPrev) return null;
+              const goldChg = g24k - gPrev;
+              const goldPct = Math.abs((goldChg / gPrev) * 100).toFixed(2);
+              const silverChg = sil && sPrev && sil !== sPrev ? sil - sPrev : null;
+              const silverPct = silverChg && sPrev ? Math.abs((silverChg / sPrev) * 100).toFixed(2) : null;
+              const goldDir = goldChg > 0 ? 'increased' : 'decreased';
+              const silverDir = silverChg !== null ? (silverChg > 0 ? 'increased' : 'decreased') : null;
+              const goldSign = goldChg > 0 ? '+' : '−';
+              const silverSign = silverChg !== null ? (silverChg > 0 ? '+' : '−') : '';
+              return (
+                <p className="mt-3 text-[13px] text-slate-600 font-medium leading-relaxed">
+                  Gold prices <span className={goldChg > 0 ? 'text-emerald-700 font-bold' : 'text-rose-700 font-bold'}>{goldDir}</span>{' '}
+                  by <strong>Rs. {Math.abs(goldChg).toLocaleString('en-IN')} ({goldSign}{goldPct}%)</strong> per Tola
+                  {silverChg !== null && silverDir ? (
+                    <> and silver <span className={silverChg > 0 ? 'text-emerald-700 font-bold' : 'text-rose-700 font-bold'}>{silverDir}</span>{' '}
+                    by <strong>Rs. {Math.abs(silverChg).toLocaleString('en-IN')} ({silverSign}{silverPct}%)</strong> per Tola</>
+                  ) : null}
+                  {' '}compared to the previous trading session. Source: FENEGOSIDA.
+                </p>
+              );
+            })()}
           </div>
           
           <div className="w-full lg:w-auto shrink-0 mt-4 lg:mt-0">

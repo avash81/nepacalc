@@ -24,6 +24,7 @@ function getLiveData() {
       silver10g: json.silver?.tenGramNPR || null,
       gold: json.gold?.tolaNPR?.current || null,
       silverData: json.silver || null,
+      silverPrev: json.silver?.tolaNPR?.previous || null,
       source: json.source || 'FENEGOSIDA',
       source_name: json.source_name || 'FENEGOSIDA',
       rate_date: json.rate_date || json.date || new Date().toISOString().split('T')[0],
@@ -32,7 +33,7 @@ function getLiveData() {
       status: json.status || 'verified',
     };
   } catch (e) {
-    return { date: new Date().toISOString().split('T')[0], silver: null, silver10g: null, gold: null, silverData: null, source: 'FENEGOSIDA', source_name: 'FENEGOSIDA', rate_date: new Date().toISOString().split('T')[0], published_at: null, fetched_at: null, status: 'error' };
+    return { date: new Date().toISOString().split('T')[0], silver: null, silver10g: null, gold: null, silverData: null, silverPrev: null, source: 'FENEGOSIDA', source_name: 'FENEGOSIDA', rate_date: new Date().toISOString().split('T')[0], published_at: null, fetched_at: null, status: 'error' };
   }
 }
 
@@ -298,7 +299,7 @@ const schemaGraph = {
 };
 
 export default async function Page() {
-  const { date: rawDate, silver, gold, silverData, source, source_name, rate_date, status } = getLiveData();
+  const { date: rawDate, silver, gold, silverData, source, source_name, rate_date, status, silverPrev: silverPrevRaw } = getLiveData();
 
   const priceSnippet = silver
     ? `Rs. ${(silver as number).toLocaleString('en-IN')}`
@@ -321,6 +322,10 @@ export default async function Page() {
   const currentSilver10g = silverData?.tenGramNPR || Math.round(currentSilver / 1.1664);
   const currentSilver1g = Number((currentSilver10g / 10).toFixed(2));
   const currentSilverKg = currentSilver10g * 100;
+
+  const previousSilver10g = silverPrevRaw ? Math.round(silverPrevRaw / 1.1664) : null;
+  const previousSilver1g = previousSilver10g ? Number((previousSilver10g / 10).toFixed(2)) : null;
+  const previousSilverKg = previousSilver10g ? previousSilver10g * 100 : null;
 
   const tables = [
     { label: 'Fine Silver (Chandi)', np: 'शुद्ध चाँदी (प्रति तोला)', rate: fmt(currentSilver), unit: '1 Tola' },
@@ -478,25 +483,37 @@ export default async function Page() {
                 </div>
               </div>
 
-              {/* ── Card 2: Chart Block ── */}
-              <div className="bg-white border border-slate-200 rounded-2xl p-6 mb-6 shadow-sm">
-                <p className="text-[12px] text-slate-600 mb-4 font-medium">
-                  * Nepal's official silver price is fixed once daily by FENEGOSIDA. This live chart tracks the international spot market which drives the daily local price changes.
-                </p>
-                <SilverChartClient />
-              </div>
-
-              {/* ── Mobile TOC ── */}
-              <div className="nb-toc-mobile mb-6">
-                <SilverMobileTocClient />
-              </div>
-
               {/* ── Card 3: Today's Rate Summary (Quick Answer) ── */}
               <div id="quick-answer" className="bg-blue-50/50 rounded-2xl shadow-sm border border-blue-100 p-6 md:p-8 mb-6">
                 <div className="flex-1">
                   <h2 className="text-xl font-black text-slate-900 tracking-tighter mb-4">Today&apos;s Rate Summary</h2>
                   <p className="text-[15px] text-slate-700 font-medium leading-relaxed mb-6">
                     The official silver (Chandi) price in Nepal today is <strong>Rs. {fmt(currentSilver)}</strong> per Tola, <strong>Rs. {fmt(currentSilver10g)}</strong> per 10 Grams, <strong>Rs. {currentSilver1g.toFixed(2)}</strong> per Gram, and <strong>Rs. {fmt(currentSilverKg)}</strong> per Kilogram. Prices strictly reflect FENEGOSIDA benchmarks and include all standard Nepal customs duties.
+
+
+                  {/* ── Dynamic change sentence — server-rendered for crawl bots ── */}
+                  {silverPrevRaw && currentSilver !== previousSilver && (() => {
+                    const tolaChg = currentSilver - previousSilver;
+                    const tolaChgAbs = Math.abs(tolaChg);
+                    const tola10gChg = previousSilver10g ? Math.abs(currentSilver10g - previousSilver10g) : null;
+                    const tola1gChg = previousSilver1g ? Math.abs(Number((currentSilver1g - previousSilver1g).toFixed(2))) : null;
+                    const tolaKgChg = previousSilverKg ? Math.abs(currentSilverKg - previousSilverKg) : null;
+                    const pct = Math.abs((tolaChg / previousSilver) * 100).toFixed(2);
+                    const dir = tolaChg > 0 ? 'increased' : 'decreased';
+                    const sign = tolaChg > 0 ? '+' : '\u2212';
+                    return (
+                      <p className="text-[14px] text-slate-600 font-medium leading-relaxed mt-3 mb-0">
+                        Silver (Chandi) prices{' '}
+                        <span className={tolaChg > 0 ? 'text-emerald-700 font-bold' : 'text-rose-700 font-bold'}>{dir}</span>{' '}
+                        by{' '}
+                        <strong>Rs. {tolaChgAbs.toLocaleString('en-IN')} ({sign}{pct}%) per Tola</strong>
+                        {tola10gChg !== null && <>, <strong>Rs. {tola10gChg.toLocaleString('en-IN')} per 10 Grams</strong></>}
+                        {tola1gChg !== null && <>, <strong>Rs. {tola1gChg.toFixed(2)} per Gram</strong></>}
+                        {tolaKgChg !== null && <>, and <strong>Rs. {tolaKgChg.toLocaleString('en-IN')} per Kilogram</strong></>}
+                        {' '}compared to the previous trading session. Source: FENEGOSIDA.
+                      </p>
+                    );
+                  })()}
                   </p>
                   <p className="text-[14px] text-slate-700 font-medium leading-relaxed m-0">
                     <strong>Note:</strong> Since import costs dictate the final price, you should also check <a href="/market-rates/exchange-rate-nepal/" className="text-blue-600 underline font-bold hover:text-blue-600">Today&apos;s NRB Exchange Rate</a> and <a href="/market-rates/live-gold-price/" className="text-blue-600 underline font-bold hover:text-blue-600">Live Gold Prices</a>.
@@ -537,6 +554,19 @@ export default async function Page() {
                     </tbody>
                   </table>
                 </div>
+              </div>
+
+              {/* ── Mobile TOC ── */}
+              <div className="nb-toc-mobile mb-6">
+                <SilverMobileTocClient />
+              </div>
+
+              {/* ── Card 2: Chart Block ── */}
+              <div className="bg-white border border-slate-200 rounded-2xl p-6 mb-6 shadow-sm">
+                <p className="text-[12px] text-slate-600 mb-4 font-medium">
+                  * Nepal's official silver price is fixed once daily by FENEGOSIDA. This live chart tracks the international spot market which drives the daily local price changes.
+                </p>
+                <SilverChartClient />
               </div>
 
               <section id="silver-calculator" className="scroll-mt-24 bg-slate-50 border border-slate-200 rounded-2xl p-6 md:p-8 mb-8">
