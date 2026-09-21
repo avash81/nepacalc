@@ -423,7 +423,7 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
 
 
       {/* Market Highlights & Price Change Summary */}
-      <div id="market-highlights" className="scroll-mt-24 grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <div id="market-highlights" className="scroll-mt-24 max-w-md mb-6">
         {/* Today's Market Highlights */}
         <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
           <div className="text-[11px] font-black text-slate-500 uppercase tracking-widest mb-4">Today&apos;s Market Highlights</div>
@@ -431,13 +431,13 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
             <li className="flex items-center justify-between text-[13px]">
               <span className="text-slate-600 font-medium">24K Gold (24H)</span>
               <span className={`font-black px-2 py-0.5 rounded text-xs ${(tolaNPR.changePercent24h ?? 0) >= 0 ? 'bg-emerald-50 text-emerald-700' : 'bg-rose-50 text-rose-700'}`}>
-                {(tolaNPR.changePercent24h ?? 0) >= 0 ? '▲' : '▼'} {Math.abs(tolaNPR.changePercent24h ?? 0)}%
+                {(tolaNPR.changePercent24h ?? 0) >= 0 ? '▲' : '▼'} Rs. {fmt(Math.abs(tolaNPR.change24h))} ({Math.abs(tolaNPR.changePercent24h ?? 0)}%)
               </span>
             </li>
             <li className="flex items-center justify-between text-[13px]">
                 <span className="text-slate-600 font-medium">Silver (24H)</span>
                 <span className={`font-black px-2 py-0.5 rounded text-xs ${isSilverUp ? 'bg-emerald-50 text-emerald-700' : isSilverDown ? 'bg-rose-50 text-rose-700' : 'bg-slate-50 text-slate-700'}`}>
-                  {isSilverUp ? '▲' : isSilverDown ? '▼' : ''} {isSilverUp || isSilverDown ? Math.abs(silverPct).toFixed(2) + '%' : '0%'}
+                  {isSilverUp ? '▲' : isSilverDown ? '▼' : ''} {isSilverUp || isSilverDown ? `Rs. ${fmt(Math.abs(silverChg))} (${Math.abs(silverPct).toFixed(2)}%)` : '0%'}
                 </span>
               </li>
               <li className="flex items-center justify-between text-[13px]">
@@ -457,44 +457,7 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
           </ul>
         </div>
 
-        {/* Price Change Summary */}
-        <div id="price-change" className="scroll-mt-24 bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-          <div className="text-[11px] font-black text-slate-500 uppercase tracking-widest mb-4">Price Change Summary (24K Hallmark)</div>
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-slate-100 text-[10px] font-black text-slate-400 uppercase tracking-widest">
-                <th className="pb-2 text-left">Period</th>
-                <th className="pb-2 text-right">Change</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-50">
-              {[
-                { period: 'Today', note: 'vs. yesterday' },
-                { period: '7 Days', note: 'weekly trend' },
-                { period: '30 Days', note: 'monthly trend' },
-                { period: '90 Days', note: 'quarterly trend' },
-                { period: '1 Year', note: 'annual trend' },
-              ].map(({ period, note }) => (
-                <tr key={period}>
-                  <td className="py-2">
-                    <div className="font-bold text-slate-700">{period}</div>
-                    <div className="text-[10px] text-slate-400">{note}</div>
-                  </td>
-                  <td className="py-2 text-right">
-                    {period === 'Today' ? (
-                        <span className={`font-black text-sm ${isUp ? 'text-emerald-600' : isDown ? 'text-rose-600' : 'text-slate-600'}`}>
-                          {isUp ? '+' : isDown ? '-' : '+'}{Math.abs(rawChangePct).toFixed(2)}%
-                        </span>
-                      ) : (
-                      <a href="#gold-price-history" className="text-[11px] text-blue-600 font-bold hover:underline">See history →</a>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+        
 
       {/* 5. SEO Sections */}
       <div>
