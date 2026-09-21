@@ -207,7 +207,7 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
           <p className="text-[15px] text-slate-700 font-medium leading-relaxed mb-6">
             The official gold price in Nepal today is <strong>Rs. {fmt(tolaNPR.current)}</strong> per Tola for 24K Hallmark Gold (Chhapawal) and <strong>{tejabiDisplayRate}</strong> per Tola for 22K Tejabi Gold. Silver is priced at <strong>Rs. {fmt(silverTolaNPR)}</strong> per Tola. Prices are fixed by FENEGOSIDA.
           </p>
-            <p className="text-[13px] text-slate-600 font-medium leading-relaxed mb-6 bg-slate-50 border border-slate-100 p-3 rounded-lg">
+            <p className="text-[13px] text-slate-600 font-medium leading-relaxed mb-6 mt-5 pt-5 border-t border-slate-200">
               <strong>24K Hallmark Gold</strong> <span className={isUp ? 'text-emerald-700 font-bold' : isDown ? 'text-rose-700 font-bold' : 'text-slate-600 font-bold'}>{isUp ? 'increased' : isDown ? 'decreased' : 'remained unchanged'}</span>{' '}
               by <strong>Rs. {fmt(Math.abs(tolaNPR.change24h))} ({isUp ? '+' : isDown ? '-' : ''}{Math.abs(tolaNPR.changePercent24h).toFixed(2)}%)</strong> per Tola, while{' '}
               <strong>22K Tejabi Gold</strong> <span className={isUp ? 'text-emerald-700 font-bold' : isDown ? 'text-rose-700 font-bold' : 'text-slate-600 font-bold'}>{isUp ? 'increased' : isDown ? 'decreased' : 'remained unchanged'}</span>{' '}
@@ -465,6 +465,7 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
             <SeoSections rates={rates} fmt={fmt} />
           </div>
         </main>
+        </div>
       </div>
       {/* === SIDEBAR === */}
       <aside className="hidden lg:block pb-6 pr-1" style={{ position: 'sticky', top: '96px', alignSelf: 'start', zIndex: 20, maxHeight: 'calc(100vh - 120px)', overflowY: 'auto', scrollbarWidth: 'thin' }}>

@@ -502,7 +502,7 @@ export default async function Page() {
                     const dir = tolaChg > 0 ? 'increased' : 'decreased';
                     const sign = tolaChg > 0 ? '+' : '\u2212';
                     return (
-                      <p className="text-[14px] text-slate-600 font-medium leading-relaxed mt-3 mb-0">
+                      <p className="text-[14px] text-slate-600 font-medium leading-relaxed mt-5 mb-2 pt-4 border-t border-slate-100">
                         Silver (Chandi) prices{' '}
                         <span className={tolaChg > 0 ? 'text-emerald-700 font-bold' : 'text-rose-700 font-bold'}>{dir}</span>{' '}
                         by{' '}
