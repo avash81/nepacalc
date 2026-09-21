@@ -165,17 +165,7 @@ export default async function Page() {
               const goldSign = goldChg > 0 ? '+' : '−';
               const silverSign = silverChg !== null ? (silverChg > 0 ? '+' : '−') : '';
               return (
-                <p className="mt-3 text-[13px] text-slate-600 font-medium leading-relaxed">
-                  <strong>24K Hallmark Gold</strong> <span className={goldChg > 0 ? 'text-emerald-700 font-bold' : 'text-rose-700 font-bold'}>{goldDir}</span>{' '}
-                  by <strong>Rs. {Math.abs(goldChg).toLocaleString('en-IN')} ({goldSign}{goldPct}%)</strong> per Tola, while{' '}
-                  <strong>22K Tejabi Gold</strong> <span className={goldChg > 0 ? 'text-emerald-700 font-bold' : 'text-rose-700 font-bold'}>{goldDir}</span>{' '}
-                  by <strong>Rs. {Math.abs(goldChg).toLocaleString('en-IN')} ({goldSign}{goldPct}%)</strong> per Tola compared with the previous trading session.
-                  {silverChg !== null && silverDir ? (
-                    <> <strong>Silver</strong> <span className={silverChg > 0 ? 'text-emerald-700 font-bold' : 'text-rose-700 font-bold'}>{silverDir}</span>{' '}
-                    by <strong>Rs. {Math.abs(silverChg).toLocaleString('en-IN')} ({silverSign}{silverPct}%)</strong> per Tola.</>
-                  ) : null}
-                  {' '}Source: FENEGOSIDA.
-                </p>
+                
               );
             })()}
           </div>

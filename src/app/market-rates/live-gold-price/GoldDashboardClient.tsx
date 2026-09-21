@@ -207,6 +207,17 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
           <p className="text-[15px] text-slate-700 font-medium leading-relaxed mb-6">
             The official gold price in Nepal today is <strong>Rs. {fmt(tolaNPR.current)}</strong> per Tola for 24K Hallmark Gold (Chhapawal) and <strong>{tejabiDisplayRate}</strong> per Tola for 22K Tejabi Gold. Silver is priced at <strong>Rs. {fmt(silverTolaNPR)}</strong> per Tola. Prices are fixed by FENEGOSIDA.
           </p>
+            <p className="text-[13px] text-slate-600 font-medium leading-relaxed mb-6 bg-slate-50 border border-slate-100 p-3 rounded-lg">
+              <strong>24K Hallmark Gold</strong> <span className={isUp ? 'text-emerald-700 font-bold' : isDown ? 'text-rose-700 font-bold' : 'text-slate-600 font-bold'}>{isUp ? 'increased' : isDown ? 'decreased' : 'remained unchanged'}</span>{' '}
+              by <strong>Rs. {fmt(Math.abs(tolaNPR.change24h))} ({isUp ? '+' : isDown ? '-' : ''}{Math.abs(tolaNPR.changePercent24h).toFixed(2)}%)</strong> per Tola, while{' '}
+              <strong>22K Tejabi Gold</strong> <span className={isUp ? 'text-emerald-700 font-bold' : isDown ? 'text-rose-700 font-bold' : 'text-slate-600 font-bold'}>{isUp ? 'increased' : isDown ? 'decreased' : 'remained unchanged'}</span>{' '}
+              by <strong>Rs. {fmt(Math.abs(tolaNPR.change24h))} ({isUp ? '+' : isDown ? '-' : ''}{Math.abs(tolaNPR.changePercent24h).toFixed(2)}%)</strong> per Tola compared with the previous trading session.
+              {silverChg !== 0 ? (
+                <> <strong>Silver</strong> <span className={isSilverUp ? 'text-emerald-700 font-bold' : isSilverDown ? 'text-rose-700 font-bold' : 'text-slate-600 font-bold'}>{isSilverUp ? 'increased' : 'decreased'}</span>{' '}
+                by <strong>Rs. {fmt(Math.abs(silverChg))} ({isSilverUp ? '+' : isSilverDown ? '-' : ''}{Math.abs(silverPct).toFixed(2)}%)</strong> per Tola.</>
+              ) : null}
+              {' '}Source: FENEGOSIDA.
+            </p>
 
           {/* Quick Price Snapshot */}
           <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 sm:p-5 mb-6">
