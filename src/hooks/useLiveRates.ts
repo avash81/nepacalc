@@ -271,7 +271,9 @@ export function useLiveRates() {
         nprUsdRef.current, forexAllRef.current,
         provider, json.fetched_at ?? new Date().toISOString(),
         date, isFresh,
-        rateStatus, rateDate, sourceName
+        rateStatus, rateDate, sourceName,
+        json.gold?.tolaNPR?.previous,
+        json.silver?.tolaNPR?.previous
       );
 
       setRates(updated);
