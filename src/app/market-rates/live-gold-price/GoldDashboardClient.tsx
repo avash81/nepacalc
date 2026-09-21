@@ -455,18 +455,16 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
               <span className="font-black text-slate-800">FENEGOSIDA</span>
             </li>
           </ul>
+          </div>
         </div>
 
-        
-
-      {/* 5. SEO Sections */}
+        {/* 5. SEO Sections */}
       <div>
         <main className="nb-main min-w-0">
           <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-10 prose prose-slate max-w-none">
             <SeoSections rates={rates} fmt={fmt} />
           </div>
         </main>
-      </div>
       </div>
       {/* === SIDEBAR === */}
       <aside className="hidden lg:block pb-6 pr-1" style={{ position: 'sticky', top: '96px', alignSelf: 'start', zIndex: 20, maxHeight: 'calc(100vh - 120px)', overflowY: 'auto', scrollbarWidth: 'thin' }}>
