@@ -109,8 +109,11 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
   const tolaNPR = {
     ...rawTola,
     change24h: _chg,
-    changePercent24h: Number(_pct.toFixed(2)) // Force 2 decimal places to match expected behavior
+    changePercent24h: Number(_pct.toFixed(2))
   };
+  const rawChangePct = _pct;
+  const isUp = _chg > 0;
+  const isDown = _chg < 0;
   
   const tejabiTolaNPR = rates.gold.tejabiTolaNPR;
   const tejabiDisplayRate = tejabiTolaNPR === 0 ? "Not Published" : `Rs. ${fmt(tejabiTolaNPR)}`;
