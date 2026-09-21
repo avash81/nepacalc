@@ -452,7 +452,7 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
             </li>
             <li className="flex items-center justify-between text-[13px]">
               <span className="text-slate-600 font-medium">Data Source</span>
-              <span className="font-black text-slate-800">FENEGOSIDA</span>
+                <span className="font-black text-blue-600"><a href="https://www.fenegosida.org/" target="_blank" rel="noopener noreferrer" className="hover:underline">FENEGOSIDA ↗</a></span>
             </li>
           </ul>
           </div>
