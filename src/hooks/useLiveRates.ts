@@ -326,7 +326,7 @@ export function useLiveRates() {
         setRates(buildRates(
             stored.gold, stored.tejabi, stored.silver,
             FALLBACK_USD, {}, 'FENEGOSIDA (cached)',
-            stored.updatedAt, stored.date, false,
+            stored.updatedAt, stored.date, (() => { const todayNPT = new Date(Date.now() + (5 * 60 + 45) * 60000).toISOString().split('T')[0]; return stored.date === todayNPT; })(),
             'verified', stored.date, 'FENEGOSIDA',
             stored.goldPrev, stored.silverPrev
           ));

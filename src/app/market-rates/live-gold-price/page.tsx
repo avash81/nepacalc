@@ -125,18 +125,18 @@ export default async function Page() {
             {gold24k && (
               <div className="flex flex-wrap gap-4 text-sm font-semibold text-slate-700 mb-2">
                 <div>
-                  <span className="text-slate-500 font-medium">24K Hallmark (per Tola):</span>{' '}
+                  <span className="text-slate-500 font-medium">24K Hallmark per Tola:</span>{' '}
                   <strong className="text-slate-900">Rs. {fmt(gold24k as number)}</strong>
                 </div>
                 {gold22k && gold22k > 0 && (
                   <div>
-                    <span className="text-slate-500 font-medium">22K Tejabi (per Tola):</span>{' '}
+                    <span className="text-slate-500 font-medium">22K Tejabi per Tola:</span>{' '}
                     <strong className="text-slate-900">Rs. {fmt(gold22k as number)}</strong>
                   </div>
                 )}
                 {gold10g && gold10g > 0 && (
                   <div>
-                    <span className="text-slate-500 font-medium">24K Hallmark (per 10 Grams):</span>{' '}
+                    <span className="text-slate-500 font-medium">24K Hallmark per 10 Grams:</span>{' '}
                     <strong className="text-slate-900">Rs. {fmt(gold10g as number)}</strong>
                   </div>
                 )}
