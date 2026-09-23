@@ -133,6 +133,12 @@ async function main() {
       status:      'verified',
     };
 
+    if (existing && existing.published_at === publishedAt && existing.gold?.tolaNPR?.current === goldTola) {
+      console.log(`\n⏭️  FENEGOSIDA rates have not changed since last fetch (${publishedAt}).`);
+      console.log(`   Skipping disk write to prevent unnecessary deploys.`);
+      return;
+    }
+
     writeRates(output);
 
     // --- NEW: AUTOMATED DAILY HISTORY SYSTEM ---

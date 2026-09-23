@@ -185,6 +185,13 @@ async function main() {
     cross_rates,        // 150+ currencies in NPR-per-1-unit (NRB overrides where available)
   };
 
+  const existing = readExisting();
+  if (existing && existing.nrb_date === output.nrb_date) {
+    console.log(`\n⏭️  NRB Official rates have not changed since last fetch (${output.nrb_date}).`);
+    console.log(`   Skipping disk write to prevent unnecessary deploys.`);
+    return;
+  }
+
   fs.mkdirSync(path.dirname(OUTPUT_PATH), { recursive: true });
   fs.writeFileSync(OUTPUT_PATH, JSON.stringify(output, null, 2));
 
