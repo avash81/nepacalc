@@ -186,10 +186,19 @@ async function main() {
   };
 
   const existing = readExisting();
-  if (existing && existing.nrb_date === output.nrb_date) {
-    console.log(`\n⏭️  NRB Official rates have not changed since last fetch (${output.nrb_date}).`);
-    console.log(`   Skipping disk write to prevent unnecessary deploys.`);
-    return;
+  if (existing && existing.nrb_date) {
+    if (existing.nrb_date === output.nrb_date) {
+      console.log(`\n⏭️  NRB Official rates have not changed since last fetch (${output.nrb_date}).`);
+      console.log(`   Skipping disk write to prevent unnecessary deploys.`);
+      return;
+    }
+    // Compare dates. If the new date is older than the existing one, it means the API fell back due to a failure.
+    // We should NOT revert the file to an older date, which causes a flip-flop deploy loop.
+    if (new Date(output.nrb_date) < new Date(existing.nrb_date)) {
+      console.log(`\n⚠️  API returned an older date (${output.nrb_date}) than what we already have (${existing.nrb_date}).`);
+      console.log(`   Skipping disk write to prevent reverting to old rates.`);
+      return;
+    }
   }
 
   fs.mkdirSync(path.dirname(OUTPUT_PATH), { recursive: true });
