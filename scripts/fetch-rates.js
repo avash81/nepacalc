@@ -216,6 +216,15 @@ async function main() {
 
     // ── Final Fallback: retain last verified official rate ──────────────────
     if (existing && (existing.status === 'verified' || existing.status === 'retained_fallback')) {
+      // If we are ALREADY in retained_fallback mode, skip the write entirely.
+      // Updating only fetched_at/updated_at would cause a spurious git commit + deploy
+      // every 10 minutes while the API is down — even though no prices changed.
+      if (existing.status === 'retained_fallback') {
+        console.log(`⏭️  Already in retained_fallback mode (${existing.rate_date}). Skipping disk write.`);
+        console.log(`   No price change — no deploy will be triggered.`);
+        return;
+      }
+
       console.log(`🔄 Retaining last verified rate from ${existing.rate_date ?? existing.published_at}.`);
 
       const retained = {
