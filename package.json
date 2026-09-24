@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3004",
-    "prebuild": "node scripts/fetch-rates.js && node scripts/fetch-forex.js",
+    "prebuild": "node -e \"if(process.env.SKIP_PREFETCH==='1'){console.log('⏭️  Skipping prefetch (SKIP_PREFETCH=1)');}else{require('child_process').execSync('node scripts/fetch-rates.js && node scripts/fetch-forex.js',{stdio:'inherit'});}\"",
     "build": "cross-env NODE_OPTIONS=\"--max-old-space-size=6144\" next build",
     "start": "next start -p 3004",
     "lint": "next lint",

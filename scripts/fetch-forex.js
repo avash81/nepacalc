@@ -118,8 +118,13 @@ async function main() {
   if (!nrbResult && !crossResult) {
     const existing = readExisting();
     if (existing && existing.nrb_date) {
-      console.warn('⚠️  All sources failed — retaining last valid forex-rates.json unchanged.');
-      // Just update fetched_at so we know the cron ran
+      // If already in retained_all_failed mode, skip the write entirely.
+      // Writing only fetched_at causes a spurious git diff + deploy every 10 mins when APIs are down.
+      if (existing.source_status === 'retained_all_failed') {
+        console.warn('⏭️  All sources failed again — already in retained_all_failed mode. Skipping disk write.');
+        return;
+      }
+      console.warn('⚠️  All sources failed — marking as retained_all_failed (one-time write).');
       existing.fetched_at    = new Date().toISOString();
       existing.source_status = 'retained_all_failed';
       fs.mkdirSync(path.dirname(OUTPUT_PATH), { recursive: true });
@@ -194,9 +199,16 @@ async function main() {
     }
     // Compare dates. If the new date is older than the existing one, it means the API fell back due to a failure.
     // We should NOT revert the file to an older date, which causes a flip-flop deploy loop.
-    if (new Date(output.nrb_date) < new Date(existing.nrb_date)) {
+    if (output.nrb_date && new Date(output.nrb_date) < new Date(existing.nrb_date)) {
       console.log(`\n⚠️  API returned an older date (${output.nrb_date}) than what we already have (${existing.nrb_date}).`);
       console.log(`   Skipping disk write to prevent reverting to old rates.`);
+      return;
+    }
+    // If NRB is unavailable (nrb_date null) but we already have NRB data from a previous run,
+    // skip the write — cross-rate-only data is LESS accurate, not more.
+    if (!output.nrb_date) {
+      console.log(`\n⏭️  NRB unavailable this run, but we already have valid NRB data (${existing.nrb_date}).`);
+      console.log(`   Skipping cross-rate-only write to preserve authoritative NRB rates.`);
       return;
     }
   }

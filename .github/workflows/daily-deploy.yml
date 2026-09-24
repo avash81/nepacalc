@@ -33,6 +33,7 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
+          SKIP_PREFETCH: '1'
           NEXT_PUBLIC_FIREBASE_PROJECT_ID: "calcpro-e1dd9"
           NEXT_PUBLIC_FIREBASE_DATABASE_ID: "ai-studio-d5cad48c-3132-4615-96f7-ef198596220d"
           NEXT_PUBLIC_SITE_URL: "https://nepacalc.com"
