@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { JsonLd } from '@/components/seo/JsonLd';
 import Link from 'next/link';
+import { InlineMath } from 'react-katex';
+import 'katex/dist/katex.min.css';
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 
 export const metadata: Metadata = {
@@ -34,30 +36,22 @@ export default function GraphingGuidePage() {
       />
       
       <div className="max-w-[1000px] mx-auto pb-12">
-        <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-4">Graphing Calculator Guide: How to Graph Functions and Equations</h1>
-        
-        <div className="flex items-center gap-2 mb-8 text-sm text-slate-500 font-medium border-b border-slate-200 pb-4">
-          <span className="bg-slate-100 px-2.5 py-1 rounded-md text-slate-700">Educational Resource</span>
-          <span>•</span>
-          <span>Reviewed by the NepaCalc Editorial Team</span>
-        </div>
-        
-        <div className="bg-white rounded-2xl p-6 md:p-10 border border-slate-200 shadow-sm prose prose-slate max-w-none prose-h2:text-2xl prose-h2:font-bold prose-h2:text-slate-900 prose-h2:mt-12 prose-h2:mb-6 prose-h2:border-b prose-h2:border-slate-100 prose-h2:pb-2 prose-h3:text-xl prose-h3:font-bold prose-h3:text-slate-800 prose-h3:mt-8 prose-h3:mb-4">
+        <div className="prose prose-slate prose-lg max-w-none prose-headings:font-bold prose-headings:text-slate-900 prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h2:pb-2 prose-h2:border-b prose-h2:border-slate-200 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-p:text-slate-700 prose-p:leading-relaxed prose-p:my-4 prose-li:text-slate-700 prose-li:leading-relaxed prose-ul:my-4 prose-ol:my-4 prose-strong:text-slate-900 prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline">
           
           <h2 id="what-is-a-graphing-calculator">What Is a Graphing Calculator?</h2>
           <p>
             A graphing calculator is a mathematical tool that represents functions or equations visually on a coordinate plane. A graph turns a mathematical expression into a visual relationship between variables. Instead of looking only at an equation, graphing lets you see its shape, intercepts, changes, symmetry, and overall behavior. 
           </p>
           <p>
-            For a function written as {`\\(y=f(x)\\)`}, the horizontal axis represents the input ({`\\(x\\)`}), while the vertical axis represents the corresponding output ({`\\(y\\)`}). A graph can therefore show the relationship between the two variables and make important characteristics easier to identify.
+            For a function written as <InlineMath math="y=f(x)" />, the horizontal axis represents the input (<InlineMath math="x" />), while the vertical axis represents the corresponding output (<InlineMath math="y" />). A graph can therefore show the relationship between the two variables and make important characteristics easier to identify.
           </p>
 
           <h2 id="understanding-the-coordinate-plane">Understanding the Coordinate Plane</h2>
           <p>
-            A standard function graph uses two perpendicular axes. The horizontal axis is the x-axis, and the vertical axis is the y-axis. Their intersection is the origin, written as {`\\((0,0)\\)`}.
+            A standard function graph uses two perpendicular axes. The horizontal axis is the x-axis, and the vertical axis is the y-axis. Their intersection is the origin, written as <InlineMath math="(0,0)" />.
           </p>
           <p>
-            The axes divide the plane into four quadrants. A point on the graph is represented by an ordered pair {`\\((x, y)\\)`}. The first value identifies the horizontal position and the second identifies the vertical position. Scale determines how much physical distance corresponds to a mathematical unit on each axis.
+            The axes divide the plane into four quadrants. A point on the graph is represented by an ordered pair <InlineMath math="(x, y)" />. The first value identifies the horizontal position and the second identifies the vertical position. Scale determines how much physical distance corresponds to a mathematical unit on each axis.
           </p>
           <p>
             When reading a graph, interpreting these coordinates allows you to trace exactly how the output depends on the input. OpenStax emphasizes interpreting graphs rather than simply drawing them, including understanding what the axes, intercepts, and scale represent. 
@@ -73,8 +67,8 @@ export default function GraphingGuidePage() {
           <ul>
             <li><strong>Linear:</strong> Forms a straight line with a constant slope or rate of change.</li>
             <li><strong>Quadratic:</strong> Forms a U-shaped curve called a parabola. It has a vertex (minimum or maximum point) and an axis of symmetry.</li>
-            <li><strong>Polynomial:</strong> Can contain several powers of {`\\(x\\)`} and multiple bends, intercepts, and changes in direction.</li>
-            <li><strong>Power:</strong> Functions in the form {`\\(y = x^p\\)`}, varying greatly depending on whether {`\\(p\\)`} is even, odd, positive, or negative.</li>
+            <li><strong>Polynomial:</strong> Can contain several powers of <InlineMath math="x" /> and multiple bends, intercepts, and changes in direction.</li>
+            <li><strong>Power:</strong> Functions in the form <InlineMath math="y = x^p" />, varying greatly depending on whether <InlineMath math="p" /> is even, odd, positive, or negative.</li>
             <li><strong>Rational:</strong> The ratio of two polynomials. These often feature vertical and horizontal asymptotes where the denominator approaches zero.</li>
             <li><strong>Absolute Value:</strong> Forms a V-shaped graph because the output is always positive or zero.</li>
             <li><strong>Square Root:</strong> Starts at a specific point and curves gradually outward, existing only for non-negative inputs (in real numbers).</li>
@@ -88,59 +82,59 @@ export default function GraphingGuidePage() {
 
           <h3>Linear Functions</h3>
           <ul>
-            <li><strong>Linear form (Slope-Intercept):</strong> {`\\(y = mx + b\\)`}</li>
-            <li><strong>Slope ({`\\(m\\)`}):</strong> {`\\(m = \\frac{y_2 - y_1}{x_2 - x_1}\\)`}</li>
-            <li><strong>Point-Slope form:</strong> {`\\(y - y_1 = m(x - x_1)\\)`}</li>
+            <li><strong>Linear form (Slope-Intercept):</strong> <InlineMath math="y = mx + b" /></li>
+            <li><strong>Slope (<InlineMath math="m" />):</strong> <InlineMath math="m = \\frac{y_2 - y_1}{x_2 - x_1}" /></li>
+            <li><strong>Point-Slope form:</strong> <InlineMath math="y - y_1 = m(x - x_1)" /></li>
           </ul>
           <p>For solving systems of linear equations, see the <Link href="/calculator/linear-solver/" className="text-blue-600 hover:underline">Linear Equations Solver</Link>.</p>
 
           <h3>Quadratic Functions</h3>
           <ul>
-            <li><strong>Standard form:</strong> {`\\(y = ax^2 + bx + c\\)`}</li>
-            <li><strong>Vertex form:</strong> {`\\(y = a(x - h)^2 + k\\)`}</li>
-            <li><strong>Vertex coordinates:</strong> {`\\((h, k)\\)`} where {`\\(h = -\\frac{b}{2a}\\)`}</li>
-            <li><strong>Discriminant ({`\\(\\Delta\\)`}):</strong> {`\\(\\Delta = b^2 - 4ac\\)`}. This determines if the parabola crosses the x-axis twice, touches it once, or never intersects it.</li>
+            <li><strong>Standard form:</strong> <InlineMath math="y = ax^2 + bx + c" /></li>
+            <li><strong>Vertex form:</strong> <InlineMath math="y = a(x - h)^2 + k" /></li>
+            <li><strong>Vertex coordinates:</strong> <InlineMath math="(h, k)" /> where <InlineMath math="h = -\\frac{b}{2a}" /></li>
+            <li><strong>Discriminant (<InlineMath math="\\Delta" />):</strong> <InlineMath math="\\Delta = b^2 - 4ac" />. This determines if the parabola crosses the x-axis twice, touches it once, or never intersects it.</li>
           </ul>
           <p>You can find roots quickly using the <Link href="/calculator/quadratic-solver/" className="text-blue-600 hover:underline">Quadratic Solver</Link>.</p>
 
           <h3>Other Important Forms</h3>
           <ul>
-            <li><strong>Polynomial:</strong> {`\\(y = a_n x^n + a_{n-1} x^{n-1} + ... + a_0\\)`}</li>
-            <li><strong>Power:</strong> {`\\(y = ax^b\\)`}</li>
-            <li><strong>Rational:</strong> {`\\(y = \\frac{P(x)}{Q(x)}\\)`}</li>
-            <li><strong>Absolute Value:</strong> {`\\(y = |x|\\)`}</li>
-            <li><strong>Square Root:</strong> {`\\(y = \\sqrt{x}\\)`}</li>
-            <li><strong>Exponential:</strong> {`\\(y = ab^x\\)`}</li>
-            <li><strong>Logarithmic:</strong> {`\\(y = \\log_b(x)\\)`}</li>
-            <li><strong>Trigonometric (Sine):</strong> {`\\(y = A\\sin(B(x-C)) + D\\)`}</li>
+            <li><strong>Polynomial:</strong> <InlineMath math="y = a_n x^n + a_{n-1} x^{n-1} + ... + a_0" /></li>
+            <li><strong>Power:</strong> <InlineMath math="y = ax^b" /></li>
+            <li><strong>Rational:</strong> <InlineMath math="y = \\frac{P(x)}{Q(x)}" /></li>
+            <li><strong>Absolute Value:</strong> <InlineMath math="y = |x|" /></li>
+            <li><strong>Square Root:</strong> <InlineMath math="y = \\sqrt{x}" /></li>
+            <li><strong>Exponential:</strong> <InlineMath math="y = ab^x" /></li>
+            <li><strong>Logarithmic:</strong> <InlineMath math="y = \\log_b(x)" /></li>
+            <li><strong>Trigonometric (Sine):</strong> <InlineMath math="y = A\\sin(B(x-C)) + D" /></li>
           </ul>
 
           <h3>Coordinate Geometry</h3>
           <ul>
-            <li><strong>Circle (Standard Form):</strong> {`\\((x-h)^2 + (y-k)^2 = r^2\\)`}</li>
-            <li><strong>Distance Formula:</strong> {`\\(d = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}\\)`}</li>
-            <li><strong>Midpoint Formula:</strong> {`\\(\\left(\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2}\\right)\\)`}</li>
-            <li><strong>Section Formula:</strong> {`\\(\\left(\\frac{mx_2+nx_1}{m+n}, \\frac{my_2+ny_1}{m+n}\\right)\\)`}</li>
+            <li><strong>Circle (Standard Form):</strong> <InlineMath math="(x-h)^2 + (y-k)^2 = r^2" /></li>
+            <li><strong>Distance Formula:</strong> <InlineMath math="d = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}" /></li>
+            <li><strong>Midpoint Formula:</strong> <InlineMath math="\\left(\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2}\\right)" /></li>
+            <li><strong>Section Formula:</strong> <InlineMath math="\\left(\\frac{mx_2+nx_1}{m+n}, \\frac{my_2+ny_1}{m+n}\\right)" /></li>
           </ul>
 
           <h3>Advanced Relationships</h3>
           <ul>
             <li><strong>Transformations:</strong> Modifying a function's equation shifts or stretches its graph.</li>
-            <li><strong>Inverse Functions:</strong> Reflected across the line {`\\(y = x\\)`}.</li>
-            <li><strong>Composition:</strong> A function composed with another, {`\\(f(g(x))\\)`}.</li>
+            <li><strong>Inverse Functions:</strong> Reflected across the line <InlineMath math="y = x" />.</li>
+            <li><strong>Composition:</strong> A function composed with another, <InlineMath math="f(g(x))" />.</li>
           </ul>
 
           <p>For more exhaustive formula references, see the <Link href="/engineering/formulas/" className="text-blue-600 hover:underline">Mathematical Formula Library</Link>.</p>
 
           <h2 id="domain-range-intercepts">Domain, Range, Intercepts &amp; Asymptotes</h2>
           <p>
-            <strong>Domain:</strong> The set of all possible input values ({`\\(x\\)`}) for which the function is defined. For example, a square root graph does not extend into negative {`\\(x\\)`}-values.
+            <strong>Domain:</strong> The set of all possible input values (<InlineMath math="x" />) for which the function is defined. For example, a square root graph does not extend into negative <InlineMath math="x" />-values.
           </p>
           <p>
-            <strong>Range:</strong> The set of all possible output values ({`\\(y\\)`}). An absolute value graph, for instance, has a range restricted to non-negative numbers.
+            <strong>Range:</strong> The set of all possible output values (<InlineMath math="y" />). An absolute value graph, for instance, has a range restricted to non-negative numbers.
           </p>
           <p>
-            <strong>Intercepts:</strong> Points where the graph crosses the axes. The y-intercept is evaluated at {`\\(x=0\\)`}, while x-intercepts (roots or zeros) occur when {`\\(y=0\\)`}.
+            <strong>Intercepts:</strong> Points where the graph crosses the axes. The y-intercept is evaluated at <InlineMath math="x=0" />, while x-intercepts (roots or zeros) occur when <InlineMath math="y=0" />.
           </p>
           <p>
             <strong>Asymptotes:</strong> Lines that the graph approaches but never touches or crosses. Rational functions often have vertical asymptotes where their denominator is zero, and horizontal asymptotes based on the ratio of leading polynomial terms.
@@ -156,7 +150,7 @@ export default function GraphingGuidePage() {
             <li><strong>Increasing/Decreasing Intervals:</strong> Sections of the graph where the slope is positive or negative.</li>
             <li><strong>Symmetry:</strong> Even functions are symmetrical across the y-axis, while odd functions have rotational symmetry around the origin.</li>
             <li><strong>Periodicity:</strong> Functions that repeat their pattern at regular intervals, like sine and cosine.</li>
-            <li><strong>End Behavior:</strong> What happens to {`\\(y\\)`} as {`\\(x\\)`} approaches positive or negative infinity.</li>
+            <li><strong>End Behavior:</strong> What happens to <InlineMath math="y" /> as <InlineMath math="x" /> approaches positive or negative infinity.</li>
             <li><strong>Asymptotes:</strong> Boundaries that guide the graph's extremes.</li>
           </ul>
 
@@ -166,29 +160,29 @@ export default function GraphingGuidePage() {
             <li><strong>Circle:</strong> All points are equidistant from a center.</li>
             <li><strong>Parabola:</strong> The graph of a quadratic function, featuring a single focus and directrix.</li>
             <li><strong>Ellipse:</strong> An elongated circle with two focal points.</li>
-            <li><strong>Hyperbola:</strong> Two disconnected curves that mirror each other, often seen in rational functions like {`\\(y = 1/x\\)`}.</li>
+            <li><strong>Hyperbola:</strong> Two disconnected curves that mirror each other, often seen in rational functions like <InlineMath math="y = 1/x" />.</li>
           </ul>
 
           <h2 id="function-transformations">Function Transformations</h2>
           <p>
-            One of the most useful things to learn from graphing is how manipulating an equation changes its visual shape. For a base function {`\\(y=f(x)\\)`}:
+            One of the most useful things to learn from graphing is how manipulating an equation changes its visual shape. For a base function <InlineMath math="y=f(x)" />:
           </p>
           <ul>
-            <li>{`\\(f(x) + k\\)`}: Shifts the graph vertically.</li>
-            <li>{`\\(f(x - h)\\)`}: Shifts the graph horizontally.</li>
-            <li>{`\\(-f(x)\\)`}: Reflects the graph across the x-axis.</li>
-            <li>{`\\(f(-x)\\)`}: Reflects the graph across the y-axis.</li>
+            <li><InlineMath math="f(x) + k" />: Shifts the graph vertically.</li>
+            <li><InlineMath math="f(x - h)" />: Shifts the graph horizontally.</li>
+            <li><InlineMath math="-f(x)" />: Reflects the graph across the x-axis.</li>
+            <li><InlineMath math="f(-x)" />: Reflects the graph across the y-axis.</li>
           </ul>
-          <p>Combined transformation form: {`\\(af(b(x-h)) + k\\)`}</p>
+          <p>Combined transformation form: <InlineMath math="af(b(x-h)) + k" /></p>
 
           <h2 id="advanced-graphing-concepts">Advanced Graphing Concepts</h2>
           <p>
-            Mathematical modeling often goes beyond basic {`\\(y = f(x)\\)`} relationships. Advanced concepts include:
+            Mathematical modeling often goes beyond basic <InlineMath math="y = f(x)" /> relationships. Advanced concepts include:
           </p>
           <ul>
-            <li><strong>Parametric equations:</strong> Both {`\\(x\\)`} and {`\\(y\\)`} are defined as functions of a third variable, {`\\(t\\)`} (time).</li>
-            <li><strong>Polar equations:</strong> Coordinates are defined by an angle {`\\(\\theta\\)`} and a radius {`\\(r\\)`} rather than x and y.</li>
-            <li><strong>Implicit equations:</strong> Relationships where {`\\(y\\)`} is not isolated on one side, such as {`\\(x^2 + y^2 = 25\\)`}.</li>
+            <li><strong>Parametric equations:</strong> Both <InlineMath math="x" /> and <InlineMath math="y" /> are defined as functions of a third variable, <InlineMath math="t" /> (time).</li>
+            <li><strong>Polar equations:</strong> Coordinates are defined by an angle <InlineMath math="\\theta" /> and a radius <InlineMath math="r" /> rather than x and y.</li>
+            <li><strong>Implicit equations:</strong> Relationships where <InlineMath math="y" /> is not isolated on one side, such as <InlineMath math="x^2 + y^2 = 25" />.</li>
             <li><strong>Inequalities:</strong> Graphing regions rather than lines, usually indicated with shading.</li>
             <li><strong>Tables:</strong> Plotting discrete data points rather than continuous curves.</li>
             <li><strong>Calculus features:</strong> Visualizing roots, intersections, derivatives (slope of the tangent line), and integrals (area under the curve).</li>
@@ -199,11 +193,11 @@ export default function GraphingGuidePage() {
           <h2 id="graphing-function-examples">Graphing Function Examples</h2>
           <p>Here are real worked examples of how to interpret different functions visually:</p>
           <ul>
-            <li><strong>Linear: {`\\(y = 2x + 3\\)`}</strong><br/> You should see a straight line crossing the y-axis at 3, rising steeply from left to right because the slope is positive 2.</li>
-            <li><strong>Quadratic: {`\\(y = x^2 - 4\\)`}</strong><br/> You should see an upward-opening U-shape. The vertex (and lowest point) is at {`\\((0, -4)\\)`}, and it crosses the x-axis at {`\\(2\\)`} and {`\\(-2\\)`}.</li>
-            <li><strong>Exponential: {`\\(y = 2^x\\)`}</strong><br/> The curve hugs the x-axis on the left, crosses the y-axis at 1, and skyrockets upwards on the right.</li>
-            <li><strong>Logarithmic: {`\\(y = \\log_2(x)\\)`}</strong><br/> The curve hugs the negative y-axis, crosses the x-axis at 1, and grows slowly as it moves right.</li>
-            <li><strong>Trigonometric: {`\\(y = \\sin(x)\\)`}</strong><br/> A continuous wave that crosses through the origin {`\\((0,0)\\)`}, peaking at 1 and dropping to -1 in a repeating cycle.</li>
+            <li><strong>Linear: <InlineMath math="y = 2x + 3" /></strong><br/> You should see a straight line crossing the y-axis at 3, rising steeply from left to right because the slope is positive 2.</li>
+            <li><strong>Quadratic: <InlineMath math="y = x^2 - 4" /></strong><br/> You should see an upward-opening U-shape. The vertex (and lowest point) is at <InlineMath math="(0, -4)" />, and it crosses the x-axis at <InlineMath math="2" /> and <InlineMath math="-2" />.</li>
+            <li><strong>Exponential: <InlineMath math="y = 2^x" /></strong><br/> The curve hugs the x-axis on the left, crosses the y-axis at 1, and skyrockets upwards on the right.</li>
+            <li><strong>Logarithmic: <InlineMath math="y = \\log_2(x)" /></strong><br/> The curve hugs the negative y-axis, crosses the x-axis at 1, and grows slowly as it moves right.</li>
+            <li><strong>Trigonometric: <InlineMath math="y = \\sin(x)" /></strong><br/> A continuous wave that crosses through the origin <InlineMath math="(0,0)" />, peaking at 1 and dropping to -1 in a repeating cycle.</li>
           </ul>
 
           <h2 id="how-to-read-a-graph">How to Read a Graph Step by Step</h2>
@@ -236,7 +230,7 @@ export default function GraphingGuidePage() {
           <div className="bg-blue-50/50 rounded-xl p-6 border border-blue-100 my-8 not-prose flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <span className="font-bold text-slate-900 block mb-1">Try It Yourself</span>
-              <span className="text-sm text-slate-600">A quadratic function has the form {`\\(ax^2+bx+c\\)`}. Its graph is a parabola, and the vertex occurs at {`\\(x=-b/(2a)\\)`}. Enter a function, add another function, zoom, pan, and graph it in our calculator.</span>
+              <span className="text-sm text-slate-600">A quadratic function has the form <InlineMath math="ax^2+bx+c" />. Its graph is a parabola, and the vertex occurs at <InlineMath math="x=-b/(2a)" />. Enter a function, add another function, zoom, pan, and graph it in our calculator.</span>
             </div>
             <Link href="/engineering/graphing/" className="shrink-0 px-5 py-2.5 bg-blue-600 border border-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors text-sm text-center">
               Open Graphing Calculator

@@ -55,6 +55,7 @@
   "devDependencies": {
     "@swc/core": "^1.15.21",
     "@swc/jest": "^0.2.39",
+    "@tailwindcss/typography": "^0.5.20",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.2.1",
     "@types/jest": "^30.0.0",
