@@ -214,13 +214,13 @@ file_put_contents($outputFile, $jsonStr, LOCK_EX);
 // When hash changes → browser fetches full live-rates.json immediately.
 // Format: "HASH GOLD SILVER\n"
 // $versionHash is already set correctly in the if/elseif/else block above.
-$versionStr = $versionHash . ' ' . $writeData['gold']['tolaNPR'] . ' ' . ($writeData['silver']['tolaNPR'] ?? 0) . "\n";
+$versionStr = $versionHash . ' ' . (is_array($writeData['gold']['tolaNPR'] ?? null) ? $writeData['gold']['tolaNPR']['current'] : ($writeData['gold']['tolaNPR'] ?? 0)) . ' ' . (is_array($writeData['silver']['tolaNPR'] ?? null) ? $writeData['silver']['tolaNPR']['current'] : ($writeData['silver']['tolaNPR'] ?? 0)) . "\n";
 file_put_contents($versionFile, $versionStr, LOCK_EX);
 
 // ── Log (ring buffer, last 200 lines) ─────────────────────────────────────────
 $logLine = $now->format('Y-m-d H:i:s') . ' | '
-    . 'Gold=' . ($writeData['gold']['tolaNPR'] ?? '?')
-    . ' Silver=' . ($writeData['silver']['tolaNPR'] ?? '?')
+    . 'Gold=' . (is_array($writeData['gold']['tolaNPR'] ?? null) ? $writeData['gold']['tolaNPR']['current'] : ($writeData['gold']['tolaNPR'] ?? '?'))
+    . ' Silver=' . (is_array($writeData['silver']['tolaNPR'] ?? null) ? $writeData['silver']['tolaNPR']['current'] : ($writeData['silver']['tolaNPR'] ?? '?'))
     . ' Date=' . ($writeData['date'] ?? '?')
     . ' Src=' . ($fetchSource ?: 'stale')
     . ' Status=' . ($writeData['_status'] ?? '?') . "\n";
