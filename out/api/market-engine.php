@@ -145,8 +145,8 @@ if (!empty($parsed) && isset($parsed['gold'])) {
     $newGold    = $parsed['gold']['tolaNPR'];
     $newTejabi  = $parsed['gold']['tejabiTolaNPR'];
     $newSilver  = $parsed['silver']['tolaNPR'] ?? 0;
-    $oldGold    = $existing['gold']['tolaNPR'] ?? 0;
-    $oldSilver  = $existing['silver']['tolaNPR'] ?? 0;
+    $oldGold    = is_array($existing['gold']['tolaNPR'] ?? null) ? $existing['gold']['tolaNPR']['current'] : ($existing['gold']['tolaNPR'] ?? 0);
+    $oldSilver  = is_array($existing['silver']['tolaNPR'] ?? null) ? $existing['silver']['tolaNPR']['current'] : ($existing['silver']['tolaNPR'] ?? 0);
 
     $goldOk   = sanityOk($newGold, $oldGold, 25000);
     $silverOk = !$newSilver || sanityOk($newSilver, $oldSilver, 3000);
@@ -180,8 +180,7 @@ if (!empty($parsed) && isset($parsed['gold'])) {
     $writeData['fetchFailed'] = true;
     $writeData['_status']   = 'stale';
     $writeData['lastAttemptAt'] = $now->format('Y-m-d\TH:i:sP');
-    // Keep the existing _version — stale data means no version change
-    $versionHash = $existing['_version'] ?? substr(md5(($existing['gold']['tolaNPR'] ?? 0) . '|' . ($existing['silver']['tolaNPR'] ?? 0) . '|' . ($existing['date'] ?? '')), 0, 12);
+    $versionHash = $existing['_version'] ?? substr(md5((is_array($existing['gold']['tolaNPR'] ?? null) ? $existing['gold']['tolaNPR']['current'] : ($existing['gold']['tolaNPR'] ?? 0)) . '|' . (is_array($existing['silver']['tolaNPR'] ?? null) ? $existing['silver']['tolaNPR']['current'] : ($existing['silver']['tolaNPR'] ?? 0)) . '|' . ($existing['date'] ?? '')), 0, 12);
     $writeData['_version'] = $versionHash;
 
 } else {
