@@ -3,4 +3,21 @@ deployment:
   tasks:
     - /usr/local/cpanel/3rdparty/bin/git fetch --all
     - /usr/local/cpanel/3rdparty/bin/git reset --hard origin/main
-    - /bin/cp -a out/. /home/nepacalc/public_html/
+    - test -d out || exit 1
+    
+    # Clean up any previous broken state
+    - /bin/rm -rf /home/nepacalc/public_html/_next_old /home/nepacalc/public_html/_next_staging
+    
+    # 1. Stage the heavy _next directory
+    - /bin/mkdir -p /home/nepacalc/public_html/_next_staging
+    - /bin/cp -a out/_next/. /home/nepacalc/public_html/_next_staging/
+    
+    # 2. Swap the _next directory instantly
+    - /bin/mv /home/nepacalc/public_html/_next /home/nepacalc/public_html/_next_old || true
+    - /bin/mv /home/nepacalc/public_html/_next_staging /home/nepacalc/public_html/_next
+    
+    # 3. Copy lightweight HTML files (excluding _next)
+    - /bin/bash -c "shopt -s extglob dotglob; /bin/cp -a out/!(_next) /home/nepacalc/public_html/"
+    
+    # 4. Clean up
+    - /bin/rm -rf /home/nepacalc/public_html/_next_old
