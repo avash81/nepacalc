@@ -5,7 +5,7 @@ import fs from 'fs';
 import path from 'path';
 
 export const metadata: Metadata = {
-  title: 'Gold Price History in Nepal: Historical Gold & Silver Rates',
+  title: 'Gold and Silver Price History: Tola, Gram & Kilogram Rates',
   description: 'Gold price history in Nepal with historical gold and silver rates by date. View verified rates per tola and 10 grams, sourced from FENEGOSIDA, with historical data downloads.',
   alternates: {
     canonical: 'https://nepacalc.com/market-rates/history/',
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     siteName: 'NepaCalc',
-    title: 'Gold Price History in Nepal \u2013 Historical Gold & Silver Rates',
+    title: 'Gold and Silver Price History: Tola, Gram \u0026 Kilogram Rates',
     description: 'Gold price history in Nepal with historical gold and silver rates by date. View verified rates per tola and 10 grams, sourced from FENEGOSIDA, with historical data downloads.',
     url: 'https://nepacalc.com/market-rates/history/',
     images: [
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Gold Price History in Nepal \u2013 Historical Gold & Silver Rates',
+    title: 'Gold and Silver Price History: Tola, Gram \u0026 Kilogram Rates',
     description: 'Gold price history in Nepal with historical gold and silver rates by date. View verified rates per tola and 10 grams, sourced from FENEGOSIDA, with historical data downloads.',
     images: ['https://nepacalc.com/images/og/history-gold-silver-nepal.jpg'],
   },
