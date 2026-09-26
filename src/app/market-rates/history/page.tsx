@@ -76,6 +76,7 @@ export default async function HistoryPage() {
     temporalCoverage: '2024-06-02/2026-09-25',
     dateCreated: '2026-09-25',
     dateModified: '2026-09-25',
+    license: 'https://creativecommons.org/licenses/by-nc/4.0/',
     distribution: [
       {
         '@type': 'DataDownload',
