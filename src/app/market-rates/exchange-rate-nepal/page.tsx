@@ -95,6 +95,7 @@ export default async function Page() {
           dateModified: new Date(rawDate).toISOString(),
           temporalCoverage: "2024/..",
           isPartOf: "https://nepacalc.com/market-rates/#collection",
+          license: "https://creativecommons.org/licenses/by/4.0/",
         }}
         faqs={[
           { q: "What is the Nepal Rastra Bank (NRB) exchange rate?", a: "The Nepal Rastra Bank (NRB) exchange rate is the official foreign exchange reference rate published by Nepal's central bank every banking day. It provides the official buying and selling rates for major international currencies including USD, EUR, GBP, AUD, AED, SAR, QAR, JPY, and INR. Commercial banks and licensed money exchange institutions use these rates as the benchmark for their daily foreign exchange transactions." },

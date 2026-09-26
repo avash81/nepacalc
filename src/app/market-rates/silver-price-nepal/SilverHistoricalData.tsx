@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { Download, Database, Info, AlertTriangle, History, TrendingUp, TrendingDown, Minus } from 'lucide-react';
 
 type UnitMode = 'tola' | '10g' | 'kg';
@@ -90,10 +91,13 @@ export default function SilverHistoricalData() {
   return (
     <div className="space-y-12">
       <section className="mb-12">
-        <h2 id="silver-price-history" className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tighter mb-6 scroll-mt-24">
+        <h2 id="silver-price-history" className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tighter mb-4 scroll-mt-24">
           Silver Price History in Nepal
         </h2>
-
+        
+        <p className="text-sm text-slate-600 mb-6 font-medium leading-relaxed">
+          View available historical silver rates in Nepal by year and date, including source prices and historical records where available. For detailed daily data, charts, filters, and source and verification information, visit the <Link href="/market-rates/history/" className="text-blue-600 underline font-bold hover:text-blue-700">Silver Price History in Nepal archive</Link>.
+        </p>
         <div className="flex border-b border-slate-200 mb-6">
           {(['yearly', 'monthly', 'daily'] as const).map((tab) => (
             <button
