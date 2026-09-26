@@ -160,10 +160,10 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
                       {r.source_category}
                     </span>
                   </td>
-                  <td className="px-4 py-3 text-right tabular-nums font-semibold text-slate-900">रू {fmtNPR(r.source_rate_10g)}</td>
-                  <td className="px-4 py-3 text-right tabular-nums font-bold text-slate-900">रू {fmtNPR(r.source_rate_tola)}</td>
-                  <td className="px-4 py-3 text-right tabular-nums font-medium text-slate-500">रू {fmtNPR(r.calculated_rate_gram)}</td>
-                  <td className="px-4 py-3 text-right tabular-nums font-medium text-slate-500">रू {fmtNPR(r.calculated_rate_kg)}</td>
+                  <td className="px-4 py-3 text-right tabular-nums font-semibold text-slate-900">Rs {fmtNPR(r.source_rate_10g)}</td>
+                  <td className="px-4 py-3 text-right tabular-nums font-bold text-slate-900">Rs {fmtNPR(r.source_rate_tola)}</td>
+                  <td className="px-4 py-3 text-right tabular-nums font-medium text-slate-500">Rs {fmtNPR(r.calculated_rate_gram)}</td>
+                  <td className="px-4 py-3 text-right tabular-nums font-medium text-slate-500">Rs {fmtNPR(r.calculated_rate_kg)}</td>
                 </tr>
               ))}
             </tbody>
