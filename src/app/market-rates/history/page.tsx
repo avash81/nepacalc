@@ -106,8 +106,11 @@ export default async function HistoryPage() {
           </p>
         </header>
 
+        {/* Interactive table — immediately after H1 for SEO and fast content delivery */}
+        <HistoryClient records={dataset.data} />
+
         {/* Download buttons */}
-        <div className="mb-6 flex flex-wrap gap-4 items-center">
+        <div className="mt-6 mb-6 flex flex-wrap gap-4 items-center">
           <a href="/data/historical-rates.json" download className="inline-flex items-center px-4 py-2 bg-slate-900 text-white text-sm font-bold rounded-lg hover:bg-slate-800 transition-colors">
             <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
             Download JSON
@@ -117,9 +120,6 @@ export default async function HistoryPage() {
             Download CSV
           </a>
         </div>
-
-        {/* Interactive table */}
-        <HistoryClient records={dataset.data} />
 
         {/* Quick Links */}
         <div className="mb-8 mt-6 text-sm font-bold text-amber-600 space-y-2 max-w-4xl">
