@@ -54,14 +54,14 @@ export async function generateMetadata(): Promise<Metadata> {
       description,
       url: 'https://nepacalc.com/market-rates/live-gold-price/',
       siteName: 'NepaCalc',
-      images: [{ url: 'https://nepacalc.com/images/og/gold-price-nepal.png', width: 1200, height: 630, alt: 'Gold Price in Nepal Today - Live FENEGOSIDA Rate | NepaCalc' }],
+      images: [{ url: 'https://nepacalc.com/images/og/gold-price-nepal.jpg', width: 1200, height: 630, alt: 'Gold Price in Nepal Today - Live FENEGOSIDA Rate | NepaCalc' }],
       type: 'website'
     },
     twitter: {
       card: 'summary_large_image',
       title: "Gold Price in Nepal Today | Live FENEGOSIDA Rate",
       description,
-      images: ['https://nepacalc.com/images/og/gold-price-nepal.png']
+      images: ['https://nepacalc.com/images/og/gold-price-nepal.jpg']
     },
     alternates: {
       canonical: 'https://nepacalc.com/market-rates/live-gold-price/'

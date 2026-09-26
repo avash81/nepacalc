@@ -81,7 +81,7 @@ export async function generateMetadata(): Promise<Metadata> {
       url: 'https://nepacalc.com/market-rates/silver-price-nepal/',
       images: [
         {
-          url: 'https://nepacalc.com/images/og/silver-price-nepal.png',
+          url: 'https://nepacalc.com/images/og/silver-price-nepal.jpg',
           width: 1200,
           height: 630,
           alt: 'Silver Price in Nepal Today - Live FENEGOSIDA Rate | NepaCalc',
@@ -176,7 +176,7 @@ const schemaGraph = {
     {
       '@type': 'ImageObject',
       '@id': 'https://nepacalc.com/market-rates/silver-price-nepal/#primaryimage',
-      url: 'https://nepacalc.com/images/og/silver-price-nepal.png',
+      url: 'https://nepacalc.com/images/og/silver-price-nepal.jpg',
       width: 1200,
       height: 630,
     },
