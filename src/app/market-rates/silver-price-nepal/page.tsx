@@ -516,17 +516,10 @@ export default async function Page() {
                   })()}
                   </p>
                   <p className="text-[14px] text-slate-700 font-medium leading-relaxed m-0">
-                    <strong>Note:</strong> Since import costs dictate the final price, you should also check <a href="/market-rates/exchange-rate-nepal/" className="text-blue-600 underline font-bold hover:text-blue-600">Today&apos;s NRB Exchange Rate</a> and <a href="/market-rates/live-gold-price/" className="text-blue-600 underline font-bold hover:text-blue-600">Live Gold Prices</a>.
+                    <strong>Note:</strong> Since import costs dictate the final price, you should also check <a href="/market-rates/exchange-rate-nepal/" className="text-blue-600 underline font-bold hover:text-blue-600">Today&apos;s NRB Exchange Rate</a> and <a href="/market-rates/live-gold-price/" className="text-blue-600 underline font-bold hover:text-blue-600">Live Gold Prices</a>. To review past silver prices by date, visit the <a href="/market-rates/history/" className="text-blue-600 underline font-bold hover:text-blue-600">gold and silver price history archive</a>.
                   </p>
                 </div>
               </div>
-
-              <div className="mt-4 mb-2">
-                <a href="/market-rates/history/" className="inline-flex items-center text-[13px] font-bold text-amber-600 hover:text-amber-700 underline underline-offset-4 decoration-amber-200 transition-colors">
-                  View Historical Gold &amp; Silver Rates &rarr;
-                </a>
-              </div>
-
 
               {/* ── Card 4: Nepal Benchmark Rates Table ── */}
               <div className="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 mb-6 shadow-sm">

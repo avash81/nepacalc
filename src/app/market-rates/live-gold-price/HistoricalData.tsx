@@ -124,7 +124,7 @@ export default function HistoricalData() {
 
         <div className="prose prose-slate max-w-none space-y-4 mb-8">
           <p className="text-sm text-slate-700 leading-relaxed font-medium">
-            Over the past decade, the price of gold in Nepal has seen a significant upward trend, driven by international spot price volatility, inflation, and adjustments in the USD/NPR exchange rate.
+            Over the past decade, the price of gold in Nepal has seen a significant upward trend, driven by international spot price volatility, inflation, and adjustments in the USD/NPR exchange rate. You can browse date-by-date verified rates on the <a href="/market-rates/history/" className="text-amber-700 hover:underline font-bold">gold and silver price history archive</a>.
           </p>
           <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
             <h4 className="text-sm font-bold text-blue-900 mb-2 flex items-center gap-2">

@@ -70,7 +70,6 @@ const tocItems: { id?: string; label?: string; divider?: boolean }[] = [
   { id: 'faq', label: "Frequently Asked Questions" },
   { id: 'archives', label: "FENEGOSIDA Archives & Reports" },
   { id: 'glossary', label: "Understanding Today's Gold Rate Terms" },
-  { id: 'useful-gold-tools', label: "Useful Gold Tools" },
   ];
 
 interface GoldDashboardClientProps {

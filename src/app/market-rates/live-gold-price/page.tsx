@@ -148,8 +148,6 @@ export default async function Page() {
                 )}
               </div>
             )}
-
-<div className="mt-4 mb-2"><a href="/market-rates/history/" className="inline-flex items-center text-[13px] font-bold text-amber-600 hover:text-amber-700 underline underline-offset-4 decoration-amber-200 transition-colors">View Historical Gold & Silver Rates &rarr;</a></div>
             {/* ── Dynamic 24H Change Sentence — server-rendered, 100% visible to bots ── */}
             
           </div>
