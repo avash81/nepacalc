@@ -131,21 +131,21 @@ export default async function HistoryPage() {
           </div>
         </div>
 
-        {/* Data Summary — below table */}
+                        {/* Data Summary — below table */}
         <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-8 max-w-4xl">
           <h2 className="text-sm font-black text-slate-900 uppercase tracking-widest mb-4 border-b border-slate-100 pb-2">Data Summary</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-8 text-[13px] mb-6">
             <div className="flex justify-between border-b border-slate-50 pb-2">
               <span className="text-slate-500 font-medium">Gold records:</span>
-              <span className="font-bold text-slate-900">72</span>
+              <span className="font-bold text-slate-900">1,281</span>
             </div>
             <div className="flex justify-between border-b border-slate-50 pb-2">
               <span className="text-slate-500 font-medium">Silver records:</span>
-              <span className="font-bold text-slate-900">72</span>
+              <span className="font-bold text-slate-900">1,950</span>
             </div>
             <div className="flex justify-between border-b border-slate-50 pb-2">
               <span className="text-slate-500 font-medium">Unique dates:</span>
-              <span className="font-bold text-slate-900">72</span>
+              <span className="font-bold text-slate-900">2,002</span>
             </div>
             <div className="flex justify-between border-b border-slate-50 pb-2">
               <span className="text-slate-500 font-medium">Verified records:</span>
@@ -153,9 +153,9 @@ export default async function HistoryPage() {
             </div>
             <div className="flex flex-col gap-1 border-b border-slate-50 pb-2 md:col-span-2">
               <span className="text-slate-500 font-medium">Available date range (AD):</span>
-              <span className="font-bold text-slate-900">2024-06-02 to 2026-09-25</span>
+              <span className="font-bold text-slate-900">2019-09-19 to 2026-09-25</span>
               <span className="text-slate-500 font-medium mt-1">Available date range (BS):</span>
-              <span className="font-bold text-slate-900">2081-02-20 to 2083-06-09</span>
+              <span className="font-bold text-slate-900">2079/17/02 to 2083/06/09</span>
             </div>
           </div>
 
@@ -167,10 +167,10 @@ export default async function HistoryPage() {
 
           <h3 className="text-xs font-black text-slate-500 uppercase tracking-widest mb-3">Verified Coverage Ranges</h3>
           <ul className="text-sm text-slate-700 font-medium space-y-3">
-            <li className="flex items-start gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0 mt-1.5"></span><span>2024-06-02 to 2024-06-07 (6 dates) <span className="text-slate-400 font-normal">BS: 2081-02-20 to 2081-02-25</span></span></li>
-            <li className="flex items-start gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0 mt-1.5"></span><span>2025-03-02 to 2025-03-07 (6 dates) <span className="text-slate-400 font-normal">BS: 2081-11-18 to 2081-11-23</span></span></li>
-            <li className="flex items-start gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0 mt-1.5"></span><span>2026-06-07 to 2026-06-12 (6 dates) <span className="text-slate-400 font-normal">BS: 2083-02-24 to 2083-02-29</span></span></li>
-            <li className="flex items-start gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0 mt-1.5"></span><span>2026-07-23 to 2026-09-25 (54 dates) <span className="text-slate-400 font-normal">BS: 2083-04-08 to 2083-06-09</span></span></li>
+            <li className="flex items-start gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0 mt-1.5"></span><span>2024-06-02 to 2024-06-07 (6 dates) <span className="text-slate-400 font-normal">BS: 2081/02/20 to 2081/02/25</span></span></li>
+<li className="flex items-start gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0 mt-1.5"></span><span>2025-03-02 to 2025-03-07 (6 dates) <span className="text-slate-400 font-normal">BS: 2081/11/18 to 2081/11/23</span></span></li>
+<li className="flex items-start gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0 mt-1.5"></span><span>2026-06-07 to 2026-06-12 (6 dates) <span className="text-slate-400 font-normal">BS: 2083/02/24 to 2083/02/29</span></span></li>
+<li className="flex items-start gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0 mt-1.5"></span><span>2026-07-23 to 2026-09-25 (54 dates) <span className="text-slate-400 font-normal">BS: 2083/04/07 to 2083/06/09</span></span></li>
           </ul>
         </div>
 
@@ -195,22 +195,6 @@ export default async function HistoryPage() {
               <dd className="text-slate-600 leading-relaxed">This dataset is partially recovered. Not all historical dates are available. Missing dates are not estimated or interpolated. For broader monetary context, refer to <a href="https://www.nrb.org.np" target="_blank" rel="noopener noreferrer" className="text-slate-700 underline underline-offset-2 hover:text-slate-900">Nepal Rastra Bank</a>.</dd>
             </div>
           </dl>
-        </section>
-
-        {/* Related tools */}
-        <section className="mt-8 pt-6 border-t border-slate-200 max-w-4xl">
-          <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-3">Related Tools</h3>
-          <div className="flex flex-wrap gap-3 text-sm">
-            <a href="/market-rates/live-gold-price/" className="text-amber-700 font-semibold hover:underline">Today&#39;s Gold Price in Nepal</a>
-            <span className="text-slate-300" aria-hidden="true">|</span>
-            <a href="/market-rates/silver-price-nepal/" className="text-slate-700 font-semibold hover:underline">Today&#39;s Silver Price in Nepal</a>
-            <span className="text-slate-300" aria-hidden="true">|</span>
-            <a href="/calculator/gold-converter/" className="text-slate-700 font-semibold hover:underline">Gold Converter</a>
-            <span className="text-slate-300" aria-hidden="true">|</span>
-            <a href="/calculator/silver-converter/" className="text-slate-700 font-semibold hover:underline">Silver Converter</a>
-            <span className="text-slate-300" aria-hidden="true">|</span>
-            <a href="/market-rates/" className="text-slate-700 font-semibold hover:underline">All Market Rates</a>
-          </div>
         </section>
 
         {/* FAQ Section */}
@@ -253,6 +237,22 @@ export default async function HistoryPage() {
                 Some historical source records are not currently available or could not be verified from the primary source. Missing dates are therefore not estimated, interpolated, or replaced with unverified data.
               </p>
             </div>
+          </div>
+        </section>
+
+        {/* Related tools */}
+        <section className="mt-8 pt-6 border-t border-slate-200 max-w-4xl">
+          <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-3">Related Tools</h3>
+          <div className="flex flex-wrap gap-3 text-sm">
+            <a href="/market-rates/live-gold-price/" className="text-amber-700 font-semibold hover:underline">Today&#39;s Gold Price in Nepal</a>
+            <span className="text-slate-300" aria-hidden="true">|</span>
+            <a href="/market-rates/silver-price-nepal/" className="text-slate-700 font-semibold hover:underline">Today&#39;s Silver Price in Nepal</a>
+            <span className="text-slate-300" aria-hidden="true">|</span>
+            <a href="/calculator/gold-converter/" className="text-slate-700 font-semibold hover:underline">Gold Converter</a>
+            <span className="text-slate-300" aria-hidden="true">|</span>
+            <a href="/calculator/silver-converter/" className="text-slate-700 font-semibold hover:underline">Silver Converter</a>
+            <span className="text-slate-300" aria-hidden="true">|</span>
+            <a href="/market-rates/" className="text-slate-700 font-semibold hover:underline">All Market Rates</a>
           </div>
         </section>
 
