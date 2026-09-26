@@ -152,7 +152,14 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
             <tbody className="divide-y divide-slate-100 bg-white">
               {paginatedRecords.map((r, i) => (
                 <tr key={i} className="hover:bg-slate-50/60 transition-colors">
-                  <td className="px-4 py-3 font-medium text-slate-800 whitespace-nowrap">{r.date_ad}</td>
+                  <td className="px-4 py-3 font-medium text-slate-800 whitespace-nowrap">
+                    {r.date_ad}
+                    {r.verification_status !== 'verified' && (
+                      <span className="ml-1.5 inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-bold bg-orange-100 text-orange-600 border border-orange-200" title="Rate sourced from third-party archive, pending official verification">
+                        unverified
+                      </span>
+                    )}
+                  </td>
                   <td className="px-4 py-3 text-slate-600 whitespace-nowrap">{r.date_bs}</td>
                   <td className="px-4 py-3 text-slate-500 whitespace-nowrap">{r.day}</td>
                   <td className="px-4 py-3 whitespace-nowrap">
