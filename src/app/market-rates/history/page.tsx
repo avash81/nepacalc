@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default async function HistoryPage() {
   const dataPath = path.join(process.cwd(), 'public', 'data', 'historical-rates.json');
-  let dataset = { records: [], meta: {} as any };
+  let dataset: any = { data: [], meta: {} };
   
   try {
     const fileContents = fs.readFileSync(dataPath, 'utf8');

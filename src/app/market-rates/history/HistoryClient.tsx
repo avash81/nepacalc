@@ -128,7 +128,7 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
                   <td className="px-4 py-3 text-slate-600 whitespace-nowrap">{r.date_bs}</td>
                   <td className="px-4 py-3 text-slate-500 whitespace-nowrap">{r.day}</td>
                   <td className="px-4 py-3 whitespace-nowrap">
-                    <span className={\inline-flex items-center px-2 py-0.5 rounded text-xs font-bold \\}>
+                    <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-bold ${r.metal === 'gold' ? 'bg-amber-100 text-amber-800' : 'bg-slate-100 text-slate-700'}`}>
                       {r.source_category}
                     </span>
                   </td>
