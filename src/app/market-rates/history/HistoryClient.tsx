@@ -48,7 +48,7 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
   return (
     <div className="bg-white p-4 md:p-6 rounded-xl border border-slate-200 shadow-sm">
       
-      {/* ── Filters ── */}
+      {/* Filters */}
       <div className="flex flex-col md:flex-row gap-4 mb-6 items-end">
         <div className="w-full md:w-auto">
           <label htmlFor="metalFilter" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Metal</label>
@@ -100,7 +100,7 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
         </div>
       </div>
 
-      {/* ── Table ── */}
+      {/* Table */}
       {filteredRecords.length === 0 ? (
         <div className="text-center py-12 bg-slate-50 rounded-lg border border-slate-200">
           <p className="text-slate-600 font-medium">No verified historical record is available for this selection.</p>

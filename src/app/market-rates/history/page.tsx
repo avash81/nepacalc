@@ -5,10 +5,40 @@ import fs from 'fs';
 import path from 'path';
 
 export const metadata: Metadata = {
-  title: 'Gold & Silver Price History in Nepal | NepaCalc',
-  description: 'Explore verified historical gold and silver prices in Nepal by date, including rates per 10g and tola with calculated gram and kilogram equivalents.',
+  title: 'Gold Price History in Nepal: Historical Gold & Silver Rates',
+  description: 'Gold price history in Nepal with historical gold and silver rates by date. View verified rates per tola and 10 grams, sourced from FENEGOSIDA, with historical data downloads.',
   alternates: {
     canonical: 'https://nepacalc.com/market-rates/history/',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+    },
+  },
+  openGraph: {
+    type: 'website',
+    siteName: 'NepaCalc',
+    title: 'Gold Price History in Nepal \u2013 Historical Gold & Silver Rates',
+    description: 'Gold price history in Nepal with historical gold and silver rates by date. View verified rates per tola and 10 grams, sourced from FENEGOSIDA, with historical data downloads.',
+    url: 'https://nepacalc.com/market-rates/history/',
+    images: [
+      {
+        url: 'https://nepacalc.com/images/og/history-gold-silver-nepal.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Historical Gold and Silver Price in Nepal - NepaCalc',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Gold Price History in Nepal \u2013 Historical Gold & Silver Rates',
+    description: 'Gold price history in Nepal with historical gold and silver rates by date. View verified rates per tola and 10 grams, sourced from FENEGOSIDA, with historical data downloads.',
+    images: ['https://nepacalc.com/images/og/history-gold-silver-nepal.jpg'],
   },
 };
 
@@ -44,6 +74,8 @@ export default async function HistoryPage() {
       name: 'NepaCalc'
     },
     temporalCoverage: '2024-06-02/2026-09-25',
+    dateCreated: '2026-09-25',
+    dateModified: '2026-09-25',
     distribution: [
       {
         '@type': 'DataDownload',
@@ -66,7 +98,7 @@ export default async function HistoryPage() {
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <header className="mb-10 max-w-4xl">
           <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight mb-4">
-            Gold & Silver Price History in Nepal
+            Gold Price History in Nepal – Historical Gold & Silver Rates
           </h1>
           <p className="text-sm text-slate-600 font-medium leading-relaxed mb-6">
             Historical gold and silver market rates in Nepal, organized by date and sourced from verified FENEGOSIDA records. Use the table and filters to view available historical rates by date, metal, and unit.
@@ -81,7 +113,7 @@ export default async function HistoryPage() {
           </div>
         </header>
 
-        {/* ── Coverage Block ── */}
+        {/* Coverage Block */}
         <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-12 max-w-4xl">
           <h2 className="text-sm font-black text-slate-900 uppercase tracking-widest mb-4 border-b border-slate-100 pb-2">Data Summary</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-8 text-[13px] mb-6">
@@ -103,7 +135,7 @@ export default async function HistoryPage() {
             </div>
             <div className="flex justify-between border-b border-slate-50 pb-2">
               <span className="text-slate-500 font-medium">Available date range:</span>
-              <span className="font-bold text-slate-900 text-right">2024-06-02 → 2026-09-25</span>
+              <span className="font-bold text-slate-900 text-right">2024-06-02 to 2026-09-25</span>
             </div>
           </div>
 
@@ -115,10 +147,10 @@ export default async function HistoryPage() {
 
           <h3 className="text-xs font-black text-slate-500 uppercase tracking-widest mb-3">Verified Coverage Ranges</h3>
           <ul className="text-sm text-slate-700 font-medium space-y-2">
-            <li className="flex items-center"><span className="w-2 h-2 rounded-full bg-emerald-500 mr-2"></span> 2024-06-02 → 2024-06-07 (6 dates)</li>
-            <li className="flex items-center"><span className="w-2 h-2 rounded-full bg-emerald-500 mr-2"></span> 2025-03-02 → 2025-03-07 (6 dates)</li>
-            <li className="flex items-center"><span className="w-2 h-2 rounded-full bg-emerald-500 mr-2"></span> 2026-06-07 → 2026-06-12 (6 dates)</li>
-            <li className="flex items-center"><span className="w-2 h-2 rounded-full bg-emerald-500 mr-2"></span> 2026-07-23 → 2026-09-25 (54 dates)</li>
+            <li className="flex items-center"><span className="w-2 h-2 rounded-full bg-emerald-500 mr-2"></span> 2024-06-02 to 2024-06-07 (6 dates)</li>
+            <li className="flex items-center"><span className="w-2 h-2 rounded-full bg-emerald-500 mr-2"></span> 2025-03-02 to 2025-03-07 (6 dates)</li>
+            <li className="flex items-center"><span className="w-2 h-2 rounded-full bg-emerald-500 mr-2"></span> 2026-06-07 to 2026-06-12 (6 dates)</li>
+            <li className="flex items-center"><span className="w-2 h-2 rounded-full bg-emerald-500 mr-2"></span> 2026-07-23 to 2026-09-25 (54 dates)</li>
           </ul>
         </div>
 
@@ -133,14 +165,56 @@ export default async function HistoryPage() {
           </a>
         </div>
 
-        {/* ── Interactive Client Component ── */}
+        {/* Interactive table */}
         <HistoryClient records={dataset.data} />
 
-        {/* ── Context & Source ── */}
-        <section className="mt-12 pt-8 border-t border-slate-200">
-          <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-2">Data source</h3>
+        {/* How to read this data */}
+        <section className="mt-12 pt-8 border-t border-slate-200 max-w-4xl">
+          <h2 className="text-sm font-black text-slate-900 uppercase tracking-widest mb-4">How to Read This Data</h2>
+          <dl className="grid grid-cols-1 md:grid-cols-2 gap-4 text-[13px]">
+            <div>
+              <dt className="font-bold text-slate-800 mb-1">Price / 10g and Price / Tola</dt>
+              <dd className="text-slate-600 leading-relaxed">Source values from FENEGOSIDA records, published as-is. These are the authoritative reference prices.</dd>
+            </div>
+            <div>
+              <dt className="font-bold text-slate-800 mb-1">Price / Gram and Price / Kg</dt>
+              <dd className="text-slate-600 leading-relaxed">Calculated equivalents only. Derived using 1 tola = 11.664 g. Not independently verified at the gram or kg level.</dd>
+            </div>
+            <div>
+              <dt className="font-bold text-slate-800 mb-1">Gold vs. Silver</dt>
+              <dd className="text-slate-600 leading-relaxed">Each date has separate gold and silver records. Use the Metal filter to view one at a time.</dd>
+            </div>
+            <div>
+              <dt className="font-bold text-slate-800 mb-1">Coverage gaps</dt>
+              <dd className="text-slate-600 leading-relaxed">This dataset is partially recovered. Not all historical dates are available. Missing dates are not estimated or interpolated.</dd>
+            </div>
+          </dl>
+        </section>
+
+        {/* Related tools */}
+        <section className="mt-8 pt-6 border-t border-slate-200 max-w-4xl">
+          <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-3">Related Tools</h3>
+          <div className="flex flex-wrap gap-3 text-sm">
+            <a href="/market-rates/live-gold-price/" className="text-amber-700 font-semibold hover:underline">Today&#39;s Gold Price in Nepal</a>
+            <span className="text-slate-300" aria-hidden="true">|</span>
+            <a href="/market-rates/silver-price-nepal/" className="text-slate-700 font-semibold hover:underline">Today&#39;s Silver Price in Nepal</a>
+            <span className="text-slate-300" aria-hidden="true">|</span>
+            <a href="/calculator/gold-converter/" className="text-slate-700 font-semibold hover:underline">Gold Converter</a>
+            <span className="text-slate-300" aria-hidden="true">|</span>
+            <a href="/calculator/silver-converter/" className="text-slate-700 font-semibold hover:underline">Silver Converter</a>
+            <span className="text-slate-300" aria-hidden="true">|</span>
+            <a href="/market-rates/" className="text-slate-700 font-semibold hover:underline">All Market Rates</a>
+          </div>
+        </section>
+
+        {/* Data source */}
+        <section className="mt-8 pt-6 border-t border-slate-200">
+          <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-2">Data Source</h3>
           <p className="text-[13px] text-slate-800 font-medium leading-relaxed max-w-4xl">
-            Historical rates are based on verified Federation of Nepal Gold & Silver Dealers' Associations (FENEGOSIDA) records available in the current primary-source dataset. Source prices are preserved exactly as published; per-gram and per-kg values are calculated equivalents (1 tola = 11.664 g). Historical coverage contains gaps.
+            Historical rates are based on verified Federation of Nepal Gold &amp; Silver Dealers&#39; Associations (FENEGOSIDA) records available in the current primary-source dataset. Source prices are preserved exactly as published. Per-gram and per-kg values are calculated equivalents (1 tola = 11.664 g). Historical coverage contains gaps. Dataset last updated: 25 September 2026.
+          </p>
+          <p className="text-[12px] text-slate-400 mt-2 font-medium">
+            Historical data sourced from FENEGOSIDA. NepaCalc calculations and presentation &copy; NepaCalc.
           </p>
         </section>
       </main>
