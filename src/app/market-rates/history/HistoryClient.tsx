@@ -115,10 +115,10 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
                 <th scope="col" className="text-left px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-600">Date (BS)</th>
                 <th scope="col" className="text-left px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-600">Day</th>
                 <th scope="col" className="text-left px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-600">Metal</th>
-                <th scope="col" className="text-right px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-600">Price / 10g</th>
-                <th scope="col" className="text-right px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-600">Price / Tola</th>
-                <th scope="col" className="text-right px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-400">Price / Gram*</th>
-                <th scope="col" className="text-right px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-400">Price / Kg*</th>
+                <th scope="col" className="text-right px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-600">per 10g</th>
+                <th scope="col" className="text-right px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-600">per Tola (11.66g)</th>
+                <th scope="col" className="text-right px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-400">per Gram*</th>
+                <th scope="col" className="text-right px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-400">per Kg*</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 bg-white">
