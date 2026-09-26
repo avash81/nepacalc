@@ -98,7 +98,7 @@ export default async function HistoryPage() {
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <header className="mb-10 max-w-4xl">
           <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight mb-4">
-            Gold Price History in Nepal – Historical Gold & Silver Rates
+            Historical Gold & Silver Prices in Nepal – Verified Past Rates
           </h1>
           <p className="text-sm text-slate-600 font-medium leading-relaxed mb-6">
             Historical gold and silver market rates in Nepal, organized by date and sourced from verified FENEGOSIDA records. Use the table and filters to view available historical rates by date, metal, and unit.
