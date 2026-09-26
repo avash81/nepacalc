@@ -65,6 +65,10 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     alternates: {
       canonical: 'https://nepacalc.com/market-rates/live-gold-price/'
+    },
+    other: {
+      thumbnail: 'https://nepacalc.com/images/og/gold-price-nepal.jpg',
+      'image_src': 'https://nepacalc.com/images/og/gold-price-nepal.jpg',
     }
   };
 }
@@ -91,6 +95,8 @@ export default async function Page() {
             name: "Gold Price in Nepal Today (2083/84) | Live 24K & 22K Rate",
             description: "Check today's official gold and silver prices in Nepal based on FENEGOSIDA benchmarks.",
             isPartOf: "https://nepacalc.com/#website",
+            primaryImageOfPage: "https://nepacalc.com/images/og/gold-price-nepal.jpg",
+            image: "https://nepacalc.com/images/og/gold-price-nepal.jpg",
           },
           article: {
             url: "https://nepacalc.com/market-rates/live-gold-price/",
@@ -98,6 +104,7 @@ export default async function Page() {
             description: "Check today's official gold and silver prices in Nepal based on FENEGOSIDA benchmarks.",
             datePublished: "2024-01-01T08:00:00+05:45",
             dateModified: new Date(rawDate).toISOString(),
+            image: "https://nepacalc.com/images/og/gold-price-nepal.jpg",
           }
         }} 
       />

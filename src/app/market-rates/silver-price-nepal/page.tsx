@@ -92,6 +92,11 @@ export async function generateMetadata(): Promise<Metadata> {
       card: 'summary_large_image',
       title: 'Live Silver Price in Nepal Today | Chandi Rate Per Tola & Gram',
       description,
+      images: ['https://nepacalc.com/images/og/silver-price-nepal.jpg'],
+    },
+    other: {
+      thumbnail: 'https://nepacalc.com/images/og/silver-price-nepal.jpg',
+      'image_src': 'https://nepacalc.com/images/og/silver-price-nepal.jpg',
     },
   };
 }

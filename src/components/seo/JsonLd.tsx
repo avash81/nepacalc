@@ -111,7 +111,8 @@ function generateSchema(
      * WEBPAGE
      * ============================================================
      */
-    case 'webpage':
+    case 'webpage': {
+      const primaryImageUrl = data.primaryImageOfPage || data.image;
       return {
         '@context': 'https://schema.org',
         '@type': 'WebPage',
@@ -121,7 +122,20 @@ function generateSchema(
         description: data.description,
         isPartOf: { '@id': data.isPartOf || websiteId },
         mainEntity: data.mainEntity ? { '@id': data.mainEntity } : undefined,
+        ...(primaryImageUrl ? {
+          primaryImageOfPage: {
+            '@type': 'ImageObject',
+            '@id': `${data.url}#primaryimage`,
+            url: primaryImageUrl,
+          },
+          image: {
+            '@type': 'ImageObject',
+            '@id': `${data.url}#primaryimage`,
+            url: primaryImageUrl,
+          }
+        } : {}),
       };
+    }
 
     /*
      * ============================================================
@@ -152,7 +166,8 @@ function generateSchema(
      * ARTICLE
      * ============================================================
      */
-    case 'article':
+    case 'article': {
+      const articleImageUrl = data.image || data.primaryImageOfPage;
       return {
         '@context': 'https://schema.org',
         '@type': 'Article',
@@ -166,7 +181,15 @@ function generateSchema(
         publisher: { '@id': orgId },
         isPartOf: { '@id': websiteId },
         mainEntityOfPage: data.url ? { '@id': `${data.url}#webpage` } : undefined,
+        ...(articleImageUrl ? {
+          image: typeof articleImageUrl === 'string' ? {
+            '@type': 'ImageObject',
+            '@id': `${data.url}#primaryimage`,
+            url: articleImageUrl,
+          } : articleImageUrl
+        } : {}),
       };
+    }
 
     /*
      * ============================================================
