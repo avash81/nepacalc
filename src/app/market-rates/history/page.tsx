@@ -105,8 +105,33 @@ export default async function HistoryPage() {
           </p>
         </header>
 
-        {/* Coverage Block */}
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-12 max-w-4xl">
+        {/* Download buttons */}
+        <div className="mb-6 flex flex-wrap gap-4 items-center">
+          <a href="/data/historical-rates.json" download className="inline-flex items-center px-4 py-2 bg-slate-900 text-white text-sm font-bold rounded-lg hover:bg-slate-800 transition-colors">
+            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+            Download JSON
+          </a>
+          <a href="/data/historical-rates.csv" download className="inline-flex items-center px-4 py-2 bg-white border border-slate-300 text-slate-700 text-sm font-bold rounded-lg hover:bg-slate-50 transition-colors">
+            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+            Download CSV
+          </a>
+        </div>
+
+        {/* Interactive table */}
+        <HistoryClient records={dataset.data} />
+
+        {/* Quick Links */}
+        <div className="mb-8 mt-6 text-sm font-bold text-amber-600 space-y-2 max-w-4xl">
+          <div>
+            Looking for today's rate? <a href="/market-rates/live-gold-price/" className="underline underline-offset-2 hover:text-amber-700">Today's Gold Price in Nepal</a>
+          </div>
+          <div>
+            Looking for today's silver rate? <a href="/market-rates/silver-price-nepal/" className="underline underline-offset-2 hover:text-amber-700">Today's Silver Price in Nepal</a>
+          </div>
+        </div>
+
+        {/* Data Summary — below table */}
+        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-8 max-w-4xl">
           <h2 className="text-sm font-black text-slate-900 uppercase tracking-widest mb-4 border-b border-slate-100 pb-2">Data Summary</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-8 text-[13px] mb-6">
             <div className="flex justify-between border-b border-slate-50 pb-2">
@@ -125,9 +150,11 @@ export default async function HistoryPage() {
               <span className="text-slate-500 font-medium">Verified records:</span>
               <span className="font-bold text-slate-900">144</span>
             </div>
-            <div className="flex justify-between border-b border-slate-50 pb-2">
-              <span className="text-slate-500 font-medium">Available date range:</span>
-              <span className="font-bold text-slate-900 text-right">2024-06-02 to 2026-09-25</span>
+            <div className="flex flex-col gap-1 border-b border-slate-50 pb-2 md:col-span-2">
+              <span className="text-slate-500 font-medium">Available date range (AD):</span>
+              <span className="font-bold text-slate-900">2024-06-02 to 2026-09-25</span>
+              <span className="text-slate-500 font-medium mt-1">Available date range (BS):</span>
+              <span className="font-bold text-slate-900">2081-02-20 to 2083-06-09</span>
             </div>
           </div>
 
@@ -138,36 +165,12 @@ export default async function HistoryPage() {
           </div>
 
           <h3 className="text-xs font-black text-slate-500 uppercase tracking-widest mb-3">Verified Coverage Ranges</h3>
-          <ul className="text-sm text-slate-700 font-medium space-y-2">
-            <li className="flex items-center"><span className="w-2 h-2 rounded-full bg-emerald-500 mr-2"></span> 2024-06-02 to 2024-06-07 (6 dates)</li>
-            <li className="flex items-center"><span className="w-2 h-2 rounded-full bg-emerald-500 mr-2"></span> 2025-03-02 to 2025-03-07 (6 dates)</li>
-            <li className="flex items-center"><span className="w-2 h-2 rounded-full bg-emerald-500 mr-2"></span> 2026-06-07 to 2026-06-12 (6 dates)</li>
-            <li className="flex items-center"><span className="w-2 h-2 rounded-full bg-emerald-500 mr-2"></span> 2026-07-23 to 2026-09-25 (54 dates)</li>
+          <ul className="text-sm text-slate-700 font-medium space-y-3">
+            <li className="flex items-start gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0 mt-1.5"></span><span>2024-06-02 to 2024-06-07 (6 dates) <span className="text-slate-400 font-normal">BS: 2081-02-20 to 2081-02-25</span></span></li>
+            <li className="flex items-start gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0 mt-1.5"></span><span>2025-03-02 to 2025-03-07 (6 dates) <span className="text-slate-400 font-normal">BS: 2081-11-18 to 2081-11-23</span></span></li>
+            <li className="flex items-start gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0 mt-1.5"></span><span>2026-06-07 to 2026-06-12 (6 dates) <span className="text-slate-400 font-normal">BS: 2083-02-24 to 2083-02-29</span></span></li>
+            <li className="flex items-start gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0 mt-1.5"></span><span>2026-07-23 to 2026-09-25 (54 dates) <span className="text-slate-400 font-normal">BS: 2083-04-08 to 2083-06-09</span></span></li>
           </ul>
-        </div>
-
-        <div className="mb-6 flex flex-wrap gap-4 items-center">
-          <a href="/data/historical-rates.json" download className="inline-flex items-center px-4 py-2 bg-slate-900 text-white text-sm font-bold rounded-lg hover:bg-slate-800 transition-colors">
-            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-            Download JSON
-          </a>
-          <a href="/data/historical-rates.csv" download className="inline-flex items-center px-4 py-2 bg-white border border-slate-300 text-slate-700 text-sm font-bold rounded-lg hover:bg-slate-50 transition-colors">
-            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-            Download CSV
-          </a>
-        </div>
-
-        {/* Interactive table */}
-        <HistoryClient records={dataset.data} />
-
-        {/* Quick Links */}
-        <div className="mb-12 text-sm font-bold text-amber-600 space-y-2 max-w-4xl">
-          <div>
-            Looking for today's rate? <a href="/market-rates/live-gold-price/" className="underline underline-offset-2 hover:text-amber-700">Today's Gold Price in Nepal</a>
-          </div>
-          <div>
-            Looking for today's silver rate? <a href="/market-rates/silver-price-nepal/" className="underline underline-offset-2 hover:text-amber-700">Today's Silver Price in Nepal</a>
-          </div>
         </div>
 
         {/* How to read this data */}

@@ -39,11 +39,11 @@ export const FOOTER_CATEGORIES: Record<string, FooterLinkGroup> = {
     links: [
       { name: 'Live Gold Price', href: '/market-rates/live-gold-price/' },
       { name: 'Live Silver Price', href: '/market-rates/silver-price-nepal/' },
+      { name: 'Gold & Silver Price History', href: '/market-rates/history/' },
       { name: 'Gold Converter', href: '/calculator/gold-converter/' },
       { name: 'Silver Converter', href: '/calculator/silver-converter/' },
       { name: 'Currency Converter', href: '/calculator/currency-converter/' },
       { name: 'Gold Tax Calculator', href: '/calculator/gold-tax/' },
-      { name: 'Exchange Rate Nepal', href: '/market-rates/exchange-rate-nepal/' },
     ],
   },
   silver: {
@@ -51,9 +51,9 @@ export const FOOTER_CATEGORIES: Record<string, FooterLinkGroup> = {
     links: [
       { name: 'Live Gold Price', href: '/market-rates/live-gold-price/' },
       { name: 'Live Silver Price', href: '/market-rates/silver-price-nepal/' },
+      { name: 'Gold & Silver Price History', href: '/market-rates/history/' },
       { name: 'Gold Converter', href: '/calculator/gold-converter/' },
       { name: 'Silver Converter', href: '/calculator/silver-converter/' },
-      { name: 'Currency Converter', href: '/calculator/currency-converter/' },
       { name: 'Exchange Rate Nepal', href: '/market-rates/exchange-rate-nepal/' },
       { name: 'Gold Tax Calculator', href: '/calculator/gold-tax/' },
     ],
