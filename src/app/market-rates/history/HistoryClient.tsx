@@ -8,16 +8,31 @@ type HistoricalRecord = {
   day: string;
   metal: string;
   source_category: string;
+  rate_type?: string;
   source_rate_10g: number;
   source_rate_tola: number;
   calculated_rate_gram: number;
   calculated_rate_kg: number;
   source_type: string;
+  source_document_id?: string;
+  source_priority?: string;
   verification_status: string;
 };
 
-export default function HistoryClient({ records }: { records: HistoricalRecord[] }) {
-  const [metalFilter, setMetalFilter] = useState<'all' | 'gold' | 'silver'>('all');
+export default function HistoryClient({
+  records,
+}: {
+  records: HistoricalRecord[];
+}) {
+  const [metalFilter, setMetalFilter] = useState<'all' | 'gold' | 'silver'>(
+    'all'
+  );
+  const [sourceFilter, setSourceFilter] = useState<
+    'all' | 'fenegosida' | 'gahana'
+  >('all');
+  const [verificationFilter, setVerificationFilter] = useState<
+    'all' | 'verified' | 'unverified' | 'corroborated'
+  >('all');
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
   const [sortOrder, setSortOrder] = useState<'desc' | 'asc'>('desc');
@@ -26,8 +41,26 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
 
   const filteredRecords = useMemo(() => {
     return records
-      .filter(r => {
+      .filter((r) => {
         if (metalFilter !== 'all' && r.metal !== metalFilter) return false;
+
+        if (
+          sourceFilter === 'fenegosida' &&
+          !['official_weekly_pdf', 'fenegosida_api'].includes(r.source_type)
+        )
+          return false;
+        if (
+          sourceFilter === 'gahana' &&
+          !r.source_document_id?.startsWith('GAHANA')
+        )
+          return false;
+
+        if (
+          verificationFilter !== 'all' &&
+          r.verification_status !== verificationFilter
+        )
+          return false;
+
         if (dateFrom && r.date_ad < dateFrom) return false;
         if (dateTo && r.date_ad > dateTo) return false;
         return true;
@@ -37,25 +70,43 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
         const dateA = a.date_ad;
         const dateB = b.date_ad;
         if (dateA !== dateB) {
-           if (sortOrder === 'desc') return dateA < dateB ? 1 : -1;
-           return dateA > dateB ? 1 : -1;
+          if (sortOrder === 'desc') return dateA < dateB ? 1 : -1;
+          return dateA > dateB ? 1 : -1;
         }
         return a.metal.localeCompare(b.metal);
       });
-  }, [records, metalFilter, dateFrom, dateTo, sortOrder]);
+  }, [
+    records,
+    metalFilter,
+    sourceFilter,
+    verificationFilter,
+    dateFrom,
+    dateTo,
+    sortOrder,
+  ]);
 
   // Reset to first page when filters change
   useEffect(() => {
     setCurrentPage(1);
-  }, [metalFilter, dateFrom, dateTo, sortOrder]);
+  }, [
+    metalFilter,
+    sourceFilter,
+    verificationFilter,
+    dateFrom,
+    dateTo,
+    sortOrder,
+  ]);
 
   const totalPages = Math.ceil(filteredRecords.length / rowsPerPage);
   const startIndex = (currentPage - 1) * rowsPerPage;
   const endIndex = Math.min(startIndex + rowsPerPage, filteredRecords.length);
   const paginatedRecords = filteredRecords.slice(startIndex, endIndex);
 
-  const fmtNPR = (val: number) => 
-    new Intl.NumberFormat('en-IN', { maximumFractionDigits: 2, minimumFractionDigits: 2 }).format(val);
+  const fmtNPR = (val: number) =>
+    new Intl.NumberFormat('en-IN', {
+      maximumFractionDigits: 2,
+      minimumFractionDigits: 2,
+    }).format(val);
 
   const getPageNumbers = () => {
     const pages = [];
@@ -65,9 +116,25 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
       if (currentPage <= 4) {
         pages.push(1, 2, 3, 4, 5, '...', totalPages);
       } else if (currentPage >= totalPages - 3) {
-        pages.push(1, '...', totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
+        pages.push(
+          1,
+          '...',
+          totalPages - 4,
+          totalPages - 3,
+          totalPages - 2,
+          totalPages - 1,
+          totalPages
+        );
       } else {
-        pages.push(1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages);
+        pages.push(
+          1,
+          '...',
+          currentPage - 1,
+          currentPage,
+          currentPage + 1,
+          '...',
+          totalPages
+        );
       }
     }
     return pages;
@@ -75,12 +142,16 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
 
   return (
     <div className="bg-white p-4 md:p-6 rounded-xl border border-slate-200 shadow-sm">
-      
-      {/* Filters */}
-      <div className="flex flex-col md:flex-row gap-4 mb-6 items-end">
+      {/* Main Filters */}
+      <div className="flex flex-col md:flex-row gap-4 mb-4 items-end">
         <div className="w-full md:w-auto">
-          <label htmlFor="metalFilter" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Metal</label>
-          <select 
+          <label
+            htmlFor="metalFilter"
+            className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1"
+          >
+            Metal
+          </label>
+          <select
             id="metalFilter"
             value={metalFilter}
             onChange={(e) => setMetalFilter(e.target.value as any)}
@@ -93,8 +164,13 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
         </div>
 
         <div className="w-full md:w-auto">
-          <label htmlFor="dateFrom" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">From Date</label>
-          <input 
+          <label
+            htmlFor="dateFrom"
+            className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1"
+          >
+            From Date
+          </label>
+          <input
             type="date"
             id="dateFrom"
             value={dateFrom}
@@ -104,8 +180,13 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
         </div>
 
         <div className="w-full md:w-auto">
-          <label htmlFor="dateTo" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">To Date</label>
-          <input 
+          <label
+            htmlFor="dateTo"
+            className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1"
+          >
+            To Date
+          </label>
+          <input
             type="date"
             id="dateTo"
             value={dateTo}
@@ -115,8 +196,13 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
         </div>
 
         <div className="w-full md:w-auto ml-auto">
-          <label htmlFor="sortOrder" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Sort</label>
-          <select 
+          <label
+            htmlFor="sortOrder"
+            className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1"
+          >
+            Sort
+          </label>
+          <select
             id="sortOrder"
             value={sortOrder}
             onChange={(e) => setSortOrder(e.target.value as any)}
@@ -128,25 +214,105 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
         </div>
       </div>
 
+      {/* Advanced Filters (Source / Status) */}
+      <div className="flex flex-col md:flex-row gap-4 mb-6 pt-4 border-t border-slate-100">
+        <div className="w-full md:w-auto">
+          <label
+            htmlFor="sourceFilter"
+            className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1"
+          >
+            Source
+          </label>
+          <select
+            id="sourceFilter"
+            value={sourceFilter}
+            onChange={(e) => setSourceFilter(e.target.value as any)}
+            className="w-full md:w-auto border border-slate-300 rounded-lg px-3 py-2 text-sm font-medium text-slate-800 focus:ring-2 focus:ring-amber-500 outline-none"
+          >
+            <option value="all">All Sources</option>
+            <option value="fenegosida">FENEGOSIDA (Official)</option>
+            <option value="gahana">Gahana Online</option>
+          </select>
+        </div>
+
+        <div className="w-full md:w-auto">
+          <label
+            htmlFor="verificationFilter"
+            className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1"
+          >
+            Status
+          </label>
+          <select
+            id="verificationFilter"
+            value={verificationFilter}
+            onChange={(e) => setVerificationFilter(e.target.value as any)}
+            className="w-full md:w-auto border border-slate-300 rounded-lg px-3 py-2 text-sm font-medium text-slate-800 focus:ring-2 focus:ring-amber-500 outline-none"
+          >
+            <option value="all">All Statuses</option>
+            <option value="verified">Primary / Verified</option>
+            <option value="corroborated">Corroborated</option>
+            <option value="unverified">Secondary / Unverified</option>
+          </select>
+        </div>
+      </div>
+
       {/* Table */}
       {filteredRecords.length === 0 ? (
         <div className="text-center py-12 bg-slate-50 rounded-lg border border-slate-200">
-          <p className="text-slate-600 font-medium">No verified historical record is available for this selection.</p>
+          <p className="text-slate-600 font-medium">
+            No verified historical record is available for this selection.
+          </p>
         </div>
       ) : (
         <div className="overflow-x-auto rounded-lg border border-slate-200">
           <table className="w-full text-sm border-collapse min-w-[800px]">
-            <caption className="sr-only">Historical Gold and Silver Price Table</caption>
+            <caption className="sr-only">
+              Historical Gold and Silver Price Table
+            </caption>
             <thead className="bg-slate-50 sticky top-0 border-b border-slate-200">
               <tr>
-                <th scope="col" className="text-left px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-600">Date (AD)</th>
-                <th scope="col" className="text-left px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-600">Date (BS)</th>
-                <th scope="col" className="text-left px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-600">Day</th>
-                <th scope="col" className="text-left px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-600">Metal</th>
-                <th scope="col" className="text-right px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-600">per 10g</th>
-                <th scope="col" className="text-right px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-600">per Tola (11.66g)</th>
-                <th scope="col" className="text-right px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-400">per Gram*</th>
-                <th scope="col" className="text-right px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-400">per Kg*</th>
+                <th
+                  scope="col"
+                  className="text-left px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-600"
+                >
+                  Date (AD)
+                </th>
+                <th
+                  scope="col"
+                  className="text-left px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-600"
+                >
+                  Date (BS)
+                </th>
+                <th
+                  scope="col"
+                  className="text-left px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-600"
+                >
+                  Metal
+                </th>
+                <th
+                  scope="col"
+                  className="text-right px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-600"
+                >
+                  per 10g
+                </th>
+                <th
+                  scope="col"
+                  className="text-right px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-600"
+                >
+                  per Tola (11.66g)
+                </th>
+                <th
+                  scope="col"
+                  className="text-right px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-400"
+                >
+                  per Gram*
+                </th>
+                <th
+                  scope="col"
+                  className="text-right px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-400"
+                >
+                  per Kg*
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 bg-white">
@@ -155,22 +321,36 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
                   <td className="px-4 py-3 font-medium text-slate-800 whitespace-nowrap">
                     {r.date_ad}
                     {r.verification_status !== 'verified' && (
-                      <span className="ml-1.5 inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-bold bg-orange-100 text-orange-600 border border-orange-200" title="Rate sourced from third-party archive, pending official verification">
+                      <span
+                        className="ml-1.5 inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-bold bg-orange-100 text-orange-600 border border-orange-200"
+                        title="Rate sourced from third-party archive, pending official verification"
+                      >
                         unverified
                       </span>
                     )}
                   </td>
-                  <td className="px-4 py-3 text-slate-600 whitespace-nowrap">{r.date_bs}</td>
-                  <td className="px-4 py-3 text-slate-500 whitespace-nowrap">{r.day}</td>
+                  <td className="px-4 py-3 text-slate-600 whitespace-nowrap">
+                    {r.date_bs}
+                  </td>
                   <td className="px-4 py-3 whitespace-nowrap">
-                    <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-bold ${r.metal === 'gold' ? 'bg-amber-100 text-amber-800' : 'bg-slate-100 text-slate-700'}`}>
-                      {r.source_category}
+                    <span
+                      className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-bold ${r.metal === 'gold' ? 'bg-amber-100 text-amber-800' : 'bg-slate-100 text-slate-700'}`}
+                    >
+                      {r.rate_type || r.source_category}
                     </span>
                   </td>
-                  <td className="px-4 py-3 text-right tabular-nums font-semibold text-slate-900">Rs {fmtNPR(r.source_rate_10g)}</td>
-                  <td className="px-4 py-3 text-right tabular-nums font-bold text-slate-900">Rs {fmtNPR(r.source_rate_tola)}</td>
-                  <td className="px-4 py-3 text-right tabular-nums font-medium text-slate-500">Rs {fmtNPR(r.calculated_rate_gram)}</td>
-                  <td className="px-4 py-3 text-right tabular-nums font-medium text-slate-500">Rs {fmtNPR(r.calculated_rate_kg)}</td>
+                  <td className="px-4 py-3 text-right tabular-nums font-semibold text-slate-900">
+                    Rs {fmtNPR(r.source_rate_10g)}
+                  </td>
+                  <td className="px-4 py-3 text-right tabular-nums font-bold text-slate-900">
+                    Rs {fmtNPR(r.source_rate_tola)}
+                  </td>
+                  <td className="px-4 py-3 text-right tabular-nums font-medium text-slate-500">
+                    Rs {fmtNPR(r.calculated_rate_gram)}
+                  </td>
+                  <td className="px-4 py-3 text-right tabular-nums font-medium text-slate-500">
+                    Rs {fmtNPR(r.calculated_rate_kg)}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -182,22 +362,25 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
       {filteredRecords.length > 0 && (
         <div className="mt-4 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-600 font-medium">
           <div>
-            Showing {startIndex + 1} to {endIndex} of {filteredRecords.length} entries
+            Showing {startIndex + 1} to {endIndex} of {filteredRecords.length}{' '}
+            entries
           </div>
           <div className="flex items-center gap-1">
-            <button 
-              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+            <button
+              onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
               disabled={currentPage === 1}
               className="px-3 py-1 rounded border border-slate-300 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               Previous
             </button>
-            
+
             <div className="flex items-center">
               {getPageNumbers().map((page, index) => (
                 <button
                   key={index}
-                  onClick={() => typeof page === 'number' && setCurrentPage(page)}
+                  onClick={() =>
+                    typeof page === 'number' && setCurrentPage(page)
+                  }
                   disabled={page === '...'}
                   className={`px-3 py-1 min-w-[32px] text-center border-y border-r first:border-l border-slate-300 transition-colors
                     ${page === currentPage ? 'bg-slate-100 font-bold text-slate-900' : 'bg-white hover:bg-slate-50 text-slate-600'}
@@ -209,8 +392,8 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
               ))}
             </div>
 
-            <button 
-              onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+            <button
+              onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
               disabled={currentPage === totalPages}
               className="px-3 py-1 rounded border border-slate-300 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
