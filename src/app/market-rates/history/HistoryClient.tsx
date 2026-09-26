@@ -27,12 +27,6 @@ export default function HistoryClient({
   const [metalFilter, setMetalFilter] = useState<'all' | 'gold' | 'silver'>(
     'all'
   );
-  const [sourceFilter, setSourceFilter] = useState<
-    'all' | 'fenegosida' | 'gahana'
-  >('all');
-  const [verificationFilter, setVerificationFilter] = useState<
-    'all' | 'verified' | 'unverified' | 'corroborated'
-  >('all');
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
   const [sortOrder, setSortOrder] = useState<'desc' | 'asc'>('desc');
@@ -43,24 +37,6 @@ export default function HistoryClient({
     return records
       .filter((r) => {
         if (metalFilter !== 'all' && r.metal !== metalFilter) return false;
-
-        if (
-          sourceFilter === 'fenegosida' &&
-          !['official_weekly_pdf', 'fenegosida_api'].includes(r.source_type)
-        )
-          return false;
-        if (
-          sourceFilter === 'gahana' &&
-          !r.source_document_id?.startsWith('GAHANA')
-        )
-          return false;
-
-        if (
-          verificationFilter !== 'all' &&
-          r.verification_status !== verificationFilter
-        )
-          return false;
-
         if (dateFrom && r.date_ad < dateFrom) return false;
         if (dateTo && r.date_ad > dateTo) return false;
         return true;
@@ -78,8 +54,6 @@ export default function HistoryClient({
   }, [
     records,
     metalFilter,
-    sourceFilter,
-    verificationFilter,
     dateFrom,
     dateTo,
     sortOrder,
@@ -90,8 +64,6 @@ export default function HistoryClient({
     setCurrentPage(1);
   }, [
     metalFilter,
-    sourceFilter,
-    verificationFilter,
     dateFrom,
     dateTo,
     sortOrder,
@@ -214,48 +186,6 @@ export default function HistoryClient({
         </div>
       </div>
 
-      {/* Advanced Filters (Source / Status) */}
-      <div className="flex flex-col md:flex-row gap-4 mb-6 pt-4 border-t border-slate-100">
-        <div className="w-full md:w-auto">
-          <label
-            htmlFor="sourceFilter"
-            className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1"
-          >
-            Source
-          </label>
-          <select
-            id="sourceFilter"
-            value={sourceFilter}
-            onChange={(e) => setSourceFilter(e.target.value as any)}
-            className="w-full md:w-auto border border-slate-300 rounded-lg px-3 py-2 text-sm font-medium text-slate-800 focus:ring-2 focus:ring-amber-500 outline-none"
-          >
-            <option value="all">All Sources</option>
-            <option value="fenegosida">FENEGOSIDA (Official)</option>
-            <option value="gahana">Gahana Online</option>
-          </select>
-        </div>
-
-        <div className="w-full md:w-auto">
-          <label
-            htmlFor="verificationFilter"
-            className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1"
-          >
-            Status
-          </label>
-          <select
-            id="verificationFilter"
-            value={verificationFilter}
-            onChange={(e) => setVerificationFilter(e.target.value as any)}
-            className="w-full md:w-auto border border-slate-300 rounded-lg px-3 py-2 text-sm font-medium text-slate-800 focus:ring-2 focus:ring-amber-500 outline-none"
-          >
-            <option value="all">All Statuses</option>
-            <option value="verified">Primary / Verified</option>
-            <option value="corroborated">Corroborated</option>
-            <option value="unverified">Secondary / Unverified</option>
-          </select>
-        </div>
-      </div>
-
       {/* Table */}
       {filteredRecords.length === 0 ? (
         <div className="text-center py-12 bg-slate-50 rounded-lg border border-slate-200">
@@ -320,14 +250,6 @@ export default function HistoryClient({
                 <tr key={i} className="hover:bg-slate-50/60 transition-colors">
                   <td className="px-4 py-3 font-medium text-slate-800 whitespace-nowrap">
                     {r.date_ad}
-                    {r.verification_status !== 'verified' && (
-                      <span
-                        className="ml-1.5 inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-bold bg-orange-100 text-orange-600 border border-orange-200"
-                        title="Rate sourced from third-party archive, pending official verification"
-                      >
-                        unverified
-                      </span>
-                    )}
                   </td>
                   <td className="px-4 py-3 text-slate-600 whitespace-nowrap">
                     {r.date_bs}
