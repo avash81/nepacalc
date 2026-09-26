@@ -8,7 +8,11 @@
     "coverage_to_ad": "2026-09-25",
     "total_records": 22,
     "last_imported": "2026-09-26",
-    "note": "Source values are NPR per tola (fine gold 9999). Per-10g and derived units calculated from source. Missing dates are public holidays or FENEGOSIDA off-days."
+    "note": "Source values are NPR per tola (fine gold 9999). Per-10g and derived units calculated from source. Missing dates are public holidays or FENEGOSIDA off-days.",
+    "version": "1.0.0",
+    "last_updated_ad": "2026-09-25",
+    "earliest_record_ad": "2026-08-31",
+    "latest_record_ad": "2026-09-25"
   },
   "records": [
     {
