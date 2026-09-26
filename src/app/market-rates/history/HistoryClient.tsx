@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 
 type HistoricalRecord = {
   date_ad: string;
@@ -21,6 +21,8 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
   const [sortOrder, setSortOrder] = useState<'desc' | 'asc'>('desc');
+  const [currentPage, setCurrentPage] = useState(1);
+  const rowsPerPage = 25;
 
   const filteredRecords = useMemo(() => {
     return records
@@ -42,8 +44,34 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
       });
   }, [records, metalFilter, dateFrom, dateTo, sortOrder]);
 
+  // Reset to first page when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [metalFilter, dateFrom, dateTo, sortOrder]);
+
+  const totalPages = Math.ceil(filteredRecords.length / rowsPerPage);
+  const startIndex = (currentPage - 1) * rowsPerPage;
+  const endIndex = Math.min(startIndex + rowsPerPage, filteredRecords.length);
+  const paginatedRecords = filteredRecords.slice(startIndex, endIndex);
+
   const fmtNPR = (val: number) => 
     new Intl.NumberFormat('en-IN', { maximumFractionDigits: 2, minimumFractionDigits: 2 }).format(val);
+
+  const getPageNumbers = () => {
+    const pages = [];
+    if (totalPages <= 7) {
+      for (let i = 1; i <= totalPages; i++) pages.push(i);
+    } else {
+      if (currentPage <= 4) {
+        pages.push(1, 2, 3, 4, 5, '...', totalPages);
+      } else if (currentPage >= totalPages - 3) {
+        pages.push(1, '...', totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
+      } else {
+        pages.push(1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages);
+      }
+    }
+    return pages;
+  };
 
   return (
     <div className="bg-white p-4 md:p-6 rounded-xl border border-slate-200 shadow-sm">
@@ -122,7 +150,7 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 bg-white">
-              {filteredRecords.map((r, i) => (
+              {paginatedRecords.map((r, i) => (
                 <tr key={i} className="hover:bg-slate-50/60 transition-colors">
                   <td className="px-4 py-3 font-medium text-slate-800 whitespace-nowrap">{r.date_ad}</td>
                   <td className="px-4 py-3 text-slate-600 whitespace-nowrap">{r.date_bs}</td>
@@ -143,9 +171,49 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
         </div>
       )}
 
-      <div className="mt-4 flex justify-between items-center text-xs text-slate-500 font-medium">
-        <div>Showing {filteredRecords.length} records</div>
-        <div>* Calculated equivalents</div>
+      {/* Pagination Footer */}
+      {filteredRecords.length > 0 && (
+        <div className="mt-4 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-600 font-medium">
+          <div>
+            Showing {startIndex + 1} to {endIndex} of {filteredRecords.length} entries
+          </div>
+          <div className="flex items-center gap-1">
+            <button 
+              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+              disabled={currentPage === 1}
+              className="px-3 py-1 rounded border border-slate-300 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              Previous
+            </button>
+            
+            <div className="flex items-center">
+              {getPageNumbers().map((page, index) => (
+                <button
+                  key={index}
+                  onClick={() => typeof page === 'number' && setCurrentPage(page)}
+                  disabled={page === '...'}
+                  className={`px-3 py-1 min-w-[32px] text-center border-y border-r first:border-l border-slate-300 transition-colors
+                    ${page === currentPage ? 'bg-slate-100 font-bold text-slate-900' : 'bg-white hover:bg-slate-50 text-slate-600'}
+                    ${page === '...' ? 'cursor-default border-none bg-transparent hover:bg-transparent' : ''}
+                  `}
+                >
+                  {page}
+                </button>
+              ))}
+            </div>
+
+            <button 
+              onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+              disabled={currentPage === totalPages}
+              className="px-3 py-1 rounded border border-slate-300 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      )}
+      <div className="mt-2 text-right text-xs text-slate-400">
+        * Calculated equivalents
       </div>
     </div>
   );
