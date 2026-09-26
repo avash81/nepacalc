@@ -179,11 +179,11 @@ export default async function HistoryPage() {
           <h2 className="text-sm font-black text-slate-900 uppercase tracking-widest mb-4">How to Read This Data</h2>
           <dl className="grid grid-cols-1 md:grid-cols-2 gap-4 text-[13px]">
             <div>
-              <dt className="font-bold text-slate-800 mb-1">Price / 10g and Price / Tola</dt>
+              <dt className="font-bold text-slate-800 mb-1">per 10g and per Tola</dt>
               <dd className="text-slate-600 leading-relaxed">Source values from FENEGOSIDA records, published as-is. These are the authoritative reference prices. The tola is a traditional South Asian unit; 1 tola equals 11.664 grams, as defined by the <a href="https://www.gold.org/goldhub/data/gold-benchmarks" target="_blank" rel="noopener noreferrer" className="text-amber-700 underline underline-offset-2 hover:text-amber-900">World Gold Council</a>.</dd>
             </div>
             <div>
-              <dt className="font-bold text-slate-800 mb-1">Price / Gram and Price / Kg</dt>
+              <dt className="font-bold text-slate-800 mb-1">per Gram and per Kg</dt>
               <dd className="text-slate-600 leading-relaxed">Calculated equivalents only. Derived using 1 tola = 11.664 g. Not independently verified at the gram or kg level.</dd>
             </div>
             <div>
@@ -210,6 +210,49 @@ export default async function HistoryPage() {
             <a href="/calculator/silver-converter/" className="text-slate-700 font-semibold hover:underline">Silver Converter</a>
             <span className="text-slate-300" aria-hidden="true">|</span>
             <a href="/market-rates/" className="text-slate-700 font-semibold hover:underline">All Market Rates</a>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="mt-12 pt-8 border-t border-slate-200 max-w-4xl">
+          <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight mb-6">Frequently Asked Questions</h2>
+          <div className="space-y-6 text-sm">
+            <div>
+              <h3 className="font-bold text-slate-900 text-base mb-2">What is the gold price history in Nepal?</h3>
+              <p className="text-slate-600 leading-relaxed">
+                The gold price history in Nepal on this page shows available historical gold rates by date from verified FENEGOSIDA records. Source rates are provided per 10 grams and per tola, with calculated equivalents per gram and per kilogram.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-bold text-slate-900 text-base mb-2">What is the silver price history in Nepal?</h3>
+              <p className="text-slate-600 leading-relaxed">
+                The silver price history in Nepal shows available historical silver rates by date from verified FENEGOSIDA records. Source rates are provided per 10 grams and per tola, with calculated equivalents per gram and per kilogram.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-bold text-slate-900 text-base mb-2">Can I check the gold or silver price for a specific date in Nepal?</h3>
+              <p className="text-slate-600 leading-relaxed">
+                Yes. Use the Metal, From Date, and To Date filters to find available historical gold or silver rates for a specific date or date range. The table shows the AD date, BS date where available, day, metal, and historical rates.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-bold text-slate-900 text-base mb-2">What is the historical gold price per tola, 10 grams, gram, and kilogram?</h3>
+              <p className="text-slate-600 leading-relaxed">
+                The historical per-tola and per-10g values are the source rates available from FENEGOSIDA records. The per-gram and per-kilogram figures marked with an asterisk are calculated equivalents using 1 tola = 11.664 grams.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-bold text-slate-900 text-base mb-2">Are the historical gold and silver prices from FENEGOSIDA?</h3>
+              <p className="text-slate-600 leading-relaxed">
+                Yes. The historical source records used on this page come from the Federation of Nepal Gold &amp; Silver Dealers&#39; Associations (FENEGOSIDA). Source prices are preserved as published in the verified records used for the dataset.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-bold text-slate-900 text-base mb-2">Why are some historical dates missing?</h3>
+              <p className="text-slate-600 leading-relaxed">
+                Some historical source records are not currently available or could not be verified from the primary source. Missing dates are therefore not estimated, interpolated, or replaced with unverified data.
+              </p>
+            </div>
           </div>
         </section>
 
