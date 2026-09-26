@@ -103,14 +103,6 @@ export default async function HistoryPage() {
           <p className="text-sm text-slate-600 font-medium leading-relaxed mb-6">
             Historical gold and silver market rates in Nepal, organized by date and sourced from verified FENEGOSIDA records. Use the table and filters to view available historical rates by date, metal, and unit.
           </p>
-          <div className="text-sm font-bold text-amber-600 space-y-2">
-            <div>
-              Looking for today's rate? <a href="/market-rates/live-gold-price/" className="underline underline-offset-2 hover:text-amber-700">Today's Gold Price in Nepal</a>
-            </div>
-            <div>
-              Looking for today's silver rate? <a href="/market-rates/silver-price-nepal/" className="underline underline-offset-2 hover:text-amber-700">Today's Silver Price in Nepal</a>
-            </div>
-          </div>
         </header>
 
         {/* Coverage Block */}
@@ -167,6 +159,16 @@ export default async function HistoryPage() {
 
         {/* Interactive table */}
         <HistoryClient records={dataset.data} />
+
+        {/* Quick Links */}
+        <div className="mb-12 text-sm font-bold text-amber-600 space-y-2 max-w-4xl">
+          <div>
+            Looking for today's rate? <a href="/market-rates/live-gold-price/" className="underline underline-offset-2 hover:text-amber-700">Today's Gold Price in Nepal</a>
+          </div>
+          <div>
+            Looking for today's silver rate? <a href="/market-rates/silver-price-nepal/" className="underline underline-offset-2 hover:text-amber-700">Today's Silver Price in Nepal</a>
+          </div>
+        </div>
 
         {/* How to read this data */}
         <section className="mt-12 pt-8 border-t border-slate-200 max-w-4xl">
