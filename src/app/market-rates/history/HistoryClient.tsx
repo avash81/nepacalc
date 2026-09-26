@@ -31,6 +31,7 @@ export default function HistoryClient({
   const [dateTo, setDateTo] = useState('');
   const [sortOrder, setSortOrder] = useState<'desc' | 'asc'>('desc');
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedRecord, setSelectedRecord] = useState<HistoricalRecord | null>(null);
   const rowsPerPage = 30;
 
   const filteredRecords = useMemo(() => {
@@ -247,7 +248,11 @@ export default function HistoryClient({
             </thead>
             <tbody className="divide-y divide-slate-100 bg-white">
               {paginatedRecords.map((r, i) => (
-                <tr key={i} className="hover:bg-slate-50/60 transition-colors">
+                <tr 
+                  key={i} 
+                  onClick={() => setSelectedRecord(r)}
+                  className={`cursor-pointer transition-colors ${selectedRecord === r ? 'bg-amber-50 border-l-4 border-amber-400' : 'hover:bg-slate-50/60'}`}
+                >
                   <td className="px-4 py-3 font-medium text-slate-800 whitespace-nowrap">
                     {r.date_ad}
                   </td>
@@ -324,7 +329,38 @@ export default function HistoryClient({
           </div>
         </div>
       )}
-      <div className="mt-2 text-right text-xs text-slate-400">
+      {selectedRecord && (
+        <div className="mt-8 p-5 bg-white border-2 border-amber-200 rounded-xl shadow-sm">
+          <div className="flex justify-between items-start mb-4">
+            <div>
+              <h3 className="text-lg font-black text-slate-800 uppercase tracking-wide">
+                Historical Conversion: {selectedRecord.metal === 'gold' ? 'Gold' : 'Silver'}
+              </h3>
+              <p className="text-sm text-slate-500 font-medium">
+                Rates as of {selectedRecord.date_ad} {selectedRecord.date_bs ? `(${selectedRecord.date_bs})` : ''}
+              </p>
+            </div>
+            <button onClick={() => setSelectedRecord(null)} className="text-slate-400 hover:text-slate-600 font-bold p-2 text-xl leading-none">&times;</button>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+            {[
+              { unit: 'Gram', val: selectedRecord.calculated_rate_gram },
+              { unit: '10 Grams', val: selectedRecord.source_rate_10g },
+              { unit: 'Tola', val: selectedRecord.source_rate_tola },
+              { unit: 'Ana', val: selectedRecord.source_rate_tola / 16 },
+              { unit: 'Lal', val: selectedRecord.source_rate_tola / 160 },
+              { unit: 'Kg', val: selectedRecord.calculated_rate_kg }
+            ].map((c) => (
+              <div key={c.unit} className="bg-slate-50 border border-slate-200 p-3 rounded-lg text-center">
+                <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">{c.unit}</div>
+                <div className="text-sm font-black text-slate-900">Rs {fmtNPR(c.val)}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div className="mt-4 text-right text-xs text-slate-400">
         * Calculated equivalents
       </div>
     </div>

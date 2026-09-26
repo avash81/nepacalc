@@ -1,0 +1,488 @@
+[
+  {
+    "date_ad": "2026-09-25",
+    "tola": 4620,
+    "per_10g": 3961,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-09-24",
+    "tola": 4650,
+    "per_10g": 3986,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-09-23",
+    "tola": 4815,
+    "per_10g": 4128,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-09-22",
+    "tola": 4775,
+    "per_10g": 4094,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-09-21",
+    "tola": 4805,
+    "per_10g": 4119,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-09-20",
+    "tola": 4795,
+    "per_10g": 4111,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-09-18",
+    "tola": 4775,
+    "per_10g": 4094,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-09-17",
+    "tola": 4625,
+    "per_10g": 3965,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-09-16",
+    "tola": 4685,
+    "per_10g": 4016,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-09-15",
+    "tola": 4600,
+    "per_10g": 3944,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-09-14",
+    "tola": 4620,
+    "per_10g": 3961,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-09-13",
+    "tola": 4660,
+    "per_10g": 3995,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-09-11",
+    "tola": 4600,
+    "per_10g": 3944,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-09-10",
+    "tola": 4855,
+    "per_10g": 4162,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-09-09",
+    "tola": 4750,
+    "per_10g": 4072,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-09-08",
+    "tola": 4790,
+    "per_10g": 4106,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-09-07",
+    "tola": 4690,
+    "per_10g": 4021,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-09-06",
+    "tola": 4725,
+    "per_10g": 4051,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-09-04",
+    "tola": 4765,
+    "per_10g": 4085,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-09-03",
+    "tola": 4725,
+    "per_10g": 4051,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-09-02",
+    "tola": 4580,
+    "per_10g": 3926,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-09-01",
+    "tola": 4765,
+    "per_10g": 4085,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-08-31",
+    "tola": 4780,
+    "per_10g": 4098,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-08-30",
+    "tola": 4780,
+    "per_10g": 4098,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-08-28",
+    "tola": 4965,
+    "per_10g": 4256,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-08-27",
+    "tola": 4965,
+    "per_10g": 4256,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-08-26",
+    "tola": 4975,
+    "per_10g": 4265,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-08-25",
+    "tola": 4900,
+    "per_10g": 4201,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-08-24",
+    "tola": 4965,
+    "per_10g": 4256,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-08-23",
+    "tola": 4975,
+    "per_10g": 4265,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-08-21",
+    "tola": 4985,
+    "per_10g": 4274,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-08-20",
+    "tola": 4855,
+    "per_10g": 4162,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-08-19",
+    "tola": 4595,
+    "per_10g": 3939,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-08-18",
+    "tola": 4755,
+    "per_10g": 4076,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-08-17",
+    "tola": 4770,
+    "per_10g": 4089,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-08-16",
+    "tola": 4710,
+    "per_10g": 4038,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-08-14",
+    "tola": 4660,
+    "per_10g": 3995,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-08-13",
+    "tola": 4750,
+    "per_10g": 4072,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-08-12",
+    "tola": 4745,
+    "per_10g": 4068,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-08-11",
+    "tola": 4780,
+    "per_10g": 4098,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-08-10",
+    "tola": 4670,
+    "per_10g": 4004,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-08-09",
+    "tola": 4645,
+    "per_10g": 3982,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-08-07",
+    "tola": 4580,
+    "per_10g": 3926,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-08-06",
+    "tola": 4570,
+    "per_10g": 3918,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-08-05",
+    "tola": 4475,
+    "per_10g": 3836,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-08-04",
+    "tola": 4380,
+    "per_10g": 3755,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-08-03",
+    "tola": 4350,
+    "per_10g": 3729,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-07-30",
+    "tola": 4310,
+    "per_10g": 3695,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-07-29",
+    "tola": 4320,
+    "per_10g": 3703,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-07-28",
+    "tola": 4310,
+    "per_10g": 3695,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-07-27",
+    "tola": 4445,
+    "per_10g": 3811,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-07-26",
+    "tola": 4410,
+    "per_10g": 3781,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-07-24",
+    "tola": 4350,
+    "per_10g": 3729,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  },
+  {
+    "date_ad": "2026-07-23",
+    "tola": 4505,
+    "per_10g": 3862,
+    "source": "FENEGOSIDA",
+    "metal": "silver",
+    "verification_status": "verified",
+    "source_type": "official_api"
+  }
+]

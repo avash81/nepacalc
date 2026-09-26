@@ -521,6 +521,13 @@ export default async function Page() {
                 </div>
               </div>
 
+              <div className="mt-4 mb-2">
+                <a href="/market-rates/history/" className="inline-flex items-center text-[13px] font-bold text-amber-600 hover:text-amber-700 underline underline-offset-4 decoration-amber-200 transition-colors">
+                  View Historical Gold &amp; Silver Rates &rarr;
+                </a>
+              </div>
+
+
               {/* ── Card 4: Nepal Benchmark Rates Table ── */}
               <div className="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 mb-6 shadow-sm">
                 <div className="flex items-center gap-2 mb-6">
