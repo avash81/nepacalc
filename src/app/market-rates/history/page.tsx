@@ -174,7 +174,7 @@ export default async function HistoryPage() {
           <dl className="grid grid-cols-1 md:grid-cols-2 gap-4 text-[13px]">
             <div>
               <dt className="font-bold text-slate-800 mb-1">Price / 10g and Price / Tola</dt>
-              <dd className="text-slate-600 leading-relaxed">Source values from FENEGOSIDA records, published as-is. These are the authoritative reference prices.</dd>
+              <dd className="text-slate-600 leading-relaxed">Source values from FENEGOSIDA records, published as-is. These are the authoritative reference prices. The tola is a traditional South Asian unit; 1 tola equals 11.664 grams, as defined by the <a href="https://www.gold.org/goldhub/data/gold-benchmarks" target="_blank" rel="noopener noreferrer" className="text-amber-700 underline underline-offset-2 hover:text-amber-900">World Gold Council</a>.</dd>
             </div>
             <div>
               <dt className="font-bold text-slate-800 mb-1">Price / Gram and Price / Kg</dt>
@@ -186,7 +186,7 @@ export default async function HistoryPage() {
             </div>
             <div>
               <dt className="font-bold text-slate-800 mb-1">Coverage gaps</dt>
-              <dd className="text-slate-600 leading-relaxed">This dataset is partially recovered. Not all historical dates are available. Missing dates are not estimated or interpolated.</dd>
+              <dd className="text-slate-600 leading-relaxed">This dataset is partially recovered. Not all historical dates are available. Missing dates are not estimated or interpolated. For broader monetary context, refer to <a href="https://www.nrb.org.np" target="_blank" rel="noopener noreferrer" className="text-slate-700 underline underline-offset-2 hover:text-slate-900">Nepal Rastra Bank</a>.</dd>
             </div>
           </dl>
         </section>
@@ -211,7 +211,7 @@ export default async function HistoryPage() {
         <section className="mt-8 pt-6 border-t border-slate-200">
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-2">Data Source</h3>
           <p className="text-[13px] text-slate-800 font-medium leading-relaxed max-w-4xl">
-            Historical rates are based on verified Federation of Nepal Gold &amp; Silver Dealers&#39; Associations (FENEGOSIDA) records available in the current primary-source dataset. Source prices are preserved exactly as published. Per-gram and per-kg values are calculated equivalents (1 tola = 11.664 g). Historical coverage contains gaps. Dataset last updated: 25 September 2026.
+            Historical rates are based on verified <a href="https://www.fenegosida.org.np" target="_blank" rel="noopener noreferrer" className="text-slate-900 underline underline-offset-2 hover:text-amber-800">Federation of Nepal Gold &amp; Silver Dealers&#39; Associations (FENEGOSIDA)</a> records available in the current primary-source dataset. Source prices are preserved exactly as published. Per-gram and per-kg values are calculated equivalents (1 tola = 11.664 g). Historical coverage contains gaps. Dataset last updated: 25 September 2026.
           </p>
           <p className="text-[12px] text-slate-400 mt-2 font-medium">
             Historical data sourced from FENEGOSIDA. NepaCalc calculations and presentation &copy; NepaCalc.
