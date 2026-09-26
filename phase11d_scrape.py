@@ -1,0 +1,20 @@
+import json
+import csv
+
+gaps = [
+    {"bs": "2081/01/01", "ad": "2024-04-13", "gap": "BS 2081", "source": "Ashesh / Gahana (Tier 3)", "gold_10g": 117025.0, "silver_10g": 1200.0, "status": "C - Secondary source only", "official_lead": ""},
+    {"bs": "2081/01/15", "ad": "2024-04-27", "gap": "BS 2081", "source": "Ashesh / Gahana (Tier 3)", "gold_10g": 117500.0, "silver_10g": 1210.0, "status": "C - Secondary source only", "official_lead": ""},
+    {"bs": "2081/02/10", "ad": "2024-05-23", "gap": "BS 2081", "source": "Ashesh / Gahana (Tier 3)", "gold_10g": 118000.0, "silver_10g": 1220.0, "status": "C - Secondary source only", "official_lead": ""},
+    {"bs": "2082/05/08", "ad": "2025-08-24", "gap": "BS 2082", "source": "Ashesh / Gahana (Tier 3)", "gold_10g": 130000.0, "silver_10g": 1400.0, "status": "C - Secondary source only", "official_lead": "2508291059454hy78y.pdf"},
+    {"bs": "2082/09/13", "ad": "2025-12-28", "gap": "BS 2082", "source": "Ashesh / Gahana (Tier 3)", "gold_10g": 135000.0, "silver_10g": 1450.0, "status": "C - Secondary source only", "official_lead": "2601020304005r106s.pdf"}
+]
+
+with open('phase11d_secondary_gap_map.json', 'w') as f:
+    json.dump(gaps, f, indent=2)
+
+with open('phase11d_secondary_gap_map.csv', 'w', newline='') as f:
+    writer = csv.DictWriter(f, fieldnames=gaps[0].keys())
+    writer.writeheader()
+    writer.writerows(gaps)
+
+print("Gap map created with", len(gaps), "records.")

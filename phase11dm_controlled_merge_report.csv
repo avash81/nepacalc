@@ -1,0 +1,11 @@
+effective_date_ad,effective_date_bs,metal,secondary_value,secondary_source,classification,official_source_reference,official_content_accessible,eligible_for_production,disposition,reason,verification_status
+2024-04-13,2081/01/01,gold,117025.0,Ashesh / Gahana (Tier 3),CLASS C,,False,False,QUARANTINED_CLASS_C,Secondary source only,quarantined
+2024-04-13,2081/01/01,silver,1200.0,Ashesh / Gahana (Tier 3),CLASS C,,False,False,QUARANTINED_CLASS_C,Secondary source only,quarantined
+2024-04-27,2081/01/15,gold,117500.0,Ashesh / Gahana (Tier 3),CLASS C,,False,False,QUARANTINED_CLASS_C,Secondary source only,quarantined
+2024-04-27,2081/01/15,silver,1210.0,Ashesh / Gahana (Tier 3),CLASS C,,False,False,QUARANTINED_CLASS_C,Secondary source only,quarantined
+2024-05-23,2081/02/10,gold,118000.0,Ashesh / Gahana (Tier 3),CLASS C,,False,False,QUARANTINED_CLASS_C,Secondary source only,quarantined
+2024-05-23,2081/02/10,silver,1220.0,Ashesh / Gahana (Tier 3),CLASS C,,False,False,QUARANTINED_CLASS_C,Secondary source only,quarantined
+2025-08-24,2082/05/08,gold,130000.0,Ashesh / Gahana (Tier 3),CLASS B,2508291059454hy78y.pdf,False,False,QUARANTINED_CLASS_B,Official reference identified but content inaccessible,quarantined
+2025-08-24,2082/05/08,silver,1400.0,Ashesh / Gahana (Tier 3),CLASS B,2508291059454hy78y.pdf,False,False,QUARANTINED_CLASS_B,Official reference identified but content inaccessible,quarantined
+2025-12-28,2082/09/13,gold,135000.0,Ashesh / Gahana (Tier 3),CLASS B,2601020304005r106s.pdf,False,False,QUARANTINED_CLASS_B,Official reference identified but content inaccessible,quarantined
+2025-12-28,2082/09/13,silver,1450.0,Ashesh / Gahana (Tier 3),CLASS B,2601020304005r106s.pdf,False,False,QUARANTINED_CLASS_B,Official reference identified but content inaccessible,quarantined

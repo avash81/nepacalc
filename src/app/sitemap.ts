@@ -43,7 +43,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/water',
     '/water/kukl-bill-payment',
     '/nepal/nepal-budget',
-    '/market-rates',
+    '/market-rates', '/market-rates/history',
     '/guide',
     '/nepal/bluebook-renewal-nepal',
     '/income-tax',

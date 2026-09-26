@@ -1,0 +1,30 @@
+{
+  "2508291059454hy78y.pdf": {
+    "status": 200,
+    "size_bytes": 872,
+    "checksum": "941e1d773096",
+    "local_path": "phase12_pdfs\\2508291059454hy78y.pdf",
+    "ok": true
+  },
+  "2601020304005r106s.pdf": {
+    "status": 200,
+    "size_bytes": 872,
+    "checksum": "941e1d773096",
+    "local_path": "phase12_pdfs\\2601020304005r106s.pdf",
+    "ok": true
+  },
+  "260123044935ehtkpy.pdf": {
+    "status": 200,
+    "size_bytes": 872,
+    "checksum": "941e1d773096",
+    "local_path": "phase12_pdfs\\260123044935ehtkpy.pdf",
+    "ok": true
+  },
+  "26022008145339a745.pdf": {
+    "status": 200,
+    "size_bytes": 872,
+    "checksum": "941e1d773096",
+    "local_path": "phase12_pdfs\\26022008145339a745.pdf",
+    "ok": true
+  }
+}

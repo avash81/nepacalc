@@ -1,0 +1,24 @@
+Metric,Value
+page_url,/market-rates/history/
+canonical,https://nepacalc.com/market-rates/history/
+title,Gold & Silver Price History in Nepal | NepaCalc
+h1,Gold & Silver Price History in Nepal
+dataset_source,FENEGOSIDA
+dataset_checksum,ede5ea177f0157ee
+dataset_rows,144
+gold_rows,72
+silver_rows,72
+unique_dates,72
+filters_implemented,True
+downloads_implemented,True
+json_download_path,/data/historical-rates.json
+csv_download_path,/data/historical-rates.csv
+dataset_jsonld,True
+breadcrumb_jsonld,True
+internal_links,True
+mobile_table,overflow-x-auto present
+accessibility_status,PASS
+indexability_status,PASS (no noindex)
+sitemap_status,Already in sitemap.ts
+production_dataset_modified,False
+final_status,PASS — HISTORICAL PAGE IMPLEMENTED
