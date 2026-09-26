@@ -307,39 +307,6 @@ export default async function HistoryPage() {
           </p>
         </section>
 
-        {/* ── DATA SOURCES AND METHODOLOGY ── */}
-        <section className="mt-10 pt-8 border-t border-slate-200 max-w-4xl space-y-4 text-sm text-slate-700 font-medium leading-relaxed">
-          <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight mb-4">
-            Data Sources and Methodology
-          </h2>
-          <p>
-            Historical source records are preserved with their source terminology, source values, source URL where available, and verification status. FENEGOSIDA records are treated as the primary source for verified historical rates in this archive. Secondary historical records are kept separately identified and are not presented as primary verified records.
-          </p>
-          <p>
-            Prices published directly by a source per tola or per 10 grams are preserved as source values. Per-gram and per-kilogram figures are calculated equivalents using 1 tola = 11.664 grams.
-          </p>
-          <p>
-            NepaCalc does not fill missing historical dates by interpolation, estimated values, or carried-forward prices. Where source records conflict, the conflicting records are not silently merged.
-          </p>
-
-          <h3 className="text-base font-black text-slate-900 tracking-tight mt-6 mb-2">
-            Source Values and Calculated Values
-          </h3>
-          <p>
-            Per-tola and per-10-gram figures are preserved from the source record when directly published. Per-gram and per-kilogram figures are calculated by NepaCalc and are not separate source quotations.
-          </p>
-
-          <h3 className="text-base font-black text-slate-900 tracking-tight mt-6 mb-2">
-            Verification Status
-          </h3>
-          <ul className="space-y-2 text-sm text-slate-700 list-none pl-0">
-            <li><span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800 mr-2">Verified</span> means the record is supported by the designated primary source.</li>
-            <li><span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-blue-800 mr-2">Corroborated</span> means a secondary source matches an independently verified primary-source record.</li>
-            <li><span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-amber-100 text-amber-900 mr-2">Secondary-only</span> means a historical record is available from a secondary source but has not been independently verified against a primary-source record.</li>
-            <li><span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-rose-100 text-rose-800 mr-2">Conflict</span> means available sources provide different values for the same historical record and the discrepancy has not been resolved.</li>
-          </ul>
-        </section>
-
         {/* ── FAQ SECTION ── */}
         <section className="mt-10 pt-8 border-t border-slate-200 max-w-4xl">
           <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight mb-6">
@@ -395,6 +362,39 @@ export default async function HistoryPage() {
               </p>
             </div>
           </div>
+        </section>
+
+        {/* ── DATA SOURCE ── */}
+        <section className="mt-10 pt-8 border-t border-slate-200 max-w-4xl space-y-4 text-sm text-slate-700 font-medium leading-relaxed">
+          <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight mb-4">
+            Data Source
+          </h2>
+          <p>
+            Historical source records are preserved with their source terminology, source values, source URL where available, and verification status. FENEGOSIDA records are treated as the primary source for verified historical rates in this archive. Secondary historical records are kept separately identified and are not presented as primary verified records.
+          </p>
+          <p>
+            Prices published directly by a source per tola or per 10 grams are preserved as source values. Per-gram and per-kilogram figures are calculated equivalents using 1 tola = 11.664 grams.
+          </p>
+          <p>
+            NepaCalc does not fill missing historical dates by interpolation, estimated values, or carried-forward prices. Where source records conflict, the conflicting records are not silently merged.
+          </p>
+
+          <h3 className="text-base font-black text-slate-900 tracking-tight mt-6 mb-2">
+            Source Values and Calculated Values
+          </h3>
+          <p>
+            Per-tola and per-10-gram figures are preserved from the source record when directly published. Per-gram and per-kilogram figures are calculated by NepaCalc and are not separate source quotations.
+          </p>
+
+          <h3 className="text-base font-black text-slate-900 tracking-tight mt-6 mb-2">
+            Verification Status
+          </h3>
+          <ul className="space-y-2 text-sm text-slate-700 list-none pl-0">
+            <li><span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800 mr-2">Verified</span> means the record is supported by the designated primary source.</li>
+            <li><span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-blue-800 mr-2">Corroborated</span> means a secondary source matches an independently verified primary-source record.</li>
+            <li><span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-amber-100 text-amber-900 mr-2">Secondary-only</span> means a historical record is available from a secondary source but has not been independently verified against a primary-source record.</li>
+            <li><span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-rose-100 text-rose-800 mr-2">Conflict</span> means available sources provide different values for the same historical record and the discrepancy has not been resolved.</li>
+          </ul>
         </section>
 
         {/* ── RELATED TOOLS ── */}
