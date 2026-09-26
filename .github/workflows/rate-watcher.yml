@@ -43,7 +43,7 @@ jobs:
       - name: Check if rates have changed
         id: git-check
         run: |
-          if git diff --quiet public/data/live-rates.json public/data/market-rates.json public/data/forex-rates.json public/data/daily-history.json src/hooks/useLiveRates.ts; then
+          if git diff --quiet public/data/live-rates.json public/data/market-rates.json public/data/forex-rates.json public/data/daily-history.json public/data/historical-rates.json src/hooks/useLiveRates.ts; then
             echo "changed=false" >> $GITHUB_OUTPUT
             echo "⏭️  No rate changes — skipping deploy."
           else
@@ -62,7 +62,7 @@ jobs:
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/avash81/nepacalc.git
           
           # 2. Stage and commit FIRST (solves the unstaged changes crash)
-          git add public/data/live-rates.json public/data/market-rates.json public/data/forex-rates.json public/data/daily-history.json src/hooks/useLiveRates.ts
+          git add public/data/live-rates.json public/data/market-rates.json public/data/forex-rates.json public/data/daily-history.json public/data/historical-rates.json src/hooks/useLiveRates.ts
           git commit -m "data: auto-update official rates [skip ci]"
           
           # 3. Pull latest with rebase and auto-resolve any data conflicts in our favor

@@ -172,6 +172,64 @@ async function main() {
     fs.writeFileSync(historyPath, JSON.stringify(history, null, 2));
     // -------------------------------------------
 
+    // --- AUTO-APPEND TO historical-rates.json ---
+    const historicalRatesPath = path.join(__dirname, '../public/data/historical-rates.json');
+    let historicalDataset = { data: [], meta: {} };
+    try {
+      if (fs.existsSync(historicalRatesPath)) {
+        historicalDataset = JSON.parse(fs.readFileSync(historicalRatesPath, 'utf8'));
+      }
+    } catch (e) {
+      console.warn('Could not read historical-rates.json', e);
+    }
+
+    const allRecords = Array.isArray(historicalDataset.data) ? historicalDataset.data : [];
+
+    // Build the two new records for today (gold + silver)
+    const newGoldRecord = {
+      date_ad:              rateDate,
+      date_bs:              null,          // BS date is not available from API; left null
+      metal:                'gold',
+      rate_type:            'Fine Gold (9999)',
+      source_category:      'Fine Gold (9999)',
+      source_rate_tola:     goldTola,
+      source_rate_10g:      gold10g,
+      source_name:          'FENEGOSIDA',
+      source_url:           'https://fenegosida.org',
+      verification_status:  'verified',
+      notes:                'Auto-appended by fetch-rates.js',
+    };
+    const newSilverRecord = {
+      date_ad:              rateDate,
+      date_bs:              null,
+      metal:                'silver',
+      rate_type:            'Silver',
+      source_category:      'Silver',
+      source_rate_tola:     silverTola,
+      source_rate_10g:      silver10g,
+      source_name:          'FENEGOSIDA',
+      source_url:           'https://fenegosida.org',
+      verification_status:  'verified',
+      notes:                'Auto-appended by fetch-rates.js',
+    };
+
+    // Upsert: remove any existing record for this date+metal, then prepend fresh ones
+    const filtered = allRecords.filter(
+      r => !(r.date_ad === rateDate && (r.metal === 'gold' || r.metal === 'silver') && r.source_name === 'FENEGOSIDA')
+    );
+    const updatedRecords = [newGoldRecord, newSilverRecord, ...filtered];
+
+    historicalDataset.data = updatedRecords;
+    historicalDataset.meta = {
+      ...historicalDataset.meta,
+      last_updated: rateDate,
+      total_records: updatedRecords.length,
+    };
+
+    fs.writeFileSync(historicalRatesPath, JSON.stringify(historicalDataset, null, 2));
+    console.log(`   ✓ historical-rates.json updated → gold ${goldTola}, silver ${silverTola} for ${rateDate}`);
+    // -------------------------------------------------
+
     // ── Auto-patch FALLBACK constants in useLiveRates.ts ──────────────────────
     // This keeps the static fallback (shown when /data/live-rates.json is unreachable)
     // always in sync with the latest verified FENEGOSIDA rate.
