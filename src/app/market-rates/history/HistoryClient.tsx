@@ -24,34 +24,9 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 30;
 
-  const availableYears = useMemo(() => {
-    const years = new Set<string>();
-    records.forEach(r => {
-      const bsYear = r.date_bs.split('-')[0];
-      const adYear = r.date_ad.split('-')[0];
-      years.add(`${bsYear}/${adYear}`);
-    });
-    return Array.from(years).sort().reverse();
-  }, [records]);
-
-  const [selectedYear, setSelectedYear] = useState<string>('All');
-
-  // Default to first year if 'All' is not desired, but 'All' is safer for initial state
-  // Let's set it to the latest year by default on mount if available
-  useEffect(() => {
-    if (availableYears.length > 0 && selectedYear === 'All') {
-      setSelectedYear(availableYears[0]);
-    }
-  }, [availableYears]);
-
   const filteredRecords = useMemo(() => {
     return records
       .filter(r => {
-        if (selectedYear !== 'All') {
-          const bsYear = r.date_bs.split('-')[0];
-          const adYear = r.date_ad.split('-')[0];
-          if (`${bsYear}/${adYear}` !== selectedYear) return false;
-        }
         if (metalFilter !== 'all' && r.metal !== metalFilter) return false;
         if (dateFrom && r.date_ad < dateFrom) return false;
         if (dateTo && r.date_ad > dateTo) return false;
@@ -67,12 +42,12 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
         }
         return a.metal.localeCompare(b.metal);
       });
-  }, [records, metalFilter, dateFrom, dateTo, sortOrder, selectedYear]);
+  }, [records, metalFilter, dateFrom, dateTo, sortOrder]);
 
   // Reset to first page when filters change
   useEffect(() => {
     setCurrentPage(1);
-  }, [metalFilter, dateFrom, dateTo, sortOrder, selectedYear]);
+  }, [metalFilter, dateFrom, dateTo, sortOrder]);
 
   const totalPages = Math.ceil(filteredRecords.length / rowsPerPage);
   const startIndex = (currentPage - 1) * rowsPerPage;
@@ -100,42 +75,6 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
 
   return (
     <div className="bg-white p-4 md:p-6 rounded-xl border border-slate-200 shadow-sm">
-      
-      {/* Year Tabs */}
-      <div className="flex flex-wrap gap-1 mb-4 border-b border-slate-300">
-        <button
-          onClick={() => setSelectedYear('All')}
-          className={`px-4 py-2.5 text-sm font-medium rounded-t-md border border-b-0 transition-colors ${
-            selectedYear === 'All' 
-              ? 'bg-white border-slate-300 text-slate-900 -mb-px' 
-              : 'bg-transparent border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50'
-          }`}
-        >
-          All Years
-        </button>
-        {availableYears.map(year => (
-          <button
-            key={year}
-            onClick={() => setSelectedYear(year)}
-            className={`px-4 py-2.5 text-sm font-medium rounded-t-md border border-b-0 transition-colors ${
-              selectedYear === year 
-                ? 'bg-white border-slate-300 text-slate-900 -mb-px' 
-                : 'bg-transparent border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50'
-            }`}
-          >
-            {year}
-          </button>
-        ))}
-      </div>
-
-      <div className="mb-6 bg-slate-50 p-4 rounded-lg border border-slate-100">
-        <h2 className="text-lg font-black text-slate-800 mb-1">
-          {selectedYear === 'All' ? 'Gold & Silver Rate History' : `Gold & Silver Rate History ${selectedYear}`}
-        </h2>
-        <p className="text-sm text-slate-600 font-medium">
-          Verified historical records available for selected dates. Additional dates will be added as source records are validated.
-        </p>
-      </div>
       
       {/* Filters */}
       <div className="flex flex-col md:flex-row gap-4 mb-6 items-end">
