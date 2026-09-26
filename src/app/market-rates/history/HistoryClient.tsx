@@ -22,7 +22,7 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
   const [dateTo, setDateTo] = useState('');
   const [sortOrder, setSortOrder] = useState<'desc' | 'asc'>('desc');
   const [currentPage, setCurrentPage] = useState(1);
-  const rowsPerPage = 25;
+  const rowsPerPage = 30;
 
   const availableYears = useMemo(() => {
     const years = new Set<string>();
@@ -102,13 +102,13 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
     <div className="bg-white p-4 md:p-6 rounded-xl border border-slate-200 shadow-sm">
       
       {/* Year Tabs */}
-      <div className="flex flex-wrap gap-2 mb-4 border-b border-slate-200 pb-2">
+      <div className="flex flex-wrap gap-1 mb-4 border-b border-slate-300">
         <button
           onClick={() => setSelectedYear('All')}
-          className={`px-4 py-2 text-sm font-bold rounded-t-lg border-b-2 transition-colors ${
+          className={`px-4 py-2.5 text-sm font-medium rounded-t-md border border-b-0 transition-colors ${
             selectedYear === 'All' 
-              ? 'border-amber-500 text-amber-700 bg-amber-50/50' 
-              : 'border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50'
+              ? 'bg-white border-slate-300 text-slate-900 -mb-px' 
+              : 'bg-transparent border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50'
           }`}
         >
           All Years
@@ -117,10 +117,10 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
           <button
             key={year}
             onClick={() => setSelectedYear(year)}
-            className={`px-4 py-2 text-sm font-bold rounded-t-lg border-b-2 transition-colors ${
+            className={`px-4 py-2.5 text-sm font-medium rounded-t-md border border-b-0 transition-colors ${
               selectedYear === year 
-                ? 'border-amber-500 text-amber-700 bg-amber-50/50' 
-                : 'border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50'
+                ? 'bg-white border-slate-300 text-slate-900 -mb-px' 
+                : 'bg-transparent border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50'
             }`}
           >
             {year}
