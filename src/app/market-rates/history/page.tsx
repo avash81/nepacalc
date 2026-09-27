@@ -158,7 +158,7 @@ export default async function HistoryPage() {
           <span className="text-xs font-black uppercase tracking-wider text-slate-500">History by Year</span>
           <span className="text-slate-300">|</span>
           <a href="/market-rates/history/" className="text-sm font-bold text-slate-900 underline font-black">All Years</a>
-          {['2026', '2025', '2024', '2023', '2022', '2021'].map((yr) => (
+          {['2026', '2025', '2024', '2023', '2022', '2021', '2020', '2019'].map((yr) => (
             <React.Fragment key={yr}>
               <span className="text-slate-300">|</span>
               <a

@@ -16,8 +16,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       return baseUrl;
     }
   };
-  // Use a fixed date for base modified to optimize crawl budget but updated to recent publish date
-  const lastModDate = new Date('2026-06-29T00:00:00Z');
+  // Updated to today to signal fresh content to crawlers
+  const lastModDate = new Date('2026-09-27T00:00:00Z');
+
+  // History year pages — 2019 through 2026, daily updates, high priority for SEO
+  const historyYearPages = ['2026', '2025', '2024', '2023', '2022', '2021', '2020', '2019'].map((yr) => ({
+    url: cleanUrl(`/market-rates/history/${yr}`),
+    lastModified: yr === '2026' ? new Date() : new Date(`${yr}-12-31T00:00:00Z`),
+    changeFrequency: yr === '2026' ? ('daily' as const) : ('monthly' as const),
+    priority: yr === '2026' ? 0.9 : yr === '2025' ? 0.88 : 0.8,
+  }));
 
   // 1. Static Core Pages
   const staticPages = [
@@ -51,12 +59,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/income-tax/how-to-calculate-income-tax-nepal',
   ].map((route) => ({
     url: cleanUrl(route),
-    lastModified: (route === '/electricity/nepal-unit-price' || route === '/electricity/nea-tariff-rates') ? new Date('2026-06-19T00:00:00Z') : (route === '/engineering/3d' || route === '/market-rates' || route === '/nepal/nepal-budget') ? new Date() : lastModDate,
-    changeFrequency: 'weekly' as const,
+    lastModified: (route === '/electricity/nepal-unit-price' || route === '/electricity/nea-tariff-rates') ? new Date('2026-06-19T00:00:00Z') : (route === '/engineering/3d' || route === '/market-rates' || route === '/market-rates/history' || route === '/nepal/nepal-budget') ? new Date() : lastModDate,
+    changeFrequency: (route === '/market-rates' || route === '/market-rates/history') ? ('daily' as const) : ('weekly' as const),
     priority: route === '' ? 1.0 :
               route === '/engineering/3d' ? 0.95 :
               route === '/nepal/nepal-budget' ? 0.95 :
               route === '/nepal/bluebook-renewal-nepal' ? 0.9 :
+              route === '/market-rates/history' ? 0.9 :
               (route === '/about/editorial-policy' || route === '/about/math-team' || route === '/changelog') ? 0.8 :
               (route === '/electricity/nea-tariff-rates' || route === '/electricity/nepal-unit-price') ? 0.85 : 0.85,
   }));
@@ -144,7 +153,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error('Sitemap dynamic fetch failed:', e);
   }
 
-  const allEntries = [...staticPages, ...pillarPages, ...calculatorPages, ...staticBlogPosts, ...dynamicPages];
+  const allEntries = [...staticPages, ...historyYearPages, ...pillarPages, ...calculatorPages, ...staticBlogPosts, ...dynamicPages];
   
   // Deduplicate by URL to ensure a clean sitemap
   return Array.from(new Map(allEntries.map(item => [item.url, item])).values());

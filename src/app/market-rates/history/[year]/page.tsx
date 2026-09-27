@@ -4,7 +4,7 @@ import HistoryClient from '../HistoryClient';
 import fs from 'fs';
 import path from 'path';
 
-const YEARS = ['2026', '2025', '2024', '2023', '2022', '2021'];
+const YEARS = ['2026', '2025', '2024', '2023', '2022', '2021', '2020', '2019'];
 
 export async function generateStaticParams() {
   return YEARS.map((year) => ({ year }));
