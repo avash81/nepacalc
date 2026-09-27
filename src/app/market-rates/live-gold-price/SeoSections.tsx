@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import PricePerformanceWidget from '@/components/widgets/PricePerformanceWidget';
 import { BookOpen, Scale, Globe, ShieldCheck, CheckCircle2, FileText, Search } from 'lucide-react';
 import HistoricalData from './HistoricalData';
@@ -219,9 +219,9 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
             {  title: 'Compare Making Charges', desc: 'Jyala (making charges) typically range from 5% to 15%. Compare across 2–3 shops.' },
             {  title: 'Confirm Purity', desc: '24K = 99.99% pure (investment). 22K Tejabi = 91.6% pure (jewelry). Know what you are buying.' },
             {  title: 'Use Gold Tax Calculator', desc: <><a href="/calculator/gold-tax/" className="text-blue-600 hover:underline font-bold">Calculate import duties and VAT</a> if you are buying from abroad or importing bullion.</> },
-          ].map(({ icon, title, desc }) => (
+          ].map(({ title, desc }) => (
             <div key={title} className="bg-amber-50 border border-amber-100 p-4 rounded-xl">
-              <div className="text-2xl mb-2">{icon}</div>
+              
               <h3 className="text-[13px] font-black text-slate-800 mb-1">{title}</h3>
               <p className="text-[12px] text-slate-600 font-medium leading-relaxed">{desc}</p>
             </div>
