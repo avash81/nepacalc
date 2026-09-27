@@ -19,13 +19,13 @@ export default function IncomeTaxHubPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <Link href="/calculator/nepal-income-tax/" className="block bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
-            <div className="text-4xl mb-4">📊</div>
+            <div className="text-4xl mb-4"></div>
             <h2 className="text-xl font-bold text-slate-900 mb-2">Income Tax Calculator Nepal</h2>
             <p className="text-slate-600 text-sm">Calculate your exact income tax, SSF waiver, and EPF deductions instantly.</p>
           </Link>
           
           <Link href="/income-tax/nepal-income-tax-slab-2083-84/" className="block bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
-            <div className="text-4xl mb-4">📋</div>
+            <div className="text-4xl mb-4"></div>
             <h2 className="text-xl font-bold text-slate-900 mb-2">Nepal Income Tax Slab 2083/84</h2>
             <p className="text-slate-600 text-sm">View the latest tax brackets for single and married filers, plus allowable deductions.</p>
           </Link>

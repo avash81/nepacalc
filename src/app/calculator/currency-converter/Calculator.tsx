@@ -192,7 +192,7 @@ export default function CurrencyCalculator({ isEmbed = false }: { isEmbed?: bool
             {formatNPR((rates[fromCurrency] ?? NRB_FALLBACK[fromCurrency] ?? 1) * amount)}
           </div>
           <div className="mt-1 text-[8px] font-black text-[#5F6368] uppercase">
-            {isNRBOfficial ? '✅ NRB Official Rate' : 'Indicative Rate'}
+            {isNRBOfficial ? ' NRB Official Rate' : 'Indicative Rate'}
           </div>
         </div>
       </div>
@@ -288,7 +288,7 @@ export default function CurrencyCalculator({ isEmbed = false }: { isEmbed?: bool
             <div className="text-4xl font-black text-[#1A73E8] tracking-tight break-all">{results.display}</div>
             <div className="flex justify-center mt-2 gap-2 flex-wrap">
               <span className={`px-3 py-1 rounded-full text-[9px] font-black uppercase border shadow-sm ${isNRBOfficial ? 'bg-emerald-50 border-emerald-200 text-emerald-700' : 'bg-amber-50 border-amber-200 text-amber-700'}`}>
-                {isNRBOfficial ? '✅ NRB Official' : '〰 Indicative Rate'}
+                {isNRBOfficial ? ' NRB Official' : '〰 Indicative Rate'}
               </span>
             </div>
           </div>
@@ -395,7 +395,7 @@ export default function CurrencyCalculator({ isEmbed = false }: { isEmbed?: bool
           "Quick Select: tap USD, INR, AED, QAR, SAR, or GBP for the most common Nepal remittance currencies.",
           "Use the ⇅ button to flip: convert NPR → foreign currency instead.",
           "Search 150+ currencies by code or name in the catalog below.",
-          "A green ✅ NRB Official badge confirms the rate is from Nepal Rastra Bank directly."
+          "A green  NRB Official badge confirms the rate is from Nepal Rastra Bank directly."
         ]
       }}
       formula={{

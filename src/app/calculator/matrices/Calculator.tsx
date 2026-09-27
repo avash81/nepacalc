@@ -423,14 +423,14 @@ export default function Calculator() {
             <h4 className="text-xs font-black text-[#1A73E8] mb-2">Addition and Subtraction</h4>
             <p className="text-xs text-[#5F6368] mb-2">Both matrices must have identical dimensions.</p>
             <ul className="text-xs text-[#5F6368] space-y-1 mb-4">
-              <li><code className="bg-white px-1.5 py-0.5 border border-[#DADCE0] rounded text-[#202124]">2 × 3 + 2 × 3</code> ✅</li>
+              <li><code className="bg-white px-1.5 py-0.5 border border-[#DADCE0] rounded text-[#202124]">2 × 3 + 2 × 3</code> </li>
               <li><code className="bg-white px-1.5 py-0.5 border border-[#DADCE0] rounded text-[#202124]">2 × 3 + 3 × 2</code> ❌</li>
             </ul>
 
             <h4 className="text-xs font-black text-[#1A73E8] mb-2">Matrix Multiplication</h4>
             <p className="text-xs text-[#5F6368] mb-2">The number of columns in the first matrix must equal the number of rows in the second matrix.</p>
             <ul className="text-xs text-[#5F6368] space-y-1 mb-4">
-              <li><code className="bg-white px-1.5 py-0.5 border border-[#DADCE0] rounded text-[#202124]">2 × 3</code> × <code className="bg-white px-1.5 py-0.5 border border-[#DADCE0] rounded text-[#202124]">3 × 4</code> ✅ (Result: 2 × 4)</li>
+              <li><code className="bg-white px-1.5 py-0.5 border border-[#DADCE0] rounded text-[#202124]">2 × 3</code> × <code className="bg-white px-1.5 py-0.5 border border-[#DADCE0] rounded text-[#202124]">3 × 4</code>  (Result: 2 × 4)</li>
               <li><code className="bg-white px-1.5 py-0.5 border border-[#DADCE0] rounded text-[#202124]">2 × 3</code> × <code className="bg-white px-1.5 py-0.5 border border-[#DADCE0] rounded text-[#202124]">2 × 2</code> ❌ (Multiplication is not defined)</li>
             </ul>
             <p className="text-[11px] text-[#70757A] font-bold italic">Understanding these rules prevents the most common beginner mistakes when solving matrix problems.</p>

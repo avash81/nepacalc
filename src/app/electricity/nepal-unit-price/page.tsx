@@ -152,7 +152,7 @@ export default function NepalElectricityUnitPricePage() {
 
           {/* ── AUTHORITY / LAST UPDATED BAR ── */}
           <div className="flex flex-wrap gap-4 text-xs text-slate-500 mb-6 border-b border-slate-200 pb-4">
-            <span>📅 <strong className="text-slate-700">Last Updated:</strong> June 2026</span>
+            <span> <strong className="text-slate-700">Last Updated:</strong> June 2026</span>
             <span>✍️ <strong className="text-slate-700">Reviewed By:</strong> NepaCalc Research Team</span>
             <span>📍 <strong className="text-slate-700">Region:</strong> All NEA-served areas in Nepal</span>
           </div>
@@ -224,7 +224,7 @@ export default function NepalElectricityUnitPricePage() {
 
           {/* ── KEY FACTS (AI Overview Optimization) ── */}
           <div className="summary-box bg-white border border-slate-200 rounded-xl p-5 mb-7 shadow-sm">
-            <p className="font-black text-slate-800 text-sm mb-3 uppercase tracking-wide">📋 Key Facts</p>
+            <p className="font-black text-slate-800 text-sm mb-3 uppercase tracking-wide"> Key Facts</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-slate-700">
               <div>
                 <span className="block text-xs text-slate-500 uppercase tracking-wide">Lowest residential rate</span>
@@ -743,7 +743,7 @@ export default function NepalElectricityUnitPricePage() {
             <p className="font-black text-slate-800 text-sm mb-3 uppercase tracking-wide">🔗 Related Guides</p>
             <ul className="space-y-2.5 text-sm">
               <li>⚡ <Link href="/calculator/nea-bill/" className="text-blue-600 hover:underline font-semibold">NEA Bill Calculator</Link> – Calculate your exact monthly electricity bill.</li>
-              <li>📊 <Link href="/electricity/nea-tariff-rates/" className="text-blue-600 hover:underline font-semibold">NEA Tariff Rates</Link> – View the latest official slab rates.</li>
+              <li> <Link href="/electricity/nea-tariff-rates/" className="text-blue-600 hover:underline font-semibold">NEA Tariff Rates</Link> – View the latest official slab rates.</li>
               <li>☀️ <Link href="/calculator/solar-requirement/" className="text-blue-600 hover:underline font-medium">Solar Panel Requirement Calculator</Link> – Estimate the solar capacity needed for your home.</li>
               <li>💧 <Link href="/calculator/kukl-bill/" className="text-blue-600 hover:underline font-medium">KUKL Water Bill Calculator</Link> – Calculate your monthly water bill.</li>
             </ul>
@@ -751,8 +751,8 @@ export default function NepalElectricityUnitPricePage() {
               <p className="text-xs font-bold text-slate-600 mb-2">Official External Sources</p>
               <ul className="space-y-1.5 text-xs text-slate-600">
                 <li>🏛️ <a href="https://nea.org.np/en/pages/consumer-tariff-rates" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Nepal Electricity Authority (NEA) — Official Tariff Schedule</a></li>
-                <li>⚖️ <a href="https://www.erc.gov.np/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Electricity Regulatory Commission (ERC) Nepal — Tariff Regulator</a></li>
-                <li>📋 <a href="http://www.nepalenergyforum.com/nea-electricity-tariff-rates/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Nepal Energy Forum — NEA Tariff Reference Data</a></li>
+                <li> <a href="https://www.erc.gov.np/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Electricity Regulatory Commission (ERC) Nepal — Tariff Regulator</a></li>
+                <li> <a href="http://www.nepalenergyforum.com/nea-electricity-tariff-rates/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Nepal Energy Forum — NEA Tariff Reference Data</a></li>
               </ul>
             </div>
           </div>
@@ -785,7 +785,7 @@ export default function NepalElectricityUnitPricePage() {
             <p className="font-black text-slate-800 text-sm mb-3 uppercase tracking-wide">🔗 Related Electricity Resources</p>
             <ul className="space-y-2.5 text-sm">
               <li>⚡ <Link href="/calculator/nea-bill/" className="text-blue-600 hover:underline font-semibold">NEA Bill Calculator</Link> — Calculate your exact monthly electricity bill</li>
-              <li>📊 <Link href="/electricity/nea-tariff-rates/" className="text-blue-600 hover:underline font-semibold">NEA Tariff Rates — Official Tariff Reference</Link></li>
+              <li> <Link href="/electricity/nea-tariff-rates/" className="text-blue-600 hover:underline font-semibold">NEA Tariff Rates — Official Tariff Reference</Link></li>
               <li>💧 <Link href="/calculator/kukl-bill/" className="text-blue-600 hover:underline font-medium">KUKL Water Bill Calculator</Link></li>
               <li>☀️ <Link href="/calculator/solar-requirement/" className="text-blue-600 hover:underline font-medium">Solar Panel Requirement Calculator</Link></li>
             </ul>
@@ -793,8 +793,8 @@ export default function NepalElectricityUnitPricePage() {
               <p className="text-xs font-bold text-slate-600 mb-2">Official External Sources</p>
               <ul className="space-y-1.5 text-xs text-slate-600">
                 <li>🏛️ <a href="https://nea.org.np/en/pages/consumer-tariff-rates" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Nepal Electricity Authority (NEA) — Official Tariff Schedule</a></li>
-                <li>⚖️ <a href="https://www.erc.gov.np/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Electricity Regulatory Commission (ERC) Nepal — Tariff Regulator</a></li>
-                <li>📋 <a href="http://www.nepalenergyforum.com/nea-electricity-tariff-rates/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Nepal Energy Forum — NEA Tariff Reference Data</a></li>
+                <li> <a href="https://www.erc.gov.np/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Electricity Regulatory Commission (ERC) Nepal — Tariff Regulator</a></li>
+                <li> <a href="http://www.nepalenergyforum.com/nea-electricity-tariff-rates/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Nepal Energy Forum — NEA Tariff Reference Data</a></li>
               </ul>
             </div>
           </div>

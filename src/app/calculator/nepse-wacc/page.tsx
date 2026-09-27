@@ -334,8 +334,8 @@ export default function Page() {
               <li><Link href="/calculator/nepal-stocks/" className="flex items-center gap-2 hover:text-blue-600 transition-colors"><span className="text-xl">🤝</span> <span className="underline underline-offset-2">Broker Commission Calculator</span></Link></li>
               <li><Link href="/calculator/nepal-tds/" className="flex items-center gap-2 hover:text-blue-600 transition-colors"><span className="text-xl">💸</span> <span className="underline underline-offset-2">Capital Gain Tax Calculator</span></Link></li>
               <li><Link href="/calculator/nepse-bonus-tax/" className="flex items-center gap-2 hover:text-blue-600 transition-colors"><span className="text-xl">🎁</span> <span className="underline underline-offset-2">Bonus Share Calculator</span></Link></li>
-              <li><Link href="/calculator/nepse-wacc/" className="flex items-center gap-2 hover:text-blue-600 transition-colors"><span className="text-xl">⚖️</span> <span className="underline underline-offset-2">Rights Share Calculator</span></Link></li>
-              <li><Link href="/calculator/cagr-calculator/" className="flex items-center gap-2 hover:text-blue-600 transition-colors"><span className="text-xl">📊</span> <span className="underline underline-offset-2">CAGR Calculator</span></Link></li>
+              <li><Link href="/calculator/nepse-wacc/" className="flex items-center gap-2 hover:text-blue-600 transition-colors"><span className="text-xl"></span> <span className="underline underline-offset-2">Rights Share Calculator</span></Link></li>
+              <li><Link href="/calculator/cagr-calculator/" className="flex items-center gap-2 hover:text-blue-600 transition-colors"><span className="text-xl"></span> <span className="underline underline-offset-2">CAGR Calculator</span></Link></li>
               <li><Link href="/calculator/sip-calculator/" className="flex items-center gap-2 hover:text-blue-600 transition-colors"><span className="text-xl">📆</span> <span className="underline underline-offset-2">SIP Calculator</span></Link></li>
             </ul>
 

@@ -721,7 +721,7 @@ export default function KUKLBillPaymentPage() {
 
           {/* Tips */}
           <div className="bg-amber-50 border border-amber-200 rounded-xl p-5">
-            <h3 className="text-base font-bold text-amber-800 mb-3">✅ Tips Before Paying Your KUKL Bill Online</h3>
+            <h3 className="text-base font-bold text-amber-800 mb-3"> Tips Before Paying Your KUKL Bill Online</h3>
             <p className="text-amber-800 text-sm mb-2">Before making payment, verify:</p>
             <ul className="list-disc list-inside text-amber-900 text-sm space-y-1">
               <li>Correct Customer/Connection Number</li>
@@ -771,43 +771,43 @@ export default function KUKLBillPaymentPage() {
               <tbody className="text-sm text-gray-700">
                 <tr>
                   <td className="border border-gray-200 p-3 font-medium">KUKL Customer Portal</td>
-                  <td className="border border-gray-200 p-3 text-center">✅</td>
-                  <td className="border border-gray-200 p-3 text-center">✅</td>
-                  <td className="border border-gray-200 p-3 text-center">✅</td>
-                  <td className="border border-gray-200 p-3 text-center">✅</td>
+                  <td className="border border-gray-200 p-3 text-center"></td>
+                  <td className="border border-gray-200 p-3 text-center"></td>
+                  <td className="border border-gray-200 p-3 text-center"></td>
+                  <td className="border border-gray-200 p-3 text-center"></td>
                 </tr>
                 <tr>
                   <td className="border border-gray-200 p-3 font-medium">KUKL Customer App</td>
-                  <td className="border border-gray-200 p-3 text-center">✅</td>
-                  <td className="border border-gray-200 p-3 text-center">✅</td>
-                  <td className="border border-gray-200 p-3 text-center">✅</td>
-                  <td className="border border-gray-200 p-3 text-center">✅</td>
+                  <td className="border border-gray-200 p-3 text-center"></td>
+                  <td className="border border-gray-200 p-3 text-center"></td>
+                  <td className="border border-gray-200 p-3 text-center"></td>
+                  <td className="border border-gray-200 p-3 text-center"></td>
                 </tr>
                 <tr>
                   <td className="border border-gray-200 p-3 font-medium">eSewa</td>
-                  <td className="border border-gray-200 p-3 text-center">✅</td>
-                  <td className="border border-gray-200 p-3 text-center">✅</td>
-                  <td className="border border-gray-200 p-3 text-center">✅</td>
-                  <td className="border border-gray-200 p-3 text-center">✅</td>
+                  <td className="border border-gray-200 p-3 text-center"></td>
+                  <td className="border border-gray-200 p-3 text-center"></td>
+                  <td className="border border-gray-200 p-3 text-center"></td>
+                  <td className="border border-gray-200 p-3 text-center"></td>
                 </tr>
                 <tr>
                   <td className="border border-gray-200 p-3 font-medium">Khalti</td>
-                  <td className="border border-gray-200 p-3 text-center">✅</td>
-                  <td className="border border-gray-200 p-3 text-center">✅</td>
-                  <td className="border border-gray-200 p-3 text-center">✅</td>
-                  <td className="border border-gray-200 p-3 text-center">✅</td>
+                  <td className="border border-gray-200 p-3 text-center"></td>
+                  <td className="border border-gray-200 p-3 text-center"></td>
+                  <td className="border border-gray-200 p-3 text-center"></td>
+                  <td className="border border-gray-200 p-3 text-center"></td>
                 </tr>
                 <tr>
                   <td className="border border-gray-200 p-3 font-medium">ConnectIPS</td>
-                  <td className="border border-gray-200 p-3 text-center">✅</td>
-                  <td className="border border-gray-200 p-3 text-center">✅</td>
-                  <td className="border border-gray-200 p-3 text-center">✅</td>
-                  <td className="border border-gray-200 p-3 text-center">✅</td>
+                  <td className="border border-gray-200 p-3 text-center"></td>
+                  <td className="border border-gray-200 p-3 text-center"></td>
+                  <td className="border border-gray-200 p-3 text-center"></td>
+                  <td className="border border-gray-200 p-3 text-center"></td>
                 </tr>
                 <tr>
                   <td className="border border-gray-200 p-3 font-medium">Mobile Banking</td>
-                  <td className="border border-gray-200 p-3 text-center">✅</td>
-                  <td className="border border-gray-200 p-3 text-center">✅</td>
+                  <td className="border border-gray-200 p-3 text-center"></td>
+                  <td className="border border-gray-200 p-3 text-center"></td>
                   <td className="border border-gray-200 p-3 text-center text-xs">Depends on Bank</td>
                   <td className="border border-gray-200 p-3 text-center text-xs">Depends on Bank</td>
                 </tr>

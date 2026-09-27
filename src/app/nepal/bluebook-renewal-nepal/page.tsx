@@ -256,37 +256,37 @@ const renewalSteps = [
     step: 1,
     title: 'Gather Your Documents',
     desc: 'Collect your original Bluebook (vehicle registration certificate), your citizenship/identity document, existing insurance certificate, and any pollution certificate if applicable to your vehicle type.',
-    icon: '',
+    
   },
   {
     step: 2,
     title: 'Identify Your Province and Vehicle Category',
     desc: 'Confirm which of the seven provinces your vehicle is registered in, this determines your tax rate. Know your engine capacity (CC for bikes/cars) or motor power (kW for EVs), as these set the slab.',
-    icon: '',
+    
   },
   {
     step: 3,
     title: 'Pay Vehicle Tax',
     desc: 'Pay the applicable provincial vehicle tax online via the Nagarik App or your province\'s EDL/VRS portal, or offline at your provincial Transport Management Office (TMO). Get a payment receipt.',
-    icon: '',
+    
   },
   {
     step: 4,
     title: 'Renew Vehicle Insurance',
     desc: 'Valid vehicle insurance is a mandatory legal prerequisite for renewal under the Motor Vehicles and Transport Management Act. Renew third-party insurance before going to the transport office.',
-    icon: '',
+    
   },
   {
     step: 5,
     title: 'Obtain Pollution Certificate (If Required)',
     desc: 'Petrol and diesel vehicles in areas where pollution testing is required must have a valid pollution/emission certificate. Check the current requirement at your local transport office.',
-    icon: '',
+    
   },
   {
     step: 6,
     title: 'Submit at the Transport Management Office',
     desc: 'Present all documents, tax receipt, insurance, pollution cert, and Bluebook, at your relevant TMO. The office will stamp and renew your registration certificate. Keep all original receipts.',
-    icon: '',
+    
   },
 ];
 

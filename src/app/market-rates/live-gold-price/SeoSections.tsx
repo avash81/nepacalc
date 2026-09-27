@@ -213,12 +213,12 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {[
-            { icon: '🔖', title: 'Verify Hallmark', desc: 'Always check for the official government hallmark stamp. 24K Hallmark (छापावाल) is 99.99% pure.' },
-            { icon: '🧾', title: 'Ask for VAT Bill', desc: 'A valid VAT bill (13%) is legally required. Always take a proper invoice from the jeweler.' },
-            { icon: '📋', title: 'Check FENEGOSIDA Rate', desc: "Verify today's official rate before entering any shop. It is published daily around 10:00 AM NPT." },
-            { icon: '⚖️', title: 'Compare Making Charges', desc: 'Jyala (making charges) typically range from 5% to 15%. Compare across 2–3 shops.' },
-            { icon: '✨', title: 'Confirm Purity', desc: '24K = 99.99% pure (investment). 22K Tejabi = 91.6% pure (jewelry). Know what you are buying.' },
-            { icon: '🛡️', title: 'Use Gold Tax Calculator', desc: <><a href="/calculator/gold-tax/" className="text-blue-600 hover:underline font-bold">Calculate import duties and VAT</a> if you are buying from abroad or importing bullion.</> },
+            {  title: 'Verify Hallmark', desc: 'Always check for the official government hallmark stamp. 24K Hallmark (छापावाल) is 99.99% pure.' },
+            {  title: 'Ask for VAT Bill', desc: 'A valid VAT bill (13%) is legally required. Always take a proper invoice from the jeweler.' },
+            {  title: 'Check FENEGOSIDA Rate', desc: "Verify today's official rate before entering any shop. It is published daily around 10:00 AM NPT." },
+            {  title: 'Compare Making Charges', desc: 'Jyala (making charges) typically range from 5% to 15%. Compare across 2–3 shops.' },
+            {  title: 'Confirm Purity', desc: '24K = 99.99% pure (investment). 22K Tejabi = 91.6% pure (jewelry). Know what you are buying.' },
+            {  title: 'Use Gold Tax Calculator', desc: <><a href="/calculator/gold-tax/" className="text-blue-600 hover:underline font-bold">Calculate import duties and VAT</a> if you are buying from abroad or importing bullion.</> },
           ].map(({ icon, title, desc }) => (
             <div key={title} className="bg-amber-50 border border-amber-100 p-4 rounded-xl">
               <div className="text-2xl mb-2">{icon}</div>
@@ -249,8 +249,8 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
             <thead className="bg-slate-50 text-[10px] font-black text-slate-500 uppercase tracking-widest">
               <tr>
                 <th className="py-3 px-5 text-left">Factor</th>
-                <th className="py-3 px-5 text-left text-amber-600">🥇 Gold</th>
-                <th className="py-3 px-5 text-left text-slate-500">🥈 Silver</th>
+                <th className="py-3 px-5 text-left text-amber-600"> Gold</th>
+                <th className="py-3 px-5 text-left text-slate-500"> Silver</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">

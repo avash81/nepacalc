@@ -1397,7 +1397,7 @@ export default function TdsSeoContent() {
               badge: 'bg-blue-100 text-blue-700',
             },
             {
-              icon: '📊',
+              
               title: 'Accountants & Auditors',
               transactions: ['Consultancy payments', 'Audit fees', 'Legal fees', 'Commission', 'Rent', 'Interest', 'Dividend'],
               tip: 'Review contracts, supporting invoices, accounting entries, bank records, TDS certificates, and deposit confirmations. Complete documentation improves reconciliation and audit readiness.',
@@ -1413,7 +1413,7 @@ export default function TdsSeoContent() {
               badge: 'bg-orange-100 text-orange-700',
             },
             {
-              icon: '⚖️',
+              
               title: 'Consultants & Professional Firms',
               transactions: ['Business consultancy', 'Legal advisory', 'Accounting services', 'Engineering consultancy', 'Architecture', 'IT consulting', 'Project management'],
               tip: 'Clearly describe the services provided in contracts and invoices. Accurate documentation helps determine the correct withholding treatment.',
@@ -1429,7 +1429,7 @@ export default function TdsSeoContent() {
               badge: 'bg-cyan-100 text-cyan-700',
             },
             {
-              icon: '🛡️',
+              
               title: 'Insurance Companies',
               transactions: ['Insurance commission', 'Professional consultancy', 'Office rent', 'Legal services', 'Audit services'],
               tip: 'Ensure payment systems reflect the updated withholding treatment for qualifying insurance commission under the applicable FY 2083/84 provisions.',

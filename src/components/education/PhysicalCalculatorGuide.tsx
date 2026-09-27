@@ -220,7 +220,7 @@ export function PhysicalCalculatorGuide() {
                <tbody className="divide-y divide-gray-50">
                   {[
                     { m: 'TI-84 Plus CE', t: 'Graphing', cas: '❌', ex: 'SAT, ACT, AP', bf: 'High School All-round' },
-                    { m: 'Nspire CX II CAS', t: 'Graphing', cas: '✅', ex: 'SAT, AP, IB', bf: 'Calculus & College' },
+                    { m: 'Nspire CX II CAS', t: 'Graphing', cas: '', ex: 'SAT, AP, IB', bf: 'Calculus & College' },
                     { m: 'TI-36X Pro', t: 'Scientific', cas: '❌', ex: 'SAT, ACT, AP', bf: 'Engineering' },
                     { m: 'TI-30XS', t: 'Scientific', cas: '❌', ex: 'SAT, ACT, AP', bf: 'General High School' },
                     { m: 'BA II Plus Pro', t: 'Financial', cas: '❌', ex: 'CFA, CMA', bf: 'Finance Professionals' }
@@ -318,7 +318,7 @@ export function PhysicalCalculatorGuide() {
       {/* FOOTNOTE */}
       <div className="bg-gray-50 border border-gray-200 rounded-lg p-10 flex flex-col md:flex-row items-center gap-10">
          <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-4xl shadow-sm border border-gray-100">
-            💡
+            
          </div>
          <div className="flex-1 space-y-2">
             <h4 className="text-sm font-black text-gray-900 uppercase tracking-widest">Platform Note</h4>

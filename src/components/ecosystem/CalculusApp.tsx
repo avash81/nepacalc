@@ -222,7 +222,7 @@ export function CalculusApp() {
                  </button>
               </div>
 
-              {/* 🔢 UNIVERSAL SYMBOL PALETTE */}
+              {/*  UNIVERSAL SYMBOL PALETTE */}
               <div className="grid grid-cols-4 gap-3">
                  {[
                    { label: 'd/dx', val: 'diff(' }, { label: '∫', val: 'int(' }, { label: 'lim', val: 'limit(' }, { label: 'Σ', val: 'sum(' },

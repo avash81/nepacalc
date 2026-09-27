@@ -73,9 +73,9 @@ export function SalarySeoContent() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-4">
           {[
             { title: "Gross Salary", icon: "💰", desc: "Monthly salary before any deductions, starting point for all tax calculations." },
-            { title: "Taxable Salary", icon: "📊", desc: "Salary remaining after eligible deductions such as SSF and CIT contributions." },
+            { title: "Taxable Salary",  desc: "Salary remaining after eligible deductions such as SSF and CIT contributions." },
             { title: "Income Tax", icon: "🏛️", desc: "Tax calculated using the FY 2083/84 progressive slabs from 1% to 29%." },
-            { title: "Take-Home Salary", icon: "✅", desc: "Final salary received after income tax and all eligible deductions." },
+            { title: "Take-Home Salary",  desc: "Final salary received after income tax and all eligible deductions." },
           ].map((card, i) => (
             <div key={i} className="bg-white border border-[#DADCE0] rounded-xl p-5 shadow-sm">
               <div className="text-2xl mb-2">{card.icon}</div>

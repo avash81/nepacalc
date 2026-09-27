@@ -52,13 +52,13 @@ export default function NotFound() {
             {[
               { name: 'Nepal Vehicle Tax', href: '/calculator/nepal-vehicle-tax/', emoji: '🚗' },
               { name: 'SIP Calculator', href: '/calculator/sip-calculator/', emoji: '📈' },
-              { name: 'Nepal Income Tax', href: '/calculator/nepal-income-tax/', emoji: '🧾' },
-              { name: 'Live Gold Price', href: '/market-rates/live-gold-price/', emoji: '🥇' },
+              { name: 'Nepal Income Tax', href: '/calculator/nepal-income-tax/', emoji: '' },
+              { name: 'Live Gold Price', href: '/market-rates/live-gold-price/', emoji: '' },
               { name: 'Home Loan / EMI', href: '/calculator/nepal-home-loan/', emoji: '🏠' },
-              { name: 'BMI Calculator', href: '/calculator/bmi/', emoji: '⚖️' },
-              { name: 'NEPSE Stock Calc', href: '/calculator/nepal-stocks/', emoji: '📊' },
+              { name: 'BMI Calculator', href: '/calculator/bmi/', emoji: '' },
+              { name: 'NEPSE Stock Calc', href: '/calculator/nepal-stocks/', emoji: '' },
               { name: 'FD Calculator', href: '/calculator/fd-calculator/', emoji: '🏦' },
-              { name: 'Nepali Date Conv.', href: '/calculator/nepali-date/', emoji: '📅' },
+              { name: 'Nepali Date Conv.', href: '/calculator/nepali-date/', emoji: '' },
             ].map(calc => (
               <Link
                 key={calc.href}

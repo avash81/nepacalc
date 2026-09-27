@@ -100,9 +100,7 @@ export default function HomePage() {
                             className="text-[13px] text-[#3c4043] hover:text-[#1a73e8] hover:underline truncate flex items-center justify-between py-1.5 group"
                           >
                             <span className="truncate">{calc.name}</span>
-                            {calc.isNew && (
-                              <span className="ml-2 px-1.5 py-0.5 bg-blue-100 text-blue-600 text-[8px] font-black rounded uppercase tracking-tighter shrink-0">New</span>
-                            )}
+                            
                           </Link>
                         </li>
                       );

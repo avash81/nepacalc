@@ -230,7 +230,7 @@ export default function NepalBudgetPage() {
       {/* MOBILE TOC DROPDOWN: shown only on mobile/tablet */}
       <nav className="nb-toc-mobile" aria-label="Table of Contents">
         <details>
-          <summary>📋 Table of Contents: 36 Sections</summary>
+          <summary> Table of Contents: 36 Sections</summary>
           <ol>
             <li><a href="#top-highlights"><span className="nb-toc-num">★</span>Top 15 Highlights</a></li>
             <li><a href="#who-is-affected"><span className="nb-toc-num">◈</span>Who Is Affected?</a></li>
@@ -383,11 +383,11 @@ export default function NepalBudgetPage() {
                 <caption>Winners and Higher-Burden Groups — Budget 2083/84</caption>
                 <thead><tr><th>Group</th><th>Direction</th><th>Main reason</th></tr></thead>
                 <tbody>
-                  <tr><td><strong>High-income individuals</strong></td><td>✅ Benefits</td><td>Maximum rate reduced from 39% to 29%</td></tr>
-                  <tr><td><strong>SSF contributors</strong></td><td>✅ Benefits</td><td>1% first-slab rate waived</td></tr>
-                  <tr><td><strong>IT exporters / freelancers</strong></td><td>✅ Simplified</td><td>5% final WHT replaces complex assessment</td></tr>
-                  <tr><td><strong>Manufacturers</strong></td><td>✅ Benefits</td><td>273 raw-material duty reductions</td></tr>
-                  <tr><td><strong>Digital-payment users</strong></td><td>✅ Benefits</td><td>10% VAT rebate on digital transactions</td></tr>
+                  <tr><td><strong>High-income individuals</strong></td><td> Benefits</td><td>Maximum rate reduced from 39% to 29%</td></tr>
+                  <tr><td><strong>SSF contributors</strong></td><td> Benefits</td><td>1% first-slab rate waived</td></tr>
+                  <tr><td><strong>IT exporters / freelancers</strong></td><td> Simplified</td><td>5% final WHT replaces complex assessment</td></tr>
+                  <tr><td><strong>Manufacturers</strong></td><td> Benefits</td><td>273 raw-material duty reductions</td></tr>
+                  <tr><td><strong>Digital-payment users</strong></td><td> Benefits</td><td>10% VAT rebate on digital transactions</td></tr>
                   <tr><td><strong>Tobacco businesses</strong></td><td>⚠️ Higher burden</td><td>Excise duty increase</td></tr>
                   <tr><td><strong>Liquor businesses</strong></td><td>⚠️ Higher burden</td><td>Excise duty increase</td></tr>
                   <tr><td><strong>Importers (general)</strong></td><td>↔️ Mixed</td><td>Revised customs structure; some goods cheaper, some not</td></tr>
@@ -861,7 +861,7 @@ export default function NepalBudgetPage() {
                 </tbody>
               </table>
             </div>
-            <p className="nb-note">✅ Verified against supplied Budget Summary PDF (K.B.P.S. &amp; Associates, 40-page summary). Source Act: Finance Act 2083, Schedule 1. Previous FY rates: Finance Act 2082. All rates apply to natural persons.</p>
+            <p className="nb-note"> Verified against supplied Budget Summary PDF (K.B.P.S. &amp; Associates, 40-page summary). Source Act: Finance Act 2083, Schedule 1. Previous FY rates: Finance Act 2082. All rates apply to natural persons.</p>
 
             <h3>13.2 1% Slab: Important Clarification</h3>
             <p>The 1% rate applies to the first Rs. 10,00,000 of taxable income. It is waived for: (a) SSF-contributing employees, (b) specified pension/pension-fund income, and (c) certain sole-proprietorship income under the Finance Act provisions.</p>
@@ -1069,7 +1069,7 @@ export default function NepalBudgetPage() {
                     <td>Natural persons selling listed securities held &lt;1 year</td>
                     <td>Shrawan 1, 2083</td>
                     <td>Income Tax Act 2058, Sec. 95Ka: Finance Act 2083</td>
-                    <td>Final withholding at source. ✅ Verified against Budget Summary PDF. Source: K.B.P.S. Summary.</td>
+                    <td>Final withholding at source.  Verified against Budget Summary PDF. Source: K.B.P.S. Summary.</td>
                   </tr>
                   <tr>
                     <td><strong>CGT: Securities, Long-Term (&gt;1 year)</strong></td>
@@ -1079,7 +1079,7 @@ export default function NepalBudgetPage() {
                     <td>Natural persons selling listed securities held &gt;1 year</td>
                     <td>Shrawan 1, 2083</td>
                     <td>Income Tax Act 2058, Sec. 95Ka: Finance Act 2083</td>
-                    <td>Final withholding at source. ✅ Verified against Budget Summary PDF. 2.5% concessional rate for involuntary government acquisition.</td>
+                    <td>Final withholding at source.  Verified against Budget Summary PDF. 2.5% concessional rate for involuntary government acquisition.</td>
                   </tr>
                   {/* DST */}
                   <tr>
@@ -1108,22 +1108,22 @@ export default function NepalBudgetPage() {
                     <td><strong>Ride-Sharing Income Advance Tax</strong></td>
                     <td className="nr">Nil</td>
                     <td className="nr"><strong>1%</strong></td>
-                    <td><span className="nb-tag-new">New</span></td>
+                    <td>New</td>
                     <td>Ride-sharing platforms: deducted from each driver payment</td>
                     <td>Shrawan 1, 2083</td>
                     <td>Income Tax Act 2058, Sec. 95: Finance Act 2083</td>
-                    <td>Platform calculates, collects and deposits. ✅ Verified against Budget Summary PDF.</td>
+                    <td>Platform calculates, collects and deposits.  Verified against Budget Summary PDF.</td>
                   </tr>
                   {/* Ride-sharing VAT advance */}
                   <tr>
                     <td><strong>Ride-Sharing VAT Advance Collection</strong></td>
                     <td className="nr">Nil / unclear</td>
                     <td className="nr"><strong>5%</strong> (advance at source)</td>
-                    <td><span className="nb-tag-new">New</span></td>
+                    <td>New</td>
                     <td>Ride-sharing platforms collecting VAT on each transaction</td>
                     <td>Shrawan 1, 2083</td>
                     <td>VAT Act 2052: Finance Act 2083</td>
-                    <td>Platform collects and deposits 5% VAT advance per transaction. Standard 13% VAT applies; 5% is the advance collection mechanism. ✅ Verified against Budget Summary PDF.</td>
+                    <td>Platform collects and deposits 5% VAT advance per transaction. Standard 13% VAT applies; 5% is the advance collection mechanism.  Verified against Budget Summary PDF.</td>
                   </tr>
                   {/* Electricity VAT */}
                   <tr>
@@ -1134,7 +1134,7 @@ export default function NepalBudgetPage() {
                     <td>Electricity consumers using &gt;50 units per billing cycle</td>
                     <td>Shrawan 1, 2083</td>
                     <td>VAT Act 2052: Finance Act 2083</td>
-                    <td>✅ Verified against Budget Summary PDF. Consumption ≤50 units remains exempt.</td>
+                    <td> Verified against Budget Summary PDF. Consumption ≤50 units remains exempt.</td>
                   </tr>
                   {/* Insurance agent TDS */}
                   <tr>
@@ -1145,7 +1145,7 @@ export default function NepalBudgetPage() {
                     <td>Insurance companies paying commission/service fee to agents</td>
                     <td>Shrawan 1, 2083</td>
                     <td>Income Tax Act 2058, Sec. 87: Finance Act 2083</td>
-                    <td>✅ Verified against Budget Summary PDF.</td>
+                    <td> Verified against Budget Summary PDF.</td>
                   </tr>
                   {/* VAT */}
                   <tr>
@@ -1162,7 +1162,7 @@ export default function NepalBudgetPage() {
                     <td><strong>VAT Digital Payment Rebate</strong></td>
                     <td className="nr">None</td>
                     <td className="nr"><strong>10% rebate</strong> on VAT paid</td>
-                    <td><span className="nb-tag-new">New</span></td>
+                    <td>New</td>
                     <td>Consumers paying via QR/card/wallet with electronic invoice</td>
                     <td>Shrawan 1, 2083</td>
                     <td>VAT Act 2052 (amended): Finance Act 2083</td>
@@ -1173,7 +1173,7 @@ export default function NepalBudgetPage() {
                     <td><strong>Education Equity Fee</strong></td>
                     <td className="nr">None</td>
                     <td className="nr"><strong>3%</strong></td>
-                    <td><span className="nb-tag-new">New</span></td>
+                    <td>New</td>
                     <td>Institutions collecting fees for foreign education courses</td>
                     <td>Shrawan 1, 2083</td>
                     <td>Finance Act 2083</td>
@@ -1183,7 +1183,7 @@ export default function NepalBudgetPage() {
                     <td><strong>Health Equity Fee</strong></td>
                     <td className="nr">None</td>
                     <td className="nr"><strong>3%</strong></td>
-                    <td><span className="nb-tag-new">New</span></td>
+                    <td>New</td>
                     <td>Health service institutions</td>
                     <td>Shrawan 1, 2083</td>
                     <td>Finance Act 2083</td>
@@ -1279,7 +1279,7 @@ export default function NepalBudgetPage() {
               </table>
             </div>
 
-            <p className="nb-note">✅ Source: verified against supplied Budget Summary PDF. This table covers only TDS changes identified in the supplied source: it is not a complete TDS rate schedule.</p>
+            <p className="nb-note"> Source: verified against supplied Budget Summary PDF. This table covers only TDS changes identified in the supplied source: it is not a complete TDS rate schedule.</p>
 
             <h3>20.3 Selected Customs Duty Changes Master Table</h3>
             <div className="nb-tw">
@@ -1597,10 +1597,10 @@ export default function NepalBudgetPage() {
                 <tbody>
                   <tr><td>First Tax Slab</td><td>Rs. 5,00,000 (single) / Rs. 6,00,000 (married)</td><td>Rs. 10,00,000 (all)</td><td><span className="nb-tag-up">Benefit</span>: unified, doubled</td></tr>
                   <tr><td>Max Income Tax Rate</td><td>39%</td><td>29%</td><td><span className="nb-tag-up">Benefit</span>: reduced by 10%</td></tr>
-                  <tr><td>Digital Payment VAT Rebate</td><td>None</td><td>10% credit back</td><td><span className="nb-tag-new">New</span>: cashless incentive</td></tr>
+                  <tr><td>Digital Payment VAT Rebate</td><td>None</td><td>10% credit back</td><td>New: cashless incentive</td></tr>
                   <tr><td>Customs Tiers</td><td>11 tiers</td><td>7 tiers</td><td><span className="nb-tag-up">Simplified</span></td></tr>
                   <tr><td>Excise Goods Exempt</td><td>~0</td><td>360 goods</td><td><span className="nb-tag-up">Benefit</span>: broad exemption</td></tr>
-                  <tr><td>Tax Dispute Settlement</td><td>Not available</td><td>1% fee, all penalties waived</td><td><span className="nb-tag-new">New</span>: one-time scheme</td></tr>
+                  <tr><td>Tax Dispute Settlement</td><td>Not available</td><td>1% fee, all penalties waived</td><td>New: one-time scheme</td></tr>
                   <tr><td>DST Rate</td><td>2%</td><td>2%</td><td>No Change</td></tr>
                   <tr><td>VAT Standard Rate</td><td>13%</td><td>13%</td><td>No Change</td></tr>
                   <tr><td>Ride-Sharing VAT</td><td>Unclear</td><td>Explicit 13% VAT + 1% AT</td><td><span className="nb-tag-new">Clarified</span></td></tr>

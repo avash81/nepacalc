@@ -1,9 +1,9 @@
-'use client';
+﻿'use client';
 import { useState } from 'react';
 import Link from 'next/link';
 
 interface Formula { name: string; formula: string; description: string; }
-interface Category { id: string; name: string; icon: string; color: string; formulas: Formula[]; }
+interface Category { id: string; name: string; icon?: string; color: string; formulas: Formula[]; }
 
 const CATEGORIES: Category[] = [
   {
@@ -39,7 +39,7 @@ const CATEGORIES: Category[] = [
     ],
   },
   {
-    id: 'trigonometry', name: 'Trigonometry', icon: '📊', color: '#7209b7',
+    id: 'trigonometry', name: 'Trigonometry',  color: '#7209b7',
     formulas: [
       { name: 'Pythagorean Identity', formula: 'sin²θ + cos²θ = 1', description: 'Fundamental trig identity' },
       { name: 'Tangent Ratio', formula: 'tan θ = sin θ / cos θ', description: 'Definition of tangent' },
@@ -104,7 +104,7 @@ const CATEGORIES: Category[] = [
     ],
   },
   {
-    id: 'engineering', name: 'Engineering', icon: '⚙️', color: '#3a86ff',
+    id: 'engineering', name: 'Engineering',  color: '#3a86ff',
     formulas: [
       { name: 'Stress', formula: 'σ = F/A', description: 'Force per unit area (Pascals)' },
       { name: 'Strain', formula: 'ε = ΔL/L₀', description: 'Relative deformation' },

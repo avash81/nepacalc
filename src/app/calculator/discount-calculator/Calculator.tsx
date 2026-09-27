@@ -96,7 +96,7 @@ export default function DiscountCalculator() {
              </div>
              <div className="p-6 bg-blue-50 border border-blue-100 rounded-lg space-y-1">
                 <div className="text-[9px] font-black text-blue-600 uppercase">Deal Rating</div>
-                <div className="text-xl font-black text-blue-600">{isHotDeal ? '🔥 HOT' : '✓ GOOD'}</div>
+                <div className="text-xl font-black text-blue-600">{isHotDeal ? ' HOT' : '✓ GOOD'}</div>
              </div>
           </div>
 

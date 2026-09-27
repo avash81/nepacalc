@@ -230,9 +230,9 @@ export default function Page() {
               {[
 
                 { title: "Gross Salary", icon: "💰", desc: "Monthly salary before any deductions, starting point for all tax calculations." },
-                { title: "Taxable Salary", icon: "📊", desc: "Salary remaining after eligible deductions such as SSF and CIT contributions." },
+                { title: "Taxable Salary",  desc: "Salary remaining after eligible deductions such as SSF and CIT contributions." },
                 { title: "Income Tax", icon: "🏛️", desc: "Tax calculated using the FY 2083/84 progressive slabs from 1% to 29%." },
-                { title: "Take-Home Salary", icon: "✅", desc: "Final salary received after income tax and all eligible deductions." },
+                { title: "Take-Home Salary",  desc: "Final salary received after income tax and all eligible deductions." },
               ].map((card, i) => (
                 <div key={i} className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
                   <div className="text-2xl mb-2">{card.icon}</div>
@@ -429,7 +429,7 @@ export default function Page() {
                 ["🎁", "Donation Deduction Increased to Rs. 3,00,000", "Maximum approved deduction for charitable donations raised from Rs. 1,00,000 to Rs. 3,00,000 (subject to percentage limit)."],
                 ["🏠", "Residential Building Insurance Deduction Increased", "Maximum deduction for residential building insurance raised to Rs. 10,000 per year."],
                 ["🎓", "New Education Deduction Introduced", "Taxpayers may deduct the lower of 25% of annual tuition paid or Rs. 25,000 as an approved deduction."],
-                ["📅", "Tax Assessment Period Reduced", "Income tax assessment period reduced from four years to three years, shortening review timelines for taxpayers and IRD alike."],
+                ["", "Tax Assessment Period Reduced", "Income tax assessment period reduced from four years to three years, shortening review timelines for taxpayers and IRD alike."],
               ].map(([icon, title, desc], i) => (
                 <div key={i} className="flex items-start gap-4 bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
                   <span className="text-2xl shrink-0">{icon}</span>
@@ -451,11 +451,11 @@ export default function Page() {
                 ["Can employers use this Salary Calculator?", "Yes. Employers, HR teams and payroll professionals can use this calculator to estimate employee deductions, employer contributions and Cost to Company (CTC)."],
                 ["When should I use the Nepal Income Tax Calculator instead?", "Use the Nepal Income Tax Calculator if you earn income from business, freelance work, professional services, rental properties, investments or multiple income sources."],
                 ["⚡","Instant Live Salary Tax Calculation","Results update instantly as you type, no Calculate button required."],
-                ["📋","FY 2083/84 Accurate","All tax slabs, deduction limits, and surcharges reflect the latest Government of Nepal rules."],
+                ["","FY 2083/84 Accurate","All tax slabs, deduction limits, and surcharges reflect the latest Government of Nepal rules."],
                 ["🏛️","Correct SSF & CIT Handling","Separates employee SSF (11%) from employer SSF (20%) and supports CIT and PF inputs."],
                 ["💼","Employer CTC Breakdown","Shows Total Cost to Company, useful for job offer negotiation and HR payroll planning."],
-                ["📊","Slab-wise Transparency","Displays exactly how much tax is applied at each slab (1%, 10%, 20%, 27%, 29%)."],
-                ["📅","Annual & Monthly Views","Switch between monthly and annual summaries for short-term budgets and annual tax returns."],
+                ["","Slab-wise Transparency","Displays exactly how much tax is applied at each slab (1%, 10%, 20%, 27%, 29%)."],
+                ["","Annual & Monthly Views","Switch between monthly and annual summaries for short-term budgets and annual tax returns."],
               ].map(([icon, title, desc], i) => (
                 <div key={i} className="flex items-start gap-3 bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
                   <span className="text-2xl shrink-0">{icon}</span>
@@ -501,12 +501,12 @@ export default function Page() {
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 text-sm">
               {[
 
-                ["/calculator/cit/", "📊", "Citizen Investment Trust Calculator"],
-                ["/calculator/ssf/", "🛡️", "SSF Calculator Nepal"],
+                ["/calculator/cit/", "", "Citizen Investment Trust Calculator"],
+                ["/calculator/ssf/", "", "SSF Calculator Nepal"],
                 ["/calculator/cit/", "📈", "CIT Calculator Nepal"],
                 ["/calculator/payroll/", "💼", "Payroll Calculator Nepal"],
                 ["/calculator/overtime/", "⏱️", "Overtime Calculator"],
-                ["/calculator/salary-increment/", "🚀", "Salary Increment Calculator"],
+                ["/calculator/salary-increment/", "", "Salary Increment Calculator"],
                 ["/calculator/nepal-provident-fund/", "🏦", "Provident Fund (PF) Calculator"],
                 ["/calculator/gratuity-calculator/", "🎁", "Gratuity Calculator Nepal"],
               ].map(([href, icon, label], i) => (

@@ -456,7 +456,7 @@ export default function NEABillCalculator() {
       }}
       relatedTools={[
         { label: "⚡ Electricity Unit Price Guide", href: "/electricity/nepal-unit-price/" },
-        { label: "📊 Official NEA Tariff Rates", href: "/electricity/nea-tariff-rates/" },
+        { label: " Official NEA Tariff Rates", href: "/electricity/nea-tariff-rates/" },
         { label: "KUKL Water Bill", href: "/calculator/kukl-bill/" },
         { label: "Vehicle Tax Tool", href: "/calculator/nepal-vehicle-tax/" },
         { label: "Solar Requirement", href: "/calculator/solar-requirement/" }

@@ -547,11 +547,11 @@ export default function AgeCalculator() {
               {/* ── BIRTHDAY COUNTDOWN ── */}
               <div className="p-6 bg-gradient-to-br from-[#E8F0FE] to-[#D2E3FC] border border-[#C5D9F7] rounded-2xl shadow-sm relative overflow-hidden group">
                 <Stars className="absolute top-3 right-4 text-[#1A73E8] opacity-15 group-hover:rotate-12 transition-transform duration-500" size={56} />
-                <h3 className="text-[10px] font-black uppercase tracking-widest text-[#1A73E8] mb-4">🎂 Next Birthday</h3>
+                <h3 className="text-[10px] font-black uppercase tracking-widest text-[#1A73E8] mb-4"> Next Birthday</h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 relative z-10">
                   <div>
                     <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider mb-1 opacity-80">Days Remaining</div>
-                    <div className="text-3xl font-black text-[#1A73E8]">{calc.bday.daysRemaining === 0 ? '🎂 Today!' : calc.bday.daysRemaining}</div>
+                    <div className="text-3xl font-black text-[#1A73E8]">{calc.bday.daysRemaining === 0 ? ' Today!' : calc.bday.daysRemaining}</div>
                   </div>
                   <div>
                     <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider mb-1 opacity-80">On</div>

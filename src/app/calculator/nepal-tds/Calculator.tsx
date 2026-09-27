@@ -1276,16 +1276,16 @@ export default function NepalTdsCalculator() {
             <h3 className="text-xl font-black text-[#202124] tracking-tight">Related Nepal Tax Tools</h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
               {[
-                { name: 'Nepal Income Tax', slug: '/calculator/nepal-income-tax/', icon: '📋' },
+                { name: 'Nepal Income Tax', slug: '/calculator/nepal-income-tax/', },
                 { name: 'Nepal Salary Calculator', slug: '/calculator/nepal-salary/', icon: '💼' },
-                { name: 'Nepal VAT Calculator', slug: '/calculator/nepal-vat/', icon: '🧾' },
-                { name: 'SSF Calculator', slug: '/calculator/nepal-provident-fund/', icon: '🛡️' },
+                { name: 'Nepal VAT Calculator', slug: '/calculator/nepal-vat/', },
+                { name: 'SSF Calculator', slug: '/calculator/nepal-provident-fund/', },
                 { name: 'NEA Bill Calculator', slug: '/calculator/nea-bill/', icon: '⚡' },
                 { name: 'Loan EMI Calculator', slug: '/calculator/loan-emi/', icon: '🏦' },
                 { name: 'Nepal Vehicle Tax', slug: '/calculator/nepal-vehicle-tax/', icon: '🚗' },
                 { name: 'Property Tax', slug: '/calculator/property-tax/', icon: '🏠' },
                 { name: 'Dividend Calculator', slug: '/calculator/nepal-stocks/', icon: '📈' },
-                { name: 'TDS Calculator (Old)', slug: '/calculator/tds-calculator/', icon: '🔢' },
+                { name: 'TDS Calculator (Old)', slug: '/calculator/tds-calculator/', },
               ].map((tool, idx) => (
                 <a key={idx} href={tool.slug} className="border border-[#DADCE0] bg-white rounded-lg p-4 flex flex-col items-center text-center gap-2 hover:border-[#1A73E8] hover:bg-[#E8F0FE] hover:shadow-sm transition-all group">
                   <span className="text-xl">{tool.icon}</span>

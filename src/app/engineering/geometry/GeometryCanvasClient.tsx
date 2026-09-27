@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import { useState, useRef, useCallback, useEffect } from 'react';
 import Link from 'next/link';
 
@@ -7,7 +7,7 @@ interface Point { id: number; x: number; y: number; label: string; }
 interface Line { id: number; p1: number; p2: number; }
 interface Circle { id: number; center: number; edge: number; }
 
-const TOOL_ITEMS: { id: Tool; icon: string; name: string }[] = [
+const TOOL_ITEMS: { id: Tool; icon?: string; name: string }[] = [
   { id: 'select', icon: '👆', name: 'Select / Move' },
   { id: 'point', icon: '●', name: 'Point' },
   { id: 'line', icon: '╱', name: 'Line Segment' },

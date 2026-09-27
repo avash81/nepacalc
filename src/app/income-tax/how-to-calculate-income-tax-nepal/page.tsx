@@ -118,7 +118,7 @@ export default function Page() {
             <h1 className="text-3xl font-black text-slate-900 mb-6">How to Calculate Income Tax in Nepal (FY 2083/84)</h1>
 
             <div className="bg-slate-50 border-l-4 border-blue-600 p-4 mb-6 not-prose">
-              <p className="text-sm text-slate-700 m-0">📅 <strong>Last Updated:</strong> Shrawan 2083 (July 2026) — Finance Act 2083</p>
+              <p className="text-sm text-slate-700 m-0"> <strong>Last Updated:</strong> Shrawan 2083 (July 2026) — Finance Act 2083</p>
               <p className="text-sm text-slate-700 m-0">✍️ <strong>Reviewed by:</strong> NepaCalc Research Team</p>
               <p className="text-sm text-slate-700 m-0">📍 <strong>Applies to:</strong> All resident individuals in Nepal, FY 2083/84</p>
             </div>

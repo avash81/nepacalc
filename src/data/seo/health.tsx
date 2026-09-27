@@ -66,7 +66,7 @@ export const healthSEO: Record<string, SEOContent> = {
             <section id="ethnicity" className="bg-slate-900 text-white rounded-2xl p-8 border border-slate-800 shadow-xl overflow-hidden relative">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-sky-600 rounded-full blur-[120px] opacity-20 pointer-events-none" />
                 <h3 className="text-xl font-black mb-6 flex items-center gap-3 relative z-10 text-sky-400">
-                    💡 Important: BMI in South Asian Populations
+                     Important: BMI in South Asian Populations
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
                     <p className="text-sm text-slate-300 leading-relaxed">
@@ -158,7 +158,7 @@ export const healthSEO: Record<string, SEOContent> = {
             <section className="bg-slate-900 text-white rounded-2xl p-8 border border-slate-800 shadow-xl overflow-hidden relative">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-600 rounded-full blur-[120px] opacity-20 pointer-events-none" />
                 <h3 className="text-xl font-black mb-6 flex items-center gap-3 relative z-10 text-emerald-400">
-                    🛡️ TDEE Multiplier Guide: How to Scale Your BMR
+                     TDEE Multiplier Guide: How to Scale Your BMR
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
                     <p className="text-sm text-slate-300 leading-relaxed">
@@ -457,7 +457,7 @@ export const healthSEO: Record<string, SEOContent> = {
                         <li>🔴 <strong>Severe (6%+):</strong> Rapid heartbeat, confusion, dizziness—seek medical help</li>
                     </ul>
                     <ul className="space-y-2">
-                        <li>✅ <strong>Well hydrated:</strong> Pale yellow or clear urine</li>
+                        <li> <strong>Well hydrated:</strong> Pale yellow or clear urine</li>
                         <li>⚠️ <strong>Dehydrated:</strong> Dark yellow to amber urine</li>
                         <li>🚨 <strong>Severely dehydrated:</strong> Orange or brown urine</li>
                     </ul>

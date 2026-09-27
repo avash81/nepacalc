@@ -150,7 +150,7 @@ export function VirtualKeypad({ mode, onInput, onAction }: VirtualKeypadProps) {
   return (
     <div className="w-full flex flex-col gap-2 bg-[#f8f9fa]0 backdrop-blur-xl p-2 md:p-4 border-t border-slate-100">
       
-      {/* 🔢 EXPANSIVE ENGINEERING GRID */}
+      {/*  EXPANSIVE ENGINEERING GRID */}
       <div className="grid grid-cols-5 md:grid-cols-10 gap-1.5 md:gap-2 h-[420px] md:h-[300px]">
          {engineeringMain.map((key, i) => renderKey(key, i))}
       </div>

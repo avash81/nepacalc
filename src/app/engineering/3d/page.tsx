@@ -1626,15 +1626,15 @@ export default function ThreeDPage() {
                 <h2 className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-6">Software Features</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
                   {[
-                    { feature: 'Implicit Surfaces', status: '✅' },
-                    { feature: 'Parametric Surfaces', status: '✅' },
-                    { feature: 'Cartesian Graphing', status: '✅' },
-                    { feature: 'Interactive Rotation', status: '✅' },
-                    { feature: 'Zoom Controls', status: '✅' },
-                    { feature: 'Lighting Effects', status: '✅' },
-                    { feature: 'Wireframe Mode', status: '✅' },
-                    { feature: 'Grid Display', status: '✅' },
-                    { feature: 'Real-time Rendering', status: '✅' }
+                    { feature: 'Implicit Surfaces', status: '' },
+                    { feature: 'Parametric Surfaces', status: '' },
+                    { feature: 'Cartesian Graphing', status: '' },
+                    { feature: 'Interactive Rotation', status: '' },
+                    { feature: 'Zoom Controls', status: '' },
+                    { feature: 'Lighting Effects', status: '' },
+                    { feature: 'Wireframe Mode', status: '' },
+                    { feature: 'Grid Display', status: '' },
+                    { feature: 'Real-time Rendering', status: '' }
                   ].map(item => (
                     <div key={item.feature} className="flex justify-between items-center bg-[#F8F9FA] border border-[#DADCE0] rounded-lg px-4 py-3">
                       <span className="font-medium text-[#202124]">{item.feature}</span>
@@ -1890,12 +1890,12 @@ export default function ThreeDPage() {
                     <h2 className="text-2xl font-black text-[#202124] mb-6">Browser Compatibility</h2>
                     <div className="space-y-2">
                       {[
-                        { browser: 'Google Chrome', status: '✅ Fully Supported' },
-                        { browser: 'Microsoft Edge', status: '✅ Fully Supported' },
-                        { browser: 'Mozilla Firefox', status: '✅ Fully Supported' },
-                        { browser: 'Safari', status: '✅ Fully Supported' },
-                        { browser: 'Brave', status: '✅ Supported' },
-                        { browser: 'Opera', status: '✅ Supported' }
+                        { browser: 'Google Chrome', status: ' Fully Supported' },
+                        { browser: 'Microsoft Edge', status: ' Fully Supported' },
+                        { browser: 'Mozilla Firefox', status: ' Fully Supported' },
+                        { browser: 'Safari', status: ' Fully Supported' },
+                        { browser: 'Brave', status: ' Supported' },
+                        { browser: 'Opera', status: ' Supported' }
                       ].map(item => (
                         <div key={item.browser} className="flex justify-between bg-white border border-[#DADCE0] rounded-lg px-4 py-2 text-sm">
                           <span className="font-medium text-[#202124]">{item.browser}</span>

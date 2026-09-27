@@ -122,8 +122,8 @@ function NewSEOPageInner() {
       });
 
       alert(publishStatus === 'published'
-        ? `✅ Page published at /guide/${slug}`
-        : '✅ Draft saved.');
+        ? ` Page published at /guide/${slug}`
+        : ' Draft saved.');
       router.push('/admin/seo-pages');
     } catch (e) {
       handleFirestoreError(e, OperationType.CREATE, 'seo_pages');

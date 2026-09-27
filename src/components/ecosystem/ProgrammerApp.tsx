@@ -116,7 +116,7 @@ export function ProgrammerApp() {
                </div>
             </div>
 
-            {/* ⚙️ LOGIC GATES (STATIC PREVIEW) */}
+            {/*  LOGIC GATES (STATIC PREVIEW) */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                <div className="bg-[#1e1e1e] rounded-[2rem] p-8 text-[#202124]">
                   <h4 className="text-[9px] font-black uppercase tracking-[0.2em] text-[#FFC107] mb-6">Bitwise Logic Reference</h4>

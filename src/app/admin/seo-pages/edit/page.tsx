@@ -144,7 +144,7 @@ function EditSEOPageInner() {
         updatedAt: serverTimestamp(),
       });
 
-      alert('✅ Page updated successfully.');
+      alert(' Page updated successfully.');
       router.push('/admin/seo-pages');
     } catch (e) {
       handleFirestoreError(e, OperationType.UPDATE, `seo_pages/${pageId}`);

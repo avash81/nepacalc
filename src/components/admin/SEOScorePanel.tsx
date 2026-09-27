@@ -131,7 +131,7 @@ export function SEOScorePanel(props: SEOScorePanelProps) {
         <div>
           <div className="text-sm font-bold text-gray-900">SEO Score</div>
           <div className="text-xs text-gray-400">
-            {score >= 80 ? '✅ Good ,  ready to publish'
+            {score >= 80 ? ' Good ,  ready to publish'
               : score >= 60 ? '⚠️ Needs improvement'
                 : '❌ Needs work before publishing'}
           </div>

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import { useMemo, useState, useCallback, useRef } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
 import {
@@ -133,9 +133,9 @@ export default function NepalSalaryCalculator() {
   // Phase 5: Tax saving tips
   const taxTips = useMemo(() => {
     if (!result) return [];
-    const tips: { icon: string; title: string; tip: string }[] = [];
+    const tips: { icon?: string; title: string; tip: string }[] = [];
     if (!state.isSSFContributor)
-      tips.push({ icon: '🛡️', title: 'Enrol in SSF', tip: 'SSF contributors get an 11% deduction on taxable income plus a 1% social security tax waiver on the first Rs. 10,00,000. This can meaningfully reduce your income tax.' });
+      tips.push({  title: 'Enrol in SSF', tip: 'SSF contributors get an 11% deduction on taxable income plus a 1% social security tax waiver on the first Rs. 10,00,000. This can meaningfully reduce your income tax.' });
     if (state.retirementType === 'none')
       tips.push({ icon: '🏦', title: 'Consider CIT or PF', tip: 'CIT and Provident Fund contributions reduce your annual taxable income (combined with SSF, capped at one-third of salary or Rs. 5,00,000).' });
     if (result.annual.taxableIncome > 1000000 && state.deductions.lifeInsurance === 0)

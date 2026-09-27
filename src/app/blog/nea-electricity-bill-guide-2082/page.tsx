@@ -271,7 +271,7 @@ export default function NeaBillGuideBlog() {
           </ul>
 
           <div className="bg-blue-50 border-l-4 border-blue-600 p-4 rounded-r-xl text-sm text-blue-900 my-6">
-            <strong className="text-blue-950 font-bold block mb-1">💡 For 5A households:</strong>
+            <strong className="text-blue-950 font-bold block mb-1"> For 5A households:</strong>
             Monitor your consumption carefully during months when you have extra appliances — even 1 extra unit above 20 can triple your bill from Rs 30 to Rs 90+. LED lighting, phone charging, and a fan typically stay within 20 units.
           </div>
 
@@ -398,7 +398,7 @@ export default function NeaBillGuideBlog() {
           <h2 className="text-2xl font-black text-slate-900 mt-12 mb-6">10. Worked example: 15A meter, 120 units consumed, paid on day 10</h2>
 
           <div className="bg-amber-50/60 border border-amber-200 rounded-xl p-6 my-6">
-            <div className="text-sm font-bold text-amber-900 mb-4">💡 Standard Kathmandu household — 120 units, 15A meter, paid on day 10 (no penalty, no digital rebate)</div>
+            <div className="text-sm font-bold text-amber-900 mb-4"> Standard Kathmandu household — 120 units, 15A meter, paid on day 10 (no penalty, no digital rebate)</div>
             <div className="overflow-x-auto border border-amber-200 rounded-lg">
               <table className="w-full border-collapse text-left text-sm m-0">
                 <thead>
@@ -561,7 +561,7 @@ export default function NeaBillGuideBlog() {
             <h3 className="text-sm font-black text-slate-900 uppercase tracking-wider mb-6">Related calculators</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <Link href="/calculator/nepal-income-tax/" className="p-4 bg-slate-50 rounded-xl border border-slate-100 hover:border-blue-300 hover:bg-blue-50/20 transition-all text-center group">
-                <span className="text-2xl block mb-2">📊</span>
+                <span className="text-2xl block mb-2"></span>
                 <span className="text-xs font-black text-slate-900 group-hover:text-blue-600 uppercase tracking-wider block">Income Tax Calculator</span>
               </Link>
               <Link href="/market-rates/" className="p-4 bg-slate-50 rounded-xl border border-slate-100 hover:border-blue-300 hover:bg-blue-50/20 transition-all text-center group">

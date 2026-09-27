@@ -8,7 +8,7 @@ export default function HighTrafficPage() {
   return (
     <div className="min-h-screen bg-white flex flex-col items-center justify-center p-6 text-center select-none overflow-hidden relative">
       
-      {/* 🔬 Institutional Background */}
+      {/*  Institutional Background */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.03] z-0" 
            style={{ backgroundImage: 'radial-gradient(#202124 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
       

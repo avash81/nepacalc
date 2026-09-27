@@ -529,7 +529,7 @@ export default function Page() {
             <h3 className="font-bold text-slate-900 mb-3 text-base">Related Tools</h3>
             <ul className="space-y-2 text-sm text-slate-700">
               <li>🔌 If you own an electric vehicle, estimate your charging costs using the <Link href="/calculator/nea-bill/" className="text-blue-600 font-bold hover:underline">NEA Bill Calculator</Link>.</li>
-              <li>💱 If you are importing an EV, check the <Link href="/market-rates/exchange-rate-nepal/" className="text-blue-600 font-bold hover:underline">USD to NPR Exchange Rate</Link> before calculating CIF costs.</li>
+              <li> If you are importing an EV, check the <Link href="/market-rates/exchange-rate-nepal/" className="text-blue-600 font-bold hover:underline">USD to NPR Exchange Rate</Link> before calculating CIF costs.</li>
               <li>🏦 If you're financing your vehicle, estimate repayments with the <Link href="/calculator/nepal-home-loan/" className="text-blue-600 font-bold hover:underline">Home Loan EMI Calculator</Link> or <Link href="/calculator/loan-emi/" className="text-blue-600 font-bold hover:underline">Loan EMI Calculator</Link>.</li>
               <li>🏠 If purchasing property alongside your vehicle, calculate taxes using the <Link href="/calculator/property-tax/" className="text-blue-600 font-bold hover:underline">Property Tax Calculator</Link>.</li>
               <li>💼 If you're budgeting your annual income, use the <Link href="/calculator/nepal-salary/" className="text-blue-600 font-bold hover:underline">Nepal Salary Calculator</Link> and <Link href="/calculator/nepal-income-tax/" className="text-blue-600 font-bold hover:underline">Nepal Income Tax Calculator</Link>.</li>

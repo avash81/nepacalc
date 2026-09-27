@@ -91,7 +91,7 @@ export function ScientificApp({ mode }: { mode: 'scientific' | 'basic' }) {
   return (
     <div className="w-full flex-1 flex flex-col bg-white overflow-hidden relative border-x border-slate-100 shadow-sm h-full">
       
-      {/* 🔬 ENGINEERING STATUS BAR */}
+      {/*  ENGINEERING STATUS BAR */}
       <div className="flex justify-between items-center px-6 py-3 bg-[#1a4b8c] text-[#202124] z-30">
          <div className="flex items-center gap-4">
             <span className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em]">
@@ -116,7 +116,7 @@ export function ScientificApp({ mode }: { mode: 'scientific' | 'basic' }) {
          </div>
       </div>
 
-      {/* 📊 HISTORY TAPE SECTION */}
+      {/*  HISTORY TAPE SECTION */}
       <div 
         ref={tapeRef}
         className="flex-1 overflow-y-auto px-6 py-6 flex flex-col gap-6 bg-[#f8f9fa] scroll-smooth"

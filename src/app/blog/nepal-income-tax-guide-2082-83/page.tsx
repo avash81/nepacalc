@@ -135,7 +135,7 @@ export default function TaxGuideBlog() {
           {/* Author EEAT Box */}
           <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 mb-8 flex flex-col sm:flex-row gap-5 items-start not-prose">
             <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-2xl shrink-0 text-white">
-              📊
+              
             </div>
             <div className="flex-1">
               <h4 className="text-sm font-black text-slate-900 m-0">NepaCalc Editorial Team</h4>
@@ -497,7 +497,7 @@ export default function TaxGuideBlog() {
           </ul>
 
           <div className="bg-blue-50 border-l-4 border-blue-600 p-4 rounded-r-xl text-sm text-blue-900 my-6">
-            <strong className="text-blue-950 font-bold block mb-1">💡 E-E-A-T Note:</strong>
+            <strong className="text-blue-950 font-bold block mb-1"> E-E-A-T Note:</strong>
             SSF enrollment data is verifiable at ssf.gov.np using your SSF number. All benefit details are sourced from the SSF Management Board's official benefit schedule published under Social Security Regulations 2075.
           </div>
 
@@ -645,7 +645,7 @@ export default function TaxGuideBlog() {
           <h2 className="text-2xl font-black text-slate-900 mt-12 mb-6">9. Worked Example 1: Rs 60,000 Monthly Gross, Single Filer, SSF Enrolled</h2>
           <div className="bg-amber-50/70 border border-amber-200 rounded-2xl p-6 my-6 text-slate-800">
             <div className="font-black text-amber-950 mb-3 flex items-center gap-2">
-              💡 Entry-level professional, Rs 60,000 gross salary/month, SSF enrolled, single filer, no additional deductions
+               Entry-level professional, Rs 60,000 gross salary/month, SSF enrolled, single filer, no additional deductions
             </div>
             <div className="overflow-x-auto border border-amber-200 rounded-lg bg-white">
               <table className="w-full border-collapse text-left text-sm m-0">
@@ -726,7 +726,7 @@ export default function TaxGuideBlog() {
           <h2 className="text-2xl font-black text-slate-900 mt-12 mb-6">10. Worked Example 2: Rs 1,20,000 Monthly Gross, Married Filer, SSF Enrolled</h2>
           <div className="bg-amber-50/70 border border-amber-200 rounded-2xl p-6 my-6 text-slate-800">
             <div className="font-black text-amber-950 mb-3 flex items-center gap-2">
-              💡 Senior professional, Rs 1,20,000 gross/month, SSF enrolled, married filer, life insurance Rs 40,000/year
+               Senior professional, Rs 1,20,000 gross/month, SSF enrolled, married filer, life insurance Rs 40,000/year
             </div>
             <div className="overflow-x-auto border border-amber-200 rounded-lg bg-white">
               <table className="w-full border-collapse text-left text-sm m-0">
@@ -954,7 +954,7 @@ export default function TaxGuideBlog() {
                 <span className="text-xs font-black text-slate-900 group-hover:text-blue-600 uppercase tracking-wider block">Nepal Salary Calculator</span>
               </Link>
               <Link href="/calculator/tds-calculator/" className="p-4 bg-slate-50 rounded-xl border border-slate-100 hover:border-blue-300 hover:bg-blue-50/20 transition-all text-center group">
-                <span className="text-2xl block mb-2">🧾</span>
+                <span className="text-2xl block mb-2"></span>
                 <span className="text-xs font-black text-slate-900 group-hover:text-blue-600 uppercase tracking-wider block">TDS Calculator Nepal</span>
               </Link>
               <Link href="/calculator/loan-emi/" className="p-4 bg-slate-50 rounded-xl border border-slate-100 hover:border-blue-300 hover:bg-blue-50/20 transition-all text-center group">

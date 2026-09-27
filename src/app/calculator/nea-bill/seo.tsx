@@ -13,10 +13,10 @@ export const NeaBillSEO = (
 
     {/* ── Intent Bridge Layer: captures PAA + broad head-term traffic ── */}
     <div className="intent-bridge-layer mb-8 p-5 rounded-lg border-l-4 border-[#0056b3] bg-[#f0f6ff]">
-      <p className="font-bold text-[#0056b3] mb-3 mt-0">💡 Looking for Instant Answers?</p>
+      <p className="font-bold text-[#0056b3] mb-3 mt-0"> Looking for Instant Answers?</p>
       <ul className="space-y-3 m-0 p-0 list-none">
         <li><strong>💵 What is the cost of 1 unit of electricity in Nepal?</strong> Electricity costs between Rs. 3 and Rs. 11 per unit depending on monthly consumption and slab rates. For a complete breakdown of residential unit costs, service charges, and examples for 20, 50, 100, and 150 units, see our <a href="/electricity/nepal-unit-price/" className="text-[#0056b3] underline font-medium">Electricity Unit Price in Nepal</a> guide.</li>
-        <li><strong>📊 How much is a 50 unit electricity bill in Nepal?</strong> For a standard domestic 5 Ampere meter line, consuming exactly 50 units incurs a fixed cumulative energy charge subtotal of <strong>Rs. 365.00</strong> plus a flat <strong>Rs. 50.00 service charge</strong>, bringing your absolute clean baseline total to <strong>Rs. 415.00</strong> (completely free of the conditional 5% VAT layer).</li>
+        <li><strong> How much is a 50 unit electricity bill in Nepal?</strong> For a standard domestic 5 Ampere meter line, consuming exactly 50 units incurs a fixed cumulative energy charge subtotal of <strong>Rs. 365.00</strong> plus a flat <strong>Rs. 50.00 service charge</strong>, bringing your absolute clean baseline total to <strong>Rs. 415.00</strong> (completely free of the conditional 5% VAT layer).</li>
         <li><strong>📱 Can I calculate my bill directly from my meter reading?</strong> Yes! Simply subtract your previous month's lifetime reading (found under the <strong>kWh</strong> marker on your digital screen) from your current reading. Enter that total unit variance directly into our active calculation engine above to see your progressive slab breakdown instantly.</li>
       </ul>
     </div>
@@ -157,7 +157,7 @@ export const NeaBillSEO = (
     <p className="mb-4">Finished checking your NEA electricity bill? Explore these related tools:</p>
     <ul className="list-none p-0 space-y-3 mb-6">
       <li>⚡ <strong>Electricity Unit Price:</strong> Learn about the NEA slab rates and how electricity costs are calculated. <a href="/electricity/nepal-unit-price/" className="text-[#0056b3] hover:underline font-medium">Electricity unit price in Nepal →</a></li>
-      <li>📋 <strong>NEA Tariff Rates:</strong> View the comprehensive breakdown of all official NEA tariff slabs. <a href="/electricity/nea-tariff-rates/" className="text-[#0056b3] hover:underline font-medium">NEA tariff rates →</a></li>
+      <li> <strong>NEA Tariff Rates:</strong> View the comprehensive breakdown of all official NEA tariff slabs. <a href="/electricity/nea-tariff-rates/" className="text-[#0056b3] hover:underline font-medium">NEA tariff rates →</a></li>
       <li>💧 <strong>KUKL Water Bill:</strong> Estimate your monthly Kathmandu Upatyaka Khanepani Limited water charges using official slab rates. <a href="/calculator/kukl-bill/" className="text-[#0056b3] hover:underline font-medium">KUKL Water Bill Calculator →</a></li>
       <li>☀️ <strong>Solar Requirement:</strong> Calculate how many solar panels you need to offset your electricity consumption. <a href="/calculator/solar-requirement/" className="text-[#0056b3] hover:underline font-medium">Solar Requirement Calculator →</a></li>
       <li>🚘 <strong>Vehicle Tax Calculator:</strong> Stay ahead of transport office renewal deadlines. <a href="/calculator/nepal-vehicle-tax/" className="text-[#0056b3] hover:underline font-medium">Nepal Vehicle Tax Calculator →</a></li>

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import Link from 'next/link';
 import { TrendingUp, Globe, Calculator, Zap, MoveUpRight, Clock, Clipboard, Briefcase, CalendarDays, ReceiptText, Landmark, ChevronRight } from 'lucide-react';
 import { CALCULATORS } from '@/data/calculators';
@@ -73,8 +73,8 @@ export function Sidebar() {
 
         <div className="space-y-3">
           {[
-            { name: 'Income Tax 2083/84', slug: 'nepal-income-tax', hot: true, icon: Clipboard },
-            { name: 'Salary Calculator', slug: 'nepal-salary', hot: true, icon: Briefcase },
+            { name: 'Income Tax 2083/84', slug: 'nepal-income-tax', icon: Clipboard },
+            { name: 'Salary Calculator', slug: 'nepal-salary', icon: Briefcase },
             { name: 'Nepali Date Converter', slug: 'nepali-date', icon: CalendarDays },
             { name: 'VAT Calculator', slug: 'nepal-vat', icon: ReceiptText },
             { name: 'Provident Fund (PF)', slug: 'nepal-provident-fund', icon: Landmark }
@@ -89,7 +89,7 @@ export function Sidebar() {
                     <tool.icon className="w-4 h-4 text-gray-500 group-hover/item:text-red-500" strokeWidth={2.5} />
                  </div>
                  <span className="text-sm font-bold text-gray-700 group-hover/item:text-gray-900">{tool.name}</span>
-                 {tool.hot && <span className="text-[8px] bg-[#FFC107]/20 text-[#D48806] px-2 py-0.5 rounded-md font-black uppercase tracking-widest border border-[#FFC107]/30">HOT</span>}
+                 
               </div>
               <ChevronRight className="w-4 h-4 text-gray-200 group-hover/item:translate-x-1 transition-all" />
             </Link>
@@ -112,7 +112,7 @@ export function Sidebar() {
                     {tool.icon as string}
                  </div>
                  <span className="text-sm font-bold text-gray-700 group-hover/item:text-[#1A73E8]">{tool.name}</span>
-                 {tool.id === 'loan-emi' && <span className="text-[8px] bg-[#FFC107]/20 text-[#D48806] px-2 py-0.5 rounded-md font-black uppercase tracking-widest border border-[#FFC107]/30">HOT</span>}
+                 
               </div>
               <ChevronRight className="w-4 h-4 text-gray-200 group-hover/item:translate-x-1 transition-all" />
             </Link>
@@ -140,4 +140,5 @@ export function Sidebar() {
     </div>
   );
 }
+
 

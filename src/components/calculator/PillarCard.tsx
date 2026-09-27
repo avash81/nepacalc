@@ -18,8 +18,8 @@ export function PillarCard({ slug, icon, name, description, tag, isNew, isHot }:
       <div className="flex items-start justify-between mb-3">
         <span className="text-xl leading-none">{icon}</span>
         <div className="flex items-center gap-1.5">
-          {isNew && <span className="text-[9px] font-black uppercase tracking-widest bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded">NEW</span>}
-          {isHot && <span className="text-[9px] font-black uppercase tracking-widest bg-red-100 text-red-600 px-1.5 py-0.5 rounded">HOT</span>}
+          
+          
           {tag && <span className="text-[9px] font-black uppercase tracking-widest text-[#5f6368]">{tag}</span>}
         </div>
       </div>

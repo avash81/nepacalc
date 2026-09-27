@@ -219,7 +219,7 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
     <div className="space-y-5 h-full flex flex-col justify-center">
       {!hasInput ? (
         <div className="text-center py-12 text-slate-300">
-          <div className="text-5xl mb-3">⚖️</div>
+          <div className="text-5xl mb-3"></div>
           <div className="text-[11px] font-black uppercase tracking-widest">Enter any weight above</div>
           <div className="text-[10px] mt-1 text-slate-300">All units auto-convert in real time</div>
         </div>
