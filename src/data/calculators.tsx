@@ -1,10 +1,10 @@
-﻿import { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 export interface Calculator {
   id: string;
   slug: string;
   name: string;
-  icon: string | ReactNode;
+  icon?: string | ReactNode;
   description: string;
   category: string;
   isNepal?: boolean;

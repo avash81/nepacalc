@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 interface PillarCardProps {
   slug: string;
-  icon: string | React.ReactNode;
+  icon?: string | React.ReactNode;
   name: string;
   description: string;
   tag?: string;
