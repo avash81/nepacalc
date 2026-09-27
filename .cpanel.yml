@@ -3,9 +3,5 @@ deployment:
   tasks:
     - /usr/local/cpanel/3rdparty/bin/git fetch --all
     - /usr/local/cpanel/3rdparty/bin/git reset --hard origin/main
-    - test -d out || exit 1
-    
-    - /bin/rm -rf /home/nepacalc/public_html/_next_old
-    - /bin/mv /home/nepacalc/public_html/_next /home/nepacalc/public_html/_next_old || true
-    - /bin/bash -c "cp -a out/. /home/nepacalc/public_html/"
-    - /bin/rm -rf /home/nepacalc/public_html/_next_old
+    - /bin/rm -rf /home/nepacalc/public_html/_next
+    - /bin/cp -a out/. /home/nepacalc/public_html/
