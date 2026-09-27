@@ -238,14 +238,6 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
           <p className="text-base leading-relaxed text-slate-700 font-medium mb-5">
             If you're tracking both precious metals, you can compare the daily official Nepal rates. Check the <Link href="/market-rates/silver-price-nepal/" className="text-blue-600 hover:underline font-bold">Silver Price in Nepal</Link> or use the <Link href="/calculator/silver-converter/" className="text-blue-600 hover:underline font-bold">Silver Converter</Link> to value your Chandi instantly.
           </p>
-          <div className="flex flex-wrap gap-4">
-            <Link href="/market-rates/silver-price-nepal/" className="px-5 py-2.5 bg-slate-800 text-white font-semibold rounded-lg hover:bg-slate-700 transition-colors">
-              Silver Price in Nepal →
-            </Link>
-            <Link href="/calculator/silver-converter/" className="px-5 py-2.5 bg-white border border-slate-300 text-slate-700 font-semibold rounded-lg hover:bg-slate-50 transition-colors">
-              Silver Converter →
-            </Link>
-          </div>
         </div>
       </section>
 
@@ -596,6 +588,17 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
         <p className="text-[11px] text-slate-500 font-medium leading-relaxed max-w-2xl mx-auto uppercase tracking-widest">
           Official benchmark rates published by Federation of Nepal Gold and Silver Dealers&apos; Association (FENEGOSIDA), displayed and analyzed by NepaCalc. NepaCalc is an independent analytics platform and does not buy, sell, or trade precious metals. Retail purchases are subject to local making charges and 13% VAT.
         </p>
+      </div>
+
+      {/* ─── Related Links ─── */}
+      <div className="pt-6 border-t border-slate-200 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[13px] font-semibold">
+        <Link href="/market-rates/history/" className="text-slate-600 hover:text-amber-600 hover:underline">Gold &amp; Silver Price History Nepal</Link>
+        <span className="text-slate-300">|</span>
+        <Link href="/market-rates/exchange-rate-nepal/" className="text-slate-600 hover:text-amber-600 hover:underline">Today&apos;s Exchange Rate</Link>
+        <span className="text-slate-300">|</span>
+        <Link href="/market-rates/remittance/" className="text-slate-600 hover:text-amber-600 hover:underline">Remittance Rates Nepal</Link>
+        <span className="text-slate-300">|</span>
+        <Link href="/blog/nepal-gold-price-analysis-2083/" className="text-slate-600 hover:text-amber-600 hover:underline">Nepal Gold Price Analysis 2083</Link>
       </div>
 
     </div>
