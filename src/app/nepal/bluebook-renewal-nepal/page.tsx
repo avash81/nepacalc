@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -455,7 +455,7 @@ export default function BluebookRenewalPage() {
             </p>
 
             <div className="mt-6 space-y-4">
-              {renewalSteps.map(({ step, title, desc, icon }) => (
+              {renewalSteps.map(({ step, title, desc }) => (
                 <div key={step} className="flex gap-4 rounded-xl border border-slate-200 bg-white p-4 hover:border-emerald-200 hover:bg-emerald-50 transition-colors">
                   <div className="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-sm">
                     {step}

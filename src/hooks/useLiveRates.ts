@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 
@@ -168,9 +168,25 @@ function buildRates(
 const BROADCAST_CHANNEL = 'nepacalc_rates';
 
 // ─── Hook ─────────────────────────────────────────────────────────────────────
-export function useLiveRates() {
-  const [rates, setRates]   = useState<LiveRates | null>(null);
-  const [loading, setLoading] = useState(true);
+export function useLiveRates(initialRawData?: any) {
+  const [rates, setRates] = useState<LiveRates | null>(() => {
+    if (initialRawData && initialRawData.gold?.tolaNPR?.current) {
+      const gold = initialRawData.gold.tolaNPR.current;
+      const tejabi = initialRawData.gold.tejabiTolaNPR ?? (gold - 700);
+      const silver = initialRawData.silver?.tolaNPR?.current ?? FALLBACK_SILVER_TOLA;
+      const date = initialRawData.rate_date ?? initialRawData.date ?? FALLBACK_DATE;
+      const rateStatus = initialRawData.status ?? 'verified';
+      const sourceName = initialRawData.source_name ?? 'FENEGOSIDA';
+      const rateDate = initialRawData.rate_date ?? date;
+      const isFallback = rateStatus === 'retained_fallback';
+      const provider = isFallback ? (initialRawData.source ?? 'FENEGOSIDA') + ' · Last verified: ' + rateDate : (initialRawData.source ?? 'FENEGOSIDA') + ' · ' + rateDate;
+      const todayNPT = new Date(Date.now() + (5 * 60 + 45) * 60000).toISOString().split('T')[0];
+      const isFresh = rateDate === todayNPT && !isFallback;
+      return buildRates(gold, tejabi, silver, FALLBACK_USD, {}, provider, initialRawData.fetched_at ?? new Date().toISOString(), date, isFresh, rateStatus, rateDate, sourceName, initialRawData.gold?.tolaNPR?.previous, initialRawData.silver?.tolaNPR?.previous);
+    }
+    return null;
+  });
+  const [loading, setLoading] = useState(!rates);
   const [error, setError]   = useState<string | null>(null);
 
   // Track last known version hash to avoid unnecessary re-renders
@@ -380,3 +396,5 @@ export function useLiveRates() {
     refresh: () => fetchFullRates('scheduled'),
   };
 }
+
+

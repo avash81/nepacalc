@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+﻿import { Metadata } from 'next';
 import GoldDashboardClient from './GoldDashboardClient';
 import LiveGoldPriceBoxClient from './LiveGoldPriceBoxClient';
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
@@ -22,6 +22,7 @@ function getLiveData() {
       silver: json.silver?.tolaNPR?.current || null,
       gold24kPrev: json.gold?.tolaNPR?.previous || null,
       silverPrev: json.silver?.tolaNPR?.previous || null,
+      rawJson: json,
     };
   } catch (e) {
     return { date: new Date().toISOString().split('T')[0], gold24k: null, gold22k: null, gold10g: null, silver: null, gold24kPrev: null, silverPrev: null };
@@ -74,7 +75,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page() {
-  const { date: rawDate, gold24k, gold22k, silver, gold10g, gold24kPrev, silverPrev } = getLiveData();
+  const { date: rawDate, gold24k, gold22k, silver, gold10g, gold24kPrev, silverPrev, rawJson } = getLiveData();
   const fmt = (n: number) => n.toLocaleString('en-IN');
 
   return (
@@ -160,7 +161,7 @@ export default async function Page() {
           </div>
           
           <div className="w-full lg:w-auto shrink-0 mt-4 lg:mt-0">
-             <LiveGoldPriceBoxClient initialGold={gold24k as number | undefined} />
+             <LiveGoldPriceBoxClient initialGold={gold24k as number | undefined} rawRates={rawJson} />
           </div>
         </div>
       </div>
@@ -187,6 +188,7 @@ export default async function Page() {
           initialGold={gold24k as number | undefined}
           initialSilver={silver as number | undefined}
           initialDate={rawDate}
+          rawRates={rawJson}
         />
       </CalcWrapper>
     </div>
