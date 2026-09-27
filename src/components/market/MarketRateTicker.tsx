@@ -18,7 +18,7 @@ function RateTile({ label, value, change, href, isForex }: {
         <span className="text-[10px] font-black uppercase tracking-widest text-[#5f6368]">{label}</span>
         <div className={`flex items-center gap-0.5 text-[10px] font-bold ${isUp ? 'text-emerald-600' : 'text-red-500'}`}>
           {isUp ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
-          {isUp ? '+' : ''}{change}%
+          {isUp ? '+' : ''}{Number(change).toFixed(2)}%
         </div>
       </div>
       <div className="flex items-baseline gap-1">
