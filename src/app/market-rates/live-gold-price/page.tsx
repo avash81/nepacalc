@@ -182,15 +182,6 @@ export default async function Page() {
         compactHeader={true}
         hideHeader={true}
         disableSchema={true}
-        relatedCalcs={[
-          { name: 'Nepal Income Tax Calculator', slug: '/calculator/nepal-income-tax/' },
-          { name: 'Nepal Salary Calculator', slug: '/calculator/nepal-salary/' },
-          { name: 'NEA Electricity Bill', slug: '/calculator/nea-bill/' },
-          { name: 'KUKL Water Bill', slug: '/calculator/kukl-bill/' },
-          { name: 'Nepal Land Area Converter', slug: '/calculator/nepal-land/' },
-          { name: 'Nepal Home Loan', slug: '/calculator/nepal-home-loan/' },
-          { name: 'Nepal VAT Calculator', slug: '/calculator/nepal-vat/' }
-        ]}
       >
         <GoldDashboardClient 
           initialGold={gold24k as number | undefined}
