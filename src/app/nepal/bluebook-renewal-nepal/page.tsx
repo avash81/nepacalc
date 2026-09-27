@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -461,7 +461,7 @@ export default function BluebookRenewalPage() {
                     {step}
                   </div>
                   <div className="flex-1">
-                    <p className="font-semibold text-slate-900 text-sm mb-1">{icon} {title}</p>
+                    <p className="font-semibold text-slate-900 text-sm mb-1">{title}</p>
                     <p className="text-slate-600 text-sm leading-relaxed">{desc}</p>
                   </div>
                 </div>
