@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useEffect } from 'react';
 import { useLiveRates } from '@/hooks/useLiveRates';
@@ -79,10 +79,11 @@ interface GoldDashboardClientProps {
   initialSilver?: number;
   /** Build-time rate date string (YYYY-MM-DD) from live-rates.json */
   initialDate?: string;
+  rawRates?: any;
 }
 
-export default function GoldDashboardClient({ initialGold, initialSilver, initialDate }: GoldDashboardClientProps = {}) {
-  const { rates, loading, error } = useLiveRates();
+export default function GoldDashboardClient({ initialGold, initialSilver, initialDate, rawRates }: GoldDashboardClientProps = {}) {
+  const { rates, loading, error } = useLiveRates(rawRates);
 
 
 
@@ -167,16 +168,7 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
 
       {/* 3. Data Status Block */}
       <div className="bg-white border border-slate-200 rounded-2xl p-6 mb-6 shadow-sm">
-        {/* Stale data warning — shown when live fetch failed and we're using last verified value */}
-        {!rates.gold.isFresh && (
-          <div className="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-xl flex items-center gap-3">
-            <span className="text-amber-600 text-lg">⚠️</span>
-            <div>
-              <p className="text-[12px] font-bold text-amber-800">Showing last verified FENEGOSIDA rate</p>
-              <p className="text-[11px] text-amber-700">Official rate as of {rates.gold.dataDate}. Today&apos;s rate will appear once FENEGOSIDA publishes (~11 AM NPT).</p>
-            </div>
-          </div>
-        )}
+
         {error && (
           <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-xl text-red-800">
             <p className="text-[12px] font-bold">Live connection unavailable.</p>
@@ -185,14 +177,14 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
         )}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4 text-[11px] font-black uppercase tracking-widest text-slate-600 mb-6">
           <div className="flex items-center gap-2">
-            <div className={`w-2 h-2 rounded-full animate-pulse ${rates.gold.isFresh ? 'bg-green-500' : 'bg-amber-400'}`}></div>
+            <div className={`w-2 h-2 rounded-full animate-pulse ${rates.gold.isFresh ? 'bg-green-500' : 'bg-slate-400'}`}></div>
             {rates.gold.isFresh ? 'Live · Today' : 'Last Verified'}
           </div>
           <div>Source: FENEGOSIDA</div>
           <div>Rate Date: {rates.gold.dataDate}</div>
           <div>Next Update: ~11:00 AM NPT</div>
-          <div className={rates.gold.isFresh ? 'text-green-600' : 'text-amber-600'}>
-            {rates.gold.isFresh ? 'Updated Today ✓' : 'Cached'}
+          <div className={rates.gold.isFresh ? 'text-green-600' : 'text-slate-500'}>
+            {rates.gold.isFresh ? 'Updated Today ✓' : 'Verified'}
           </div>
         </div>
         <div className="p-4 bg-slate-50 border border-slate-100 rounded-xl text-slate-700 text-[13px] leading-relaxed font-medium">
@@ -513,6 +505,7 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
     </div>
   );
 }
+
 
 
 

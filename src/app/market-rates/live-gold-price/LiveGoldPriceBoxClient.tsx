@@ -1,10 +1,10 @@
-﻿'use client';
+'use client';
 
 import React from 'react';
 import { useLiveRates } from '@/hooks/useLiveRates';
 
-export default function LiveGoldPriceBoxClient({ initialGold }: { initialGold?: number }) {
-  const { rates, loading } = useLiveRates();
+export default function LiveGoldPriceBoxClient({ initialGold, rawRates }: { initialGold?: number; rawRates?: any }) {
+  const { rates, loading } = useLiveRates(rawRates);
 
   if (loading || !rates?.gold) {
     if (initialGold) {
