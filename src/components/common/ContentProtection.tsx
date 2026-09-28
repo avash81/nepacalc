@@ -4,16 +4,22 @@ import { useEffect } from 'react';
 
 export default function ContentProtection() {
   useEffect(() => {
+    const isInput = (target: EventTarget | null) => {
+      if (!target) return false;
+      const el = target as HTMLElement;
+      const tag = el.tagName?.toUpperCase();
+      return tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || el.isContentEditable;
+    };
+
     // Prevent right-click context menu
     const handleContextMenu = (e: MouseEvent) => {
-      // Allow right click on input fields so users can paste
-      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+      if (isInput(e.target)) return;
       e.preventDefault();
     };
 
     // Prevent copy and cut shortcuts
     const handleCopy = (e: ClipboardEvent) => {
-      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+      if (isInput(e.target)) return;
       e.preventDefault();
     };
 
