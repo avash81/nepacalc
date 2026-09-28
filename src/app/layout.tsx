@@ -3,6 +3,7 @@ import "./globals.css";
 import Script from 'next/script';
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import ContentProtection from "@/components/common/ContentProtection";
 import dynamic from 'next/dynamic';
 export const metadata: Metadata = {
   metadataBase: new URL('https://nepacalc.com'),
@@ -148,6 +149,7 @@ export default function RootLayout({
         {/* Explicit Favicon for Google Search Results (managed by metadata export) */}
       </head>
       <body className="font-sans">
+        <ContentProtection />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(globalSchema) }}
