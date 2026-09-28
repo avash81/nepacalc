@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Gold and Silver Price History: Tola, Gram & Kilogram Rates',
-    description: 'Gold price history in Nepal with historical gold and silver rates by date. View verified rates per tola and 10 grams, sourced from FENEGOSIDA, with historical data downloads.',
+    description: 'Gold price history in Nepal with historical gold and silver rates by date. View verified rates per tola and 10 grams, sourced from FENEGOSIDA.',
     images: ['https://nepacalc.com/images/og/history-gold-silver-nepal.jpg'],
   },
   other: {
@@ -121,18 +121,7 @@ export default async function HistoryPage() {
     unitText: 'NPR',
     creator: { '@type': 'Organization', name: 'NepaCalc' },
     license: 'https://creativecommons.org/licenses/by-nc/4.0/',
-    distribution: [
-      {
-        '@type': 'DataDownload',
-        encodingFormat: 'application/json',
-        contentUrl: 'https://nepacalc.com/data/historical-rates.json',
-      },
-      {
-        '@type': 'DataDownload',
-        encodingFormat: 'text/csv',
-        contentUrl: 'https://nepacalc.com/data/historical-rates.csv',
-      },
-    ],
+
   };
 
   return (
@@ -174,29 +163,6 @@ export default async function HistoryPage() {
         {/* ── INTERACTIVE CLIENT: Answer Box + Converter + Table ── */}
         <HistoryClient records={records} />
 
-        {/* ── DOWNLOADS ── */}
-        <div className="mt-6 mb-4 flex flex-wrap gap-4 items-center max-w-4xl">
-          <a
-            href="/data/historical-rates.json"
-            download
-            className="inline-flex items-center px-4 py-2 bg-slate-900 text-white text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-slate-800 transition-colors"
-          >
-            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-            </svg>
-            Download JSON
-          </a>
-          <a
-            href="/data/historical-rates.csv"
-            download
-            className="inline-flex items-center px-4 py-2 bg-white border border-slate-300 text-slate-700 text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-slate-50 transition-colors"
-          >
-            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-            </svg>
-            Download CSV
-          </a>
-        </div>
 
         {/* ── EXPLANATORY CONTENT ── */}
         <section className="mt-6 pt-8 border-t border-slate-200 max-w-4xl space-y-4 text-sm text-slate-700 font-medium leading-relaxed">
