@@ -6,8 +6,8 @@
     "latest_verified_date": "2026-09-25",
     "total_verified_records": 144,
     "gaps_exist": true,
-    "last_updated": "2026-09-28",
-    "total_records": 3235,
+    "last_updated": "2026-09-29",
+    "total_records": 3237,
     "last_enriched": "2026-09-26",
     "audit_summary": {
       "total_records": 3231,
@@ -25,6 +25,32 @@
     }
   },
   "data": [
+    {
+      "date_ad": "2026-09-29",
+      "date_bs": null,
+      "metal": "gold",
+      "rate_type": "Fine Gold (9999)",
+      "source_category": "Fine Gold (9999)",
+      "source_rate_tola": 290500,
+      "source_rate_10g": 249055,
+      "source_name": "FENEGOSIDA",
+      "source_url": "https://fenegosida.org",
+      "verification_status": "verified",
+      "notes": "Auto-appended by fetch-rates.js"
+    },
+    {
+      "date_ad": "2026-09-29",
+      "date_bs": null,
+      "metal": "silver",
+      "rate_type": "Silver",
+      "source_category": "Silver",
+      "source_rate_tola": 4395,
+      "source_rate_10g": 3768,
+      "source_name": "FENEGOSIDA",
+      "source_url": "https://fenegosida.org",
+      "verification_status": "verified",
+      "notes": "Auto-appended by fetch-rates.js"
+    },
     {
       "date_ad": "2026-09-28",
       "date_bs": null,
