@@ -186,43 +186,48 @@ async function main() {
     const allRecords = Array.isArray(historicalDataset.data) ? historicalDataset.data : [];
 
     // Build the two new records for today (gold + silver)
+    const tolaToGrams = 11.664;
+    const goldPerGram = goldTola ? Number((goldTola / tolaToGrams).toFixed(2)) : null;
+    const silverPerGram = silverTola ? Number((silverTola / tolaToGrams).toFixed(2)) : null;
+
     const newGoldRecord = {
       date_ad:              rateDate,
-      date_bs:              null,          // BS date is not available from API; left null
-      metal:                'gold',
+      date_bs:              null,
+      metal:                'Gold',
       rate_type:            'Fine Gold (9999)',
-      source_category:      'Fine Gold (9999)',
-      source_rate_tola:     goldTola,
-      source_rate_10g:      gold10g,
-      source_name:          'FENEGOSIDA',
+      source_per_tola:      goldTola,
+      source_per_10g:       gold10g,
+      calculated_per_gram:  goldPerGram,
+      calculated_per_kg:    goldPerGram ? Number((goldPerGram * 1000).toFixed(2)) : null,
+      source:               'FENEGOSIDA',
       source_url:           'https://fenegosida.org',
-      verification_status:  'verified',
-      notes:                'Auto-appended by fetch-rates.js',
+      status:               'Verified'
     };
     const newSilverRecord = {
       date_ad:              rateDate,
       date_bs:              null,
-      metal:                'silver',
+      metal:                'Silver',
       rate_type:            'Silver',
-      source_category:      'Silver',
-      source_rate_tola:     silverTola,
-      source_rate_10g:      silver10g,
-      source_name:          'FENEGOSIDA',
+      source_per_tola:      silverTola,
+      source_per_10g:       silver10g,
+      calculated_per_gram:  silverPerGram,
+      calculated_per_kg:    silverPerGram ? Number((silverPerGram * 1000).toFixed(2)) : null,
+      source:               'FENEGOSIDA',
       source_url:           'https://fenegosida.org',
-      verification_status:  'verified',
-      notes:                'Auto-appended by fetch-rates.js',
+      status:               'Verified'
     };
 
     // Upsert: remove any existing record for this date+metal, then prepend fresh ones
     const filtered = allRecords.filter(
-      r => !(r.date_ad === rateDate && (r.metal === 'gold' || r.metal === 'silver') && r.source_name === 'FENEGOSIDA')
+      r => !(r.date_ad === rateDate && (r.metal.toLowerCase() === 'gold' || r.metal.toLowerCase() === 'silver') && (r.source_name === 'FENEGOSIDA' || r.source === 'FENEGOSIDA'))
     );
     const updatedRecords = [newGoldRecord, newSilverRecord, ...filtered];
 
     historicalDataset.data = updatedRecords;
     historicalDataset.meta = {
       ...historicalDataset.meta,
-      last_updated: rateDate,
+      last_updated_ad: rateDate,
+      latest_verified_date: rateDate,
       total_records: updatedRecords.length,
     };
 

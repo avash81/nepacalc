@@ -1,5 +1,9 @@
 RewriteEngine On
 
+# 0. Force mail subdomain to main domain (Google canonical fix)
+RewriteCond %{HTTP_HOST} ^mail\.nepacalc\.com$ [NC]
+RewriteRule ^(.*)$ https://nepacalc.com/$1 [R=301,L]
+
 # 1. Force HTTPS and non-www (www → non-www MUST come first)
 RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 RewriteRule ^(.*)$ https://%1/$1 [R=301,L]

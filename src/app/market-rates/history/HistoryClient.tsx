@@ -4,92 +4,72 @@ import React, { useState, useMemo, useEffect } from 'react';
 
 type HistoricalRecord = {
   date_ad: string;
-  date_bs: string;
-  day: string;
+  date_bs: string | null;
   metal: string;
-  source_category: string;
-  rate_type?: string;
-  source_rate_10g: number;
-  source_rate_tola: number;
-  calculated_rate_gram: number;
-  calculated_rate_kg: number;
-  currency: string;
-  source_name: string;
-  source_priority: string;
-  verification_status: string;
+  rate_type: string;
+  source_per_tola: number | null;
+  source_per_10g: number | null;
+  calculated_per_gram: number | null;
+  calculated_per_kg: number | null;
+  source: string;
   source_url?: string;
-  flag_reason?: string;
+  status: string;
 };
 
-export default function HistoryClient({
-  records,
-}: {
-  records: HistoricalRecord[];
-}) {
-  const [metalFilter, setMetalFilter] = useState<'all' | 'gold' | 'silver'>('all');
+export default function HistoryClient({ records }: { records: HistoricalRecord[] }) {
+  const [metalFilter, setMetalFilter] = useState<'all' | 'Gold' | 'Silver'>('all');
+  const [rateTypeFilter, setRateTypeFilter] = useState<string>('all');
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
-  const [sortOrder, setSortOrder] = useState<'desc' | 'asc'>('desc');
+  const [sourceFilter, setSourceFilter] = useState('all');
+  const [statusFilter, setStatusFilter] = useState('Verified');
+  const [sortOrder, setSortOrder] = useState<'newest' | 'oldest'>('newest');
   const [currentPage, setCurrentPage] = useState(1);
-  const rowsPerPage = 30;
+  const rowsPerPage = 50;
+  const [selectedDate, setSelectedDate] = useState<string>('');
 
-  // Selected date for Answer Box & Unit Converter
-  const latestDate = useMemo(() => {
-    if (!records.length) return '';
-    return records[0].date_ad;
-  }, [records]);
-
-  const [selectedDate, setSelectedDate] = useState<string>(latestDate || '');
+  const rateTypes = useMemo(() => Array.from(new Set(records.map(r => r.rate_type))), [records]);
+  const sources = useMemo(() => Array.from(new Set(records.map(r => r.source))), [records]);
+  const statuses = useMemo(() => Array.from(new Set(records.map(r => r.status))), [records]);
 
   useEffect(() => {
-    if (latestDate && !selectedDate) {
-      setSelectedDate(latestDate);
+    if (records.length > 0 && !selectedDate) {
+      const latestVerified = records.find(r => r.status === 'Verified');
+      if (latestVerified) setSelectedDate(latestVerified.date_ad);
     }
-  }, [latestDate, selectedDate]);
-
-  // Filtered dataset
-  const filteredRecords = useMemo(() => {
-    return records
-      .filter((r) => {
-        if (metalFilter !== 'all' && r.metal !== metalFilter) return false;
-        if (dateFrom && r.date_ad < dateFrom) return false;
-        if (dateTo && r.date_ad > dateTo) return false;
-        return true;
-      })
-      .sort((a, b) => {
-        const dateA = a.date_ad;
-        const dateB = b.date_ad;
-        if (dateA !== dateB) {
-          return sortOrder === 'desc' ? dateB.localeCompare(dateA) : dateA.localeCompare(dateB);
-        }
-        return a.metal.localeCompare(b.metal);
-      });
-  }, [records, metalFilter, dateFrom, dateTo, sortOrder]);
-
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [metalFilter, dateFrom, dateTo, sortOrder]);
-
-  const totalPages = Math.ceil(filteredRecords.length / rowsPerPage);
-  const startIndex = (currentPage - 1) * rowsPerPage;
-  const endIndex = Math.min(startIndex + rowsPerPage, filteredRecords.length);
-  const paginatedRecords = filteredRecords.slice(startIndex, endIndex);
-
-  const fmtNPR = (val: number) =>
-    new Intl.NumberFormat('en-IN', {
-      maximumFractionDigits: 2,
-      minimumFractionDigits: 2,
-    }).format(val);
-
-  // Selected Date Records for Answer Box & Converter
-  const selectedDateRecords = useMemo(() => {
-    if (!selectedDate) return [];
-    return records.filter((r) => r.date_ad === selectedDate);
   }, [records, selectedDate]);
 
+  const selectedDateRecords = useMemo(() => {
+    if (!selectedDate) return [];
+    return records.filter(r => r.date_ad === selectedDate);
+  }, [records, selectedDate]);
 
-  const getPageNumbers = () => {
-    const pages = [];
+  const filteredRecords = useMemo(() => {
+    return records.filter((r) => {
+      if (metalFilter !== 'all' && r.metal.toLowerCase() !== metalFilter.toLowerCase()) return false;
+      if (rateTypeFilter !== 'all' && r.rate_type !== rateTypeFilter) return false;
+      if (sourceFilter !== 'all' && r.source !== sourceFilter) return false;
+      if (statusFilter !== 'all' && r.status !== statusFilter) return false;
+      if (dateFrom && r.date_ad < dateFrom) return false;
+      if (dateTo && r.date_ad > dateTo) return false;
+      return true;
+    }).sort((a, b) => {
+      const dA = new Date(a.date_ad).getTime();
+      const dB = new Date(b.date_ad).getTime();
+      return sortOrder === 'newest' ? dB - dA : dA - dB;
+    });
+  }, [records, metalFilter, rateTypeFilter, sourceFilter, statusFilter, dateFrom, dateTo, sortOrder]);
+
+  const totalPages = Math.ceil(filteredRecords.length / rowsPerPage);
+  const currentRecords = filteredRecords.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
+
+  const fmtNPR = (num: number | null) => {
+    if (num === null || num === undefined) return 'N/A';
+    return new Intl.NumberFormat('en-IN', { maximumFractionDigits: 2 }).format(num);
+  };
+
+  const getPagination = () => {
+    const pages: (number | string)[] = [];
     if (totalPages <= 7) {
       for (let i = 1; i <= totalPages; i++) pages.push(i);
     } else {
@@ -105,7 +85,7 @@ export default function HistoryClient({
   };
 
   const statusBadge = (status: string) => {
-    switch (status) {
+    switch (status.toLowerCase()) {
       case 'verified':
         return <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800">Verified</span>;
       case 'corroborated':
@@ -114,14 +94,11 @@ export default function HistoryClient({
         return <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-amber-100 text-amber-900">Secondary-only</span>;
       case 'conflict':
         return <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-rose-100 text-rose-800">Conflict</span>;
-      case 'rejected':
-        return <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-red-100 text-red-800">Rejected</span>;
       default:
         return <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-slate-700">{status}</span>;
     }
   };
 
-  // Helper to format date as '25 September 2026'
   const formattedSelectedDate = useMemo(() => {
     if (!selectedDate) return 'Select Date';
     try {
@@ -131,40 +108,26 @@ export default function HistoryClient({
     }
   }, [selectedDate]);
 
-  const directAnswerGold = selectedDateRecords.find(r => r.metal === 'gold');
-  const directAnswerSilver = selectedDateRecords.find(r => r.metal === 'silver');
+  const directAnswerGold = selectedDateRecords.find(r => r.metal.toLowerCase() === 'gold');
+  const directAnswerSilver = selectedDateRecords.find(r => r.metal.toLowerCase() === 'silver');
 
   return (
     <div className="space-y-8">
-      {/* ── Table Heading ── */}
-      <div className="max-w-4xl">
-        <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight mb-2">
-          Historical Gold and Silver Price Table
-        </h2>
-        <p className="text-sm text-slate-600 font-medium">
-          View available rates by date. Source prices are shown per tola and per 10 grams. Per gram and per kilogram values are calculated equivalents using 1 tola = 11.664 grams.
-        </p>
-      </div>
 
       {/* ── 1. SELECTED-DATE ANSWER BOX ── */}
-      <div className="bg-white border-2 border-slate-200 rounded-2xl p-6 shadow-sm">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4 mb-4">
-          <div>
-            <h2 className="text-lg sm:text-xl font-black text-slate-900 tracking-tight">
-              Gold and Silver Prices on {formattedSelectedDate}
-            </h2>
-            <p className="text-xs text-slate-500 font-medium mt-0.5">
-              Select any date in the table or date picker below to view rates for that day.
-            </p>
-          </div>
-          <div className="shrink-0">
-            <input
-              type="date"
-              value={selectedDate}
-              onChange={(e) => setSelectedDate(e.target.value)}
-              className="border border-slate-300 rounded-lg px-3 py-1.5 text-xs font-bold text-slate-800 outline-none focus:ring-2 focus:ring-amber-500"
-            />
-          </div>
+      <div>
+        <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight mb-4">
+          Gold and Silver Prices on {formattedSelectedDate}
+        </h2>
+        <div className="mb-4">
+          <label htmlFor="selectedDateInput" className="sr-only">Select Date</label>
+          <input
+            id="selectedDateInput"
+            type="date"
+            value={selectedDate}
+            onChange={(e) => { setSelectedDate(e.target.value); setCurrentPage(1); }}
+            className="border border-slate-300 rounded-lg px-3 py-1.5 text-xs font-bold text-slate-800 outline-none focus:ring-2 focus:ring-amber-500"
+          />
         </div>
 
         {selectedDateRecords.length === 0 ? (
@@ -172,197 +135,230 @@ export default function HistoryClient({
             No verified historical record is currently available for this date. NepaCalc does not estimate or interpolate missing historical rates.
           </p>
         ) : (
-          <div>
-            {directAnswerGold && directAnswerSilver && (
-              <p className="text-sm text-slate-700 font-medium bg-slate-50 p-4 border border-slate-200 rounded-lg mb-4">
-                Historical rate for {formattedSelectedDate}: Gold was NPR {fmtNPR(directAnswerGold.source_rate_tola)} per tola and silver was NPR {fmtNPR(directAnswerSilver.source_rate_tola)} per tola in the available {directAnswerGold.verification_status === 'verified' ? 'verified FENEGOSIDA' : 'historical'} records.
-              </p>
-            )}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {selectedDateRecords.map((r, i) => (
-                <div key={i} className="bg-slate-50 border border-slate-200 rounded-xl p-4">
-                  {/* Metal — Rate Type */}
-                  <div className="mb-3">
-
-                  <span className="text-sm font-black text-slate-900">
-                    {r.metal === 'gold' ? 'Gold' : 'Silver'}
-                  </span>
-                  {(r.rate_type || r.source_category) && (
-                    <span className="text-sm font-normal text-slate-500 ml-1">
-                      : {r.rate_type || r.source_category}
-                    </span>
-                  )}
-                </div>
-                {/* Prices */}
-                <div className="space-y-1 text-sm font-bold text-slate-900">
-                  <div>NPR {fmtNPR(r.source_rate_tola)} <span className="text-xs font-medium text-slate-500">per tola</span></div>
-                  <div>NPR {fmtNPR(r.source_rate_10g)} <span className="text-xs font-medium text-slate-500">per 10 grams</span></div>
-                </div>
-                {/* Source + Status */}
-                <div className="mt-3 pt-2 border-t border-slate-200/60 space-y-1 text-xs font-medium text-slate-500">
-                  <div>Source: <strong className="text-slate-700">{r.source_name}</strong></div>
-                  <div className="flex items-center justify-between">
-                    <span className="flex items-center gap-1.5">Status: {statusBadge(r.verification_status)}</span>
-                    <span className="text-slate-400">BS: {r.date_bs || 'N/A'}</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Gold Answer Card */}
+            {directAnswerGold ? (
+              <div className="bg-white border-2 border-amber-200 rounded-2xl p-6 shadow-sm">
+                <h3 className="text-lg font-black text-slate-900 mb-1">Gold</h3>
+                <p className="text-sm font-semibold text-slate-500 mb-4">{directAnswerGold.rate_type}</p>
+                <div className="space-y-2">
+                  <div className="text-2xl font-black text-amber-700">
+                    NPR {fmtNPR(directAnswerGold.source_per_tola)}
+                    <span className="text-sm font-semibold text-slate-500 ml-1">per tola</span>
+                  </div>
+                  <div className="text-lg font-bold text-slate-700">
+                    NPR {fmtNPR(directAnswerGold.source_per_10g)}
+                    <span className="text-sm font-semibold text-slate-500 ml-1">per 10 grams</span>
+                  </div>
+                  <div className="text-sm text-slate-500">
+                    NPR {fmtNPR(directAnswerGold.calculated_per_gram)} per gram
+                    <span className="text-xs text-slate-400 ml-1">(calculated)</span>
                   </div>
                 </div>
+                <div className="mt-6 pt-4 border-t border-slate-100 text-xs font-medium text-slate-600 grid grid-cols-2 gap-2">
+                  <div><span className="text-slate-400 block mb-0.5">Source</span>{directAnswerGold.source}</div>
+                  <div><span className="text-slate-400 block mb-0.5">Status</span>{statusBadge(directAnswerGold.status)}</div>
+                  <div className="col-span-2 mt-1"><span className="text-slate-400">BS Date: </span>{directAnswerGold.date_bs || 'N/A'}</div>
+                </div>
               </div>
-            ))}
-            </div>
+            ) : (
+              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm flex items-center justify-center">
+                <p className="text-sm text-slate-500">No gold record available for this date.</p>
+              </div>
+            )}
+
+            {/* Silver Answer Card */}
+            {directAnswerSilver ? (
+              <div className="bg-white border-2 border-slate-300 rounded-2xl p-6 shadow-sm">
+                <h3 className="text-lg font-black text-slate-900 mb-1">Silver</h3>
+                <p className="text-sm font-semibold text-slate-500 mb-4">{directAnswerSilver.rate_type}</p>
+                <div className="space-y-2">
+                  <div className="text-2xl font-black text-slate-700">
+                    NPR {fmtNPR(directAnswerSilver.source_per_tola)}
+                    <span className="text-sm font-semibold text-slate-500 ml-1">per tola</span>
+                  </div>
+                  <div className="text-lg font-bold text-slate-600">
+                    NPR {fmtNPR(directAnswerSilver.source_per_10g)}
+                    <span className="text-sm font-semibold text-slate-500 ml-1">per 10 grams</span>
+                  </div>
+                  <div className="text-sm text-slate-500">
+                    NPR {fmtNPR(directAnswerSilver.calculated_per_gram)} per gram
+                    <span className="text-xs text-slate-400 ml-1">(calculated)</span>
+                  </div>
+                </div>
+                <div className="mt-6 pt-4 border-t border-slate-100 text-xs font-medium text-slate-600 grid grid-cols-2 gap-2">
+                  <div><span className="text-slate-400 block mb-0.5">Source</span>{directAnswerSilver.source}</div>
+                  <div><span className="text-slate-400 block mb-0.5">Status</span>{statusBadge(directAnswerSilver.status)}</div>
+                  <div className="col-span-2 mt-1"><span className="text-slate-400">BS Date: </span>{directAnswerSilver.date_bs || 'N/A'}</div>
+                </div>
+              </div>
+            ) : (
+              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm flex items-center justify-center">
+                <p className="text-sm text-slate-500">No silver record available for this date.</p>
+              </div>
+            )}
           </div>
         )}
       </div>
 
-      {/* ── 2. MAIN TABLE & FILTERS ── */}
-      <div className="bg-white p-4 md:p-6 rounded-xl border border-slate-200 shadow-sm">
+      {/* ── 2. TABLE INTRO ── */}
+      <div className="max-w-4xl">
+        <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight mb-3">
+          Historical Gold and Silver Price Table
+        </h2>
+        <p className="text-sm text-slate-700 font-medium leading-relaxed mb-2">
+          View available historical gold and silver rates by date. Source-published prices are shown per tola and per 10 grams. Per-gram and per-kilogram values are calculated equivalents using 1 tola = 11.664 grams and are clearly distinguished from source values.
+        </p>
+      </div>
 
+      {/* ── 3. MAIN TABLE & FILTERS ── */}
+      <div className="bg-white rounded-xl border border-slate-200 shadow-sm">
 
-        {/* Main Filters */}
-        <div className="flex flex-col md:flex-row gap-4 mb-4 items-end">
-          <div className="w-full md:w-auto">
-            <label htmlFor="metalFilter" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Metal</label>
-            <select
-              id="metalFilter"
-              value={metalFilter}
-              onChange={(e) => setMetalFilter(e.target.value as any)}
-              className="w-full md:w-auto border border-slate-300 rounded-lg px-3 py-2 text-sm font-medium text-slate-800 focus:ring-2 focus:ring-amber-500 outline-none"
-            >
-              <option value="all">All Metals</option>
-              <option value="gold">Gold</option>
-              <option value="silver">Silver</option>
-            </select>
+        {/* Filters Row */}
+        <div className="p-4 md:p-6 border-b border-slate-100">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3 items-end">
+            <div>
+              <label htmlFor="metalFilter" className="block text-[10px] font-black text-slate-500 uppercase tracking-wider mb-1">Metal</label>
+              <select id="metalFilter" value={metalFilter} onChange={(e) => { setMetalFilter(e.target.value as 'all' | 'Gold' | 'Silver'); setCurrentPage(1); }} className="w-full border border-slate-300 rounded-lg px-2 py-1.5 text-xs font-medium text-slate-800 outline-none focus:ring-2 focus:ring-amber-400">
+                <option value="all">All</option>
+                <option value="Gold">Gold</option>
+                <option value="Silver">Silver</option>
+              </select>
+            </div>
+            <div>
+              <label htmlFor="rateTypeFilter" className="block text-[10px] font-black text-slate-500 uppercase tracking-wider mb-1">Rate Type</label>
+              <select id="rateTypeFilter" value={rateTypeFilter} onChange={(e) => { setRateTypeFilter(e.target.value); setCurrentPage(1); }} className="w-full border border-slate-300 rounded-lg px-2 py-1.5 text-xs font-medium text-slate-800 outline-none focus:ring-2 focus:ring-amber-400">
+                <option value="all">All</option>
+                {rateTypes.map(rt => <option key={rt} value={rt}>{rt}</option>)}
+              </select>
+            </div>
+            <div>
+              <label htmlFor="dateFrom" className="block text-[10px] font-black text-slate-500 uppercase tracking-wider mb-1">From Date</label>
+              <input type="date" id="dateFrom" value={dateFrom} onChange={(e) => { setDateFrom(e.target.value); setCurrentPage(1); }} className="w-full border border-slate-300 rounded-lg px-2 py-1.5 text-xs font-medium text-slate-800 outline-none focus:ring-2 focus:ring-amber-400" />
+            </div>
+            <div>
+              <label htmlFor="dateTo" className="block text-[10px] font-black text-slate-500 uppercase tracking-wider mb-1">To Date</label>
+              <input type="date" id="dateTo" value={dateTo} onChange={(e) => { setDateTo(e.target.value); setCurrentPage(1); }} className="w-full border border-slate-300 rounded-lg px-2 py-1.5 text-xs font-medium text-slate-800 outline-none focus:ring-2 focus:ring-amber-400" />
+            </div>
+            <div>
+              <label htmlFor="sourceFilter" className="block text-[10px] font-black text-slate-500 uppercase tracking-wider mb-1">Source</label>
+              <select id="sourceFilter" value={sourceFilter} onChange={(e) => { setSourceFilter(e.target.value); setCurrentPage(1); }} className="w-full border border-slate-300 rounded-lg px-2 py-1.5 text-xs font-medium text-slate-800 outline-none focus:ring-2 focus:ring-amber-400">
+                <option value="all">All</option>
+                {sources.map(s => <option key={s} value={s}>{s}</option>)}
+              </select>
+            </div>
+            <div>
+              <label htmlFor="statusFilter" className="block text-[10px] font-black text-slate-500 uppercase tracking-wider mb-1">Status</label>
+              <select id="statusFilter" value={statusFilter} onChange={(e) => { setStatusFilter(e.target.value); setCurrentPage(1); }} className="w-full border border-slate-300 rounded-lg px-2 py-1.5 text-xs font-medium text-slate-800 outline-none focus:ring-2 focus:ring-amber-400">
+                <option value="all">All</option>
+                {statuses.map(s => <option key={s} value={s}>{s}</option>)}
+              </select>
+            </div>
+            <div>
+              <label htmlFor="sortOrder" className="block text-[10px] font-black text-slate-500 uppercase tracking-wider mb-1">Sort</label>
+              <select id="sortOrder" value={sortOrder} onChange={(e) => { setSortOrder(e.target.value as 'newest' | 'oldest'); setCurrentPage(1); }} className="w-full border border-slate-300 rounded-lg px-2 py-1.5 text-xs font-medium text-slate-800 outline-none focus:ring-2 focus:ring-amber-400">
+                <option value="newest">Newest First</option>
+                <option value="oldest">Oldest First</option>
+              </select>
+            </div>
           </div>
-
-          <div className="w-full md:w-auto">
-            <label htmlFor="dateFrom" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">From Date</label>
-            <input
-              type="date"
-              id="dateFrom"
-              value={dateFrom}
-              onChange={(e) => setDateFrom(e.target.value)}
-              className="w-full md:w-auto border border-slate-300 rounded-lg px-3 py-2 text-sm font-medium text-slate-800 focus:ring-2 focus:ring-amber-500 outline-none"
-            />
-          </div>
-
-          <div className="w-full md:w-auto">
-            <label htmlFor="dateTo" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">To Date</label>
-            <input
-              type="date"
-              id="dateTo"
-              value={dateTo}
-              onChange={(e) => setDateTo(e.target.value)}
-              className="w-full md:w-auto border border-slate-300 rounded-lg px-3 py-2 text-sm font-medium text-slate-800 focus:ring-2 focus:ring-amber-500 outline-none"
-            />
-          </div>
-
-          <div className="w-full md:w-auto ml-auto">
-            <label htmlFor="sortOrder" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Sort</label>
-            <select
-              id="sortOrder"
-              value={sortOrder}
-              onChange={(e) => setSortOrder(e.target.value as any)}
-              className="w-full md:w-auto border border-slate-300 rounded-lg px-3 py-2 text-sm font-medium text-slate-800 focus:ring-2 focus:ring-amber-500 outline-none"
-            >
-              <option value="desc">Newest First</option>
-              <option value="asc">Oldest First</option>
-            </select>
-          </div>
+          <p className="mt-3 text-xs font-medium text-slate-500">
+            Showing {filteredRecords.length === 0 ? 0 : Math.min((currentPage - 1) * rowsPerPage + 1, filteredRecords.length)}–{Math.min(currentPage * rowsPerPage, filteredRecords.length)} of {filteredRecords.length} {statusFilter === 'all' ? 'available' : statusFilter.toLowerCase()} records
+          </p>
         </div>
 
         {/* Table */}
-        {filteredRecords.length === 0 ? (
-          <div className="text-center py-12 bg-slate-50 rounded-lg border border-slate-200">
-            <p className="text-slate-600 font-medium text-sm">
-              No historical record is available for this selection. NepaCalc does not estimate missing values.
-            </p>
-          </div>
-        ) : (
-          <div className="overflow-x-auto rounded-lg border border-slate-200">
-            <table className="w-full text-sm border-collapse min-w-[900px]">
-              <caption className="sr-only">Historical Gold and Silver Price Table</caption>
-              <thead className="bg-slate-50 sticky top-0 border-b border-slate-200">
-                <tr>
-                  <th scope="col" className="text-left px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-600">Date (AD)</th>
-                  <th scope="col" className="text-left px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-600">BS Date</th>
-                  <th scope="col" className="text-left px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-600">Metal / Rate Type</th>
-                  <th scope="col" className="text-right px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-600">Per Tola</th>
-                  <th scope="col" className="text-right px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-600">Per 10g</th>
-                  <th scope="col" className="text-right px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-400">Per Gram*</th>
-                  <th scope="col" className="text-right px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-400">Per Kg*</th>
-                  <th scope="col" className="text-left px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-600">Source</th>
-                  <th scope="col" className="text-center px-4 py-3 text-[11px] font-black uppercase tracking-widest text-slate-600">Status</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100 bg-white">
-                {paginatedRecords.map((r, i) => (
-                  <tr
-                    key={i}
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm text-left border-collapse min-w-[900px]">
+            <thead className="bg-slate-50 border-b border-slate-200 text-[10px] font-black uppercase tracking-widest text-slate-500">
+              <tr>
+                <th className="px-4 py-3 whitespace-nowrap">Date (AD)</th>
+                <th className="px-4 py-3 whitespace-nowrap">Date (BS)</th>
+                <th className="px-4 py-3 whitespace-nowrap">Metal</th>
+                <th className="px-4 py-3 whitespace-nowrap">Rate Type</th>
+                <th className="px-4 py-3 whitespace-nowrap text-right">Per Tola (NPR)</th>
+                <th className="px-4 py-3 whitespace-nowrap text-right">Per 10g (NPR)</th>
+                <th className="px-4 py-3 whitespace-nowrap text-right border-l border-slate-200">Per Gram*</th>
+                <th className="px-4 py-3 whitespace-nowrap text-right">Per Kg*</th>
+                <th className="px-4 py-3 whitespace-nowrap">Source</th>
+                <th className="px-4 py-3 whitespace-nowrap">Status</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100">
+              {currentRecords.map((r, idx) => (
+                <tr
+                  key={`${r.date_ad}-${r.metal}-${idx}`}
+                  className="hover:bg-amber-50/40 transition-colors"
+                >
+                  <td
+                    className="px-4 py-2.5 font-bold text-slate-900 whitespace-nowrap cursor-pointer hover:text-amber-700 hover:underline"
                     onClick={() => setSelectedDate(r.date_ad)}
-                    className={`cursor-pointer transition-colors ${selectedDate === r.date_ad ? 'bg-amber-50/80 border-l-4 border-amber-400' : 'hover:bg-slate-50/60'}`}
+                    title="Click to view full details for this date"
                   >
-                    <td className="px-4 py-3 font-semibold text-slate-800 whitespace-nowrap">{r.date_ad}</td>
-                    <td className="px-4 py-3 text-slate-600 whitespace-nowrap">{r.date_bs || 'N/A'}</td>
-                    <td className="px-4 py-3 whitespace-nowrap">
-                      <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-bold ${r.metal === 'gold' ? 'bg-amber-100 text-amber-900' : 'bg-slate-100 text-slate-800'}`}>
-                        {r.rate_type || r.source_category}
-                      </span>
-                    </td>
-                    <td className="px-4 py-3 text-right tabular-nums font-bold text-slate-900">Rs {fmtNPR(r.source_rate_tola)}</td>
-                    <td className="px-4 py-3 text-right tabular-nums font-semibold text-slate-800">Rs {fmtNPR(r.source_rate_10g)}</td>
-                    <td className="px-4 py-3 text-right tabular-nums font-medium text-slate-500">Rs {fmtNPR(r.calculated_rate_gram)}</td>
-                    <td className="px-4 py-3 text-right tabular-nums font-medium text-slate-500">Rs {fmtNPR(r.calculated_rate_kg)}</td>
-                    <td className="px-4 py-3 text-left font-medium text-slate-700 whitespace-nowrap">{r.source_name}</td>
-                    <td className="px-4 py-3 text-center whitespace-nowrap">{statusBadge(r.verification_status)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-
-        {/* Asterisk explanation */}
-        <div className="mt-3 text-xs text-slate-500 font-medium">
-          * Per gram and per kilogram values are calculated equivalents using 1 tola = 11.664 grams.
+                    {r.date_ad}
+                  </td>
+                  <td className="px-4 py-2.5 text-slate-600 whitespace-nowrap">{r.date_bs || 'N/A'}</td>
+                  <td className="px-4 py-2.5 font-bold text-slate-800 whitespace-nowrap">{r.metal}</td>
+                  <td className="px-4 py-2.5 text-slate-600 whitespace-nowrap">{r.rate_type}</td>
+                  <td className="px-4 py-2.5 font-bold text-amber-700 text-right whitespace-nowrap">{fmtNPR(r.source_per_tola)}</td>
+                  <td className="px-4 py-2.5 font-bold text-slate-700 text-right whitespace-nowrap">{fmtNPR(r.source_per_10g)}</td>
+                  <td className="px-4 py-2.5 text-slate-500 text-right whitespace-nowrap border-l border-slate-100">{fmtNPR(r.calculated_per_gram)}</td>
+                  <td className="px-4 py-2.5 text-slate-500 text-right whitespace-nowrap">{fmtNPR(r.calculated_per_kg)}</td>
+                  <td className="px-4 py-2.5 text-slate-600 whitespace-nowrap">
+                    {r.source_url ? (
+                      <a href={r.source_url} target="_blank" rel="noopener noreferrer" className="hover:underline">{r.source}</a>
+                    ) : r.source}
+                  </td>
+                  <td className="px-4 py-2.5 whitespace-nowrap">{statusBadge(r.status)}</td>
+                </tr>
+              ))}
+              {currentRecords.length === 0 && (
+                <tr>
+                  <td colSpan={10} className="px-4 py-10 text-center text-slate-500 text-sm">
+                    No historical records found matching the selected filters.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
         </div>
 
-        {/* Pagination Footer */}
-        {filteredRecords.length > 0 && (
-          <div className="mt-4 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-600 font-medium pt-2">
-            <div>Showing {startIndex + 1} to {endIndex} of {filteredRecords.length} entries</div>
-            <div className="flex items-center gap-1">
-              <button
-                onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-                disabled={currentPage === 1}
-                className="px-3 py-1 rounded border border-slate-300 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-              >
-                Previous
-              </button>
-              <div className="flex items-center">
-                {getPageNumbers().map((page, index) => (
-                  <button
-                    key={index}
-                    onClick={() => typeof page === 'number' && setCurrentPage(page)}
-                    disabled={page === '...'}
-                    className={`px-3 py-1 min-w-[32px] text-center border-y border-r first:border-l border-slate-300 transition-colors
-                      ${page === currentPage ? 'bg-slate-100 font-bold text-slate-900' : 'bg-white hover:bg-slate-50 text-slate-600'}
-                      ${page === '...' ? 'cursor-default border-none bg-transparent hover:bg-transparent' : ''}
-                    `}
-                  >
-                    {page}
-                  </button>
-                ))}
-              </div>
-              <button
-                onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-                disabled={currentPage === totalPages}
-                className="px-3 py-1 rounded border border-slate-300 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-              >
-                Next
-              </button>
+        {/* Table footnote */}
+        <div className="px-4 py-2 border-t border-slate-100 bg-slate-50/50">
+          <p className="text-[10px] text-slate-400 font-medium">* Per gram and per kg values are calculated equivalents (1 tola = 11.664 grams), not source-published prices.</p>
+        </div>
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="px-4 py-3 border-t border-slate-200 flex items-center justify-between">
+            <button onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))} disabled={currentPage === 1} className="px-3 py-1 text-xs font-bold text-slate-600 bg-slate-100 rounded hover:bg-slate-200 disabled:opacity-40">
+              Previous
+            </button>
+            <div className="flex flex-wrap items-center gap-1">
+              {getPagination().map((p, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => typeof p === 'number' && setCurrentPage(p)}
+                  disabled={p === '...'}
+                  className={`px-2.5 py-1 text-xs font-bold rounded min-w-[28px] transition-colors ${
+                    currentPage === p
+                      ? 'bg-amber-500 text-white'
+                      : p === '...'
+                      ? 'text-slate-400 cursor-default'
+                      : 'text-slate-600 hover:bg-slate-100'
+                  }`}
+                >
+                  {p}
+                </button>
+              ))}
             </div>
+            <button onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))} disabled={currentPage === totalPages} className="px-3 py-1 text-xs font-bold text-slate-600 bg-slate-100 rounded hover:bg-slate-200 disabled:opacity-40">
+              Next
+            </button>
           </div>
         )}
       </div>
+
     </div>
   );
 }

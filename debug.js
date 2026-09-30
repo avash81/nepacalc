@@ -1,0 +1,1 @@
+const puppeteer = require('puppeteer'); (async () => { const browser = await puppeteer.launch(); const page = await browser.newPage(); page.on('pageerror', e => console.error('PAGE_ERROR:', e)); page.on('console', msg => console.log('CONSOLE:', msg.text())); await page.goto('https://nepacalc.com', {waitUntil: 'networkidle0'}); await browser.close(); })();
