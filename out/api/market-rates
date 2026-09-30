@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-{"success":true,"gold":{"tolaNPR":282100,"tejabiTolaNPR":0},"silver":{"tolaNPR":3372},"provider":"LivePriceOfGold (Real-Time Backup)","updatedAt":"2026-09-30T17:52:31.281Z"}
-=======
-{"success":true,"gold":{"tolaNPR":282100,"tejabiTolaNPR":0},"silver":{"tolaNPR":3374},"provider":"LivePriceOfGold (Real-Time Backup)","updatedAt":"2026-09-30T18:06:18.707Z"}
->>>>>>> a3163d9565 (fix: resolve conflicts in out folder)
+{"success":true,"gold":{"tolaNPR":282100,"tejabiTolaNPR":0},"silver":{"tolaNPR":3375},"provider":"LivePriceOfGold (Real-Time Backup)","updatedAt":"2026-09-30T18:11:44.263Z"}
