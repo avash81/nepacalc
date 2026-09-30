@@ -65,6 +65,14 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
     return new Intl.NumberFormat('en-IN', { maximumFractionDigits: 2 }).format(num);
   };
 
+  // Calculated unit helpers (all derived from source_per_tola: 1 tola = 11.664g)
+  const calcAnna = (perTola: number | null) =>
+    perTola !== null ? perTola / 16 : null;          // 1 tola = 16 anna
+  const calcLal = (perTola: number | null) =>
+    perTola !== null ? perTola / 100 : null;          // 1 tola = 100 lal
+  const calcTroyOz = (perGram: number | null) =>
+    perGram !== null ? perGram * 31.1035 : null;      // 1 troy oz = 31.1035 g
+
   const getPagination = () => {
     const pages: (number | string)[] = [];
     if (totalPages <= 7) {
@@ -259,17 +267,22 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
 
         {/* Table */}
         <div className="overflow-x-auto">
-          <table className="w-full text-sm text-left border-collapse min-w-[900px]">
+          <table className="w-full text-sm text-left border-collapse min-w-[1200px]">
             <thead className="bg-slate-50 border-b border-slate-200 text-[10px] font-black uppercase tracking-widest text-slate-500">
               <tr>
                 <th className="px-4 py-3 whitespace-nowrap">Date (AD)</th>
                 <th className="px-4 py-3 whitespace-nowrap">Date (BS)</th>
                 <th className="px-4 py-3 whitespace-nowrap">Metal</th>
                 <th className="px-4 py-3 whitespace-nowrap">Rate Type</th>
+                {/* Source-published */}
                 <th className="px-4 py-3 whitespace-nowrap text-right">Per Tola (NPR)</th>
                 <th className="px-4 py-3 whitespace-nowrap text-right">Per 10g (NPR)</th>
+                {/* Calculated */}
                 <th className="px-4 py-3 whitespace-nowrap text-right border-l border-slate-200">Per Gram*</th>
                 <th className="px-4 py-3 whitespace-nowrap text-right">Per Kg*</th>
+                <th className="px-4 py-3 whitespace-nowrap text-right">Per Anna*</th>
+                <th className="px-4 py-3 whitespace-nowrap text-right">Per Lal*</th>
+                <th className="px-4 py-3 whitespace-nowrap text-right">Troy Oz*</th>
                 <th className="px-4 py-3 whitespace-nowrap">Source</th>
                 <th className="px-4 py-3 whitespace-nowrap">Status</th>
               </tr>
@@ -294,6 +307,9 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
                   <td className="px-4 py-2.5 font-bold text-slate-700 text-right whitespace-nowrap">{fmtNPR(r.source_per_10g)}</td>
                   <td className="px-4 py-2.5 text-slate-500 text-right whitespace-nowrap border-l border-slate-100">{fmtNPR(r.calculated_per_gram)}</td>
                   <td className="px-4 py-2.5 text-slate-500 text-right whitespace-nowrap">{fmtNPR(r.calculated_per_kg)}</td>
+                  <td className="px-4 py-2.5 text-slate-500 text-right whitespace-nowrap">{fmtNPR(calcAnna(r.source_per_tola))}</td>
+                  <td className="px-4 py-2.5 text-slate-500 text-right whitespace-nowrap">{fmtNPR(calcLal(r.source_per_tola))}</td>
+                  <td className="px-4 py-2.5 text-slate-500 text-right whitespace-nowrap">{fmtNPR(calcTroyOz(r.calculated_per_gram))}</td>
                   <td className="px-4 py-2.5 text-slate-600 whitespace-nowrap">
                     {r.source_url ? (
                       <a href={r.source_url} target="_blank" rel="noopener noreferrer" className="hover:underline">{r.source}</a>
@@ -304,7 +320,7 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
               ))}
               {currentRecords.length === 0 && (
                 <tr>
-                  <td colSpan={10} className="px-4 py-10 text-center text-slate-500 text-sm">
+                  <td colSpan={13} className="px-4 py-10 text-center text-slate-500 text-sm">
                     No historical records found matching the selected filters.
                   </td>
                 </tr>
@@ -315,7 +331,7 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
 
         {/* Table footnote */}
         <div className="px-4 py-2 border-t border-slate-100 bg-slate-50/50">
-          <p className="text-[10px] text-slate-400 font-medium">* Per gram and per kg values are calculated equivalents (1 tola = 11.664 grams), not source-published prices.</p>
+          <p className="text-[10px] text-slate-400 font-medium">* Calculated equivalents using 1 tola = 11.664 g &nbsp;|&nbsp; 1 tola = 16 anna &nbsp;|&nbsp; 1 tola = 100 lal &nbsp;|&nbsp; 1 troy oz = 31.1035 g. Not source-published prices.</p>
         </div>
 
         {/* Pagination */}
