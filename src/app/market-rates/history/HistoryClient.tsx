@@ -21,15 +21,13 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
   const [rateTypeFilter, setRateTypeFilter] = useState<string>('all');
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
-  const [sourceFilter, setSourceFilter] = useState('all');
-  const [statusFilter, setStatusFilter] = useState('Verified');
+  const [statusFilter, setStatusFilter] = useState('all');
   const [sortOrder, setSortOrder] = useState<'newest' | 'oldest'>('newest');
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 50;
   const [selectedDate, setSelectedDate] = useState<string>('');
 
   const rateTypes = useMemo(() => Array.from(new Set(records.map(r => r.rate_type))), [records]);
-  const sources = useMemo(() => Array.from(new Set(records.map(r => r.source))), [records]);
   const statuses = useMemo(() => Array.from(new Set(records.map(r => r.status))), [records]);
 
   useEffect(() => {
@@ -48,7 +46,6 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
     return records.filter((r) => {
       if (metalFilter !== 'all' && r.metal.toLowerCase() !== metalFilter.toLowerCase()) return false;
       if (rateTypeFilter !== 'all' && r.rate_type !== rateTypeFilter) return false;
-      if (sourceFilter !== 'all' && r.source !== sourceFilter) return false;
       if (statusFilter !== 'all' && r.status !== statusFilter) return false;
       if (dateFrom && r.date_ad < dateFrom) return false;
       if (dateTo && r.date_ad > dateTo) return false;
@@ -58,7 +55,7 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
       const dB = new Date(b.date_ad).getTime();
       return sortOrder === 'newest' ? dB - dA : dA - dB;
     });
-  }, [records, metalFilter, rateTypeFilter, sourceFilter, statusFilter, dateFrom, dateTo, sortOrder]);
+  }, [records, metalFilter, rateTypeFilter, statusFilter, dateFrom, dateTo, sortOrder]);
 
   const totalPages = Math.ceil(filteredRecords.length / rowsPerPage);
   const currentRecords = filteredRecords.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
@@ -216,7 +213,7 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
 
         {/* Filters Row */}
         <div className="p-4 md:p-6 border-b border-slate-100">
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3 items-end">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 items-end">
             <div>
               <label htmlFor="metalFilter" className="block text-[10px] font-black text-slate-500 uppercase tracking-wider mb-1">Metal</label>
               <select id="metalFilter" value={metalFilter} onChange={(e) => { setMetalFilter(e.target.value as 'all' | 'Gold' | 'Silver'); setCurrentPage(1); }} className="w-full border border-slate-300 rounded-lg px-2 py-1.5 text-xs font-medium text-slate-800 outline-none focus:ring-2 focus:ring-amber-400">
@@ -239,13 +236,6 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
             <div>
               <label htmlFor="dateTo" className="block text-[10px] font-black text-slate-500 uppercase tracking-wider mb-1">To Date</label>
               <input type="date" id="dateTo" value={dateTo} onChange={(e) => { setDateTo(e.target.value); setCurrentPage(1); }} className="w-full border border-slate-300 rounded-lg px-2 py-1.5 text-xs font-medium text-slate-800 outline-none focus:ring-2 focus:ring-amber-400" />
-            </div>
-            <div>
-              <label htmlFor="sourceFilter" className="block text-[10px] font-black text-slate-500 uppercase tracking-wider mb-1">Source</label>
-              <select id="sourceFilter" value={sourceFilter} onChange={(e) => { setSourceFilter(e.target.value); setCurrentPage(1); }} className="w-full border border-slate-300 rounded-lg px-2 py-1.5 text-xs font-medium text-slate-800 outline-none focus:ring-2 focus:ring-amber-400">
-                <option value="all">All</option>
-                {sources.map(s => <option key={s} value={s}>{s}</option>)}
-              </select>
             </div>
             <div>
               <label htmlFor="statusFilter" className="block text-[10px] font-black text-slate-500 uppercase tracking-wider mb-1">Status</label>
