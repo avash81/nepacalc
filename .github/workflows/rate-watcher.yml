@@ -43,7 +43,12 @@ jobs:
       - name: Check if rates have changed
         id: git-check
         run: |
-          if git diff --quiet public/data/live-rates.json public/data/market-rates.json public/data/forex-rates.json public/data/daily-history.json public/data/historical-rates.json src/hooks/useLiveRates.ts; then
+          # NOTE: historical-rates.json is excluded from this check intentionally.
+          # fetch-rates.js has its own internal guard that only writes when FENEGOSIDA
+          # published_at or gold price actually changes. Including historical-rates.json
+          # here causes spurious deploys because any daily append triggers a diff even
+          # when no real price change occurred.
+          if git diff --quiet public/data/live-rates.json public/data/market-rates.json public/data/forex-rates.json public/data/daily-history.json src/hooks/useLiveRates.ts; then
             echo "changed=false" >> $GITHUB_OUTPUT
             echo "⏭️  No rate changes — skipping deploy."
           else

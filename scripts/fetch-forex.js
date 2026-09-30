@@ -193,9 +193,21 @@ async function main() {
   const existing = readExisting();
   if (existing && existing.nrb_date) {
     if (existing.nrb_date === output.nrb_date) {
-      console.log(`\n⏭️  NRB Official rates have not changed since last fetch (${output.nrb_date}).`);
-      console.log(`   Skipping disk write to prevent unnecessary deploys.`);
-      return;
+      // Same NRB date — do a deeper value comparison to guard against
+      // tiny floating-point differences in cross_rates causing spurious git diffs.
+      // We compare the NRB rates (authoritative values) rather than cross_rates.
+      const existingRatesStr = JSON.stringify(
+        (existing.nrb_rates || []).map(r => `${r.iso3}:${r.buy}:${r.sell}`)
+      );
+      const newRatesStr = JSON.stringify(
+        (output.nrb_rates || []).map(r => `${r.iso3}:${r.buy}:${r.sell}`)
+      );
+      if (existingRatesStr === newRatesStr) {
+        console.log(`\n⏭️  NRB Official rates have not changed since last fetch (${output.nrb_date}).`);
+        console.log(`   Skipping disk write to prevent unnecessary deploys.`);
+        return;
+      }
+      console.log(`\n✅ NRB rates updated for same date (${output.nrb_date}) — writing.`);
     }
     // Compare dates. If the new date is older than the existing one, it means the API fell back due to a failure.
     // We should NOT revert the file to an older date, which causes a flip-flop deploy loop.
