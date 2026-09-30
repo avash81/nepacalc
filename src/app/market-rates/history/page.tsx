@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import fs from 'fs';
 import path from 'path';
 import HistoryClient from './HistoryClient';
+import HistoryContent from './HistoryContent';
 
 export const metadata: Metadata = {
   title: 'Gold and Silver Price History in Nepal | NepaCalc',
@@ -70,28 +71,28 @@ export default function HistoryPage() {
     mainEntity: [
       {
         '@type': 'Question',
-        name: 'What was the gold price in Nepal today?',
-        acceptedAnswer: { '@type': 'Answer', text: 'For today\'s live rate, visit the Live Gold Price page. Historical records are shown in the table above and default to the most recent verified date.' },
+        name: 'What was the gold price in Nepal on a specific date?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Use the historical date selector or table to find the available gold record for that date. The result identifies the AD date, BS date, gold rate type, source-published price per tola and per 10 grams, source, and verification status when a qualifying record is available.' },
       },
       {
         '@type': 'Question',
-        name: 'Are these official FENEGOSIDA rates?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Records marked as Verified are sourced directly from FENEGOSIDA (Federation of Nepal Gold and Silver Dealers Association). Records marked as Secondary-only are historical prices aggregated from secondary sources.' },
+        name: 'What was the silver price in Nepal on a specific date?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Select Silver and the required date in the historical archive. When a verified record is available, the historical table shows the silver rate per tola and per 10 grams together with the source and verification status.' },
       },
       {
         '@type': 'Question',
-        name: 'Why are some dates missing?',
-        acceptedAnswer: { '@type': 'Answer', text: 'NepaCalc does not estimate or carry forward prices for dates where a verified or corroborated source record could not be found. Missing dates reflect genuine gaps in available source data.' },
+        name: 'Where can I find gold price history in Nepal?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Gold historical rates are available through the date- and year-based historical archive, where available source records can be examined by date, rate type, unit, source, and verification status.' },
       },
       {
         '@type': 'Question',
-        name: 'How is the per gram gold price calculated in Nepal?',
-        acceptedAnswer: { '@type': 'Answer', text: 'FENEGOSIDA publishes official rates per tola and per 10 grams. The per-gram and per-kilogram values shown are calculated using 1 tola = 11.664 grams and are clearly marked as calculated equivalents, not official quoted prices.' },
+        name: 'Where can I find silver price history in Nepal?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Silver historical rates are available in the same archive, with silver records separated from gold records and shown by date, source-published unit, calculated equivalents, source, and verification status.' },
       },
       {
         '@type': 'Question',
-        name: 'What does Fine Gold 9999 mean?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Fine Gold (9999) is the terminology used in FENEGOSIDA source records. NepaCalc preserves source terminology rather than relabelling records with an unsupported purity or product category.' },
+        name: 'Is gold price history shown per tola or per 10 grams?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Both source-published units can be shown where the historical source provides them: per tola and per 10 grams. The archive also calculates equivalent per-gram and per-kilogram values.' },
       },
     ],
   };
@@ -136,53 +137,7 @@ export default function HistoryPage() {
         {/* ── INTERACTIVE CLIENT: Answer Box + Table ── */}
         <HistoryClient records={records} />
 
-        {/* ── METHODOLOGY ── */}
-        <section className="mt-12 pt-8 border-t border-slate-200 max-w-4xl space-y-4 text-sm text-slate-700 font-medium leading-relaxed">
-          <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight mb-4">
-            Methodology and Data Verification
-          </h2>
-          <p>
-            NepaCalc provides available historical gold and silver rates in Nepal by date, with source-published prices shown per tola and per 10 grams. Per-gram and per-kilogram values are calculated separately using 1 tola = 11.664 grams and are clearly marked as calculated equivalents, not source-published prices.
-          </p>
-          <p>
-            Verified records use FENEGOSIDA (Federation of Nepal Gold and Silver Dealers Association) as the primary source. Source terminology is preserved as published, including labels such as Fine Gold (9999), Tejabi Gold, and Silver.
-          </p>
-          <p>
-            Historical coverage is not continuous for every calendar date. When a reliable source record is unavailable or has not been independently verified, NepaCalc does not estimate, interpolate, or carry forward a price. Missing dates reflect genuine gaps in available source data.
-          </p>
-          <p>
-            Secondary historical records, where included, are identified by source and verification status. Source-published prices are preserved as published.
-          </p>
-        </section>
-
-        {/* ── FAQ ── */}
-        <section className="mt-12 pt-8 border-t border-slate-200 max-w-4xl">
-          <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight mb-6">
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-base font-bold text-slate-900 mb-1">What was the gold price in Nepal today?</h3>
-              <p className="text-sm text-slate-700 font-medium">To view today&apos;s market rates, please visit the <a href="/market-rates/live-gold-price/" className="text-amber-700 hover:underline">Live Gold Price</a> page. The table above defaults to the most recent verified date.</p>
-            </div>
-            <div>
-              <h3 className="text-base font-bold text-slate-900 mb-1">Are these official FENEGOSIDA rates?</h3>
-              <p className="text-sm text-slate-700 font-medium">Records marked as &quot;Verified&quot; are sourced directly from FENEGOSIDA. Records marked as &quot;Secondary-only&quot; are historical prices aggregated from secondary sources and may differ from official publication.</p>
-            </div>
-            <div>
-              <h3 className="text-base font-bold text-slate-900 mb-1">Why are some dates missing from the history?</h3>
-              <p className="text-sm text-slate-700 font-medium">Historical coverage is not continuous. NepaCalc does not estimate or carry forward prices for dates where a verified or corroborated source record could not be found.</p>
-            </div>
-            <div>
-              <h3 className="text-base font-bold text-slate-900 mb-1">How is the per-gram gold price calculated?</h3>
-              <p className="text-sm text-slate-700 font-medium">FENEGOSIDA publishes official rates per tola and per 10 grams. The per-gram and per-kilogram values are calculated equivalents based on 1 tola = 11.664 grams, not official quoted prices.</p>
-            </div>
-            <div>
-              <h3 className="text-base font-bold text-slate-900 mb-1">What does Fine Gold (9999) mean?</h3>
-              <p className="text-sm text-slate-700 font-medium">Fine Gold (9999) is the terminology used in FENEGOSIDA source records. NepaCalc preserves the source terminology rather than relabelling records.</p>
-            </div>
-          </div>
-        </section>
+        <HistoryContent />
 
         {/* ── RELATED LINKS ── */}
         <section className="mt-10 pt-6 border-t border-slate-200 max-w-4xl">
