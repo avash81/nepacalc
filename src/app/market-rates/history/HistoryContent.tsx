@@ -15,7 +15,7 @@ export default function HistoryContent() {
 
       <section className="space-y-4">
         <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">Gold Price History</h2>
-        <p>Gold price history in Nepal can be viewed by date and year using the available historical records. The historical table preserves source-published gold prices per tola and per 10 grams and separately provides calculated per-gram and per-kilogram equivalents.</p>
+        <p>Gold price history in Nepal can be viewed by date and year using the available historical records. For today&apos;s current rates, please visit the <a href="/market-rates/live-gold-price/" className="text-amber-700 font-semibold hover:underline">Live Gold Price in Nepal</a> page. The historical table preserves source-published gold prices per tola and per 10 grams and separately provides calculated per-gram and per-kilogram equivalents.</p>
         <p>Gold records retain the terminology used by the underlying source. Where the source identifies a record as <strong>Fine Gold (9999)</strong>, that terminology is displayed as Fine Gold (9999). Other source terminology, including <strong>Tejabi Gold</strong>, is not automatically converted into another purity or product category.</p>
         <p>For example, the verified record for <strong>25 September 2026</strong> identifies Fine Gold (9999) at <strong>NPR 298,600 per tola</strong> and <strong>NPR 256,000 per 10 grams</strong>, with the corresponding BS date <strong>2083/06/09</strong> and FENEGOSIDA as the source.</p>
         <p>Historical gold prices are not assumed to be continuous across every calendar date. When a corresponding historical source record has not been recovered or independently verified, a price is not created from an estimate, interpolation, previous-day value, or other calculated assumption.</p>
@@ -23,7 +23,7 @@ export default function HistoryContent() {
 
       <section className="space-y-4">
         <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">Silver Price History</h2>
-        <p>Silver price history in Nepal can also be viewed by date and year. The historical table preserves the available source-published silver rates per tola and per 10 grams and provides calculated per-gram and per-kilogram equivalents separately.</p>
+        <p>Silver price history in Nepal can also be viewed by date and year. For the latest daily silver rates, check the <a href="/market-rates/silver-price-nepal/" className="text-amber-700 font-semibold hover:underline">Today&apos;s Silver Price in Nepal</a> page. The historical table preserves the available source-published silver rates per tola and per 10 grams and provides calculated per-gram and per-kilogram equivalents separately.</p>
         <p>The source terminology is retained for silver records. For example, the verified FENEGOSIDA record for <strong>25 September 2026</strong> shows <strong>Silver at NPR 4,620 per tola and NPR 3,961 per 10 grams</strong>, with BS date <strong>2083/06/09</strong>.</p>
         <p>Gold and silver are recorded independently because their historical rates, source records, and available dates can differ. A missing silver record is therefore not filled from a gold record, and a missing gold record is not inferred from silver.</p>
       </section>
@@ -57,7 +57,7 @@ export default function HistoryContent() {
 
       <section className="space-y-4">
         <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">Gold Price per Tola, 10 Grams, Gram and Kilogram</h2>
-        <p>Gold prices in the historical records are primarily presented using the units published by the source, including <strong>per tola</strong> and <strong>per 10 grams</strong>.</p>
+        <p>Gold prices in the historical records are primarily presented using the units published by the source, including <strong>per tola</strong> and <strong>per 10 grams</strong>. For quick custom weight conversions, you can use our <a href="/calculator/gold-converter/" className="text-amber-700 font-semibold hover:underline">Gold Price Converter</a>.</p>
         <p>For calculations on this page:</p>
         <ul className="list-disc pl-5 space-y-1 font-semibold text-slate-800">
           <li>1 tola = 11.664 grams</li>
@@ -76,7 +76,7 @@ export default function HistoryContent() {
 
       <section className="space-y-4">
         <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">Silver Price per Tola, 10 Grams, Gram and Kilogram</h2>
-        <p>Silver historical records use the same unit structure where the source provides the applicable values.</p>
+        <p>Silver historical records use the same unit structure where the source provides the applicable values. You can also use our <a href="/calculator/silver-converter/" className="text-amber-700 font-semibold hover:underline">Silver Price Converter</a> for custom weight calculations.</p>
         <p>The historical table can show silver prices per tola and per 10 grams, together with calculated per-gram and per-kilogram equivalents using <strong>1 tola = 11.664 grams</strong>.</p>
         <p>For example, the verified silver record for <strong>25 September 2026</strong> is <strong>NPR 4,620 per tola</strong> and <strong>NPR 3,961 per 10 grams</strong>. The per-gram and per-kilogram values shown in the table are calculated equivalents and are kept separate from the source-published prices.</p>
       </section>
@@ -92,7 +92,7 @@ export default function HistoryContent() {
 
       <section className="space-y-4">
         <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">Historical Gold and Silver Price Trends</h2>
-        <p>Historical tables and charts can be used to compare how gold and silver rates changed across the available dates and periods.</p>
+        <p>Historical tables and charts can be used to compare how gold and silver rates changed across the available dates and periods. For an in-depth review of recent market movements, see our <a href="/blog/nepal-gold-price-analysis-2083/" className="text-amber-700 font-semibold hover:underline">Nepal Gold Price Analysis 2083</a>.</p>
         <p>The available verified records show substantial changes in Nepal&apos;s gold and silver rates during the covered periods. For example, verified FENEGOSIDA records in September 2026 show Fine Gold (9999) moving through rates above NPR 3,00,000 per tola on several dates, while silver records during the same period range through several thousand rupees per tola.</p>
         <p>The historical data should be interpreted according to the dates and records actually available. A chart of available records does not represent an uninterrupted daily series when source records are missing.</p>
         <p>Historical highs, lows, averages, and changes should therefore be calculated from the defined dataset and stated with the applicable date range and coverage. A value should not be described as an <strong>all-time highest</strong> or <strong>all-time lowest</strong> rate unless the underlying historical coverage supports that claim.</p>
@@ -108,7 +108,7 @@ export default function HistoryContent() {
 
       <section className="space-y-4">
         <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">Historical Data Sources</h2>
-        <p>FENEGOSIDA is used as the primary source for the verified historical records in the current dataset.</p>
+        <p><a href="https://www.fenegosida.org/" target="_blank" rel="noopener noreferrer" className="text-amber-700 font-semibold hover:underline">FENEGOSIDA (Federation of Nepal Gold and Silver Dealers Association)</a> is used as the primary source for the verified historical records in the current dataset.</p>
         <p>FENEGOSIDA&apos;s published records use fields such as <strong>Fine Gold (9999)</strong>, <strong>Tejabi Gold</strong>, and <strong>Silver</strong>, with prices provided per 10 grams and per tola. Historical source records can also contain AD and BS dates.</p>
         <p>Official FENEGOSIDA weekly reports are important for historical periods that are not covered by the current historical API. The historical research also identified limitations in the availability of older records through the API, making source-document recovery and verification necessary for earlier periods.</p>
         <p>Secondary historical sources can provide additional records or help identify gaps, but a secondary record is not automatically treated as a verified primary-source record.</p>
@@ -204,7 +204,7 @@ export default function HistoryContent() {
 
         <div className="space-y-2">
           <h3 className="text-lg font-bold text-slate-800">Troy Ounce</h3>
-          <p>A <strong>troy ounce</strong> is the international precious-metals unit used when comparing Nepal prices with international gold and silver markets.</p>
+          <p>A <strong>troy ounce</strong> is the international precious-metals unit used when comparing Nepal prices with international gold and silver markets, such as the <a href="https://www.lbma.org.uk/" target="_blank" rel="noopener noreferrer" className="text-amber-700 font-semibold hover:underline">London Bullion Market Association (LBMA)</a>.</p>
           <ul className="list-disc pl-5 space-y-1 text-slate-700">
             <li><strong>1 Troy Ounce = 31.1035 grams</strong></li>
             <li><strong>1 Troy Ounce ≈ 2.6667 Tolas</strong></li>
