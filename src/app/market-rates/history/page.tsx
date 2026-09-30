@@ -139,18 +139,6 @@ export default function HistoryPage() {
 
         <HistoryContent />
 
-        {/* ── RELATED LINKS ── */}
-        <section className="mt-10 pt-6 border-t border-slate-200 max-w-4xl">
-          <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-3">Related Pages</h3>
-          <div className="flex flex-wrap gap-3 text-sm">
-            <a href="/market-rates/live-gold-price/" className="text-amber-700 font-semibold hover:underline">Today&apos;s Gold Price</a>
-            <span className="text-slate-300" aria-hidden="true">|</span>
-            <a href="/market-rates/silver-price-nepal/" className="text-slate-700 font-semibold hover:underline">Today&apos;s Silver Price</a>
-            <span className="text-slate-300" aria-hidden="true">|</span>
-            <a href="/market-rates/" className="text-slate-700 font-semibold hover:underline">All Market Rates</a>
-          </div>
-        </section>
-
       </main>
     </div>
   );
