@@ -117,7 +117,10 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
   const directAnswerSilver = selectedDateRecords.find(r => r.metal.toLowerCase() === 'silver');
 
   return (
-    <div className="space-y-8">
+    <div 
+      className="space-y-8"
+      onCopy={(e) => e.preventDefault()}
+    >
 
       {/* ── 1. SELECTED-DATE ANSWER BOX ── */}
       <div>
