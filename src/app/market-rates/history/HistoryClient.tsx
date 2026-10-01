@@ -116,6 +116,14 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
   const directAnswerGold = selectedDateRecords.find(r => r.metal.toLowerCase() === 'gold');
   const directAnswerSilver = selectedDateRecords.find(r => r.metal.toLowerCase() === 'silver');
 
+  const handleDateClick = (dateAd: string) => {
+    setSelectedDate(dateAd);
+    const element = document.getElementById('answer-box');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <div 
       className="space-y-8"
@@ -123,7 +131,7 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
     >
 
       {/* ── 1. SELECTED-DATE ANSWER BOX ── */}
-      <div>
+      <div id="answer-box" className="scroll-mt-24">
         <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight mb-4">
           Gold and Silver Prices on {formattedSelectedDate}
         </h2>
@@ -293,7 +301,7 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
                 >
                   <td
                     className="px-4 py-2.5 font-bold text-slate-900 whitespace-nowrap cursor-pointer hover:text-amber-700 hover:underline"
-                    onClick={() => setSelectedDate(r.date_ad)}
+                    onClick={() => handleDateClick(r.date_ad)}
                     title="Click to view full details for this date"
                   >
                     {r.date_ad}
