@@ -162,7 +162,7 @@ export default function HistoricalData() {
 
         <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
           {activeTab === 'yearly' && (
-            <table className="w-full text-left">
+            <div className="overflow-x-auto"><table className="w-full text-left min-w-[600px] whitespace-nowrap">
               <thead>
                 <tr className="bg-slate-50 border-b border-slate-200 text-[11px] font-black text-slate-500 uppercase tracking-widest">
                   <th className="py-4 px-4" scope="col">Year</th>
@@ -189,14 +189,14 @@ export default function HistoricalData() {
                   </tr>
                 ))}
               </tbody>
-            </table>
+            </table></div>
           )}
 
           {activeTab === 'monthly' && (
             <div>
               <div className="px-4 pt-4"><UnitToggle /></div>
               {monthlyData.length > 0 ? (
-                <table className="w-full text-left">
+                <div className="overflow-x-auto"><table className="w-full text-left min-w-[600px] whitespace-nowrap">
                   <thead>
                     <tr className="bg-slate-50 border-b border-slate-200 text-[11px] font-black text-slate-500 uppercase tracking-widest">
                       <th className="py-4 px-4" scope="col">Month</th>
@@ -217,7 +217,7 @@ export default function HistoricalData() {
                       </tr>
                     ))}
                   </tbody>
-                </table>
+                </table></div>
               ) : (
                 <div className="p-8 text-center text-slate-400 font-medium text-sm">
                   <Database className="w-8 h-8 text-slate-200 mx-auto mb-3" />
@@ -231,7 +231,7 @@ export default function HistoricalData() {
             <div>
               <div className="px-4 pt-4"><UnitToggle /></div>
               {rawDailyData.length > 0 ? (
-                <table className="w-full text-left">
+                <div className="overflow-x-auto"><table className="w-full text-left min-w-[600px] whitespace-nowrap">
                   <thead>
                     <tr className="bg-slate-50 border-b border-slate-200 text-[11px] font-black text-slate-500 uppercase tracking-widest">
                       <th className="py-4 px-4" scope="col">Date</th>
@@ -271,7 +271,7 @@ export default function HistoricalData() {
                       );
                     })}
                   </tbody>
-                </table>
+                </table></div>
               ) : (
                 <div className="p-8 text-center text-slate-400 text-sm font-medium">
                   <Database className="w-8 h-8 text-slate-200 mx-auto mb-3" />

@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import PricePerformanceWidget from '@/components/widgets/PricePerformanceWidget';
 import { BookOpen, Scale, Globe, ShieldCheck, CheckCircle2, FileText, Search } from 'lucide-react';
 import HistoricalData from './HistoricalData';
@@ -174,8 +174,8 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
         <p className="text-[14px] text-slate-700 font-medium leading-relaxed mb-5">
           The FENEGOSIDA gold rate is only the starting point. The final price you pay at a jewellery shop is always higher. Here is how the total price is built:
         </p>
-        <div className="bg-white border border-slate-200 rounded-xl overflow-hidden mb-5">
-          <table className="w-full text-sm">
+        <div className="bg-white border border-slate-200 rounded-xl overflow-x-auto mb-5">
+          <table className="w-full text-sm min-w-[500px]">
             <thead className="bg-slate-50 text-[10px] font-black text-slate-400 uppercase tracking-widest">
               <tr>
                 <th className="py-3 px-5 text-left">Component</th>
@@ -245,7 +245,7 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
       <section id="gold-vs-silver" className="scroll-mt-24 mb-8">
         <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tighter mb-4">Gold vs Silver Investment in Nepal</h2>
         <div className="overflow-x-auto rounded-xl border border-slate-200 mb-4">
-          <table className="w-full text-sm">
+          <table className="w-full text-sm min-w-[500px]">
             <thead className="bg-slate-50 text-[10px] font-black text-slate-500 uppercase tracking-widest">
               <tr>
                 <th className="py-3 px-5 text-left">Factor</th>
