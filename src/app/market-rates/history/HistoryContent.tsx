@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function HistoryContent() {
   return (
-    <div className="mt-12 pt-8 border-t border-slate-200 max-w-4xl space-y-10 text-sm text-slate-700 font-medium leading-relaxed">
+    <div className="mt-6 max-w-4xl space-y-10 text-sm text-slate-700 font-medium leading-relaxed">
       
       <section className="space-y-4">
       </section>
