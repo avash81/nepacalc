@@ -209,7 +209,7 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
       {/* ── 2. TABLE INTRO ── */}
       <div className="max-w-4xl">
         <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight mb-3">
-          Historical Gold and Silver Price Table
+          Gold and Silver Prices History Table
         </h2>
         <p className="text-sm text-slate-700 font-medium leading-relaxed mb-2">
           View available historical gold and silver rates by date. Source-published prices are shown per tola and per 10 grams. Per-gram and per-kilogram values are calculated equivalents using 1 tola = 11.664 grams and are clearly distinguished from source values.
@@ -311,9 +311,9 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
                   <td className="px-4 py-2.5 text-slate-500 text-right whitespace-nowrap">{fmtNPR(calcLal(r.source_per_tola))}</td>
                   <td className="px-4 py-2.5 text-slate-500 text-right whitespace-nowrap">{fmtNPR(calcTroyOz(r.calculated_per_gram))}</td>
                   <td className="px-4 py-2.5 text-slate-600 whitespace-nowrap">
-                    {r.source_url ? (
-                      <a href={r.source_url} target="_blank" rel="noopener noreferrer" className="hover:underline">{r.source}</a>
-                    ) : r.source}
+                    
+                      {r.source}
+                    
                   </td>
                   <td className="px-4 py-2.5 whitespace-nowrap">{statusBadge(r.status)}</td>
                 </tr>

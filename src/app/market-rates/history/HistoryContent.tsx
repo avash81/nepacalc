@@ -46,14 +46,14 @@ export default function HistoryContent() {
 
       
       <section className="space-y-4">
-        <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">Understanding the Historical Records</h2>
+        <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">Historical Record of Gold and Silver Prices</h2>
         <div className="space-y-6">
 
           <div className="space-y-2">
             <h3 className="text-lg font-bold text-slate-800">Gold Price History</h3>
             <p>Gold price history in Nepal can be viewed by date and year using the available historical records. For today&apos;s current rates, please visit the <a href="/market-rates/live-gold-price/" className="text-amber-700 font-semibold hover:underline">Live Gold Price in Nepal</a> page. The historical table preserves source-published gold prices per tola and per 10 grams and separately provides calculated per-gram and per-kilogram equivalents.</p>
         <p>Gold records retain the terminology used by the underlying source. Where the source identifies a record as <strong>Fine Gold (9999)</strong>, that terminology is displayed as Fine Gold (9999). Other source terminology, including <strong>Tejabi Gold</strong>, is not automatically converted into another purity or product category.</p>
-        <p>For example, the verified record for <strong>25 September 2026</strong> identifies Fine Gold (9999) at <strong>NPR 298,600 per tola</strong> and <strong>NPR 256,000 per 10 grams</strong>, with the corresponding BS date <strong>2083/06/09</strong> and FENEGOSIDA as the source.</p>
+        <p>For example, the verified record for <strong>25 September 2026</strong> identifies Fine Gold (9999) at <strong>NPR 298,600 per tola</strong> and <strong>NPR 256,000 per 10 grams</strong>, with the corresponding BS date <strong>2083/06/09</strong> and <a href="https://fenegosida.org" target="_blank" rel="noopener noreferrer" className="text-amber-600 hover:text-amber-700 underline underline-offset-2">FENEGOSIDA</a> as the source.</p>
         <p>Historical gold prices are not assumed to be continuous across every calendar date. When a corresponding historical source record has not been recovered or independently verified, a price is not created from an estimate, interpolation, previous-day value, or other calculated assumption.</p>
           </div>
           <div className="space-y-2">
