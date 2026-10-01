@@ -40,7 +40,7 @@ export default function HistoryContent() {
 
       
       <section className="space-y-4">
-        <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">Historical Record of Gold and Silver Prices</h2>
+        <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">Historical Gold and Silver Records</h2>
         <div className="space-y-6">
 
           <div className="space-y-2">
