@@ -151,64 +151,66 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
             No verified historical record is currently available for this date. NepaCalc does not estimate or interpolate missing historical rates.
           </p>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl">
+          <div className="grid grid-cols-2 gap-2 sm:gap-4 w-full">
             {/* Gold Answer Card */}
             {directAnswerGold ? (
-              <div className="bg-white border-2 border-amber-200 rounded-xl p-4 shadow-sm">
-                <h3 className="text-base font-black text-slate-900 mb-0.5">Gold</h3>
-                <p className="text-xs font-semibold text-slate-500 mb-3">{directAnswerGold.rate_type}</p>
-                <div className="space-y-1">
-                  <div className="text-xl font-black text-amber-700">
-                    NPR {fmtNPR(directAnswerGold.source_per_tola)}
-                    <span className="text-xs font-semibold text-slate-500 ml-1">per tola</span>
-                  </div>
-                  <div className="text-base font-bold text-slate-700">
-                    NPR {fmtNPR(directAnswerGold.source_per_10g)}
-                    <span className="text-[10px] font-semibold text-slate-500 ml-1">per 10 grams</span>
-                  </div>
-                  <div className="text-xs text-slate-500">
-                    NPR {fmtNPR(directAnswerGold.calculated_per_gram)} per gram
-                    <span className="text-[10px] text-slate-400 ml-1">(calculated)</span>
+              <div className="bg-white border-2 border-amber-200 rounded-xl p-3 sm:p-4 shadow-sm flex flex-col justify-between">
+                <div>
+                  <h3 className="text-sm sm:text-base font-black text-slate-900 mb-0.5">Gold</h3>
+                  <p className="text-[10px] sm:text-xs font-semibold text-slate-500 mb-2 sm:mb-3">{directAnswerGold.rate_type}</p>
+                  <div className="space-y-1">
+                    <div className="text-[13px] sm:text-xl font-black text-amber-700 leading-tight">
+                      NPR {fmtNPR(directAnswerGold.source_per_tola)}
+                      <span className="text-[9px] sm:text-xs font-semibold text-slate-500 ml-1 block sm:inline">per tola</span>
+                    </div>
+                    <div className="text-[11px] sm:text-base font-bold text-slate-700 leading-tight">
+                      NPR {fmtNPR(directAnswerGold.source_per_10g)}
+                      <span className="text-[8px] sm:text-[10px] font-semibold text-slate-500 ml-1 block sm:inline">per 10g</span>
+                    </div>
+                    <div className="text-[10px] sm:text-xs text-slate-500 pt-1">
+                      NPR {fmtNPR(directAnswerGold.calculated_per_gram)} / g
+                    </div>
                   </div>
                 </div>
-                <div className="mt-4 pt-3 border-t border-slate-100 text-[10px] font-medium text-slate-600 flex justify-between items-center">
-                  <div><span className="text-slate-400 block mb-0.5 uppercase tracking-wider">Source</span>{directAnswerGold.source}</div>
-                  <div className="text-right"><span className="text-slate-400 block mb-0.5 uppercase tracking-wider">Status</span>{statusBadge(directAnswerGold.status)}</div>
+                <div className="mt-3 sm:mt-4 pt-2 sm:pt-3 border-t border-slate-100 text-[9px] sm:text-[10px] font-medium text-slate-600 flex flex-col sm:flex-row justify-between sm:items-center gap-1 sm:gap-0">
+                  <div><span className="text-slate-400 sm:block mb-0.5 uppercase tracking-wider mr-1 sm:mr-0">Source:</span>{directAnswerGold.source}</div>
+                  <div className="sm:text-right">{statusBadge(directAnswerGold.status)}</div>
                 </div>
               </div>
             ) : (
-              <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 shadow-sm flex items-center justify-center">
-                <p className="text-xs text-slate-500">No gold record available for this date.</p>
+              <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 sm:p-4 shadow-sm flex items-center justify-center">
+                <p className="text-[10px] sm:text-xs text-slate-500 text-center">No gold record available.</p>
               </div>
             )}
 
             {/* Silver Answer Card */}
             {directAnswerSilver ? (
-              <div className="bg-white border-2 border-slate-300 rounded-xl p-4 shadow-sm">
-                <h3 className="text-base font-black text-slate-900 mb-0.5">Silver</h3>
-                <p className="text-xs font-semibold text-slate-500 mb-3">{directAnswerSilver.rate_type}</p>
-                <div className="space-y-1">
-                  <div className="text-xl font-black text-slate-700">
-                    NPR {fmtNPR(directAnswerSilver.source_per_tola)}
-                    <span className="text-xs font-semibold text-slate-500 ml-1">per tola</span>
-                  </div>
-                  <div className="text-base font-bold text-slate-600">
-                    NPR {fmtNPR(directAnswerSilver.source_per_10g)}
-                    <span className="text-[10px] font-semibold text-slate-500 ml-1">per 10 grams</span>
-                  </div>
-                  <div className="text-xs text-slate-500">
-                    NPR {fmtNPR(directAnswerSilver.calculated_per_gram)} per gram
-                    <span className="text-[10px] text-slate-400 ml-1">(calculated)</span>
+              <div className="bg-white border-2 border-slate-300 rounded-xl p-3 sm:p-4 shadow-sm flex flex-col justify-between">
+                <div>
+                  <h3 className="text-sm sm:text-base font-black text-slate-900 mb-0.5">Silver</h3>
+                  <p className="text-[10px] sm:text-xs font-semibold text-slate-500 mb-2 sm:mb-3">{directAnswerSilver.rate_type}</p>
+                  <div className="space-y-1">
+                    <div className="text-[13px] sm:text-xl font-black text-slate-700 leading-tight">
+                      NPR {fmtNPR(directAnswerSilver.source_per_tola)}
+                      <span className="text-[9px] sm:text-xs font-semibold text-slate-500 ml-1 block sm:inline">per tola</span>
+                    </div>
+                    <div className="text-[11px] sm:text-base font-bold text-slate-600 leading-tight">
+                      NPR {fmtNPR(directAnswerSilver.source_per_10g)}
+                      <span className="text-[8px] sm:text-[10px] font-semibold text-slate-500 ml-1 block sm:inline">per 10g</span>
+                    </div>
+                    <div className="text-[10px] sm:text-xs text-slate-500 pt-1">
+                      NPR {fmtNPR(directAnswerSilver.calculated_per_gram)} / g
+                    </div>
                   </div>
                 </div>
-                <div className="mt-4 pt-3 border-t border-slate-100 text-[10px] font-medium text-slate-600 flex justify-between items-center">
-                  <div><span className="text-slate-400 block mb-0.5 uppercase tracking-wider">Source</span>{directAnswerSilver.source}</div>
-                  <div className="text-right"><span className="text-slate-400 block mb-0.5 uppercase tracking-wider">Status</span>{statusBadge(directAnswerSilver.status)}</div>
+                <div className="mt-3 sm:mt-4 pt-2 sm:pt-3 border-t border-slate-100 text-[9px] sm:text-[10px] font-medium text-slate-600 flex flex-col sm:flex-row justify-between sm:items-center gap-1 sm:gap-0">
+                  <div><span className="text-slate-400 sm:block mb-0.5 uppercase tracking-wider mr-1 sm:mr-0">Source:</span>{directAnswerSilver.source}</div>
+                  <div className="sm:text-right">{statusBadge(directAnswerSilver.status)}</div>
                 </div>
               </div>
             ) : (
-              <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 shadow-sm flex items-center justify-center">
-                <p className="text-xs text-slate-500">No silver record available for this date.</p>
+              <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 sm:p-4 shadow-sm flex items-center justify-center">
+                <p className="text-[10px] sm:text-xs text-slate-500 text-center">No silver record available.</p>
               </div>
             )}
           </div>
