@@ -1,16 +1,16 @@
 {
   "meta": {
     "version": "2026.09.30",
-    "last_updated_ad": "2026-09-30",
+    "last_updated_ad": "2026-10-01",
     "earliest_verified_date": "2024-06-02",
-    "latest_verified_date": "2026-09-30",
+    "latest_verified_date": "2026-10-01",
     "total_verified_records": 148,
     "verified_gold_records": 74,
     "verified_silver_records": 74,
     "verified_dates": 74,
     "gaps_exist": true,
     "last_updated": "2026-09-30",
-    "total_records": 3237,
+    "total_records": 3239,
     "audit_summary": {
       "total_records": 3235,
       "verified_records": 148,
@@ -18,6 +18,32 @@
     }
   },
   "data": [
+    {
+      "date_ad": "2026-10-01",
+      "date_bs": null,
+      "metal": "Gold",
+      "rate_type": "Fine Gold (9999)",
+      "source_per_tola": 293300,
+      "source_per_10g": 251460,
+      "calculated_per_gram": 25145.75,
+      "calculated_per_kg": 25145750,
+      "source": "FENEGOSIDA",
+      "source_url": "https://fenegosida.org",
+      "status": "Verified"
+    },
+    {
+      "date_ad": "2026-10-01",
+      "date_bs": null,
+      "metal": "Silver",
+      "rate_type": "Silver",
+      "source_per_tola": 4425,
+      "source_per_10g": 3794,
+      "calculated_per_gram": 379.37,
+      "calculated_per_kg": 379370,
+      "source": "FENEGOSIDA",
+      "source_url": "https://fenegosida.org",
+      "status": "Verified"
+    },
     {
       "date_ad": "2026-09-30",
       "date_bs": null,
