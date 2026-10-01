@@ -5,12 +5,6 @@ export default function HistoryContent() {
     <div className="mt-12 pt-8 border-t border-slate-200 max-w-4xl space-y-10 text-sm text-slate-700 font-medium leading-relaxed">
       
       <section className="space-y-4">
-        <p>
-          Historical gold and silver prices in Nepal by date and year, with source-published rates per tola and per 10 grams, AD and BS dates, rate type, calculated unit equivalents, source information, and verification status.
-        </p>
-        <p>
-          The historical archive is organized around the actual rates available from source records. Each historical entry identifies the metal, date, rate type, published price, source, and verification status. Gold and silver records are kept separately so that a historical price can be identified precisely rather than inferred from another date or another rate type.
-        </p>
       </section>
 
       

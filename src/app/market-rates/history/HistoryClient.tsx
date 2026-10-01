@@ -209,11 +209,8 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
       {/* ── 2. TABLE INTRO ── */}
       <div className="max-w-4xl">
         <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight mb-3">
-          Gold and Silver Prices History Table
+          Daily Gold and Silver Rate History
         </h2>
-        <p className="text-sm text-slate-700 font-medium leading-relaxed mb-2">
-          View available historical gold and silver rates by date. Source-published prices are shown per tola and per 10 grams. Per-gram and per-kilogram values are calculated equivalents using 1 tola = 11.664 grams and are clearly distinguished from source values.
-        </p>
       </div>
 
       {/* ── 3. MAIN TABLE & FILTERS ── */}
@@ -363,6 +360,14 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
             </button>
           </div>
         )}
+      </div>
+
+      {/* ── NOTE BELOW TABLE ── */}
+      <div className="mt-4 flex items-start gap-2 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3">
+        <span className="mt-0.5 shrink-0 text-xs font-black uppercase tracking-widest text-amber-600">Note</span>
+        <p className="text-xs text-amber-800 font-medium leading-relaxed">
+          Calculated equivalents using 1 tola = 11.664 g &nbsp;|&nbsp; 1 tola = 16 Aana &nbsp;|&nbsp; 1 tola = 100 Lal &nbsp;|&nbsp; 1 troy oz = 31.1035 g. These are calculated equivalents, not source-published prices.
+        </p>
       </div>
 
     </div>
