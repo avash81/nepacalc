@@ -6,7 +6,7 @@ import HistoryClient from './HistoryClient';
 import HistoryContent from './HistoryContent';
 
 export const metadata: Metadata = {
-  title: 'Gold and Silver Price History in Nepal',
+  title: 'History of Gold and Silver Rate in Nepal',
   description: 'View the complete, verified history of gold and silver market rates in Nepal by date. Includes source-published prices per tola, per 10 grams, and calculated per gram and per kg equivalents. Primary source: FENEGOSIDA.',
   alternates: {
     canonical: 'https://nepacalc.com/market-rates/history/',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     siteName: 'NepaCalc',
-    title: 'Gold and Silver Price History in Nepal',
+    title: 'History of Gold and Silver Rate in Nepal',
     description: 'View the complete, verified history of gold and silver market rates in Nepal by date.',
     url: 'https://nepacalc.com/market-rates/history/',
   },
