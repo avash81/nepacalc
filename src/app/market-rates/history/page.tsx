@@ -7,7 +7,7 @@ import HistoryContent from './HistoryContent';
 
 export const metadata: Metadata = {
   title: 'History of Gold and Silver Rate in Nepal',
-  description: 'View the complete, verified history of gold and silver market rates in Nepal by date. Includes source-published prices per tola, per 10 grams, and calculated per gram and per kg equivalents. Primary source: FENEGOSIDA.',
+  description: 'Explore gold and silver price history in Nepal with date-wise and day-by-day rates, historical data by year, per tola and 10g prices, calculated gram and traditional unit values, and source details.',
   alternates: {
     canonical: 'https://nepacalc.com/market-rates/history/',
   },
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     type: 'website',
     siteName: 'NepaCalc',
     title: 'History of Gold and Silver Rate in Nepal',
-    description: 'View the complete, verified history of gold and silver market rates in Nepal by date.',
+    description: 'Explore gold and silver price history in Nepal with date-wise and day-by-day rates, historical data by year, per tola and 10g prices, calculated gram and traditional unit values, and source details.',
     url: 'https://nepacalc.com/market-rates/history/',
   },
 };
