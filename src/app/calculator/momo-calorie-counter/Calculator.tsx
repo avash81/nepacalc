@@ -145,144 +145,227 @@ export default function MomoCalculator() {
 
           {/* Items */}
           <div className="space-y-6">
-            {items.map((item, idx) => {
-              const t = MOMO_TYPES.find(x => x.id === item.type)!;
-              return (
-                <div key={idx} className="space-y-4">
-                  {items.length > 1 && (
-                    <div className="flex justify-between items-center pb-2 border-b border-slate-100">
-                      <h3 className="text-sm font-bold text-[#202124]">Momo {idx + 1}</h3>
-                      <button onClick={() => removeItem(idx)} className="text-rose-500 text-[12px] font-bold" aria-label="Remove momo">Remove</button>
-                    </div>
-                  )}
+            {/* Primary Controls (Always edits the first/main item) */}
+            <div className="space-y-4">
+              {/* Type */}
+              <div className="space-y-1.5">
+                <label htmlFor="type-0" className="text-[13px] font-bold text-[#202124] block">Momo type</label>
+                <div className="relative">
+                  <select
+                    id="type-0"
+                    value={items[0].type}
+                    onChange={e => updateItem(0, { type: e.target.value })}
+                    className="w-full h-10 pl-3 pr-10 bg-white border border-[#DADCE0] rounded-md text-[13px] font-bold text-[#202124] focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none appearance-none cursor-pointer"
+                    aria-label="Select momo type"
+                  >
+                    {MOMO_TYPES.map(t => (
+                      <option key={t.id} value={t.id}>{t.label} Momo</option>
+                    ))}
+                  </select>
+                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#5F6368] pointer-events-none" />
+                </div>
+                <p className="text-[11px] text-[#5F6368]">Standard estimate: {MOMO_TYPES.find(x => x.id === items[0].type)?.cal} kcal/piece</p>
+              </div>
 
-                  {/* Type */}
-                  <div className="space-y-1.5">
-                    <label htmlFor={`type-${idx}`} className="text-[13px] font-bold text-[#202124] block">Momo type</label>
-                    <div className="relative">
-                      <select
-                        id={`type-${idx}`}
-                        value={item.type}
-                        onChange={e => updateItem(idx, { type: e.target.value })}
-                        className="w-full h-10 pl-3 pr-10 bg-white border border-[#DADCE0] rounded-md text-[13px] font-bold text-[#202124] focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none appearance-none cursor-pointer"
-                        aria-label="Select momo type"
-                      >
-                        {MOMO_TYPES.map(t => (
-                          <option key={t.id} value={t.id}>{t.label} Momo</option>
-                        ))}
-                      </select>
-                      <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#5F6368] pointer-events-none" />
-                    </div>
-                    <p className="text-[11px] text-[#5F6368]">Standard estimate: {t.cal} kcal/piece</p>
+              {/* Method */}
+              <div className="space-y-1.5">
+                <label className="text-[13px] font-bold text-[#202124] block">Cooking method</label>
+                <div className="flex flex-wrap gap-2">
+                  {COOKING_METHODS.map(cm => (
+                    <button
+                      key={cm.id}
+                      onClick={() => updateItem(0, { method: cm.id })}
+                      aria-label={`Select ${cm.label} method`}
+                      className={`px-3 py-1.5 text-[12px] font-bold rounded-md border transition-all ${items[0].method === cm.id ? 'bg-[#202124] border-[#202124] text-white' : 'bg-white border-[#DADCE0] text-[#5F6368] hover:bg-slate-50'}`}
+                    >
+                      {cm.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Quantity */}
+              <div className="space-y-2">
+                <label className="text-[13px] font-bold text-[#202124] block">Quantity</label>
+                <div className="flex items-center gap-2">
+                  <button aria-label="Decrease quantity" onClick={() => updateItem(0, { pieces: Math.max(1, items[0].pieces - 1) })} className="w-10 h-10 flex items-center justify-center border border-[#DADCE0] rounded-md text-[#5F6368] hover:bg-slate-50 font-bold">−</button>
+                  <span className="w-8 text-center font-bold text-[#202124] text-sm">{items[0].pieces}</span>
+                  <button aria-label="Increase quantity" onClick={() => updateItem(0, { pieces: Math.min(100, items[0].pieces + 1) })} className="w-10 h-10 flex items-center justify-center border border-[#DADCE0] rounded-md text-[#5F6368] hover:bg-slate-50 font-bold">+</button>
+                </div>
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {[1, 2, 4, 6, 8, 10, 12, 20].map(n => (
+                    <button key={n} onClick={() => updateItem(0, { pieces: n })} className={`px-2 py-1 text-[11px] font-bold rounded border transition-all ${items[0].pieces === n ? 'bg-[#202124] border-[#202124] text-white' : 'bg-white border-[#DADCE0] text-[#5F6368] hover:bg-slate-50'}`}>
+                      {n}
+                    </button>
+                  ))}
+                </div>
+                <details className="group mt-2">
+                  <summary className="text-[11px] font-bold text-[#5F6368] cursor-pointer list-none select-none inline-flex items-center gap-1 hover:text-[#202124]">
+                    Serving presets <ChevronDown className="w-3 h-3 group-open:rotate-180 transition-transform" />
+                  </summary>
+                  <div className="pt-2 flex flex-wrap gap-1.5">
+                    {[
+                      { label: '1 piece', val: 1 },
+                      { label: '5 pieces', val: 5 },
+                      { label: '10 pieces', val: 10 },
+                      { label: '15 pieces', val: 15 },
+                      { label: '20 pieces', val: 20 },
+                    ].map(s => (
+                      <button key={s.val} onClick={() => updateItem(0, { pieces: s.val })} className="px-2 py-1 text-[11px] font-medium rounded border border-[#DADCE0] bg-white text-[#5F6368] hover:bg-slate-50">
+                        {s.label}
+                      </button>
+                    ))}
                   </div>
+                </details>
+              </div>
 
-                  {/* Method */}
-                  <div className="space-y-1.5">
-                    <label className="text-[13px] font-bold text-[#202124] block">Cooking method</label>
-                    <div className="flex flex-wrap gap-2">
-                      {COOKING_METHODS.map(cm => (
-                        <button
-                          key={cm.id}
-                          onClick={() => updateItem(idx, { method: cm.id })}
-                          aria-label={`Select ${cm.label} method`}
-                          className={`px-3 py-1.5 text-[12px] font-bold rounded-md border transition-all ${item.method === cm.id ? 'bg-[#202124] border-[#202124] text-white' : 'bg-white border-[#DADCE0] text-[#5F6368] hover:bg-slate-50'}`}
-                        >
-                          {cm.label}
-                        </button>
+              {/* Sauces */}
+              <div className="space-y-1.5 pt-2">
+                {items[0].sauces.length === 0 ? (
+                  <details className="group">
+                    <summary className="text-[13px] font-bold text-[#1967D2] cursor-pointer list-none select-none inline-flex items-center gap-1">
+                      <Plus className="w-4 h-4" /> Add sauce / extras
+                    </summary>
+                    <div className="pt-3 grid grid-cols-2 sm:grid-cols-3 gap-2">
+                      {SAUCES.map(s => (
+                        <label key={s.id} className="flex items-center gap-1.5 cursor-pointer p-1.5 border border-[#DADCE0] rounded bg-white hover:bg-slate-50">
+                          <input type="checkbox" checked={false} onChange={() => toggleSauce(0, s.id)} className="w-3.5 h-3.5 rounded border-[#DADCE0] text-[#1967D2] focus:ring-[#1967D2]" aria-label={`Add ${s.label}`} />
+                          <span className="text-[11px] font-bold text-[#202124] leading-none">{s.label} <span className="font-normal text-[#5F6368]">+{s.cal}</span></span>
+                        </label>
                       ))}
                     </div>
-                  </div>
-
-                  {/* Quantity */}
-                  <div className="space-y-2">
-                    <label className="text-[13px] font-bold text-[#202124] block">Quantity</label>
-                    <div className="flex items-center gap-2">
-                      <button aria-label="Decrease quantity" onClick={() => updateItem(idx, { pieces: Math.max(1, item.pieces - 1) })} className="w-10 h-10 flex items-center justify-center border border-[#DADCE0] rounded-md text-[#5F6368] hover:bg-slate-50 font-bold">−</button>
-                      <span className="w-8 text-center font-bold text-[#202124] text-sm">{item.pieces}</span>
-                      <button aria-label="Increase quantity" onClick={() => updateItem(idx, { pieces: Math.min(100, item.pieces + 1) })} className="w-10 h-10 flex items-center justify-center border border-[#DADCE0] rounded-md text-[#5F6368] hover:bg-slate-50 font-bold">+</button>
-                    </div>
-                    <div className="flex flex-wrap gap-1.5 pt-1">
-                      {[1, 2, 4, 6, 8, 10, 12, 20].map(n => (
-                        <button key={n} onClick={() => updateItem(idx, { pieces: n })} className={`px-2 py-1 text-[11px] font-bold rounded border transition-all ${item.pieces === n ? 'bg-[#202124] border-[#202124] text-white' : 'bg-white border-[#DADCE0] text-[#5F6368] hover:bg-slate-50'}`}>
-                          {n}
-                        </button>
-                      ))}
-                    </div>
-                    <details className="group mt-2">
-                      <summary className="text-[11px] font-bold text-[#5F6368] cursor-pointer list-none select-none inline-flex items-center gap-1 hover:text-[#202124]">
-                        Serving presets <ChevronDown className="w-3 h-3 group-open:rotate-180 transition-transform" />
+                  </details>
+                ) : (
+                  <div>
+                    <details className="group" open>
+                      <summary className="text-[13px] font-bold text-[#202124] cursor-pointer list-none select-none flex items-center justify-between">
+                        Sauce / extras <ChevronDown className="w-4 h-4 group-open:rotate-180 transition-transform" />
                       </summary>
-                      <div className="pt-2 flex flex-wrap gap-1.5">
-                        {[
-                          { label: '1 piece', val: 1 },
-                          { label: '5 pieces', val: 5 },
-                          { label: '10 pieces', val: 10 },
-                          { label: '15 pieces', val: 15 },
-                          { label: '20 pieces', val: 20 },
-                        ].map(s => (
-                          <button key={s.val} onClick={() => updateItem(idx, { pieces: s.val })} className="px-2 py-1 text-[11px] font-medium rounded border border-[#DADCE0] bg-white text-[#5F6368] hover:bg-slate-50">
-                            {s.label}
-                          </button>
+                      <div className="pt-3 grid grid-cols-2 sm:grid-cols-3 gap-2 mb-3">
+                        {SAUCES.map(s => (
+                          <label key={s.id} className="flex items-center gap-1.5 cursor-pointer p-1.5 border border-[#DADCE0] rounded bg-white hover:bg-slate-50">
+                            <input type="checkbox" checked={items[0].sauces.includes(s.id)} onChange={() => toggleSauce(0, s.id)} className="w-3.5 h-3.5 rounded border-[#DADCE0] text-[#1967D2] focus:ring-[#1967D2]" aria-label={s.label} />
+                            <span className="text-[11px] font-bold text-[#202124] leading-none">{s.label} <span className="font-normal text-[#5F6368]">+{s.cal}</span></span>
+                          </label>
                         ))}
                       </div>
                     </details>
+                    <div className="flex flex-wrap gap-2 items-center mt-2">
+                      <span className="text-[11px] font-bold text-[#5F6368]">Extras:</span>
+                      {items[0].sauces.map(sid => {
+                        const s = SAUCES.find(x => x.id === sid)!;
+                        return (
+                          <span key={sid} className="inline-flex items-center gap-1 px-2 py-1 bg-slate-100 rounded-full text-[11px] font-bold text-[#202124]">
+                            {s.label}
+                            <button aria-label={`Remove ${s.label}`} onClick={() => toggleSauce(0, sid)} className="text-[#5F6368] hover:text-rose-500"><X className="w-3 h-3"/></button>
+                          </span>
+                        );
+                      })}
+                    </div>
                   </div>
+                )}
+              </div>
+            </div>
 
-                  {/* Sauces */}
-                  <div className="space-y-1.5 pt-2">
-                    {item.sauces.length === 0 ? (
-                      <details className="group">
-                        <summary className="text-[13px] font-bold text-[#1967D2] cursor-pointer list-none select-none inline-flex items-center gap-1">
-                          <Plus className="w-4 h-4" /> Add sauce / extras
-                        </summary>
-                        <div className="pt-3 grid grid-cols-2 sm:grid-cols-3 gap-2">
-                          {SAUCES.map(s => (
-                            <label key={s.id} className="flex items-center gap-1.5 cursor-pointer p-1.5 border border-[#DADCE0] rounded bg-white hover:bg-slate-50">
-                              <input type="checkbox" checked={false} onChange={() => toggleSauce(idx, s.id)} className="w-3.5 h-3.5 rounded border-[#DADCE0] text-[#1967D2] focus:ring-[#1967D2]" aria-label={`Add ${s.label}`} />
-                              <span className="text-[11px] font-bold text-[#202124] leading-none">{s.label} <span className="font-normal text-[#5F6368]">+{s.cal}</span></span>
-                            </label>
-                          ))}
-                        </div>
-                      </details>
-                    ) : (
-                      <div>
-                        <details className="group" open>
-                          <summary className="text-[13px] font-bold text-[#202124] cursor-pointer list-none select-none flex items-center justify-between">
-                            Sauce / extras <ChevronDown className="w-4 h-4 group-open:rotate-180 transition-transform" />
-                          </summary>
-                          <div className="pt-3 grid grid-cols-2 sm:grid-cols-3 gap-2 mb-3">
-                            {SAUCES.map(s => (
-                              <label key={s.id} className="flex items-center gap-1.5 cursor-pointer p-1.5 border border-[#DADCE0] rounded bg-white hover:bg-slate-50">
-                                <input type="checkbox" checked={item.sauces.includes(s.id)} onChange={() => toggleSauce(idx, s.id)} className="w-3.5 h-3.5 rounded border-[#DADCE0] text-[#1967D2] focus:ring-[#1967D2]" aria-label={s.label} />
-                                <span className="text-[11px] font-bold text-[#202124] leading-none">{s.label} <span className="font-normal text-[#5F6368]">+{s.cal}</span></span>
-                              </label>
-                            ))}
-                          </div>
-                        </details>
-                        <div className="flex flex-wrap gap-2 items-center mt-2">
-                          <span className="text-[11px] font-bold text-[#5F6368]">Extras:</span>
-                          {item.sauces.map(sid => {
-                            const s = SAUCES.find(x => x.id === sid)!;
-                            return (
-                              <span key={sid} className="inline-flex items-center gap-1 px-2 py-1 bg-slate-100 rounded-full text-[11px] font-bold text-[#202124]">
-                                {s.label}
-                                <button aria-label={`Remove ${s.label}`} onClick={() => toggleSauce(idx, sid)} className="text-[#5F6368] hover:text-rose-500"><X className="w-3 h-3"/></button>
-                              </span>
-                            );
-                          })}
-                        </div>
+            {/* Meal Summary */}
+            {items.length > 1 && (
+              <div className="mt-6 bg-slate-50 border border-[#DADCE0] rounded-lg p-4 shadow-sm">
+                <div className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider mb-3">Meal</div>
+                <div className="space-y-3">
+                  {items.map((it, idx) => {
+                    const t = MOMO_TYPES.find(x => x.id === it.type)!;
+                    const m = COOKING_METHODS.find(x => x.id === it.method)!;
+                    return (
+                      <div key={idx} className="flex justify-between items-center text-[13px] text-[#202124]">
+                        <span>
+                          {t.label} · {m.label.toLowerCase()} · {it.pieces}
+                          {it.sauces.length > 0 && ' + extras'}
+                        </span>
+                        {idx !== 0 && (
+                          <button onClick={() => removeItem(idx)} className="text-rose-500 font-bold text-[12px] hover:underline" aria-label="Remove item">Remove</button>
+                        )}
+                        {idx === 0 && (
+                          <span className="text-[11px] font-bold text-[#5F6368] uppercase">Main</span>
+                        )}
                       </div>
-                    )}
+                    );
+                  })}
+                </div>
+                <div className="border-t border-[#DADCE0] mt-3 pt-3 font-bold text-[13px] text-[#202124]">
+                  Total: {totalPieces} momos
+                </div>
+              </div>
+            )}
+
+            {/* Add Another Momo Inline Form */}
+            {isAdding ? (
+              <div className="mt-4 bg-white border border-[#1967D2] rounded-lg p-4 space-y-4 shadow-sm">
+                <div className="text-[13px] font-bold text-[#1967D2]">Add another momo</div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="space-y-1.5">
+                    <label className="text-[12px] font-bold text-[#202124]">Type</label>
+                    <div className="relative">
+                      <select
+                        value={draft.type}
+                        onChange={e => setDraft({ ...draft, type: e.target.value })}
+                        className="w-full h-9 pl-2 pr-8 bg-white border border-[#DADCE0] rounded-md text-[12px] font-bold text-[#202124] focus:border-[#1967D2] outline-none appearance-none"
+                      >
+                        {MOMO_TYPES.map(t => <option key={t.id} value={t.id}>{t.label}</option>)}
+                      </select>
+                      <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#5F6368] pointer-events-none" />
+                    </div>
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-[12px] font-bold text-[#202124]">Method</label>
+                    <div className="relative">
+                      <select
+                        value={draft.method}
+                        onChange={e => setDraft({ ...draft, method: e.target.value })}
+                        className="w-full h-9 pl-2 pr-8 bg-white border border-[#DADCE0] rounded-md text-[12px] font-bold text-[#202124] focus:border-[#1967D2] outline-none appearance-none"
+                      >
+                        {COOKING_METHODS.map(m => <option key={m.id} value={m.id}>{m.label}</option>)}
+                      </select>
+                      <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#5F6368] pointer-events-none" />
+                    </div>
                   </div>
                 </div>
-              );
-            })}
-          </div>
-
-          <div className="pt-2">
-            <button onClick={addItem} aria-label="Add another momo" className="text-[13px] font-bold text-[#1967D2] flex items-center gap-1 hover:underline">
-               <Plus className="w-4 h-4" /> Add another momo
-            </button>
+                <div className="space-y-1.5">
+                  <label className="text-[12px] font-bold text-[#202124]">Quantity</label>
+                  <div className="flex items-center gap-2">
+                    <button onClick={() => setDraft({ ...draft, pieces: Math.max(1, draft.pieces - 1) })} className="w-8 h-8 flex items-center justify-center border border-[#DADCE0] rounded text-[#5F6368] hover:bg-slate-50 font-bold">−</button>
+                    <span className="w-6 text-center font-bold text-[#202124] text-[13px]">{draft.pieces}</span>
+                    <button onClick={() => setDraft({ ...draft, pieces: Math.min(100, draft.pieces + 1) })} className="w-8 h-8 flex items-center justify-center border border-[#DADCE0] rounded text-[#5F6368] hover:bg-slate-50 font-bold">+</button>
+                  </div>
+                </div>
+                <div className="flex gap-2 pt-2">
+                  <button
+                    onClick={() => {
+                      setItems([...items, draft]);
+                      setIsAdding(false);
+                      setDraft(newItem());
+                    }}
+                    className="px-4 py-2 bg-[#1967D2] hover:bg-blue-700 text-white text-[12px] font-bold rounded-md transition-colors"
+                  >
+                    Add to meal
+                  </button>
+                  <button
+                    onClick={() => {
+                      setIsAdding(false);
+                      setDraft(newItem());
+                    }}
+                    className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-[#5F6368] hover:text-[#202124] text-[12px] font-bold rounded-md transition-colors"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="pt-2">
+                <button onClick={() => setIsAdding(true)} aria-label="Add another momo" className="text-[13px] font-bold text-[#1967D2] flex items-center gap-1 hover:underline">
+                   <Plus className="w-4 h-4" /> Add another momo
+                </button>
+              </div>
+            )}
           </div>
 
           <div className="pt-4 border-t border-[#DADCE0] flex items-center gap-4">
@@ -383,6 +466,76 @@ export default function MomoCalculator() {
             </details>
 
           </div>
+        </div>
+      }
+      seoContent={
+        <div className="pt-8">
+          {/* ── How Many Calories Are in Momos? ── */}
+          <h2 className="text-2xl font-black text-[#202124] mt-0 mb-3">How Many Calories Are in Momos?</h2>
+          <p className="text-[#5F6368] leading-relaxed mb-4">
+            Momo calories vary depending on the filling, cooking method, quantity, wrapper size and any sauces or additions. A steamed chicken momo, for example, can have a different calorie value from a fried, paneer, pork or jhol momo.
+          </p>
+          <p className="text-[#5F6368] leading-relaxed font-semibold">
+            Select the momo type, cooking method and quantity above to calculate an estimated serving.
+          </p>
+
+          {/* ── How It Works ── */}
+          <h2 className="text-2xl font-black text-[#202124] mt-8 mb-3">How the Momo Calorie Calculator Works</h2>
+          <p className="text-[#5F6368] leading-relaxed mb-4">
+            Select a momo type, choose the cooking method, enter the number of pieces and add any optional sauces. The calculator then estimates the total calories and nutrition for the selected serving.
+          </p>
+          <p className="text-[#5F6368] leading-relaxed">
+            Because momo recipes and portion sizes vary, the result is an estimate rather than a universal nutritional value.
+          </p>
+
+          {/* ── Popular Portions ── */}
+          <h2 className="text-2xl font-black text-[#202124] mt-8 mb-3">Calories in Popular Momo Portions</h2>
+          <div className="overflow-x-auto my-4 border border-[#DADCE0] rounded-xl not-prose">
+            <table className="w-full text-sm">
+              <thead className="bg-[#F8F9FA] border-b border-[#DADCE0]">
+                <tr>
+                  <th className="px-4 py-3 text-left font-black text-[#202124] text-[11px] uppercase tracking-wider">Quantity</th>
+                  <th className="px-4 py-3 text-right font-black text-[#202124] text-[11px] uppercase tracking-wider">Steamed Chicken Momos</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-[#F1F3F4] text-[#202124]">
+                {[
+                  { q: '1 momo',   c: '60 kcal' },
+                  { q: '5 momos',  c: '300 kcal' },
+                  { q: '6 momos',  c: '360 kcal' },
+                  { q: '8 momos',  c: '480 kcal' },
+                  { q: '10 momos', c: '600 kcal' },
+                  { q: '12 momos', c: '720 kcal' },
+                ].map(r => (
+                  <tr key={r.q} className="hover:bg-slate-50">
+                    <td className="px-4 py-2.5 font-semibold">{r.q}</td>
+                    <td className="px-4 py-2.5 text-right font-bold text-[#1967D2]">{r.c}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="text-sm text-[#5F6368] leading-relaxed mb-6">
+            These are example estimates using the standard steamed chicken calculation. Change the momo type, cooking method or quantity above for another result.
+          </p>
+
+          {/* ── Guide Link ── */}
+          <div className="bg-[#E8F0FE] border border-[#1967D2] rounded-xl p-5 mb-6 not-prose">
+            <h3 className="font-bold text-[#1967D2] text-lg mb-2">Momo Calories Guide</h3>
+            <p className="text-[#202124] text-sm leading-relaxed mb-3">
+              Looking for information about calories in chicken, veg, buff, fried, steamed, jhol and other momos? Read the <Link href="/blog/momo-calories/" className="text-[#1967D2] font-bold hover:underline">complete guide to momo calories</Link>.
+            </p>
+          </div>
+
+          {/* ── Related Calculators ── */}
+          <h2 className="text-2xl font-black text-[#202124] mt-8 mb-3">Related Calculators</h2>
+          <ul className="text-[#5F6368] leading-relaxed space-y-2 not-prose">
+            <li><Link href="/calculator/calorie-calculator/" className="text-[#1967D2] font-bold hover:underline">Calorie Calculator</Link> — Estimate daily calorie needs.</li>
+            <li><Link href="/calculator/bmr/" className="text-[#1967D2] font-bold hover:underline">BMR Calculator</Link> — Estimate basal metabolic rate.</li>
+            <li><Link href="/calculator/bmi/" className="text-[#1967D2] font-bold hover:underline">BMI Calculator</Link> — Calculate body mass index.</li>
+            <li><Link href="/calculator/ideal-weight/" className="text-[#1967D2] font-bold hover:underline">Ideal Weight Calculator</Link> — Estimate an ideal weight range.</li>
+            <li><Link href="/calculator/water-intake/" className="text-[#1967D2] font-bold hover:underline">Water Intake Calculator</Link> — Estimate daily water intake.</li>
+          </ul>
         </div>
       }
     />
