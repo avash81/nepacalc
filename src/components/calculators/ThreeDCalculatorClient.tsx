@@ -397,16 +397,7 @@ export default function ThreeDCalculatorClient() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen w-full overflow-x-hidden bg-[#f8fafc] font-sans">
-      <nav className="flex items-center justify-between px-4 lg:px-6 py-3 lg:py-4 border-b border-slate-200 bg-white shrink-0">
-        <div className="flex items-center gap-2 lg:gap-3">
-          <button aria-label="Go Back" onClick={() => window.history.back()} className="p-1.5 lg:p-2 border border-slate-200 rounded hover:bg-slate-50"><ArrowLeft className="w-4 h-4" /></button>
-          <div className="text-[10px] lg:text-[11px] font-bold text-slate-500 uppercase tracking-widest">3D Pro Studio v4.0</div>
-        </div>
-      </nav>
-
-      
-      <div className="flex-1 flex flex-col gap-3 w-full overflow-x-hidden">
+    <div className="w-full overflow-x-hidden bg-[#f8fafc] font-sans">
 
         {/* EQUATIONS - full width above graph */}
         <div className="w-full px-3 pt-3">
@@ -848,7 +839,6 @@ export default function ThreeDCalculatorClient() {
             </div>
           </div>
         </div>
-      </div>
     </div>
   );
 }
