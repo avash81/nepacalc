@@ -407,6 +407,20 @@ export default function DateDuration() {
             )}
           </div>
 
+          {/* ── CALCULATION TRANSPARENCY ── */}
+          <div className="px-4 py-3 bg-[#FAFAFA] border border-[#DADCE0] rounded-lg">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-[#70757A] mb-2">How the result is calculated</p>
+            <p className="font-mono text-sm text-[#202124]">
+              {fmtDate(diff.hiISO)} − {fmtDate(diff.loISO)} = {(diff.totalDays - (includeEnd ? 1 : 0)).toLocaleString()} days
+            </p>
+            {includeEnd && (
+              <p className="font-mono text-sm text-[#1A73E8] mt-1">
+                {(diff.totalDays - 1).toLocaleString()} + 1 = {diff.totalDays.toLocaleString()} days
+                <span className="font-sans text-[10px] text-[#70757A] ml-2 not-italic">(include end date)</span>
+              </p>
+            )}
+          </div>
+
           {/* ── CALENDAR DURATION ── */}
           <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg px-5 py-4 text-center">
             <div className="text-xl font-bold text-[#202124] tracking-wide">
@@ -541,12 +555,11 @@ export default function DateDuration() {
         {/* 1. Direct Answer */}
         <section id="days-between-dates">
           <h2 className="text-lg font-bold text-[#1967D2] mb-2">How Many Days Are Between Two Dates?</h2>
-          <div className="bg-[#E8F0FE] border-l-4 border-[#1A73E8] rounded-r-lg px-4 py-3">
-            <p className="text-[#202124] text-sm leading-relaxed">
-              To calculate the number of days between two dates, subtract the start date from the end date. For example, July&nbsp;1 to July&nbsp;5 is 4 elapsed days. If you include both the start and end dates, the result is 5 days.
-            </p>
-          </div>
+          <p className="text-[#202124] text-sm leading-relaxed">
+            Enter a start date and an end date above. The calculator subtracts the start date from the end date to give the elapsed number of calendar days. Turn on <strong>Include end date</strong> when both dates should be counted.
+          </p>
         </section>
+
 
         {/* 2. What it calculates */}
         <section id="what-it-calculates">
