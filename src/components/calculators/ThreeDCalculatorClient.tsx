@@ -14,6 +14,11 @@ import {
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
+// Pre-warm the worker as soon as the JS bundle executes, eliminating the initialization delay.
+if (typeof window !== 'undefined') {
+  try { new Worker('/workers/graphWorker.js'); } catch(e) {}
+}
+
 /* ── TYPES ────────────────────────────────────────────────── */
 interface GraphItem {
   id: string;

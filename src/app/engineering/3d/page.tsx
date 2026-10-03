@@ -98,6 +98,9 @@ export const metadata: Metadata = {
 export default function ThreeDPage() {
   return (
     <>
+      <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.js" as="script" crossOrigin="anonymous" />
+      <link rel="preload" href="/workers/graphWorker.js" as="script" />
+
       <JsonLd
         type="breadcrumb"
         breadcrumbItems={[
