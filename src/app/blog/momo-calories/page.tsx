@@ -187,7 +187,7 @@ export default function MomoCaloriesBlog() {
                 </h2>
                 {/* Simple inline calculator CTA */}
                 <p className="text-sm text-[#5F6368] mb-4">
-                  Want an estimate for a specific serving? Use the{' '}
+                  Want an estimate for specific calories? Use the{' '}
                   <Link href="/calculator/momo-calorie-counter/" className="text-[#1967D2] font-semibold hover:underline">
                     Momo Calorie Calculator
                   </Link>.
