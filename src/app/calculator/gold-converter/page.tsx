@@ -201,33 +201,6 @@ export default async function Page() {
           </div>
 
           <h2 id="conversion-table" className="text-2xl font-black text-slate-900 mt-12 mb-6">Nepal Gold Conversion Table</h2>
-          <div className="overflow-x-auto mb-6">
-            <table className="min-w-full bg-white border border-slate-200 mb-2">
-              <thead className="bg-slate-50">
-                <tr>
-                  <th className="py-3 px-4 border-b text-left font-bold text-slate-700">Traditional Unit</th>
-                  <th className="py-3 px-4 border-b text-left font-bold text-slate-700">Lal</th>
-                  <th className="py-3 px-4 border-b text-left font-bold text-slate-700">Grams (g)</th>
-                  <th className="py-3 px-4 border-b text-left font-bold text-slate-700">Tola Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td className="py-2 px-4 border-b">1 Lal</td><td className="py-2 px-4 border-b">1 Lal</td><td className="py-2 px-4 border-b">0.1166 g</td><td className="py-2 px-4 border-b">0.01 Tola</td></tr>
-                <tr><td className="py-2 px-4 border-b bg-slate-50">2 Lal</td><td className="py-2 px-4 border-b bg-slate-50">2 Lal</td><td className="py-2 px-4 border-b bg-slate-50">0.2333 g</td><td className="py-2 px-4 border-b bg-slate-50">0.02 Tola</td></tr>
-                <tr><td className="py-2 px-4 border-b">3 Lal</td><td className="py-2 px-4 border-b">3 Lal</td><td className="py-2 px-4 border-b">0.3499 g</td><td className="py-2 px-4 border-b">0.03 Tola</td></tr>
-                <tr><td className="py-2 px-4 border-b bg-slate-50">6.25 Lal (1 Aana)</td><td className="py-2 px-4 border-b bg-slate-50">6.25 Lal</td><td className="py-2 px-4 border-b bg-slate-50">0.7290 g</td><td className="py-2 px-4 border-b bg-slate-50">0.0625 Tola</td></tr>
-                <tr><td className="py-2 px-4 border-b">12.5 Lal (2 Aana)</td><td className="py-2 px-4 border-b">12.5 Lal</td><td className="py-2 px-4 border-b">1.4580 g</td><td className="py-2 px-4 border-b">0.125 Tola</td></tr>
-                <tr><td className="py-2 px-4 border-b bg-slate-50">15 Lal</td><td className="py-2 px-4 border-b bg-slate-50">15 Lal</td><td className="py-2 px-4 border-b bg-slate-50">1.7496 g</td><td className="py-2 px-4 border-b bg-slate-50">0.15 Tola</td></tr>
-                <tr><td className="py-2 px-4 border-b">40 Lal</td><td className="py-2 px-4 border-b">40 Lal</td><td className="py-2 px-4 border-b">4.6655 g</td><td className="py-2 px-4 border-b">0.40 Tola</td></tr>
-                <tr><td className="py-2 px-4 border-b bg-slate-50">50 Lal (8 Aana)</td><td className="py-2 px-4 border-b bg-slate-50">50 Lal</td><td className="py-2 px-4 border-b bg-slate-50">5.8319 g</td><td className="py-2 px-4 border-b bg-slate-50">0.50 Tola</td></tr>
-                <tr><td className="py-2 px-4 border-b">75 Lal (12 Aana)</td><td className="py-2 px-4 border-b">75 Lal</td><td className="py-2 px-4 border-b">8.7479 g</td><td className="py-2 px-4 border-b">0.75 Tola</td></tr>
-                <tr><td className="py-2 px-4 border-b bg-slate-50">90 Lal</td><td className="py-2 px-4 border-b bg-slate-50">90 Lal</td><td className="py-2 px-4 border-b bg-slate-50">10.4974 g</td><td className="py-2 px-4 border-b bg-slate-50">0.90 Tola</td></tr>
-                <tr><td className="py-2 px-4 border-b font-bold">100 Lal (1 Tola)</td><td className="py-2 px-4 border-b">100 Lal</td><td className="py-2 px-4 border-b">11.664 g</td><td className="py-2 px-4 border-b">1.00 Tola</td></tr>
-              </tbody>
-            </table>
-          </div>
-
-
           <h3 className="font-bold text-slate-900 mb-2 mt-8">1. Core Gold Weight Conversion</h3>
           <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
             <table className="min-w-full text-sm text-left">
@@ -302,6 +275,7 @@ export default async function Page() {
             </table>
           </div>
 
+          
           <h3 className="font-bold text-slate-900 mb-2 mt-8">2. Tola → Gram / Aana / Lal</h3>
           <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
             <table className="min-w-full text-sm text-left">
@@ -786,87 +760,7 @@ export default async function Page() {
             </table>
           </div>
 
-          <h3 className="font-bold text-slate-900 mb-2 mt-8">6. 10 Gram Gold Conversion</h3>
-          <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
-            <table className="min-w-full text-sm text-left">
-              <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
-                <tr>
-                  <th className="py-2.5 px-4">Weight</th>
-                  <th className="py-2.5 px-4">Tola</th>
-                  <th className="py-2.5 px-4">Aana</th>
-                  <th className="py-2.5 px-4">Lal</th>
-                  <th className="py-2.5 px-4">Gram</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100">
-                <tr>
-                  <td className="py-2 px-4">10 g</td>
-                  <td className="py-2 px-4">0.857350</td>
-                  <td className="py-2 px-4">13.7176</td>
-                  <td className="py-2 px-4">85.7350</td>
-                  <td className="py-2 px-4">10</td>
-                </tr>
-                <tr className="bg-slate-50">
-                  <td className="py-2 px-4">20 g</td>
-                  <td className="py-2 px-4">1.714700</td>
-                  <td className="py-2 px-4">27.4352</td>
-                  <td className="py-2 px-4">171.4700</td>
-                  <td className="py-2 px-4">20</td>
-                </tr>
-                <tr>
-                  <td className="py-2 px-4">30 g</td>
-                  <td className="py-2 px-4">2.572050</td>
-                  <td className="py-2 px-4">41.1528</td>
-                  <td className="py-2 px-4">257.2050</td>
-                  <td className="py-2 px-4">30</td>
-                </tr>
-                <tr className="bg-slate-50">
-                  <td className="py-2 px-4">40 g</td>
-                  <td className="py-2 px-4">3.429400</td>
-                  <td className="py-2 px-4">54.8704</td>
-                  <td className="py-2 px-4">342.9400</td>
-                  <td className="py-2 px-4">40</td>
-                </tr>
-                <tr>
-                  <td className="py-2 px-4">50 g</td>
-                  <td className="py-2 px-4">4.286750</td>
-                  <td className="py-2 px-4">68.5880</td>
-                  <td className="py-2 px-4">428.6750</td>
-                  <td className="py-2 px-4">50</td>
-                </tr>
-                <tr className="bg-slate-50">
-                  <td className="py-2 px-4">100 g</td>
-                  <td className="py-2 px-4">8.573500</td>
-                  <td className="py-2 px-4">137.1760</td>
-                  <td className="py-2 px-4">857.3500</td>
-                  <td className="py-2 px-4">100</td>
-                </tr>
-                <tr>
-                  <td className="py-2 px-4">250 g</td>
-                  <td className="py-2 px-4">21.433750</td>
-                  <td className="py-2 px-4">342.9400</td>
-                  <td className="py-2 px-4">2,143.3750</td>
-                  <td className="py-2 px-4">250</td>
-                </tr>
-                <tr className="bg-slate-50">
-                  <td className="py-2 px-4">500 g</td>
-                  <td className="py-2 px-4">42.867500</td>
-                  <td className="py-2 px-4">685.8800</td>
-                  <td className="py-2 px-4">4,286.7500</td>
-                  <td className="py-2 px-4">500</td>
-                </tr>
-                <tr>
-                  <td className="py-2 px-4">1 kg</td>
-                  <td className="py-2 px-4">85.735000</td>
-                  <td className="py-2 px-4">1,371.7600</td>
-                  <td className="py-2 px-4">8,573.5000</td>
-                  <td className="py-2 px-4">1,000</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <h3 className="font-bold text-slate-900 mb-2 mt-8">7. Kilogram → Tola</h3>
+          <h3 className="font-bold text-slate-900 mb-2 mt-8">6. Common Kilogram → Gram / Tola</h3>
           <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
             <table className="min-w-full text-sm text-left">
               <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
@@ -936,8 +830,7 @@ export default async function Page() {
             </table>
           </div>
 
-          <h3 className="font-bold text-slate-900 mb-2 mt-8">8. Troy Ounce Conversion</h3>
-          <p className="mb-2 text-slate-700 text-sm">Using 1 troy ounce = 31.1034768 g:</p>
+          <h3 className="font-bold text-slate-900 mb-2 mt-8">7. Troy Ounce → Gram / Tola</h3>
           <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
             <table className="min-w-full text-sm text-left">
               <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
@@ -997,7 +890,7 @@ export default async function Page() {
             </table>
           </div>
 
-          <h3 className="font-bold text-slate-900 mb-2 mt-8">9. Tola → Troy Ounce</h3>
+          <h3 className="font-bold text-slate-900 mb-2 mt-8">8. Tola → Troy Ounce</h3>
           <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
             <table className="min-w-full text-sm text-left">
               <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
@@ -1062,7 +955,7 @@ export default async function Page() {
             </table>
           </div>
 
-          <h3 className="font-bold text-slate-900 mb-2 mt-8">10. Gram → Milligram</h3>
+          <h3 className="font-bold text-slate-900 mb-2 mt-8">9. Gram → Milligram</h3>
           <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
             <table className="min-w-full text-sm text-left">
               <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
@@ -1127,7 +1020,6 @@ export default async function Page() {
               </tbody>
             </table>
           </div>
-
 
           <h2 id="official-standard" className="text-2xl font-black text-slate-900 mt-12 mb-6">Official Nepal Gold Measurement Standard (FENEGOSIDA & NBSM)</h2>
           <div className="mb-6 space-y-4">
