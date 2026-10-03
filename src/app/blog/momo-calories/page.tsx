@@ -182,10 +182,16 @@ export default function MomoCaloriesBlog() {
               {/* Point 37: Early calculator CTA */}
               {/* ── Section 1: Momo Calories at a Glance ── Point 4 */}
               <section aria-labelledby="glance">
-                <h2 id="glance" className="text-2xl font-black text-[#202124] mb-3">
+                <h2 id="glance" className="text-2xl font-black text-[#202124] mb-2">
                   Momo Calories at a Glance
                 </h2>
-                {/* Point 2: self-contained answer */}
+                {/* Simple inline calculator CTA */}
+                <p className="text-sm text-[#5F6368] mb-4">
+                  Want an estimate for a specific serving? Use the{' '}
+                  <Link href="/calculator/momo-calorie-counter/" className="text-[#1967D2] font-semibold hover:underline">
+                    Momo Calorie Calculator
+                  </Link>.
+                </p>
                 <p className="text-[#5F6368] leading-relaxed mb-5">
                   Momo calories depend on the filling, size and preparation method. Steamed, fried, jhol, tandoori and C-momo preparations can produce different calorie estimates for the same number of pieces. The table below uses the same assumptions as the Momo Calorie Calculator.
                 </p>
@@ -605,20 +611,6 @@ export default function MomoCaloriesBlog() {
                   ))}
                 </div>
               </section>
-
-              {/* ── Final CTA — Point 37 ── */}
-              <div className="bg-orange-50 border border-orange-200 rounded-2xl p-6 text-center">
-                <p className="text-[#202124] font-bold text-lg mb-2">Calculate Your Momo Calories</p>
-                <p className="text-[#5F6368] text-sm mb-4">
-                  Select the momo type, cooking method, quantity and extras for an instant estimate.
-                </p>
-                <Link
-                  href="/calculator/momo-calorie-counter/"
-                  className="inline-block px-6 py-3 bg-orange-500 text-white font-black rounded-full text-sm hover:bg-orange-600 transition-colors"
-                >
-                  Calculate Momo Calories →
-                </Link>
-              </div>
 
               {/* ── Related Calculators — Point 38 ── */}
               <section aria-labelledby="related">
