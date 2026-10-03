@@ -8,17 +8,6 @@ export const metadata: Metadata = {
     description:
       'Calculate calories in momos by type, cooking method and quantity. Estimate calories, protein, carbs and fat for chicken, veg, buff, paneer and more.',
     slug: 'calculator/momo-calorie-counter',
-    keywords: [
-      'Momo Calorie Calculator',
-      'momo calories',
-      'calories in momos',
-      'chicken momo calories',
-      'veg momo calories',
-      'steamed momo calories',
-      'fried momo calories',
-      'calories in chicken momos',
-      'calories in 1 momo',
-    ],
   }),
   openGraph: {
     title: 'Momo Calorie Calculator – Calories in Momos',
@@ -55,38 +44,10 @@ const breadcrumbSchema = {
   ],
 };
 
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'How many calories are in one momo?',
-      acceptedAnswer: { '@type': 'Answer', text: 'The standard steamed chicken estimate is 60 calories per piece. Other momo types and cooking methods can have different calorie values.' },
-    },
-    {
-      '@type': 'Question',
-      name: 'How many calories are in 10 momos?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Ten steamed chicken momos are estimated at 600 calories. Select another momo type or cooking method to calculate a different serving.' },
-    },
-    {
-      '@type': 'Question',
-      name: 'How many calories are in steamed chicken momos?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Approximately 60 calories per steamed chicken momo. Actual calories vary according to recipe, filling and portion size.' },
-    },
-    {
-      '@type': 'Question',
-      name: 'Are fried momos higher in calories than steamed momos?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Fried momos can contain more calories because cooking oil adds energy. The difference depends on preparation method and amount of oil used.' },
-    },
-  ],
-};
-
 export default function Page() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Calculator />
     </>
   );
