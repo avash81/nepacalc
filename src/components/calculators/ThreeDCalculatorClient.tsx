@@ -83,7 +83,7 @@ const CURRICULUM_PRESETS = [
   },
   { 
     name: 'Torus (Donut)', 
-    eq: '(6, sqrt(x^2+y^2))^2 + z^2 = 4', 
+    eq: '(6 - sqrt(x^2+y^2))^2 + z^2 = 4', 
     color: '#ec4899',
     desc: 'A high-level geometric topology used in advanced mathematics, physics (like tokamak fusion reactors), and design.'
   },
@@ -598,12 +598,14 @@ export default function ThreeDCalculatorClient() {
             <div className="flex-1 bg-[#e2e8f0] relative group">
               <Canvas 
                 shadows 
+                frameloop="demand"
                 gl={{ 
                   antialias: true, 
                   localClippingEnabled: true, 
                   toneMapping: THREE.ACESFilmicToneMapping,
+                  powerPreference: 'high-performance',
                 }}
-                dpr={[1, 2]}
+                dpr={[1, 1.5]}
               >
                 <color attach="background" args={['#e2e8f0']} />
                 {isOrthographic ? (

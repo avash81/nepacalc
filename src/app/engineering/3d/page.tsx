@@ -8,8 +8,8 @@ const ThreeDCalculatorClient = dynamic(
   { 
     ssr: false, 
     loading: () => (
-      <div className="flex-1 flex flex-col lg:flex-row gap-6 p-6 min-h-screen items-center justify-center bg-[#f8fafc]">
-        <div className="animate-pulse flex flex-col items-center gap-4">
+      <div className="flex flex-col min-h-[calc(100vh-64px)] lg:h-[calc(100vh-64px)] w-full items-center justify-center bg-[#f8fafc]">
+        <div className="flex flex-col items-center gap-4">
           <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
           <p className="text-slate-500 font-bold text-sm uppercase tracking-widest">Loading 3D Engine...</p>
         </div>
@@ -28,8 +28,8 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
-  title: '3D Graph Calculator – Free Online 3D Plotter & Surface Grapher',
-  description: 'Plot 3D graphs, surfaces and mathematical functions instantly with our free online 3D Graph Calculator. Visualize equations, rotate graphs and explore multivariable functions directly in your browser.',
+  title: '3D Graphing Calculator | Free 3D Grapher & Plotter',
+  description: 'Plot 3D graphs, equations and mathematical surfaces with a free online 3D graphing calculator. Rotate, zoom and compare multiple surfaces directly in your browser.',
   applicationName: 'NepaCalc 3D Graph Calculator',
   generator: '', // Removing Next.js generator by overriding it
   referrer: 'strict-origin-when-cross-origin',
@@ -73,8 +73,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    title: '3D Graph Calculator – Free Online 3D Plotter & Surface Grapher',
-    description: 'Plot 3D graphs, surfaces and mathematical functions instantly with our free online 3D Graph Calculator. Visualize equations, rotate graphs and explore multivariable functions directly in your browser.',
+    title: '3D Graphing Calculator | Free 3D Grapher & Plotter',
+    description: 'Plot 3D graphs, equations and mathematical surfaces with a free online 3D graphing calculator. Rotate, zoom and compare multiple surfaces directly in your browser.',
     url: 'https://nepacalc.com/engineering/3d/',
     siteName: 'NepaCalc',
     locale: 'en_NP',
@@ -89,8 +89,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: '3D Graph Calculator – Free Online 3D Plotter & Surface Grapher',
-    description: 'Plot 3D graphs, surfaces and mathematical functions instantly with our free online 3D Graph Calculator. Visualize equations, rotate graphs and explore multivariable functions directly in your browser.',
+    title: '3D Graphing Calculator | Free 3D Grapher & Plotter',
+    description: 'Plot 3D graphs, equations and mathematical surfaces with a free online 3D graphing calculator. Rotate, zoom and compare multiple surfaces directly in your browser.',
     images: ['https://nepacalc.com/images/3d-graph-calculator-og.webp'],
   },
 };
@@ -137,7 +137,7 @@ export default function ThreeDPage() {
               "@type": "WebApplication",
               "@id": "https://nepacalc.com/engineering/3d/#software",
               "name": "3D Graph Calculator",
-              "description": "Plot 3D graphs, surfaces and mathematical functions instantly with our free online 3D Graph Calculator. Visualize equations, rotate graphs and explore multivariable functions directly in your browser.",
+              "description": "Plot 3D graphs, equations and mathematical surfaces with a free online 3D graphing calculator. Rotate, zoom and compare multiple surfaces directly in your browser.",
               "url": "https://nepacalc.com/engineering/3d/",
               "applicationCategory": "EducationalApplication",
               "operatingSystem": "Web Browser",
@@ -359,10 +359,10 @@ export default function ThreeDPage() {
       <ThreeDCalculatorClient />
 
       <div className="max-w-[1280px] mx-auto px-4 mt-8 pb-4">
-        <h1 className="text-3xl lg:text-4xl font-black text-[#202124] mb-4 text-center">3D Graph Calculator</h1>
-        <p className="text-sm font-semibold text-center text-[#1967D2] mb-6 uppercase tracking-wider">Last Updated: June 2026</p>
+        <h1 className="text-3xl lg:text-4xl font-black text-[#202124] mb-4 text-center">3D Graphing Calculator</h1>
+        <p className="text-sm font-semibold text-center text-[#1967D2] mb-6 uppercase tracking-wider">Last Updated: October 2026</p>
         <p className="text-lg text-center leading-relaxed text-[#5F6368] max-w-4xl mx-auto">
-          Plot mathematical equations, visualize 3D surfaces, and explore multivariable functions with NepaCalc's free <strong>3D Graph Calculator</strong>. Whether you're graphing explicit functions, implicit surfaces, engineering models, or calculus equations, this interactive <strong>3D graphing calculator</strong> (and online 3D function grapher) lets you rotate, zoom, compare multiple equations, and analyze complex mathematical surfaces directly in your browser. Designed for students, engineers, educators, researchers, and professionals, it provides fast, accurate, browser-based 3D visualization without requiring software installation.
+          Plot mathematical equations and visualize 3D surfaces directly in your browser. This interactive 3D graphing calculator lets you create and explore surfaces, rotate and zoom the graph, compare multiple equations, and examine explicit and implicit functions without installing software.
         </p>
         <p className="text-sm text-center font-medium text-[#5F6368] max-w-4xl mx-auto mt-4">
           Looking for other tools? Try our <Link href="/math-tools/scientific/" className="text-[#1967D2] hover:underline">Scientific Calculator</Link>, <Link href="/math-tools/matrix/" className="text-[#1967D2] hover:underline">Matrix Calculator</Link>, <Link href="/calculator/linear-solver/" className="text-[#1967D2] hover:underline">Linear Equation Solver</Link>, <Link href="/calculator/quadratic-solver/" className="text-[#1967D2] hover:underline">Quadratic Solver</Link>, or <Link href="/utility/converter/" className="text-[#1967D2] hover:underline">Unit Converter</Link>.
@@ -470,23 +470,12 @@ export default function ThreeDPage() {
                   </div>
                 </div>
 
-                <h2 id="what-is-3d-calculator" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6">What is a 3D Graph Calculator?</h2>
-                <div className="bg-[#F8F9FA] border-l-4 border-[#1967D2] p-4 mb-6 rounded-r-lg">
-                  <p className="text-[#202124] font-medium m-0">
-                    <strong>A 3D Graph Calculator is</strong> an interactive mathematical tool that visualizes equations, functions, surfaces, and geometric objects in three-dimensional space using x, y, and z coordinates. It is widely used in engineering, mathematics, computer graphics, physics, architecture, and scientific research.
-                  </p>
-                </div>
+                <h2 id="what-is-3d-calculator" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6">What Is a 3D Graphing Calculator?</h2>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-6">
-                  A <strong>3D Graph Calculator</strong> is an interactive mathematical visualization tool that converts equations into three-dimensional graphs, allowing users to explore functions, surfaces, and <Link href="/engineering/geometry" className="text-[#1967D2] hover:underline font-medium">geometric objects</Link> in real time. Unlike a traditional two-dimensional graphing calculator that displays relationships between only the X and Y axes, a 3D graphing calculator introduces a third dimension (the Z-axis) making it possible to visualize complex mathematical surfaces, engineering models, scientific data, and multivariable functions.
-                </p>
-                <p className="text-lg leading-relaxed text-[#5F6368] mb-6">
-                  Instead of reading equations as abstract mathematical expressions, users can instantly transform them into interactive models that can be rotated, zoomed, sliced, and examined from every angle. This visual approach makes complex concepts significantly easier to understand while helping students, educators, engineers, architects, researchers, and scientists analyze mathematical relationships that cannot be represented on a flat graph.
-                </p>
-                <p className="text-lg leading-relaxed text-[#5F6368] mb-6">
-                  Modern <strong>online 3D graph calculators</strong> operate entirely within a web browser, eliminating the need to install expensive mathematical software like MATLAB or Mathematica. Users can simply enter an equation, choose visualization settings, and immediately interact with the generated surface — no account or installation needed.
+                  A 3D graphing calculator is an interactive tool for plotting mathematical equations and visualizing surfaces in three dimensions. It shows how values change across the x, y and z axes, making it easier to explore functions and understand their shapes.
                 </p>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-8">
-                  Our <strong>3D Graph Calculator</strong> supports a wide range of mathematical equations including explicit functions, implicit surfaces, engineering models, geometric solids, and advanced multivariable functions. Whether you are studying <Link href="/math-tools/calculus" className="text-[#1967D2] hover:underline font-medium">calculus</Link>, solving engineering problems, visualizing physical phenomena, or teaching mathematics, the calculator provides an intuitive environment for exploring three-dimensional mathematics.
+                  A 3D graphing calculator can be used to plot explicit functions, implicit surfaces and multiple equations. Interactive controls such as rotation, zooming and cross sections help you examine a graph from different angles.
                 </p>
 
                 {/* ── Why Use ── */}
@@ -855,10 +844,9 @@ export default function ThreeDPage() {
                 </p>
 
                 {/* ── Part 3B: How to Use the 3D Graph Calculator ── */}
-                <h2 id="how-to-use" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-2">How to Use the 3D Graph Calculator</h2>
-                <div className="bg-[#F8F9FA] border-l-4 border-[#1967D2] p-4 rounded-r-lg mb-6"><p className="text-sm text-[#202124] font-medium leading-relaxed"><strong>What is a 3D Graphing Calculator?</strong> A 3D graphing calculator is an interactive mathematical software tool designed to plot equations and multivariable functions in three dimensions (X, Y, and Z). It allows users to visualize complex mathematical concepts, render geometric surfaces, and interactively rotate models to analyze relationships across multiple axes simultaneously.</p></div>
+                <h2 id="how-to-use" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-2">How to Use the 3D Graphing Calculator</h2>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-8">
-                  The NepaCalc <strong>3D Graph Calculator</strong> is designed to make mathematical visualization simple, whether you are plotting your first surface or analyzing advanced engineering equations. Follow the steps below to generate accurate three-dimensional graphs directly in your browser.
+                  Enter a mathematical equation, choose the available graph settings, and use the interactive controls to explore the surface. You can rotate and zoom the graph, adjust the display settings, compare equations and examine cross sections where available.
                 </p>
 
                 <div className="space-y-6 mb-12">
@@ -1324,7 +1312,7 @@ export default function ThreeDPage() {
                       <tr><td className="p-3 border border-[#DADCE0] font-bold text-[#202124]">Hyperboloid</td><td className="p-3 border border-[#DADCE0] font-mono">Quadratic Surface</td><td className="p-3 border border-[#DADCE0]">Structural Engineering</td></tr>
                       <tr className="bg-[#F8F9FA]"><td className="p-3 border border-[#DADCE0] font-bold text-[#202124]">Saddle Surface</td><td className="p-3 border border-[#DADCE0] font-mono">Hyperbolic Paraboloid</td><td className="p-3 border border-[#DADCE0]">Optimization</td></tr>
                       <tr><td className="p-3 border border-[#DADCE0] font-bold text-[#202124]">Gaussian Surface</td><td className="p-3 border border-[#DADCE0] font-mono">e^-(x²+y²)</td><td className="p-3 border border-[#DADCE0]">Statistics</td></tr>
-                      <tr className="bg-[#F8F9FA]"><td className="p-3 border border-[#DADCE0] font-bold text-[#202124]">Wave Surface</td><td className="p-3 border border-[#DADCE0] font-mono">sin(x)cos(y)</td><td className="p-3 border border-[#DADCE0]">Physics</td></tr>
+                      <tr className="bg-[#F8F9FA]"><td className="p-3 border border-[#DADCE0] font-bold text-[#202124]">2D Wave</td><td className="p-3 border border-[#DADCE0] font-mono">sin(x)cos(y)</td><td className="p-3 border border-[#DADCE0]">Interference, Physics</td></tr>
                     </tbody>
                   </table>
                 </div>
