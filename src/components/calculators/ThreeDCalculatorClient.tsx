@@ -702,15 +702,15 @@ export default function ThreeDCalculatorClient() {
 
               {/* ADVANCED MATHEMATICAL KEYBOARD */}
               {activeInputId && (
-                <div className="absolute bottom-4 lg:bottom-6 left-1/2 -translate-x-1/2 bg-white border border-[#dadce0] p-4 lg:p-5 rounded-xl lg:rounded-2xl shadow-3xl w-[95%] max-w-[600px] z-50">
+                <div className="absolute bottom-4 lg:bottom-6 left-1/2 -translate-x-1/2 bg-white border border-[#dadce0] p-4 lg:p-5 rounded-xl lg:rounded-2xl shadow-2xl w-[95%] max-w-[650px] z-50">
                   <div className="flex justify-between items-center mb-4">
-                    <span className="text-[10px] font-black text-[#202124]/40 uppercase tracking-widest">Scientific Input Panel</span>
-                    <button aria-label="Close Keyboard" onClick={() => setActiveInputId(null)} className="text-[#202124]/40 hover:text-[#202124]"><Plus className="w-4 h-4 rotate-45" /></button>
+                    <span className="text-[10px] font-black text-[#5F6368] uppercase tracking-widest">Scientific Input Panel</span>
+                    <button aria-label="Close Keyboard" onClick={() => setActiveInputId(null)} className="text-[#5F6368] hover:text-[#202124] bg-slate-100 hover:bg-slate-200 p-1.5 rounded-full transition-colors"><Plus className="w-4 h-4 rotate-45" /></button>
                   </div>
                   <div className="grid grid-cols-9 gap-2">
-                    {KBD_123.flat().map((key) => (
+                    {KBD_123.flat().map((key, i) => (
                       <button 
-                        key={key}
+                        key={i + '-' + key}
                         onClick={() => {
                           const graph = graphs.find(g => g.id === activeInputId);
                           if (graph) {
@@ -724,10 +724,10 @@ export default function ThreeDCalculatorClient() {
                             updateGraph(activeInputId, { equation: graph.equation + val });
                           }
                         }}
-                        className={`h-11 rounded-lg text-[11px] font-black transition-all active:scale-95 ${
-                          ['AC', 'DEL', 'ENTER'].includes(key) ? 'bg-rose-600 text-[#202124]' : 
-                          ['sin', 'cos', 'tan', 'exp', 'log', 'sqrt'].includes(key) ? 'bg-[#1a73e8] text-[#202124]' :
-                          'bg-white/10 text-[#202124] hover:bg-white/20'
+                        className={`h-10 sm:h-11 rounded-lg text-[11px] sm:text-[12px] font-bold transition-all active:scale-95 flex items-center justify-center ${
+                          ['AC', 'DEL', 'ENTER'].includes(key) ? 'bg-rose-500 text-white hover:bg-rose-600 shadow-sm' : 
+                          ['sin', 'cos', 'tan', 'exp', 'log', '√'].includes(key) ? 'bg-[#1a73e8] text-white hover:bg-blue-600 shadow-sm' :
+                          'bg-slate-100 text-[#202124] border border-slate-200 hover:bg-slate-200'
                         }`}
                       >
                         {key}
@@ -741,8 +741,9 @@ export default function ThreeDCalculatorClient() {
         </div>
       
         {/* SETTINGS AREA (BOTTOM) */}
-        <div className="w-full px-3 pb-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 items-start">
+        <div className="w-full px-3 pb-6 flex flex-col gap-3">
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 items-start">
             <div className="flex flex-col gap-3">
 {/* SLICING CONTROLS */}
           <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
@@ -783,30 +784,6 @@ export default function ThreeDCalculatorClient() {
                   />
                 </div>
               )}
-            </div>
-          </div>
-
-{/* SECTION: FUNCTION PRESETS */}
-          <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
-            <button onClick={() => toggleSection('presets')} className="w-full bg-[#f8fafc] border-b border-slate-200 px-4 py-3 flex items-center justify-between">
-              <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Presets</h2>
-              <ChevronDown className={`w-4 h-4 lg:hidden text-slate-400 transition-transform ${openSections.presets ? "" : "-rotate-90"}`} />
-            </button>
-            <div className={`p-4 ${openSections.presets ? "block" : "hidden sm:block"}`}>
-              <div className="flex flex-wrap gap-1.5">
-                {CURRICULUM_PRESETS.map(p => (
-                  <button
-                    key={p.name}
-                    aria-label={`Plot ${p.name}`}
-                    onClick={() => addGraph(p.eq, p.color)}
-                    title={p.eq}
-                    className="flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-slate-200 hover:border-blue-400 hover:bg-blue-50 bg-white text-[10px] font-semibold text-slate-600 hover:text-blue-700 transition-all"
-                  >
-                    <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: p.color }} />
-                    {p.name.split(' ')[0]}
-                  </button>
-                ))}
-              </div>
             </div>
           </div>
             </div>
@@ -853,8 +830,30 @@ export default function ThreeDCalculatorClient() {
               ))}
             </div>
           </div>
+            </div>
+          </div>
 
-
+{/* SECTION: FUNCTION PRESETS */}
+          <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm mt-0 w-full">
+            <button onClick={() => toggleSection('presets')} className="w-full bg-[#f8fafc] border-b border-slate-200 px-4 py-3 flex items-center justify-between">
+              <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Presets</h2>
+              <ChevronDown className={`w-4 h-4 lg:hidden text-slate-400 transition-transform ${openSections.presets ? "" : "-rotate-90"}`} />
+            </button>
+            <div className={`p-4 ${openSections.presets ? "block" : "hidden sm:block"}`}>
+              <div className="flex flex-wrap gap-1.5">
+                {CURRICULUM_PRESETS.map(p => (
+                  <button
+                    key={p.name}
+                    aria-label={`Plot ${p.name}`}
+                    onClick={() => addGraph(p.eq, p.color)}
+                    title={p.eq}
+                    className="flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-slate-200 hover:border-blue-400 hover:bg-blue-50 bg-white text-[10px] font-semibold text-slate-600 hover:text-blue-700 transition-all"
+                  >
+                    <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: p.color }} />
+                    {p.name.split(' ')[0]}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>

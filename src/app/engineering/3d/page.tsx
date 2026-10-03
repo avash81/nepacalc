@@ -378,7 +378,7 @@ export default function ThreeDPage() {
           {/* Left Column (Stats, Trust, Links) */}
           {/* Left Column: sticky TOC */}
           <div className="lg:col-span-1">
-            <div className="sticky top-6 bg-white border border-[#DADCE0] rounded-xl p-5 shadow-sm">
+            <div className="sticky top-24 lg:top-[100px] bg-white border border-[#DADCE0] rounded-xl p-5 shadow-sm max-h-[calc(100vh-120px)] overflow-y-auto">
               <p className="text-[10px] font-black text-[#70757A] uppercase tracking-widest mb-3">On This Page</p>
               <ol className="space-y-0.5 border-l-2 border-[#DADCE0]">
                 <li><a href="#what-is-3d-calculator" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">What is a 3D Graph Calculator?</a></li>
