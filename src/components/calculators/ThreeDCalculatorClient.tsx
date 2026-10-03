@@ -819,31 +819,7 @@ export default function ThreeDCalculatorClient() {
             </div>
           </div>
 
-{/* SECTION: QUALITY */}
-          <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
-            <button onClick={() => toggleSection('quality')} className="w-full bg-[#f8fafc] border-b border-slate-200 px-4 py-3 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Quality</h2>
-                <span className="text-[10px] font-bold text-blue-600">{resolution}x{resolution}</span>
-              </div>
-              <ChevronDown className={`w-4 h-4 lg:hidden text-slate-400 transition-transform ${openSections.quality ? "" : "-rotate-90"}`} />
-            </button>
-            <div className={`p-4 space-y-3 ${openSections.quality ? "block" : "hidden sm:block"}`}>
-              <div className="flex justify-between text-[9px] font-bold uppercase">
-                <span className="text-slate-400">Resolution</span>
-                <span className="text-blue-700">{resolution}x{resolution}</span>
-              </div>
-              <input 
-                type="range" min="20" max="150" step="5"
-                value={resolution}
-                onChange={(e) => setResolution(parseInt(e.target.value))}
-                className="w-full accent-blue-600 h-1.5 bg-slate-100 rounded-lg appearance-none cursor-pointer" 
-              />
-              <div className="flex justify-between text-[8px] text-slate-300 uppercase font-bold">
-                <span>Low (20)</span><span>High (150)</span>
-              </div>
-            </div>
-          </div>
+
             </div>
           </div>
         </div>
