@@ -158,7 +158,7 @@ export const CALCULATORS: Calculator[] = [
   // CONVERTERS & UTILITY PILLAR — ordered by traffic
   // Date Duration (18), Silver Converter in market, Weight (11), Date, Age, Discount, Tip, Word, Solar, Paint
   // ==========================================
-  { id: 'date-duration', slug: 'date-duration', name: 'Date Calculator',  description: 'Calculate time delta in days between arbitrary dates.', category: 'utility' },
+  { id: 'date-duration', slug: 'date-duration', name: 'Date Duration Calculator', description: 'Calculate the exact number of days between two dates. Includes business days, weeks, months and years.', category: 'utility', keywords: ['date duration calculator', 'days between dates', 'date difference calculator', 'day duration calculator', 'business days calculator', 'date calculator'] },
   { id: 'weight-converter', slug: 'weight-converter', name: 'Weight Converter',  description: 'Convert mass units including grams, kilograms, and pounds.', category: 'utility' },
   { id: 'unit-converter', slug: 'unit-converter', name: 'Universal Unit Converter',  description: 'Convert between standard international measurement systems.', category: 'utility', keywords: ['Universal Unit Converter', 'Metric to imperial', 'conversion table', 'scientific units', 'SI units'] },
   { id: 'age-calculator', slug: 'age-calculator', name: 'Age Calculator',  description: 'Calculate chronological age from birthdate constraints.', category: 'utility' },
