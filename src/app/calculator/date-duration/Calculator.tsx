@@ -509,7 +509,7 @@ export default function DateDuration() {
           </div>
 
           {/* ── ACTIONS ── */}
-          <div className="grid grid-cols-3 gap-2 no-print">
+          <div className="grid grid-cols-2 gap-2 no-print">
             <button
               type="button"
               onClick={copyResult}
@@ -518,15 +518,6 @@ export default function DateDuration() {
             >
               <Copy className="w-3.5 h-3.5 shrink-0" />
               <span>{copied ? 'Copied!' : 'Copy'}</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => window.print()}
-              aria-label="Print or save as PDF"
-              className="flex items-center justify-center gap-1.5 py-2.5 rounded-lg border border-[#DADCE0] bg-white hover:bg-[#F8F9FA] text-[#202124] text-[12px] font-semibold transition-colors"
-            >
-              <Printer className="w-3.5 h-3.5 shrink-0" />
-              <span>Print</span>
             </button>
             <button
               type="button"
