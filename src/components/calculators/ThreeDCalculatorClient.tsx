@@ -383,7 +383,7 @@ export default function ThreeDCalculatorClient() {
   };
 
   return (
-    <div className="flex flex-col min-h-[calc(100vh-64px)] lg:h-[calc(100vh-64px)] w-full lg:overflow-hidden bg-[#f8fafc] font-sans">
+    <div className="flex flex-col min-h-[calc(100vh-64px)] lg:h-[calc(100vh-64px)] w-full overflow-x-hidden lg:overflow-hidden bg-[#f8fafc] font-sans">
       <nav className="flex items-center justify-between px-4 lg:px-6 py-3 lg:py-4 border-b border-slate-200 bg-white shrink-0">
         <div className="flex items-center gap-2 lg:gap-3">
           <button aria-label="Go Back" onClick={() => window.history.back()} className="p-1.5 lg:p-2 border border-slate-200 rounded hover:bg-slate-50"><ArrowLeft className="w-4 h-4" /></button>
@@ -676,16 +676,16 @@ export default function ThreeDCalculatorClient() {
               </Canvas>
               
               {/* STUDIO CONTROLS, FLOATING PANEL */}
-              <div className="absolute top-6 right-6 flex flex-col gap-3 items-end">
+              <div className="absolute top-4 right-4 flex flex-col gap-2 items-end z-10">
                 <button 
                   onClick={() => setIsSettingsOpen(!isSettingsOpen)}
-                  className={`w-10 h-10 rounded shadow-sm border flex items-center justify-center transition-all ${isSettingsOpen ? 'bg-[#1a73e8] text-[#202124] border-blue-600' : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'}`}
+                  className={`w-9 h-9 rounded shadow-sm border flex items-center justify-center transition-all ${isSettingsOpen ? 'bg-[#1a73e8] text-white border-blue-600' : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'}`}
                 >
-                  <Search className="w-5 h-5 rotate-90" /> {/* Wrench replacement */}
+                  <Search className="w-4 h-4 rotate-90" />
                 </button>
 
                 {isSettingsOpen && (
-                  <div className="bg-white p-0 rounded shadow-sm border border-slate-200 w-80 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 z-50">
+                  <div className="bg-white rounded shadow-lg border border-slate-200 w-72 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
                     <div className="p-5 space-y-5">
                       {/* VIEWPORT SLIDER (ZOOM) */}
                       <div className="flex items-center gap-4 py-2">
