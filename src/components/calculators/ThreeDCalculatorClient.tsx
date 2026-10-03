@@ -10,7 +10,7 @@ import * as THREE from 'three';
 
 import { 
   Box, RotateCcw, Plus, Minus, Search, Maximize, ChevronRight, ArrowLeft
-} from 'lucide-react';
+, ChevronDown} from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -304,6 +304,20 @@ export default function ThreeDCalculatorClient() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [useRadians, setUseRadians] = useState(true);
     const [isFullscreen, setIsFullscreen] = useState(false);
+
+  const [openSections, setOpenSections] = useState({
+    equations: true,
+    slicing: false,
+    variables: false,
+    quality: false,
+    appearance: false,
+    presets: true
+  });
+
+  const toggleSection = (sec: keyof typeof openSections) => {
+    setOpenSections(prev => ({ ...prev, [sec]: !prev[sec] }));
+  };
+
     const fullscreenContainerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -383,7 +397,7 @@ export default function ThreeDCalculatorClient() {
   };
 
   return (
-    <div className="flex flex-col min-h-[calc(100vh-64px)] lg:h-[calc(100vh-64px)] w-full overflow-x-hidden lg:overflow-hidden bg-[#f8fafc] font-sans">
+    <div className="flex flex-col min-h-screen w-full overflow-x-hidden bg-[#f8fafc] font-sans">
       <nav className="flex items-center justify-between px-4 lg:px-6 py-3 lg:py-4 border-b border-slate-200 bg-white shrink-0">
         <div className="flex items-center gap-2 lg:gap-3">
           <button aria-label="Go Back" onClick={() => window.history.back()} className="p-1.5 lg:p-2 border border-slate-200 rounded hover:bg-slate-50"><ArrowLeft className="w-4 h-4" /></button>
@@ -391,196 +405,11 @@ export default function ThreeDCalculatorClient() {
         </div>
       </nav>
 
-      <div className="flex-1 flex flex-col lg:flex-row gap-0 lg:gap-6 p-0 lg:p-6 lg:overflow-hidden">
-        {/* SIDEBAR */}
-        <aside className="w-full lg:w-[320px] flex flex-col gap-4 lg:gap-5 shrink-0 lg:h-full overflow-y-auto px-4 py-4 lg:px-0 lg:py-0 scrollbar-thin scrollbar-thumb-slate-200">
-          
-          {/* SECTION: EQUATIONS (MULTI-GRAPH) */}
-          <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
-            <div className="bg-[#f8fafc] border-b border-slate-200 px-4 py-2 flex items-center justify-between">
-              <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Equations</h2>
-              <button aria-label="Add Graph" onClick={() => addGraph('z = 0')} className="p-1 hover:bg-slate-200 rounded text-blue-700 transition-all"><Plus className="w-4 h-4" /></button>
-            </div>
-            <div className="p-4 space-y-4">
-              {graphs.map((g) => (
-                <div key={g.id} className="space-y-2 pb-4 border-b border-slate-100 last:border-0 last:pb-0">
-                  <div className="flex items-center justify-between gap-2">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: g.color }} />
-                      <span className="text-[9px] font-bold text-slate-400 uppercase">Layer {g.id.slice(0, 3)}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <button aria-label="Toggle Visibility" onClick={() => updateGraph(g.id, { visible: !g.visible })} className={`p-1 rounded ${g.visible ? 'text-blue-600' : 'text-slate-300'}`}>
-                        {g.visible ? <Box className="w-3.5 h-3.5" /> : <Box className="w-3.5 h-3.5 opacity-30" />}
-                      </button>
-                      <button aria-label="Delete Graph" onClick={() => setGraphs(graphs.filter(x => x.id !== g.id))} className="p-1 text-rose-300 hover:text-rose-600">
-                        <Plus className="w-3.5 h-3.5 rotate-45" />
-                      </button>
-                    </div>
-                  </div>
-                  <input 
-                    type="text"
-                    value={g.equation} 
-                    onFocus={() => setActiveInputId(g.id)}
-                    onChange={(e) => updateGraph(g.id, { equation: e.target.value })}
-                    className="w-full bg-[#f8fafc] border border-slate-200 rounded p-3 font-mono text-[12px] font-bold outline-none focus:border-blue-500 transition-all text-slate-700"
-                  />
-                  <div className="flex items-center gap-3">
-                    <span className="text-[8px] font-bold text-slate-300 uppercase">Opacity</span>
-                    <input type="range" min="0.1" max="1" step="0.05" value={g.opacity} onChange={(e) => updateGraph(g.id, { opacity: parseFloat(e.target.value) })} className="flex-1 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-blue-600" />
-                  </div>
-                </div>
-              ))}
-              <button onClick={() => addGraph('z = sin(x)*cos(y)')} className="w-full py-2 border border-dashed border-slate-300 rounded text-[9px] font-bold text-slate-400 hover:border-blue-400 hover:text-blue-600 transition-all uppercase">Add New Equation</button>
-            </div>
-          </div>
-
-          {/* SLICING CONTROLS */}
-          <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
-            <div className="bg-[#f8fafc] border-b border-slate-200 px-4 py-2">
-              <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Cross-Section Slicing</h2>
-            </div>
-            <div className="p-4">
-              <div className="flex gap-1 mb-4">
-                {(['none', 'x', 'y', 'z'] as const).map(mode => (
-                  <button
-                    key={mode}
-                    onClick={() => setSliceMode(mode)}
-                    className={`flex-1 py-1.5 rounded text-[10px] font-bold uppercase transition-all ${
-                      sliceMode === mode 
-                        ? 'bg-[#1a73e8] text-[#202124] shadow-sm' 
-                        : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
-                    }`}
-                  >
-                    {mode}
-                  </button>
-                ))}
-              </div>
-              {sliceMode !== 'none' && (
-                <div>
-                  <div className="flex justify-between text-[10px] font-bold text-slate-500 mb-1 uppercase">
-                    <span>Plane Position</span>
-                    <span className="text-blue-600">{slicePos.toFixed(2)}</span>
-                  </div>
-                  <input
-                    type="range"
-                    min="-6"
-                    max="6"
-                    step="0.1"
-                    value={slicePos}
-                    onChange={(e) => setSlicePos(parseFloat(e.target.value))}
-                    className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
-                  />
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* SECTION: DYNAMIC VARIABLES */}
-          <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
-            <div className="bg-[#f8fafc] border-b border-slate-200 px-4 py-2 flex items-center justify-between">
-              <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Variables</h2>
-              <button aria-label="Add Parameter" onClick={() => setParams([...params, { id: Math.random().toString(), name: 'b', value: 1, min: -10, max: 10 }])} className="p-1 hover:bg-slate-200 rounded text-blue-700 transition-all"><Plus className="w-4 h-4" /></button>
-            </div>
-            <div className="p-4 space-y-4">
-              {params.map(p => (
-                <div key={p.id} className="space-y-2">
-                  <div className="flex justify-between items-center text-[9px] font-bold uppercase">
-                    <span className="text-slate-500">{p.name} = <span className="text-blue-600">{p.value.toFixed(2)}</span></span>
-                    <div className="flex items-center gap-2">
-                      <span className="text-slate-300">{p.min}</span>
-                      <input 
-                        type="range" min={p.min} max={p.max} step="0.1"
-                        value={p.value} 
-                        onChange={(e) => setParams(params.map(x => x.id === p.id ? { ...x, value: parseFloat(e.target.value) } : x))}
-                        className="w-24 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-blue-600" 
-                      />
-                      <span className="text-slate-300">{p.max}</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* SECTION: DOMAIN SETTINGS */}
-          <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
-            <div className="bg-[#f8fafc] border-b border-slate-200 px-4 py-2">
-              <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Quality</h2>
-            </div>
-            <div className="p-4 space-y-4">
-              <div className="space-y-2">
-                <div className="flex justify-between text-[9px] font-bold uppercase">
-                  <span className="text-slate-400">Resolution</span>
-                  <span className="text-blue-700">{resolution}x{resolution}</span>
-                </div>
-                <input 
-                  type="range" min="20" max="150" step="5"
-                  value={resolution}
-                  onChange={(e) => setResolution(parseInt(e.target.value))}
-                  className="w-full accent-blue-600 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer" 
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* SECTION: APPEARANCE */}
-          <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
-            <div className="bg-[#f8fafc] border-b border-slate-200 px-4 py-2">
-              <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Appearance</h2>
-            </div>
-            <div className="p-4 space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-[9px] font-bold text-slate-400 uppercase">Shading</span>
-                <button aria-label="Solid Mode" onClick={() => setGlobalWireframe(false)} className={`w-9 h-4.5 rounded-full transition-all relative ${!globalWireframe ? 'bg-[#15803d]' : 'bg-slate-200'}`}>
-                  <div className={`absolute top-0.5 w-3.5 h-3.5 bg-white rounded-full transition-all ${!globalWireframe ? 'right-0.5' : 'left-0.5'}`} />
-                </button>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-[9px] font-bold text-slate-400 uppercase">Wireframe</span>
-                <button aria-label="Wireframe Mode" onClick={() => setGlobalWireframe(true)} className={`w-9 h-4.5 rounded-full transition-all relative ${globalWireframe ? 'bg-[#15803d]' : 'bg-slate-200'}`}>
-                  <div className={`absolute top-0.5 w-3.5 h-3.5 bg-white rounded-full transition-all ${globalWireframe ? 'right-0.5' : 'left-0.5'}`} />
-                </button>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-[9px] font-bold text-slate-400 uppercase">Palette</span>
-                <div className="flex gap-1">
-                  <div className="w-3 h-3 rounded-full bg-[#1a73e8] border border-white/20" />
-                  <div className="w-3 h-3 rounded-full bg-green-600 border border-white/20" />
-                  <div className="w-3 h-3 rounded-full bg-red-600 border border-white/20" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* SECTION: FUNCTION PRESETS */}
-          <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
-            <div className="bg-[#f8fafc] border-b border-slate-200 px-4 py-2">
-              <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Presets</h2>
-            </div>
-            <div className="p-3">
-              <div className="flex flex-wrap gap-1.5">
-                {CURRICULUM_PRESETS.map(p => (
-                  <button
-                    key={p.name}
-                    aria-label={`Plot ${p.name}`}
-                    onClick={() => addGraph(p.eq, p.color)}
-                    title={p.eq}
-                    className="flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-slate-200 hover:border-blue-400 hover:bg-blue-50 bg-white text-[10px] font-semibold text-slate-600 hover:text-blue-700 transition-all"
-                  >
-                    <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: p.color }} />
-                    {p.name.split(' ')[0]}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-
-        </aside>
-
-        {/* MAIN VIEWPORT AREA */}
-        <div className="min-w-0 flex-1 flex flex-col lg:h-full lg:overflow-hidden">
-          <div ref={fullscreenContainerRef} className={`bg-white border-0 lg:border border-slate-200 rounded-none lg:rounded-sm overflow-hidden shadow-sm flex flex-col flex-1 ${isFullscreen ? 'fixed inset-0 z-[100] w-screen h-screen' : 'h-full'}`}>
+      
+      <div className="flex-1 flex flex-col gap-4 lg:gap-6 p-4 lg:p-6 max-w-[1600px] mx-auto w-full">
+{/* MAIN VIEWPORT AREA */}
+        <div className="w-full h-[55vh] lg:h-[65vh] shrink-0 flex flex-col relative">
+          <div ref={fullscreenContainerRef} className={`bg-white border-0 border border-slate-200 rounded-sm overflow-hidden shadow-sm flex flex-col flex-1 ${isFullscreen ? 'fixed inset-0 z-[100] w-screen h-screen' : 'h-full'}`}>
             <div className="bg-[#f8fafc] border-b border-slate-200 px-4 lg:px-6 py-3 flex items-center justify-between">
               <div className="flex items-center gap-2 lg:gap-3">
                 <Box className="w-4 h-4 text-[#1e40af]" />
@@ -846,6 +675,155 @@ export default function ThreeDCalculatorClient() {
             </div>
           </div>
         </div>
+      
+        {/* SETTINGS AREA (BOTTOM) */}
+        <div className="w-full flex flex-col gap-4 lg:gap-6 pb-20">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 items-start">
+            <div className="flex flex-col gap-4 lg:gap-6">
+{/* SLICING CONTROLS */}
+          <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
+            <button onClick={() => toggleSection('slicing')} className="w-full bg-[#f8fafc] border-b border-slate-200 px-4 py-3 flex items-center justify-between">
+              <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Cross-Section Slicing</h2>
+              <ChevronDown className={`w-4 h-4 lg:hidden text-slate-400 transition-transform ${openSections.slicing ? "" : "-rotate-90"}`} />
+            </button>
+            <div className={`p-4 ${openSections.slicing ? "block" : "hidden lg:block"}`}>
+              <div className="flex gap-1 mb-4">
+                {(['none', 'x', 'y', 'z'] as const).map(mode => (
+                  <button
+                    key={mode}
+                    onClick={() => setSliceMode(mode)}
+                    className={`flex-1 py-1.5 rounded text-[10px] font-bold uppercase transition-all ${
+                      sliceMode === mode 
+                        ? 'bg-[#1a73e8] text-[#202124] shadow-sm' 
+                        : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
+                    }`}
+                  >
+                    {mode}
+                  </button>
+                ))}
+              </div>
+              {sliceMode !== 'none' && (
+                <div>
+                  <div className="flex justify-between text-[10px] font-bold text-slate-500 mb-1 uppercase">
+                    <span>Plane Position</span>
+                    <span className="text-blue-600">{slicePos.toFixed(2)}</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="-6"
+                    max="6"
+                    step="0.1"
+                    value={slicePos}
+                    onChange={(e) => setSlicePos(parseFloat(e.target.value))}
+                    className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+
+          
+
+{/* SECTION: FUNCTION PRESETS */}
+          <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
+            <button onClick={() => toggleSection('presets')} className="w-full bg-[#f8fafc] border-b border-slate-200 px-4 py-3 flex items-center justify-between">
+              <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Presets</h2>
+              <ChevronDown className={`w-4 h-4 lg:hidden text-slate-400 transition-transform ${openSections.presets ? "" : "-rotate-90"}`} />
+            </button>
+            <div className={`p-4 ${openSections.presets ? "block" : "hidden lg:block"}`}>
+              <div className="flex flex-wrap gap-1.5">
+                {CURRICULUM_PRESETS.map(p => (
+                  <button
+                    key={p.name}
+                    aria-label={`Plot ${p.name}`}
+                    onClick={() => addGraph(p.eq, p.color)}
+                    title={p.eq}
+                    className="flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-slate-200 hover:border-blue-400 hover:bg-blue-50 bg-white text-[10px] font-semibold text-slate-600 hover:text-blue-700 transition-all"
+                  >
+                    <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: p.color }} />
+                    {p.name.split(' ')[0]}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+        
+            </div>
+            <div className="flex flex-col gap-4 lg:gap-6">
+{/* SECTION: DYNAMIC VARIABLES */}
+          <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
+            <button onClick={() => toggleSection('variables')} className="w-full bg-[#f8fafc] border-b border-slate-200 px-4 py-3 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Variables</h2>
+              </div>
+              <div className="flex items-center gap-2">
+                <ChevronDown className={`w-4 h-4 lg:hidden text-slate-400 transition-transform ${openSections.variables ? "" : "-rotate-90"}`} />
+                <span onClick={(e) => { e.stopPropagation(); setParams([...params, { id: Math.random().toString(), name: 'b', value: 1, min: -10, max: 10 }]); }} className="p-1 hover:bg-slate-200 rounded text-blue-700 transition-all">
+                  <Plus className="w-4 h-4" />
+                </span>
+              </div>
+            </button>
+            <div className={`p-4 grid grid-cols-1 sm:grid-cols-2 gap-4 ${openSections.variables ? "block" : "hidden lg:block"}`}>
+              {params.map(p => (
+                <div key={p.id} className="">
+                  <div className="flex justify-between items-center text-[9px] font-bold uppercase">
+                    <span className="text-slate-500">{p.name} = <span className="text-blue-600">{p.value.toFixed(2)}</span></span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-slate-300">{p.min}</span>
+                      <input 
+                        type="range" min={p.min} max={p.max} step="0.1"
+                        value={p.value} 
+                        onChange={(e) => setParams(params.map(x => x.id === p.id ? { ...x, value: parseFloat(e.target.value) } : x))}
+                        className="w-24 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-blue-600" 
+                      />
+                      <span className="text-slate-300">{p.max}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          
+{/* SECTION: APPEARANCE */}
+          <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
+            <button onClick={() => toggleSection('appearance')} className="w-full bg-[#f8fafc] border-b border-slate-200 px-4 py-3 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Appearance</h2>
+                <span className="text-[10px] font-bold text-slate-500">{globalWireframe ? 'Wireframe' : 'Solid'}</span>
+              </div>
+              <ChevronDown className={`w-4 h-4 lg:hidden text-slate-400 transition-transform ${openSections.appearance ? "" : "-rotate-90"}`} />
+            </button>
+            <div className={`p-4 space-y-3 ${openSections.appearance ? "block" : "hidden lg:block"}`}>
+              <div className="flex items-center justify-between">
+                <span className="text-[9px] font-bold text-slate-400 uppercase">Shading</span>
+                <button aria-label="Solid Mode" onClick={() => setGlobalWireframe(false)} className={`w-9 h-4.5 rounded-full transition-all relative ${!globalWireframe ? 'bg-[#15803d]' : 'bg-slate-200'}`}>
+                  <div className={`absolute top-0.5 w-3.5 h-3.5 bg-white rounded-full transition-all ${!globalWireframe ? 'right-0.5' : 'left-0.5'}`} />
+                </button>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-[9px] font-bold text-slate-400 uppercase">Wireframe</span>
+                <button aria-label="Wireframe Mode" onClick={() => setGlobalWireframe(true)} className={`w-9 h-4.5 rounded-full transition-all relative ${globalWireframe ? 'bg-[#15803d]' : 'bg-slate-200'}`}>
+                  <div className={`absolute top-0.5 w-3.5 h-3.5 bg-white rounded-full transition-all ${globalWireframe ? 'right-0.5' : 'left-0.5'}`} />
+                </button>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-[9px] font-bold text-slate-400 uppercase">Palette</span>
+                <div className="flex gap-1">
+                  <div className="w-3 h-3 rounded-full bg-[#1a73e8] border border-white/20" />
+                  <div className="w-3 h-3 rounded-full bg-green-600 border border-white/20" />
+                  <div className="w-3 h-3 rounded-full bg-red-600 border border-white/20" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -857,4 +835,3 @@ const KBD_123 = [
   ['4', '5', '6', '*', 'x²', 'xʸ', '√', 'log', 'ENTER'],
   ['1', '2', '3', '-', '+', '.', 'π', '|x|', '0']
 ];
-
