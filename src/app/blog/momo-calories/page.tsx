@@ -180,18 +180,6 @@ export default function MomoCaloriesBlog() {
             <div className="px-6 sm:px-10 py-8 space-y-12">
 
               {/* Point 37: Early calculator CTA */}
-              <div className="bg-[#E8F0FE] border border-[#1967D2] rounded-xl p-5">
-                <p className="text-[#202124] text-sm leading-relaxed mb-3">
-                  Need an estimate for a specific serving? Select the momo type, cooking method and quantity in the calculator.
-                </p>
-                <Link
-                  href="/calculator/momo-calorie-counter/"
-                  className="inline-flex items-center font-black text-[#1967D2] text-sm hover:underline"
-                >
-                  Use the Momo Calorie Calculator →
-                </Link>
-              </div>
-
               {/* ── Section 1: Momo Calories at a Glance ── Point 4 */}
               <section aria-labelledby="glance">
                 <h2 id="glance" className="text-2xl font-black text-[#202124] mb-3">
@@ -233,7 +221,7 @@ export default function MomoCaloriesBlog() {
                   </table>
                 </div>
                 <p className="text-xs text-[#5F6368] mt-3 leading-relaxed">
-                  Estimates based on standard serving assumptions. Actual values vary with momo size, recipe, filling ratio and preparation. Use the <Link href="/calculator/momo-calorie-counter/" className="text-[#1967D2] font-semibold hover:underline">Momo Calorie Calculator</Link> to estimate a specific serving.
+                  Estimates based on standard serving assumptions. Actual values vary with momo size, recipe, filling ratio and preparation. Use the Momo Calorie Calculator to estimate a specific serving.
                 </p>
               </section>
 
@@ -257,7 +245,7 @@ export default function MomoCaloriesBlog() {
                   <li><strong className="text-[#202124]">Filling-to-dough ratio</strong> - more filling per piece increases protein and fat; more dough increases carbohydrates</li>
                 </ul>
                 <p className="text-[#5F6368] leading-relaxed">
-                  To estimate the calories in one momo for a specific type and cooking method, select the values in the <Link href="/calculator/momo-calorie-counter/" className="text-[#1967D2] font-semibold hover:underline">Momo Calorie Calculator</Link> and set the quantity to 1.
+                  To estimate the calories in one momo for a specific type and cooking method, select the values in the Momo Calorie Calculator and set the quantity to 1.
                 </p>
               </section>
 
@@ -300,7 +288,7 @@ export default function MomoCaloriesBlog() {
                   </table>
                 </div>
                 <p className="text-xs text-[#5F6368] leading-relaxed">
-                  Estimates based on steamed chicken momo at approximately 60 kcal and 5.5 g protein per piece. Adjust the type, method or quantity in the <Link href="/calculator/momo-calorie-counter/" className="text-[#1967D2] font-semibold hover:underline">calculator</Link> for a different result.
+                  Estimates based on steamed chicken momo at approximately 60 kcal and 5.5 g protein per piece. Adjust the type, method or quantity in the calculator for a different result.
                 </p>
               </section>
 
@@ -353,7 +341,7 @@ export default function MomoCaloriesBlog() {
                   </table>
                 </div>
                 <p className="text-sm text-[#5F6368] leading-relaxed">
-                  To calculate a specific number of chicken momos, select <strong className="text-[#202124]">Chicken Momo</strong> in the <Link href="/calculator/momo-calorie-counter/" className="text-[#1967D2] font-semibold hover:underline">Momo Calorie Calculator</Link>, then choose the cooking method and quantity.
+                  To calculate a specific number of chicken momos, select <strong className="text-[#202124]">Chicken Momo</strong> in the Momo Calorie Calculator, then choose the cooking method and quantity.
                 </p>
               </section>
 
@@ -458,7 +446,7 @@ export default function MomoCaloriesBlog() {
                   </table>
                 </div>
                 <p className="text-xs text-[#5F6368] leading-relaxed">
-                  Values are estimates. Actual nutrition varies with momo size, filling recipe, dough thickness and preparation. Select any type in the <Link href="/calculator/momo-calorie-counter/" className="text-[#1967D2] font-semibold hover:underline">Momo Calorie Calculator</Link> to calculate a specific serving.
+                  Values are estimates. Actual nutrition varies with momo size, filling recipe, dough thickness and preparation. Select any type in the Momo Calorie Calculator to calculate a specific serving.
                 </p>
               </section>
 
@@ -649,13 +637,10 @@ export default function MomoCaloriesBlog() {
           </article>
 
           {/* Back link */}
-          <div className="mt-8">
-            <Link href="/blog/" className="inline-flex items-center text-sm font-bold text-[#5F6368] hover:text-[#202124] transition-colors">
-              <ArrowLeft className="w-4 h-4 mr-2" /> Back to Blog
-            </Link>
-          </div>
+          
         </div>
       </div>
     </>
   );
 }
+
