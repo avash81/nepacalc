@@ -2,7 +2,6 @@ import { calcMeta } from '@/lib/calcMeta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import RelatedCalculators from '@/components/calculator/RelatedCalculators';
 
 // ─── Metadata ────────────────────────────────────────────────────────────────
 // Point 24: Title | Point 25: Meta description | Point 27: Canonical
@@ -145,7 +144,7 @@ export default function MomoCaloriesBlog() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <div className="min-h-screen bg-[#F8F9FA] pb-20">
-        <div className="max-w-3xl mx-auto px-4 pt-8">
+        <div className="max-w-[850px] mx-auto px-5 pt-8">
 
           {/* Point 31: Visible breadcrumbs matching schema */}
           <nav aria-label="Breadcrumb" className="mb-6">
@@ -635,14 +634,15 @@ export default function MomoCaloriesBlog() {
 
               {/* ── Related Calculators — Point 38 ── */}
               <section aria-labelledby="related">
-                <h2 id="related" className="text-2xl font-black text-[#202124] mb-4">
+                <h2 id="related" className="text-2xl font-black text-[#202124] mb-3">
                   Related Calculators
                 </h2>
-                <RelatedCalculators
-                  currentSlug="blog/momo-calories"
-                  category="health"
-                  specificSlugs={['calorie-calculator', 'bmr', 'bmi', 'ideal-weight']}
-                />
+                <ul className="text-[#5F6368] leading-relaxed space-y-2 text-[15px]">
+                  <li><Link href="/calculator/calorie-calculator/" className="text-[#1967D2] font-bold hover:underline">Calorie Calculator</Link> — Calculate requisite caloric thresholds for homeostasis.</li>
+                  <li><Link href="/calculator/bmr/" className="text-[#1967D2] font-bold hover:underline">BMR Calculator</Link> — Calculate absolute Basal Metabolic Rate.</li>
+                  <li><Link href="/calculator/bmi/" className="text-[#1967D2] font-bold hover:underline">BMI Calculator</Link> — Calculate Body Mass Index (BMI) using WHO physiological standards.</li>
+                  <li><Link href="/calculator/ideal-weight/" className="text-[#1967D2] font-bold hover:underline">Ideal Weight Calculator</Link> — Determine standard physiological target weights.</li>
+                </ul>
               </section>
 
             </div>
