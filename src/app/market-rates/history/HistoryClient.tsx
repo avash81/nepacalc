@@ -65,7 +65,7 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
     return new Intl.NumberFormat('en-IN', { maximumFractionDigits: 2 }).format(num);
   };
 
-  // Calculated unit helpers (all derived from source_per_tola: 1 tola = 11.664g)
+  // Calculated unit helpers (all derived from source_per_tola: 1 tola = 11.6638g)
   const calcAnna = (perTola: number | null) =>
     perTola !== null ? perTola / 16 : null;          // 1 tola = 16 anna
   const calcLal = (perTola: number | null) =>
@@ -339,7 +339,7 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
 
         {/* Table footnote */}
         <div className="px-4 py-2 border-t border-slate-100 bg-slate-50/50">
-          <p className="text-[10px] text-slate-400 font-medium">* Calculated equivalents using 1 tola = 11.664 g &nbsp;|&nbsp; 1 tola = 16 anna &nbsp;|&nbsp; 1 tola = 100 lal &nbsp;|&nbsp; 1 troy oz = 31.1035 g. Not source-published prices.</p>
+          <p className="text-[10px] text-slate-400 font-medium">* Calculated equivalents using 1 tola = 11.6638 g &nbsp;|&nbsp; 1 tola = 16 anna &nbsp;|&nbsp; 1 tola = 100 lal &nbsp;|&nbsp; 1 troy oz = 31.1035 g. Not source-published prices.</p>
         </div>
 
         {/* Pagination */}
@@ -377,7 +377,7 @@ export default function HistoryClient({ records }: { records: HistoricalRecord[]
       <div className="mt-4 flex items-start gap-2 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3">
         <span className="mt-0.5 shrink-0 text-xs font-black uppercase tracking-widest text-amber-600">Note</span>
         <p className="text-xs text-amber-800 font-medium leading-relaxed">
-          Calculated equivalents using 1 tola = 11.664 g &nbsp;|&nbsp; 1 tola = 16 Aana &nbsp;|&nbsp; 1 tola = 100 Lal &nbsp;|&nbsp; 1 troy oz = 31.1035 g. These are calculated equivalents, not source-published prices.
+          Calculated equivalents using 1 tola = 11.6638 g &nbsp;|&nbsp; 1 tola = 16 Aana &nbsp;|&nbsp; 1 tola = 100 Lal &nbsp;|&nbsp; 1 troy oz = 31.1035 g. These are calculated equivalents, not source-published prices.
         </p>
       </div>
 

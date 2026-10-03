@@ -82,11 +82,11 @@ export default function HistoryContent({ latestGold, latestSilver }: HistoryCont
             <p>Gold prices in the historical records are primarily presented using the units published by the source, including <strong>per tola</strong> and <strong>per 10 grams</strong>. For quick custom weight conversions, you can use our <a href="/calculator/gold-converter/" className="text-amber-700 font-semibold hover:underline">Gold Price Converter</a>.</p>
             <p>For calculations on this page:</p>
             <ul className="list-disc pl-5 space-y-1 font-semibold text-slate-800">
-              <li>1 tola = 11.664 grams</li>
+              <li>1 tola = 11.6638 grams</li>
             </ul>
             <p>The equivalent per-gram price is calculated from the source price per tola:</p>
             <ul className="list-disc pl-5 space-y-1 font-semibold text-slate-800">
-              <li>Per gram = Per tola ÷ 11.664</li>
+              <li>Per gram = Per tola ÷ 11.6638</li>
             </ul>
             <p>The equivalent per-kilogram price is calculated from the per-gram value:</p>
             <ul className="list-disc pl-5 space-y-1 font-semibold text-slate-800">
@@ -98,7 +98,7 @@ export default function HistoryContent({ latestGold, latestSilver }: HistoryCont
           <div className="space-y-2">
             <h3 className="text-lg font-bold text-slate-800">Silver Price per Tola, 10 Grams, Gram and Kilogram</h3>
             <p>Silver historical records use the same unit structure where the source provides the applicable values. You can also use our <a href="/calculator/silver-converter/" className="text-amber-700 font-semibold hover:underline">Silver Price Converter</a> for custom weight calculations.</p>
-            <p>The historical table can show silver prices per tola and per 10 grams, together with calculated per-gram and per-kilogram equivalents using <strong>1 tola = 11.664 grams</strong>.</p>
+            <p>The historical table can show silver prices per tola and per 10 grams, together with calculated per-gram and per-kilogram equivalents using <strong>1 tola = 11.6638 grams</strong>.</p>
             <p>For example, the verified silver record for <strong>{silverDateAd}</strong> is <strong>NPR {fmt(silverTola)} per tola</strong> and <strong>NPR {fmt(silver10g)} per 10 grams</strong>. The per-gram and per-kilogram values shown in the table are calculated equivalents and are kept separate from the source-published prices.</p>
           </div>
           <div className="space-y-2">
@@ -110,7 +110,7 @@ export default function HistoryContent({ latestGold, latestSilver }: HistoryCont
             <h3 className="text-lg font-bold text-slate-800">Traditional Nepali Gold and Silver Units</h3>
             <p><strong>Tola (तोला)</strong> is the main traditional unit used for precious-metal pricing in Nepal. Historical gold and silver rates are commonly quoted per tola.</p>
             <ul className="list-disc pl-5 space-y-1 text-slate-700">
-              <li><strong>1 Tola = 11.664 grams</strong></li>
+              <li><strong>1 Tola = 11.6638 grams</strong></li>
               <li><strong>1 Tola = 100 Lal</strong></li>
               <li><strong>1 Tola = 16 Aana</strong></li>
               <li><strong>1 Aana = 6.25 Lal</strong></li>
@@ -163,7 +163,7 @@ export default function HistoryContent({ latestGold, latestSilver }: HistoryCont
                 <tbody className="divide-y divide-slate-200">
                   <tr>
                     <td className="p-3 font-bold border-r border-slate-200">1 Tola</td>
-                    <td className="p-3 text-right border-r border-slate-200">11.664 g</td>
+                    <td className="p-3 text-right border-r border-slate-200">11.6638 g</td>
                     <td className="p-3 text-right border-r border-slate-200">1</td>
                     <td className="p-3 text-right border-r border-slate-200">100</td>
                     <td className="p-3 text-right">16</td>
@@ -224,7 +224,7 @@ export default function HistoryContent({ latestGold, latestSilver }: HistoryCont
                 <tbody className="divide-y divide-slate-200">
                   <tr>
                     <td className="p-3 font-bold border-r border-slate-200">1 Tola</td>
-                    <td className="p-3 text-right border-r border-slate-200">11.664 g</td>
+                    <td className="p-3 text-right border-r border-slate-200">11.6638 g</td>
                     <td className="p-3 text-right font-bold text-amber-700 border-r border-slate-200">NPR {fmt(goldTola)}</td>
                     <td className="p-3 text-right font-bold text-slate-600">NPR {fmt(silverTola)}</td>
                   </tr>
@@ -249,20 +249,20 @@ export default function HistoryContent({ latestGold, latestSilver }: HistoryCont
                   <tr>
                     <td className="p-3 font-bold border-r border-slate-200">1 Gram</td>
                     <td className="p-3 text-right border-r border-slate-200">1 g</td>
-                    <td className="p-3 text-right font-bold text-amber-700 border-r border-slate-200">≈NPR {fmtFull(goldTola / 11.664)}</td>
-                    <td className="p-3 text-right font-bold text-slate-600">≈NPR {fmtFull(silverTola / 11.664)}</td>
+                    <td className="p-3 text-right font-bold text-amber-700 border-r border-slate-200">≈NPR {fmtFull(goldTola / 11.6638)}</td>
+                    <td className="p-3 text-right font-bold text-slate-600">≈NPR {fmtFull(silverTola / 11.6638)}</td>
                   </tr>
                   <tr>
                     <td className="p-3 font-bold border-r border-slate-200">1 Kilogram</td>
                     <td className="p-3 text-right border-r border-slate-200">1,000 g</td>
-                    <td className="p-3 text-right font-bold text-amber-700 border-r border-slate-200">≈NPR {fmt(goldTola / 11.664 * 1000)}</td>
-                    <td className="p-3 text-right font-bold text-slate-600">≈NPR {fmt(silverTola / 11.664 * 1000)}</td>
+                    <td className="p-3 text-right font-bold text-amber-700 border-r border-slate-200">≈NPR {fmt(goldTola / 11.6638 * 1000)}</td>
+                    <td className="p-3 text-right font-bold text-slate-600">≈NPR {fmt(silverTola / 11.6638 * 1000)}</td>
                   </tr>
                   <tr>
                     <td className="p-3 font-bold border-r border-slate-200">1 Troy Ounce</td>
                     <td className="p-3 text-right border-r border-slate-200">31.1035 g</td>
-                    <td className="p-3 text-right font-bold text-amber-700 border-r border-slate-200">≈NPR {fmt(goldTola / 11.664 * 31.1035)}</td>
-                    <td className="p-3 text-right font-bold text-slate-600">≈NPR {fmt(silverTola / 11.664 * 31.1035)}</td>
+                    <td className="p-3 text-right font-bold text-amber-700 border-r border-slate-200">≈NPR {fmt(goldTola / 11.6638 * 31.1035)}</td>
+                    <td className="p-3 text-right font-bold text-slate-600">≈NPR {fmt(silverTola / 11.6638 * 31.1035)}</td>
                   </tr>
                 </tbody>
               </table>
@@ -278,7 +278,7 @@ export default function HistoryContent({ latestGold, latestSilver }: HistoryCont
             <p>For example, a FENEGOSIDA record can publish a gold rate per 10 grams and a corresponding rate per tola. The historical archive preserves those source values separately rather than replacing one with a calculated value.</p>
             <p>For historical records where a gram or kilogram price is not directly published, the equivalent can be calculated from the source value using:</p>
             <ul className="list-disc pl-5 space-y-1 font-semibold text-slate-800">
-              <li>Per gram = Per tola ÷ 11.664</li>
+              <li>Per gram = Per tola ÷ 11.6638</li>
               <li>Per 10 grams = Per gram × 10</li>
               <li>Per kilogram = Per gram × 1,000</li>
             </ul>
@@ -357,7 +357,7 @@ export default function HistoryContent({ latestGold, latestSilver }: HistoryCont
           </div>
           <div>
             <h3 className="text-base font-bold text-slate-900 mb-1">What is 1 tola in grams?</h3>
-            <p>For the historical calculations on this page, <strong>1 tola = 11.664 grams</strong>.</p>
+            <p>For the historical calculations on this page, <strong>1 tola = 11.6638 grams</strong>.</p>
           </div>
           <div>
             <h3 className="text-base font-bold text-slate-900 mb-1">How many Lal are in 1 Tola?</h3>
@@ -393,7 +393,7 @@ export default function HistoryContent({ latestGold, latestSilver }: HistoryCont
           </div>
           <div>
             <h3 className="text-base font-bold text-slate-900 mb-1">Are the per-gram and per-kilogram prices published by FENEGOSIDA?</h3>
-            <p>Not necessarily. The historical archive distinguishes source-published prices from calculated equivalents. Per-gram and per-kilogram values are calculated using <strong>1 tola = 11.664 grams</strong> when they are not directly published by the source.</p>
+            <p>Not necessarily. The historical archive distinguishes source-published prices from calculated equivalents. Per-gram and per-kilogram values are calculated using <strong>1 tola = 11.6638 grams</strong> when they are not directly published by the source.</p>
           </div>
           <div>
             <h3 className="text-base font-bold text-slate-900 mb-1">What source is used for verified historical gold and silver prices?</h3>

@@ -345,16 +345,16 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
             </thead>
             <tbody className="divide-y divide-slate-50">
               {[
-                { unit: '1 Gram', hallmark: gold10gNPR / 10, tejabi: tejabiTolaNPR / 11.664 },
-                { unit: '5 Gram', hallmark: gold10gNPR / 2, tejabi: (tejabiTolaNPR / 11.664) * 5 },
-                { unit: '10 Gram', hallmark: gold10gNPR, tejabi: (tejabiTolaNPR / 11.664) * 10 },
+                { unit: '1 Gram', hallmark: gold10gNPR / 10, tejabi: tejabiTolaNPR / 11.6638 },
+                { unit: '5 Gram', hallmark: gold10gNPR / 2, tejabi: (tejabiTolaNPR / 11.6638) * 5 },
+                { unit: '10 Gram', hallmark: gold10gNPR, tejabi: (tejabiTolaNPR / 11.6638) * 10 },
                 { unit: '1 Lal (1/100 Tola)', hallmark: tolaNPR.current / 100, tejabi: tejabiTolaNPR / 100 },
                 { unit: '1 Aana (1/16 Tola)', hallmark: tolaNPR.current / 16, tejabi: tejabiTolaNPR / 16 },
                 { unit: 'Half Tola (½ Tola)', hallmark: tolaNPR.current / 2, tejabi: tejabiTolaNPR / 2 },
                 { unit: '1 Tola', hallmark: tolaNPR.current, tejabi: tejabiTolaNPR },
                 { unit: '5 Tola', hallmark: tolaNPR.current * 5, tejabi: tejabiTolaNPR * 5 },
                 { unit: '10 Tola', hallmark: tolaNPR.current * 10, tejabi: tejabiTolaNPR * 10 },
-                { unit: '100 Gram', hallmark: gold10gNPR * 10, tejabi: (tejabiTolaNPR / 11.664) * 100 },
+                { unit: '100 Gram', hallmark: gold10gNPR * 10, tejabi: (tejabiTolaNPR / 11.6638) * 100 },
               ].map(({ unit, hallmark, tejabi }) => (
                 <tr key={unit} className="hover:bg-slate-50">
                   <td className="py-2 px-2 sm:px-4 font-bold text-slate-700 text-sm">{unit}</td>
@@ -372,7 +372,7 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
             </tbody>
           </table>
         </div>
-        <p className="text-[11px] text-slate-400 font-medium mt-3">Based on today&apos;s FENEGOSIDA benchmark. 1 Tola = 11.664 grams. For advanced conversion, use our <a href="/calculator/gold-converter/" className="text-blue-600 hover:underline font-bold">Gold Value Calculator</a>.</p>
+        <p className="text-[11px] text-slate-400 font-medium mt-3">Based on today&apos;s FENEGOSIDA benchmark. 1 Tola = 11.6638 grams. For advanced conversion, use our <a href="/calculator/gold-converter/" className="text-blue-600 hover:underline font-bold">Gold Value Calculator</a>.</p>
       </section>
 
       

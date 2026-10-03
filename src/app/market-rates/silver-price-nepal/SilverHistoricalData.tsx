@@ -6,7 +6,7 @@ import { Download, Database, Info, AlertTriangle, History, TrendingUp, TrendingD
 
 type UnitMode = 'tola' | '10g' | 'kg';
 
-const TOLA_TO_GRAM = 11.664;
+const TOLA_TO_GRAM = 11.6638;
 
 function convertPrice(tolaPrize: number, unit: UnitMode): number {
   if (unit === 'tola') return tolaPrize;

@@ -7,7 +7,7 @@ type SilverPurity = '999' | '925';
 type SilverUnit  = 'tola' | 'gram' | 'kg';
 
 const PURITY_FACTOR: Record<SilverPurity, number> = { '999': 1, '925': 0.925 };
-const GRAM_PER_TOLA = 11.664;
+const GRAM_PER_TOLA = 11.6638;
 
 export default function SilverCalculatorClient({ silverPerTola }: { silverPerTola: number }) {
   const [purity,     setPurity]     = useState<SilverPurity>('999');
@@ -40,7 +40,7 @@ export default function SilverCalculatorClient({ silverPerTola }: { silverPerTol
   ];
 
   const unitOptions: { id: SilverUnit; label: string; conv: string }[] = [
-    { id: 'tola', label: 'Tola',  conv: '1 Tola = 11.664g' },
+    { id: 'tola', label: 'Tola',  conv: '1 Tola = 11.6638g' },
     { id: 'gram', label: 'Gram',  conv: '1g = 0.0857 Tola' },
     { id: 'kg',   label: 'KG',    conv: '1 Kg = 85.7 Tola' },
   ];
