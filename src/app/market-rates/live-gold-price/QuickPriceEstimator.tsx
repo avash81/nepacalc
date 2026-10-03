@@ -133,7 +133,7 @@ export default function QuickPriceEstimator() {
                <tbody className="divide-y divide-slate-100">
                   {[50000, 100000, 500000, 1000000].map(amt => (
                      <tr key={amt}>
-                        <th className="py-2 px-4 font-bold text-slate-700">{formatNPR(amt)}</th>
+                        <th scope="col" className="py-2 px-4 font-bold text-slate-700">{formatNPR(amt)}</th>
                         <td className="py-2 px-4 text-slate-600">{(amt / liveRate).toFixed(4)} Tola</td>
                         <td className="py-2 px-4 text-slate-500">{((amt / liveRate) * TOLA_GRAMS).toFixed(2)} g</td>
                      </tr>
@@ -151,15 +151,15 @@ export default function QuickPriceEstimator() {
          <table className="w-full text-left text-xs">
             <tbody className="divide-y divide-slate-100">
                <tr>
-                  <th className="py-2 px-4 font-bold text-slate-700">1 Tola</th>
+                  <th scope="col" className="py-2 px-4 font-bold text-slate-700">1 Tola</th>
                   <td className="py-2 px-4 text-slate-600">11.6638 grams</td>
                </tr>
                <tr>
-                  <th className="py-2 px-4 font-bold text-slate-700">10 Grams</th>
+                  <th scope="col" className="py-2 px-4 font-bold text-slate-700">10 Grams</th>
                   <td className="py-2 px-4 text-slate-600">0.85735 Tola</td>
                </tr>
                <tr>
-                  <th className="py-2 px-4 font-bold text-slate-700">1 Lal</th>
+                  <th scope="col" className="py-2 px-4 font-bold text-slate-700">1 Lal</th>
                   <td className="py-2 px-4 text-slate-600">0.1166 grams</td>
                </tr>
             </tbody>

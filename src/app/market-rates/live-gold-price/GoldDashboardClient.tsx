@@ -254,9 +254,9 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
               <table className="w-full text-left text-sm">
                 <thead>
                   <tr className="border-b border-slate-100 text-[10px] font-black text-slate-400 uppercase tracking-widest">
-                    <th className="py-2 pr-3">Unit</th>
-                    <th className="py-2 text-right pr-3">Today&apos;s Value</th>
-                    <th className="py-2 text-right">Convert</th>
+                    <th scope="col" className="py-2 pr-3">Unit</th>
+                    <th scope="col" className="py-2 text-right pr-3">Today&apos;s Value</th>
+                    <th scope="col" className="py-2 text-right">Convert</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-50">
@@ -337,10 +337,10 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
           <table className="w-full text-left text-sm">
             <thead className="bg-slate-50 text-[10px] font-black text-slate-400 uppercase tracking-widest text-xs">
               <tr>
-                <th className="py-3 px-2 sm:px-4">Unit</th>
-                <th className="py-3 px-2 sm:px-4 text-right">24K Hallmark</th>
-                <th className="py-3 px-2 sm:px-4 text-right hidden sm:table-cell">22K Tejabi</th>
-                <th className="py-3 px-2 sm:px-4"></th>
+                <th scope="col" className="py-3 px-2 sm:px-4">Unit</th>
+                <th scope="col" className="py-3 px-2 sm:px-4 text-right">24K Hallmark</th>
+                <th scope="col" className="py-3 px-2 sm:px-4 text-right hidden sm:table-cell">22K Tejabi</th>
+                <th scope="col" className="py-3 px-2 sm:px-4"></th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-50">

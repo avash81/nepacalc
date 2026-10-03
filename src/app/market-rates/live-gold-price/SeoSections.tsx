@@ -95,21 +95,21 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
           <table className="w-full text-left text-sm">
             <thead className="bg-slate-50/30 text-[10px] font-black text-slate-400 uppercase tracking-widest">
               <tr>
-                <th className="py-2 px-4 border-b border-slate-100 w-1/3">Query</th>
-                <th className="py-2 px-4 border-b border-slate-100">Direct Answer</th>
+                <th scope="col" className="py-2 px-4 border-b border-slate-100 w-1/3">Query</th>
+                <th scope="col" className="py-2 px-4 border-b border-slate-100">Direct Answer</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
               <tr>
-                <th className="py-3 px-4 font-bold text-slate-700">Gold price in Nepal today</th>
+                <th scope="col" className="py-3 px-4 font-bold text-slate-700">Gold price in Nepal today</th>
                 <td className="py-3 px-4 text-slate-600 font-medium">Please refer to the live board above for today&apos;s dynamic Fine Gold and Tejabi Gold rates.</td>
               </tr>
               <tr>
-                <th className="py-3 px-4 font-bold text-slate-700">Silver price today Nepal</th>
+                <th scope="col" className="py-3 px-4 font-bold text-slate-700">Silver price today Nepal</th>
                 <td className="py-3 px-4 text-slate-600 font-medium">Please refer to the live board above for today&apos;s dynamic Silver (Chandi) rate.</td>
               </tr>
               <tr>
-                <th className="py-3 px-4 font-bold text-slate-700">Who sets gold prices in Nepal?</th>
+                <th scope="col" className="py-3 px-4 font-bold text-slate-700">Who sets gold prices in Nepal?</th>
                 <td className="py-3 px-4 text-slate-600 font-medium">The Federation of Nepal Gold and Silver Dealers&apos; Association (FENEGOSIDA).</td>
               </tr>
             </tbody>
@@ -178,9 +178,9 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
           <table className="w-full text-sm min-w-[500px]">
             <thead className="bg-slate-50 text-[10px] font-black text-slate-400 uppercase tracking-widest">
               <tr>
-                <th className="py-3 px-5 text-left">Component</th>
-                <th className="py-3 px-5 text-left">What It Is</th>
-                <th className="py-3 px-5 text-right">Typical</th>
+                <th scope="col" className="py-3 px-5 text-left">Component</th>
+                <th scope="col" className="py-3 px-5 text-left">What It Is</th>
+                <th scope="col" className="py-3 px-5 text-right">Typical</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -248,9 +248,9 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
           <table className="w-full text-sm min-w-[500px]">
             <thead className="bg-slate-50 text-[10px] font-black text-slate-500 uppercase tracking-widest">
               <tr>
-                <th className="py-3 px-5 text-left">Factor</th>
-                <th className="py-3 px-5 text-left text-amber-600"> Gold</th>
-                <th className="py-3 px-5 text-left text-slate-500"> Silver</th>
+                <th scope="col" className="py-3 px-5 text-left">Factor</th>
+                <th scope="col" className="py-3 px-5 text-left text-amber-600"> Gold</th>
+                <th scope="col" className="py-3 px-5 text-left text-slate-500"> Silver</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
