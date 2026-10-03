@@ -23,6 +23,15 @@ export const metadata: Metadata = {
 
 const STATIC_POSTS = [
   {
+    id: 'static-momo-calories',
+    slug: 'momo-calories',
+    category: 'Health & Nutrition',
+    title: 'Momo Calories: How Many Calories Are in Momos?',
+    excerpt: 'Complete guide to momo calories in Nepal. Compare chicken, veg, buff, paneer, pork, steamed, fried, and jhol momos by piece and serving.',
+    date: '2026-10-03',
+    status: 'published'
+  },
+  {
     id: 'static-nepal-income-tax-guide-2082-83',
     slug: 'nepal-income-tax-guide-2082-83',
     category: 'Finance & Tax',

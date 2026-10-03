@@ -36,6 +36,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/changelog',
     '/pricing',
     '/blog',
+    '/blog/momo-calories',
     '/contact',
     '/privacy',
     '/terms',
