@@ -556,16 +556,20 @@ export default function ThreeDCalculatorClient() {
           {/* SECTION: FUNCTION PRESETS */}
           <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
             <div className="bg-[#f8fafc] border-b border-slate-200 px-4 py-2">
-              <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Function Presets</h2>
+              <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Presets</h2>
             </div>
             <div className="p-3">
-              <div className="grid grid-cols-2 gap-1.5">
+              <div className="flex flex-wrap gap-1.5">
                 {CURRICULUM_PRESETS.map(p => (
-                  <button aria-label={p.name} key={p.name} 
-                    onClick={() => addGraph(p.eq, p.color)} 
-                    className="h-9 flex items-center justify-center bg-[#0f172a] hover:bg-slate-800 text-white text-[8px] font-black rounded transition-all uppercase tracking-wider px-1"
+                  <button
+                    key={p.name}
+                    aria-label={`Plot ${p.name}`}
+                    onClick={() => addGraph(p.eq, p.color)}
+                    title={p.eq}
+                    className="flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-slate-200 hover:border-blue-400 hover:bg-blue-50 bg-white text-[10px] font-semibold text-slate-600 hover:text-blue-700 transition-all"
                   >
-                    {p.name}
+                    <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: p.color }} />
+                    {p.name.split(' ')[0]}
                   </button>
                 ))}
               </div>
@@ -575,8 +579,8 @@ export default function ThreeDCalculatorClient() {
         </aside>
 
         {/* MAIN VIEWPORT AREA */}
-        <div className="min-w-0 flex-1 flex flex-col gap-6 lg:h-full lg:overflow-y-auto lg:pr-2 scrollbar-thin scrollbar-thumb-slate-200 pb-20">
-          <div ref={fullscreenContainerRef} className={`bg-white border-0 lg:border border-slate-200 rounded-none lg:rounded-sm overflow-hidden shadow-sm flex flex-col shrink-0 ${isFullscreen ? 'fixed inset-0 z-[100] w-screen h-screen' : 'min-h-[500px] lg:min-h-[600px]'}`}>
+        <div className="min-w-0 flex-1 flex flex-col lg:h-full lg:overflow-hidden">
+          <div ref={fullscreenContainerRef} className={`bg-white border-0 lg:border border-slate-200 rounded-none lg:rounded-sm overflow-hidden shadow-sm flex flex-col flex-1 ${isFullscreen ? 'fixed inset-0 z-[100] w-screen h-screen' : 'h-full'}`}>
             <div className="bg-[#f8fafc] border-b border-slate-200 px-4 lg:px-6 py-3 flex items-center justify-between">
               <div className="flex items-center gap-2 lg:gap-3">
                 <Box className="w-4 h-4 text-[#1e40af]" />
@@ -840,61 +844,6 @@ export default function ThreeDCalculatorClient() {
                 </div>
               )}
             </div>
-          </div>
-
-          {/* FORMULA REFERENCE GRID, fills the blank middle space */}
-          <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
-            <div className="bg-[#f8fafc] border-b border-slate-200 px-6 py-3 border-l-4 border-l-[#1e40af]">
-              <h2 className="text-[10px] font-bold text-[#1e40af] uppercase tracking-[0.2em]">Mathematical Reference ,  All Preset Formulas</h2>
-            </div>
-            <div className="p-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {CURRICULUM_PRESETS.map(p => (
-                  <div 
-                    key={p.name} 
-                    onClick={() => addGraph(p.eq, p.color)}
-                    className="space-y-3 cursor-pointer group"
-                  >
-                    <div className="flex items-center gap-2">
-                      <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: p.color }} />
-                      <h3 className="text-[11px] font-black text-slate-800 uppercase tracking-tight group-hover:text-blue-700 transition-colors">{p.name}</h3>
-                    </div>
-                    <code className="block text-[11px] bg-slate-50 p-3 rounded text-blue-700 font-mono font-bold border border-slate-100 group-hover:border-blue-300 group-hover:bg-blue-50 transition-all break-all">
-                      {p.eq}
-                    </code>
-                    <p className="text-[11px] text-slate-500 leading-relaxed">
-                      {p.desc}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* STATISTICS AREA */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
-              <div className="bg-[#f8fafc] border-b border-slate-200 px-4 py-2 border-t-2 border-t-[#15803d]">
-                <h2 className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">System Statistics</h2>
-              </div>
-              <div className="p-5 flex justify-between items-center">
-                <span className="text-[11px] text-slate-400 font-bold uppercase">Vertex Count</span>
-                <span className="text-lg font-black text-[#1e40af]">145,200</span>
-              </div>
-            </div>
-            
-            <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
-              <div className="bg-[#f8fafc] border-b border-slate-200 px-4 py-2 border-t-2 border-t-rose-600">
-                <h2 className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Mesh Density</h2>
-              </div>
-              <div className="p-5 flex items-center gap-6">
-                <div className="flex-1 h-3 bg-slate-100 rounded-full overflow-hidden">
-                  <div className="h-full bg-rose-600" style={{ width: '72%' }} />
-                </div>
-                <span className="text-base font-black text-slate-700">72%</span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
