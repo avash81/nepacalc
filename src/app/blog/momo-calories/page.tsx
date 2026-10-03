@@ -144,7 +144,7 @@ export default function MomoCaloriesBlog() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <div className="min-h-screen bg-[#F8F9FA] pb-20">
-        <div className="max-w-[850px] mx-auto px-5 pt-8">
+        <div className="max-w-[1024px] mx-auto px-5 lg:px-8 pt-8 lg:pt-10">
 
           {/* Point 31: Visible breadcrumbs matching schema */}
           <nav aria-label="Breadcrumb" className="mb-6">
@@ -643,4 +643,5 @@ export default function MomoCaloriesBlog() {
     </>
   );
 }
+
 
