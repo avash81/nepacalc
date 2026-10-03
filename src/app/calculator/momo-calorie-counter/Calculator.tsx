@@ -1,5 +1,5 @@
 'use client';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useSyncState } from '@/hooks/useSyncState';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
 import { Flame, Plus, X, ChevronDown } from 'lucide-react';
@@ -77,6 +77,8 @@ function computeItem(item: ReturnType<typeof newItem>) {
 
 export default function MomoCalculator() {
   const [items, setItems] = useSyncState<ReturnType<typeof newItem>[]>('momo_v10_items', [newItem()]);
+  const [isAdding, setIsAdding] = useState(false);
+  const [draft, setDraft] = useState(newItem());
   
   const updateItem = (idx: number, patch: Partial<ReturnType<typeof newItem>>) => {
     setItems(items.map((it, i) => (i === idx ? { ...it, ...patch } : it)));
@@ -371,38 +373,9 @@ export default function MomoCalculator() {
           <div className="pt-4 border-t border-[#DADCE0] flex items-center gap-4">
             <button onClick={reset} className="text-[12px] font-bold text-[#5F6368] hover:text-[#202124]">Reset</button>
           </div>
-        </div>
-      }
-      results={
-        <div className="space-y-6">
-          {/* TOP HIERARCHY */}
-          <div className="text-center pt-2">
-            <div className="text-[11px] font-black text-[#70757A] uppercase tracking-widest mb-3">YOUR ESTIMATE</div>
-            <div className="text-5xl md:text-6xl font-black text-[#202124] mb-3 tracking-tight">
-              ≈ {Math.round(totals.cal)} <span className="text-2xl md:text-3xl text-[#5F6368] font-bold tracking-normal">kcal</span>
-            </div>
-            <div className="text-lg font-bold text-[#202124] mb-1">
-              {items.length === 1 
-                ? `${items[0].pieces} ${first.mLabel.toLowerCase()} ${first.tLabel.toLowerCase()} momos` 
-                : `${totalPieces} mixed momos`}
-            </div>
-            {items.length === 1 && (
-              <div className="text-sm font-semibold text-[#5F6368] mb-4">
-                ≈ {Math.round(first.ppCal)} kcal / momo
-              </div>
-            )}
-            <div className="text-[13px] font-bold text-[#202124] bg-slate-50 inline-block px-4 py-2 rounded-full border border-slate-200">
-              Protein {totals.p.toFixed(0)}g · Carbs {totals.c.toFixed(0)}g · Fat {totals.f.toFixed(0)}g
-            </div>
-          </div>
-
-          <p className="text-xs text-center text-[#5F6368] leading-relaxed">
-            Estimated value. Actual calories vary with momo size, filling, recipe, cooking method and sauces.
-          </p>
-
-          {/* ACCORDIONS */}
-          <div className="space-y-3 border-t border-[#DADCE0] pt-5">
-            
+          
+          {/* ACCORDIONS MOVED TO LEFT COLUMN TO BALANCE HEIGHT */}
+          <div className="space-y-3 border-t border-[#DADCE0] pt-6 mt-6">
             <details className="group bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
               <summary className="px-5 py-3.5 text-[13px] font-bold text-[#202124] cursor-pointer list-none flex items-center justify-between hover:bg-slate-50 outline-none focus:bg-slate-50">
                 Nutrition details
@@ -466,6 +439,34 @@ export default function MomoCalculator() {
             </details>
 
           </div>
+        </div>
+      }
+      results={
+        <div className="space-y-6">
+          {/* TOP HIERARCHY */}
+          <div className="text-center pt-2 pb-6">
+            <div className="text-[11px] font-black text-[#70757A] uppercase tracking-widest mb-3">YOUR ESTIMATE</div>
+            <div className="text-5xl md:text-6xl font-black text-[#202124] mb-3 tracking-tight">
+              ≈ {Math.round(totals.cal)} <span className="text-2xl md:text-3xl text-[#5F6368] font-bold tracking-normal">kcal</span>
+            </div>
+            <div className="text-lg font-bold text-[#202124] mb-1">
+              {items.length === 1 
+                ? `${items[0].pieces} ${first.mLabel.toLowerCase()} ${first.tLabel.toLowerCase()} momos` 
+                : `${totalPieces} mixed momos`}
+            </div>
+            {items.length === 1 && (
+              <div className="text-sm font-semibold text-[#5F6368] mb-4">
+                ≈ {Math.round(first.ppCal)} kcal / momo
+              </div>
+            )}
+            <div className="text-[13px] font-bold text-[#202124] bg-slate-50 inline-block px-4 py-2 rounded-full border border-slate-200">
+              Protein {totals.p.toFixed(0)}g · Carbs {totals.c.toFixed(0)}g · Fat {totals.f.toFixed(0)}g
+            </div>
+          </div>
+
+          <p className="text-xs text-center text-[#5F6368] leading-relaxed mt-4">
+            Estimated value. Actual calories vary with momo size, filling, recipe, cooking method and sauces.
+          </p>
         </div>
       }
       seoContent={
