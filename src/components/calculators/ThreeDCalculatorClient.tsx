@@ -383,17 +383,17 @@ export default function ThreeDCalculatorClient() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#f8fafc] font-sans">
-      <nav className="flex items-center justify-between px-6 py-4 border-b border-slate-200 bg-white">
-        <div className="flex items-center gap-3">
-          <button aria-label="Go Back" onClick={() => window.history.back()} className="p-2 border border-slate-200 rounded hover:bg-slate-50"><ArrowLeft className="w-4 h-4" /></button>
-          <div className="text-[11px] font-bold text-slate-500 uppercase tracking-widest">3D Pro Studio v4.0</div>
+    <div className="flex flex-col min-h-[calc(100vh-64px)] lg:h-[calc(100vh-64px)] w-full lg:overflow-hidden bg-[#f8fafc] font-sans">
+      <nav className="flex items-center justify-between px-4 lg:px-6 py-3 lg:py-4 border-b border-slate-200 bg-white shrink-0">
+        <div className="flex items-center gap-2 lg:gap-3">
+          <button aria-label="Go Back" onClick={() => window.history.back()} className="p-1.5 lg:p-2 border border-slate-200 rounded hover:bg-slate-50"><ArrowLeft className="w-4 h-4" /></button>
+          <div className="text-[10px] lg:text-[11px] font-bold text-slate-500 uppercase tracking-widest">3D Pro Studio v4.0</div>
         </div>
       </nav>
 
-      <div className="flex-1 flex flex-col lg:flex-row gap-6 p-6">
+      <div className="flex-1 flex flex-col lg:flex-row gap-0 lg:gap-6 p-0 lg:p-6 lg:overflow-hidden">
         {/* SIDEBAR */}
-        <aside className="w-full lg:w-[320px] flex flex-col gap-5 shrink-0 h-full overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-slate-200">
+        <aside className="w-full lg:w-[320px] flex flex-col gap-4 lg:gap-5 shrink-0 lg:h-full overflow-y-auto px-4 py-4 lg:px-0 lg:py-0 scrollbar-thin scrollbar-thumb-slate-200">
           
           {/* SECTION: EQUATIONS (MULTI-GRAPH) */}
           <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
@@ -575,10 +575,10 @@ export default function ThreeDCalculatorClient() {
         </aside>
 
         {/* MAIN VIEWPORT AREA */}
-        <div className="flex-1 flex flex-col gap-6">
-          <div ref={fullscreenContainerRef} className={`bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm flex flex-col ${isFullscreen ? 'fixed inset-0 z-[100] w-screen h-screen' : 'h-[650px]'}`}>
-            <div className="bg-[#f8fafc] border-b border-slate-200 px-6 py-3 flex items-center justify-between">
-              <div className="flex items-center gap-3">
+        <div className="min-w-0 flex-1 flex flex-col gap-6 lg:h-full lg:overflow-y-auto lg:pr-2 scrollbar-thin scrollbar-thumb-slate-200 pb-20">
+          <div ref={fullscreenContainerRef} className={`bg-white border-0 lg:border border-slate-200 rounded-none lg:rounded-sm overflow-hidden shadow-sm flex flex-col shrink-0 ${isFullscreen ? 'fixed inset-0 z-[100] w-screen h-screen' : 'min-h-[500px] lg:min-h-[600px]'}`}>
+            <div className="bg-[#f8fafc] border-b border-slate-200 px-4 lg:px-6 py-3 flex items-center justify-between">
+              <div className="flex items-center gap-2 lg:gap-3">
                 <Box className="w-4 h-4 text-[#1e40af]" />
                 <h2 className="text-[10px] font-bold text-[#1e40af] uppercase tracking-[0.2em]">3D Surface Visualization</h2>
               </div>
@@ -803,7 +803,7 @@ export default function ThreeDCalculatorClient() {
 
               {/* ADVANCED MATHEMATICAL KEYBOARD */}
               {activeInputId && (
-                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white border border-[#dadce0] p-5 rounded-2xl shadow-3xl border border-[#dadce0] w-[600px] z-50">
+                <div className="absolute bottom-4 lg:bottom-6 left-1/2 -translate-x-1/2 bg-white border border-[#dadce0] p-4 lg:p-5 rounded-xl lg:rounded-2xl shadow-3xl w-[95%] max-w-[600px] z-50">
                   <div className="flex justify-between items-center mb-4">
                     <span className="text-[10px] font-black text-[#202124]/40 uppercase tracking-widest">Scientific Input Panel</span>
                     <button aria-label="Close Keyboard" onClick={() => setActiveInputId(null)} className="text-[#202124]/40 hover:text-[#202124]"><Plus className="w-4 h-4 rotate-45" /></button>
@@ -857,7 +857,7 @@ export default function ThreeDCalculatorClient() {
                       <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: p.color }} />
                       <h3 className="text-[11px] font-black text-slate-800 uppercase tracking-tight group-hover:text-blue-700 transition-colors">{p.name}</h3>
                     </div>
-                    <code className="block text-[11px] bg-slate-50 p-3 rounded text-blue-700 font-mono font-bold border border-slate-100 group-hover:border-blue-300 group-hover:bg-blue-50 transition-all">
+                    <code className="block text-[11px] bg-slate-50 p-3 rounded text-blue-700 font-mono font-bold border border-slate-100 group-hover:border-blue-300 group-hover:bg-blue-50 transition-all break-all">
                       {p.eq}
                     </code>
                     <p className="text-[11px] text-slate-500 leading-relaxed">
