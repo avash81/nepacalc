@@ -365,32 +365,42 @@ export default function ThreeDCalculatorClient() {
   const updateGraph = (id: string, updates: Partial<GraphItem>) => {
     setGraphs(graphs.map(g => {
       if (g.id === id) {
-        const newEq = updates.equation || g.equation;
-        // Auto-detect variables (a-z excluding x, y)
-        const foundVars = Array.from(newEq.toLowerCase().matchAll(/[a-z]/g))
-          .map(m => m[0])
-          .filter(v => {
-            if (v === 'x' || v === 'y' || v === 'z') return false;
-            if (['e', 'i', 'p'].includes(v)) return false; 
-            return true;
-          });
-        
-        const uniqueVars = Array.from(new Set(foundVars));
-        const currentParamNames = params.map(p => p.name);
-        
-        const newParams = [...params];
-        uniqueVars.forEach(v => {
-          if (!currentParamNames.includes(v)) {
-            newParams.push({ id: Math.random().toString(), name: v, value: 1, min: -10, max: 10 });
-          }
-        });
-        
-        if (newParams.length !== params.length) setParams(newParams);
         return { ...g, ...updates };
       }
       return g;
     }));
   };
+
+
+  useEffect(() => {
+    const allVars = new Set<string>();
+    graphs.forEach(g => {
+      Array.from(g.equation.toLowerCase().matchAll(/[a-z]/g))
+        .map(m => m[0])
+        .filter(v => {
+          if (v === 'x' || v === 'y' || v === 'z') return false;
+          if (['e', 'i', 'p'].includes(v)) return false; 
+          return true;
+        })
+        .forEach(v => allVars.add(v));
+    });
+
+    const uniqueVars = Array.from(allVars).sort();
+    
+    setParams(prevParams => {
+      const newParams: Parameter[] = [];
+      for (const v of uniqueVars) {
+        const existing = prevParams.find(p => p.name === v);
+        if (existing) {
+          newParams.push(existing);
+        } else {
+          newParams.push({ id: Math.random().toString(), name: v, value: 1, min: -10, max: 10 });
+        }
+      }
+      const isSame = prevParams.length === newParams.length && prevParams.every((p, i) => p.name === newParams[i].name);
+      return isSame ? prevParams : newParams;
+    });
+  }, [graphs]);
 
   const addGraph = (equation: string, customColor?: string) => {
     setGraphs([...graphs, { 
@@ -839,3 +849,4 @@ const KBD_123 = [
   ['4', '5', '6', '*', 'x\u00b2', 'x\u02b8', '\u221a', 'log', 'ENTER'],
   ['1', '2', '3', '-', '+', '.', '\u03c0', '|x|', '0']
 ];
+
