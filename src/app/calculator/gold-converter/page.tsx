@@ -227,6 +227,908 @@ export default async function Page() {
             </table>
           </div>
 
+
+          <h3 className="font-bold text-slate-900 mb-2 mt-8">1. Core Gold Weight Conversion</h3>
+          <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
+            <table className="min-w-full text-sm text-left">
+              <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
+                <tr>
+                  <th className="py-2.5 px-4">Unit</th>
+                  <th className="py-2.5 px-4">Tola</th>
+                  <th className="py-2.5 px-4">Aana</th>
+                  <th className="py-2.5 px-4">Lal</th>
+                  <th className="py-2.5 px-4">Gram</th>
+                  <th className="py-2.5 px-4">Kilogram</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                <tr>
+                  <td className="py-2 px-4">1 Tola</td>
+                  <td className="py-2 px-4">1</td>
+                  <td className="py-2 px-4">16</td>
+                  <td className="py-2 px-4">100</td>
+                  <td className="py-2 px-4">11.6638</td>
+                  <td className="py-2 px-4">0.0116638</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">1 Aana</td>
+                  <td className="py-2 px-4">0.0625</td>
+                  <td className="py-2 px-4">1</td>
+                  <td className="py-2 px-4">6.25</td>
+                  <td className="py-2 px-4">0.7289875</td>
+                  <td className="py-2 px-4">0.0007289875</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">1 Lal</td>
+                  <td className="py-2 px-4">0.01</td>
+                  <td className="py-2 px-4">0.16</td>
+                  <td className="py-2 px-4">1</td>
+                  <td className="py-2 px-4">0.116638</td>
+                  <td className="py-2 px-4">0.000116638</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">1 Gram</td>
+                  <td className="py-2 px-4">0.085735</td>
+                  <td className="py-2 px-4">1.37176</td>
+                  <td className="py-2 px-4">8.57350</td>
+                  <td className="py-2 px-4">1</td>
+                  <td className="py-2 px-4">0.001</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">10 Gram</td>
+                  <td className="py-2 px-4">0.85735</td>
+                  <td className="py-2 px-4">13.7176</td>
+                  <td className="py-2 px-4">85.7350</td>
+                  <td className="py-2 px-4">10</td>
+                  <td className="py-2 px-4">0.010</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">100 Gram</td>
+                  <td className="py-2 px-4">8.57350</td>
+                  <td className="py-2 px-4">137.176</td>
+                  <td className="py-2 px-4">857.350</td>
+                  <td className="py-2 px-4">100</td>
+                  <td className="py-2 px-4">0.100</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">1 Kilogram</td>
+                  <td className="py-2 px-4">85.7350</td>
+                  <td className="py-2 px-4">1,371.76</td>
+                  <td className="py-2 px-4">8,573.50</td>
+                  <td className="py-2 px-4">1,000</td>
+                  <td className="py-2 px-4">1</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 className="font-bold text-slate-900 mb-2 mt-8">2. Tola → Gram / Aana / Lal</h3>
+          <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
+            <table className="min-w-full text-sm text-left">
+              <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
+                <tr>
+                  <th className="py-2.5 px-4">Tola</th>
+                  <th className="py-2.5 px-4">Gram</th>
+                  <th className="py-2.5 px-4">Aana</th>
+                  <th className="py-2.5 px-4">Lal</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                <tr>
+                  <td className="py-2 px-4">0.01</td>
+                  <td className="py-2 px-4">0.116638</td>
+                  <td className="py-2 px-4">0.16</td>
+                  <td className="py-2 px-4">1</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">0.05</td>
+                  <td className="py-2 px-4">0.583190</td>
+                  <td className="py-2 px-4">0.80</td>
+                  <td className="py-2 px-4">5</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">0.10</td>
+                  <td className="py-2 px-4">1.166380</td>
+                  <td className="py-2 px-4">1.60</td>
+                  <td className="py-2 px-4">10</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">0.25</td>
+                  <td className="py-2 px-4">2.915950</td>
+                  <td className="py-2 px-4">4.00</td>
+                  <td className="py-2 px-4">25</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">0.50</td>
+                  <td className="py-2 px-4">5.831900</td>
+                  <td className="py-2 px-4">8.00</td>
+                  <td className="py-2 px-4">50</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">0.75</td>
+                  <td className="py-2 px-4">8.747850</td>
+                  <td className="py-2 px-4">12.00</td>
+                  <td className="py-2 px-4">75</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">1</td>
+                  <td className="py-2 px-4">11.663800</td>
+                  <td className="py-2 px-4">16.00</td>
+                  <td className="py-2 px-4">100</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">1.25</td>
+                  <td className="py-2 px-4">14.579750</td>
+                  <td className="py-2 px-4">20.00</td>
+                  <td className="py-2 px-4">125</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">1.50</td>
+                  <td className="py-2 px-4">17.495700</td>
+                  <td className="py-2 px-4">24.00</td>
+                  <td className="py-2 px-4">150</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">2</td>
+                  <td className="py-2 px-4">23.327600</td>
+                  <td className="py-2 px-4">32.00</td>
+                  <td className="py-2 px-4">200</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">2.50</td>
+                  <td className="py-2 px-4">29.159500</td>
+                  <td className="py-2 px-4">40.00</td>
+                  <td className="py-2 px-4">250</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">3</td>
+                  <td className="py-2 px-4">34.991400</td>
+                  <td className="py-2 px-4">48.00</td>
+                  <td className="py-2 px-4">300</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">4</td>
+                  <td className="py-2 px-4">46.655200</td>
+                  <td className="py-2 px-4">64.00</td>
+                  <td className="py-2 px-4">400</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">5</td>
+                  <td className="py-2 px-4">58.319000</td>
+                  <td className="py-2 px-4">80.00</td>
+                  <td className="py-2 px-4">500</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">10</td>
+                  <td className="py-2 px-4">116.638000</td>
+                  <td className="py-2 px-4">160.00</td>
+                  <td className="py-2 px-4">1,000</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">20</td>
+                  <td className="py-2 px-4">233.276000</td>
+                  <td className="py-2 px-4">320.00</td>
+                  <td className="py-2 px-4">2,000</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">50</td>
+                  <td className="py-2 px-4">583.190000</td>
+                  <td className="py-2 px-4">800.00</td>
+                  <td className="py-2 px-4">5,000</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">100</td>
+                  <td className="py-2 px-4">1,166.380000</td>
+                  <td className="py-2 px-4">1,600.00</td>
+                  <td className="py-2 px-4">10,000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 className="font-bold text-slate-900 mb-2 mt-8">3. Gram → Tola / Aana / Lal</h3>
+          <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
+            <table className="min-w-full text-sm text-left">
+              <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
+                <tr>
+                  <th className="py-2.5 px-4">Gram</th>
+                  <th className="py-2.5 px-4">Tola</th>
+                  <th className="py-2.5 px-4">Aana</th>
+                  <th className="py-2.5 px-4">Lal</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                <tr>
+                  <td className="py-2 px-4">0.1</td>
+                  <td className="py-2 px-4">0.008573</td>
+                  <td className="py-2 px-4">0.13718</td>
+                  <td className="py-2 px-4">0.85735</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">0.25</td>
+                  <td className="py-2 px-4">0.021434</td>
+                  <td className="py-2 px-4">0.34294</td>
+                  <td className="py-2 px-4">2.14338</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">0.5</td>
+                  <td className="py-2 px-4">0.042868</td>
+                  <td className="py-2 px-4">0.68588</td>
+                  <td className="py-2 px-4">4.28675</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">1</td>
+                  <td className="py-2 px-4">0.085735</td>
+                  <td className="py-2 px-4">1.37176</td>
+                  <td className="py-2 px-4">8.57350</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">2</td>
+                  <td className="py-2 px-4">0.171470</td>
+                  <td className="py-2 px-4">2.74352</td>
+                  <td className="py-2 px-4">17.14700</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">3</td>
+                  <td className="py-2 px-4">0.257205</td>
+                  <td className="py-2 px-4">4.11528</td>
+                  <td className="py-2 px-4">25.72050</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">5</td>
+                  <td className="py-2 px-4">0.428675</td>
+                  <td className="py-2 px-4">6.85880</td>
+                  <td className="py-2 px-4">42.86750</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">10</td>
+                  <td className="py-2 px-4">0.857350</td>
+                  <td className="py-2 px-4">13.71760</td>
+                  <td className="py-2 px-4">85.73500</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">20</td>
+                  <td className="py-2 px-4">1.714700</td>
+                  <td className="py-2 px-4">27.43520</td>
+                  <td className="py-2 px-4">171.47000</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">25</td>
+                  <td className="py-2 px-4">2.143375</td>
+                  <td className="py-2 px-4">34.29400</td>
+                  <td className="py-2 px-4">214.33750</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">30</td>
+                  <td className="py-2 px-4">2.572050</td>
+                  <td className="py-2 px-4">41.15280</td>
+                  <td className="py-2 px-4">257.20500</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">40</td>
+                  <td className="py-2 px-4">3.429400</td>
+                  <td className="py-2 px-4">54.87040</td>
+                  <td className="py-2 px-4">342.94000</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">50</td>
+                  <td className="py-2 px-4">4.286750</td>
+                  <td className="py-2 px-4">68.58800</td>
+                  <td className="py-2 px-4">428.67500</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">75</td>
+                  <td className="py-2 px-4">6.430125</td>
+                  <td className="py-2 px-4">102.88200</td>
+                  <td className="py-2 px-4">642.78750</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">100</td>
+                  <td className="py-2 px-4">8.573500</td>
+                  <td className="py-2 px-4">137.17600</td>
+                  <td className="py-2 px-4">857.35000</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">250</td>
+                  <td className="py-2 px-4">21.433750</td>
+                  <td className="py-2 px-4">342.94000</td>
+                  <td className="py-2 px-4">2,143.37500</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">500</td>
+                  <td className="py-2 px-4">42.867500</td>
+                  <td className="py-2 px-4">685.88000</td>
+                  <td className="py-2 px-4">4,286.75000</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">1,000</td>
+                  <td className="py-2 px-4">85.735000</td>
+                  <td className="py-2 px-4">1,371.76000</td>
+                  <td className="py-2 px-4">8,573.50000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 className="font-bold text-slate-900 mb-2 mt-8">4. Aana → Lal / Gram / Tola</h3>
+          <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
+            <table className="min-w-full text-sm text-left">
+              <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
+                <tr>
+                  <th className="py-2.5 px-4">Aana</th>
+                  <th className="py-2.5 px-4">Lal</th>
+                  <th className="py-2.5 px-4">Gram</th>
+                  <th className="py-2.5 px-4">Tola</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                <tr>
+                  <td className="py-2 px-4">1</td>
+                  <td className="py-2 px-4">6.25</td>
+                  <td className="py-2 px-4">0.7289875</td>
+                  <td className="py-2 px-4">0.0625</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">2</td>
+                  <td className="py-2 px-4">12.50</td>
+                  <td className="py-2 px-4">1.4579750</td>
+                  <td className="py-2 px-4">0.1250</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">3</td>
+                  <td className="py-2 px-4">18.75</td>
+                  <td className="py-2 px-4">2.1869625</td>
+                  <td className="py-2 px-4">0.1875</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">4</td>
+                  <td className="py-2 px-4">25.00</td>
+                  <td className="py-2 px-4">2.9159500</td>
+                  <td className="py-2 px-4">0.2500</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">5</td>
+                  <td className="py-2 px-4">31.25</td>
+                  <td className="py-2 px-4">3.6449375</td>
+                  <td className="py-2 px-4">0.3125</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">6</td>
+                  <td className="py-2 px-4">37.50</td>
+                  <td className="py-2 px-4">4.3739250</td>
+                  <td className="py-2 px-4">0.3750</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">7</td>
+                  <td className="py-2 px-4">43.75</td>
+                  <td className="py-2 px-4">5.1029125</td>
+                  <td className="py-2 px-4">0.4375</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">8</td>
+                  <td className="py-2 px-4">50.00</td>
+                  <td className="py-2 px-4">5.8319000</td>
+                  <td className="py-2 px-4">0.5000</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">9</td>
+                  <td className="py-2 px-4">56.25</td>
+                  <td className="py-2 px-4">6.5608875</td>
+                  <td className="py-2 px-4">0.5625</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">10</td>
+                  <td className="py-2 px-4">62.50</td>
+                  <td className="py-2 px-4">7.2898750</td>
+                  <td className="py-2 px-4">0.6250</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">11</td>
+                  <td className="py-2 px-4">68.75</td>
+                  <td className="py-2 px-4">8.0188625</td>
+                  <td className="py-2 px-4">0.6875</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">12</td>
+                  <td className="py-2 px-4">75.00</td>
+                  <td className="py-2 px-4">8.7478500</td>
+                  <td className="py-2 px-4">0.7500</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">13</td>
+                  <td className="py-2 px-4">81.25</td>
+                  <td className="py-2 px-4">9.4768375</td>
+                  <td className="py-2 px-4">0.8125</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">14</td>
+                  <td className="py-2 px-4">87.50</td>
+                  <td className="py-2 px-4">10.2058250</td>
+                  <td className="py-2 px-4">0.8750</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">15</td>
+                  <td className="py-2 px-4">93.75</td>
+                  <td className="py-2 px-4">10.9348125</td>
+                  <td className="py-2 px-4">0.9375</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">16</td>
+                  <td className="py-2 px-4">100.00</td>
+                  <td className="py-2 px-4">11.6638000</td>
+                  <td className="py-2 px-4">1.0000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 className="font-bold text-slate-900 mb-2 mt-8">5. Lal → Gram / Aana / Tola</h3>
+          <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
+            <table className="min-w-full text-sm text-left">
+              <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
+                <tr>
+                  <th className="py-2.5 px-4">Lal</th>
+                  <th className="py-2.5 px-4">Gram</th>
+                  <th className="py-2.5 px-4">Aana</th>
+                  <th className="py-2.5 px-4">Tola</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                <tr>
+                  <td className="py-2 px-4">1</td>
+                  <td className="py-2 px-4">0.116638</td>
+                  <td className="py-2 px-4">0.16</td>
+                  <td className="py-2 px-4">0.01</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">5</td>
+                  <td className="py-2 px-4">0.583190</td>
+                  <td className="py-2 px-4">0.80</td>
+                  <td className="py-2 px-4">0.05</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">10</td>
+                  <td className="py-2 px-4">1.166380</td>
+                  <td className="py-2 px-4">1.60</td>
+                  <td className="py-2 px-4">0.10</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">15</td>
+                  <td className="py-2 px-4">1.749570</td>
+                  <td className="py-2 px-4">2.40</td>
+                  <td className="py-2 px-4">0.15</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">20</td>
+                  <td className="py-2 px-4">2.332760</td>
+                  <td className="py-2 px-4">3.20</td>
+                  <td className="py-2 px-4">0.20</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">25</td>
+                  <td className="py-2 px-4">2.915950</td>
+                  <td className="py-2 px-4">4.00</td>
+                  <td className="py-2 px-4">0.25</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">30</td>
+                  <td className="py-2 px-4">3.499140</td>
+                  <td className="py-2 px-4">4.80</td>
+                  <td className="py-2 px-4">0.30</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">40</td>
+                  <td className="py-2 px-4">4.665520</td>
+                  <td className="py-2 px-4">6.40</td>
+                  <td className="py-2 px-4">0.40</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">50</td>
+                  <td className="py-2 px-4">5.831900</td>
+                  <td className="py-2 px-4">8.00</td>
+                  <td className="py-2 px-4">0.50</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">60</td>
+                  <td className="py-2 px-4">6.998280</td>
+                  <td className="py-2 px-4">9.60</td>
+                  <td className="py-2 px-4">0.60</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">70</td>
+                  <td className="py-2 px-4">8.164660</td>
+                  <td className="py-2 px-4">11.20</td>
+                  <td className="py-2 px-4">0.70</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">75</td>
+                  <td className="py-2 px-4">8.747850</td>
+                  <td className="py-2 px-4">12.00</td>
+                  <td className="py-2 px-4">0.75</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">80</td>
+                  <td className="py-2 px-4">9.331040</td>
+                  <td className="py-2 px-4">12.80</td>
+                  <td className="py-2 px-4">0.80</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">90</td>
+                  <td className="py-2 px-4">10.497420</td>
+                  <td className="py-2 px-4">14.40</td>
+                  <td className="py-2 px-4">0.90</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">100</td>
+                  <td className="py-2 px-4">11.663800</td>
+                  <td className="py-2 px-4">16.00</td>
+                  <td className="py-2 px-4">1.00</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">125</td>
+                  <td className="py-2 px-4">14.579750</td>
+                  <td className="py-2 px-4">20.00</td>
+                  <td className="py-2 px-4">1.25</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">150</td>
+                  <td className="py-2 px-4">17.495700</td>
+                  <td className="py-2 px-4">24.00</td>
+                  <td className="py-2 px-4">1.50</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">200</td>
+                  <td className="py-2 px-4">23.327600</td>
+                  <td className="py-2 px-4">32.00</td>
+                  <td className="py-2 px-4">2.00</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 className="font-bold text-slate-900 mb-2 mt-8">6. 10 Gram Gold Conversion</h3>
+          <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
+            <table className="min-w-full text-sm text-left">
+              <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
+                <tr>
+                  <th className="py-2.5 px-4">Weight</th>
+                  <th className="py-2.5 px-4">Tola</th>
+                  <th className="py-2.5 px-4">Aana</th>
+                  <th className="py-2.5 px-4">Lal</th>
+                  <th className="py-2.5 px-4">Gram</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                <tr>
+                  <td className="py-2 px-4">10 g</td>
+                  <td className="py-2 px-4">0.857350</td>
+                  <td className="py-2 px-4">13.7176</td>
+                  <td className="py-2 px-4">85.7350</td>
+                  <td className="py-2 px-4">10</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">20 g</td>
+                  <td className="py-2 px-4">1.714700</td>
+                  <td className="py-2 px-4">27.4352</td>
+                  <td className="py-2 px-4">171.4700</td>
+                  <td className="py-2 px-4">20</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">30 g</td>
+                  <td className="py-2 px-4">2.572050</td>
+                  <td className="py-2 px-4">41.1528</td>
+                  <td className="py-2 px-4">257.2050</td>
+                  <td className="py-2 px-4">30</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">40 g</td>
+                  <td className="py-2 px-4">3.429400</td>
+                  <td className="py-2 px-4">54.8704</td>
+                  <td className="py-2 px-4">342.9400</td>
+                  <td className="py-2 px-4">40</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">50 g</td>
+                  <td className="py-2 px-4">4.286750</td>
+                  <td className="py-2 px-4">68.5880</td>
+                  <td className="py-2 px-4">428.6750</td>
+                  <td className="py-2 px-4">50</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">100 g</td>
+                  <td className="py-2 px-4">8.573500</td>
+                  <td className="py-2 px-4">137.1760</td>
+                  <td className="py-2 px-4">857.3500</td>
+                  <td className="py-2 px-4">100</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">250 g</td>
+                  <td className="py-2 px-4">21.433750</td>
+                  <td className="py-2 px-4">342.9400</td>
+                  <td className="py-2 px-4">2,143.3750</td>
+                  <td className="py-2 px-4">250</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">500 g</td>
+                  <td className="py-2 px-4">42.867500</td>
+                  <td className="py-2 px-4">685.8800</td>
+                  <td className="py-2 px-4">4,286.7500</td>
+                  <td className="py-2 px-4">500</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">1 kg</td>
+                  <td className="py-2 px-4">85.735000</td>
+                  <td className="py-2 px-4">1,371.7600</td>
+                  <td className="py-2 px-4">8,573.5000</td>
+                  <td className="py-2 px-4">1,000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 className="font-bold text-slate-900 mb-2 mt-8">7. Kilogram → Tola</h3>
+          <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
+            <table className="min-w-full text-sm text-left">
+              <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
+                <tr>
+                  <th className="py-2.5 px-4">Kilogram</th>
+                  <th className="py-2.5 px-4">Gram</th>
+                  <th className="py-2.5 px-4">Tola</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                <tr>
+                  <td className="py-2 px-4">0.01</td>
+                  <td className="py-2 px-4">10</td>
+                  <td className="py-2 px-4">0.857350</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">0.025</td>
+                  <td className="py-2 px-4">25</td>
+                  <td className="py-2 px-4">2.143375</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">0.05</td>
+                  <td className="py-2 px-4">50</td>
+                  <td className="py-2 px-4">4.286750</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">0.10</td>
+                  <td className="py-2 px-4">100</td>
+                  <td className="py-2 px-4">8.573500</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">0.25</td>
+                  <td className="py-2 px-4">250</td>
+                  <td className="py-2 px-4">21.433750</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">0.50</td>
+                  <td className="py-2 px-4">500</td>
+                  <td className="py-2 px-4">42.867500</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">0.75</td>
+                  <td className="py-2 px-4">750</td>
+                  <td className="py-2 px-4">64.301250</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">1</td>
+                  <td className="py-2 px-4">1,000</td>
+                  <td className="py-2 px-4">85.735000</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">2</td>
+                  <td className="py-2 px-4">2,000</td>
+                  <td className="py-2 px-4">171.470000</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">5</td>
+                  <td className="py-2 px-4">5,000</td>
+                  <td className="py-2 px-4">428.675000</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">10</td>
+                  <td className="py-2 px-4">10,000</td>
+                  <td className="py-2 px-4">857.350000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 className="font-bold text-slate-900 mb-2 mt-8">8. Troy Ounce Conversion</h3>
+          <p className="mb-2 text-slate-700 text-sm">Using 1 troy ounce = 31.1034768 g:</p>
+          <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
+            <table className="min-w-full text-sm text-left">
+              <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
+                <tr>
+                  <th className="py-2.5 px-4">Troy Oz</th>
+                  <th className="py-2.5 px-4">Grams</th>
+                  <th className="py-2.5 px-4">Tola</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                <tr>
+                  <td className="py-2 px-4">0.25</td>
+                  <td className="py-2 px-4">7.775869</td>
+                  <td className="py-2 px-4">0.666667</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">0.50</td>
+                  <td className="py-2 px-4">15.551738</td>
+                  <td className="py-2 px-4">1.333333</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">0.75</td>
+                  <td className="py-2 px-4">23.327608</td>
+                  <td className="py-2 px-4">2.000000</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">1</td>
+                  <td className="py-2 px-4">31.103477</td>
+                  <td className="py-2 px-4">2.666667</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">2</td>
+                  <td className="py-2 px-4">62.206954</td>
+                  <td className="py-2 px-4">5.333333</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">3</td>
+                  <td className="py-2 px-4">93.310430</td>
+                  <td className="py-2 px-4">8.000000</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">4</td>
+                  <td className="py-2 px-4">124.413907</td>
+                  <td className="py-2 px-4">10.666667</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">5</td>
+                  <td className="py-2 px-4">155.517384</td>
+                  <td className="py-2 px-4">13.333333</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">10</td>
+                  <td className="py-2 px-4">311.034768</td>
+                  <td className="py-2 px-4">26.666667</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 className="font-bold text-slate-900 mb-2 mt-8">9. Tola → Troy Ounce</h3>
+          <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
+            <table className="min-w-full text-sm text-left">
+              <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
+                <tr>
+                  <th className="py-2.5 px-4">Tola</th>
+                  <th className="py-2.5 px-4">Grams</th>
+                  <th className="py-2.5 px-4">Troy Oz</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                <tr>
+                  <td className="py-2 px-4">0.25</td>
+                  <td className="py-2 px-4">2.915950</td>
+                  <td className="py-2 px-4">0.093750</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">0.50</td>
+                  <td className="py-2 px-4">5.831900</td>
+                  <td className="py-2 px-4">0.187500</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">0.75</td>
+                  <td className="py-2 px-4">8.747850</td>
+                  <td className="py-2 px-4">0.281250</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">1</td>
+                  <td className="py-2 px-4">11.663800</td>
+                  <td className="py-2 px-4">0.375000</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">2</td>
+                  <td className="py-2 px-4">23.327600</td>
+                  <td className="py-2 px-4">0.750000</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">3</td>
+                  <td className="py-2 px-4">34.991400</td>
+                  <td className="py-2 px-4">1.125000</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">4</td>
+                  <td className="py-2 px-4">46.655200</td>
+                  <td className="py-2 px-4">1.500000</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">5</td>
+                  <td className="py-2 px-4">58.319000</td>
+                  <td className="py-2 px-4">1.875000</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">10</td>
+                  <td className="py-2 px-4">116.638000</td>
+                  <td className="py-2 px-4">3.750000</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">20</td>
+                  <td className="py-2 px-4">233.276000</td>
+                  <td className="py-2 px-4">7.500000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 className="font-bold text-slate-900 mb-2 mt-8">10. Gram → Milligram</h3>
+          <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
+            <table className="min-w-full text-sm text-left">
+              <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
+                <tr>
+                  <th className="py-2.5 px-4">Gram</th>
+                  <th className="py-2.5 px-4">Milligram</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                <tr>
+                  <td className="py-2 px-4">0.1</td>
+                  <td className="py-2 px-4">100</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">0.25</td>
+                  <td className="py-2 px-4">250</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">0.5</td>
+                  <td className="py-2 px-4">500</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">1</td>
+                  <td className="py-2 px-4">1,000</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">2</td>
+                  <td className="py-2 px-4">2,000</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">5</td>
+                  <td className="py-2 px-4">5,000</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">10</td>
+                  <td className="py-2 px-4">10,000</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">20</td>
+                  <td className="py-2 px-4">20,000</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">50</td>
+                  <td className="py-2 px-4">50,000</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">100</td>
+                  <td className="py-2 px-4">100,000</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">250</td>
+                  <td className="py-2 px-4">250,000</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="py-2 px-4">500</td>
+                  <td className="py-2 px-4">500,000</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">1,000</td>
+                  <td className="py-2 px-4">1,000,000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
           <h2 id="official-standard" className="text-2xl font-black text-slate-900 mt-12 mb-6">Official Nepal Gold Measurement Standard (FENEGOSIDA & NBSM)</h2>
           <div className="mb-6 space-y-4">
             <p>
@@ -305,3 +1207,4 @@ export default async function Page() {
     </>
   );
 }
+
