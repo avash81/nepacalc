@@ -406,29 +406,72 @@ export default function ThreeDCalculatorClient() {
       </nav>
 
       
-      <div className="flex-1 flex flex-col gap-4 lg:gap-6 p-4 lg:p-6 max-w-[1600px] mx-auto w-full">
-{/* MAIN VIEWPORT AREA */}
-        <div className="w-full h-[55vh] lg:h-[65vh] shrink-0 flex flex-col relative">
-          <div ref={fullscreenContainerRef} className={`bg-white border-0 border border-slate-200 rounded-sm overflow-hidden shadow-sm flex flex-col flex-1 ${isFullscreen ? 'fixed inset-0 z-[100] w-screen h-screen' : 'h-full'}`}>
-            <div className="bg-[#f8fafc] border-b border-slate-200 px-4 lg:px-6 py-3 flex items-center justify-between">
-              <div className="flex items-center gap-2 lg:gap-3">
-                <Box className="w-4 h-4 text-[#1e40af]" />
-                <h2 className="text-[10px] font-bold text-[#1e40af] uppercase tracking-[0.2em]">3D Surface Visualization</h2>
-              </div>
-              <div className="flex items-center gap-3">
-                <button
-                  aria-label={isFullscreen ? 'Exit Fullscreen' : 'View Fullscreen'}
-                  onClick={toggleFullscreen}
-                  title={isFullscreen ? 'Exit Fullscreen' : 'Fullscreen Graph View'}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-[#1e40af] hover:bg-blue-700 text-white text-[9px] font-bold uppercase tracking-wide transition-all"
-                >
-                  <Maximize className="w-3 h-3" />
-                  {isFullscreen ? 'Exit' : 'Fullscreen'}
-                </button>
-              </div>
+      <div className="flex-1 flex flex-col gap-3 w-full overflow-x-hidden">
+
+        {/* EQUATIONS - full width above graph */}
+        <div className="w-full px-3 pt-3">
+          <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
+            <div className="flex items-center justify-between px-4 py-2.5 bg-[#f8fafc] border-b border-slate-200">
+              <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Equations</h2>
+              <button
+                aria-label="Add Graph"
+                onClick={() => addGraph('z = sin(sqrt(x^2 + y^2))')}
+                className="flex items-center gap-1 px-2 py-1 rounded bg-blue-600 hover:bg-blue-700 text-white text-[9px] font-bold uppercase transition-all"
+              >
+                <Plus className="w-3 h-3" /> Add
+              </button>
             </div>
-            
+            <div className="p-3 flex flex-col gap-2">
+              {graphs.map((g) => (
+                <div key={g.id} className="flex flex-col sm:flex-row sm:items-center gap-2">
+                  <div className="flex items-center gap-2 shrink-0">
+                    <div className="w-3 h-3 rounded-full" style={{ backgroundColor: g.color }} />
+                    <span className="text-[9px] font-bold text-slate-400 uppercase">Layer</span>
+                  </div>
+                  <input
+                    type="text"
+                    value={g.equation}
+                    onFocus={() => setActiveInputId(g.id)}
+                    onChange={(e) => updateGraph(g.id, { equation: e.target.value })}
+                    className="flex-1 w-full bg-[#f8fafc] border border-slate-200 rounded px-3 py-2 font-mono text-[13px] font-bold outline-none focus:border-blue-500 transition-all text-slate-700"
+                    placeholder="e.g. z = sin(sqrt(x^2 + y^2))"
+                  />
+                  <div className="flex items-center gap-2 shrink-0">
+                    <span className="text-[9px] text-slate-400 uppercase font-bold hidden sm:inline">Opacity</span>
+                    <input
+                      type="range" min="0.1" max="1" step="0.05"
+                      value={g.opacity}
+                      onChange={(e) => updateGraph(g.id, { opacity: parseFloat(e.target.value) })}
+                      className="w-20 h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                    />
+                    <button
+                      aria-label="Remove Graph"
+                      onClick={() => setGraphs(graphs.filter(x => x.id !== g.id))}
+                      className="p-1 text-rose-400 hover:text-rose-600 hover:bg-rose-50 rounded transition-colors"
+                    >
+                      <Plus className="w-3.5 h-3.5 rotate-45" />
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+{/* MAIN VIEWPORT AREA */}
+        <div className="w-full h-[50vh] lg:h-[60vh] shrink-0 flex flex-col relative">
+          <div ref={fullscreenContainerRef} className={`overflow-hidden flex flex-col flex-1 ${isFullscreen ? 'fixed inset-0 z-[100] w-screen h-screen' : 'h-full'}`}>
             <div className="flex-1 bg-[#e2e8f0] relative group">
+              {/* Floating fullscreen button */}
+              <button
+                aria-label={isFullscreen ? 'Exit Fullscreen' : 'View Fullscreen'}
+                onClick={toggleFullscreen}
+                className="absolute top-3 right-3 z-20 flex items-center gap-1.5 px-2.5 py-1.5 rounded bg-white/90 backdrop-blur-sm border border-slate-200 hover:bg-white text-slate-600 hover:text-[#1e40af] text-[9px] font-bold uppercase tracking-wide transition-all shadow-sm opacity-60 hover:opacity-100"
+              >
+                <Maximize className="w-3 h-3" />
+                <span className="hidden sm:inline">{isFullscreen ? 'Exit' : 'Fullscreen'}</span>
+              </button>
+              
               <Canvas 
                 shadows 
                 frameloop="demand"
@@ -677,17 +720,16 @@ export default function ThreeDCalculatorClient() {
         </div>
       
         {/* SETTINGS AREA (BOTTOM) */}
-        <div className="w-full flex flex-col gap-4 lg:gap-6 pb-20">
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 items-start">
-            <div className="flex flex-col gap-4 lg:gap-6">
+        <div className="w-full px-3 pb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 items-start">
+            <div className="flex flex-col gap-3">
 {/* SLICING CONTROLS */}
           <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
             <button onClick={() => toggleSection('slicing')} className="w-full bg-[#f8fafc] border-b border-slate-200 px-4 py-3 flex items-center justify-between">
               <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Cross-Section Slicing</h2>
               <ChevronDown className={`w-4 h-4 lg:hidden text-slate-400 transition-transform ${openSections.slicing ? "" : "-rotate-90"}`} />
             </button>
-            <div className={`p-4 ${openSections.slicing ? "block" : "hidden lg:block"}`}>
+            <div className={`p-4 ${openSections.slicing ? "block" : "hidden sm:block"}`}>
               <div className="flex gap-1 mb-4">
                 {(['none', 'x', 'y', 'z'] as const).map(mode => (
                   <button
@@ -723,15 +765,13 @@ export default function ThreeDCalculatorClient() {
             </div>
           </div>
 
-          
-
 {/* SECTION: FUNCTION PRESETS */}
           <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
             <button onClick={() => toggleSection('presets')} className="w-full bg-[#f8fafc] border-b border-slate-200 px-4 py-3 flex items-center justify-between">
               <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Presets</h2>
               <ChevronDown className={`w-4 h-4 lg:hidden text-slate-400 transition-transform ${openSections.presets ? "" : "-rotate-90"}`} />
             </button>
-            <div className={`p-4 ${openSections.presets ? "block" : "hidden lg:block"}`}>
+            <div className={`p-4 ${openSections.presets ? "block" : "hidden sm:block"}`}>
               <div className="flex flex-wrap gap-1.5">
                 {CURRICULUM_PRESETS.map(p => (
                   <button
@@ -748,10 +788,9 @@ export default function ThreeDCalculatorClient() {
               </div>
             </div>
           </div>
-
-        
             </div>
-            <div className="flex flex-col gap-4 lg:gap-6">
+
+            <div className="flex flex-col gap-3">
 {/* SECTION: DYNAMIC VARIABLES */}
           <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
             <button onClick={() => toggleSection('variables')} className="w-full bg-[#f8fafc] border-b border-slate-200 px-4 py-3 flex items-center justify-between">
@@ -765,41 +804,57 @@ export default function ThreeDCalculatorClient() {
                 </span>
               </div>
             </button>
-            <div className={`p-4 grid grid-cols-1 sm:grid-cols-2 gap-4 ${openSections.variables ? "block" : "hidden lg:block"}`}>
+            <div className={`p-4 flex flex-wrap gap-4 ${openSections.variables ? "flex" : "hidden sm:flex"}`}>
               {params.map(p => (
-                <div key={p.id} className="">
-                  <div className="flex justify-between items-center text-[9px] font-bold uppercase">
-                    <span className="text-slate-500 flex items-center gap-2">{p.name} = 
-                        <input type="number" step="0.1" value={p.value} onChange={(e) => setParams(params.map(x => x.id === p.id ? { ...x, value: parseFloat(e.target.value) || 0 } : x))} className="w-14 h-6 text-center border border-slate-200 rounded text-blue-600 bg-white" />
-                      </span>
-                    <div className="flex items-center gap-2">
-                      <span className="text-slate-300">{p.min}</span>
-                      <input 
-                        type="range" min={p.min} max={p.max} step="0.1"
-                        value={p.value} 
-                        onChange={(e) => setParams(params.map(x => x.id === p.id ? { ...x, value: parseFloat(e.target.value) } : x))}
-                        className="w-24 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-blue-600" 
-                      />
-                      <span className="text-slate-300">{p.max}</span>
-                    </div>
-                  </div>
+                <div key={p.id} className="flex items-center gap-2">
+                  <span className="text-[9px] font-bold text-slate-500 uppercase">{p.name} =</span>
+                  <input type="number" step="0.1" value={p.value} onChange={(e) => setParams(params.map(x => x.id === p.id ? { ...x, value: parseFloat(e.target.value) || 0 } : x))} className="w-14 h-7 text-center border border-slate-200 rounded text-blue-600 bg-white text-[12px] font-bold" />
+                  <input 
+                    type="range" min={p.min} max={p.max} step="0.1"
+                    value={p.value} 
+                    onChange={(e) => setParams(params.map(x => x.id === p.id ? { ...x, value: parseFloat(e.target.value) } : x))}
+                    className="w-20 h-1.5 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-blue-600" 
+                  />
                 </div>
               ))}
             </div>
           </div>
 
-          
-</div>
+{/* SECTION: QUALITY */}
+          <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
+            <button onClick={() => toggleSection('quality')} className="w-full bg-[#f8fafc] border-b border-slate-200 px-4 py-3 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Quality</h2>
+                <span className="text-[10px] font-bold text-blue-600">{resolution}x{resolution}</span>
+              </div>
+              <ChevronDown className={`w-4 h-4 lg:hidden text-slate-400 transition-transform ${openSections.quality ? "" : "-rotate-90"}`} />
+            </button>
+            <div className={`p-4 space-y-3 ${openSections.quality ? "block" : "hidden sm:block"}`}>
+              <div className="flex justify-between text-[9px] font-bold uppercase">
+                <span className="text-slate-400">Resolution</span>
+                <span className="text-blue-700">{resolution}x{resolution}</span>
+              </div>
+              <input 
+                type="range" min="20" max="150" step="5"
+                value={resolution}
+                onChange={(e) => setResolution(parseInt(e.target.value))}
+                className="w-full accent-blue-600 h-1.5 bg-slate-100 rounded-lg appearance-none cursor-pointer" 
+              />
+              <div className="flex justify-between text-[8px] text-slate-300 uppercase font-bold">
+                <span>Low (20)</span><span>High (150)</span>
+              </div>
+            </div>
+          </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
 }
-
 const KBD_123 = [
   ['x', 'y', 'z', 'a', 'b', 'c', '(', ')', 'AC'],
   ['7', '8', '9', '/', 'sin', 'cos', 'tan', 'exp', 'DEL'],
-  ['4', '5', '6', '*', 'x²', 'xʸ', '√', 'log', 'ENTER'],
-  ['1', '2', '3', '-', '+', '.', 'π', '|x|', '0']
+  ['4', '5', '6', '*', 'x\u00b2', 'x\u02b8', '\u221a', 'log', 'ENTER'],
+  ['1', '2', '3', '-', '+', '.', '\u03c0', '|x|', '0']
 ];
