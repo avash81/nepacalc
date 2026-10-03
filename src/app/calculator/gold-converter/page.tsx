@@ -203,14 +203,15 @@ export default async function Page() {
           <h2 id="conversion-table" className="text-2xl font-black text-slate-900 mt-12 mb-6">Nepal Gold Conversion Table</h2>
           <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
             <table className="min-w-full text-sm text-left">
+                <caption className="sr-only">Core Nepal gold unit conversion table — Tola, Aana, Lal, Gram, Kilogram</caption>
               <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
                 <tr>
-                  <th className="py-2.5 px-4">Unit</th>
-                  <th className="py-2.5 px-4">Tola</th>
-                  <th className="py-2.5 px-4">Aana</th>
-                  <th className="py-2.5 px-4">Lal</th>
-                  <th className="py-2.5 px-4">Gram</th>
-                  <th className="py-2.5 px-4">Kilogram</th>
+                  <th scope="col" className="py-2.5 px-4">Unit</th>
+                  <th scope="col" className="py-2.5 px-4">Tola</th>
+                  <th scope="col" className="py-2.5 px-4">Aana</th>
+                  <th scope="col" className="py-2.5 px-4">Lal</th>
+                  <th scope="col" className="py-2.5 px-4">Gram</th>
+                  <th scope="col" className="py-2.5 px-4">Kilogram</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -275,15 +276,16 @@ export default async function Page() {
           </div>
 
           
-          <h3 className="font-bold text-slate-900 mb-2 mt-8">1. Tola → Gram / Aana / Lal</h3>
+          <h3 id="tola-to-gram" className="font-bold text-slate-900 mb-2 mt-8">1. Tola → Gram / Aana / Lal</h3>
           <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
             <table className="min-w-full text-sm text-left">
+                <caption className="sr-only">Tola to Gram, Aana and Lal conversion table — Nepal gold units</caption>
               <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
                 <tr>
-                  <th className="py-2.5 px-4">Tola</th>
-                  <th className="py-2.5 px-4">Gram</th>
-                  <th className="py-2.5 px-4">Aana</th>
-                  <th className="py-2.5 px-4">Lal</th>
+                  <th scope="col" className="py-2.5 px-4">Tola</th>
+                  <th scope="col" className="py-2.5 px-4">Gram</th>
+                  <th scope="col" className="py-2.5 px-4">Aana</th>
+                  <th scope="col" className="py-2.5 px-4">Lal</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -399,15 +401,16 @@ export default async function Page() {
             </table>
           </div>
 
-          <h3 className="font-bold text-slate-900 mb-2 mt-8">2. Gram → Tola / Aana / Lal</h3>
+          <h3 id="gram-to-tola" className="font-bold text-slate-900 mb-2 mt-8">2. Gram → Tola / Aana / Lal</h3>
           <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
             <table className="min-w-full text-sm text-left">
+                <caption className="sr-only">Gram to Tola, Aana and Lal conversion table — Nepal gold units</caption>
               <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
                 <tr>
-                  <th className="py-2.5 px-4">Gram</th>
-                  <th className="py-2.5 px-4">Tola</th>
-                  <th className="py-2.5 px-4">Aana</th>
-                  <th className="py-2.5 px-4">Lal</th>
+                  <th scope="col" className="py-2.5 px-4">Gram</th>
+                  <th scope="col" className="py-2.5 px-4">Tola</th>
+                  <th scope="col" className="py-2.5 px-4">Aana</th>
+                  <th scope="col" className="py-2.5 px-4">Lal</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -523,15 +526,16 @@ export default async function Page() {
             </table>
           </div>
 
-          <h3 className="font-bold text-slate-900 mb-2 mt-8">3. Aana → Lal / Gram / Tola</h3>
+          <h3 id="aana-to-lal" className="font-bold text-slate-900 mb-2 mt-8">3. Aana → Lal / Gram / Tola</h3>
           <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
             <table className="min-w-full text-sm text-left">
+                <caption className="sr-only">Aana to Lal, Gram and Tola conversion table — Nepal gold units</caption>
               <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
                 <tr>
-                  <th className="py-2.5 px-4">Aana</th>
-                  <th className="py-2.5 px-4">Lal</th>
-                  <th className="py-2.5 px-4">Gram</th>
-                  <th className="py-2.5 px-4">Tola</th>
+                  <th scope="col" className="py-2.5 px-4">Aana</th>
+                  <th scope="col" className="py-2.5 px-4">Lal</th>
+                  <th scope="col" className="py-2.5 px-4">Gram</th>
+                  <th scope="col" className="py-2.5 px-4">Tola</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -635,15 +639,16 @@ export default async function Page() {
             </table>
           </div>
 
-          <h3 className="font-bold text-slate-900 mb-2 mt-8">4. Lal → Gram / Aana / Tola</h3>
+          <h3 id="lal-to-gram" className="font-bold text-slate-900 mb-2 mt-8">4. Lal → Gram / Aana / Tola</h3>
           <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
             <table className="min-w-full text-sm text-left">
+                <caption className="sr-only">Lal to Gram, Aana and Tola conversion table — Nepal gold units</caption>
               <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
                 <tr>
-                  <th className="py-2.5 px-4">Lal</th>
-                  <th className="py-2.5 px-4">Gram</th>
-                  <th className="py-2.5 px-4">Aana</th>
-                  <th className="py-2.5 px-4">Tola</th>
+                  <th scope="col" className="py-2.5 px-4">Lal</th>
+                  <th scope="col" className="py-2.5 px-4">Gram</th>
+                  <th scope="col" className="py-2.5 px-4">Aana</th>
+                  <th scope="col" className="py-2.5 px-4">Tola</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -759,14 +764,15 @@ export default async function Page() {
             </table>
           </div>
 
-          <h3 className="font-bold text-slate-900 mb-2 mt-8">5. Common Kilogram → Gram / Tola</h3>
+          <h3 id="kilogram-to-tola" className="font-bold text-slate-900 mb-2 mt-8">5. Common Kilogram → Gram / Tola</h3>
           <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
             <table className="min-w-full text-sm text-left">
+                <caption className="sr-only">Kilogram to Gram and Tola conversion table — Nepal gold units</caption>
               <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
                 <tr>
-                  <th className="py-2.5 px-4">Kilogram</th>
-                  <th className="py-2.5 px-4">Gram</th>
-                  <th className="py-2.5 px-4">Tola</th>
+                  <th scope="col" className="py-2.5 px-4">Kilogram</th>
+                  <th scope="col" className="py-2.5 px-4">Gram</th>
+                  <th scope="col" className="py-2.5 px-4">Tola</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -829,14 +835,15 @@ export default async function Page() {
             </table>
           </div>
 
-          <h3 className="font-bold text-slate-900 mb-2 mt-8">6. Troy Ounce → Gram / Tola</h3>
+          <h3 id="troy-oz-to-tola" className="font-bold text-slate-900 mb-2 mt-8">6. Troy Ounce → Gram / Tola</h3>
           <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
             <table className="min-w-full text-sm text-left">
+                <caption className="sr-only">Troy Ounce to Gram and Tola conversion table — international gold weights</caption>
               <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
                 <tr>
-                  <th className="py-2.5 px-4">Troy Oz</th>
-                  <th className="py-2.5 px-4">Grams</th>
-                  <th className="py-2.5 px-4">Tola</th>
+                  <th scope="col" className="py-2.5 px-4">Troy Oz</th>
+                  <th scope="col" className="py-2.5 px-4">Grams</th>
+                  <th scope="col" className="py-2.5 px-4">Tola</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -889,14 +896,15 @@ export default async function Page() {
             </table>
           </div>
 
-          <h3 className="font-bold text-slate-900 mb-2 mt-8">7. Tola → Troy Ounce</h3>
+          <h3 id="tola-to-troy-oz" className="font-bold text-slate-900 mb-2 mt-8">7. Tola → Troy Ounce</h3>
           <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
             <table className="min-w-full text-sm text-left">
+                <caption className="sr-only">Tola to Troy Ounce conversion table — Nepal gold to international weights</caption>
               <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
                 <tr>
-                  <th className="py-2.5 px-4">Tola</th>
-                  <th className="py-2.5 px-4">Grams</th>
-                  <th className="py-2.5 px-4">Troy Oz</th>
+                  <th scope="col" className="py-2.5 px-4">Tola</th>
+                  <th scope="col" className="py-2.5 px-4">Grams</th>
+                  <th scope="col" className="py-2.5 px-4">Troy Oz</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -954,13 +962,14 @@ export default async function Page() {
             </table>
           </div>
 
-          <h3 className="font-bold text-slate-900 mb-2 mt-8">8. Gram → Milligram</h3>
+          <h3 id="gram-to-milligram" className="font-bold text-slate-900 mb-2 mt-8">8. Gram → Milligram</h3>
           <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
             <table className="min-w-full text-sm text-left">
+                <caption className="sr-only">Gram to Milligram conversion table — gold weight reference</caption>
               <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
                 <tr>
-                  <th className="py-2.5 px-4">Gram</th>
-                  <th className="py-2.5 px-4">Milligram</th>
+                  <th scope="col" className="py-2.5 px-4">Gram</th>
+                  <th scope="col" className="py-2.5 px-4">Milligram</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
