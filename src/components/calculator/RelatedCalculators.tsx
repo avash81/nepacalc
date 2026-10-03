@@ -23,10 +23,11 @@ import {
 
 interface Props {
   currentSlug: string;
-  category: string;
+  category?: string;
+  specificSlugs?: string[];
 }
 
-const getIconForSlug = (slug: string, category: string) => {
+const getIconForSlug = (slug: string, category: string = '') => {
   const s = slug.toLowerCase();
   
   // Health
@@ -61,16 +62,22 @@ const getIconForSlug = (slug: string, category: string) => {
   return <Calculator className="w-6 h-6 text-slate-400 group-hover:text-blue-500 transition-colors" />;
 }
 
-export default function RelatedCalculators({ currentSlug, category }: Props) {
-  const related = CALCULATORS.filter(
-    (c) => c.category === category && c.slug !== currentSlug
-  )
-    .sort((a, b) => {
-      if (a.isHot && !b.isHot) return -1;
-      if (!a.isHot && b.isHot) return 1;
-      return 0;
-    })
-    .slice(0, 4);
+export default function RelatedCalculators({ currentSlug, category, specificSlugs }: Props) {
+  let related = [];
+
+  if (specificSlugs && specificSlugs.length > 0) {
+    related = specificSlugs.map(slug => CALCULATORS.find(c => c.slug === slug)).filter(Boolean) as CalculatorType[];
+  } else {
+    related = CALCULATORS.filter(
+      (c) => c.category === category && c.slug !== currentSlug
+    )
+      .sort((a, b) => {
+        if (a.isHot && !b.isHot) return -1;
+        if (!a.isHot && b.isHot) return 1;
+        return 0;
+      })
+      .slice(0, 4);
+  }
 
   if (related.length === 0) return null;
 

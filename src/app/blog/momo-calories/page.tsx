@@ -2,10 +2,11 @@ import { calcMeta } from '@/lib/calcMeta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import RelatedCalculators from '@/components/calculator/RelatedCalculators';
 
 export const metadata: Metadata = {
   ...calcMeta({
-    title: 'Momo Calories: Complete Guide to Calories in Momos',
+    title: 'Momo Calories: Chicken, Veg, Buff, Fried & Jhol',
     description: 'Discover calories in steamed, fried, chicken, veg, buff, jhol, C-momo and tandoori momos. Includes per-piece, per-plate and cooking method comparisons.',
     slug: 'blog/momo-calories',
     keywords: [
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     ],
   }),
   openGraph: {
-    title: 'Momo Calories: Complete Guide to Calories in Momos',
+    title: 'Momo Calories: Chicken, Veg, Buff, Fried & Jhol',
     description: 'Discover calories in steamed, fried, chicken, veg, buff, jhol, C-momo and tandoori momos.',
     url: 'https://nepacalc.com/blog/momo-calories/',
     siteName: 'NepaCalc',
@@ -46,20 +47,22 @@ export default function MomoCaloriesBlog() {
 
         <article className="bg-white border border-[#DADCE0] rounded-3xl p-6 sm:p-10 shadow-sm">
           <h1 className="text-3xl sm:text-4xl font-black text-[#202124] tracking-tight mb-6 leading-tight">
-            Momo Calories: Complete Guide to Calories in Momos
+            Momo Calories: How Many Calories Are in Momos?
           </h1>
 
           <div className="prose prose-slate max-w-none text-[#202124] leading-relaxed">
             <p className="text-lg text-[#5F6368] mb-8">
-              Momos are one of the most popular street foods in South Asia. Whether you are tracking your intake or simply curious, understanding momo calories depends on the filling, cooking method, portion size and any sauces added.
+              Momo calories vary by filling, size, cooking method and sauces. A steamed momo, fried momo and jhol momo can have different calorie values even when the serving contains the same number of pieces. Use the calculator below to estimate a specific serving, then use this guide to understand how the estimates differ.
             </p>
 
-            {/* Quick Answer */}
-            <div className="bg-orange-50 border border-orange-200 rounded-xl p-6 mb-10 not-prose">
-              <h2 className="text-xl font-bold text-orange-800 mt-0 mb-3">Quick Calorie Answer</h2>
-              <p className="text-orange-900 mb-0 text-sm leading-relaxed">
-                A standard <strong>steamed chicken momo</strong> contains about <strong>60 calories</strong> per piece. A <strong>steamed veg momo</strong> contains about <strong>45 calories</strong> per piece. Frying adds approximately 25–30 calories per piece. For an exact estimate for your specific serving, use the interactive <Link href="/calculator/momo-calorie-counter/" className="text-orange-600 font-bold hover:underline">Momo Calorie Calculator</Link>.
+            {/* CTA Near Beginning */}
+            <div className="bg-[#E8F0FE] border border-[#1967D2] rounded-xl p-6 mb-10 not-prose">
+              <p className="text-[#202124] mb-3 text-sm leading-relaxed">
+                Need a number for a specific serving? Calculate momo calories by type, preparation and quantity.
               </p>
+              <Link href="/calculator/momo-calorie-counter/" className="text-[#1967D2] font-bold hover:underline inline-flex items-center">
+                Calculate Momo Calories →
+              </Link>
             </div>
 
             {/* Quick reference table */}
@@ -248,6 +251,14 @@ export default function MomoCaloriesBlog() {
             </div>
           </div>
         </article>
+
+        <div className="max-w-3xl mx-auto px-4 pb-16">
+          <RelatedCalculators 
+            currentSlug="blog/momo-calories" 
+            category="health"
+            specificSlugs={['calorie-calculator', 'bmr', 'bmi', 'ideal-weight']} 
+          />
+        </div>
       </div>
     </div>
   );
