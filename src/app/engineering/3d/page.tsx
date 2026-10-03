@@ -1,4 +1,4 @@
-
+﻿
 import { JsonLd } from '@/components/seo/JsonLd';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
@@ -358,13 +358,13 @@ export default function ThreeDPage() {
 
       <ThreeDCalculatorClient />
 
-      <div className="max-w-[1280px] mx-auto px-4 mt-8 pb-4">
-        <h1 className="text-3xl lg:text-4xl font-black text-[#202124] mb-4 text-center">3D Graphing Calculator</h1>
-        <p className="text-sm font-semibold text-center text-[#1967D2] mb-6 uppercase tracking-wider">Last Updated: October 2026</p>
-        <p className="text-lg text-center leading-relaxed text-[#5F6368] max-w-4xl mx-auto">
+      <div className="w-full px-6 lg:px-10 py-6 border-b border-[#DADCE0] bg-white">
+        <h1 className="text-3xl lg:text-4xl font-black text-[#202124] mb-2">3D Graphing Calculator</h1>
+        <p className="text-xs font-bold text-[#1967D2] mb-3 uppercase tracking-wider">Last Updated: October 2026</p>
+        <p className="text-base leading-relaxed text-[#5F6368] max-w-4xl">
           Plot mathematical equations and visualize 3D surfaces directly in your browser. This interactive 3D graphing calculator lets you create and explore surfaces, rotate and zoom the graph, compare multiple equations, and examine explicit and implicit functions without installing software.
         </p>
-        <p className="text-sm text-center font-medium text-[#5F6368] max-w-4xl mx-auto mt-4">
+        <p className="text-sm font-medium text-[#5F6368] max-w-4xl mt-3">
           Looking for other tools? Try our <Link href="/math-tools/scientific/" className="text-[#1967D2] hover:underline">Scientific Calculator</Link>, <Link href="/math-tools/matrix/" className="text-[#1967D2] hover:underline">Matrix Calculator</Link>, <Link href="/calculator/linear-solver/" className="text-[#1967D2] hover:underline">Linear Equation Solver</Link>, <Link href="/calculator/quadratic-solver/" className="text-[#1967D2] hover:underline">Quadratic Solver</Link>, or <Link href="/utility/converter/" className="text-[#1967D2] hover:underline">Unit Converter</Link>.
         </p>
       </div>
@@ -373,73 +373,25 @@ export default function ThreeDPage() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mt-8">
           
           {/* Left Column (Stats, Trust, Links) */}
-          <div className="lg:col-span-1 space-y-6">
-            
-            {/* On This Page (Jump Links) */}
-            <div className="bg-white border border-[#DADCE0] rounded-xl p-6 shadow-sm">
-              <h2 className="text-lg font-bold text-[#202124] mb-4">On This Page</h2>
-              <ul className="space-y-2 text-sm text-[#1967D2] font-medium">
-                <li><a href="#what-is-3d-calculator" className="hover:underline">What is a 3D Graph Calculator?</a></li>
-                <li><a href="#how-to-use" className="hover:underline">How to Use It</a></li>
-                <li><a href="#supported-graph-types" className="hover:underline">Supported Graph Types</a></li>
-                <li><a href="#mathematical-formulas" className="hover:underline">Mathematical Formulas</a></li>
-                <li><a href="#engineering-applications" className="hover:underline">Engineering Applications</a></li>
-                <li><a href="#surface-library" className="hover:underline">Surface Library</a></li>
-                <li><a href="#examples" className="hover:underline">Examples</a></li>
-                <li><a href="#comparison" className="hover:underline">Comparison</a></li>
-                <li><a href="#faqs" className="hover:underline">Frequently Asked Questions</a></li>
-              </ul>
+          {/* Left Column: sticky TOC */}
+          <div className="lg:col-span-1">
+            <div className="sticky top-6 bg-white border border-[#DADCE0] rounded-xl p-5 shadow-sm">
+              <p className="text-[10px] font-black text-[#70757A] uppercase tracking-widest mb-3">On This Page</p>
+              <ol className="space-y-0.5 border-l-2 border-[#DADCE0]">
+                <li><a href="#what-is-3d-calculator" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">What is a 3D Graph Calculator?</a></li>
+                <li><a href="#how-to-use" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">How to Use It</a></li>
+                <li><a href="#supported-graph-types" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">Supported Graph Types</a></li>
+                <li><a href="#mathematical-formulas" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">Mathematical Formulas</a></li>
+                <li><a href="#engineering-applications" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">Engineering Applications</a></li>
+                <li><a href="#surface-library" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">Surface Library</a></li>
+                <li><a href="#examples" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">Examples</a></li>
+                <li><a href="#comparison" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">Comparison</a></li>
+                <li><a href="#faqs" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">Frequently Asked Questions</a></li>
+              </ol>
             </div>
-
-            {/* Trust Box */}
-            <div className="bg-white border border-[#DADCE0] rounded-xl p-6 shadow-sm text-sm">
-              <h3 className="font-bold text-[#202124] mb-3 border-b pb-2">Trust & Details</h3>
-              <div className="space-y-3 text-[#5F6368] text-sm">
-                <p><strong className="text-[#202124]">Last Updated:</strong> June 2026</p>
-                <p><strong className="text-[#202124]">Formula Verification:</strong> Updated June 2026</p>
-                <p><strong className="text-[#202124]">Calculation Engine:</strong> WebGL GPU Rendering</p>
-                <p><strong className="text-[#202124]">Educational Level:</strong> High School, College, University, Professional</p>
-                <p><strong className="text-[#202124]">Reviewed by:</strong> NepaCalc Mathematics Team</p>
-                <p><strong className="text-[#202124]">Accuracy Statement:</strong> All formulas are verified against internationally accepted mathematical references.</p>
-                <div className="pt-2 border-t border-[#DADCE0]">
-                  <p><strong className="text-[#202124]">Reference Standards:</strong></p>
-                  <ul className="list-disc pl-5 mt-1 space-y-1">
-                    <li>MIT OpenCourseWare</li>
-                    <li>Wolfram MathWorld</li>
-                    <li>NIST</li>
-                    <li>OpenCourseWare Mathematics</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className="bg-white border border-[#DADCE0] rounded-xl p-6 shadow-sm text-sm">
-              <h3 className="font-bold text-[#202124] mb-3 border-b pb-2">Supports</h3>
-              <ul className="space-y-2 text-[#5F6368]">
-                <li className="flex items-center gap-2"><span className="text-green-600">✔</span> Explicit Functions</li>
-                <li className="flex items-center gap-2"><span className="text-green-600">✔</span> Implicit Equations</li>
-                <li className="flex items-center gap-2"><span className="text-green-600">✔</span> Multiple Surfaces</li>
-                <li className="flex items-center gap-2"><span className="text-green-600">✔</span> Real-Time Rendering</li>
-                <li className="flex items-center gap-2"><span className="text-green-600">✔</span> Cross Sections</li>
-                <li className="flex items-center gap-2"><span className="text-green-600">✔</span> Variable Controls</li>
-                <li className="flex items-center gap-2"><span className="text-green-600">✔</span> Browser-Based WebGL</li>
-              </ul>
-            </div>
-
-            {/* Related Tools */}
-            <div className="bg-white border border-[#DADCE0] rounded-xl p-6 shadow-sm">
-              <h3 className="text-lg font-bold text-[#202124] mb-4">Related Tools</h3>
-              <ul className="space-y-2 text-sm text-[#1967D2] font-medium">
-                <li><Link href="/scientific" className="hover:underline">Scientific Calculator</Link></li>
-                <li><Link href="/algebra/matrix" className="hover:underline">Matrix Calculator</Link></li>
-                <li><Link href="/algebra/linear-equation" className="hover:underline">Linear Equation Solver</Link></li>
-                <li><Link href="/algebra/quadratic-equation" className="hover:underline">Quadratic Solver</Link></li>
-                <li><Link href="/geometry" className="hover:underline">Geometry Calculator</Link></li>
-              </ul>
-            </div>
-
           </div>
 
-          {/* Right Column (Quick Features & Main Content) */}
+                    {/* Right Column (Quick Features & Main Content) */}
           <div className="lg:col-span-3">
             <div className="bg-white border border-[#DADCE0] rounded-xl p-8 lg:p-12 shadow-sm">
               <h2 className="text-2xl lg:text-3xl font-black text-[#202124] mb-6">Why Use This 3D Graph Calculator?</h2>
@@ -2331,6 +2283,59 @@ export default function ThreeDPage() {
               </article>
             </div>
           </div>
+
+              {/* Trust, Supports, Related — below article */}
+              <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                {/* Trust & Details */}
+                <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-xl p-5 text-sm">
+                  <h3 className="font-bold text-[#202124] mb-3 border-b border-[#DADCE0] pb-2">Trust &amp; Details</h3>
+                  <div className="space-y-2 text-[#5F6368]">
+                    <p><strong className="text-[#202124]">Last Updated:</strong> October 2026</p>
+                    <p><strong className="text-[#202124]">Formula Verification:</strong> Updated October 2026</p>
+                    <p><strong className="text-[#202124]">Calculation Engine:</strong> WebGL GPU Rendering</p>
+                    <p><strong className="text-[#202124]">Educational Level:</strong> High School, College, University, Professional</p>
+                    <p><strong className="text-[#202124]">Reviewed by:</strong> NepaCalc Mathematics Team</p>
+                    <p><strong className="text-[#202124]">Accuracy Statement:</strong> All formulas are verified against internationally accepted mathematical references.</p>
+                    <div className="pt-2 border-t border-[#DADCE0] mt-2">
+                      <p className="font-semibold text-[#202124] mb-1">Reference Standards</p>
+                      <ul className="space-y-0.5 text-[#5F6368]">
+                        <li>MIT OpenCourseWare</li>
+                        <li>Wolfram MathWorld</li>
+                        <li>NIST</li>
+                        <li>OpenCourseWare Mathematics</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Supports */}
+                <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-xl p-5 text-sm">
+                  <h3 className="font-bold text-[#202124] mb-3 border-b border-[#DADCE0] pb-2">Supports</h3>
+                  <ul className="space-y-2 text-[#5F6368]">
+                    <li className="flex items-center gap-2"><span className="text-green-600 font-bold">&#10004;</span> Explicit Functions</li>
+                    <li className="flex items-center gap-2"><span className="text-green-600 font-bold">&#10004;</span> Implicit Equations</li>
+                    <li className="flex items-center gap-2"><span className="text-green-600 font-bold">&#10004;</span> Multiple Surfaces</li>
+                    <li className="flex items-center gap-2"><span className="text-green-600 font-bold">&#10004;</span> Real-Time Rendering</li>
+                    <li className="flex items-center gap-2"><span className="text-green-600 font-bold">&#10004;</span> Cross Sections</li>
+                    <li className="flex items-center gap-2"><span className="text-green-600 font-bold">&#10004;</span> Variable Controls</li>
+                    <li className="flex items-center gap-2"><span className="text-green-600 font-bold">&#10004;</span> Browser-Based WebGL</li>
+                  </ul>
+                </div>
+
+                {/* Related Tools */}
+                <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-xl p-5 text-sm">
+                  <h3 className="font-bold text-[#202124] mb-3 border-b border-[#DADCE0] pb-2">Related Tools</h3>
+                  <ul className="space-y-2 text-[#1967D2] font-medium">
+                    <li><Link href="/math-tools/scientific/" className="hover:underline">Scientific Calculator</Link></li>
+                    <li><Link href="/math-tools/matrix/" className="hover:underline">Matrix Calculator</Link></li>
+                    <li><Link href="/calculator/linear-solver/" className="hover:underline">Linear Equation Solver</Link></li>
+                    <li><Link href="/calculator/quadratic-solver/" className="hover:underline">Quadratic Solver</Link></li>
+                    <li><Link href="/geometry/" className="hover:underline">Geometry Calculator</Link></li>
+                  </ul>
+                </div>
+
+              </div>
         </div>
       </section>
     </>

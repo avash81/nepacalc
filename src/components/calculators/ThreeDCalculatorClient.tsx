@@ -844,6 +844,7 @@ export default function ThreeDCalculatorClient() {
                 </div>
               )}
             </div>
+          </div>
         </div>
       </div>
     </div>
