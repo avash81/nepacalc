@@ -14,6 +14,7 @@ interface ModernCalcLayoutProps {
   icon?: React.ElementType;
   inputs: ReactNode;
   results: ReactNode;
+  resultsBottom?: ReactNode;
   howToUse?: { steps: string[] };
   formula?: { title: string; description: string; latex?: string; raw?: string; variables?: string[] };
   faqs?: { question: string; answer: string }[];
@@ -44,7 +45,7 @@ interface ModernCalcLayoutProps {
 }
 
 export function ModernCalcLayout({
-  title, description, icon: Icon = Calculator, inputs, results, howToUse, formula, faqs, sidebar, relatedTools, seoContent, auditPanel, details, crumbs, slug, fullWidth = false, layout = 'split', ads, hideH1 = false, intro, customSchema, compactHeader = false, titleClassName, sidebarPosition = 'side', calculatorPosition = 'main'
+  title, description, icon: Icon = Calculator, inputs, results, resultsBottom, howToUse, formula, faqs, sidebar, relatedTools, seoContent, auditPanel, details, crumbs, slug, fullWidth = false, layout = 'split', ads, hideH1 = false, intro, customSchema, compactHeader = false, titleClassName, sidebarPosition = 'side', calculatorPosition = 'main'
 }: ModernCalcLayoutProps) {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [liveRates, setLiveRates] = useState<MarketRate[]>([]);
@@ -163,7 +164,7 @@ export function ModernCalcLayout({
             <div className="p-4 lg:p-6">{inputs}</div>
           </div>
           {results && (
-            <div className="w-full lg:w-[420px] xl:w-[480px] bg-[#F8F9FA] flex flex-col shrink-0 lg:sticky lg:top-20 lg:max-h-[calc(100vh-100px)] overflow-y-auto border-t lg:border-t-0 border-[#DADCE0]">
+            <div className="w-full lg:w-[420px] xl:w-[480px] bg-[#F8F9FA] flex flex-col shrink-0 lg:sticky lg:top-20 border-t lg:border-t-0 border-[#DADCE0]">
               <div className="p-4 lg:p-6 flex-1">
                 <div className="mb-4">
                   <h3 className="text-[11px] font-bold uppercase tracking-wider text-[#70757A]">Result Summary</h3>
@@ -192,14 +193,15 @@ export function ModernCalcLayout({
           <div className="flex-1 w-full bg-white relative">
             <div className="p-4 lg:p-6">{inputs}</div>
           </div>
-          <div className="w-full md:w-[320px] lg:w-[450px] bg-white shrink-0 lg:sticky lg:top-20 lg:max-h-[calc(100vh-100px)] overflow-y-auto border-t md:border-t-0 border-[#DADCE0]">
-            <div className="p-4 h-full">
-              <div className="bg-white border border-[#DADCE0] rounded-md overflow-hidden h-full flex flex-col shadow-sm">
+          <div className="w-full md:w-[320px] lg:w-[450px] bg-white shrink-0 lg:sticky lg:top-20 border-t md:border-t-0 border-[#DADCE0]">
+            <div className="p-4 flex flex-col gap-4">
+              <div className="bg-white border border-[#DADCE0] rounded-md overflow-hidden flex flex-col shadow-sm">
                 <div className="px-4 py-2.5 border-b border-[#DADCE0] bg-[#F8F9FA]">
                   <h3 className="text-[11px] font-bold uppercase tracking-wider text-[#70757A]">Result Summary</h3>
                 </div>
                 <div className="flex-1 p-6 flex flex-col justify-center bg-white">{results}</div>
               </div>
+              {resultsBottom && <div>{resultsBottom}</div>}
             </div>
           </div>
         </div>
