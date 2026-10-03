@@ -201,7 +201,6 @@ export default async function Page() {
           </div>
 
           <h2 id="conversion-table" className="text-2xl font-black text-slate-900 mt-12 mb-6">Nepal Gold Conversion Table</h2>
-          <h3 className="font-bold text-slate-900 mb-2 mt-8">1. Core Gold Weight Conversion</h3>
           <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
             <table className="min-w-full text-sm text-left">
               <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
@@ -276,7 +275,7 @@ export default async function Page() {
           </div>
 
           
-          <h3 className="font-bold text-slate-900 mb-2 mt-8">2. Tola → Gram / Aana / Lal</h3>
+          <h3 className="font-bold text-slate-900 mb-2 mt-8">1. Tola → Gram / Aana / Lal</h3>
           <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
             <table className="min-w-full text-sm text-left">
               <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
@@ -400,7 +399,7 @@ export default async function Page() {
             </table>
           </div>
 
-          <h3 className="font-bold text-slate-900 mb-2 mt-8">3. Gram → Tola / Aana / Lal</h3>
+          <h3 className="font-bold text-slate-900 mb-2 mt-8">2. Gram → Tola / Aana / Lal</h3>
           <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
             <table className="min-w-full text-sm text-left">
               <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
@@ -524,7 +523,7 @@ export default async function Page() {
             </table>
           </div>
 
-          <h3 className="font-bold text-slate-900 mb-2 mt-8">4. Aana → Lal / Gram / Tola</h3>
+          <h3 className="font-bold text-slate-900 mb-2 mt-8">3. Aana → Lal / Gram / Tola</h3>
           <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
             <table className="min-w-full text-sm text-left">
               <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
@@ -636,7 +635,7 @@ export default async function Page() {
             </table>
           </div>
 
-          <h3 className="font-bold text-slate-900 mb-2 mt-8">5. Lal → Gram / Aana / Tola</h3>
+          <h3 className="font-bold text-slate-900 mb-2 mt-8">4. Lal → Gram / Aana / Tola</h3>
           <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
             <table className="min-w-full text-sm text-left">
               <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
@@ -760,7 +759,7 @@ export default async function Page() {
             </table>
           </div>
 
-          <h3 className="font-bold text-slate-900 mb-2 mt-8">6. Common Kilogram → Gram / Tola</h3>
+          <h3 className="font-bold text-slate-900 mb-2 mt-8">5. Common Kilogram → Gram / Tola</h3>
           <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
             <table className="min-w-full text-sm text-left">
               <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
@@ -830,7 +829,7 @@ export default async function Page() {
             </table>
           </div>
 
-          <h3 className="font-bold text-slate-900 mb-2 mt-8">7. Troy Ounce → Gram / Tola</h3>
+          <h3 className="font-bold text-slate-900 mb-2 mt-8">6. Troy Ounce → Gram / Tola</h3>
           <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
             <table className="min-w-full text-sm text-left">
               <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
@@ -890,7 +889,7 @@ export default async function Page() {
             </table>
           </div>
 
-          <h3 className="font-bold text-slate-900 mb-2 mt-8">8. Tola → Troy Ounce</h3>
+          <h3 className="font-bold text-slate-900 mb-2 mt-8">7. Tola → Troy Ounce</h3>
           <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
             <table className="min-w-full text-sm text-left">
               <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
@@ -955,7 +954,7 @@ export default async function Page() {
             </table>
           </div>
 
-          <h3 className="font-bold text-slate-900 mb-2 mt-8">9. Gram → Milligram</h3>
+          <h3 className="font-bold text-slate-900 mb-2 mt-8">8. Gram → Milligram</h3>
           <div className="overflow-x-auto mb-6 bg-white border border-slate-200 rounded-lg">
             <table className="min-w-full text-sm text-left">
               <thead className="text-[11px] uppercase tracking-wider bg-slate-100 text-slate-600 border-b border-slate-200">
@@ -1099,4 +1098,5 @@ export default async function Page() {
     </>
   );
 }
+
 
