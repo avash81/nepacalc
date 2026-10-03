@@ -291,7 +291,7 @@ export default function ThreeDCalculatorClient() {
     { id: '1', equation: 'z = sin(sqrt(x^2 + y^2))', visible: true, color: '#ef4444', opacity: 0.9, error: null }
   ]);
   const [params, setParams] = useState<Parameter[]>([{ id: 'a', name: 'a', value: 1, min: -10, max: 10 }]);
-  const [resolution, setResolution] = useState(100);
+  const [resolution, setResolution] = useState(65);
   const [activeId, setActiveId] = useState<string | null>('1');
   const [globalWireframe, setGlobalWireframe] = useState(false);
   const [sliceMode, setSliceMode] = useState<'none'|'x'|'y'|'z'>('none');
@@ -769,7 +769,9 @@ export default function ThreeDCalculatorClient() {
               {params.map(p => (
                 <div key={p.id} className="">
                   <div className="flex justify-between items-center text-[9px] font-bold uppercase">
-                    <span className="text-slate-500">{p.name} = <span className="text-blue-600">{p.value.toFixed(2)}</span></span>
+                    <span className="text-slate-500 flex items-center gap-2">{p.name} = 
+                        <input type="number" step="0.1" value={p.value} onChange={(e) => setParams(params.map(x => x.id === p.id ? { ...x, value: parseFloat(e.target.value) || 0 } : x))} className="w-14 h-6 text-center border border-slate-200 rounded text-blue-600 bg-white" />
+                      </span>
                     <div className="flex items-center gap-2">
                       <span className="text-slate-300">{p.min}</span>
                       <input 
@@ -787,41 +789,7 @@ export default function ThreeDCalculatorClient() {
           </div>
 
           
-{/* SECTION: APPEARANCE */}
-          <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
-            <button onClick={() => toggleSection('appearance')} className="w-full bg-[#f8fafc] border-b border-slate-200 px-4 py-3 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Appearance</h2>
-                <span className="text-[10px] font-bold text-slate-500">{globalWireframe ? 'Wireframe' : 'Solid'}</span>
-              </div>
-              <ChevronDown className={`w-4 h-4 lg:hidden text-slate-400 transition-transform ${openSections.appearance ? "" : "-rotate-90"}`} />
-            </button>
-            <div className={`p-4 space-y-3 ${openSections.appearance ? "block" : "hidden lg:block"}`}>
-              <div className="flex items-center justify-between">
-                <span className="text-[9px] font-bold text-slate-400 uppercase">Shading</span>
-                <button aria-label="Solid Mode" onClick={() => setGlobalWireframe(false)} className={`w-9 h-4.5 rounded-full transition-all relative ${!globalWireframe ? 'bg-[#15803d]' : 'bg-slate-200'}`}>
-                  <div className={`absolute top-0.5 w-3.5 h-3.5 bg-white rounded-full transition-all ${!globalWireframe ? 'right-0.5' : 'left-0.5'}`} />
-                </button>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-[9px] font-bold text-slate-400 uppercase">Wireframe</span>
-                <button aria-label="Wireframe Mode" onClick={() => setGlobalWireframe(true)} className={`w-9 h-4.5 rounded-full transition-all relative ${globalWireframe ? 'bg-[#15803d]' : 'bg-slate-200'}`}>
-                  <div className={`absolute top-0.5 w-3.5 h-3.5 bg-white rounded-full transition-all ${globalWireframe ? 'right-0.5' : 'left-0.5'}`} />
-                </button>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-[9px] font-bold text-slate-400 uppercase">Palette</span>
-                <div className="flex gap-1">
-                  <div className="w-3 h-3 rounded-full bg-[#1a73e8] border border-white/20" />
-                  <div className="w-3 h-3 rounded-full bg-green-600 border border-white/20" />
-                  <div className="w-3 h-3 rounded-full bg-red-600 border border-white/20" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          
-            </div>
+</div>
           </div>
         </div>
       </div>
