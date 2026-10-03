@@ -1,12 +1,14 @@
 'use client';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useSyncState } from '@/hooks/useSyncState';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
-import { Flame, Plus, Trash2, ChevronDown, Info } from 'lucide-react';
+import { Flame, Plus, Trash2, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 
 // ─── Nutrition Data ──────────────────────────────────────────────────────────
 // All values are PER PIECE. Weight in grams.
+// Assumptions: standard momo ~38-55g per piece depending on type.
+// Values are internal estimates; actual nutrition varies with recipe and preparation.
 const MOMO_TYPES = [
   { id: 'chicken',  label: 'Chicken Momo',  cal: 60,  p: 5.5, f: 2.0, c: 5.8, fiber: 0.3, sugar: 0.4, sodium: 145, chol: 22, w: 40 },
   { id: 'buff',     label: 'Buff Momo',     cal: 65,  p: 5.0, f: 2.8, c: 5.8, fiber: 0.3, sugar: 0.4, sodium: 155, chol: 25, w: 40 },
@@ -96,7 +98,6 @@ export default function MomoCalculator() {
     'momo_v8_items',
     [newItem()]
   );
-  const [compareMode, setCompareMode] = useState(false);
 
   const updateItem = (idx: number, patch: Partial<ReturnType<typeof newItem>>) => {
     const next = items.map((it, i) => (i === idx ? { ...it, ...patch } : it));
@@ -133,41 +134,8 @@ export default function MomoCalculator() {
     { cal: 0, p: 0, f: 0, c: 0, fiber: 0, sugar: 0, sodium: 0, chol: 0, w: 0 }
   ), [computed]);
 
-  // Derived stats
   const first = computed[0];
   const totalPieces = items.reduce((a, it) => a + it.pieces, 0);
-  const calPer100g = totals.w > 0 ? Math.round((totals.cal / totals.w) * 100) : 0;
-  const dailyPct = Math.min(99, Math.round((totals.cal / 2000) * 100));
-
-  // Activity equivalents (kcal/min burn rates)
-  const walkMins = Math.round(totals.cal / 3.8);
-  const runMins  = Math.round(totals.cal / 9.8);
-  const bikeMins = Math.round(totals.cal / 7.5);
-
-  // Health rating logic
-  const proteinRating = totals.p >= 20 ? 'High Protein' : totals.p >= 10 ? 'Moderate Protein' : 'Low Protein';
-  const fatRating     = totals.f >= 20 ? 'High Fat' : totals.f >= 10 ? 'Medium Fat' : 'Low Fat';
-  const calRating     = totals.cal >= 600 ? 'High Calories' : totals.cal >= 300 ? 'Moderate Calories' : 'Low Calories';
-  const stars         = totals.cal < 400 && totals.p >= 15 ? 5 : totals.cal < 600 ? 4 : 3;
-
-  // Compare: steamed vs fried for first item's type
-  const compareBase = MOMO_TYPES.find(x => x.id === items[0].type) || MOMO_TYPES[0];
-  const steamCal = (compareBase.cal + 0) * items[0].pieces;
-  const friedCal = (compareBase.cal + 25) * items[0].pieces;
-  const diff = friedCal - steamCal;
-
-  // Insight text
-  const insight = items.some(it => it.method === 'steamed')
-    ? `Great choice! Steamed momos are the lowest calorie option. This serving provides ${Math.round(totals.p)}g of protein.`
-    : items.some(it => it.method === 'fried' || it.method === 'cmomo')
-    ? `Choosing steamed instead of fried momos can reduce your calorie intake by up to 30% for the same quantity.`
-    : `This serving contains ${Math.round(totals.cal)} kcal. Combine with a light salad to keep your meal balanced.`;
-
-  // Recommendation items
-  const recs = [];
-  if (!items.every(it => it.method === 'steamed')) recs.push('Choose Steamed cooking');
-  if (!items.every(it => it.type === 'veg')) recs.push('Try Veg filling');
-  if (items.some(it => it.sauces.includes('mayo') || it.sauces.includes('cheese'))) recs.push('Skip Mayo/Cheese Dip');
 
   // ─── Serving quick-selects ────────────────────────────────────────────────
   const SERVING_PRESETS = [
@@ -194,7 +162,7 @@ export default function MomoCalculator() {
         <div className="space-y-6">
           {/* ── Popular Presets ── */}
           <div>
-            <p className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider mb-2">Most Calculated</p>
+            <p className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider mb-2">Popular Choices</p>
             <div className="flex flex-wrap gap-2">
               {PRESETS.map(p => (
                 <button
@@ -372,6 +340,9 @@ export default function MomoCalculator() {
           >
             <Flame className="absolute -right-4 -bottom-4 w-28 h-28 text-orange-400/10 pointer-events-none" />
             <div className="text-[11px] font-black text-orange-600 uppercase tracking-widest mb-1">
+              Result Summary
+            </div>
+            <div className="text-xl font-bold text-[#202124] mb-3">
               {items.length === 1
                 ? `${items[0].pieces} ${COOKING_METHODS.find(m => m.id === items[0].method)?.label ?? ''} ${MOMO_TYPES.find(t => t.id === items[0].type)?.label ?? ''}`
                 : `${totalPieces} Mixed Momos`}
@@ -380,416 +351,146 @@ export default function MomoCalculator() {
               {Math.round(totals.cal)}
             </div>
             <div className="text-lg font-bold text-[#5F6368] mt-1">kcal</div>
-            <div className="mt-3 flex items-center justify-center gap-1 text-[11px] text-[#9AA0A6]">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <span key={i} className={i < stars ? 'text-orange-400' : 'text-slate-200'}>★</span>
-              ))}
-              <span className="ml-1 font-bold">{proteinRating} · {fatRating}</span>
-            </div>
-          </div>
-
-          {/* ── Per Piece / Per Plate / Per 100g ── */}
-          <div className="grid grid-cols-3 gap-3">
-            {[
-              { label: 'Calories / Piece', value: `${first.ppCal} kcal`, id: 'cal-per-piece' },
-              { label: 'Calories / Plate (10)', value: `${first.ppCal * 10} kcal`, id: 'cal-per-plate' },
-              { label: 'Calories / 100g', value: `${calPer100g} kcal`, id: 'cal-per-100g' },
-            ].map(card => (
-              <div key={card.id} id={card.id} className="bg-white border border-[#DADCE0] rounded-xl p-4 text-center">
-                <div className="text-[9px] font-black text-[#5F6368] uppercase tracking-widest mb-1">{card.label}</div>
-                <div className="text-base font-black text-[#202124]">{card.value}</div>
-              </div>
-            ))}
-          </div>
-
-          {/* ── Full Nutrition Table ── */}
-          <div className="bg-white border border-[#DADCE0] rounded-xl overflow-hidden" id="nutrition-table">
-            <div className="px-5 py-3 bg-[#F8F9FA] border-b border-[#DADCE0] flex items-center gap-2">
-              <span className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Nutrition Summary</span>
-            </div>
-            <table className="w-full text-sm" aria-label="Nutrition facts table">
-              <thead className="sr-only">
-                <tr><th>Nutrient</th><th>Amount</th></tr>
-              </thead>
-              <tbody className="divide-y divide-[#F1F3F4]">
-                {[
-                  { label: 'Calories',       value: `${Math.round(totals.cal)} kcal`, color: 'text-orange-600', id: 'result-calories' },
-                  { label: 'Protein',        value: `${totals.p.toFixed(1)} g`,       color: 'text-blue-600',   id: 'result-protein' },
-                  { label: 'Carbohydrates',  value: `${totals.c.toFixed(1)} g`,       color: 'text-amber-600',  id: 'result-carbs' },
-                  { label: 'Fat',            value: `${totals.f.toFixed(1)} g`,       color: 'text-rose-600',   id: 'result-fat' },
-                  { label: 'Fiber',          value: `${totals.fiber.toFixed(1)} g`,   color: 'text-green-600',  id: 'result-fiber' },
-                  { label: 'Sugar',          value: `${totals.sugar.toFixed(1)} g`,   color: 'text-pink-600',   id: 'result-sugar' },
-                  { label: 'Sodium',         value: `${Math.round(totals.sodium)} mg`,color: 'text-purple-600', id: 'result-sodium' },
-                  { label: 'Cholesterol',    value: `${Math.round(totals.chol)} mg`,  color: 'text-slate-600',  id: 'result-cholesterol' },
-                  { label: 'Estimated Weight',value: `${Math.round(totals.w)} g`,      color: 'text-slate-500',  id: 'result-weight' },
-                ].map(row => (
-                  <tr key={row.id} className="hover:bg-slate-50">
-                    <td className="px-5 py-2.5 font-medium text-[#202124]">{row.label}</td>
-                    <td id={row.id} className={`px-5 py-2.5 text-right font-black ${row.color}`}>{row.value}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          {/* ── Daily Value + Activity Burn ── */}
-          <div className="bg-white border border-[#DADCE0] rounded-xl p-5 space-y-4">
-            <div>
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-bold text-[#202124]">Daily Calorie %</span>
-                <span className="text-sm font-black text-orange-600" id="daily-value">{dailyPct}% of 2,000 kcal diet</span>
-              </div>
-              <div className="h-2.5 bg-slate-100 rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-orange-400 rounded-full transition-all duration-500"
-                  style={{ width: `${dailyPct}%` }}
-                  role="progressbar"
-                  aria-valuenow={dailyPct}
-                  aria-valuemin={0}
-                  aria-valuemax={100}
-                />
-              </div>
-            </div>
-            <div>
-              <p className="text-[11px] font-black text-[#5F6368] uppercase tracking-wider mb-3">Equivalent To</p>
-              <div className="grid grid-cols-3 gap-2 text-center">
-                {[
-                  { icon: '🚶', label: 'Walk', value: `${walkMins} min` },
-                  { icon: '🏃', label: 'Run',  value: `${runMins} min` },
-                  { icon: '🚴', label: 'Cycle',value: `${bikeMins} min` },
-                ].map(act => (
-                  <div key={act.label} className="bg-slate-50 rounded-lg p-3 border border-[#DADCE0]">
-                    <div className="text-2xl mb-1">{act.icon}</div>
-                    <div className="text-xs font-black text-[#202124]">{act.value}</div>
-                    <div className="text-[10px] text-[#5F6368]">{act.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* ── Nutrition Insight ── */}
-          <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 flex gap-3">
-            <Info className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
-            <div>
-              <p className="text-[11px] font-black text-blue-800 uppercase tracking-wider mb-1">Nutrition Insight</p>
-              <p className="text-sm text-blue-700">{insight}</p>
-            </div>
-          </div>
-
-          {/* ── Steam vs Fried Comparison ── */}
-          <div className="bg-white border border-[#DADCE0] rounded-xl overflow-hidden">
-            <button
-              onClick={() => setCompareMode(!compareMode)}
-              className="w-full px-5 py-3 flex items-center justify-between text-sm font-bold text-[#202124] bg-[#F8F9FA] border-b border-[#DADCE0] hover:bg-slate-100 transition-colors"
-              aria-expanded={compareMode}
-            >
-              <span>Compare: Steam vs Fried</span>
-              <ChevronDown className={`w-4 h-4 text-[#5F6368] transition-transform ${compareMode ? 'rotate-180' : ''}`} />
-            </button>
-            {compareMode && (
-              <div className="p-5">
-                <div className="grid grid-cols-3 gap-3 text-center">
-                  <div className="bg-green-50 border border-green-100 rounded-lg p-4">
-                    <div className="text-[10px] font-black text-green-700 uppercase tracking-wide mb-1">Steamed ({items[0].pieces} pcs)</div>
-                    <div className="text-2xl font-black text-green-700">{steamCal}</div>
-                    <div className="text-[10px] text-green-600">kcal</div>
-                  </div>
-                  <div className="flex flex-col items-center justify-center">
-                    <div className="text-[10px] font-black text-rose-600 uppercase tracking-wide">Difference</div>
-                    <div className="text-xl font-black text-rose-600">+{diff}</div>
-                    <div className="text-[10px] text-rose-500">kcal fried</div>
-                  </div>
-                  <div className="bg-rose-50 border border-rose-100 rounded-lg p-4">
-                    <div className="text-[10px] font-black text-rose-700 uppercase tracking-wide mb-1">Fried ({items[0].pieces} pcs)</div>
-                    <div className="text-2xl font-black text-rose-700">{friedCal}</div>
-                    <div className="text-[10px] text-rose-600">kcal</div>
-                  </div>
-                </div>
-                <p className="mt-3 text-[11px] text-center text-[#5F6368]">Fried momos contain <strong className="text-[#202124]">+{diff} kcal</strong> more than steamed for the same quantity.</p>
+            {items.length === 1 && (
+              <div className="mt-3 text-sm font-semibold text-[#5F6368]">
+                {Math.round(first.ppCal)} kcal per momo
               </div>
             )}
           </div>
 
-          {/* ── Want Fewer Calories? Recommendation ── */}
-          {recs.length > 0 && (
-            <div className="bg-green-50 border border-green-100 rounded-xl p-4">
-              <p className="text-[11px] font-black text-green-800 uppercase tracking-wider mb-2">Want Fewer Calories?</p>
-              <ul className="space-y-1">
-                {recs.map(r => (
-                  <li key={r} className="flex items-center gap-2 text-sm text-green-700">
-                    <span className="text-green-500 font-black">✓</span> {r}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+          {/* ── Dynamic Result Sentence ── */}
+          <div className="bg-white border border-[#DADCE0] rounded-xl p-4 text-center shadow-sm">
+            <p className="text-sm font-medium text-[#202124] leading-relaxed">
+              {items.length === 1
+                ? `${items[0].pieces} ${COOKING_METHODS.find(m => m.id === items[0].method)?.label?.toLowerCase()} ${MOMO_TYPES.find(t => t.id === items[0].type)?.label?.toLowerCase()}s are estimated at ${Math.round(totals.cal)} calories, or about ${Math.round(first.ppCal)} calories per momo.`
+                : `${totalPieces} mixed momos are estimated at ${Math.round(totals.cal)} calories.`}
+            </p>
+          </div>
 
-          {/* ── Popular Momo Calories Reference ── */}
-          <div className="bg-white border border-[#DADCE0] rounded-xl overflow-hidden">
+          {/* ── Nutrition Summary ── */}
+          <div className="bg-white border border-[#DADCE0] rounded-xl overflow-hidden" id="nutrition-table">
             <div className="px-5 py-3 bg-[#F8F9FA] border-b border-[#DADCE0]">
-              <p className="text-[11px] font-black text-[#202124] uppercase tracking-widest text-center m-0">Select your quantity and check results on the right!</p>
+              <span className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Nutrition Summary</span>
+            </div>
+            {/* Primary macros - larger, bolder */}
+            <div className="divide-y divide-[#F1F3F4]">
+              {[
+                { label: 'Protein',       value: `${totals.p.toFixed(1)} g`,  id: 'result-protein' },
+                { label: 'Carbohydrates', value: `${totals.c.toFixed(1)} g`,  id: 'result-carbs' },
+                { label: 'Fat',           value: `${totals.f.toFixed(1)} g`,  id: 'result-fat' },
+              ].map(row => (
+                <div key={row.id} className="flex items-center justify-between px-5 py-3 hover:bg-slate-50">
+                  <span className="text-sm font-semibold text-[#202124]">{row.label}</span>
+                  <span id={row.id} className="text-sm font-black text-[#202124]">{row.value}</span>
+                </div>
+              ))}
+            </div>
+            {/* Secondary nutrients - smaller, muted */}
+            <div className="border-t border-[#DADCE0] bg-[#FAFAFA] divide-y divide-[#F1F3F4]">
+              {[
+                { label: 'Fiber',            value: `${totals.fiber.toFixed(1)} g`,    id: 'result-fiber' },
+                { label: 'Sugar',            value: `${totals.sugar.toFixed(1)} g`,    id: 'result-sugar' },
+                { label: 'Sodium',           value: `${Math.round(totals.sodium)} mg`, id: 'result-sodium' },
+                { label: 'Cholesterol',      value: `${Math.round(totals.chol)} mg`,   id: 'result-cholesterol' },
+                { label: 'Estimated Weight', value: `${Math.round(totals.w)} g`,       id: 'result-weight' },
+              ].map(row => (
+                <div key={row.id} className="flex items-center justify-between px-5 py-2 hover:bg-slate-50">
+                  <span className="text-xs text-[#5F6368]">{row.label}</span>
+                  <span id={row.id} className="text-xs font-bold text-[#5F6368]">{row.value}</span>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      }
-      details={
-        <div className="prose prose-slate max-w-none space-y-6">
 
-          {/* ── Short Intro ── */}
-          <div className="text-[#5F6368] leading-relaxed mt-4">
-            <p>Calculate calories in chicken, veg, buff, paneer, pork, steamed, fried and jhol momos instantly. Simply choose your momo type, cooking method and quantity to estimate calories, protein, carbohydrates and fat per serving using our easy Momo Calorie Calculator.</p>
+          {/* ── Disclaimer ── */}
+          <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 text-sm text-[#5F6368] leading-relaxed">
+            <strong className="text-[#202124]">Disclaimer:</strong> Estimated value. Actual calories and nutrition can vary depending on wrapper size, filling ingredients, portion size, cooking method, oil and sauces.
           </div>
 
-          {/* ── PRIORITY 4: QUICK CALORIE LOOKUP ── */}
-          <h2 className="text-2xl font-black text-[#202124] mt-8 mb-3 border-b border-[#DADCE0] pb-2">Most Popular Momo Calorie Searches</h2>
-          <p className="text-[#5F6368] leading-relaxed">Here is a quick look at the approximate calorie values for common quantities of steamed chicken and vegetable momos:</p>
-          <div className="not-prose overflow-x-auto my-4">
-            <table className="w-full text-sm border border-[#DADCE0] rounded-xl overflow-hidden">
+          {/* ── How Many Calories Are in Momos? ── */}
+          <h2 className="text-2xl font-black text-[#202124] mt-8 mb-3">How Many Calories Are in Momos?</h2>
+          <p className="text-[#5F6368] leading-relaxed mb-4">
+            Momo calories vary depending on the filling, cooking method, quantity, wrapper size and any sauces or additions. A steamed chicken momo, for example, can have a different calorie value from a fried, paneer, pork or jhol momo.
+          </p>
+          <p className="text-[#5F6368] leading-relaxed font-semibold">
+            Select the momo type, cooking method and quantity above to calculate an estimated serving.
+          </p>
+
+          {/* ── How It Works ── */}
+          <h2 className="text-2xl font-black text-[#202124] mt-8 mb-3">How the Momo Calorie Calculator Works</h2>
+          <p className="text-[#5F6368] leading-relaxed mb-4">
+            Select a momo type, choose the cooking method, enter the number of pieces and add any optional sauces. The calculator then estimates the total calories and nutrition for the selected serving.
+          </p>
+          <p className="text-[#5F6368] leading-relaxed">
+            Because momo recipes and portion sizes vary, the result is an estimate rather than a universal nutritional value.
+          </p>
+
+          {/* ── Popular Portions ── */}
+          <h2 className="text-2xl font-black text-[#202124] mt-8 mb-3">Calories in Popular Momo Portions</h2>
+          <div className="overflow-x-auto my-4 border border-[#DADCE0] rounded-xl">
+            <table className="w-full text-sm">
               <thead className="bg-[#F8F9FA] border-b border-[#DADCE0]">
                 <tr>
                   <th className="px-4 py-3 text-left font-black text-[#202124] text-[11px] uppercase tracking-wider">Quantity</th>
-                  <th className="px-4 py-3 text-right font-black text-[#202124] text-[11px] uppercase tracking-wider">Chicken Momos Calories</th>
-                  <th className="px-4 py-3 text-right font-black text-[#202124] text-[11px] uppercase tracking-wider">Veg Momos Calories</th>
+                  <th className="px-4 py-3 text-right font-black text-[#202124] text-[11px] uppercase tracking-wider">Steamed Chicken Momos</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#F1F3F4] text-[#202124]">
                 {[
-                  { qty: "1 Momo", c: "60 kcal", v: "45 kcal" },
-                  { qty: "2 Momos", c: "120 kcal", v: "90 kcal" },
-                  { qty: "3 Momos", c: "180 kcal", v: "135 kcal" },
-                  { qty: "4 Momos", c: "240 kcal", v: "180 kcal" },
-                  { qty: "5 Momos", c: "300 kcal", v: "225 kcal" },
-                  { qty: "6 Momos", c: "360 kcal", v: "270 kcal" },
-                  { qty: "8 Momos", c: "480 kcal", v: "360 kcal" },
-                  { qty: "10 Momos", c: "600 kcal", v: "450 kcal" },
-                  { qty: "12 Momos", c: "720 kcal", v: "540 kcal" },
-                  { qty: "15 Momos", c: "900 kcal", v: "675 kcal" },
-                  { qty: "20 Momos", c: "1,200 kcal", v: "900 kcal" },
-                  { qty: "1 Plate (10 Pcs)", c: "600 kcal", v: "450 kcal" },
+                  { q: '1 momo',   c: '60 kcal' },
+                  { q: '5 momos',  c: '300 kcal' },
+                  { q: '6 momos',  c: '360 kcal' },
+                  { q: '8 momos',  c: '480 kcal' },
+                  { q: '10 momos', c: '600 kcal' },
+                  { q: '12 momos', c: '720 kcal' },
                 ].map(r => (
-                  <tr key={r.qty} className="hover:bg-slate-50">
-                    <td className="px-4 py-2.5 font-bold">{r.qty}</td>
-                    <td className="px-4 py-2.5 text-right font-semibold text-orange-600">{r.c}</td>
-                    <td className="px-4 py-2.5 text-right font-semibold text-green-600">{r.v}</td>
+                  <tr key={r.q} className="hover:bg-slate-50">
+                    <td className="px-4 py-2.5 font-semibold">{r.q}</td>
+                    <td className="px-4 py-2.5 text-right font-bold text-orange-600">{r.c}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-
-          {/* ── PRIORITY 5: CALORIES BY MOMO TYPE ── */}
-          <h2 className="text-2xl font-black text-[#202124] mt-8 mb-3 border-b border-[#DADCE0] pb-2">Calories by Momo Type</h2>
-          
-          <h3 className="text-xl font-bold text-[#202124] mt-6 mb-2">Chicken Momos Calories</h3>
-          <p className="text-[#5F6368] leading-relaxed">
-            Steamed Chicken Momos typically contain 60 calories per piece. Ground chicken provides a clean source of protein while remaining relatively low in saturated fat. A standard plate of 10 chicken momos adds up to around 600 calories, which is popular for individuals looking to maintain muscle mass while regulating total calorie intake.
+          <p className="text-sm text-[#5F6368] leading-relaxed mb-6">
+            These are example estimates using the standard steamed chicken calculation. Change the momo type, cooking method or quantity above for another result.
           </p>
 
-          <h3 className="text-xl font-bold text-[#202124] mt-6 mb-2">Veg Momos Calories</h3>
-          <p className="text-[#5F6368] leading-relaxed">
-            Steamed Vegetable Momos have around 45 calories per piece. The filling is usually comprised of cabbage, carrots, spring onions, and garlic, making it the lowest-calorie option. If you are aiming for weight loss, veg momos are an excellent choice due to their low fat content.
-          </p>
-
-          <h3 className="text-xl font-bold text-[#202124] mt-6 mb-2">Buff Momos Calories</h3>
-          <p className="text-[#5F6368] leading-relaxed">
-            A single buff momo contains about 65 calories. Buff momos are a traditional favorite in Nepal and provide a rich flavor profile. They contain slightly more fat than chicken options, which brings a standard 10-piece serving to approximately 650 calories.
-          </p>
-
-          <h3 className="text-xl font-bold text-[#202124] mt-6 mb-2">Paneer Momos Calories</h3>
-          <p className="text-[#5F6368] leading-relaxed">
-            Paneer momos contain around 75 calories per piece. The paneer filling provides calcium and high-quality protein, but also elevates the fat content. A plate of 10 paneer momos yields roughly 750 calories, making them a heavier vegetarian alternative to vegetable momos.
-          </p>
-
-          <h3 className="text-xl font-bold text-[#202124] mt-6 mb-2">Pork Momos Calories</h3>
-          <p className="text-[#5F6368] leading-relaxed">
-            Pork momos are the highest in fat and calories, averaging about 80 calories per piece. Because pork is a fatty meat, a plate of 10 pork momos can reach 800 calories or more. It is best to consume pork momos in moderation if you are watching your fat intake.
-          </p>
-
-          <h3 className="text-xl font-bold text-[#202124] mt-6 mb-2">Mushroom Momos Calories</h3>
-          <p className="text-[#5F6368] leading-relaxed">
-            Mushroom momos average around 45 to 50 calories per piece. Mushrooms provide a meaty, savory texture with very few calories. They are rich in antioxidants and are a fantastic, low-calorie option for vegetarians.
-          </p>
-
-          <h3 className="text-xl font-bold text-[#202124] mt-6 mb-2">Cheese Momos Calories</h3>
-          <p className="text-[#5F6368] leading-relaxed">
-            Cheese momos contain around 85 calories per piece. The combination of cheese and flour makes this variety very calorie-dense and high in sodium. A full plate of 10 cheese momos contains about 850 calories and is best enjoyed as an occasional treat.
-          </p>
-
-          <h3 className="text-xl font-bold text-[#202124] mt-6 mb-2">Soya Momos Calories</h3>
-          <p className="text-[#5F6368] leading-relaxed">
-            Soya momos contain around 50 calories per piece. Made from soy granules, they offer a high-protein, low-fat alternative for vegetarians. A plate of 10 soya momos contains approximately 500 calories.
-          </p>
-
-          <h3 className="text-xl font-bold text-[#202124] mt-6 mb-2">Mutton Momos Calories</h3>
-          <p className="text-[#5F6368] leading-relaxed">
-            Mutton momos contain approximately 75 calories per piece. Mutton is a red meat that provides iron and zinc but has higher saturated fat content than poultry. A plate of 10 mutton momos yields about 750 calories.
-          </p>
-
-          {/* ── PRIORITY 6: CALORIES BY COOKING METHOD ── */}
-          <h2 className="text-2xl font-black text-[#202124] mt-8 mb-3 border-b border-[#DADCE0] pb-2">Calories by Cooking Method</h2>
-          <p className="text-[#5F6368] leading-relaxed">The cooking style changes how many calories you consume. Here is why the preparation method changes the calorie counts so drastically:</p>
-          
-          <h3 className="text-lg font-bold text-[#202124] mt-4 mb-1">Steamed Momos</h3>
-          <p className="text-[#5F6368] text-sm mb-4">
-            Steaming requires zero added fats or oils. The momos are cooked entirely with steam, meaning the calorie content is determined solely by the dough and filling. This is the healthiest preparation method.
-          </p>
-
-          <h3 className="text-lg font-bold text-[#202124] mt-4 mb-1">Fried Momos</h3>
-          <p className="text-[#5F6368] text-sm mb-4">
-            Fried momos are cooked in hot oil, which absorbs directly into the wheat wrapper. This adds an average of 25 to 30 additional calories per piece, heavily increasing the fat content.
-          </p>
-
-          <h3 className="text-lg font-bold text-[#202124] mt-4 mb-1">Pan Fried Momos</h3>
-          <p className="text-[#5F6368] text-sm mb-4">
-            Pan frying uses a small amount of oil to crisp the bottom of the momos. This adds around 15 calories per piece, making it a middle-ground choice between steaming and deep frying.
-          </p>
-
-          <h3 className="text-lg font-bold text-[#202124] mt-4 mb-1">Deep Fried Momos</h3>
-          <p className="text-[#5F6368] text-sm mb-4">
-            Deep-fried momos are fully submerged in hot oil. The entire wrapper absorbs grease, adding 30+ calories per piece and significantly increasing the overall cholesterol content.
-          </p>
-
-          <h3 className="text-lg font-bold text-[#202124] mt-4 mb-1">Tandoori Momos</h3>
-          <p className="text-[#5F6368] text-sm mb-4">
-            Tandoori momos are marinated in yogurt and spices before being baked in a tandoor. While baking is healthy, the oil in the marinade and butter brushed on top adds about 30 calories per piece.
-          </p>
-
-          <h3 className="text-lg font-bold text-[#202124] mt-4 mb-1">Jhol Momos</h3>
-          <p className="text-[#5F6368] text-sm mb-4">
-            Jhol momos consist of steamed momos served in a spicy tomato and sesame soup. The soup itself adds about 45 to 60 calories per serving, but does not add the harmful trans fats associated with deep frying.
-          </p>
-
-          <h3 className="text-lg font-bold text-[#202124] mt-4 mb-1">C-Momos (Chilli Momos)</h3>
-          <p className="text-[#5F6368] text-sm mb-4">
-            C-momos are fried and then tossed in a sweet and spicy chili sauce. The deep frying plus the sugar and cornstarch in the sauce adds 40+ calories per piece, making it the highest-calorie preparation.
-          </p>
-
-          {/* ── PRIORITY 7: CALORIES PER PLATE ── */}
-          <h2 className="text-2xl font-black text-[#202124] mt-8 mb-3 border-b border-[#DADCE0] pb-2">Calories Per Plate of Momos</h2>
-          <p className="text-[#5F6368] leading-relaxed">A standard plate of momos typically contains 10 pieces. Here is the estimated calorie content for a full plate of different steamed varieties:</p>
-          <div className="not-prose overflow-x-auto my-4">
-            <table className="w-full text-sm border border-[#DADCE0] rounded-xl overflow-hidden">
-              <thead className="bg-[#F8F9FA] border-b border-[#DADCE0]">
-                <tr>
-                  <th className="px-4 py-3 text-left font-black text-[#202124] text-[11px] uppercase tracking-wider">Momo Plate Type (10 Pieces)</th>
-                  <th className="px-4 py-3 text-right font-black text-[#202124] text-[11px] uppercase tracking-wider">Calories Per Plate</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-[#F1F3F4] text-[#202124]">
-                <tr className="hover:bg-slate-50"><td className="px-4 py-2.5 font-semibold">1 plate chicken momos (Steamed)</td><td className="px-4 py-2.5 text-right font-bold text-orange-600">600 kcal</td></tr>
-                <tr className="hover:bg-slate-50"><td className="px-4 py-2.5 font-semibold">1 plate veg momos (Steamed)</td><td className="px-4 py-2.5 text-right font-bold text-green-600">450 kcal</td></tr>
-                <tr className="hover:bg-slate-50"><td className="px-4 py-2.5 font-semibold">1 plate buff momos (Steamed)</td><td className="px-4 py-2.5 text-right font-bold text-orange-600">650 kcal</td></tr>
-                <tr className="hover:bg-slate-50"><td className="px-4 py-2.5 font-semibold">1 plate paneer momos (Steamed)</td><td className="px-4 py-2.5 text-right font-bold text-orange-600">750 kcal</td></tr>
-              </tbody>
-            </table>
+          {/* ── Guide Link ── */}
+          <div className="bg-[#E8F0FE] border border-[#1967D2] rounded-xl p-5 mb-6">
+            <h3 className="font-bold text-[#1967D2] text-lg mb-2">Momo Calories Guide</h3>
+            <p className="text-[#202124] text-sm leading-relaxed mb-3">
+              Looking for information about calories in chicken, veg, buff, fried, steamed, jhol and other momos? Read the <Link href="/blog/momo-calories/" className="text-[#1967D2] font-bold hover:underline">complete guide to momo calories</Link>.
+            </p>
           </div>
 
-          {/* ── PRIORITY 10: SEARCH INTENT SECTION ── */}
-          <h2 className="text-2xl font-black text-[#202124] mt-8 mb-3 border-b border-[#DADCE0] pb-2">Which Momos Are Best for Weight Loss?</h2>
-          <p className="text-[#5F6368] leading-relaxed">
-            For weight loss, the main goal is to minimize calories while staying full. Steamed vegetable momos are the best option with just 45 calories per piece. If you want more protein, steamed chicken momos (60 calories) are a highly effective alternative. Paneer and buff momos should be eaten in moderation due to higher fats. Avoid fried, C-momos, and creamy tandoori variants, as frying can double the calorie density of your plate.
-          </p>
-
-          {/* ── PRIORITY 11: PROTEIN COMPARISON TABLE ── */}
-          <h2 className="text-2xl font-black text-[#202124] mt-8 mb-3 border-b border-[#DADCE0] pb-2">Momo Calories and Protein Comparison</h2>
-          <p className="text-[#5F6368] leading-relaxed">If you want to optimize your diet, you need to check both calorie counts and protein values. Here is the nutritional breakdown per piece:</p>
-          <div className="not-prose overflow-x-auto my-4">
-            <table className="w-full text-sm border border-[#DADCE0] rounded-xl overflow-hidden">
-              <thead className="bg-[#F8F9FA] border-b border-[#DADCE0]">
-                <tr>
-                  <th className="px-4 py-3 text-left font-black text-[#202124] text-[11px] uppercase tracking-wider">Momo Type (1 Piece)</th>
-                  <th className="px-4 py-3 text-center font-black text-[#202124] text-[11px] uppercase tracking-wider">Calories</th>
-                  <th className="px-4 py-3 text-right font-black text-[#202124] text-[11px] uppercase tracking-wider">Protein</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-[#F1F3F4] text-[#202124]">
-                {[
-                  { name: "Chicken Momos", c: "60 kcal", p: "5.5 g" },
-                  { name: "Veg Momos", c: "45 kcal", p: "1.5 g" },
-                  { name: "Buff Momos", c: "65 kcal", p: "5.0 g" },
-                  { name: "Paneer Momos", c: "75 kcal", p: "3.5 g" },
-                  { name: "Pork Momos", c: "80 kcal", p: "5.5 g" },
-                ].map(r => (
-                  <tr key={r.name} className="hover:bg-slate-50">
-                    <td className="px-4 py-2.5 font-semibold">{r.name}</td>
-                    <td className="px-4 py-2.5 text-center font-bold text-orange-600">{r.c}</td>
-                    <td className="px-4 py-2.5 text-right font-bold text-blue-600">{r.p}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <h2 className="text-2xl font-black text-[#202124] mt-8 mb-3 border-b border-[#DADCE0] pb-2">How to Estimate Your Daily Calories</h2>
-          <p className="text-[#5F6368] leading-relaxed">
-            Whether you want to build muscle or lose fat, knowing your body's energy requirements is essential. To determine how much energy you burn at rest, check our <Link href="/calculator/bmr/" className="text-orange-600 font-bold hover:underline">BMR Calculator</Link>, and then use our <Link href="/calculator/calorie-calculator/" className="text-orange-600 font-bold hover:underline">Daily Calorie Calculator</Link> to establish your target consumption limit.
-          </p>
-          <p className="text-[#5F6368] leading-relaxed">
-            Monitoring weight fluctuations alongside dietary tracking is simple. You can calculate your BMI index with the <Link href="/calculator/bmi/" className="text-orange-600 font-bold hover:underline">BMI Calculator</Link> and find your target weight using our <Link href="/calculator/ideal-weight/" className="text-orange-600 font-bold hover:underline">Ideal Weight Calculator</Link>. Always pair calorie tracking with proper hydration — find your ideal water target using the <Link href="/calculator/water-intake/" className="text-orange-600 font-bold hover:underline">Water Intake Calculator</Link>.
-          </p>
-
-          {/* ── Sources ── */}
-          <h2 className="text-2xl font-black text-[#202124] mt-8 mb-3 border-b border-[#DADCE0] pb-2">Sources</h2>
-          <ul className="text-[#5F6368] leading-relaxed list-disc pl-5">
-            <li><a href="https://fdc.nal.usda.gov/" target="_blank" rel="nofollow noopener noreferrer" className="text-orange-600 hover:underline">USDA FoodData Central</a> – General food composition reference.</li>
-            <li><a href="https://www.nhs.uk/live-well/eat-well/" target="_blank" rel="nofollow noopener noreferrer" className="text-orange-600 hover:underline">NHS Healthy Eating</a> – Diet recommendations.</li>
-            <li><a href="https://nutritionsource.hsph.harvard.edu/" target="_blank" rel="nofollow noopener noreferrer" className="text-orange-600 hover:underline">Harvard Nutrition Source</a> – Evidence-based nutrition guidance.</li>
+          {/* ── Related Calculators ── */}
+          <h2 className="text-2xl font-black text-[#202124] mt-8 mb-3">Related Calculators</h2>
+          <ul className="text-[#5F6368] leading-relaxed space-y-2">
+            <li><Link href="/calculator/calorie-calculator/" className="text-orange-600 font-bold hover:underline">Calorie Calculator</Link> — Estimate daily calorie needs.</li>
+            <li><Link href="/calculator/bmr/" className="text-orange-600 font-bold hover:underline">BMR Calculator</Link> — Estimate basal metabolic rate.</li>
+            <li><Link href="/calculator/bmi/" className="text-orange-600 font-bold hover:underline">BMI Calculator</Link> — Calculate body mass index.</li>
+            <li><Link href="/calculator/ideal-weight/" className="text-orange-600 font-bold hover:underline">Ideal Weight Calculator</Link> — Estimate an ideal weight range.</li>
+            <li><Link href="/calculator/water-intake/" className="text-orange-600 font-bold hover:underline">Water Intake Calculator</Link> — Estimate daily water intake.</li>
           </ul>
-
-          <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 not-prose mt-6">
-            <div className="flex items-start justify-between gap-4 flex-wrap">
-              <p className="text-[12px] text-[#5F6368] leading-relaxed flex-1">
-                <strong className="text-[#202124]">Momo Calorie Calculator Disclaimer:</strong> The calorie estimates provided by this calculator are intended for informational and educational purposes only. Actual values vary based on preparation and ingredients.
-              </p>
-              <p className="text-[11px] text-[#9AA0A6] whitespace-nowrap shrink-0">
-                Last updated: <strong className="text-[#5F6368]">2083/84 (2026)</strong>
-              </p>
-            </div>
-          </div>
-
         </div>
       }
       faqs={[
         {
-          question: 'How many calories are in 5 momos?',
-          answer: '5 steamed veg momos contain approximately 225 calories. 5 steamed chicken momos contain approximately 300 calories. Frying them adds about 125–150 additional calories.'
-        },
-        {
-          question: 'How many calories are in 6 momos?',
-          answer: '6 steamed veg momos contain about 270 calories, while 6 steamed chicken momos contain around 360 calories. If deep-fried, the count increases to approximately 510–540 calories.'
-        },
-        {
-          question: 'How many calories are in 8 momos?',
-          answer: '8 steamed veg momos contain approximately 360 calories, whereas 8 steamed chicken momos contain about 480 calories. Fried variants contain around 680–720 calories.'
+          question: 'How many calories are in one momo?',
+          answer: 'The standard steamed chicken estimate used by this calculator is 60 calories per piece. Other momo types and cooking methods can have different calorie values.'
         },
         {
           question: 'How many calories are in 10 momos?',
-          answer: '10 steamed vegetable momos contain roughly 450 calories. 10 steamed chicken momos contain approximately 600 calories. Fried plates can exceed 850–900 calories.'
+          answer: 'Ten steamed chicken momos are estimated at 600 calories under the standard calculation. Select another momo type or cooking method above to calculate a different serving.'
         },
         {
-          question: 'How many calories are in 12 momos?',
-          answer: '12 steamed veg momos contain about 540 calories. 12 steamed chicken momos contain around 720 calories. Frying them will push the total past 1,000 calories.'
+          question: 'How many calories are in steamed chicken momos?',
+          answer: 'The standard estimate is approximately 60 calories per steamed chicken momo. Actual calories vary according to recipe, filling and portion size.'
         },
         {
-          question: 'How many calories are in one plate of chicken momos?',
-          answer: 'A standard plate of 10 steamed chicken momos contains approximately 600 calories. A plate of 10 deep-fried chicken momos contains about 850 calories.'
-        },
-        {
-          question: 'Are chicken momos healthy?',
-          answer: 'Yes, steamed chicken momos can be healthy. They are high in protein and low in fat, provided you skip creamy or oily dipping sauces like mayonnaise.'
-        },
-        {
-          question: 'Are steamed momos good for weight loss?',
-          answer: 'Yes. Steaming doesn\'t add oil or trans fats, making steamed vegetable (45 kcal) and chicken (60 kcal) momos excellent options for calorie-controlled weight loss diets.'
-        },
-        {
-          question: 'Which momos have the lowest calories?',
-          answer: 'Steamed vegetable momos have the lowest calories at approximately 45 calories per piece. Steamed mushroom momos are also very low in calories.'
-        },
-        {
-          question: 'Which momos have the highest protein?',
-          answer: 'Steamed chicken momos (5.5g protein per piece) and pork momos (5.5g protein per piece) have the highest protein content among all momo varieties.'
+          question: 'Are fried momos higher in calories than steamed momos?',
+          answer: 'Fried momos can contain more calories because cooking oil adds energy to the food. The exact difference depends on the preparation method and amount of oil used.'
         }
       ]}
     />
