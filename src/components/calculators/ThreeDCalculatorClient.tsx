@@ -478,11 +478,11 @@ export default function ThreeDCalculatorClient() {
         <div className="w-full h-[65vh] lg:h-[75vh] shrink-0 flex flex-col relative">
           <div ref={fullscreenContainerRef} className={`overflow-hidden flex flex-col flex-1 ${isFullscreen ? 'fixed inset-0 z-[100] w-screen h-screen' : 'h-full'}`}>
             <div className="flex-1 bg-[#e2e8f0] relative group">
-              {/* Floating fullscreen button */}
+              {/* Floating fullscreen button — always inside canvas area */}
               <button
                 aria-label={isFullscreen ? 'Exit Fullscreen' : 'View Fullscreen'}
                 onClick={toggleFullscreen}
-                className="absolute top-3 right-3 z-20 flex items-center gap-1.5 px-2.5 py-1.5 rounded bg-white/90 backdrop-blur-sm border border-slate-200 hover:bg-white text-slate-600 hover:text-[#1e40af] text-[9px] font-bold uppercase tracking-wide transition-all shadow-sm opacity-60 hover:opacity-100"
+                className="absolute bottom-3 right-3 z-20 flex items-center gap-1.5 px-2.5 py-1.5 rounded bg-white/90 backdrop-blur-sm border border-slate-200 hover:bg-white text-slate-600 hover:text-[#1e40af] text-[9px] font-bold uppercase tracking-wide transition-all shadow-sm opacity-60 hover:opacity-100"
               >
                 <Maximize className="w-3 h-3" />
                 <span className="hidden sm:inline">{isFullscreen ? 'Exit' : 'Fullscreen'}</span>
@@ -815,7 +815,12 @@ export default function ThreeDCalculatorClient() {
               </div>
               <div className="flex items-center gap-2">
                 <ChevronDown className={`w-4 h-4 lg:hidden text-slate-400 transition-transform ${openSections.variables ? "" : "-rotate-90"}`} />
-                <span onClick={(e) => { e.stopPropagation(); setParams([...params, { id: Math.random().toString(), name: 'b', value: 1, min: -10, max: 10 }]); }} className="p-1 hover:bg-slate-200 rounded text-blue-700 transition-all">
+                <span onClick={(e) => {
+                    e.stopPropagation();
+                    const used = new Set(params.map(p => p.name));
+                    const next = 'abcdefghjkmnopqrstuvwxyz'.split('').find(c => !used.has(c)) || 'a';
+                    setParams([...params, { id: Math.random().toString(), name: next, value: 1, min: -10, max: 10 }]);
+                  }} className="p-1 hover:bg-slate-200 rounded text-blue-700 transition-all cursor-pointer" title="Add constant">
                   <Plus className="w-4 h-4" />
                 </span>
               </div>
@@ -824,12 +829,20 @@ export default function ThreeDCalculatorClient() {
               {params.map(p => (
                 <div key={p.id} className="flex items-center gap-2">
                   <span className="text-[9px] font-bold text-slate-500 uppercase">{p.name} =</span>
-                  <input type="number" step="0.1" value={p.value} onChange={(e) => setParams(params.map(x => x.id === p.id ? { ...x, value: parseFloat(e.target.value) || 0 } : x))} className="w-14 h-7 text-center border border-slate-200 rounded text-blue-600 bg-white text-[12px] font-bold" />
-                  <input 
-                    type="range" min={p.min} max={p.max} step="0.1"
-                    value={p.value} 
-                    onChange={(e) => setParams(params.map(x => x.id === p.id ? { ...x, value: parseFloat(e.target.value) } : x))}
-                    className="w-20 h-1.5 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-blue-600" 
+                  <input
+                    type="text"
+                    inputMode="decimal"
+                    value={p.value}
+                    onChange={(e) => {
+                      const val = parseFloat(e.target.value);
+                      if (!isNaN(val)) setParams(params.map(x => x.id === p.id ? { ...x, value: val } : x));
+                      else setParams(params.map(x => x.id === p.id ? { ...x, value: e.target.value as any } : x));
+                    }}
+                    onBlur={(e) => {
+                      const val = parseFloat(e.target.value);
+                      setParams(params.map(x => x.id === p.id ? { ...x, value: isNaN(val) ? 0 : val } : x));
+                    }}
+                    className="w-16 h-7 text-center border border-slate-200 rounded text-blue-600 bg-white text-[12px] font-bold focus:outline-none focus:border-blue-400"
                   />
                 </div>
               ))}
