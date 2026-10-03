@@ -398,6 +398,14 @@ export default function ThreeDCalculatorClient() {
 
   return (
     <div className="w-full overflow-x-hidden bg-[#f8fafc] font-sans">
+      <nav className="flex items-center justify-between px-3 py-1.5 border-b border-slate-200 bg-white shrink-0">
+        <div className="flex items-center gap-2">
+          <button aria-label="Go Back" onClick={() => window.history.back()} className="p-1 border border-slate-200 rounded hover:bg-slate-50 transition-colors">
+            <ArrowLeft className="w-3 h-3 text-slate-600" />
+          </button>
+          <div className="text-[9px] font-bold text-[#1e40af] uppercase tracking-widest">3D Pro Studio v4.0</div>
+        </div>
+      </nav>
 
         {/* EQUATIONS - full width above graph */}
         <div className="w-full px-3 pt-3">
@@ -450,7 +458,7 @@ export default function ThreeDCalculatorClient() {
         </div>
 
 {/* MAIN VIEWPORT AREA */}
-        <div className="w-full h-[50vh] lg:h-[60vh] shrink-0 flex flex-col relative">
+        <div className="w-full h-[65vh] lg:h-[75vh] shrink-0 flex flex-col relative">
           <div ref={fullscreenContainerRef} className={`overflow-hidden flex flex-col flex-1 ${isFullscreen ? 'fixed inset-0 z-[100] w-screen h-screen' : 'h-full'}`}>
             <div className="flex-1 bg-[#e2e8f0] relative group">
               {/* Floating fullscreen button */}
