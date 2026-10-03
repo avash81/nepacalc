@@ -16,8 +16,19 @@ export async function generateMetadata({
   params: { year: string };
 }): Promise<Metadata> {
   const year = params.year;
-  const title = `${year} Gold & Silver Price History in Nepal | NepaCalc`;
-  const description = `View ${year} gold and silver price history in Nepal by date, including source-published per-tola and per-10-gram rates, calculated equivalents, and verification status.`;
+  const title = `${year} Gold and Silver Price History in Nepal`;
+
+  const descriptions: Record<string, string> = {
+    '2026': 'View 2026 gold and silver price history in Nepal with date-wise rates, FENEGOSIDA records, per-tola and per-10-gram prices, calculated unit values, and source verification.',
+    '2025': 'View 2025 gold and silver price history in Nepal with date-wise rates, FENEGOSIDA records, per-tola and per-10-gram prices, calculated unit values, and source verification.',
+    '2024': 'View 2024 gold and silver price history in Nepal with date-wise rates, FENEGOSIDA records, per-tola and per-10-gram prices, calculated unit values, and source verification.',
+    '2023': 'View 2023 gold and silver price history in Nepal with date-wise rates, FENEGOSIDA records, per tola and per 10-gram prices, calculated unit values, and source verification.',
+    '2022': 'View 2022 gold and silver price history in Nepal with date-wise rates, historical records, per tola and per 10-gram prices, calculated unit values, and source verification.',
+    '2021': 'View 2021 gold and silver price history in Nepal with date-wise rates, historical records, per tola and per 10-gram prices, calculated unit values, and source verification.',
+    '2020': 'View 2020 gold and silver price history in Nepal with date-wise rates, historical records, per tola and per 10-gram prices, calculated unit values, and source verification.',
+    '2019': 'View 2019 gold and silver price history in Nepal with date-wise rates, historical records, per tola and per 10-gram prices, calculated unit values, and source verification.',
+  };
+  const description = descriptions[year] ?? `View ${year} gold and silver price history in Nepal with date-wise rates, historical records, per tola and per 10-gram prices, calculated unit values, and source verification.`;
 
   return {
     title,

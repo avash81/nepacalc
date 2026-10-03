@@ -38,6 +38,13 @@ export default function HistoryPage() {
     console.error('Error reading historical records', e);
   }
 
+  // ── Find the latest verified gold & silver records ──
+  const sorted = [...records].sort((a, b) =>
+    new Date(b.date_ad).getTime() - new Date(a.date_ad).getTime()
+  );
+  const latestGold = sorted.find(r => r.metal?.toLowerCase() === 'gold' && r.status === 'Verified');
+  const latestSilver = sorted.find(r => r.metal?.toLowerCase() === 'silver' && r.status === 'Verified');
+
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -137,7 +144,7 @@ export default function HistoryPage() {
         {/* ── INTERACTIVE CLIENT: Answer Box + Table ── */}
         <HistoryClient records={records} />
 
-        <HistoryContent />
+        <HistoryContent latestGold={latestGold} latestSilver={latestSilver} />
 
       </main>
     </div>
