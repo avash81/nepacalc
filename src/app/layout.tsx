@@ -148,7 +148,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         {/* Explicit Favicon for Google Search Results (managed by metadata export) */}
       </head>
-      <body className="font-sans">
+      <body className="font-sans w-full overflow-x-hidden relative">
         <ContentProtection />
         <script
           type="application/ld+json"
@@ -176,6 +176,7 @@ export default function RootLayout({
     </html>
   );
 }
+
 
 
 

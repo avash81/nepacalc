@@ -215,10 +215,12 @@ function ProfessionalAxis({ bounds, showLabels, showGrid }: { bounds: { x: numbe
 function WorkerSurfaceMesh({ id, equation, resolution, color, params, globalWireframe, sliceMode, slicePos, onRangeReport, isImplicit, useRadians }: any) {
   const [geometry, setGeometry] = useState<THREE.BufferGeometry | null>(null);
   
+  const workerRef = useRef<Worker | null>(null);
+
+  // Initialize worker exactly once per mesh
   useEffect(() => {
-    const worker = new Worker('/workers/graphWorker.js');
-    
-    worker.onmessage = (e) => {
+    workerRef.current = new Worker('/workers/graphWorker.js');
+    workerRef.current.onmessage = (e) => {
       if (e.data.type === 'success' && e.data.id === id) {
         const geo = new THREE.BufferGeometry();
         geo.setAttribute('position', new THREE.Float32BufferAttribute(e.data.positions, 3));
@@ -235,22 +237,27 @@ function WorkerSurfaceMesh({ id, equation, resolution, color, params, globalWire
         }
       }
     };
-
-    const timer = setTimeout(() => {
-      worker.postMessage({
-        id,
-        type: isImplicit ? 'implicit' : 'explicit',
-        equation,
-        resolution,
-        params,
-        useRadians
-      });
-    }, 300);
-
     return () => {
-      clearTimeout(timer);
-      worker.terminate();
+      workerRef.current?.terminate();
     };
+  }, [id]); // Only recreate if component ID changes
+
+  // Trigger updates without destroying the worker
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (workerRef.current) {
+        workerRef.current.postMessage({
+          id,
+          type: isImplicit ? 'implicit' : 'explicit',
+          equation,
+          resolution,
+          params,
+          useRadians
+        });
+      }
+    }, 50); // Much faster response time (50ms instead of 300ms)
+
+    return () => clearTimeout(timer);
   }, [id, equation, resolution, params, isImplicit, useRadians]);
 
   const clippingPlane = useMemo(() => {

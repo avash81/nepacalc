@@ -1,4 +1,4 @@
-﻿
+
 import { JsonLd } from '@/components/seo/JsonLd';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
@@ -395,7 +395,7 @@ export default function ThreeDPage() {
           <div className="lg:col-span-3">
             <div className="bg-white border border-[#DADCE0] rounded-xl p-8 lg:p-12 shadow-sm">
               <h2 className="text-2xl lg:text-3xl font-black text-[#202124] mb-6">Why Use This 3D Graph Calculator?</h2>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-12">
                 {['Plot Explicit Functions', 'Plot Implicit Surfaces', 'Multiple Equations', 'Variable Sliders', 'Interactive Rotation', 'Cross Section Slicing', 'High Resolution Rendering', 'Engineering Presets', 'Mathematical Surface Library', 'Browser Based', 'Free to Use', 'Mobile Friendly'].map(feature => (
                   <div key={feature} className="flex items-center gap-2 text-sm md:text-base text-[#5F6368] font-medium p-3 bg-[#F8F9FA] rounded-lg border border-slate-100">
                     <span className="text-green-600 shrink-0">✓</span>
@@ -819,7 +819,7 @@ export default function ThreeDPage() {
                   <div className="bg-white border border-[#DADCE0] rounded-xl p-6 shadow-sm">
                     <h3 className="text-xl font-bold text-[#1967D2] mb-3">Step 2 — Select a Built-in Preset</h3>
                     <p className="text-[#5F6368] mb-3 text-base">If you do not want to type equations manually, choose one of the predefined mathematical surfaces from the preset library. Current presets include:</p>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
                       {['Wave Surface','Saddle Surface','Gaussian Surface','Sphere','Cylinder','Cone','Torus','Ellipsoid','Hyperboloid','Monkey Saddle','Paraboloid'].map(p => (
                         <span key={p} className="text-sm bg-[#F8F9FA] text-[#5F6368] border border-[#DADCE0] rounded px-3 py-1">{p}</span>
                       ))}
@@ -890,7 +890,7 @@ export default function ThreeDPage() {
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-4">
                   The calculator supports many commonly used mathematical operations, giving users the flexibility to visualize everything from simple classroom examples to advanced engineering equations.
                 </p>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 mb-6">
                   {['Addition','Subtraction','Multiplication','Division','Exponents','Square roots','Logarithms','Trigonometric functions','Hyperbolic functions','Absolute values','Exponential functions','Constants (π, e)','Parentheses','Custom Variables'].map(e => (
                     <div key={e} className="text-sm text-[#5F6368] bg-[#F8F9FA] border border-[#DADCE0] rounded-lg px-3 py-2 text-center">{e}</div>
                   ))}
@@ -1274,7 +1274,7 @@ export default function ThreeDPage() {
                   While the built-in presets demonstrate the most common mathematical models, the NepaCalc <strong>3D Graph Calculator</strong> also allows you to create completely custom equations.
                 </p>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-6">Examples include:</p>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 mb-6">
                   {['Polynomial surfaces','Trigonometric surfaces','Exponential models','Logarithmic functions','Implicit equations','Engineering formulas','Physics equations','Scientific simulations'].map(item => (
                     <div key={item} className="text-sm text-[#5F6368] bg-[#F8F9FA] border border-[#DADCE0] rounded-lg px-3 py-2 text-center">{item}</div>
                   ))}
@@ -1518,7 +1518,7 @@ export default function ThreeDPage() {
                       Research consistently shows that visual learning significantly improves comprehension of mathematical concepts. Instead of imagining complex surfaces mentally, students can rotate, zoom, and inspect them from every angle.
                     </p>
                     <p className="text-lg leading-relaxed text-[#5F6368] mb-3">Interactive visualization helps users understand:</p>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 mb-4">
                       {['Surface behavior','Maximum and minimum points','Saddle points','Symmetry','Periodicity','Function growth','Oscillation','Optimization'].map(t => (
                         <div key={t} className="text-sm text-[#5F6368] bg-[#F8F9FA] border border-[#DADCE0] rounded-lg px-3 py-2 text-center">{t}</div>
                       ))}
@@ -1534,7 +1534,7 @@ export default function ThreeDPage() {
                     <p className="text-lg leading-relaxed text-[#5F6368] mb-6">
                       Interactive graphing software is widely used across education, engineering, and scientific research. Whether you are studying for an examination or developing real engineering systems, visualizing mathematics provides a deeper understanding than equations alone.
                     </p>
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
                       {[
                         'High school mathematics students',
                         'University engineering students',
@@ -2179,7 +2179,7 @@ export default function ThreeDPage() {
 
                 <h2 id="who-uses" className="text-2xl lg:text-3xl font-black text-[#202124] mb-6">Who Should Use This Calculator?</h2>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-4">Ideal for:</p>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-12">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mb-12">
                   {['Mechanical Engineers', 'Civil Engineers', 'Aerospace Engineers', 'Architecture Students', 'Data Scientists', 'Machine Learning Engineers', 'Physics Researchers', 'Mathematics Teachers', 'University Professors', 'CAD Designers', 'Robotics Engineers'].map(u => (
                     <div key={u} className="flex items-start gap-2 text-sm text-[#5F6368] bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-3">
                       <span className="text-green-600 shrink-0">✔</span>
@@ -2341,3 +2341,4 @@ export default function ThreeDPage() {
     </>
   );
 }
+
