@@ -6,7 +6,7 @@ import Link from 'next/link';
 const ThreeDCalculatorClient = dynamic(
   () => import('@/components/calculators/ThreeDCalculatorClient'),
   { 
-    ssr: false, 
+    ssr: true, 
     loading: () => (
       <div className="flex flex-col min-h-[calc(100vh-64px)] lg:h-[calc(100vh-64px)] w-full items-center justify-center bg-[#f8fafc]">
         <div className="flex flex-col items-center gap-4">

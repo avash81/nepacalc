@@ -200,12 +200,10 @@ export default function DateDuration() {
   const [includeEnd, setIncludeEnd] = useState(false);
   const [activePreset, setActivePreset] = useState<string | null>('thisYear');
   const [showMoreResults, setShowMoreResults] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const [copied, setCopied] = useState(false);
+    const [copied, setCopied] = useState(false);
 
   // Hydrate from URL params on mount
   useEffect(() => {
-    setMounted(true);
     if (typeof window === 'undefined') return;
     const p = new URLSearchParams(window.location.search);
     const ps = p.get('start'), pe = p.get('end');
@@ -215,8 +213,8 @@ export default function DateDuration() {
   }, []);
 
   const diff = useMemo(
-    () => (mounted ? calcDiff(start, end, includeEnd) : null),
-    [start, end, includeEnd, mounted],
+    () => calcDiff(start, end, includeEnd),
+    [start, end, includeEnd],
   );
 
   const applyPreset = useCallback((key: string) => {
@@ -374,9 +372,7 @@ export default function DateDuration() {
   // ─── Results panel ──────────────────────────────────────────────────────────
   const resultsPanel = (
     <div className="space-y-4 printable-result" role="region" aria-label="Calculation results">
-      {!mounted ? (
-        <div className="h-32 flex items-center justify-center text-[#70757A] text-sm">Loading…</div>
-      ) : !diff ? (
+      {!diff ? (
         <div className="h-32 flex flex-col items-center justify-center text-[#70757A] gap-2">
           <Calendar className="w-8 h-8 opacity-30" />
           <p className="text-sm">Enter valid dates above.</p>

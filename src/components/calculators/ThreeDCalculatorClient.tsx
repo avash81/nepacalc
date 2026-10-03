@@ -475,7 +475,7 @@ export default function ThreeDCalculatorClient() {
         </div>
 
 {/* MAIN VIEWPORT AREA */}
-        <div className="w-full h-[65vh] lg:h-[75vh] shrink-0 flex flex-col relative">
+        <div className="w-full h-[65vh] lg:h-[75vh] shrink-0 flex flex-col relative lg:px-2">
           <div ref={fullscreenContainerRef} className={`overflow-hidden flex flex-col flex-1 ${isFullscreen ? 'fixed inset-0 z-[100] w-screen h-screen' : 'h-full'}`}>
             <div className="flex-1 bg-[#e2e8f0] relative group">
               {/* Floating fullscreen button — always inside canvas area */}
