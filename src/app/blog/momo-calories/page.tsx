@@ -183,7 +183,7 @@ export default function MomoCaloriesBlog() {
               {/* ── Section 1: Momo Calories at a Glance ── Point 4 */}
               <section aria-labelledby="glance">
                 <h2 id="glance" className="text-2xl font-black text-[#202124] mb-2">
-                  Momo Calories at a Glance
+                  How Many Calories Are in Momos?
                 </h2>
                 {/* Simple inline calculator CTA */}
                 <p className="text-sm text-[#5F6368] mb-4">
