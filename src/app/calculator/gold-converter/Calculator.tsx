@@ -146,7 +146,8 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
                 placeholder="0"
                 value={val}
                 onChange={e => fn(e.target.value)}
-                className="w-full h-11 px-3 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-amber-400 outline-none transition-all placeholder:text-slate-300"
+                onWheel={(e) => (e.target as HTMLInputElement).blur()}
+                className="w-full h-11 px-3 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-amber-400 outline-none transition-all placeholder:text-slate-300 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               />
               <div className="text-[8px] text-slate-400">{hint}</div>
             </div>
@@ -184,7 +185,8 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
             type="number"
             value={state.chargeValue}
             onChange={e => setState(s => ({ ...s, chargeValue: e.target.value }))}
-            className="w-2/3 h-11 px-3 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-amber-400 outline-none transition-all"
+            onWheel={(e) => (e.target as HTMLInputElement).blur()}
+            className="w-2/3 h-11 px-3 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-amber-400 outline-none transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
         </div>
       </div>
@@ -216,7 +218,7 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
 
   // ─── RESULTS ─────────────────────────────────────────────────────────────────
   const resultsComponent = (
-    <div className="space-y-5 h-full flex flex-col justify-center">
+    <div className="space-y-4 h-full flex flex-col justify-center">
       {!hasInput ? (
         <div className="text-center py-12 text-slate-300">
           <div className="text-5xl mb-3"></div>
@@ -226,7 +228,7 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
       ) : (
         <>
           {/* Total valuation */}
-          <div className="bg-[#E8F0FE] rounded-xl p-6 text-center space-y-1">
+          <div className="bg-[#E8F0FE] rounded-xl p-5 text-center space-y-1">
             <div className="text-[10px] font-black text-[#1A73E8] uppercase tracking-wider">Estimated Jewelry Valuation</div>
             <div className="text-4xl font-black text-[#1A73E8]">{fmt(result.total)}</div>
             <div className="text-[9px] font-bold text-[#5F6368] uppercase tracking-wider">
@@ -234,74 +236,66 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
             </div>
           </div>
 
-          {/* Breakdown grid */}
-          <div className="grid grid-cols-2 gap-3">
-            <div className="border border-[#DADCE0] rounded-xl p-4 text-center bg-white">
-              <div className="text-[9px] font-black text-[#202124] uppercase tracking-wider mb-1">Calculation Base Rate</div>
-              <div className="text-base font-black text-[#202124]">{fmt(liveRate)}<span className="text-[9px] text-slate-400">/Tola</span></div>
+          {/* Unified Breakdown */}
+          <div className="bg-white border border-[#DADCE0] rounded-xl overflow-hidden shadow-sm">
+            <div className="grid grid-cols-2 divide-x divide-[#DADCE0] border-b border-[#DADCE0]">
+              <div className="p-3 text-center">
+                <div className="text-[9px] font-black text-[#202124] uppercase tracking-wider mb-0.5">Calculation Base Rate</div>
+                <div className="text-sm font-black text-[#202124]">{fmt(liveRate)}<span className="text-[8px] text-slate-400 ml-1">/Tola</span></div>
+              </div>
+              <div className="p-3 text-center">
+                <div className="text-[9px] font-black text-slate-500 uppercase tracking-wider mb-0.5">Metal Value</div>
+                <div className="text-sm font-black text-slate-800">{fmt(result.basePrice)}</div>
+              </div>
             </div>
-            <div className="border border-[#DADCE0] rounded-xl p-4 text-center bg-white">
-              <div className="text-[9px] font-black text-[#D93025] uppercase tracking-wider mb-1">Crafting Cost</div>
-              <div className="text-base font-black text-[#D93025]">{fmt(result.makingCost)}</div>
-            </div>
-            <div className="border border-[#DADCE0] rounded-xl p-4 text-center bg-white">
-              <div className="text-[9px] font-black text-slate-500 uppercase tracking-wider mb-1">Metal Value</div>
-              <div className="text-base font-black text-slate-800">{fmt(result.basePrice)}</div>
-            </div>
-            <div className="border border-[#DADCE0] rounded-xl p-4 text-center bg-white">
-              <div className="text-[9px] font-black text-[#188038] uppercase tracking-wider mb-1">Metal Efficiency</div>
-              <div className="text-base font-black text-[#188038]">{result.efficiency.toFixed(1)}%</div>
+            <div className="p-3 bg-[#F8F9FA]">
+              <div className="flex justify-between items-end mb-1.5">
+                <div className="text-[9px] font-black text-[#5F6368] uppercase tracking-widest">Valuation Breakdown</div>
+                <div className="text-[9px] font-bold text-[#D93025]">Crafting: {fmt(result.makingCost)}</div>
+              </div>
+              <div className="h-3 w-full bg-[#E8EAED] rounded-full overflow-hidden flex shadow-inner">
+                <div className="h-full bg-[#1A73E8] transition-all duration-500" style={{ width: `${result.total > 0 ? (result.basePrice/result.total)*100 : 100}%` }} />
+                <div className="h-full bg-[#D93025] transition-all duration-500" style={{ width: `${result.total > 0 ? (result.makingCost/result.total)*100 : 0}%` }} />
+              </div>
+              <div className="flex justify-between items-center mt-2">
+                <div className="flex items-center gap-1.5">
+                  <div className="w-2 h-2 rounded-full bg-[#1A73E8]" />
+                  <span className="text-[9px] font-black text-[#5F6368] uppercase">Metal ({result.total > 0 ? (result.basePrice/result.total*100).toFixed(1) : '100.0'}%)</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <div className="w-2 h-2 rounded-full bg-[#D93025]" />
+                  <span className="text-[9px] font-black text-[#5F6368] uppercase">Crafting ({result.total > 0 ? (result.makingCost/result.total*100).toFixed(1) : '0.0'}%)</span>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Metal retention bar */}
-          <div className="border border-[#DADCE0] rounded-xl p-4 bg-[#F8F9FA]">
-            <div className="flex justify-between items-center mb-2">
+          <div className="border border-[#DADCE0] rounded-xl p-3 bg-white shadow-sm">
+            <div className="flex justify-between items-center mb-1.5">
               <span className="text-[9px] font-black text-[#5F6368] uppercase tracking-wider">Metal Retention Efficiency</span>
               <span className="text-[10px] font-black text-[#188038]">{result.efficiency.toFixed(1)}%</span>
             </div>
-            <div className="h-2 w-full bg-white rounded-full overflow-hidden border border-[#DADCE0]">
+            <div className="h-1.5 w-full bg-[#E8EAED] rounded-full overflow-hidden">
               <div className="h-full bg-[#188038] transition-all duration-500" style={{ width: `${result.efficiency}%` }} />
             </div>
-            <p className="text-[9px] text-slate-400 mt-2">
-              Crafting (Jyala) in Nepal typically ranges 5–15%. A score above 85% means good value.
+            <p className="text-[8px] text-slate-400 mt-1.5 leading-tight">
+              Crafting (Jyala) typically ranges 5–15%. Score &gt; 85% means good value.
             </p>
           </div>
-
-          {/* Pie Chart */}
-          {result.total > 0 && (
-            <div className="bg-white border border-[#DADCE0] rounded-xl p-4">
-              <div className="text-[9px] font-black text-[#5F6368] uppercase tracking-widest mb-3">Valuation Breakdown</div>
-              <div className="h-[160px]">
-                <ResponsiveContainer width="100%" height="100%">
-                  <RePieChart>
-                    <Pie data={[{ name: 'Metal', value: result.basePrice }, { name: 'Crafting', value: result.makingCost }]}
-                      cx="50%" cy="50%" innerRadius={45} outerRadius={70} paddingAngle={2} dataKey="value" stroke="none">
-                      <Cell fill="#1A73E8" />
-                      <Cell fill="#DADCE0" />
-                    </Pie>
-                    <Tooltip formatter={(v: number) => fmt(v)} contentStyle={{ borderRadius: '8px', fontSize: '10px', fontWeight: 'bold' }} />
-                  </RePieChart>
-                </ResponsiveContainer>
-              </div>
-              <div className="flex justify-center gap-4 text-[9px] font-bold text-[#5F6368] uppercase">
-                <div className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-[#1A73E8]" /> Metal</div>
-                <div className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-[#DADCE0]" /> Crafting</div>
-              </div>
-            </div>
-          )}
-
-          {/* Bringing gold to Nepal link */}
-          <a href="/calculator/gold-tax/" className="flex items-center gap-2 p-3 bg-slate-50 border border-slate-200 rounded-xl hover:bg-slate-100 transition-colors">
-            <span className="text-lg">✈️</span>
-            <div>
-              <div className="text-[10px] font-black text-slate-700 uppercase tracking-wider">Bringing Gold into Nepal?</div>
-              <div className="text-[9px] text-slate-500">Estimate customs duty with our Gold Tax Calculator →</div>
-            </div>
-          </a>
         </>
       )}
     </div>
+  );
+
+  const resultsBottomComponent = (
+    <a href="/calculator/gold-tax/" className="flex items-center gap-2 p-3 bg-white border border-[#DADCE0] rounded-md hover:bg-slate-50 transition-colors shadow-sm">
+      <span className="text-lg">✈️</span>
+      <div>
+        <div className="text-[10px] font-black text-[#202124] uppercase tracking-wider">Bringing Gold into Nepal?</div>
+        <div className="text-[9px] text-[#5F6368]">Estimate customs duty with our Gold Tax Calculator →</div>
+      </div>
+    </a>
   );
 
   if (isEmbed) {
@@ -310,6 +304,7 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
         {inputsComponent}
         <div className="pt-6 border-t border-[#DADCE0]">
           {resultsComponent}
+          <div className="mt-4">{resultsBottomComponent}</div>
         </div>
       </div>
     );
@@ -326,6 +321,9 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
       compactHeader={true}
       inputs={inputsComponent}
       results={resultsComponent}
+      resultsBottom={resultsBottomComponent}
     />
   );
 }
+
+
