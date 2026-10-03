@@ -803,7 +803,7 @@ export default function ThreeDPage() {
 
                 <div className="space-y-6 mb-12">
                   <div className="bg-white border border-[#DADCE0] rounded-xl p-6 shadow-sm">
-                    <h3 className="text-xl font-bold text-[#1967D2] mb-3">Step 1 — Enter Your Mathematical Equation</h3>
+                    <h3 className="text-xl font-bold text-[#1967D2] mb-3">Step 1 - Enter Your Mathematical Equation</h3>
                     <p className="text-[#5F6368] mb-3 text-base">Begin by typing your equation into the equation input field. The calculator supports a wide variety of mathematical expressions, including explicit functions, implicit equations, engineering surfaces, trigonometric, exponential, and polynomial surfaces.</p>
                     <p className="text-[#5F6368] mb-2 text-sm font-semibold">Example equations:</p>
                     <div className="bg-[#F8F9FA] rounded-lg p-4 font-mono text-sm text-[#202124] space-y-1">
@@ -817,7 +817,7 @@ export default function ThreeDPage() {
                   </div>
 
                   <div className="bg-white border border-[#DADCE0] rounded-xl p-6 shadow-sm">
-                    <h3 className="text-xl font-bold text-[#1967D2] mb-3">Step 2 — Select a Built-in Preset</h3>
+                    <h3 className="text-xl font-bold text-[#1967D2] mb-3">Step 2 - Select a Built-in Preset</h3>
                     <p className="text-[#5F6368] mb-3 text-base">If you do not want to type equations manually, choose one of the predefined mathematical surfaces from the preset library. Current presets include:</p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
                       {['Wave Surface','Saddle Surface','Gaussian Surface','Sphere','Cylinder','Cone','Torus','Ellipsoid','Hyperboloid','Monkey Saddle','Paraboloid'].map(p => (
@@ -827,34 +827,31 @@ export default function ThreeDPage() {
                   </div>
 
                   <div className="bg-white border border-[#DADCE0] rounded-xl p-6 shadow-sm">
-                    <h3 className="text-xl font-bold text-[#1967D2] mb-3">Step 3 — Adjust Variables Using Interactive Sliders</h3>
+                    <h3 className="text-xl font-bold text-[#1967D2] mb-3">Step 3 - Adjust Variables Using Interactive Sliders</h3>
                     <p className="text-[#5F6368] mb-3 text-base">Many mathematical equations contain adjustable parameters. For example: <code className="bg-[#F8F9FA] px-1 rounded">z = a × sin(x)</code>: changing the value of <strong>a</strong> instantly modifies the graph without rewriting the equation. Variable sliders let you investigate amplitude, frequency, scaling, stretching, compression, translation, and engineering constants interactively.</p>
                   </div>
 
                   <div className="bg-white border border-[#DADCE0] rounded-xl p-6 shadow-sm">
-                    <h3 className="text-xl font-bold text-[#1967D2] mb-3">Step 4 — Rotate the Graph</h3>
+                    <h3 className="text-xl font-bold text-[#1967D2] mb-3">Step 4 - Rotate the Graph</h3>
                     <p className="text-[#5F6368] text-base">Simply click and drag the graph to rotate the camera around the object. Viewing a surface from multiple angles helps reveal peaks, valleys, symmetry, curvature, intersections, and hidden structures that are not visible from a single perspective.</p>
                   </div>
 
                   <div className="bg-white border border-[#DADCE0] rounded-xl p-6 shadow-sm">
-                    <h3 className="text-xl font-bold text-[#1967D2] mb-3">Step 5 — Zoom and Pan</h3>
+                    <h3 className="text-xl font-bold text-[#1967D2] mb-3">Step 5 - Zoom and Pan</h3>
                     <p className="text-[#5F6368] text-base">Use the mouse wheel or touch gestures to zoom into specific regions. Zooming allows you to inspect local maxima, local minima, saddle points, discontinuities, oscillations, and singularities. You can also pan across the coordinate system to examine different portions of larger surfaces.</p>
                   </div>
 
                   <div className="bg-white border border-[#DADCE0] rounded-xl p-6 shadow-sm">
-                    <h3 className="text-xl font-bold text-[#1967D2] mb-3">Step 6 — Enable Cross-Section Slicing</h3>
+                    <h3 className="text-xl font-bold text-[#1967D2] mb-3">Step 6 - Enable Cross-Section Slicing</h3>
                     <p className="text-[#5F6368] mb-3 text-base">Cross-section slicing allows you to cut through a mathematical surface using one of the coordinate planes (X, Y, or Z). Cross sections are widely used in multivariable calculus, structural engineering, finite element analysis, architecture, manufacturing, and medical imaging.</p>
                   </div>
 
                   <div className="bg-white border border-[#DADCE0] rounded-xl p-6 shadow-sm">
-                    <h3 className="text-xl font-bold text-[#1967D2] mb-3">Step 7 — Compare Multiple Equations</h3>
+                    <h3 className="text-xl font-bold text-[#1967D2] mb-3">Step 7 - Compare Multiple Equations</h3>
                     <p className="text-[#5F6368] text-base">The calculator supports multiple graph layers. You can overlay several mathematical surfaces simultaneously to compare functions, identify intersections, visualize optimization problems, and study geometric relationships. Each equation is displayed with a different color for easy interpretation.</p>
                   </div>
 
-                  <div className="bg-white border border-[#DADCE0] rounded-xl p-6 shadow-sm">
-                    <h3 className="text-xl font-bold text-[#1967D2] mb-3">Step 8 — Adjust Surface Appearance</h3>
-                    <p className="text-[#5F6368] text-base">Use visualization settings including Smooth Shading, Wireframe Mode, Color Palettes, Surface Opacity, and Lighting Effects. Wireframe mode is particularly useful for studying the underlying mathematical mesh, while smooth shading emphasizes the overall shape of the surface.</p>
-                  </div>
+                  
                 </div>
 
                 {/* ── Main Features ── */}
@@ -2284,7 +2281,7 @@ export default function ThreeDPage() {
             </div>
           </div>
 
-              {/* Trust, Supports, Related — below article */}
+              {/* Trust, Supports, Related - below article */}
               <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
 
                 {/* Trust & Details */}
@@ -2341,4 +2338,6 @@ export default function ThreeDPage() {
     </>
   );
 }
+
+
 
