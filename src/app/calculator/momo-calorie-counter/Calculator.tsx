@@ -333,40 +333,12 @@ export default function MomoCalculator() {
           <div className="pt-4 border-t border-[#DADCE0]">
             <button onClick={reset} className="text-[12px] font-bold text-[#5F6368] hover:text-[#202124]">Reset</button>
           </div>
-        </div>
-      }
-      results={
-        <div className="space-y-5">
-          {/* YOUR ESTIMATE */}
-          <div className="text-center pt-2 pb-4" aria-live="polite" aria-label="Calorie estimate result">
-            <div className="text-[11px] font-black text-[#70757A] uppercase tracking-widest mb-3">Your Estimate</div>
-            <div className="text-5xl md:text-6xl font-black text-[#202124] mb-3 tracking-tight">
-              ≈ {Math.round(totals.cal)} <span className="text-2xl md:text-3xl text-[#5F6368] font-bold tracking-normal">kcal</span>
-            </div>
-            <div className="text-lg font-bold text-[#202124] mb-1">
-              {items.length === 1
-                ? `${items[0].pieces} ${first.mLabel.toLowerCase()} ${first.tLabel.toLowerCase()} momos`
-                : `${totalPieces} mixed momos`}
-            </div>
-            {items.length === 1 && (
-              <div className="text-sm font-semibold text-[#5F6368] mb-4">
-                ≈ {Math.round(first.ppCal)} kcal / momo
-              </div>
-            )}
-            <div className="text-[13px] font-bold text-[#202124] bg-slate-50 inline-block px-4 py-2 rounded-full border border-slate-200">
-              Protein {totals.p.toFixed(0)}g · Carbs {totals.c.toFixed(0)}g · Fat {totals.f.toFixed(0)}g
-            </div>
-          </div>
 
-          <p className="text-xs text-center text-[#5F6368] leading-relaxed">
-            Estimated value. Actual calories vary with momo size, filling, recipe, cooking method and sauces.
-          </p>
-
-          {/* Accordions — right column, below result */}
-          <div className="space-y-2 pt-2">
+          {/* Accordions — left column, below reset */}
+          <div className="space-y-2 pt-4">
             {/* Nutrition Details */}
-            <details className="group bg-white border border-[#DADCE0] rounded-lg overflow-hidden">
-              <summary className="px-4 py-3 text-[13px] font-bold text-[#202124] cursor-pointer list-none flex items-center justify-between hover:bg-slate-50 outline-none">
+            <details className="group bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
+              <summary className="px-4 py-3 text-[13px] font-bold text-[#202124] cursor-pointer list-none flex items-center justify-between hover:bg-slate-50 outline-none focus:bg-slate-50">
                 Nutrition details
                 <ChevronDown className="w-4 h-4 text-[#5F6368] group-open:rotate-180 transition-transform" />
               </summary>
@@ -396,8 +368,8 @@ export default function MomoCalculator() {
             </details>
 
             {/* Compare cooking methods */}
-            <details className="group bg-white border border-[#DADCE0] rounded-lg overflow-hidden">
-              <summary className="px-4 py-3 text-[13px] font-bold text-[#202124] cursor-pointer list-none flex items-center justify-between hover:bg-slate-50 outline-none">
+            <details className="group bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
+              <summary className="px-4 py-3 text-[13px] font-bold text-[#202124] cursor-pointer list-none flex items-center justify-between hover:bg-slate-50 outline-none focus:bg-slate-50">
                 Compare cooking methods
                 <ChevronDown className="w-4 h-4 text-[#5F6368] group-open:rotate-180 transition-transform" />
               </summary>
@@ -418,8 +390,8 @@ export default function MomoCalculator() {
             </details>
 
             {/* How is this calculated? */}
-            <details className="group bg-white border border-[#DADCE0] rounded-lg overflow-hidden">
-              <summary className="px-4 py-3 text-[13px] font-bold text-[#202124] cursor-pointer list-none flex items-center justify-between hover:bg-slate-50 outline-none">
+            <details className="group bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
+              <summary className="px-4 py-3 text-[13px] font-bold text-[#202124] cursor-pointer list-none flex items-center justify-between hover:bg-slate-50 outline-none focus:bg-slate-50">
                 How is this calculated?
                 <ChevronDown className="w-4 h-4 text-[#5F6368] group-open:rotate-180 transition-transform" />
               </summary>
@@ -429,6 +401,34 @@ export default function MomoCalculator() {
               </div>
             </details>
           </div>
+        </div>
+      }
+      results={
+        <div className="space-y-5">
+          {/* YOUR ESTIMATE */}
+          <div className="text-center pt-2 pb-4" aria-live="polite" aria-label="Calorie estimate result">
+            <div className="text-[11px] font-black text-[#70757A] uppercase tracking-widest mb-3">Your Estimate</div>
+            <div className="text-5xl md:text-6xl font-black text-[#202124] mb-3 tracking-tight">
+              ≈ {Math.round(totals.cal)} <span className="text-2xl md:text-3xl text-[#5F6368] font-bold tracking-normal">kcal</span>
+            </div>
+            <div className="text-lg font-bold text-[#202124] mb-1">
+              {items.length === 1
+                ? `${items[0].pieces} ${first.mLabel.toLowerCase()} ${first.tLabel.toLowerCase()} momos`
+                : `${totalPieces} mixed momos`}
+            </div>
+            {items.length === 1 && (
+              <div className="text-sm font-semibold text-[#5F6368] mb-4">
+                ≈ {Math.round(first.ppCal)} kcal / momo
+              </div>
+            )}
+            <div className="text-[13px] font-bold text-[#202124] bg-slate-50 inline-block px-4 py-2 rounded-full border border-slate-200">
+              Protein {totals.p.toFixed(0)}g · Carbs {totals.c.toFixed(0)}g · Fat {totals.f.toFixed(0)}g
+            </div>
+          </div>
+
+          <p className="text-xs text-center text-[#5F6368] leading-relaxed">
+            Estimated value. Actual calories vary with momo size, filling, recipe, cooking method and sauces.
+          </p>
         </div>
       }
       seoContent={
