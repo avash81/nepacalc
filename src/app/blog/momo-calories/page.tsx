@@ -185,13 +185,6 @@ export default function MomoCaloriesBlog() {
                 <h2 id="glance" className="text-2xl font-black text-[#202124] mb-2">
                   How Many Calories Are in Momos?
                 </h2>
-                {/* Simple inline calculator CTA */}
-                <p className="text-sm text-[#5F6368] mb-4">
-                  Want an estimate for specific calories? Use the{' '}
-                  <Link href="/calculator/momo-calorie-counter/" className="text-[#1967D2] font-semibold hover:underline">
-                    Momo Calorie Calculator
-                  </Link>.
-                </p>
                 <p className="text-[#5F6368] leading-relaxed mb-5">
                   Momo calories depend on the filling, size and preparation method. Steamed, fried, jhol, tandoori and C-momo preparations can produce different calorie estimates for the same number of pieces. The table below uses the same assumptions as the Momo Calorie Calculator.
                 </p>
@@ -228,6 +221,12 @@ export default function MomoCaloriesBlog() {
                 </div>
                 <p className="text-xs text-[#5F6368] mt-3 leading-relaxed">
                   Estimates based on standard serving assumptions. Actual values vary with momo size, recipe, filling ratio and preparation. Use the Momo Calorie Calculator to estimate a specific serving.
+                </p>
+                <p className="text-sm text-[#5F6368] mt-4 font-medium">
+                  Want an estimate for specific calories? Use the{' '}
+                  <Link href="/calculator/momo-calorie-counter/" className="text-[#1967D2] font-semibold hover:underline">
+                    Momo Calorie Calculator
+                  </Link>.
                 </p>
               </section>
 
