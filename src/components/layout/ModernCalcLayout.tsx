@@ -152,12 +152,7 @@ export function ModernCalcLayout({
 
   const calculatorEngineNode = (
     <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm overflow-hidden">
-      <div className="px-6 py-4 border-b border-[#DADCE0] flex items-center gap-3 bg-[#F8F9FA]">
-        <div className="flex items-center gap-2">
-          <Icon className="w-4 h-4 text-[#5F6368]" />
-          <span className="text-[11px] font-bold uppercase tracking-widest text-[#5F6368]">Calculator Engine</span>
-        </div>
-      </div>
+
       {fullWidth ? (
         <div className="flex flex-col lg:flex-row lg:items-start divide-y lg:divide-y-0 lg:divide-x divide-[#DADCE0]">
           <div className="flex-1 w-full bg-white">
