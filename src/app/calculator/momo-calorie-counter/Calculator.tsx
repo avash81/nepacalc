@@ -292,19 +292,19 @@ export default function MomoCalculator() {
                 <div className="space-y-1.5">
                   <label className="text-[12px] font-bold text-[#202124]">Type</label>
                   <div className="relative">
-                    <select value={draft.type} onChange={e => setDraft({ ...draft, type: e.target.value })} className="w-full h-9 pl-2 pr-8 bg-white border border-[#DADCE0] rounded-md text-[12px] font-bold text-[#202124] focus:border-[#1967D2] outline-none appearance-none">
+                    <select value={draft.type} onChange={e => setDraft({ ...draft, type: e.target.value })} className="w-full h-10 py-2 pl-3 pr-8 bg-white border border-[#DADCE0] rounded-md text-[13px] font-bold text-[#202124] focus:border-[#1967D2] outline-none appearance-none cursor-pointer">
                       {MOMO_TYPES.map(t => <option key={t.id} value={t.id}>{t.label}</option>)}
                     </select>
-                    <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#5F6368] pointer-events-none" />
+                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#5F6368] pointer-events-none" />
                   </div>
                 </div>
                 <div className="space-y-1.5">
                   <label className="text-[12px] font-bold text-[#202124]">Method</label>
                   <div className="relative">
-                    <select value={draft.method} onChange={e => setDraft({ ...draft, method: e.target.value })} className="w-full h-9 pl-2 pr-8 bg-white border border-[#DADCE0] rounded-md text-[12px] font-bold text-[#202124] focus:border-[#1967D2] outline-none appearance-none">
+                    <select value={draft.method} onChange={e => setDraft({ ...draft, method: e.target.value })} className="w-full h-10 py-2 pl-3 pr-8 bg-white border border-[#DADCE0] rounded-md text-[13px] font-bold text-[#202124] focus:border-[#1967D2] outline-none appearance-none cursor-pointer">
                       {COOKING_METHODS.map(m => <option key={m.id} value={m.id}>{m.label}</option>)}
                     </select>
-                    <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#5F6368] pointer-events-none" />
+                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#5F6368] pointer-events-none" />
                   </div>
                 </div>
               </div>
