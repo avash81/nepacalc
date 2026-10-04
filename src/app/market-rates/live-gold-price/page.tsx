@@ -1,4 +1,4 @@
-﻿import { Metadata } from 'next';
+import { Metadata } from 'next';
 import GoldDashboardClient from './GoldDashboardClient';
 import LiveGoldPriceBoxClient from './LiveGoldPriceBoxClient';
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
@@ -252,8 +252,8 @@ export default async function Page() {
           "variableMeasured": ["Gold Price 24K per Tola NPR", "Gold Price 22K per Tola NPR", "Silver Price per Tola NPR", "Gold Price per 10g NPR"],
           "measurementTechnique": "Official FENEGOSIDA benchmark rate published daily",
           "hasPart": [
-            { "@type": "Dataset", "name": "Today's Gold Price by Unit", "url": "https://nepacalc.com/market-rates/live-gold-price/#gold-conversion-table" },
-            { "@type": "Dataset", "name": "Nepal Gold Price History", "url": "https://nepacalc.com/market-rates/live-gold-price/#gold-price-history" }
+            { "@type": "Dataset", "name": "Today's Gold Price by Unit", "description": "Data table for Today's Gold Price by Unit.", "url": "https://nepacalc.com/market-rates/live-gold-price/#gold-conversion-table", "creator": { "@type": "Organization", "name": "NepaCalc" }, "license": "https://creativecommons.org/licenses/by/4.0/" },
+            { "@type": "Dataset", "name": "Nepal Gold Price History", "description": "Data table for Nepal Gold Price History.", "url": "https://nepacalc.com/market-rates/live-gold-price/#gold-price-history", "creator": { "@type": "Organization", "name": "NepaCalc" }, "license": "https://creativecommons.org/licenses/by/4.0/" }
           ]
         })}}
       />
@@ -351,8 +351,8 @@ export default async function Page() {
           "variableMeasured": ["Gold Price 24K per Tola NPR", "Gold Price 22K per Tola NPR", "Silver Price per Tola NPR", "Gold Price per 10g NPR"],
           "measurementTechnique": "Official FENEGOSIDA benchmark rate published daily",
           "hasPart": [
-            { "@type": "Dataset", "name": "Today's Gold Price by Unit", "url": "https://nepacalc.com/market-rates/live-gold-price/#gold-conversion-table" },
-            { "@type": "Dataset", "name": "Nepal Gold Price History", "url": "https://nepacalc.com/market-rates/live-gold-price/#gold-price-history" }
+            { "@type": "Dataset", "name": "Today's Gold Price by Unit", "description": "Data table for Today's Gold Price by Unit.", "url": "https://nepacalc.com/market-rates/live-gold-price/#gold-conversion-table", "creator": { "@type": "Organization", "name": "NepaCalc" }, "license": "https://creativecommons.org/licenses/by/4.0/" },
+            { "@type": "Dataset", "name": "Nepal Gold Price History", "description": "Data table for Nepal Gold Price History.", "url": "https://nepacalc.com/market-rates/live-gold-price/#gold-price-history", "creator": { "@type": "Organization", "name": "NepaCalc" }, "license": "https://creativecommons.org/licenses/by/4.0/" }
           ]
         })}}
       />

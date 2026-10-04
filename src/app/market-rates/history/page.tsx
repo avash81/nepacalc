@@ -61,6 +61,8 @@ export default function HistoryPage() {
     name: 'Nepal Gold and Silver Price History',
     description: 'Historical market rates for gold and silver in Nepal, including verified FENEGOSIDA source prices and secondary historical data. Source-published per-tola and per-10-gram values. Calculated per-gram and per-kilogram equivalents (1 tola = 11.6638 grams).',
     url: 'https://nepacalc.com/market-rates/history/',
+    creator: { '@type': 'Organization', name: 'NepaCalc', url: 'https://nepacalc.com' },
+    license: 'https://creativecommons.org/licenses/by/4.0/',
     dateModified: meta?.last_updated_ad || new Date().toISOString().split('T')[0],
     spatialCoverage: 'Nepal',
     variableMeasured: [

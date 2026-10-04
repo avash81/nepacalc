@@ -214,9 +214,7 @@ const schemaGraph = {
       '@id': 'https://nepacalc.com/market-rates/silver-price-nepal/#dataset',
       name: 'Live Silver Price Nepal',
       description: 'Daily official silver price benchmark for Nepal published using FENEGOSIDA market data.',
-      creator: {
-        '@id': 'https://nepacalc.com/#organization',
-      },
+      creator: { '@type': 'Organization', '@id': 'https://nepacalc.com/#organization', name: 'NepaCalc' },
       license: 'https://creativecommons.org/licenses/by/4.0/',
       keywords: [
         'Silver Price Nepal',

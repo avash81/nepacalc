@@ -207,9 +207,9 @@ function generateSchema(
         dateModified: data.dateModified,
         temporalCoverage: data.temporalCoverage,
         spatialCoverage: data.spatialCoverage,
-        creator: { '@id': orgId },
+        creator: { '@type': 'Organization', '@id': orgId, name: 'NepaCalc', url: 'https://nepacalc.com' },
         license: data.license,
-        isPartOf: data.isPartOf ? { '@id': data.isPartOf } : undefined,
+        isPartOf: data.isPartOf ? { '@type': 'DataCatalog', '@id': data.isPartOf, url: data.isPartOf } : undefined,
         mainEntityOfPage: data.url ? { '@id': `${data.url}#webpage` } : undefined,
       };
 

@@ -207,15 +207,15 @@ const datasetSchema = {
   ],
   "measurementTechnique": "Official FENEGOSIDA Nepal gold measurement standard",
   "hasPart": [
-    { "@type": "Dataset", "name": "Core Nepal Gold Unit Conversion", "url": "https://nepacalc.com/calculator/gold-converter/#conversion-table" },
-    { "@type": "Dataset", "name": "Tola to Gram Conversion Table", "url": "https://nepacalc.com/calculator/gold-converter/#tola-to-gram" },
-    { "@type": "Dataset", "name": "Gram to Tola Conversion Table", "url": "https://nepacalc.com/calculator/gold-converter/#gram-to-tola" },
-    { "@type": "Dataset", "name": "Aana to Lal Conversion Table", "url": "https://nepacalc.com/calculator/gold-converter/#aana-to-lal" },
-    { "@type": "Dataset", "name": "Lal to Gram Conversion Table", "url": "https://nepacalc.com/calculator/gold-converter/#lal-to-gram" },
-    { "@type": "Dataset", "name": "Kilogram to Tola Conversion Table", "url": "https://nepacalc.com/calculator/gold-converter/#kilogram-to-tola" },
-    { "@type": "Dataset", "name": "Troy Ounce to Tola Conversion Table", "url": "https://nepacalc.com/calculator/gold-converter/#troy-oz-to-tola" },
-    { "@type": "Dataset", "name": "Tola to Troy Ounce Conversion Table", "url": "https://nepacalc.com/calculator/gold-converter/#tola-to-troy-oz" },
-    { "@type": "Dataset", "name": "Gram to Milligram Conversion Table", "url": "https://nepacalc.com/calculator/gold-converter/#gram-to-milligram" }
+    { "@type": "Dataset", "name": "Core Nepal Gold Unit Conversion", "description": "Conversion table for Core Nepal Gold Unit Conversion.", "url": "https://nepacalc.com/calculator/gold-converter/#conversion-table", "creator": { "@type": "Organization", "name": "NepaCalc" }, "license": "https://creativecommons.org/licenses/by/4.0/" },
+    { "@type": "Dataset", "name": "Tola to Gram Conversion Table", "description": "Conversion table for Tola to Gram Conversion Table.", "url": "https://nepacalc.com/calculator/gold-converter/#tola-to-gram", "creator": { "@type": "Organization", "name": "NepaCalc" }, "license": "https://creativecommons.org/licenses/by/4.0/" },
+    { "@type": "Dataset", "name": "Gram to Tola Conversion Table", "description": "Conversion table for Gram to Tola Conversion Table.", "url": "https://nepacalc.com/calculator/gold-converter/#gram-to-tola", "creator": { "@type": "Organization", "name": "NepaCalc" }, "license": "https://creativecommons.org/licenses/by/4.0/" },
+    { "@type": "Dataset", "name": "Aana to Lal Conversion Table", "description": "Conversion table for Aana to Lal Conversion Table.", "url": "https://nepacalc.com/calculator/gold-converter/#aana-to-lal", "creator": { "@type": "Organization", "name": "NepaCalc" }, "license": "https://creativecommons.org/licenses/by/4.0/" },
+    { "@type": "Dataset", "name": "Lal to Gram Conversion Table", "description": "Conversion table for Lal to Gram Conversion Table.", "url": "https://nepacalc.com/calculator/gold-converter/#lal-to-gram", "creator": { "@type": "Organization", "name": "NepaCalc" }, "license": "https://creativecommons.org/licenses/by/4.0/" },
+    { "@type": "Dataset", "name": "Kilogram to Tola Conversion Table", "description": "Conversion table for Kilogram to Tola Conversion Table.", "url": "https://nepacalc.com/calculator/gold-converter/#kilogram-to-tola", "creator": { "@type": "Organization", "name": "NepaCalc" }, "license": "https://creativecommons.org/licenses/by/4.0/" },
+    { "@type": "Dataset", "name": "Troy Ounce to Tola Conversion Table", "description": "Conversion table for Troy Ounce to Tola Conversion Table.", "url": "https://nepacalc.com/calculator/gold-converter/#troy-oz-to-tola", "creator": { "@type": "Organization", "name": "NepaCalc" }, "license": "https://creativecommons.org/licenses/by/4.0/" },
+    { "@type": "Dataset", "name": "Tola to Troy Ounce Conversion Table", "description": "Conversion table for Tola to Troy Ounce Conversion Table.", "url": "https://nepacalc.com/calculator/gold-converter/#tola-to-troy-oz", "creator": { "@type": "Organization", "name": "NepaCalc" }, "license": "https://creativecommons.org/licenses/by/4.0/" },
+    { "@type": "Dataset", "name": "Gram to Milligram Conversion Table", "description": "Conversion table for Gram to Milligram Conversion Table.", "url": "https://nepacalc.com/calculator/gold-converter/#gram-to-milligram", "creator": { "@type": "Organization", "name": "NepaCalc" }, "license": "https://creativecommons.org/licenses/by/4.0/" }
   ]
 };
 
