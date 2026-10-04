@@ -336,37 +336,6 @@ export default function MomoCalculator() {
 
           {/* Accordions — left column, below reset */}
           <div className="space-y-2 pt-4">
-            {/* Nutrition Details */}
-            <details className="group bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
-              <summary className="px-4 py-3 text-[13px] font-bold text-[#202124] cursor-pointer list-none flex items-center justify-between hover:bg-slate-50 outline-none focus:bg-slate-50">
-                Nutrition details
-                <ChevronDown className="w-4 h-4 text-[#5F6368] group-open:rotate-180 transition-transform" />
-              </summary>
-              <div className="px-4 pb-4 pt-3 border-t border-[#DADCE0]">
-                <table className="w-full text-[13px]">
-                  <tbody className="divide-y divide-slate-100">
-                    {[
-                      { label: 'Calories',        value: `${Math.round(totals.cal)} kcal`, bold: true },
-                      { label: 'Protein',          value: `${totals.p.toFixed(1)} g` },
-                      { label: 'Carbohydrates',    value: `${totals.c.toFixed(1)} g` },
-                      { label: 'Fat',              value: `${totals.f.toFixed(1)} g` },
-                      { label: 'Fiber',            value: `${totals.fiber.toFixed(1)} g` },
-                      { label: 'Sugar',            value: `${totals.sugar.toFixed(1)} g` },
-                      { label: 'Sodium',           value: `${Math.round(totals.sodium)} mg` },
-                      { label: 'Cholesterol',      value: `${Math.round(totals.chol)} mg` },
-                      { label: 'Estimated weight', value: `${Math.round(totals.w)} g` },
-                      { label: 'Calories / 100g',  value: `${Math.round(kcalPer100g)} kcal` },
-                    ].map(r => (
-                      <tr key={r.label}>
-                        <td className="py-2 text-[#5F6368]">{r.label}</td>
-                        <td className={`py-2 text-right ${r.bold ? 'font-bold text-[#202124]' : 'font-semibold text-[#202124]'}`}>{r.value}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </details>
-
             {/* Compare cooking methods */}
             <details className="group bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
               <summary className="px-4 py-3 text-[13px] font-bold text-[#202124] cursor-pointer list-none flex items-center justify-between hover:bg-slate-50 outline-none focus:bg-slate-50">
@@ -429,6 +398,39 @@ export default function MomoCalculator() {
           <p className="text-xs text-center text-[#5F6368] leading-relaxed">
             Estimated value. Actual calories vary with momo size, filling, recipe, cooking method and sauces.
           </p>
+
+          <div className="pt-2">
+            {/* Nutrition Details */}
+            <details className="group bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
+              <summary className="px-4 py-3 text-[13px] font-bold text-[#202124] cursor-pointer list-none flex items-center justify-between hover:bg-slate-50 outline-none focus:bg-slate-50">
+                Nutrition details
+                <ChevronDown className="w-4 h-4 text-[#5F6368] group-open:rotate-180 transition-transform" />
+              </summary>
+              <div className="px-4 pb-4 pt-3 border-t border-[#DADCE0]">
+                <table className="w-full text-[13px]">
+                  <tbody className="divide-y divide-slate-100">
+                    {[
+                      { label: 'Calories',        value: `${Math.round(totals.cal)} kcal`, bold: true },
+                      { label: 'Protein',          value: `${totals.p.toFixed(1)} g` },
+                      { label: 'Carbohydrates',    value: `${totals.c.toFixed(1)} g` },
+                      { label: 'Fat',              value: `${totals.f.toFixed(1)} g` },
+                      { label: 'Fiber',            value: `${totals.fiber.toFixed(1)} g` },
+                      { label: 'Sugar',            value: `${totals.sugar.toFixed(1)} g` },
+                      { label: 'Sodium',           value: `${Math.round(totals.sodium)} mg` },
+                      { label: 'Cholesterol',      value: `${Math.round(totals.chol)} mg` },
+                      { label: 'Estimated weight', value: `${Math.round(totals.w)} g` },
+                      { label: 'Calories / 100g',  value: `${Math.round(kcalPer100g)} kcal` },
+                    ].map(r => (
+                      <tr key={r.label}>
+                        <td className="py-2 text-[#5F6368]">{r.label}</td>
+                        <td className={`py-2 text-right ${r.bold ? 'font-bold text-[#202124]' : 'font-semibold text-[#202124]'}`}>{r.value}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </details>
+          </div>
         </div>
       }
       seoContent={
