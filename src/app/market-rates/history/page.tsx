@@ -71,7 +71,6 @@ export default function HistoryPage() {
       'Silver price per tola (NPR)',
       'Silver price per 10 grams (NPR)',
     ],
-    creator: { '@type': 'Organization', name: 'NepaCalc', url: 'https://nepacalc.com' },
   };
 
   const faqSchema = {
