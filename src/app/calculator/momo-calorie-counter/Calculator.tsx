@@ -2,13 +2,10 @@
 import { useMemo, useState } from 'react';
 import { useSyncState } from '@/hooks/useSyncState';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
-import RelatedCalculators from '@/components/calculator/RelatedCalculators';
 import { Flame, Plus, X, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 
 // ─── Nutrition Data ───────────────────────────────────────────────────────────
-// Values are per piece (steamed base). Weight in grams.
-// All figures are internal estimates; actual nutrition varies with recipe and preparation.
 const MOMO_TYPES = [
   { id: 'chicken',  label: 'Chicken',  cal: 60,  p: 5.5, f: 2.0, c: 5.8, fiber: 0.3, sugar: 0.4, sodium: 145, chol: 22, w: 40 },
   { id: 'buff',     label: 'Buff',     cal: 65,  p: 5.0, f: 2.8, c: 5.8, fiber: 0.3, sugar: 0.4, sodium: 155, chol: 25, w: 40 },
@@ -77,8 +74,19 @@ function computeItem(item: ReturnType<typeof newItem>) {
   };
 }
 
+const FAQS = [
+  { q: 'How many calories are in 1 momo?',                       a: 'One steamed chicken momo contains approximately 60 calories. One steamed veg momo contains approximately 45 calories. The exact value depends on momo size, filling and recipe.' },
+  { q: 'How many calories are in 10 momos?',                     a: 'Ten steamed chicken momos are estimated at approximately 600 calories. Ten steamed veg momos are approximately 450 calories. Select the momo type and cooking method above to calculate a different quantity.' },
+  { q: 'How many calories are in a chicken momo?',               a: 'One steamed chicken momo contains approximately 60 calories, 5.5 g of protein and 2 g of fat. The total increases with frying or C-momo preparation.' },
+  { q: 'How many calories are in steamed chicken momos?',        a: 'Each steamed chicken momo contains approximately 60 calories. A ten-piece serving is approximately 600 calories. Actual values vary with momo size and recipe.' },
+  { q: 'Are fried momos higher in calories than steamed momos?', a: 'Yes. Frying causes the dough to absorb oil, adding approximately 25–30 calories per piece compared to steaming. A ten-piece fried chicken momo serving can contain roughly 250 more calories than a steamed serving.' },
+  { q: 'How many calories are in jhol momos?',                   a: 'Jhol momos are steamed momos served in a sesame and tomato broth. The broth adds approximately 12 extra calories per piece. A ten-piece jhol chicken momo serving is estimated at approximately 720 calories.' },
+  { q: 'Do sauces add calories to momos?',                       a: 'Yes. Red chutney adds approximately 15 kcal per serving. Mayo adds approximately 90 kcal. Cheese dip adds approximately 70 kcal. Use the sauce options in the calculator above to include them in your estimate.' },
+  { q: 'Why can momo calorie estimates differ?',                  a: 'Estimates differ because momo size, filling ratio, dough thickness, cooking method and recipe vary between restaurants and home kitchens. The calculator provides estimates based on standard serving assumptions.' },
+];
+
 export default function MomoCalculator() {
-  const [items, setItems] = useSyncState<ReturnType<typeof newItem>[]>('momo_v11_items', [newItem()]);
+  const [items, setItems] = useSyncState<ReturnType<typeof newItem>[]>('momo_v12_items', [newItem()]);
   const [isAdding, setIsAdding] = useState(false);
   const [draft, setDraft] = useState(newItem());
 
@@ -111,21 +119,8 @@ export default function MomoCalculator() {
   const kcalPer100g = totals.w > 0 ? (totals.cal / totals.w) * 100 : 0;
 
   const compareBase  = MOMO_TYPES.find(t => t.id === items[0].type) || MOMO_TYPES[0];
-  const compareSteam = COOKING_METHODS.find(m => m.id === 'steamed')!;
-  const compareFried = COOKING_METHODS.find(m => m.id === 'fried')!;
-  const steamedCal   = (compareBase.cal + compareSteam.calAdd) * items[0].pieces;
-  const friedCal     = (compareBase.cal + compareFried.calAdd) * items[0].pieces;
-
-  const FAQS = [
-    { question: 'How many calories are in 1 momo?',                       answer: 'One steamed chicken momo contains approximately 60 calories. One steamed veg momo contains approximately 45 calories. The exact value depends on momo size, filling and recipe.' },
-    { question: 'How many calories are in 10 momos?',                     answer: 'Ten steamed chicken momos are estimated at approximately 600 calories. Ten steamed veg momos are approximately 450 calories. Select the momo type and cooking method above to calculate a different serving.' },
-    { question: 'How many calories are in a chicken momo?',               answer: 'One steamed chicken momo contains approximately 60 calories, 5.5 g of protein and 2 g of fat. The total increases with frying or C-momo preparation.' },
-    { question: 'How many calories are in steamed chicken momos?',        answer: 'Each steamed chicken momo contains approximately 60 calories. A ten-piece serving is approximately 600 calories. Actual values vary with momo size and recipe.' },
-    { question: 'Are fried momos higher in calories than steamed momos?', answer: 'Yes. Frying causes the dough to absorb oil, adding approximately 25–30 calories per piece compared to steaming. A ten-piece fried chicken momo serving can contain roughly 250 more calories than a steamed serving.' },
-    { question: 'How many calories are in jhol momos?',                   answer: 'Jhol momos use steamed momos served in a sesame and tomato broth. The broth adds approximately 12 extra calories per piece. A ten-piece jhol chicken momo serving is estimated at approximately 720 calories.' },
-    { question: 'Do sauces add calories to momos?',                       answer: 'Yes. Red chutney adds approximately 15 kcal per serving. Mayo adds approximately 90 kcal. Cheese dip adds approximately 70 kcal. Use the sauce options in the calculator above to include them in your estimate.' },
-    { question: 'Why can momo calorie estimates differ?',                  answer: 'Estimates differ because momo size, filling ratio, dough thickness, cooking method and recipe vary between restaurants and home kitchens. The calculator provides estimates based on standard serving assumptions.' },
-  ];
+  const steamedCal   = (compareBase.cal + 0) * items[0].pieces;
+  const friedCal     = (compareBase.cal + 25) * items[0].pieces;
 
   return (
     <ModernCalcLayout
@@ -263,7 +258,7 @@ export default function MomoCalculator() {
             </div>
           </div>
 
-          {/* Meal Summary */}
+          {/* Meal Summary (multi-item) */}
           {items.length > 1 && (
             <div className="bg-slate-50 border border-[#DADCE0] rounded-lg p-4 shadow-sm">
               <div className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider mb-3">Meal</div>
@@ -323,7 +318,7 @@ export default function MomoCalculator() {
               </div>
               <div className="flex gap-2 pt-2">
                 <button onClick={() => { setItems([...items, draft]); setIsAdding(false); setDraft(newItem()); }} className="px-4 py-2 bg-[#1967D2] hover:bg-blue-700 text-white text-[12px] font-bold rounded-md transition-colors">Add to meal</button>
-                <button onClick={() => { setIsAdding(false); setDraft(newItem()); }} className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-[#5F6368] hover:text-[#202124] text-[12px] font-bold rounded-md transition-colors">Cancel</button>
+                <button onClick={() => { setIsAdding(false); setDraft(newItem()); }} className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-[#5F6368] text-[12px] font-bold rounded-md transition-colors">Cancel</button>
               </div>
             </div>
           ) : (
@@ -334,80 +329,17 @@ export default function MomoCalculator() {
             </div>
           )}
 
-          <div className="pt-4 border-t border-[#DADCE0] flex items-center gap-4">
+          {/* Reset */}
+          <div className="pt-4 border-t border-[#DADCE0]">
             <button onClick={reset} className="text-[12px] font-bold text-[#5F6368] hover:text-[#202124]">Reset</button>
-          </div>
-
-          {/* Accordions — in left column to balance height */}
-          <div className="space-y-3 border-t border-[#DADCE0] pt-6 mt-2">
-            <details className="group bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
-              <summary className="px-5 py-3.5 text-[13px] font-bold text-[#202124] cursor-pointer list-none flex items-center justify-between hover:bg-slate-50 outline-none focus:bg-slate-50">
-                Nutrition details
-                <ChevronDown className="w-4 h-4 text-[#5F6368] group-open:rotate-180 transition-transform" />
-              </summary>
-              <div className="px-5 pb-5 pt-3 border-t border-[#DADCE0]">
-                <table className="w-full text-[13px]">
-                  <tbody className="divide-y divide-slate-100">
-                    {[
-                      { label: 'Calories',        value: `${Math.round(totals.cal)} kcal`, bold: true },
-                      { label: 'Protein',          value: `${totals.p.toFixed(1)} g` },
-                      { label: 'Carbohydrates',    value: `${totals.c.toFixed(1)} g` },
-                      { label: 'Fat',              value: `${totals.f.toFixed(1)} g` },
-                      { label: 'Fiber',            value: `${totals.fiber.toFixed(1)} g` },
-                      { label: 'Sugar',            value: `${totals.sugar.toFixed(1)} g` },
-                      { label: 'Sodium',           value: `${Math.round(totals.sodium)} mg` },
-                      { label: 'Cholesterol',      value: `${Math.round(totals.chol)} mg` },
-                      { label: 'Estimated weight', value: `${Math.round(totals.w)} g` },
-                      { label: 'Calories / 100g',  value: `${Math.round(kcalPer100g)} kcal` },
-                    ].map(r => (
-                      <tr key={r.label}>
-                        <td className="py-2.5 text-[#5F6368]">{r.label}</td>
-                        <td className={`py-2.5 text-right ${r.bold ? 'font-bold text-[#202124]' : 'font-semibold text-[#202124]'}`}>{r.value}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </details>
-
-            <details className="group bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
-              <summary className="px-5 py-3.5 text-[13px] font-bold text-[#202124] cursor-pointer list-none flex items-center justify-between hover:bg-slate-50 outline-none focus:bg-slate-50">
-                Compare cooking methods
-                <ChevronDown className="w-4 h-4 text-[#5F6368] group-open:rotate-180 transition-transform" />
-              </summary>
-              <div className="px-5 pb-5 pt-4 border-t border-[#DADCE0] text-[13px]">
-                <div className="flex justify-between items-center mb-3">
-                  <span className="font-semibold text-[#5F6368]">Steamed</span>
-                  <span className="font-bold text-[#202124]">{items[0].pieces} pieces · {steamedCal} kcal</span>
-                </div>
-                <div className="flex justify-between items-center mb-3">
-                  <span className="font-semibold text-[#5F6368]">Fried</span>
-                  <span className="font-bold text-[#202124]">{items[0].pieces} pieces · {friedCal} kcal</span>
-                </div>
-                <div className="flex justify-between items-center pt-3 border-t border-slate-100 text-[#202124] font-bold">
-                  <span>Difference</span>
-                  <span>+{friedCal - steamedCal} kcal</span>
-                </div>
-              </div>
-            </details>
-
-            <details className="group bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
-              <summary className="px-5 py-3.5 text-[13px] font-bold text-[#202124] cursor-pointer list-none flex items-center justify-between hover:bg-slate-50 outline-none focus:bg-slate-50">
-                How is this calculated?
-                <ChevronDown className="w-4 h-4 text-[#5F6368] group-open:rotate-180 transition-transform" />
-              </summary>
-              <div className="px-5 pb-5 pt-4 border-t border-[#DADCE0] text-[13px] text-[#5F6368] leading-relaxed">
-                <p className="mb-2">The estimate is based on the selected momo type, cooking method, quantity and any selected extras. Values are calculated from standard serving assumptions used by this calculator.</p>
-                <p>Actual calories can vary with momo size, filling, recipe, oil used during cooking and sauces. These are estimates, not laboratory measurements.</p>
-              </div>
-            </details>
           </div>
         </div>
       }
       results={
-        <div className="space-y-6">
-          <div className="text-center pt-2 pb-6" aria-live="polite" aria-label="Calorie estimate result">
-            <div className="text-[11px] font-black text-[#70757A] uppercase tracking-widest mb-3">YOUR ESTIMATE</div>
+        <div className="space-y-5">
+          {/* YOUR ESTIMATE */}
+          <div className="text-center pt-2 pb-4" aria-live="polite" aria-label="Calorie estimate result">
+            <div className="text-[11px] font-black text-[#70757A] uppercase tracking-widest mb-3">Your Estimate</div>
             <div className="text-5xl md:text-6xl font-black text-[#202124] mb-3 tracking-tight">
               ≈ {Math.round(totals.cal)} <span className="text-2xl md:text-3xl text-[#5F6368] font-bold tracking-normal">kcal</span>
             </div>
@@ -425,104 +357,135 @@ export default function MomoCalculator() {
               Protein {totals.p.toFixed(0)}g · Carbs {totals.c.toFixed(0)}g · Fat {totals.f.toFixed(0)}g
             </div>
           </div>
+
           <p className="text-xs text-center text-[#5F6368] leading-relaxed">
             Estimated value. Actual calories vary with momo size, filling, recipe, cooking method and sauces.
           </p>
+
+          {/* Accordions — right column, below result */}
+          <div className="space-y-2 pt-2">
+            {/* Nutrition Details */}
+            <details className="group bg-white border border-[#DADCE0] rounded-lg overflow-hidden">
+              <summary className="px-4 py-3 text-[13px] font-bold text-[#202124] cursor-pointer list-none flex items-center justify-between hover:bg-slate-50 outline-none">
+                Nutrition details
+                <ChevronDown className="w-4 h-4 text-[#5F6368] group-open:rotate-180 transition-transform" />
+              </summary>
+              <div className="px-4 pb-4 pt-3 border-t border-[#DADCE0]">
+                <table className="w-full text-[13px]">
+                  <tbody className="divide-y divide-slate-100">
+                    {[
+                      { label: 'Calories',        value: `${Math.round(totals.cal)} kcal`, bold: true },
+                      { label: 'Protein',          value: `${totals.p.toFixed(1)} g` },
+                      { label: 'Carbohydrates',    value: `${totals.c.toFixed(1)} g` },
+                      { label: 'Fat',              value: `${totals.f.toFixed(1)} g` },
+                      { label: 'Fiber',            value: `${totals.fiber.toFixed(1)} g` },
+                      { label: 'Sugar',            value: `${totals.sugar.toFixed(1)} g` },
+                      { label: 'Sodium',           value: `${Math.round(totals.sodium)} mg` },
+                      { label: 'Cholesterol',      value: `${Math.round(totals.chol)} mg` },
+                      { label: 'Estimated weight', value: `${Math.round(totals.w)} g` },
+                      { label: 'Calories / 100g',  value: `${Math.round(kcalPer100g)} kcal` },
+                    ].map(r => (
+                      <tr key={r.label}>
+                        <td className="py-2 text-[#5F6368]">{r.label}</td>
+                        <td className={`py-2 text-right ${r.bold ? 'font-bold text-[#202124]' : 'font-semibold text-[#202124]'}`}>{r.value}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </details>
+
+            {/* Compare cooking methods */}
+            <details className="group bg-white border border-[#DADCE0] rounded-lg overflow-hidden">
+              <summary className="px-4 py-3 text-[13px] font-bold text-[#202124] cursor-pointer list-none flex items-center justify-between hover:bg-slate-50 outline-none">
+                Compare cooking methods
+                <ChevronDown className="w-4 h-4 text-[#5F6368] group-open:rotate-180 transition-transform" />
+              </summary>
+              <div className="px-4 pb-4 pt-3 border-t border-[#DADCE0] text-[13px]">
+                <div className="flex justify-between items-center mb-3">
+                  <span className="font-semibold text-[#5F6368]">Steamed</span>
+                  <span className="font-bold text-[#202124]">{items[0].pieces} pieces · {steamedCal} kcal</span>
+                </div>
+                <div className="flex justify-between items-center mb-3">
+                  <span className="font-semibold text-[#5F6368]">Fried</span>
+                  <span className="font-bold text-[#202124]">{items[0].pieces} pieces · {friedCal} kcal</span>
+                </div>
+                <div className="flex justify-between items-center pt-3 border-t border-slate-100 text-[#202124] font-bold">
+                  <span>Difference</span>
+                  <span>+{friedCal - steamedCal} kcal</span>
+                </div>
+              </div>
+            </details>
+
+            {/* How is this calculated? */}
+            <details className="group bg-white border border-[#DADCE0] rounded-lg overflow-hidden">
+              <summary className="px-4 py-3 text-[13px] font-bold text-[#202124] cursor-pointer list-none flex items-center justify-between hover:bg-slate-50 outline-none">
+                How is this calculated?
+                <ChevronDown className="w-4 h-4 text-[#5F6368] group-open:rotate-180 transition-transform" />
+              </summary>
+              <div className="px-4 pb-4 pt-3 border-t border-[#DADCE0] text-[13px] text-[#5F6368] leading-relaxed">
+                <p className="mb-2">The estimate is based on the selected momo type, cooking method, quantity and any selected extras. Values are calculated from standard serving assumptions used by this calculator.</p>
+                <p>Actual calories can vary with momo size, filling, recipe, oil used during cooking and sauces. These are estimates, not laboratory measurements.</p>
+              </div>
+            </details>
+          </div>
         </div>
       }
       seoContent={
-        <div className="pt-8 space-y-12">
-          {/* Section 1: Intro / AEO */}
+        <div className="pt-8 space-y-10">
+
+          {/* 1. How Many Calories Are in Momos? */}
           <section>
             <h2 className="text-2xl font-black text-[#202124] mb-3">How Many Calories Are in Momos?</h2>
             <p className="text-[#5F6368] leading-relaxed">
-              Momo calories vary according to the filling, size, cooking method, recipe and sauces. This calculator estimates calories based on the selected momo type, preparation method, quantity and extras. The values returned by the calculator apply the site's standard serving assumptions to estimate both total calories and per-piece nutrition.
+              Momo calories vary depending on the filling, size, recipe, cooking method and sauces. A steamed chicken momo and a fried chicken momo, for example, can have different calorie estimates even when they contain the same filling. The calculator estimates calories from the selected momo type, cooking method, quantity and any selected extras using standard serving assumptions.
             </p>
           </section>
 
-          {/* Section 2: Concise Answers for AEO */}
-          <section className="space-y-8">
-            <div>
-              <h3 className="text-xl font-bold text-[#202124] mb-2">How Many Calories Are in 1 Momo?</h3>
-              <p className="text-[#5F6368] leading-relaxed">
-                There is no single calorie value for every momo because size, filling and preparation vary. For example, a steamed chicken momo is estimated at approximately 60 calories, while a steamed veg momo is approximately 45 calories. Select the momo type and cooking method in the calculator above and set the quantity to 1 to estimate a specific piece.
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="text-xl font-bold text-[#202124] mb-2">How Many Calories Are in 10 Momos?</h3>
-              <p className="text-[#5F6368] leading-relaxed">
-                The calculator can estimate calories for different quantities, from a single momo to larger servings. Ten pieces of the same momo type and preparation are calculated from the corresponding per-piece estimate. Select 10 pieces in the calculator to instantly see the estimated total calories and macronutrients for a full plate.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-bold text-[#202124] mb-2">How Many Calories Are in Chicken Momos?</h3>
-              <p className="text-[#5F6368] leading-relaxed">
-                Chicken momo calories vary with momo size, recipe and cooking method. A steamed chicken momo is estimated at approximately 60 calories per piece, but frying adds roughly 25 calories due to oil absorption. Select "Chicken Momo" and your desired cooking method in the calculator for a specific estimate.
-              </p>
-            </div>
-          </section>
-
-          {/* Section 3: Methodology */}
-          <section>
-            <h2 className="text-2xl font-black text-[#202124] mb-3">How is this calculated?</h2>
-            <p className="text-[#5F6368] leading-relaxed mb-3">
-              The estimate is based on the selected momo type, cooking method, quantity and selected extras. The calculator applies the standard serving assumptions used in its underlying nutrition data.
-            </p>
-            <ul className="list-disc pl-5 text-[#5F6368] leading-relaxed space-y-1 mb-4">
-              <li><strong className="text-[#202124]">Momo type:</strong> determines the base calories, protein, fat, carbohydrates and weight per piece.</li>
-              <li><strong className="text-[#202124]">Cooking method:</strong> adds estimated calories and fat (e.g., frying oil) to the base values.</li>
-              <li><strong className="text-[#202124]">Quantity:</strong> multiplies the per-piece values by the selected number of momos.</li>
-              <li><strong className="text-[#202124]">Extras/Sauces:</strong> added as fixed calorie totals per serving.</li>
-            </ul>
-            <p className="text-sm text-slate-500 italic">
-              Estimated values. Actual calories vary with momo size, filling ratio, recipe, cooking method and sauces. These estimates do not represent laboratory measurements of a specific restaurant's momo.
-            </p>
-          </section>
-
-          {/* Section 4: FAQ (Using existing FAQS array) */}
+          {/* 2. FAQ */}
           <section>
             <h2 className="text-2xl font-black text-[#202124] mb-5">Frequently Asked Questions</h2>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {FAQS.map((item, i) => (
                 <details key={i} className="group border border-[#DADCE0] rounded-xl overflow-hidden">
                   <summary className="px-5 py-4 cursor-pointer list-none flex items-center justify-between hover:bg-slate-50 text-sm font-bold text-[#202124]">
-                    {item.question}
+                    {item.q}
                     <ChevronDown className="w-4 h-4 text-[#5F6368] group-open:rotate-180 transition-transform shrink-0 ml-2" />
                   </summary>
-                  <div className="px-5 pb-5 pt-3 border-t border-[#DADCE0] text-sm text-[#5F6368] leading-relaxed">{item.answer}</div>
+                  <div className="px-5 pb-4 pt-3 border-t border-[#DADCE0] text-sm text-[#5F6368] leading-relaxed">{item.a}</div>
                 </details>
               ))}
             </div>
           </section>
 
-          {/* Section 5: Blog Link */}
-          <div className="bg-[#E8F0FE] border border-[#1967D2] rounded-xl p-6 text-center">
-            <h3 className="text-[#202124] font-black text-lg mb-2">Learn more about momo calories</h3>
-            <p className="text-[#5F6368] text-sm mb-4 max-w-xl mx-auto leading-relaxed">
+          {/* 3. Learn More */}
+          <section>
+            <h2 className="text-2xl font-black text-[#202124] mb-3">Learn More About Momo Calories</h2>
+            <p className="text-[#5F6368] leading-relaxed mb-3">
               Compare chicken, veg, buff, paneer, fried, steamed, jhol and other momo calories by serving and cooking method.
             </p>
             <Link
               href="/blog/momo-calories/"
-              className="inline-flex items-center px-6 py-2.5 bg-white text-[#1967D2] border border-[#1967D2] font-black rounded-full text-sm hover:bg-blue-50 transition-colors"
+              className="inline-flex items-center text-[#1967D2] font-bold text-sm hover:underline"
             >
               Read the complete Momo Calories Guide →
             </Link>
-          </div>
+          </section>
 
-          {/* Section 6: Related Calculators */}
+          {/* 4. Related Calculators */}
           <section>
             <h2 className="text-2xl font-black text-[#202124] mb-4">Related Calculators</h2>
-            <RelatedCalculators 
-              currentSlug="momo-calorie-counter" 
-              category="health"
-              specificSlugs={['calorie-calculator', 'bmr', 'bmi', 'ideal-weight']} 
-            />
+            <ul className="space-y-2 text-sm text-[#5F6368]">
+              <li><Link href="/calculator/calorie-calculator/" className="text-[#1967D2] font-bold hover:underline">Calorie Calculator</Link> — Calculate daily calorie needs.</li>
+              <li><Link href="/calculator/bmr/" className="text-[#1967D2] font-bold hover:underline">BMR Calculator</Link> — Estimate basal metabolic rate.</li>
+              <li><Link href="/calculator/bmi/" className="text-[#1967D2] font-bold hover:underline">BMI Calculator</Link> — Calculate body mass index.</li>
+              <li><Link href="/calculator/ideal-weight/" className="text-[#1967D2] font-bold hover:underline">Ideal Weight Calculator</Link> — Estimate an ideal weight range.</li>
+            </ul>
           </section>
+
         </div>
       }
-      faqs={FAQS}
+      faqs={FAQS.map(f => ({ question: f.q, answer: f.a }))}
     />
   );
 }
