@@ -485,7 +485,6 @@ export default function MomoCalculator() {
 
         </div>
       }
-      faqs={FAQS.map(f => ({ question: f.q, answer: f.a }))}
     />
   );
 }
