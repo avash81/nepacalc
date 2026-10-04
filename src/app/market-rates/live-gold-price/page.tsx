@@ -333,29 +333,8 @@ export default async function Page() {
         })}}
       />
 
-      {/* ── Dataset schema — GEO: makes price data citable by AI engines ── */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Dataset",
-          "@id": "https://nepacalc.com/market-rates/live-gold-price/#dataset",
-          "name": "Live Gold Price in Nepal — FENEGOSIDA Daily Rates",
-          "description": "Official daily gold and silver prices in Nepal published by FENEGOSIDA. Includes 24K Hallmark, 22K Tejabi gold rates and silver rates per Tola and per 10 grams.",
-          "url": "https://nepacalc.com/market-rates/live-gold-price/",
-          "creator": { "@type": "Organization", "name": "NepaCalc", "url": "https://nepacalc.com" },
-          "isAccessibleForFree": true,
-          "inLanguage": "en",
-          "license": "https://creativecommons.org/licenses/by/4.0/",
-          "dateModified": new Date(rawDate).toISOString(),
-          "variableMeasured": ["Gold Price 24K per Tola NPR", "Gold Price 22K per Tola NPR", "Silver Price per Tola NPR", "Gold Price per 10g NPR"],
-          "measurementTechnique": "Official FENEGOSIDA benchmark rate published daily",
-          "hasPart": [
-            { "@type": "Dataset", "name": "Today's Gold Price by Unit", "description": "Data table for Today's Gold Price by Unit.", "url": "https://nepacalc.com/market-rates/live-gold-price/#gold-conversion-table", "creator": { "@type": "Organization", "name": "NepaCalc" }, "license": "https://creativecommons.org/licenses/by/4.0/" },
-            { "@type": "Dataset", "name": "Nepal Gold Price History", "description": "Data table for Nepal Gold Price History.", "url": "https://nepacalc.com/market-rates/live-gold-price/#gold-price-history", "creator": { "@type": "Organization", "name": "NepaCalc" }, "license": "https://creativecommons.org/licenses/by/4.0/" }
-          ]
-        })}}
-      />
+
+
 
       {/* ── Speakable schema — AIO: tells Google which sections to read aloud ── */}
       <script
