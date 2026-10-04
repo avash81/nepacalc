@@ -288,7 +288,7 @@ export default function MomoCalculator() {
           {isAdding ? (
             <div className="bg-white border border-[#1967D2] rounded-lg p-4 space-y-4 shadow-sm">
               <div className="text-[13px] font-bold text-[#1967D2]">Add another momo</div>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="space-y-1.5">
                   <label className="text-[12px] font-bold text-[#202124]">Type</label>
                   <div className="relative">
@@ -335,14 +335,13 @@ export default function MomoCalculator() {
           </div>
 
           {/* Accordions — left column, below reset */}
-          <div className="space-y-2 pt-4">
+          <div className="space-y-4 pt-4">
             {/* Compare cooking methods */}
-            <details className="group bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
-              <summary className="px-4 py-3 text-[13px] font-bold text-[#202124] cursor-pointer list-none flex items-center justify-between hover:bg-slate-50 outline-none focus:bg-slate-50">
+            <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
+              <div className="px-4 py-3 text-[13px] font-bold text-[#202124] bg-slate-50 border-b border-[#DADCE0]">
                 Compare cooking methods
-                <ChevronDown className="w-4 h-4 text-[#5F6368] group-open:rotate-180 transition-transform" />
-              </summary>
-              <div className="px-4 pb-4 pt-3 border-t border-[#DADCE0] text-[13px]">
+              </div>
+              <div className="px-4 pb-4 pt-3 text-[13px]">
                 <div className="flex justify-between items-center mb-3">
                   <span className="font-semibold text-[#5F6368]">Steamed</span>
                   <span className="font-bold text-[#202124]">{items[0].pieces} pieces · {steamedCal} kcal</span>
@@ -356,19 +355,7 @@ export default function MomoCalculator() {
                   <span>+{friedCal - steamedCal} kcal</span>
                 </div>
               </div>
-            </details>
-
-            {/* How is this calculated? */}
-            <details className="group bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
-              <summary className="px-4 py-3 text-[13px] font-bold text-[#202124] cursor-pointer list-none flex items-center justify-between hover:bg-slate-50 outline-none focus:bg-slate-50">
-                How is this calculated?
-                <ChevronDown className="w-4 h-4 text-[#5F6368] group-open:rotate-180 transition-transform" />
-              </summary>
-              <div className="px-4 pb-4 pt-3 border-t border-[#DADCE0] text-[13px] text-[#5F6368] leading-relaxed">
-                <p className="mb-2">The estimate is based on the selected momo type, cooking method, quantity and any selected extras. Values are calculated from standard serving assumptions used by this calculator.</p>
-                <p>Actual calories can vary with momo size, filling, recipe, oil used during cooking and sauces. These are estimates, not laboratory measurements.</p>
-              </div>
-            </details>
+            </div>
           </div>
         </div>
       }
@@ -399,14 +386,13 @@ export default function MomoCalculator() {
             Estimated value. Actual calories vary with momo size, filling, recipe, cooking method and sauces.
           </p>
 
-          <div className="pt-2">
+          <div className="pt-4">
             {/* Nutrition Details */}
-            <details className="group bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
-              <summary className="px-4 py-3 text-[13px] font-bold text-[#202124] cursor-pointer list-none flex items-center justify-between hover:bg-slate-50 outline-none focus:bg-slate-50">
+            <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
+              <div className="px-4 py-3 text-[13px] font-bold text-[#202124] bg-slate-50 border-b border-[#DADCE0]">
                 Nutrition details
-                <ChevronDown className="w-4 h-4 text-[#5F6368] group-open:rotate-180 transition-transform" />
-              </summary>
-              <div className="px-4 pb-4 pt-3 border-t border-[#DADCE0]">
+              </div>
+              <div className="px-4 pb-4 pt-3">
                 <table className="w-full text-[13px]">
                   <tbody className="divide-y divide-slate-100">
                     {[
@@ -429,7 +415,7 @@ export default function MomoCalculator() {
                   </tbody>
                 </table>
               </div>
-            </details>
+            </div>
           </div>
         </div>
       }
@@ -439,8 +425,15 @@ export default function MomoCalculator() {
           {/* 1. How Many Calories Are in Momos? */}
           <section>
             <h2 className="text-2xl font-black text-[#202124] mb-3">How Many Calories Are in Momos?</h2>
-            <p className="text-[#5F6368] leading-relaxed">
+            <p className="text-[#5F6368] leading-relaxed mb-4">
               Momo calories vary depending on the filling, size, recipe, cooking method and sauces. A steamed chicken momo and a fried chicken momo, for example, can have different calorie estimates even when they contain the same filling. The calculator estimates calories from the selected momo type, cooking method, quantity and any selected extras using standard serving assumptions.
+            </p>
+            <h3 className="text-xl font-bold text-[#202124] mb-2 mt-6">How is this calculated?</h3>
+            <p className="text-[#5F6368] leading-relaxed mb-4">
+              The estimate is based on the selected momo type, cooking method, quantity and any selected extras. Values are calculated from standard serving assumptions used by this calculator.
+            </p>
+            <p className="text-[#5F6368] leading-relaxed">
+              Actual calories can vary with momo size, filling, recipe, oil used during cooking and sauces. These are estimates, not laboratory measurements.
             </p>
           </section>
 
