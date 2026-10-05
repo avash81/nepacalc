@@ -480,7 +480,7 @@ export default function ThreeDCalculatorClient() {
         </div>
 
 {/* MAIN VIEWPORT AREA */}
-        <div className="w-full h-[65vh] lg:h-[75vh] shrink-0 flex flex-col relative lg:px-2">
+        <div className="w-full h-[60vh] lg:h-[66vh] shrink-0 flex flex-col relative px-2">
           <div ref={fullscreenContainerRef} className={`overflow-hidden flex flex-col flex-1 ${isFullscreen ? 'fixed inset-0 z-[100] w-screen h-screen' : 'h-full'}`}>
             <div className="flex-1 bg-[#e2e8f0] relative group">
               {/* Floating fullscreen button — always inside canvas area */}
@@ -740,130 +740,85 @@ export default function ThreeDCalculatorClient() {
           </div>
         </div>
       
-        {/* SETTINGS AREA (BOTTOM) */}
-        <div className="w-full px-3 pb-6 flex flex-col gap-3">
-          
+                {/* SETTINGS AREA (BOTTOM) — Slicing (Left) & Presets (Right) */}
+        <div className="w-full px-3 pb-6 pt-2">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 items-start">
-            <div className="flex flex-col gap-3">
-{/* SLICING CONTROLS */}
-          <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
-            <button onClick={() => toggleSection('slicing')} className="w-full bg-[#f8fafc] border-b border-slate-200 px-4 py-3 flex items-center justify-between">
-              <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Cross-Section Slicing</h2>
-              <ChevronDown className={`w-4 h-4 lg:hidden text-slate-400 transition-transform ${openSections.slicing ? "" : "-rotate-90"}`} />
-            </button>
-            <div className={`p-4 ${openSections.slicing ? "block" : "hidden sm:block"}`}>
-              <div className="flex gap-1 mb-4">
-                {(['none', 'x', 'y', 'z'] as const).map(mode => (
-                  <button
-                    key={mode}
-                    onClick={() => setSliceMode(mode)}
-                    className={`flex-1 py-1.5 rounded text-[10px] font-bold uppercase transition-all ${
-                      sliceMode === mode 
-                        ? 'bg-[#1a73e8] text-[#202124] shadow-sm' 
-                        : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
-                    }`}
-                  >
-                    {mode}
-                  </button>
-                ))}
-              </div>
-              {sliceMode !== 'none' && (
-                <div>
-                  <div className="flex justify-between text-[10px] font-bold text-slate-500 mb-1 uppercase">
-                    <span>Plane Position</span>
-                    <span className="text-blue-600">{slicePos.toFixed(2)}</span>
+            
+            {/* LEFT: SLICING CONTROLS */}
+            <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
+              <button onClick={() => toggleSection('slicing')} className="w-full bg-[#f8fafc] border-b border-slate-200 px-4 py-2.5 flex items-center justify-between">
+                <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Cross-Section Slicing</h2>
+                <ChevronDown className={`w-4 h-4 lg:hidden text-slate-400 transition-transform ${openSections.slicing ? "" : "-rotate-90"}`} />
+              </button>
+              <div className={`p-3 ${openSections.slicing ? "block" : "hidden sm:block"}`}>
+                <div className="flex gap-1 mb-3">
+                  {(['none', 'x', 'y', 'z'] as const).map(mode => (
+                    <button
+                      key={mode}
+                      onClick={() => setSliceMode(mode)}
+                      className={`flex-1 py-1 rounded text-[10px] font-bold uppercase transition-all ${
+                        sliceMode === mode 
+                          ? 'bg-[#1a73e8] text-white shadow-sm' 
+                          : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
+                      }`}
+                    >
+                      {mode}
+                    </button>
+                  ))}
+                </div>
+                {sliceMode !== 'none' && (
+                  <div>
+                    <div className="flex justify-between text-[10px] font-bold text-slate-500 mb-1 uppercase">
+                      <span>Plane Position</span>
+                      <span className="text-blue-600">{slicePos.toFixed(2)}</span>
+                    </div>
+                    <input
+                      type="range"
+                      min="-6"
+                      max="6"
+                      step="0.1"
+                      value={slicePos}
+                      onChange={(e) => setSlicePos(parseFloat(e.target.value))}
+                      className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                    />
                   </div>
-                  <input
-                    type="range"
-                    min="-6"
-                    max="6"
-                    step="0.1"
-                    value={slicePos}
-                    onChange={(e) => setSlicePos(parseFloat(e.target.value))}
-                    className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
-                  />
-                </div>
-              )}
-            </div>
-          </div>
+                )}
+              </div>
             </div>
 
-            <div className="flex flex-col gap-3">
-{/* SECTION: DYNAMIC VARIABLES */}
-          <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
-            <button onClick={() => toggleSection('variables')} className="w-full bg-[#f8fafc] border-b border-slate-200 px-4 py-3 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Variables</h2>
-              </div>
-              <div className="flex items-center gap-2">
-                <ChevronDown className={`w-4 h-4 lg:hidden text-slate-400 transition-transform ${openSections.variables ? "" : "-rotate-90"}`} />
-                <span onClick={(e) => {
-                    e.stopPropagation();
-                    const used = new Set(params.map(p => p.name));
-                    const next = 'abcdefghjkmnopqrstuvwxyz'.split('').find(c => !used.has(c)) || 'a';
-                    setParams([...params, { id: Math.random().toString(), name: next, value: 1, min: -10, max: 10 }]);
-                  }} className="p-1 hover:bg-slate-200 rounded text-blue-700 transition-all cursor-pointer" title="Add constant">
-                  <Plus className="w-4 h-4" />
-                </span>
-              </div>
-            </button>
-            <div className={`p-4 flex flex-wrap gap-4 ${openSections.variables ? "flex" : "hidden sm:flex"}`}>
-              {params.map(p => (
-                <div key={p.id} className="flex items-center gap-2">
-                  <span className="text-[9px] font-bold text-slate-500 uppercase">{p.name} =</span>
-                  <input
-                    type="text"
-                    inputMode="decimal"
-                    value={p.value}
-                    onChange={(e) => {
-                      const val = parseFloat(e.target.value);
-                      if (!isNaN(val)) setParams(params.map(x => x.id === p.id ? { ...x, value: val } : x));
-                      else setParams(params.map(x => x.id === p.id ? { ...x, value: e.target.value as any } : x));
-                    }}
-                    onBlur={(e) => {
-                      const val = parseFloat(e.target.value);
-                      setParams(params.map(x => x.id === p.id ? { ...x, value: isNaN(val) ? 0 : val } : x));
-                    }}
-                    className="w-16 h-7 text-center border border-slate-200 rounded text-blue-600 bg-white text-[12px] font-bold focus:outline-none focus:border-blue-400"
-                  />
+            {/* RIGHT: FUNCTION PRESETS */}
+            <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
+              <button onClick={() => toggleSection('presets')} className="w-full bg-[#f8fafc] border-b border-slate-200 px-4 py-2.5 flex items-center justify-between">
+                <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Presets</h2>
+                <ChevronDown className={`w-4 h-4 lg:hidden text-slate-400 transition-transform ${openSections.presets ? "" : "-rotate-90"}`} />
+              </button>
+              <div className={`p-3 ${openSections.presets ? "block" : "hidden sm:block"}`}>
+                <div className="flex flex-wrap gap-1.5">
+                  {CURRICULUM_PRESETS.map(p => (
+                    <button
+                      key={p.name}
+                      aria-label={`Plot ${p.name}`}
+                      onClick={() => addGraph(p.eq, p.color)}
+                      title={p.eq}
+                      className="flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-slate-200 hover:border-blue-400 hover:bg-blue-50 bg-white text-[10px] font-semibold text-slate-600 hover:text-blue-700 transition-all"
+                    >
+                      <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: p.color }} />
+                      {p.name.split(' ')[0]}
+                    </button>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
-            </div>
-          </div>
-
-{/* SECTION: FUNCTION PRESETS */}
-          <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm mt-0 w-full">
-            <button onClick={() => toggleSection('presets')} className="w-full bg-[#f8fafc] border-b border-slate-200 px-4 py-3 flex items-center justify-between">
-              <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Presets</h2>
-              <ChevronDown className={`w-4 h-4 lg:hidden text-slate-400 transition-transform ${openSections.presets ? "" : "-rotate-90"}`} />
-            </button>
-            <div className={`p-4 ${openSections.presets ? "block" : "hidden sm:block"}`}>
-              <div className="flex flex-wrap gap-1.5">
-                {CURRICULUM_PRESETS.map(p => (
-                  <button
-                    key={p.name}
-                    aria-label={`Plot ${p.name}`}
-                    onClick={() => addGraph(p.eq, p.color)}
-                    title={p.eq}
-                    className="flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-slate-200 hover:border-blue-400 hover:bg-blue-50 bg-white text-[10px] font-semibold text-slate-600 hover:text-blue-700 transition-all"
-                  >
-                    <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: p.color }} />
-                    {p.name.split(' ')[0]}
-                  </button>
-                ))}
               </div>
             </div>
+
           </div>
         </div>
     </div>
   );
 }
+
 const KBD_123 = [
   ['x', 'y', 'z', 'a', 'b', 'c', '(', ')', 'AC'],
   ['7', '8', '9', '/', 'sin', 'cos', 'tan', 'exp', 'DEL'],
-  ['4', '5', '6', '*', 'x\u00b2', 'x\u02b8', '\u221a', 'log', 'ENTER'],
-  ['1', '2', '3', '-', '+', '.', '\u03c0', '|x|', '0']
+  ['4', '5', '6', '*', 'x²', 'xʸ', '√', 'log', 'ENTER'],
+  ['1', '2', '3', '-', '+', '.', 'π', '|x|', '0']
 ];
-
