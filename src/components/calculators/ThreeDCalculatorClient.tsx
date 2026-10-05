@@ -530,7 +530,7 @@ export default function ThreeDCalculatorClient() {
         </div>
 
 {/* MAIN VIEWPORT AREA */}
-        <div className="w-full h-[60vh] lg:h-[66vh] shrink-0 flex flex-col relative px-2">
+        <div className="w-full h-[60vh] lg:h-[66vh] shrink-0 flex flex-col relative px-8 sm:px-10">
           <div ref={fullscreenContainerRef} className={`overflow-hidden flex flex-col flex-1 ${isFullscreen ? 'fixed inset-0 z-[100] w-screen h-screen' : 'h-full'}`}>
             <div className="flex-1 bg-[#e2e8f0] relative group">
               {/* Floating fullscreen button — always inside canvas area */}
@@ -560,14 +560,11 @@ export default function ThreeDCalculatorClient() {
                 ) : (
                   <PerspectiveCamera makeDefault position={[12, 12, 12]} fov={45} />
                 )}
-                <Environment preset="studio" />
-                <ContactShadows 
-                  position={[0, -0.02, 0]} 
-                  opacity={0.4} 
-                  scale={20} 
-                  blur={2} 
-                  far={4.5} 
-                />
+                <ambientLight intensity={0.75} />
+                <hemisphereLight intensity={0.55} groundColor="#cbd5e1" color="#ffffff" />
+                <directionalLight position={[15, 25, 15]} intensity={1.2} />
+                <directionalLight position={[-15, 15, -15]} intensity={0.4} />
+                
                 <ambientLight intensity={0.5} />
                 <hemisphereLight intensity={0.4} groundColor="#000000" color="#ffffff" />
                 <pointLight position={[20, 30, 10]} intensity={1.5} />
