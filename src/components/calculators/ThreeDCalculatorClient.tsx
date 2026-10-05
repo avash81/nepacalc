@@ -302,7 +302,41 @@ export default function ThreeDCalculatorClient() {
   const [graphs, setGraphs] = useState<GraphItem[]>([
     { id: '1', equation: 'z = sin(sqrt(x^2 + y^2))', visible: true, color: '#ef4444', opacity: 0.9, error: null }
   ]);
-  const [params, setParams] = useState<Parameter[]>([{ id: 'a', name: 'a', value: 1, min: -10, max: 10 }]);
+  const [params, setParams] = useState<Parameter[]>([
+    { id: 'a', name: 'a', value: 1, min: -10, max: 10 },
+    { id: 'b', name: 'b', value: 1, min: -10, max: 10 }
+  ]);
+
+  // Auto-detect unused constant letters (a-w except x,y,z,e) in equations and auto-add to Variables box
+  useEffect(() => {
+    const detected = new Set<string>();
+    graphs.forEach(g => {
+      const matches = g.equation.match(/\b([a-df-hj-vwA-DF-HJ-VW])\b/g);
+      if (matches) {
+        matches.forEach(m => {
+          const lower = m.toLowerCase();
+          if (lower !== 'x' && lower !== 'y' && lower !== 'z' && lower !== 'e') {
+            detected.add(lower);
+          }
+        });
+      }
+    });
+
+    if (detected.size > 0) {
+      setParams(prev => {
+        const existing = new Set(prev.map(p => p.name));
+        let changed = false;
+        const nextParams = [...prev];
+        detected.forEach(name => {
+          if (!existing.has(name)) {
+            nextParams.push({ id: name, name, value: 1, min: -10, max: 10 });
+            changed = true;
+          }
+        });
+        return changed ? nextParams : prev;
+      });
+    }
+  }, [graphs]);
   const [resolution, setResolution] = useState(65);
   const [activeId, setActiveId] = useState<string | null>('1');
   const [globalWireframe, setGlobalWireframe] = useState(false);
