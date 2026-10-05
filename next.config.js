@@ -31,7 +31,7 @@ const nextConfig = {
       'react-katex',
     ],
     // optimizeCss requires 'critters' package — disabled until installed
-    optimizeCss: false,
+    optimizeCss: true,
   },
 
   eslint: {

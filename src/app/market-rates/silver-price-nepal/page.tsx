@@ -148,7 +148,7 @@ const schemaGraph = {
       },
       headline: 'Live Silver Price in Nepal Today',
       datePublished: '2024-01-01T08:00:00+00:00',
-      dateModified: '', 
+      dateModified: new Date(rawDate).toISOString(), 
       mainEntityOfPage: {
         '@id': 'https://nepacalc.com/market-rates/silver-price-nepal/#webpage',
       },

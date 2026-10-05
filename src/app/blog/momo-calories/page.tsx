@@ -77,7 +77,7 @@ const blogPostingSchema = {
     height: 630,
   },
   url: 'https://nepacalc.com/blog/momo-calories/',
-  datePublished: '2024-11-01',
+  datePublished: '2026-10-03',
   dateModified: new Date().toISOString().split('T')[0],
   author: {
     '@type': 'Organization',

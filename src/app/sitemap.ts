@@ -17,7 +17,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   };
   // Updated to today to signal fresh content to crawlers
-  const lastModDate = new Date('2026-09-27T00:00:00Z');
+  const lastModDate = new Date();
 
   // History year pages — 2019 through 2026, daily updates, high priority for SEO
   const historyYearPages = ['2026', '2025', '2024', '2023', '2022', '2021', '2020', '2019'].map((yr) => ({
