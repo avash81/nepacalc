@@ -14,6 +14,14 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  openGraph: {
+    type: 'website',
+    siteName: 'NepaCalc',
+    title: 'Gold Rate History in Nepal – Historical Gold Prices',
+    description: 'Historical gold rates in Nepal by date, including gold prices per tola and other available units. Browse the historical archive by year or search the available records.',
+    url: 'https://nepacalc.com/market-rates/history/',
+    images: [{ url: 'https://nepacalc.com/images/og/history-gold-silver-nepal.jpg', width: 1200, height: 630, alt: 'Gold Rate History in Nepal' }]
+  },
 };
 
 export default function HistoryHubPage() {
@@ -41,8 +49,19 @@ export default function HistoryHubPage() {
 
   const fmtNPR = (num: number | null) => num === null ? 'N/A' : new Intl.NumberFormat('en-IN', { maximumFractionDigits: 2 }).format(num);
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://nepacalc.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Market Rates', item: 'https://nepacalc.com/market-rates/' },
+      { '@type': 'ListItem', position: 3, name: 'Gold Rate History', item: 'https://nepacalc.com/market-rates/history/' },
+    ],
+  };
+  
   return (
     <div className="min-h-screen bg-slate-50 font-sans">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
         
         {/* 1. Breadcrumb */}
