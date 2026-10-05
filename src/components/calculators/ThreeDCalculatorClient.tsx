@@ -302,10 +302,7 @@ export default function ThreeDCalculatorClient() {
   const [graphs, setGraphs] = useState<GraphItem[]>([
     { id: '1', equation: 'z = sin(sqrt(x^2 + y^2))', visible: true, color: '#ef4444', opacity: 0.9, error: null }
   ]);
-  const [params, setParams] = useState<Parameter[]>([
-    { id: 'a', name: 'a', value: 1, min: -10, max: 10 },
-    { id: 'b', name: 'b', value: 1, min: -10, max: 10 }
-  ]);
+  const [params, setParams] = useState<Parameter[]>([]);
 
   // Auto-detect unused constant letters (a-w except x,y,z,e) in equations and auto-add to Variables box
   useEffect(() => {

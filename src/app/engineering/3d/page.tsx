@@ -119,9 +119,9 @@ export default function ThreeDPage() {
       {/* ══ BOT-FIRST SERVER HTML ══ */}
       <section aria-label="3D graphing calculator — tool description for accessibility and search" className="sr-only">
         <h1>3D Graphing Calculator — Free Online 3D Graph Plotter</h1>
-        <p>This is a free, browser-based 3D graphing calculator. Enter a mathematical equation in the equation input field to plot an interactive 3D surface graph. No download or installation is required. Supported equation format is z = f(x, y), for example z = sin(sqrt(x^2 + y^2))+b.</p>
+        <p>This is a free, browser-based 3D graphing calculator. Enter a mathematical equation in the equation input field to plot an interactive 3D surface graph. No download or installation is required. Supported equation format is z = f(x, y), for example z = sin(sqrt(x^2 + y^2)).</p>
         <h2>Equation Input Panel</h2>
-        <p>Type any equation in the form z = f(x, y) in the equation box. The default equation is z = sin(sqrt(x^2 + y^2))+b. Click + ADD to add a second or third equation on the same graph. Use the OPACITY slider to change transparency of each surface layer. Click × to remove a layer.</p>
+        <p>Type any equation in the form z = f(x, y) in the equation box. The default equation is z = sin(sqrt(x^2 + y^2)). Click + ADD to add a second or third equation on the same graph. Use the OPACITY slider to change transparency of each surface layer. Click × to remove a layer.</p>
         <h3>Example Equations for the 3D Grapher</h3>
         <ul>
           <li>Wave / Sinc: z = sin(sqrt(x^2 + y^2)) / sqrt(x^2 + y^2)</li>
