@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-{"success":true,"gold":{"tolaNPR":282100,"tejabiTolaNPR":0},"silver":{"tolaNPR":3443},"provider":"LivePriceOfGold (Real-Time Backup)","updatedAt":"2026-10-05T15:59:09.050Z"}
-=======
-{"success":true,"gold":{"tolaNPR":282100,"tejabiTolaNPR":0},"silver":{"tolaNPR":3452},"provider":"LivePriceOfGold (Real-Time Backup)","updatedAt":"2026-10-05T15:54:07.310Z"}
->>>>>>> 55c20d1920 (feat: add silver summary and dual-axis chart to history pages)
+{"success":true,"gold":{"tolaNPR":282100,"tejabiTolaNPR":0},"silver":{"tolaNPR":3433},"provider":"LivePriceOfGold (Real-Time Backup)","updatedAt":"2026-10-05T16:18:08.769Z"}
