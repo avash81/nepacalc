@@ -132,7 +132,7 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
             <div><span className="block text-slate-400">First available date</span><span className="font-bold">{firstGold?.date_ad || 'N/A'}</span></div>
             <div><span className="block text-slate-400">Latest available date</span><span className="font-bold">{latestGold?.date_ad || 'N/A'}</span></div>
             <div><span className="block text-slate-400">Last verified</span><span className="font-bold">{dataset.meta?.last_updated_ad || 'N/A'}</span></div>
-            <div className="col-span-2"><span className="block text-slate-400">Source</span><span className="font-bold">FENEGOSIDA / Market</span></div>
+            <div className="col-span-2"><span className="block text-slate-400">Source</span><span className="font-bold">Official Sources</span></div>
           </div>
         </section>
 
@@ -228,7 +228,7 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
         <section className="bg-slate-100 p-6 rounded-xl border border-slate-200 max-w-4xl text-sm text-slate-700 space-y-3">
           <h2 className="text-lg font-bold text-slate-900">Source and Methodology</h2>
           <p>
-            The historical rates shown are exact representations of the published source data. The primary verified source for these records is <strong>FENEGOSIDA</strong>. 
+            These historical data are compiled from official sources. 
           </p>
           <p>
             Missing historical dates are not filled using estimates, interpolation, or previous-day prices. We group multiple records (e.g., gold and silver) intelligently by date without destructive deduplication. All rate summaries are calculated directly from this available dataset.
