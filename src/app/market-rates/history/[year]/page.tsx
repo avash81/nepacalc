@@ -294,7 +294,7 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
           <div className="flex items-end justify-between mb-4">
             <h2 className="text-2xl font-black text-slate-900">Historical Data Table</h2>
           </div>
-          <YearClientFilter />
+          <YearClientFilter>
           <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-sm text-left border-collapse min-w-[800px]">
@@ -331,6 +331,7 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
               </table>
             </div>
           </div>
+          </YearClientFilter>
         </section>
 
         {/* 8. Source and methodology */}
