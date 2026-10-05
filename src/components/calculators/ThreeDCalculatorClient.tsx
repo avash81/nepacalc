@@ -429,24 +429,26 @@ export default function ThreeDCalculatorClient() {
         </div>
       </nav>
 
-        {/* EQUATIONS - full width above graph */}
-        <div className="w-full px-3 pt-3">
-          <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
-            <div className="flex items-center justify-between px-4 py-2.5 bg-[#f8fafc] border-b border-slate-200">
+        {/* TOP CONTROLS: EQUATIONS (60%) LEFT & VARIABLES (40%) RIGHT ON DESKTOP, STACKED ON MOBILE */}
+        <div className="w-full px-3 pt-2 lg:pt-1.5 pb-1.5 flex flex-col md:flex-row gap-3 items-stretch">
+          
+          {/* LEFT: EQUATIONS INPUT (60%) */}
+          <div className="w-full md:w-[60%] flex-1 min-w-0 bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm flex flex-col">
+            <div className="flex items-center justify-between px-3 py-1.5 bg-[#f8fafc] border-b border-slate-200">
               <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Equations</h2>
               <button
                 aria-label="Add Graph"
                 onClick={() => addGraph('z = sin(sqrt(x^2 + y^2))')}
-                className="flex items-center gap-1 px-2 py-1 rounded bg-blue-600 hover:bg-blue-700 text-white text-[9px] font-bold uppercase transition-all"
+                className="flex items-center gap-1 px-2 py-0.5 rounded bg-blue-600 hover:bg-blue-700 text-white text-[9px] font-bold uppercase transition-all"
               >
                 <Plus className="w-3 h-3" /> Add
               </button>
             </div>
-            <div className="p-3 flex flex-col gap-2">
+            <div className="p-2 lg:p-2.5 flex flex-col gap-2 flex-1 justify-center">
               {graphs.map((g) => (
                 <div key={g.id} className="flex flex-col sm:flex-row sm:items-center gap-2">
-                  <div className="flex items-center gap-2 shrink-0">
-                    <div className="w-3 h-3 rounded-full" style={{ backgroundColor: g.color }} />
+                  <div className="flex items-center gap-1.5 shrink-0">
+                    <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: g.color }} />
                     <span className="text-[9px] font-bold text-slate-400 uppercase">Layer</span>
                   </div>
                   <input
@@ -454,7 +456,7 @@ export default function ThreeDCalculatorClient() {
                     value={g.equation}
                     onFocus={() => setActiveInputId(g.id)}
                     onChange={(e) => updateGraph(g.id, { equation: e.target.value })}
-                    className="flex-1 w-full bg-[#f8fafc] border border-slate-200 rounded px-3 py-2 font-mono text-[13px] font-bold outline-none focus:border-blue-500 transition-all text-slate-700"
+                    className="flex-1 w-full bg-[#f8fafc] border border-slate-200 rounded px-2.5 py-1.5 font-mono text-[12px] lg:text-[13px] font-bold outline-none focus:border-blue-500 transition-all text-slate-700"
                     placeholder="e.g. z = sin(sqrt(x^2 + y^2))"
                   />
                   <div className="flex items-center gap-2 shrink-0">
@@ -463,7 +465,7 @@ export default function ThreeDCalculatorClient() {
                       type="range" min="0.1" max="1" step="0.05"
                       value={g.opacity}
                       onChange={(e) => updateGraph(g.id, { opacity: parseFloat(e.target.value) })}
-                      className="w-20 h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                      className="w-16 lg:w-20 h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
                     />
                     <button
                       aria-label="Remove Graph"
@@ -477,6 +479,54 @@ export default function ThreeDCalculatorClient() {
               ))}
             </div>
           </div>
+
+          {/* RIGHT: VARIABLES & CONSTANTS (40%) */}
+          <div className="w-full md:w-[40%] shrink-0 bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm flex flex-col">
+            <div className="flex items-center justify-between px-3 py-1.5 bg-[#f8fafc] border-b border-slate-200">
+              <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Variables & Constants</h2>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  const used = new Set(params.map(p => p.name));
+                  const next = 'abcdefghjkmnopqrstuvwxyz'.split('').find(c => !used.has(c)) || 'a';
+                  setParams([...params, { id: Math.random().toString(), name: next, value: 1, min: -10, max: 10 }]);
+                }}
+                className="flex items-center gap-1 px-2 py-0.5 rounded bg-blue-600 hover:bg-blue-700 text-white text-[9px] font-bold uppercase transition-all"
+                title="Add variable / constant"
+              >
+                <Plus className="w-3 h-3" /> Add
+              </button>
+            </div>
+            <div className="p-2 lg:p-2.5 flex flex-wrap gap-2 items-center flex-1">
+              {params.map(p => (
+                <div key={p.id} className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 px-2 py-1 rounded">
+                  <span className="text-[11px] font-bold text-slate-600 uppercase">{p.name} =</span>
+                  <input
+                    type="text"
+                    inputMode="decimal"
+                    value={p.value}
+                    onChange={(e) => setParams(params.map(x => x.id === p.id ? { ...x, value: parseFloat(e.target.value) || 0 } : x))}
+                    onBlur={(e) => {
+                      const val = parseFloat(e.target.value);
+                      setParams(params.map(x => x.id === p.id ? { ...x, value: isNaN(val) ? 0 : val } : x));
+                    }}
+                    className="w-14 h-6 text-center border border-slate-200 rounded text-blue-600 bg-white text-[12px] font-bold focus:outline-none focus:border-blue-400"
+                  />
+                  <button
+                    onClick={() => setParams(params.filter(x => x.id !== p.id))}
+                    className="p-0.5 text-rose-400 hover:text-rose-600 hover:bg-rose-50 rounded transition-colors"
+                    title="Remove variable"
+                  >
+                    <Plus className="w-3.5 h-3.5 rotate-45" />
+                  </button>
+                </div>
+              ))}
+              {params.length === 0 && (
+                <span className="text-[11px] text-slate-400 italic py-1">No variables added. Click <strong>+ Add</strong> to create one (e.g. a=1).</span>
+              )}
+            </div>
+          </div>
+
         </div>
 
 {/* MAIN VIEWPORT AREA */}
