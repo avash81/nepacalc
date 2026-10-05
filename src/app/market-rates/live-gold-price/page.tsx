@@ -252,8 +252,8 @@ export default async function Page() {
           "variableMeasured": ["Gold Price 24K per Tola NPR", "Gold Price 22K per Tola NPR", "Silver Price per Tola NPR", "Gold Price per 10g NPR"],
           "measurementTechnique": "Official FENEGOSIDA benchmark rate published daily",
           "hasPart": [
-            { "@type": "Dataset", "name": "Today's Gold Price by Unit", "description": "Data table for Today's Gold Price by Unit.", "url": "https://nepacalc.com/market-rates/live-gold-price/#gold-conversion-table", "creator": { "@type": "Organization", "name": "NepaCalc" }, "license": "https://creativecommons.org/licenses/by/4.0/" },
-            { "@type": "Dataset", "name": "Nepal Gold Price History", "description": "Data table for Nepal Gold Price History.", "url": "https://nepacalc.com/market-rates/live-gold-price/#gold-price-history", "creator": { "@type": "Organization", "name": "NepaCalc" }, "license": "https://creativecommons.org/licenses/by/4.0/" }
+            { "@type": "Dataset", "name": "Today's Gold Price by Unit", "description": "Comprehensive daily conversion table displaying today's 24K and 22K gold rates in Nepal per Tola, 10 Grams, Gram, Kilogram, Aana, and Lal.", "url": "https://nepacalc.com/market-rates/live-gold-price/#gold-conversion-table", "creator": { "@type": "Organization", "name": "NepaCalc" }, "license": "https://creativecommons.org/licenses/by/4.0/" },
+            { "@type": "Dataset", "name": "Nepal Gold Price History", "description": "Historical gold and silver price archive in Nepal tracking official daily FENEGOSIDA benchmark rates across recent dates.", "url": "https://nepacalc.com/market-rates/live-gold-price/#gold-price-history", "creator": { "@type": "Organization", "name": "NepaCalc" }, "license": "https://creativecommons.org/licenses/by/4.0/" }
           ]
         })}}
       />
