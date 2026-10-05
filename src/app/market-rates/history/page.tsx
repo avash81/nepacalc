@@ -2,150 +2,111 @@ import React from 'react';
 import { Metadata } from 'next';
 import fs from 'fs';
 import path from 'path';
-import HistoryClient from './HistoryClient';
-import HistoryContent from './HistoryContent';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Gold & Silver Price History Nepal 2026 | FENEGOSIDA Rates',
-  description: 'Explore gold and silver price history in Nepal with date-wise and day-by-day rates, historical data by year, per tola and 10g prices, calculated gram and traditional unit values, and source details.',
+  title: 'Gold Rate History in Nepal – Historical Gold Prices',
+  description: 'Historical gold rates in Nepal by date, including gold prices per tola and other available units. Browse the historical archive by year or search the available records.',
   alternates: {
     canonical: 'https://nepacalc.com/market-rates/history/',
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
-  },
-  openGraph: {
-    type: 'website',
-    siteName: 'NepaCalc',
-    title: 'Gold & Silver Price History Nepal 2026 | FENEGOSIDA Rates',
-    description: 'Explore gold and silver price history in Nepal with date-wise and day-by-day rates, historical data by year, per tola and 10g prices, calculated gram and traditional unit values, and source details.',
-    url: 'https://nepacalc.com/market-rates/history/',
   },
 };
 
-export default function HistoryPage() {
+export default function HistoryHubPage() {
   const dataPath = path.join(process.cwd(), 'public', 'data', 'historical-rates.json');
   let records: any[] = [];
-  let meta: any = null;
   try {
     const raw = fs.readFileSync(dataPath, 'utf8');
     const parsed = JSON.parse(raw);
     records = parsed.data || [];
-    meta = parsed.meta;
   } catch (e) {
     console.error('Error reading historical records', e);
   }
 
-  // ── Find the latest verified gold & silver records ──
-  const sorted = [...records].sort((a, b) =>
-    new Date(b.date_ad).getTime() - new Date(a.date_ad).getTime()
-  );
+  // Find latest records
+  const sorted = [...records].sort((a, b) => new Date(b.date_ad).getTime() - new Date(a.date_ad).getTime());
   const latestGold = sorted.find(r => r.metal?.toLowerCase() === 'gold' && r.status === 'Verified');
   const latestSilver = sorted.find(r => r.metal?.toLowerCase() === 'silver' && r.status === 'Verified');
 
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://nepacalc.com/' },
-      { '@type': 'ListItem', position: 2, name: 'Market Rates', item: 'https://nepacalc.com/market-rates/' },
-      { '@type': 'ListItem', position: 3, name: 'Gold & Silver Price History', item: 'https://nepacalc.com/market-rates/history/' },
-    ],
-  };
+  const years = Array.from(new Set(records.map(r => r.date_ad.substring(0, 4)))).sort((a, b) => Number(b) - Number(a));
+  
+  if (years.length === 0) {
+    // fallback
+    years.push('2026', '2025', '2024', '2023', '2022', '2021', '2020', '2019');
+  }
 
-  const datasetSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Dataset',
-    name: 'Nepal Gold and Silver Price History',
-    description: 'Historical market rates for gold and silver in Nepal, including verified FENEGOSIDA source prices and secondary historical data. Source-published per-tola and per-10-gram values. Calculated per-gram and per-kilogram equivalents (1 tola = 11.6638 grams).',
-    url: 'https://nepacalc.com/market-rates/history/',
-    creator: { '@type': 'Organization', name: 'NepaCalc', url: 'https://nepacalc.com' },
-    license: 'https://creativecommons.org/licenses/by/4.0/',
-    dateModified: meta?.last_updated_ad || new Date().toISOString().split('T')[0],
-    spatialCoverage: 'Nepal',
-    variableMeasured: [
-      'Gold price per tola (NPR)',
-      'Gold price per 10 grams (NPR)',
-      'Silver price per tola (NPR)',
-      'Silver price per 10 grams (NPR)',
-    ],
-  };
-
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'What was the gold price in Nepal on a specific date?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Use the historical date selector or table to find the available gold record for that date. The result identifies the AD date, BS date, gold rate type, source-published price per tola and per 10 grams, source, and verification status when a qualifying record is available.' },
-      },
-      {
-        '@type': 'Question',
-        name: 'What was the silver price in Nepal on a specific date?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Select Silver and the required date in the historical archive. When a verified record is available, the historical table shows the silver rate per tola and per 10 grams together with the source and verification status.' },
-      },
-      {
-        '@type': 'Question',
-        name: 'Where can I find gold price history in Nepal?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Gold historical rates are available through the date- and year-based historical archive, where available source records can be examined by date, rate type, unit, source, and verification status.' },
-      },
-      {
-        '@type': 'Question',
-        name: 'Where can I find silver price history in Nepal?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Silver historical rates are available in the same archive, with silver records separated from gold records and shown by date, source-published unit, calculated equivalents, source, and verification status.' },
-      },
-      {
-        '@type': 'Question',
-        name: 'Is gold price history shown per tola or per 10 grams?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Both source-published units can be shown where the historical source provides them: per tola and per 10 grams. The archive also calculates equivalent per-gram and per-kilogram values.' },
-      },
-    ],
-  };
+  const fmtNPR = (num: number | null) => num === null ? 'N/A' : new Intl.NumberFormat('en-IN', { maximumFractionDigits: 2 }).format(num);
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans selection:bg-amber-200">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(datasetSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+    <div className="min-h-screen bg-slate-50 font-sans">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
+        
+        {/* 1. Breadcrumb */}
+        <nav className="text-sm font-medium text-slate-500 mb-4">
+          <Link href="/" className="hover:text-amber-700">Home</Link> &gt;{' '}
+          <Link href="/market-rates/" className="hover:text-amber-700">Market Rates</Link> &gt;{' '}
+          <span className="text-slate-900">History</span>
+        </nav>
 
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-
-        {/* ── HEADER & INTRO ── */}
-        <header className="mb-6 max-w-4xl">
-          <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight mb-3">
-            Gold and Silver Price History in Nepal
+        {/* 2. H1 & 3. Intro */}
+        <header className="max-w-4xl space-y-4">
+          <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
+            Gold Rate History in Nepal
           </h1>
-          <p className="text-sm text-slate-700 font-medium leading-relaxed">
-            Historical gold and silver market rates in Nepal, organized by date. The archive includes verified FENEGOSIDA records and clearly identified secondary historical records where available. Source and verification status are preserved for each record.
+          <p className="text-lg text-slate-700 leading-relaxed">
+            Historical gold rates in Nepal by date, including gold prices per tola and other available units. Browse the historical archive by year or search the available records.
           </p>
         </header>
 
-        {/* ── YEAR NAVIGATION ── */}
-        <div className="mb-8 max-w-4xl">
-          <h2 className="text-sm font-black uppercase tracking-wider text-slate-500 mb-2">History by Year</h2>
-          <div className="p-4 bg-white border border-slate-200 rounded-xl flex flex-wrap items-center gap-3">
-            <a href="/market-rates/history/" className="text-sm font-bold text-slate-900 underline">All Years</a>
-            {['2026', '2025', '2024', '2023', '2022', '2021', '2020', '2019'].map((yr) => (
-              <React.Fragment key={yr}>
-                <span className="text-slate-300" aria-hidden="true">|</span>
-                <a
-                  href={`/market-rates/history/${yr}/`}
-                  className="text-sm font-bold text-amber-700 hover:text-amber-900 hover:underline"
-                >
-                  {yr}
-                </a>
-              </React.Fragment>
+        {/* 4. Explain the archive & expose latest data */}
+        <section className="bg-white p-6 md:p-8 rounded-xl border border-slate-200 shadow-sm max-w-4xl">
+          <h2 className="text-xl font-bold text-slate-900 mb-4">Latest Verified Rates in the Archive</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {latestGold && (
+              <div className="p-4 border border-amber-200 bg-amber-50 rounded-lg">
+                <h3 className="font-bold text-amber-900 mb-2">Latest Gold ({latestGold.date_ad})</h3>
+                <p className="text-2xl font-black text-amber-700">NPR {fmtNPR(latestGold.source_per_tola)} <span className="text-sm font-medium text-amber-900/70">per tola</span></p>
+                <p className="text-sm text-amber-800 mt-1">{latestGold.rate_type} | Source: {latestGold.source}</p>
+              </div>
+            )}
+            {latestSilver && (
+              <div className="p-4 border border-slate-200 bg-slate-50 rounded-lg">
+                <h3 className="font-bold text-slate-900 mb-2">Latest Silver ({latestSilver.date_ad})</h3>
+                <p className="text-2xl font-black text-slate-700">NPR {fmtNPR(latestSilver.source_per_tola)} <span className="text-sm font-medium text-slate-500">per tola</span></p>
+                <p className="text-sm text-slate-600 mt-1">{latestSilver.rate_type} | Source: {latestSilver.source}</p>
+              </div>
+            )}
+          </div>
+          <div className="mt-6 prose prose-slate max-w-none text-sm">
+            <p>
+              This historical archive maintains an immutable dataset of Nepalese gold and silver rates. 
+              The prices shown are exact representations of the published source data (such as FENEGOSIDA). 
+              We do not invent values, estimate missing days, or alter the historical record. 
+              Calculated units (like per gram) are deterministically derived from the source-published per-tola values.
+            </p>
+          </div>
+        </section>
+
+        {/* 5. Strong links to every yearly dataset */}
+        <section className="max-w-4xl">
+          <h2 className="text-2xl font-black text-slate-900 mb-6">Historical Archive by Year</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            {years.map(year => (
+              <Link 
+                key={year} 
+                href={`/market-rates/history/${year}/`}
+                className="group flex flex-col items-center justify-center p-6 bg-white border border-slate-200 rounded-xl hover:border-amber-400 hover:shadow-md transition-all"
+              >
+                <span className="text-2xl font-black text-slate-700 group-hover:text-amber-700">{year}</span>
+                <span className="text-xs font-medium text-slate-500 mt-2 uppercase tracking-wider">View Data</span>
+              </Link>
             ))}
           </div>
-        </div>
-
-        {/* ── INTERACTIVE CLIENT: Answer Box + Table ── */}
-        <HistoryClient records={records} />
-
-        <HistoryContent latestGold={latestGold} latestSilver={latestSilver} />
+        </section>
 
       </main>
     </div>
