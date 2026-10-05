@@ -2345,9 +2345,6 @@ export default function ThreeDPage() {
                 </div>
 
               </article>
-            </div>
-          </div>
-
               {/* Trust, Supports, Related - below article */}
               <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
 
@@ -2400,6 +2397,9 @@ export default function ThreeDPage() {
                 </div>
 
               </div>
+
+            </div>
+          </div>
         </div>
       </section>
     </>
