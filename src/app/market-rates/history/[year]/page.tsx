@@ -68,7 +68,7 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
       });
     }
     const g = grouped.get(r.date_ad);
-    if (r.metal === 'Gold' && (r.rate_type.includes('Fine') || r.rate_type === '24K Hallmark Gold')) {
+    if (r.metal === 'Gold' && (r.rate_type.includes('Fine') || r.rate_type === '24K Hallmark Gold' || r.rate_type === 'Gold Rate Per Tola' || r.rate_type === 'Gold')) {
       g.fine_gold = r.source_per_tola;
     }
     if (r.metal === 'Gold' && r.rate_type.includes('Tejabi')) {
@@ -111,6 +111,27 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
 
   const avgGold = goldRecordsForSummary.length > 0 ? sumGold / goldRecordsForSummary.length : null;
   const change = (firstGold && latestGold) ? (latestGold.fine_gold as number) - (firstGold.fine_gold as number) : null;
+
+  // Silver Summary logic
+  const silverRecordsForSummary = tableData.filter(d => d.silver !== null);
+  const latestSilver = silverRecordsForSummary[0];
+  const firstSilver = silverRecordsForSummary[silverRecordsForSummary.length - 1];
+  
+  let maxSilver: null | number = null;
+  let maxSilverDate = '';
+  let minSilver: null | number = null;
+  let minSilverDate = '';
+  let sumSilver = 0;
+
+  silverRecordsForSummary.forEach(d => {
+    const val = d.silver;
+    sumSilver += val;
+    if (maxSilver === null || val > maxSilver) { maxSilver = val; maxSilverDate = d.date_ad; }
+    if (minSilver === null || val < minSilver) { minSilver = val; minSilverDate = d.date_ad; }
+  });
+
+  const avgSilver = silverRecordsForSummary.length > 0 ? sumSilver / silverRecordsForSummary.length : null;
+  const changeSilver = (firstSilver && latestSilver) ? latestSilver.silver - firstSilver.silver : null;
 
   const fmtNPR = (num: number | null) => num === null ? 'N/A' : new Intl.NumberFormat('en-IN', { maximumFractionDigits: 2 }).format(num);
 
@@ -218,6 +239,45 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
               <span className="block text-xs font-bold text-slate-500 mb-1">Change ({year})</span>
               <span className={`block text-xl font-black ${change && change > 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
                 {change !== null ? (change > 0 ? '+' : '') + fmtNPR(change) : 'N/A'}
+              </span>
+              <span className="block text-xs text-slate-400">per tola</span>
+            </div>
+          </div>
+        </section>
+
+        {/* Silver Rate Summary */}
+        <section className="max-w-4xl space-y-4">
+          <h2 className="text-2xl font-black text-slate-900">Silver Rate Summary for {year}</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="p-4 bg-white border border-slate-200 rounded-lg">
+              <span className="block text-xs font-bold text-slate-500 mb-1">Latest Recorded</span>
+              <span className="block text-xl font-black text-slate-700">{fmtNPR(latestSilver?.silver ?? null)}</span>
+              <span className="block text-xs text-slate-400">{latestSilver?.date_ad || 'N/A'}</span>
+            </div>
+            <div className="p-4 bg-white border border-slate-200 rounded-lg">
+              <span className="block text-xs font-bold text-slate-500 mb-1">Highest Recorded</span>
+              <span className="block text-xl font-black text-slate-700">{fmtNPR(maxSilver)}</span>
+              <span className="block text-xs text-slate-400">{maxSilverDate || 'N/A'}</span>
+            </div>
+            <div className="p-4 bg-white border border-slate-200 rounded-lg">
+              <span className="block text-xs font-bold text-slate-500 mb-1">Lowest Recorded</span>
+              <span className="block text-xl font-black text-slate-700">{fmtNPR(minSilver)}</span>
+              <span className="block text-xs text-slate-400">{minSilverDate || 'N/A'}</span>
+            </div>
+            <div className="p-4 bg-white border border-slate-200 rounded-lg">
+              <span className="block text-xs font-bold text-slate-500 mb-1">Average Rate</span>
+              <span className="block text-xl font-black text-slate-700">{fmtNPR(avgSilver)}</span>
+              <span className="block text-xs text-slate-400">per tola</span>
+            </div>
+            <div className="p-4 bg-white border border-slate-200 rounded-lg">
+              <span className="block text-xs font-bold text-slate-500 mb-1">First Recorded</span>
+              <span className="block text-xl font-black text-slate-700">{fmtNPR(firstSilver?.silver ?? null)}</span>
+              <span className="block text-xs text-slate-400">{firstSilver?.date_ad || 'N/A'}</span>
+            </div>
+            <div className="p-4 bg-white border border-slate-200 rounded-lg">
+              <span className="block text-xs font-bold text-slate-500 mb-1">Change ({year})</span>
+              <span className={`block text-xl font-black ${changeSilver && changeSilver > 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
+                {changeSilver !== null ? (changeSilver > 0 ? '+' : '') + fmtNPR(changeSilver) : 'N/A'}
               </span>
               <span className="block text-xs text-slate-400">per tola</span>
             </div>

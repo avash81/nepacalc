@@ -51,7 +51,7 @@ export default function HistoryHubPage() {
       });
     }
     const g = grouped.get(r.date_ad);
-    if (r.metal === 'Gold' && (r.rate_type.includes('Fine') || r.rate_type === '24K Hallmark Gold')) {
+    if (r.metal === 'Gold' && (r.rate_type.includes('Fine') || r.rate_type === '24K Hallmark Gold' || r.rate_type === 'Gold Rate Per Tola' || r.rate_type === 'Gold')) {
       g.fine_gold = r.source_per_tola;
     }
     if (r.metal === 'Silver') {
