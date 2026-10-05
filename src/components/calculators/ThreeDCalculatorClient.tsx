@@ -599,8 +599,7 @@ export default function ThreeDCalculatorClient() {
                 <directionalLight position={[15, 25, 15]} intensity={1.2} />
                 <directionalLight position={[-15, 15, -15]} intensity={0.4} />
                 
-                <ambientLight intensity={0.5} />
-                <hemisphereLight intensity={0.4} groundColor="#000000" color="#ffffff" />
+                
                 <pointLight position={[20, 30, 10]} intensity={1.5} />
                 <directionalLight position={[-10, -10, -5]} intensity={0.5} />
                 <Suspense fallback={null}>

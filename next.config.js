@@ -20,7 +20,7 @@ const nextConfig = {
   },
 
   experimental: {
-    optimizePackageImports: [
+    optimizePackageImports: ['three', '@react-three/fiber', '@react-three/drei', 
       'lucide-react',
       'mathjs',
       'date-fns',
