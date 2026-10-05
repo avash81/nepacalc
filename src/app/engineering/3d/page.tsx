@@ -6,12 +6,29 @@ import Link from 'next/link';
 const ThreeDCalculatorClient = dynamic(
   () => import('@/components/calculators/ThreeDCalculatorClient'),
   { 
-    ssr: true, 
+    ssr: false,
     loading: () => (
-      <div className="flex flex-col min-h-[calc(100vh-64px)] lg:h-[calc(100vh-64px)] w-full items-center justify-center bg-[#f8fafc]">
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-          <p className="text-slate-500 font-bold text-sm uppercase tracking-widest">Loading 3D Engine...</p>
+      <div className="w-full bg-[#f8fafc] animate-pulse" aria-hidden="true">
+        {/* Nav skeleton */}
+        <div className="w-full h-8 bg-white border-b border-slate-200 flex items-center px-3 gap-2">
+          <div className="w-6 h-6 rounded bg-slate-100" />
+          <div className="w-24 h-3 rounded bg-slate-100" />
+        </div>
+        {/* Equations + Variables row skeleton */}
+        <div className="w-full px-3 pt-2 pb-1.5 flex flex-col md:flex-row gap-3">
+          <div className="w-full md:w-[60%] h-16 rounded bg-white border border-slate-200 shadow-sm" />
+          <div className="w-full md:w-[40%] h-16 rounded bg-white border border-slate-200 shadow-sm" />
+        </div>
+        {/* Graph canvas skeleton */}
+        <div className="w-full h-[60vh] lg:h-[66vh] px-8 sm:px-10">
+          <div className="w-full h-full rounded-sm bg-slate-200" />
+        </div>
+        {/* Bottom controls skeleton */}
+        <div className="w-full px-3 pt-2 pb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="h-24 rounded bg-white border border-slate-200 shadow-sm" />
+            <div className="h-24 rounded bg-white border border-slate-200 shadow-sm" />
+          </div>
         </div>
       </div>
     )
@@ -360,6 +377,81 @@ export default function ThreeDPage() {
       />
 
       <ThreeDCalculatorClient />
+
+      {/*
+        ── SEO STATIC BLOCK ─────────────────────────────────────────────
+        Rendered at build time (server component). Search engine crawlers
+        read this HTML instantly with zero JavaScript. Visually hidden
+        from users via sr-only. Do NOT remove — this is the indexable
+        content for the interactive tool.
+        ─────────────────────────────────────────────────────────────────
+      */}
+      <section aria-hidden="false" className="sr-only">
+        <h2>3D Graphing Calculator — Interactive Tool</h2>
+        <p>
+          Enter a mathematical equation in the input field to plot a 3D surface. Supported equation formats include
+          explicit functions like z = sin(x) * cos(y), z = sqrt(x^2 + y^2), z = x^2 + y^2, and z = exp(-x^2 - y^2).
+          Multiple equations can be added simultaneously and each is rendered in a different colour.
+        </p>
+        <h3>Equation Input</h3>
+        <p>
+          Type any equation in the form z = f(x, y) into the equation box on the left side of the calculator.
+          The equation is parsed in real time using a Web Worker, which keeps the main thread free so the graph
+          updates without freezing the page. Supported functions include sin, cos, tan, sqrt, exp, log, abs, pow,
+          floor, ceil, round, pi, and e. You can also use custom variables such as a, b, and c by adjusting the
+          variable sliders on the right side.
+        </p>
+        <h3>Variables and Constants</h3>
+        <p>
+          The Variables and Constants panel lets you define custom parameters that appear in your equations. For
+          example, if you type z = a * sin(x) + b * cos(y), variables a and b are automatically detected and
+          added to the variable panel with a default value of 1. You can change the value of each variable
+          using the number input. This is useful for exploring how changing a parameter changes the shape of
+          the surface.
+        </p>
+        <h3>Example Equations</h3>
+        <ul>
+          <li>Sinc function: z = sin(sqrt(x^2 + y^2)) / sqrt(x^2 + y^2)</li>
+          <li>Saddle surface: z = x^2 - y^2</li>
+          <li>Gaussian bell: z = exp(-x^2 - y^2)</li>
+          <li>Ripple: z = sin(x) * cos(y)</li>
+          <li>Paraboloid: z = x^2 + y^2</li>
+          <li>Twisted surface: z = sin(x * y)</li>
+          <li>Cone: z = sqrt(x^2 + y^2)</li>
+          <li>Hemisphere: z = sqrt(1 - x^2 - y^2)</li>
+        </ul>
+        <h3>Graph Controls</h3>
+        <p>
+          Rotate the 3D graph by clicking and dragging. Zoom in and out using the scroll wheel or pinch gesture
+          on touch screens. Use the reset button to return to the default camera position. The graph can be
+          rendered in surface, wireframe, or points mode using the display options below the graph.
+        </p>
+        <h3>Cross Section Slicing</h3>
+        <p>
+          Enable cross section slicing to cut through the 3D surface at a specific x, y, or z value. Drag the
+          slider to move the slice plane through the surface. This helps visualise internal structures and
+          contour lines of the function.
+        </p>
+        <h3>Preset Equations</h3>
+        <p>
+          The Function Presets panel includes common mathematical surfaces used in education and engineering:
+          saddle, paraboloid, sinc, ripple, Gaussian, twisted, cone, hemisphere, hyperboloid, and torus.
+          Click any preset to instantly load that equation into the calculator.
+        </p>
+        <h3>Supported Mathematical Functions</h3>
+        <p>
+          sin(x), cos(x), tan(x), asin(x), acos(x), atan(x), atan2(y,x), sinh(x), cosh(x), tanh(x),
+          sqrt(x), cbrt(x), exp(x), log(x), log2(x), log10(x), abs(x), sign(x), ceil(x), floor(x),
+          round(x), min(a,b), max(a,b), pow(x,n), pi, e, x^2, x^3.
+        </p>
+        <h3>Resolution Settings</h3>
+        <p>
+          Choose the mesh resolution from low (30x30), medium (60x60), high (100x100), or ultra (150x150).
+          Higher resolution produces smoother surfaces but requires more computation. The calculator uses a
+          Web Worker to compute the mesh geometry off the main thread, so the page remains responsive at all
+          resolution settings.
+        </p>
+      </section>
 
       <div className="w-full px-6 lg:px-10 py-6 border-b border-[#DADCE0] bg-white">
         <h1 className="text-3xl lg:text-4xl font-black text-[#202124] mb-2">3D Graphing Calculator</h1>

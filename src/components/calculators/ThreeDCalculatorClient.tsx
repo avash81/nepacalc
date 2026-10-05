@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useMemo, useRef, useCallback, Suspense } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { 
-  CameraControls, Center, Text, QuadraticBezierLine, Billboard, Grid, OrbitControls, Line, Environment, ContactShadows,
+  CameraControls, Center, Text, QuadraticBezierLine, Billboard, Grid, OrbitControls, Line,
   PerspectiveCamera, OrthographicCamera, Float
 } from '@react-three/drei';
 import * as THREE from 'three';
