@@ -144,14 +144,7 @@ export default function HistoryHubPage() {
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10 text-slate-800">
         
         {/* H1 & Intro */}
-        <header className="max-w-4xl space-y-4">
-          <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
-            Gold Rate History in Nepal
-          </h1>
-          <p className="text-lg leading-relaxed text-slate-700">
-            Historical gold and silver rates in Nepal by date, including gold and silver prices per tola and other available units.
-          </p>
-        </header>
+        <header className="max-w-4xl mb-6"><h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">Gold Rate History in Nepal</h1></header>
 
         {/* The Dataset Table */}
         <section className="max-w-4xl">
@@ -191,6 +184,13 @@ export default function HistoryHubPage() {
             </div>
           </div>
           <p className="text-xs text-slate-500 mt-3">Showing the {recentRecords.length} most recent historical records.</p>
+        </section>
+
+        {/* Intro moved below dataset */}
+        <section className="max-w-4xl">
+          <p className="text-lg leading-relaxed text-slate-700">
+            Historical gold and silver rates in Nepal by date, including gold and silver prices per tola and other available units.
+          </p>
         </section>
 
         {/* Year Navigation */}
