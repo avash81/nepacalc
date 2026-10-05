@@ -233,23 +233,23 @@ export default function HistoryHubPage() {
               </thead>
               <tbody className="divide-y divide-slate-100">
                 <tr className="hover:bg-slate-50">
-                  <td className="px-6 py-3 font-medium">Highest recorded gold rate</td>
+                  <td className="px-6 py-3 font-medium">Highest 24K gold rate per tola</td>
                   <td className="px-6 py-3 font-bold text-right text-amber-700">NPR {fmtNPR(gMax)} / tola</td>
                 </tr>
                 <tr className="hover:bg-slate-50">
-                  <td className="px-6 py-3 font-medium">Lowest recorded gold rate</td>
+                  <td className="px-6 py-3 font-medium">Lowest 24K gold rate per tola</td>
                   <td className="px-6 py-3 font-bold text-right text-amber-700">NPR {fmtNPR(gMin)} / tola</td>
                 </tr>
                 <tr className="hover:bg-slate-50">
-                  <td className="px-6 py-3 font-medium">Average recorded gold rate</td>
+                  <td className="px-6 py-3 font-medium">Average 24K gold rate per tola</td>
                   <td className="px-6 py-3 font-bold text-right text-amber-700">NPR {fmtNPR(avgGold)} / tola</td>
                 </tr>
                 <tr className="hover:bg-slate-50">
-                  <td className="px-6 py-3 font-medium">First recorded gold rate</td>
+                  <td className="px-6 py-3 font-medium">First recorded 24K gold rate per tola</td>
                   <td className="px-6 py-3 font-bold text-right text-amber-700">NPR {fmtNPR(firstGold?.fine_gold ?? null)} / tola <span className="font-normal text-xs text-slate-500 block">on {firstGold?.date_ad}</span></td>
                 </tr>
                 <tr className="hover:bg-slate-50">
-                  <td className="px-6 py-3 font-medium">Latest recorded gold rate</td>
+                  <td className="px-6 py-3 font-medium">Latest recorded 24K gold rate per tola</td>
                   <td className="px-6 py-3 font-bold text-right text-amber-700">NPR {fmtNPR(latestGold?.fine_gold ?? null)} / tola <span className="font-normal text-xs text-slate-500 block">on {latestGold?.date_ad}</span></td>
                 </tr>
               </tbody>
@@ -271,23 +271,23 @@ export default function HistoryHubPage() {
                 </thead>
                 <tbody className="divide-y divide-slate-100">
                   <tr className="hover:bg-slate-50">
-                    <td className="px-6 py-3 font-medium">Highest recorded silver rate</td>
+                    <td className="px-6 py-3 font-medium">Highest silver rate per tola</td>
                     <td className="px-6 py-3 font-bold text-right text-slate-700">NPR {fmtNPR(sMax)} / tola</td>
                   </tr>
                   <tr className="hover:bg-slate-50">
-                    <td className="px-6 py-3 font-medium">Lowest recorded silver rate</td>
+                    <td className="px-6 py-3 font-medium">Lowest silver rate per tola</td>
                     <td className="px-6 py-3 font-bold text-right text-slate-700">NPR {fmtNPR(sMin)} / tola</td>
                   </tr>
                   <tr className="hover:bg-slate-50">
-                    <td className="px-6 py-3 font-medium">Average recorded silver rate</td>
+                    <td className="px-6 py-3 font-medium">Average silver rate per tola</td>
                     <td className="px-6 py-3 font-bold text-right text-slate-700">NPR {fmtNPR(avgSilver)} / tola</td>
                   </tr>
                   <tr className="hover:bg-slate-50">
-                    <td className="px-6 py-3 font-medium">First recorded silver rate</td>
+                    <td className="px-6 py-3 font-medium">First recorded silver rate per tola</td>
                     <td className="px-6 py-3 font-bold text-right text-slate-700">NPR {fmtNPR(firstSilver?.silver ?? null)} / tola <span className="font-normal text-xs text-slate-500 block">on {firstSilver?.date_ad}</span></td>
                   </tr>
                   <tr className="hover:bg-slate-50">
-                    <td className="px-6 py-3 font-medium">Latest recorded silver rate</td>
+                    <td className="px-6 py-3 font-medium">Latest recorded silver rate per tola</td>
                     <td className="px-6 py-3 font-bold text-right text-slate-700">NPR {fmtNPR(latestSilver?.silver ?? null)} / tola <span className="font-normal text-xs text-slate-500 block">on {latestSilver?.date_ad}</span></td>
                   </tr>
                 </tbody>
@@ -300,8 +300,7 @@ export default function HistoryHubPage() {
         <section className="max-w-4xl">
           <h2 className="text-2xl font-black text-slate-900 mb-4">Gold Rate by Unit</h2>
           <p className="text-sm text-slate-600 mb-4">
-            Gold rates in the archive are recorded primarily per tola. Equivalent values for other units are calculated using the defined conversion methodology. 
-            <br/><span className="italic">Based on the latest recorded gold rate shown above ({latestGold?.date_ad}).</span>
+            Gold rates in the archive are recorded per tola. Values for other units are deterministically calculated from the recorded per-tola rate. <span className="italic">Based on the latest recorded gold rate ({latestGold?.date_ad}).</span>
           </p>
           <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
             <table className="w-full text-sm text-left border-collapse">
@@ -330,26 +329,30 @@ export default function HistoryHubPage() {
             <table className="w-full text-sm text-left border-collapse">
               <thead className="bg-slate-50 border-b border-slate-200 text-xs font-black uppercase tracking-wider text-slate-600">
                 <tr>
-                  <th scope="col" className="px-6 py-3">Dataset</th>
+                  <th scope="col" className="px-6 py-3">Field</th>
                   <th scope="col" className="px-6 py-3 text-right">Coverage</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
                 <tr className="hover:bg-slate-50">
-                  <td className="px-6 py-3 font-medium">Gold</td>
+                  <td className="px-6 py-3 font-medium">Years available</td>
                   <td className="px-6 py-3 font-bold text-right text-slate-700">{years[years.length - 1]}–{years[0]}</td>
                 </tr>
                 <tr className="hover:bg-slate-50">
-                  <td className="px-6 py-3 font-medium">Silver</td>
-                  <td className="px-6 py-3 font-bold text-right text-slate-700">{years[years.length - 1]}–{years[0]}</td>
+                  <td className="px-6 py-3 font-medium">Earliest recorded date</td>
+                  <td className="px-6 py-3 font-bold text-right text-slate-700">{firstGold?.date_ad || 'N/A'}</td>
+                </tr>
+                <tr className="hover:bg-slate-50">
+                  <td className="px-6 py-3 font-medium">Latest recorded date</td>
+                  <td className="px-6 py-3 font-bold text-right text-slate-700">{latestGold?.date_ad || 'N/A'}</td>
+                </tr>
+                <tr className="hover:bg-slate-50">
+                  <td className="px-6 py-3 font-medium">Markets</td>
+                  <td className="px-6 py-3 font-bold text-right text-slate-700">Gold and Silver</td>
                 </tr>
                 <tr className="hover:bg-slate-50">
                   <td className="px-6 py-3 font-medium">Primary unit</td>
                   <td className="px-6 py-3 font-bold text-right text-slate-700">Per tola</td>
-                </tr>
-                <tr className="hover:bg-slate-50">
-                  <td className="px-6 py-3 font-medium">Additional units</td>
-                  <td className="px-6 py-3 font-bold text-right text-slate-700">Per 10g, gram, kg, etc.</td>
                 </tr>
                 <tr className="hover:bg-slate-50">
                   <td className="px-6 py-3 font-medium">Date formats</td>
@@ -369,10 +372,10 @@ export default function HistoryHubPage() {
           <h2 className="text-2xl font-black text-slate-900">Data Source and Methodology</h2>
           <div className="bg-slate-100 p-6 rounded-xl border border-slate-200 text-sm text-slate-700 space-y-3">
             <p>
-              Historical rates are compiled from documented sources for the archive. Missing values are not estimated or fabricated, and calculated units are deterministically derived from recorded source values.
+              Gold and silver rates are sourced from FENEGOSIDA (Federation of Nepal Gold and Silver Dealers&rsquo; Association), the federation that sets the standard market rates for gold and silver in Nepal. Rates are collected daily and recorded with an A.D. date and Bikram Sambat (B.S.) date where available.
             </p>
             <p>
-              Dates are represented in both Gregorian (A.D.) and Bikram Sambat (B.S.) formats where recorded. Historical corrections, when verified against source announcements, update the entire archive seamlessly.
+              Missing values are not estimated or fabricated. Per-gram, per-10g, per-kg, per-anna, and per-lal values are deterministically calculated from the recorded per-tola rate using fixed conversion factors. Historical corrections are applied when verified against source announcements.
             </p>
           </div>
         </section>
