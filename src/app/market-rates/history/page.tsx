@@ -70,21 +70,21 @@ export default function HistoryHubPage() {
               <div className="p-4 border border-amber-200 bg-amber-50 rounded-lg">
                 <h3 className="font-bold text-amber-900 mb-2">Latest Gold ({latestGold.date_ad})</h3>
                 <p className="text-2xl font-black text-amber-700">NPR {fmtNPR(latestGold.source_per_tola)} <span className="text-sm font-medium text-amber-900/70">per tola</span></p>
-                <p className="text-sm text-amber-800 mt-1">{latestGold.rate_type} | Source: {latestGold.source}</p>
+                <p className="text-sm text-amber-800 mt-1">{latestGold.rate_type}</p>
               </div>
             )}
             {latestSilver && (
               <div className="p-4 border border-slate-200 bg-slate-50 rounded-lg">
                 <h3 className="font-bold text-slate-900 mb-2">Latest Silver ({latestSilver.date_ad})</h3>
                 <p className="text-2xl font-black text-slate-700">NPR {fmtNPR(latestSilver.source_per_tola)} <span className="text-sm font-medium text-slate-500">per tola</span></p>
-                <p className="text-sm text-slate-600 mt-1">{latestSilver.rate_type} | Source: {latestSilver.source}</p>
+                <p className="text-sm text-slate-600 mt-1">{latestSilver.rate_type}</p>
               </div>
             )}
           </div>
           <div className="mt-6 prose prose-slate max-w-none text-sm">
             <p>
               This historical archive maintains an immutable dataset of Nepalese gold and silver rates. 
-              The prices shown are exact representations of the published source data (such as FENEGOSIDA). 
+              These historical data are compiled from official sources. 
               We do not invent values, estimate missing days, or alter the historical record. 
               Calculated units (like per gram) are deterministically derived from the source-published per-tola values.
             </p>
