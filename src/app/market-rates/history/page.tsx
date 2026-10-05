@@ -298,16 +298,20 @@ export default function HistoryHubPage() {
 
         {/* Gold Rate by Unit */}
         <section className="max-w-4xl">
-          <h2 className="text-2xl font-black text-slate-900 mb-4">Gold Rate by Unit</h2>
-          <p className="text-sm text-slate-600 mb-4">
-            Gold rates in the archive are recorded per tola. Values for other units are deterministically calculated from the recorded per-tola rate. <span className="italic">Based on the latest recorded gold rate ({latestGold?.date_ad}).</span>
+          <h2 className="text-2xl font-black text-slate-900 mb-1">Gold Rate by Unit</h2>
+          <p className="text-sm font-semibold text-amber-700 mb-3">
+            Based on latest recorded 24K gold rate — {latestGold?.date_ad} (NPR {fmtNPR(latestGold?.fine_gold ?? null)} / tola)
+          </p>
+          <p className="text-xs text-slate-500 mb-4">
+            All values below are deterministically calculated from the per-tola source record. These are not averages or historical calculations.
           </p>
           <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
             <table className="w-full text-sm text-left border-collapse">
+              <caption className="sr-only">24K gold rate equivalents by unit — based on {latestGold?.date_ad}</caption>
               <thead className="bg-slate-50 border-b border-slate-200 text-xs font-black uppercase tracking-wider text-slate-600">
                 <tr>
                   <th scope="col" className="px-6 py-3">Unit</th>
-                  <th scope="col" className="px-6 py-3 text-right">Equivalent Rate</th>
+                  <th scope="col" className="px-6 py-3 text-right">Rate (NPR) — calculated</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
