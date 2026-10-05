@@ -1,4 +1,4 @@
-importScripts('https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.js');
+importScripts('/workers/math.js');
 
 self.onmessage = (e) => {
   const data = e.data;
