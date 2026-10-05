@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import fs from 'fs';
 import path from 'path';
 import Link from 'next/link';
+import NepaliDate from 'nepali-date-converter';
 
 export const metadata: Metadata = {
   title: 'Gold Rate History in Nepal – Historical Gold Prices',
@@ -57,6 +58,15 @@ export default function HistoryHubPage() {
       g.silver = r.source_per_tola;
     }
     if (!g.date_bs && r.date_bs) g.date_bs = r.date_bs;
+  });
+
+  // Fallback calculate Nepali date if missing
+  grouped.forEach(g => {
+    if (!g.date_bs && g.date_ad) {
+      try {
+        g.date_bs = new NepaliDate(new Date(g.date_ad)).format('YYYY/MM/DD');
+      } catch (e) {}
+    }
   });
 
   const tableData = Array.from(grouped.values()).sort((a, b) => new Date(b.date_ad).getTime() - new Date(a.date_ad).getTime());

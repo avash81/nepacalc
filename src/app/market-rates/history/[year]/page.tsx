@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import Link from 'next/link';
 import YearClientFilter from './YearClientFilter';
+import NepaliDate from 'nepali-date-converter';
 import YearClientChart from './YearClientChart';
 
 const YEARS = ['2026', '2025', '2024', '2023', '2022', '2021', '2020', '2019'];
@@ -77,6 +78,15 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
       g.silver = r.source_per_tola;
     }
     if (!g.date_bs && r.date_bs) g.date_bs = r.date_bs;
+  });
+
+  // Fallback calculate Nepali date if missing
+  grouped.forEach(g => {
+    if (!g.date_bs && g.date_ad) {
+      try {
+        g.date_bs = new NepaliDate(new Date(g.date_ad)).format('YYYY/MM/DD');
+      } catch (e) {}
+    }
   });
 
   const tableData = Array.from(grouped.values()).sort((a, b) => new Date(b.date_ad).getTime() - new Date(a.date_ad).getTime());
