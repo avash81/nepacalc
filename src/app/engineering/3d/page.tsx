@@ -379,6 +379,126 @@ export default function ThreeDPage() {
       <ThreeDCalculatorClient />
 
       {/*
+        ── RICH SEO BLOCK ────────────────────────────────────────────────────
+        Server-rendered at build time. Search bots index this instantly (0ms)
+        with zero JavaScript. Mirrors the exact tool UI elements.
+        sr-only keeps it invisible to sighted users. DO NOT REMOVE.
+        ─────────────────────────────────────────────────────────────────────
+      */}
+      <section aria-label="3D graphing calculator tool content" className="sr-only">
+
+        <h2>Equation Input — 3D Graphing Calculator</h2>
+        <p>
+          Enter a mathematical equation in the equations panel. The default equation is
+          z = sin(sqrt(x^2 + y^2))+b. Type any equation in the form z = f(x,y) to plot a
+          3D surface. Use the + ADD button to add a second or third equation to the same graph.
+          Each equation is plotted in a different colour. Use the OPACITY slider to change the
+          transparency of each surface. Click the × button to remove an equation layer.
+        </p>
+
+        <h3>Scientific Input Panel</h3>
+        <p>
+          The scientific keyboard panel lets you build equations by clicking buttons instead of
+          typing. Available keys include: x, y, z, a, b, c, open bracket (, close bracket ),
+          AC (clear all), digits 0 through 9, decimal point, arithmetic operators + − × ÷,
+          functions sin, cos, tan, exp, sqrt (√), log, and special constants π (pi) and e.
+          Additional keys: x² (x squared), x³ (x cubed), DEL (delete last character),
+          ENTER (submit equation). Press the keyboard icon in the equation row to open or
+          close this panel.
+        </p>
+
+        <h3>Equation Examples</h3>
+        <ul>
+          <li>Wave / Sinc: z = sin(sqrt(x^2 + y^2)) / sqrt(x^2 + y^2)</li>
+          <li>Sinc with variable: z = sin(sqrt(x^2 + y^2)) + b</li>
+          <li>Saddle surface: z = x^2 - y^2</li>
+          <li>Paraboloid: z = x^2 + y^2</li>
+          <li>Gaussian bell curve: z = exp(-x^2 - y^2)</li>
+          <li>Ripple: z = sin(x) * cos(y)</li>
+          <li>Sombrero: z = sin(sqrt(x^2 + y^2))</li>
+          <li>Cone: z = sqrt(x^2 + y^2)</li>
+          <li>Hemisphere: z = sqrt(1 - x^2 - y^2)</li>
+          <li>Sphere (implicit): z = sqrt(max(0, 1 - x^2 - y^2))</li>
+          <li>Cylinder: z = sin(atan2(y, x) * 3)</li>
+          <li>Torus cross section: z = sqrt(max(0, (sqrt(x^2+y^2)-1)^2))</li>
+          <li>Twisted surface: z = sin(x * y)</li>
+          <li>Ellipsoid: z = sqrt(max(0, 1 - x^2/4 - y^2/9))</li>
+          <li>Hyperboloid: z = sqrt(1 + x^2 - y^2)</li>
+          <li>Monkey saddle: z = x^3 - 3*x*y^2</li>
+        </ul>
+
+        <h3>Variables and Constants Panel</h3>
+        <p>
+          The variables and constants panel appears on the right side of the equation input row.
+          When you type an equation containing letters other than x, y, or z — for example
+          a, b, or c — those variables are automatically detected and added to this panel with a
+          default value of 1. Change the value of each variable using the number input field.
+          For example: z = a * sin(x) + b * cos(y) creates variables a and b. Adjust a or b to
+          see the surface shape change in real time.
+        </p>
+
+        <h3>Function Presets</h3>
+        <p>
+          The Presets panel contains 13 built-in mathematical surfaces. Click any preset to
+          instantly load that equation into the calculator and render the 3D graph:
+        </p>
+        <ul>
+          <li>Wave — z = sin(sqrt(x^2 + y^2))</li>
+          <li>Saddle — z = x^2 - y^2</li>
+          <li>Sombrero — z = sin(sqrt(x^2 + y^2)) / (sqrt(x^2 + y^2) + 0.001)</li>
+          <li>Gaussian — z = exp(-x^2 - y^2)</li>
+          <li>Sphere — z = sqrt(max(0, 1 - x^2 - y^2))</li>
+          <li>Cylinder — z = sin(atan2(y, x) * 3)</li>
+          <li>Torus — torus cross section surface</li>
+          <li>Cone — z = sqrt(x^2 + y^2)</li>
+          <li>Cuboid — box surface approximation</li>
+          <li>Ellipsoid — z = sqrt(max(0, 1 - x^2/4 - y^2/9))</li>
+          <li>Hyperboloid — z = sqrt(1 + x^2 - y^2)</li>
+          <li>Monkey Saddle — z = x^3 - 3*x*y^2</li>
+          <li>Paraboloid — z = x^2 + y^2</li>
+        </ul>
+
+        <h3>Cross-Section Slicing</h3>
+        <p>
+          The Cross-Section Slicing panel is below the 3D graph. Choose the slice axis using
+          the NONE, X, Y, or Z buttons. Drag the PLANE POSITION slider to move the cut plane
+          through the surface from −5 to +5. When Z slicing is active, the plane cuts
+          horizontally through the surface, revealing its internal contour. X and Y slicing
+          cut vertically. Select NONE to remove the slice and display the full surface.
+        </p>
+
+        <h3>3D Graph Viewport</h3>
+        <p>
+          The 3D graph renders a WebGL surface in your browser using Three.js. The coordinate
+          axes are colour-coded: X axis in red, Y axis in green, Z axis in blue. A grey grid
+          marks the XY plane. Rotate the view by clicking and dragging. Zoom with the scroll
+          wheel or pinch gesture on touch screens. Use the reset button (↺) to return to the
+          default camera angle. Zoom in (+) and zoom out (−) buttons are on the right side of
+          the canvas. The search icon fits the surface to view.
+        </p>
+
+        <h3>Display and Resolution Settings</h3>
+        <p>
+          Choose the mesh resolution: Low (30×30 grid), Medium (60×60), High (100×100),
+          Ultra (150×150). Higher resolution produces smoother curves but requires more GPU
+          computation. Switch the render style between Surface (solid fill), Wireframe (mesh
+          lines), or Points. The geometry is computed in a Web Worker off the main thread,
+          so the page stays interactive at all resolution settings.
+        </p>
+
+        <h3>Supported Mathematical Functions</h3>
+        <p>
+          sin, cos, tan, asin, acos, atan, atan2, sinh, cosh, tanh, sqrt, cbrt, exp, log,
+          log2, log10, abs, sign, ceil, floor, round, min, max, pow, pi (π), e (Euler number),
+          x^2 (squared), x^3 (cubed), exponent notation (2e3 = 2000).
+        </p>
+
+      </section>
+
+      {/* Preload graph worker so browser fetches it before React mounts */}
+      {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+
+      {/*
         ── SEO STATIC BLOCK ─────────────────────────────────────────────
         Rendered at build time (server component). Search engine crawlers
         read this HTML instantly with zero JavaScript. Visually hidden
