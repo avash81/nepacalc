@@ -10,9 +10,9 @@ export const revalidate = 3600; // 1 hour
 
 function getLiveDate() {
   try {
-    const data = fs.readFileSync(path.join(process.cwd(), 'public', 'data', 'live-rates.json'), 'utf8');
+    const data = fs.readFileSync(path.join(process.cwd(), 'public', 'data', 'forex-rates.json'), 'utf8');
     const json = JSON.parse(data);
-    return json.date || new Date().toISOString().split('T')[0];
+    return json.nrb_date || new Date().toISOString().split('T')[0];
   } catch (e) {
     return new Date().toISOString().split('T')[0];
   }
@@ -58,6 +58,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: 'Nepal Remittance Rates 2026 — AED, QAR, SAR, MYR, KRW to NPR | NepaCalc',
       description: 'Official NRB buying and selling rates for Nepal\'s top remittance corridors — UAE, Qatar, Saudi Arabia, Kuwait, Malaysia, Korea, USA, UK, Australia.',
       type: 'article',
+      publishedTime: '2026-04-21T02:48:38+05:45',
       modifiedTime: new Date(rawDate).toISOString(),
     },
   };
@@ -117,6 +118,18 @@ export default async function Page() {
     'publisher': { '@type': 'Organization', 'name': 'NepaCalc', 'url': 'https://nepacalc.com' },
   };
 
+  const schemaArticle = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    'headline': 'Remittance Rates Nepal Today | Live NRB Forex Rates',
+    'url': 'https://nepacalc.com/market-rates/remittance/',
+    'description': 'Official NRB remittance exchange rates for UAE, Qatar, Saudi Arabia, Kuwait, Malaysia, Korea, USA, UK, Australia.',
+    'datePublished': '2026-04-21T02:48:38+05:45',
+    'dateModified': new Date(rawDate).toISOString(),
+    'author': { '@type': 'Organization', 'name': 'NepaCalc', 'url': 'https://nepacalc.com' },
+    'publisher': { '@type': 'Organization', 'name': 'NepaCalc', 'url': 'https://nepacalc.com' },
+  };
+
   const schemaFAQ = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -134,6 +147,7 @@ export default async function Page() {
     <div className="bg-white min-h-screen">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaWebPage) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaFAQ) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaArticle) }} />
       <CalcWrapper
         title="Nepal Remittance Rates 2026 — Official NRB Exchange Rates"
         description="Official Nepal Rastra Bank (NRB) buying and selling rates for Nepal's top remittance corridors — UAE (AED), Qatar (QAR), Saudi Arabia (SAR), Kuwait (KWD), Malaysia (MYR), Korea (KRW), USA, UK, Australia."

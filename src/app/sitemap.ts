@@ -22,6 +22,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModDate = new Date();
 
   let goldRateDate = lastModDate;
+  let forexDate = lastModDate;
+
+  try {
+    const fxPath = path.join(process.cwd(), 'public', 'data', 'forex-rates.json');
+    if (fs.existsSync(fxPath)) {
+      const fxData = JSON.parse(fs.readFileSync(fxPath, 'utf8'));
+      if (fxData.nrb_date) {
+        forexDate = new Date(fxData.nrb_date + 'T00:00:00Z');
+      }
+    }
+  } catch (e) {
+    console.error('sitemap forex date read error:', e);
+  }
   try {
     const mrPath = path.join(process.cwd(), 'public', 'data', 'market-rates.json');
     if (fs.existsSync(mrPath)) {
@@ -75,7 +88,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/income-tax/how-to-calculate-income-tax-nepal',
   ].map((route) => ({
     url: cleanUrl(route),
-    lastModified: (route === '/electricity/nepal-unit-price' || route === '/electricity/nea-tariff-rates') ? new Date('2026-06-19T00:00:00Z') : (route === '/engineering/3d' || route === '/market-rates' || route === '/market-rates/history' || route === '/nepal/nepal-budget') ? new Date() : lastModDate,
+    lastModified: (route === '/electricity/nepal-unit-price' || route === '/electricity/nea-tariff-rates') ? new Date('2026-06-19T00:00:00Z') : (route === '/engineering/3d' || route === '/nepal/nepal-budget') ? new Date() : ((route === '/market-rates' || route === '/market-rates/history') ? goldRateDate : lastModDate),
     changeFrequency: (route === '/market-rates' || route === '/market-rates/history') ? ('daily' as const) : ('weekly' as const),
     priority: route === '' ? 1.0 :
               route === '/engineering/3d' ? 0.95 :
@@ -121,7 +134,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     
     return {
       url: cleanUrl(isDirectRoute ? `/${calc.slug}` : `/calculator/${calc.slug}`),
-      lastModified: calc.slug === 'nea-bill' ? new Date('2026-06-19T00:00:00Z') : (isGoldPage ? goldRateDate : (isMarketRate ? new Date() : lastModDate)),
+      lastModified: calc.slug === 'nea-bill' ? new Date('2026-06-19T00:00:00Z') : (isGoldPage || calc.slug.includes('silver') ? goldRateDate : (isMarketRate ? forexDate : lastModDate)),
       changeFrequency: isMarketRate ? ('daily' as const) : (isCritical ? 'daily' as const : 'weekly' as const),
       // Gold price is highest-value page — priority 1.0 (same as homepage)
       priority: isGoldPage ? 1.0 : calc.slug === 'nea-bill' ? 0.95 : (isCritical ? 0.9 : (isMarketRate ? 0.9 : 0.75)),

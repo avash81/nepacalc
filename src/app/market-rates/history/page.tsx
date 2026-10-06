@@ -143,7 +143,7 @@ export default function HistoryHubPage() {
     },
     creator: { '@type': 'Organization', name: 'NepaCalc', url: 'https://nepacalc.com' },
     license: 'https://creativecommons.org/licenses/by/4.0/',
-    dateModified: dataset.meta?.last_updated_ad || new Date().toISOString().split('T')[0],
+    dateModified: dataset.meta?.last_updated_ad ? new Date(dataset.meta.last_updated_ad).toISOString() : '2026-10-06T00:00:00Z',
   };
 
   return (

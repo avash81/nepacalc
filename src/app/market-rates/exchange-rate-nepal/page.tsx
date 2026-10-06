@@ -11,9 +11,9 @@ export const revalidate = 3600; // 1 hour
 
 function getLiveDate() {
   try {
-    const data = fs.readFileSync(path.join(process.cwd(), 'public', 'data', 'live-rates.json'), 'utf8');
+    const data = fs.readFileSync(path.join(process.cwd(), 'public', 'data', 'forex-rates.json'), 'utf8');
     const json = JSON.parse(data);
-    return json.date || new Date().toISOString().split('T')[0];
+    return json.nrb_date || new Date().toISOString().split('T')[0];
   } catch (e) {
     return new Date().toISOString().split('T')[0];
   }
@@ -92,7 +92,8 @@ export default async function Page() {
           name: "Nepal Rastra Bank Daily Exchange Rates",
           description: "Daily exchange rates for major currencies against Nepalese Rupee (NPR) based on official Nepal Rastra Bank (NRB) reference rates. Includes USD, EUR, GBP, AUD, AED, QAR, SAR, INR and more.",
           url: "https://nepacalc.com/market-rates/exchange-rate-nepal/",
-          dateModified: new Date(rawDate).toISOString(),
+          publishedTime: '2026-04-21T02:48:38+05:45',
+      modifiedTime: new Date(rawDate).toISOString(),
           temporalCoverage: "2024/..",
           isPartOf: "https://nepacalc.com/market-rates/#collection",
           license: "https://creativecommons.org/licenses/by/4.0/",
