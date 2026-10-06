@@ -563,7 +563,7 @@ export default function ThreeDCalculatorClient() {
               <button
                 aria-label={isFullscreen ? 'Exit Fullscreen' : 'View Fullscreen'}
                 onClick={toggleFullscreen}
-                className="absolute bottom-3 right-3 z-20 flex items-center gap-1.5 px-2.5 py-1.5 rounded bg-white/90 backdrop-blur-sm border border-slate-200 hover:bg-white text-slate-600 hover:text-[#1e40af] text-[9px] font-bold uppercase tracking-wide transition-all shadow-sm opacity-60 hover:opacity-100"
+                className="absolute bottom-3 left-3 z-20 flex items-center gap-1.5 px-2.5 py-1.5 rounded bg-white/90 backdrop-blur-sm border border-slate-200 hover:bg-white text-slate-600 hover:text-[#1e40af] text-[9px] font-bold uppercase tracking-wide transition-all shadow-sm opacity-60 hover:opacity-100"
               >
                 <Maximize className="w-3 h-3" />
                 <span className="hidden sm:inline">{isFullscreen ? 'Exit' : 'Fullscreen'}</span>
@@ -641,7 +641,7 @@ export default function ThreeDCalculatorClient() {
               </Canvas>
               
               {/* STUDIO CONTROLS, FLOATING PANEL */}
-              <div className="absolute top-4 right-4 flex flex-col gap-2 items-end z-10">
+              <div className="absolute top-4 right-4 flex flex-col gap-2 items-end z-30">
                 <button 
                   onClick={() => setIsSettingsOpen(!isSettingsOpen)}
                   className={`w-9 h-9 rounded shadow-sm border flex items-center justify-center transition-all ${isSettingsOpen ? 'bg-[#1a73e8] text-white border-blue-600' : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'}`}
@@ -716,10 +716,10 @@ export default function ThreeDCalculatorClient() {
                       <div className="pt-4 border-t border-slate-100">
                         <div className="text-[9px] font-bold text-slate-400 uppercase mb-3 tracking-widest">Technical Projections</div>
                         <div className="flex gap-2">
-                          <button aria-label="Perspective View" onClick={() => { setIsOrthographic(false); controlsRef.current?.reset(true); }} className={`flex-1 py-2.5 rounded border flex justify-center items-center transition-all ${!isOrthographic ? 'bg-[#1a73e8] border-blue-600 text-[#202124] shadow-sm' : 'bg-slate-50 border-slate-200 text-slate-400'}`}>
+                          <button aria-label="Perspective View" onClick={() => { setIsOrthographic(false); controlsRef.current?.reset(true); }} className={`flex-1 py-2.5 rounded border flex justify-center items-center transition-all ${!isOrthographic ? 'bg-[#1a73e8] border-blue-600 text-white shadow-sm' : 'bg-slate-50 border-slate-200 text-slate-400'}`}>
                             <Box className="w-4 h-4" />
                           </button>
-                          <button aria-label="Orthographic View" onClick={() => { setIsOrthographic(true); controlsRef.current?.rotateTo(0, Math.PI/2, true); }} className={`flex-1 py-2.5 rounded border flex justify-center items-center transition-all ${isOrthographic ? 'bg-[#1a73e8] border-blue-600 text-[#202124] shadow-sm' : 'bg-slate-50 border-slate-200 text-slate-400'}`}>
+                          <button aria-label="Orthographic View" onClick={() => { setIsOrthographic(true); controlsRef.current?.rotateTo(0, Math.PI/2, true); }} className={`flex-1 py-2.5 rounded border flex justify-center items-center transition-all ${isOrthographic ? 'bg-[#1a73e8] border-blue-600 text-white shadow-sm' : 'bg-slate-50 border-slate-200 text-slate-400'}`}>
                             <RotateCcw className="w-4 h-4" />
                           </button>
                           <button aria-label="Top View" onClick={() => controlsRef.current?.setLookAt(0, 0, 30, 0, 0, 0, true)} className="flex-1 py-2.5 bg-slate-50 border border-slate-200 rounded flex justify-center items-center text-slate-400 hover:bg-slate-100">
