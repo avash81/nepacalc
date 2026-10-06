@@ -498,13 +498,23 @@ export default function ThreeDCalculatorClient() {
           <div className="w-full md:w-[40%] shrink-0 bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm flex flex-col">
             <div className="flex items-center justify-between px-2 py-1 bg-[#f8fafc] border-b border-slate-200">
               <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Variables & Constants</h2>
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1.5 bg-blue-50/60 p-0.5 rounded border border-blue-200 shadow-sm">
                 <input
                   id="newVarNameInput"
                   type="text"
                   placeholder="a"
                   maxLength={1}
-                  className="w-8 h-5 text-center border border-slate-200 rounded text-[10px] font-bold text-slate-700 bg-white focus:outline-none focus:border-blue-400"
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      const input = e.currentTarget;
+                      const name = input.value.trim();
+                      if (name && /^[a-df-hj-vwA-DF-HJ-VW]$/.test(name) && !params.some(p => p.name === name)) {
+                        setParams(prev => [...prev, { id: name + Date.now(), name, value: 1, min: -10, max: 10, step: 0.1 }]);
+                        input.value = '';
+                      }
+                    }
+                  }}
+                  className="w-8 h-5 text-center border border-blue-300 rounded text-[11px] font-black text-blue-700 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 uppercase transition-all shadow-inner"
                 />
                 <button
                   onClick={() => {
@@ -515,7 +525,8 @@ export default function ThreeDCalculatorClient() {
                       input.value = '';
                     }
                   }}
-                  className="h-5 px-1.5 text-[9px] font-bold bg-[#1e40af] text-white rounded hover:bg-blue-700 transition-colors"
+                  className="h-5 px-2 text-[9px] font-black bg-[#1a73e8] hover:bg-[#1557b0] text-white rounded shadow-sm hover:shadow transition-all flex items-center gap-0.5 active:scale-95"
+                  title="Add custom variable"
                 >
                   + Add
                 </button>
@@ -528,8 +539,8 @@ export default function ThreeDCalculatorClient() {
                 </div>
               )}
               {params.map(p => (
-                <div key={p.id} className="flex items-center gap-1 bg-slate-50 border border-slate-200 px-1.5 py-0.5 rounded">
-                  <span className="text-[10px] font-bold text-slate-600 uppercase">{p.name} =</span>
+                <div key={p.id} className="flex items-center gap-1 bg-white border border-blue-200 px-2 py-1 rounded shadow-sm hover:border-blue-300 transition-all">
+                  <span className="text-[11px] font-black text-blue-900 uppercase">{p.name} =</span>
                   <input
                     type="text"
                     inputMode="decimal"
@@ -539,7 +550,7 @@ export default function ThreeDCalculatorClient() {
                       const val = parseFloat(e.target.value);
                       setParams(params.map(x => x.id === p.id ? { ...x, value: isNaN(val) ? 0 : val } : x));
                     }}
-                    className="w-12 h-5 text-center border border-slate-200 rounded text-blue-600 bg-white text-[11px] font-bold focus:outline-none focus:border-blue-400"
+                    className="w-14 h-5 text-center border border-slate-200 rounded text-blue-600 bg-slate-50/50 hover:bg-white text-[11px] font-bold focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-all"
                   />
                   <button
                     onClick={() => setParams(params.filter(x => x.id !== p.id))}
