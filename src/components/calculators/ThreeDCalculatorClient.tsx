@@ -612,12 +612,12 @@ export default function ThreeDCalculatorClient() {
                     </mesh>}
                     <ProfessionalAxis bounds={globalBounds} showLabels={showLabels} showGrid={showGrid} />
                     {graphs.filter(g => g.visible).map((graph, idx) => {
-                      const lowerEq = graph.equation.toLowerCase().trim();
+                      const lowerEqNoSpace = graph.equation.toLowerCase().replace(/\s+/g, '');
                       // Explicit if it starts with z=, y=, or x= (assignment style)
-                      const isImplicit = !lowerEq.startsWith('z =') && 
-                                       !lowerEq.startsWith('y =') && 
-                                       !lowerEq.startsWith('x =') &&
-                                       lowerEq.includes('x') && lowerEq.includes('y') && lowerEq.includes('z');
+                      const isImplicit = lowerEqNoSpace.includes('=') && 
+                                       !lowerEqNoSpace.startsWith('z=') && 
+                                       !lowerEqNoSpace.startsWith('y=') && 
+                                       !lowerEqNoSpace.startsWith('x=');
                       
                       return (
                         <WorkerSurfaceMesh 
