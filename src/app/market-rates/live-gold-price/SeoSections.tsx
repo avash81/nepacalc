@@ -9,6 +9,7 @@ interface SeoSectionsProps {
     gold: {
       tolaNPR: { current: number; high52w?: number; low52w?: number; avg30d?: number };
       tejabiTolaNPR: number;
+      tenGramNPR?: number;
     };
     silver?: { tolaNPR?: { current: number } };
   };
