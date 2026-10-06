@@ -106,7 +106,7 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
                 <td className="py-3 px-4 text-slate-600 font-medium">
                   {hallmarkCurrent && tejabiCurrent
                     ? `Today's gold price in Nepal is Rs. ${fmt(hallmarkCurrent)} per Tola for 24K Hallmark Gold and Rs. ${fmt(tejabiCurrent)} per Tola for 22K Tejabi Gold. The 24K Hallmark rate is Rs. ${fmt(rates?.gold?.tenGramNPR || 249915)} per 10 grams, while silver is Rs. ${fmt(silverCurrent || 4415)} per Tola, according to FENEGOSIDA.`
-                    : "Please refer to the live board above for today's dynamic Fine Gold and Tejabi Gold rates."}
+                    : "The official gold price in Nepal is updated daily at 10:30 AM by FENEGOSIDA. The 24K Hallmark and 22K Tejabi gold rates are determined by international spot prices, currency exchange rates, and local customs duties."}
                 </td>
               </tr>
               <tr>
@@ -114,7 +114,7 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
                 <td className="py-3 px-4 text-slate-600 font-medium">
                   {silverCurrent
                     ? `The official silver price in Nepal today is Rs. ${fmt(silverCurrent)} per Tola.`
-                    : "Please refer to the live board above for today's dynamic Silver (Chandi) rate."}
+                    : "The official silver (Chandi) price in Nepal is updated daily by FENEGOSIDA based on international market trends and local import taxes."}
                 </td>
               </tr>
               <tr>
