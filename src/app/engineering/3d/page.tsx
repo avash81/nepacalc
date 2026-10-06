@@ -437,29 +437,10 @@ export default function ThreeDPage() {
       </div>
 
       <section className="max-w-[1280px] mx-auto px-4 pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mt-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mt-8 items-start">
           
-          {/* Left Column (Stats, Trust, Links) */}
-          {/* Left Column: sticky TOC */}
-          <div className="lg:col-span-1">
-            <div className="sticky top-20 lg:top-24 bg-white border border-[#DADCE0] rounded-xl p-5 shadow-sm max-h-[calc(100vh-120px)] overflow-y-auto z-10">
-              <p className="text-[10px] font-black text-[#70757A] uppercase tracking-widest mb-3">On This Page</p>
-              <ol className="space-y-0.5 border-l-2 border-[#DADCE0]">
-                <li><a href="#what-is-3d-calculator" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">What is a 3D Graph Calculator?</a></li>
-                <li><a href="#how-to-use" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">How to Use It</a></li>
-                <li><a href="#supported-graph-types" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">Supported Graph Types</a></li>
-                <li><a href="#mathematical-formulas" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">Mathematical Formulas</a></li>
-                <li><a href="#engineering-applications" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">Engineering Applications</a></li>
-                <li><a href="#surface-library" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">Surface Library</a></li>
-                <li><a href="#examples" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">Examples</a></li>
-                <li><a href="#comparison" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">Comparison</a></li>
-                <li><a href="#faqs" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">Frequently Asked Questions</a></li>
-              </ol>
-            </div>
-          </div>
-
-                    {/* Right Column (Quick Features & Main Content) */}
-          <div className="lg:col-span-3">
+          {/* Main Content Column (Left on desktop) */}
+          <div className="lg:col-span-3 order-1">
             <div className="bg-white border border-[#DADCE0] rounded-xl p-8 lg:p-12 shadow-sm">
               <h2 className="text-2xl lg:text-3xl font-black text-[#202124] mb-6">Why Use This 3D Graph Calculator?</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-12">
@@ -489,7 +470,7 @@ export default function ThreeDPage() {
                   </div>
                 </div>
 
-                <h2 id="what-is-3d-calculator" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6">What Is a 3D Graphing Calculator?</h2>
+                <h2 id="what-is-3d-calculator" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6 scroll-mt-24">What Is a 3D Graphing Calculator?</h2>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-6">
                   A 3D graphing calculator is an interactive tool for plotting mathematical equations and visualizing surfaces in three dimensions. It shows how values change across the x, y and z axes, making it easier to explore functions and understand their shapes.
                 </p>
@@ -498,7 +479,7 @@ export default function ThreeDPage() {
                 </p>
 
                 {/* ── Why Use ── */}
-                <h2 id="why-use-3d-calculator" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6">Why Use a 3D Graph Calculator?</h2>
+                <h2 id="why-use-3d-calculator" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6 scroll-mt-24">Why Use a 3D Graph Calculator?</h2>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-6">
                   Many mathematical concepts become difficult to understand when viewed only as equations. Three-dimensional visualization allows you to see how variables interact, how surfaces change, and how mathematical relationships behave across space.
                 </p>
@@ -519,7 +500,7 @@ export default function ThreeDPage() {
                 </p>
 
                 {/* ── How It Works ── */}
-                <h2 id="how-it-works" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6">How Does a 3D Graph Calculator Work?</h2>
+                <h2 id="how-it-works" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6 scroll-mt-24">How Does a 3D Graph Calculator Work?</h2>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-6">
                   A 3D graph calculator converts mathematical equations into graphical surfaces by evaluating thousands of coordinate points across three-dimensional space. This is similar in concept to how the <Link href="/math-tools/geometry" className="text-[#1967D2] hover:underline font-medium">Geometry Calculator</Link> evaluates 2D shapes, but extended into three dimensions.
                 </p>
@@ -541,7 +522,7 @@ export default function ThreeDPage() {
                 </p>
 
                 {/* ── Coordinate System ── */}
-                <h2 id="coordinate-system" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6">Understanding the Three-Dimensional Coordinate System</h2>
+                <h2 id="coordinate-system" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6 scroll-mt-24">Understanding the Three-Dimensional Coordinate System</h2>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-8">
                   A three-dimensional graph uses three perpendicular axes to describe the position of every point in space.
                 </p>
@@ -564,7 +545,7 @@ export default function ThreeDPage() {
                 </p>
 
                 {/* ── Explicit Functions ── */}
-                <h2 id="explicit-functions" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6">Explicit Functions</h2>
+                <h2 id="explicit-functions" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6 scroll-mt-24">Explicit Functions</h2>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-4">
                   One of the most common graph types supported by a <strong>3D Graph Calculator</strong> is the explicit function. An explicit function defines the height of a surface directly as a function of two variables.
                 </p>
@@ -584,7 +565,7 @@ export default function ThreeDPage() {
                 </p>
 
                 {/* ── Implicit Surfaces ── */}
-                <h2 id="implicit-surfaces" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6">Implicit Surfaces</h2>
+                <h2 id="implicit-surfaces" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6 scroll-mt-24">Implicit Surfaces</h2>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-6">
                   Unlike explicit functions, implicit equations define relationships among all three variables simultaneously.
                 </p>
@@ -614,7 +595,7 @@ export default function ThreeDPage() {
                 </p>
 
                 {/* ── Try These Example Equations ── */}
-                <h2 id="example-equations" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6">Try These Example Equations</h2>
+                <h2 id="example-equations" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6 scroll-mt-24">Try These Example Equations</h2>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-6">
                   You can copy and paste these equations directly into the 3D Graph Calculator to see how they render.
                 </p>
@@ -654,7 +635,7 @@ export default function ThreeDPage() {
                 </div>
 
                 {/* ── Why Choose NepaCalc 3D Graph Calculator? ── */}
-                <h2 id="why-choose" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6">Why Choose NepaCalc 3D Graph Calculator?</h2>
+                <h2 id="why-choose" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6 scroll-mt-24">Why Choose NepaCalc 3D Graph Calculator?</h2>
                 <ul className="list-disc pl-6 space-y-2 text-[#5F6368] mb-12 text-lg">
                   <li><strong>Browser-based:</strong> Runs entirely in your web browser.</li>
                   <li><strong>No installation:</strong> No heavy software downloads required.</li>
@@ -671,7 +652,7 @@ export default function ThreeDPage() {
                 </ul>
 
                 {/* ── Common Mistakes When Graphing 3D Functions ── */}
-                <h2 id="common-mistakes" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6">Common Mistakes When Graphing 3D Functions</h2>
+                <h2 id="common-mistakes" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6 scroll-mt-24">Common Mistakes When Graphing 3D Functions</h2>
                 <ul className="list-disc pl-6 space-y-2 text-[#5F6368] mb-12 text-lg">
                   <li><strong>Incorrect parentheses:</strong> Failing to balance brackets properly alters the mathematical order of operations.</li>
                   <li><strong>Invalid equation syntax:</strong> Using symbols like 'x' for multiplication instead of '*' can cause parsing errors.</li>
@@ -683,7 +664,7 @@ export default function ThreeDPage() {
                 </ul>
 
                 {/* ── Educational Applications ── */}
-                <h2 id="educational-applications" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6">Educational Applications</h2>
+                <h2 id="educational-applications" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6 scroll-mt-24">Educational Applications</h2>
                 <ul className="list-disc pl-6 space-y-2 text-[#5F6368] mb-12 text-lg">
                   <li><strong>High School:</strong> Introduce students to 3D geometry and spatial reasoning.</li>
                   <li><strong>AP Calculus:</strong> Visualize volumes of revolution and surface areas.</li>
@@ -695,7 +676,7 @@ export default function ThreeDPage() {
                 </ul>
 
                 {/* ── Engineering Applications ── */}
-                <h2 id="engineering-applications" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6">Engineering Applications</h2>
+                <h2 id="engineering-applications" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6 scroll-mt-24">Engineering Applications</h2>
                 <ul className="list-disc pl-6 space-y-2 text-[#5F6368] mb-12 text-lg">
                   <li><strong>Structural Analysis:</strong> Visualize load distributions and deformation across surfaces.</li>
                   <li><strong>Fluid Mechanics:</strong> Model pressure gradients, flow velocity profiles, and turbulence.</li>
@@ -709,7 +690,7 @@ export default function ThreeDPage() {
 
                 {/* ── Learning Path ── */}
                 <div className="bg-[#E8F0FE] border border-[#1967D2] rounded-xl p-8 mb-12 text-center">
-                  <h2 id="learning-path" className="text-2xl font-black text-[#202124] mb-6">Recommended Learning Path</h2>
+                  <h2 id="learning-path" className="text-2xl font-black text-[#202124] mb-6 scroll-mt-24">Recommended Learning Path</h2>
                   <p className="text-lg text-[#5F6368] mb-6">Follow this progression to master mathematical visualization:</p>
                   <div className="flex flex-col items-center gap-2">
                     <Link href="/math-tools/scientific/" className="text-[#1967D2] font-bold hover:underline text-lg">Scientific Calculator</Link>
@@ -724,7 +705,7 @@ export default function ThreeDPage() {
                   </div>
                 </div>
                 {/* ── Common Problems You Can Solve ── */}
-                <h2 id="common-problems" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6">Common Problems You Can Solve</h2>
+                <h2 id="common-problems" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6 scroll-mt-24">Common Problems You Can Solve</h2>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-6">
                   This calculator is designed to help users with a variety of mathematical and engineering challenges:
                 </p>
@@ -742,7 +723,7 @@ export default function ThreeDPage() {
                 </ul>
 
                 {/* ── Related Mathematics Topics ── */}
-                <h2 id="related-topics" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6">Related Mathematics Topics</h2>
+                <h2 id="related-topics" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6 scroll-mt-24">Related Mathematics Topics</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
                   <div>
                     <h4 className="font-bold text-[#202124]">Cartesian Coordinates</h4>
@@ -801,7 +782,7 @@ export default function ThreeDPage() {
                 </div>
 
                 {/* ── Who Uses It ── */}
-                <h2 id="who-uses-it" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6">Who Uses a 3D Graph Calculator?</h2>
+                <h2 id="who-uses-it" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6 scroll-mt-24">Who Uses a 3D Graph Calculator?</h2>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-8">
                   Interactive three-dimensional graphing tools are used across many academic and professional disciplines.
                 </p>
@@ -841,7 +822,7 @@ export default function ThreeDPage() {
                 </div>
 
                 {/* ── Why Interactive Visualization Matters ── */}
-                <h2 id="why-interactive" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6">Why Interactive Visualization Matters</h2>
+                <h2 id="why-interactive" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6 scroll-mt-24">Why Interactive Visualization Matters</h2>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-4">
                   Reading an equation provides numerical information, but visualizing it provides understanding. Interactive graphing enables users to:
                 </p>
@@ -863,7 +844,7 @@ export default function ThreeDPage() {
                 </p>
 
                 {/* ── Part 3B: How to Use the 3D Graph Calculator ── */}
-                <h2 id="how-to-use" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-2">How to Use the 3D Graphing Calculator</h2>
+                <h2 id="how-to-use" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-2 scroll-mt-24">How to Use the 3D Graphing Calculator</h2>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-8">
                   Enter a mathematical equation, choose the available graph settings, and use the interactive controls to explore the surface. You can rotate and zoom the graph, adjust the display settings, compare equations and examine cross sections where available.
                 </p>
@@ -922,7 +903,7 @@ export default function ThreeDPage() {
                 </div>
 
                 {/* ── Main Features ── */}
-                <h2 id="features" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-6">Main Features of the 3D Graph Calculator</h2>
+                <h2 id="features" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-6 scroll-mt-24">Main Features of the 3D Graph Calculator</h2>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-8">
                   The NepaCalc <strong>3D Graph Calculator</strong> combines interactive visualization with advanced mathematical capabilities.
                 </p>
@@ -950,7 +931,7 @@ export default function ThreeDPage() {
                 </div>
 
                 {/* ── Supported Expressions ── */}
-                <h2 id="supported-expressions" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-6">Supported Mathematical Expressions</h2>
+                <h2 id="supported-expressions" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-6 scroll-mt-24">Supported Mathematical Expressions</h2>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-4">
                   The calculator supports many commonly used mathematical operations, giving users the flexibility to visualize everything from simple classroom examples to advanced engineering equations.
                 </p>
@@ -961,7 +942,7 @@ export default function ThreeDPage() {
                 </div>
 
                 {/* ── Tips ── */}
-                <h2 id="tips" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-6">Tips for Better Graph Visualization</h2>
+                <h2 id="tips" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-6 scroll-mt-24">Tips for Better Graph Visualization</h2>
                 <ul className="list-disc pl-6 space-y-2 text-[#5F6368] mb-12 text-lg">
                   <li>Start with simple equations before experimenting with complex surfaces.</li>
                   <li>Rotate the graph frequently to reveal hidden geometry.</li>
@@ -973,7 +954,7 @@ export default function ThreeDPage() {
                 </ul>
 
                 {/* ── Part 4: Mathematical Surface Library ── */}
-                <h2 id="surface-library" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-4">Mathematical Surface Library for 3D Graphing</h2>
+                <h2 id="surface-library" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-4 scroll-mt-24">Mathematical Surface Library for 3D Graphing</h2>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-4">
                   One of the biggest advantages of using a <strong>3D Graph Calculator</strong> is the ability to visualize mathematical surfaces that are difficult to understand from equations alone.
                 </p>
@@ -1333,7 +1314,7 @@ export default function ThreeDPage() {
                   </table>
                 </div>
 
-                <h2 id="custom-equations" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-6">Create Your Own Mathematical Surface</h2>
+                <h2 id="custom-equations" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-6 scroll-mt-24">Create Your Own Mathematical Surface</h2>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-4">
                   While the built-in presets demonstrate the most common mathematical models, the NepaCalc <strong>3D Graph Calculator</strong> also allows you to create completely custom equations.
                 </p>
@@ -1348,7 +1329,7 @@ export default function ThreeDPage() {
                 </p>
 
                 {/* ── Part 5: Learn 3D Graphing ── */}
-                <h2 id="learn-3d-graphing" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-2">Learn 3D Graphing and Mathematical Visualization</h2>
+                <h2 id="learn-3d-graphing" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-2 scroll-mt-24">Learn 3D Graphing and Mathematical Visualization</h2>
                 <div className="bg-[#F8F9FA] border-l-4 border-[#1967D2] p-4 rounded-r-lg mb-6"><p className="text-sm text-[#202124] font-medium leading-relaxed"><strong>What is 3D Mathematical Visualization?</strong> 3D mathematical visualization is the process of converting abstract multivariable functions and coordinate equations into interactive three-dimensional geometric surfaces. This graphical representation aids in understanding spatial relationships, gradients, cross-sections, and topological structures critical for engineering, physics, and advanced calculus applications.</p></div>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-4">
                   A <strong>3D Graph Calculator</strong> is more than a plotting tool, it is a visual learning environment for understanding higher-dimensional mathematics.
@@ -1647,7 +1628,7 @@ export default function ThreeDPage() {
                   ))}
                 </div>
 
-                <h2 id="real-world-applications" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-2">Real-World Applications of 3D Graphing</h2>
+                <h2 id="real-world-applications" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-2 scroll-mt-24">Real-World Applications of 3D Graphing</h2>
                 <div className="bg-[#F8F9FA] border-l-4 border-[#1967D2] p-4 rounded-r-lg mb-6"><p className="text-sm text-[#202124] font-medium leading-relaxed"><strong>Why is 3D Graphing Important in the Real World?</strong> 3D graphing is essential in real-world applications for modeling structural stress in engineering, plotting financial risk terrains, simulating fluid dynamics, and rendering computer graphics. By translating data into 3D space, professionals can predict physical behaviors and optimize designs before real-world implementation.</p></div>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-4">
                   A 3D Graph Calculator is not only a mathematical visualization tool; it is also an essential platform used across engineering, architecture, physics, computer science, finance, medicine, and scientific research.
@@ -1761,7 +1742,7 @@ export default function ThreeDPage() {
                 </div>
 
                 {/* ── Part 7: Formula Library ── */}
-                <h2 id="formula-library" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-6">Complete 3D Graph Formula Library</h2>
+                <h2 id="formula-library" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-6 scroll-mt-24">Complete 3D Graph Formula Library</h2>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-4">
                   One of the biggest advantages of a professional 3D Graph Calculator is the ability to visualize a wide variety of mathematical surfaces. This calculator supports many of the equations commonly taught in mathematics, engineering, physics, computer graphics, and scientific research.
                 </p>
@@ -1831,7 +1812,7 @@ export default function ThreeDPage() {
                 </div>
 
                 {/* ── Part 8: Advanced Concepts ── */}
-                <h2 id="advanced-concepts" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-6">Advanced Concepts in 3D Graphing</h2>
+                <h2 id="advanced-concepts" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-6 scroll-mt-24">Advanced Concepts in 3D Graphing</h2>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-4">
                   As mathematical models become more sophisticated, understanding the underlying concepts becomes just as important as plotting the equations themselves. Professional engineers, mathematicians, physicists, data scientists, and researchers rely on advanced visualization techniques to analyze complex systems that cannot be represented using simple two-dimensional graphs.
                 </p>
@@ -1910,7 +1891,7 @@ export default function ThreeDPage() {
                   </div>
                 </div>
 
-                <h2 id="comparisons" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-6">Best 3D Graph Calculators Compared</h2>
+                <h2 id="comparisons" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-6 scroll-mt-24">Best 3D Graph Calculators Compared</h2>
                 <div className="overflow-x-auto my-6">
                   <table className="w-full border-collapse border border-[#DADCE0] text-left text-sm shadow-sm whitespace-nowrap">
                     <caption className="sr-only">Comparison of 3D Graph Calculators</caption>
@@ -2029,7 +2010,7 @@ export default function ThreeDPage() {
                 </div>
 
                 {/* ── Related 3D Graphing Software ── */}
-                <h2 id="related-3d-software" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-6">Related 3D Graphing Software</h2>
+                <h2 id="related-3d-software" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-6 scroll-mt-24">Related 3D Graphing Software</h2>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-6">
                   Several tools exist for 3D mathematical visualization. Each serves a different audience. Here is a neutral overview of when each tool is most appropriate, and where NepaCalc fits.
                 </p>
@@ -2065,7 +2046,7 @@ export default function ThreeDPage() {
                 </div>
 
                                 {/* ── Part 10: Resources, Glossary, FAQs ── */}
-                <h2 id="glossary" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-6">3D Graphing Glossary</h2>
+                <h2 id="glossary" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-6 scroll-mt-24">3D Graphing Glossary</h2>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-6">
                   Understanding common graphing terminology makes it easier to interpret mathematical surfaces and use advanced visualization tools effectively.
                 </p>
@@ -2148,7 +2129,7 @@ export default function ThreeDPage() {
                   </div>
                 </div>
 
-                <h2 id="faqs" className="text-2xl lg:text-3xl font-black text-[#202124] mb-6 mt-16">Frequently Asked Questions (FAQ)</h2>
+                <h2 id="faqs" className="text-2xl lg:text-3xl font-black text-[#202124] mb-6 mt-16 scroll-mt-24">Frequently Asked Questions (FAQ)</h2>
                 <div className="space-y-4 mb-12">
                   <details className="group border border-[#DADCE0] rounded-xl bg-white p-4 cursor-pointer" open>
                     <summary className="font-bold text-[#202124] text-lg outline-none flex justify-between items-center">
@@ -2224,14 +2205,14 @@ export default function ThreeDPage() {
                   </details>
                 </div>
 
-                <h2 id="related-concepts" className="text-2xl lg:text-3xl font-black text-[#202124] mb-6">Related Mathematical Concepts</h2>
+                <h2 id="related-concepts" className="text-2xl lg:text-3xl font-black text-[#202124] mb-6 scroll-mt-24">Related Mathematical Concepts</h2>
                 <div className="flex flex-wrap gap-2 mb-12">
                   {['Coordinate Geometry','Linear Algebra','Multivariable Calculus','Differential Geometry','Numerical Analysis','Vector Calculus','Topology','Engineering Mathematics','Finite Element Analysis','Scientific Visualization'].map(t => (
                     <span key={t} className="bg-[#F8F9FA] border border-[#DADCE0] text-[#5F6368] px-3 py-1 rounded-full text-sm font-medium">{t}</span>
                   ))}
                 </div>
 
-                <h2 id="related-calculators" className="text-2xl lg:text-3xl font-black text-[#202124] mb-6">Related NepaCalc Calculators</h2>
+                <h2 id="related-calculators" className="text-2xl lg:text-3xl font-black text-[#202124] mb-6 scroll-mt-24">Related NepaCalc Calculators</h2>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-4">
                   Continue exploring mathematics using our specialized calculators. These tools complement the 3D Graph Calculator and help solve a wide range of mathematical, engineering, and scientific problems.
                 </p>
@@ -2241,7 +2222,7 @@ export default function ThreeDPage() {
                   ))}
                 </div>
 
-                <h2 id="who-uses" className="text-2xl lg:text-3xl font-black text-[#202124] mb-6">Who Should Use This Calculator?</h2>
+                <h2 id="who-uses" className="text-2xl lg:text-3xl font-black text-[#202124] mb-6 scroll-mt-24">Who Should Use This Calculator?</h2>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-4">Ideal for:</p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mb-12">
                   {['Mechanical Engineers', 'Civil Engineers', 'Aerospace Engineers', 'Architecture Students', 'Data Scientists', 'Machine Learning Engineers', 'Physics Researchers', 'Mathematics Teachers', 'University Professors', 'CAD Designers', 'Robotics Engineers'].map(u => (
@@ -2400,6 +2381,37 @@ export default function ThreeDPage() {
 
             </div>
           </div>
+
+          {/* Right Column: Sticky Table of Contents Sidebar */}
+          <div className="lg:col-span-1 order-2">
+              <div className="sticky top-20 lg:top-24 bg-white border border-[#DADCE0] rounded-xl p-5 shadow-sm max-h-[calc(100vh-120px)] overflow-y-auto z-10">
+                <p className="text-[11px] font-black text-[#202124] uppercase tracking-wider mb-3 flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#1967D2]" />
+                  Table of Contents
+                </p>
+                <nav aria-label="Table of Contents">
+                  <ol className="space-y-0.5 border-l-2 border-[#DADCE0]">
+                    <li><a href="#what-is-3d-calculator" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] hover:font-bold border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">1. What Is a 3D Calculator?</a></li>
+                    <li><a href="#why-use-3d-calculator" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] hover:font-bold border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">2. Why Use 3D Graphing?</a></li>
+                    <li><a href="#how-it-works" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] hover:font-bold border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">3. How It Works</a></li>
+                    <li><a href="#coordinate-system" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] hover:font-bold border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">4. Coordinate System</a></li>
+                    <li><a href="#explicit-functions" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] hover:font-bold border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">5. Explicit Functions (z=f(x,y))</a></li>
+                    <li><a href="#implicit-surfaces" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] hover:font-bold border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">6. Implicit Surfaces</a></li>
+                    <li><a href="#example-equations" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] hover:font-bold border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">7. Example Equations</a></li>
+                    <li><a href="#common-mistakes" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] hover:font-bold border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">8. Common Mistakes</a></li>
+                    <li><a href="#how-to-use" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] hover:font-bold border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">9. How to Use the Calculator</a></li>
+                    <li><a href="#features" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] hover:font-bold border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">10. Main Features</a></li>
+                    <li><a href="#supported-expressions" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] hover:font-bold border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">11. Supported Math Syntax</a></li>
+                    <li><a href="#surface-library" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] hover:font-bold border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">12. Surface Library</a></li>
+                    <li><a href="#engineering-applications" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] hover:font-bold border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">13. Engineering Applications</a></li>
+                    <li><a href="#formula-library" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] hover:font-bold border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">14. Complete Formula Library</a></li>
+                    <li><a href="#comparisons" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] hover:font-bold border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">15. Software Comparisons</a></li>
+                    <li><a href="#faqs" className="block pl-3 py-1 text-[12px] text-[#5F6368] hover:text-[#1967D2] hover:font-bold border-l-2 border-transparent hover:border-[#1967D2] -ml-px transition-colors">16. FAQs</a></li>
+                  </ol>
+                </nav>
+              </div>
+          </div>
+
         </div>
       </section>
     </>
