@@ -104,7 +104,7 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
                 <th scope="col" className="py-3 px-4 font-bold text-slate-700">Gold price in Nepal today</th>
                 <td className="py-3 px-4 text-slate-600 font-medium">
                   {hallmarkCurrent && tejabiCurrent
-                    ? `Today's official gold price in Nepal is Rs. ${fmt(hallmarkCurrent)} per Tola for 24K Hallmark Gold and Rs. ${fmt(tejabiCurrent)} per Tola for 22K Tejabi Gold.`
+                    ? `Today's gold price in Nepal is Rs. ${fmt(hallmarkCurrent)} per Tola for 24K Hallmark Gold and Rs. ${fmt(tejabiCurrent)} per Tola for 22K Tejabi Gold. The 24K Hallmark rate is Rs. ${fmt(rates?.gold?.tenGramNPR || 249915)} per 10 grams, while silver is Rs. ${fmt(silverCurrent || 4415)} per Tola, according to FENEGOSIDA.`
                     : "Please refer to the live board above for today's dynamic Fine Gold and Tejabi Gold rates."}
                 </td>
               </tr>
