@@ -88,7 +88,7 @@ const CURRICULUM_PRESETS = [
   },
   { 
     name: 'Torus (Donut)', 
-    eq: '(6 - sqrt(x^2+y^2))^2 + z^2 = 4', 
+    eq: '(sqrt(x^2+y^2) - 4)^2 + z^2 = 2.25', 
     color: '#ec4899',
     desc: 'A high-level geometric topology used in advanced mathematics, physics (like tokamak fusion reactors), and design.'
   },
@@ -100,7 +100,7 @@ const CURRICULUM_PRESETS = [
   },
   { 
     name: 'Cuboid (Prism)', 
-    eq: 'max(abs(x), abs(y*1.5), abs(z*2)) = 4', 
+    eq: 'x^8 + y^8 + z^8 = 1000', 
     color: '#64748b', 
     desc: 'The fundamental rectangle prism, used for teaching volume, surface area, and structural basics in geometry.' 
   },
