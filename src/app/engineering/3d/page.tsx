@@ -437,7 +437,7 @@ export default function ThreeDPage() {
       </div>
 
       <section className="max-w-[1280px] mx-auto px-4 pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mt-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mt-8">
           
           {/* Left Column (Stats, Trust, Links) */}
           {/* Left Column: sticky TOC */}

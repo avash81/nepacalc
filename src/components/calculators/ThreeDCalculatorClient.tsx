@@ -529,6 +529,11 @@ export default function ThreeDCalculatorClient() {
               </button>
             </div>
             <div className="p-2 lg:p-2.5 flex flex-wrap gap-2 items-center flex-1">
+              {params.length === 0 && (
+                <div className="w-full text-center py-4 text-[12px] text-slate-400 italic font-medium">
+                  No variables added. Click + Add to create one (e.g. a=1).
+                </div>
+              )}
               {params.map(p => (
                 <div key={p.id} className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 px-2 py-1 rounded">
                   <span className="text-[11px] font-bold text-slate-600 uppercase">{p.name} =</span>
