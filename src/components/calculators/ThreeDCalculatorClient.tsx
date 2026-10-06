@@ -304,7 +304,7 @@ export default function ThreeDCalculatorClient() {
   ]);
   const [params, setParams] = useState<Parameter[]>([]);
 
-  // Auto-detect unused constant letters (a-w except x,y,z,e) in equations and auto-add to Variables box
+  // Auto-detect unused constant letters (a-w except x,y,z,e) in equations and auto-add/remove to Variables box
   useEffect(() => {
     const detected = new Set<string>();
     graphs.forEach(g => {
@@ -319,20 +319,31 @@ export default function ThreeDCalculatorClient() {
       }
     });
 
-    if (detected.size > 0) {
-      setParams(prev => {
-        const existing = new Set(prev.map(p => p.name));
-        let changed = false;
-        const nextParams = [...prev];
-        detected.forEach(name => {
-          if (!existing.has(name)) {
-            nextParams.push({ id: name, name, value: 1, min: -10, max: 10 });
-            changed = true;
-          }
-        });
-        return changed ? nextParams : prev;
+    setParams(prev => {
+      const existing = new Set(prev.map(p => p.name));
+      let changed = false;
+      
+      let nextParams = prev.filter(p => {
+        if (!detected.has(p.name)) {
+          changed = true;
+          return false;
+        }
+        return true;
       });
-    }
+
+      detected.forEach(name => {
+        if (!existing.has(name)) {
+          nextParams.push({ id: Math.random().toString(), name, value: 1, min: -10, max: 10 });
+          changed = true;
+        }
+      });
+
+      if (changed) {
+        nextParams.sort((a, b) => a.name.localeCompare(b.name));
+      }
+
+      return changed ? nextParams : prev;
+    });
   }, [graphs]);
   const [resolution, setResolution] = useState(65);
   const [activeId, setActiveId] = useState<string | null>('1');
@@ -515,23 +526,12 @@ export default function ThreeDCalculatorClient() {
           <div className="w-full md:w-[40%] shrink-0 bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm flex flex-col">
             <div className="flex items-center justify-between px-3 py-1.5 bg-[#f8fafc] border-b border-slate-200">
               <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Variables & Constants</h2>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  const used = new Set(params.map(p => p.name));
-                  const next = 'abcdefghjkmnopqrstuvwxyz'.split('').find(c => !used.has(c)) || 'a';
-                  setParams([...params, { id: Math.random().toString(), name: next, value: 1, min: -10, max: 10 }]);
-                }}
-                className="flex items-center gap-1 px-2 py-0.5 rounded bg-blue-600 hover:bg-blue-700 text-white text-[9px] font-bold uppercase transition-all"
-                title="Add variable / constant"
-              >
-                <Plus className="w-3 h-3" /> Add
-              </button>
+
             </div>
             <div className="p-2 lg:p-2.5 flex flex-wrap gap-2 items-center flex-1">
               {params.length === 0 && (
                 <div className="w-full text-center py-4 text-[12px] text-slate-400 italic font-medium">
-                  No variables added. Click + Add to create one (e.g. a=1).
+                  No variables used. Type a letter (e.g. 'a') in your equation to add a slider.
                 </div>
               )}
               {params.map(p => (
@@ -558,7 +558,7 @@ export default function ThreeDCalculatorClient() {
                 </div>
               ))}
               {params.length === 0 && (
-                <span className="text-[11px] text-slate-400 italic py-1">No variables added. Click <strong>+ Add</strong> to create one (e.g. a=1).</span>
+                <span className="text-[11px] text-slate-400 italic py-1">No variables used. Type a letter in your equation to add a slider.</span>
               )}
             </div>
           </div>
