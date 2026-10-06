@@ -498,12 +498,33 @@ export default function ThreeDCalculatorClient() {
           <div className="w-full md:w-[40%] shrink-0 bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm flex flex-col">
             <div className="flex items-center justify-between px-2 py-1 bg-[#f8fafc] border-b border-slate-200">
               <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Variables & Constants</h2>
-
+              <div className="flex items-center gap-1">
+                <input
+                  id="newVarNameInput"
+                  type="text"
+                  placeholder="a"
+                  maxLength={1}
+                  className="w-8 h-5 text-center border border-slate-200 rounded text-[10px] font-bold text-slate-700 bg-white focus:outline-none focus:border-blue-400"
+                />
+                <button
+                  onClick={() => {
+                    const input = document.getElementById('newVarNameInput') as HTMLInputElement;
+                    const name = input?.value?.trim();
+                    if (name && /^[a-df-hj-vwA-DF-HJ-VW]$/.test(name) && !params.some(p => p.name === name)) {
+                      setParams(prev => [...prev, { id: name + Date.now(), name, value: 1, min: -10, max: 10, step: 0.1 }]);
+                      input.value = '';
+                    }
+                  }}
+                  className="h-5 px-1.5 text-[9px] font-bold bg-[#1e40af] text-white rounded hover:bg-blue-700 transition-colors"
+                >
+                  + Add
+                </button>
+              </div>
             </div>
             <div className="p-1.5 flex flex-wrap gap-1.5 items-center flex-1">
               {params.length === 0 && (
                 <div className="w-full text-center py-2 text-[11px] text-slate-400 italic font-medium">
-                  No variables used. Type a letter (e.g. 'a') in your equation to add a slider.
+                  Type a letter in equation, or add a variable manually above.
                 </div>
               )}
               {params.map(p => (
@@ -629,8 +650,8 @@ export default function ThreeDCalculatorClient() {
                 </button>
 
                 {isSettingsOpen && (
-                  <div className="bg-white rounded shadow-lg border border-slate-200 w-72 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
-                    <div className="p-5 space-y-5">
+                  <div className="bg-white rounded shadow-lg border border-slate-200 w-72 flex flex-col max-h-[55vh] overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+                    <div className="p-4 space-y-4 overflow-y-auto">
                       {/* VIEWPORT SLIDER (ZOOM) */}
                       <div className="flex items-center gap-4 py-2">
                         <Box className="w-5 h-5 text-slate-300" />
@@ -712,16 +733,16 @@ export default function ThreeDCalculatorClient() {
                     </div>
 
                     {/* ANGLE UNITS */}
-                    <div className="flex border-t border-slate-100">
+                    <div className="flex border-t border-slate-100 shrink-0">
                       <button 
                         onClick={() => setUseRadians(true)}
-                        className={`flex-1 py-3.5 text-[10px] font-bold uppercase tracking-[0.2em] transition-all ${useRadians ? 'bg-slate-800 text-[#202124]' : 'bg-white text-slate-400 hover:bg-slate-50'}`}
+                        className={`flex-1 py-3.5 text-[10px] font-bold uppercase tracking-[0.2em] transition-all ${useRadians ? 'bg-slate-800 text-white' : 'bg-white text-slate-400 hover:bg-slate-50'}`}
                       >
                         Radians
                       </button>
                       <button 
                         onClick={() => setUseRadians(false)}
-                        className={`flex-1 py-3.5 text-[10px] font-bold uppercase tracking-[0.2em] transition-all ${!useRadians ? 'bg-slate-800 text-[#202124]' : 'bg-white text-slate-400 hover:bg-slate-50'}`}
+                        className={`flex-1 py-3.5 text-[10px] font-bold uppercase tracking-[0.2em] transition-all ${!useRadians ? 'bg-slate-800 text-white' : 'bg-white text-slate-400 hover:bg-slate-50'}`}
                       >
                         Degrees
                       </button>
