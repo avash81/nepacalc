@@ -102,11 +102,19 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
             <tbody className="divide-y divide-slate-100">
               <tr>
                 <th scope="col" className="py-3 px-4 font-bold text-slate-700">Gold price in Nepal today</th>
-                <td className="py-3 px-4 text-slate-600 font-medium">Please refer to the live board above for today&apos;s dynamic Fine Gold and Tejabi Gold rates.</td>
+                <td className="py-3 px-4 text-slate-600 font-medium">
+                  {hallmarkCurrent && tejabiCurrent
+                    ? `Today's official gold price in Nepal is Rs. ${fmt(hallmarkCurrent)} per Tola for 24K Hallmark Gold and Rs. ${fmt(tejabiCurrent)} per Tola for 22K Tejabi Gold.`
+                    : "Please refer to the live board above for today's dynamic Fine Gold and Tejabi Gold rates."}
+                </td>
               </tr>
               <tr>
                 <th scope="col" className="py-3 px-4 font-bold text-slate-700">Silver price today Nepal</th>
-                <td className="py-3 px-4 text-slate-600 font-medium">Please refer to the live board above for today&apos;s dynamic Silver (Chandi) rate.</td>
+                <td className="py-3 px-4 text-slate-600 font-medium">
+                  {silverCurrent
+                    ? `The official silver price in Nepal today is Rs. ${fmt(silverCurrent)} per Tola.`
+                    : "Please refer to the live board above for today's dynamic Silver (Chandi) rate."}
+                </td>
               </tr>
               <tr>
                 <th scope="col" className="py-3 px-4 font-bold text-slate-700">Who sets gold prices in Nepal?</th>
@@ -556,10 +564,10 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
           <div className="bg-slate-50 border border-slate-200 p-5 rounded-xl">
             <h3 className="text-xs font-black text-slate-500 uppercase tracking-widest mb-3">Page Change History</h3>
             <ul className="space-y-2 text-[12px] font-medium text-slate-600">
-              <li><span className="font-bold text-slate-800">2083-04-14</span>  Added Gold Buying Guide, Glossary, and 12 new FAQ items.</li>
-              <li><span className="font-bold text-slate-800">2083-03-05</span>  Automated dynamic sync with FENEGOSIDA added.</li>
-              <li><span className="font-bold text-slate-800">2083-02-15</span>  Added Silver Price history dataset integration.</li>
-              <li><span className="font-bold text-slate-800">2083-01-10</span>  Updated multi-language FAQ section for better clarity.</li>
+              <li><span className="font-bold text-slate-800">2083-04-14 (BS)</span>  Added Gold Buying Guide, Glossary, and 12 new FAQ items.</li>
+              <li><span className="font-bold text-slate-800">2083-03-05 (BS)</span>  Automated dynamic sync with FENEGOSIDA added.</li>
+              <li><span className="font-bold text-slate-800">2083-02-15 (BS)</span>  Added Silver Price history dataset integration.</li>
+              <li><span className="font-bold text-slate-800">2083-01-10 (BS)</span>  Updated multi-language FAQ section for better clarity.</li>
             </ul>
           </div>
         </div>

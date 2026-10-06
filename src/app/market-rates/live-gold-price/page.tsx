@@ -15,7 +15,7 @@ function getLiveData() {
     const data = fs.readFileSync(path.join(process.cwd(), 'public', 'data', 'market-rates.json'), 'utf8');
     const json = JSON.parse(data);
     return {
-      date: json.date || new Date().toISOString().split('T')[0],
+      date: json.rate_date || json.date || new Date().toISOString().split('T')[0],
       gold24k: json.gold?.tolaNPR?.current || null,
       gold22k: json.gold?.tejabiTolaNPR || null,
       gold10g: json.gold?.tenGramNPR || null,
@@ -56,7 +56,9 @@ export async function generateMetadata(): Promise<Metadata> {
       url: 'https://nepacalc.com/market-rates/live-gold-price/',
       siteName: 'NepaCalc',
       images: [{ url: 'https://nepacalc.com/images/og/gold-price-nepal.jpg', width: 1200, height: 630, alt: 'Gold Price in Nepal Today - Live FENEGOSIDA Rate | NepaCalc' }],
-      type: 'website'
+      type: 'article',
+      publishedTime: '2026-04-21T02:48:38+05:45',
+      modifiedTime: new Date(getLiveData().date).toISOString()
     },
     twitter: {
       card: 'summary_large_image',
@@ -103,7 +105,8 @@ export default async function Page() {
             url: "https://nepacalc.com/market-rates/live-gold-price/",
             headline: "Gold Price in Nepal Today (आजको सुनको भाउ)",
             description: "Check today's official gold and silver prices in Nepal based on FENEGOSIDA benchmarks.",
-            datePublished: "2024-01-01T08:00:00+05:45",
+            datePublished: "2026-04-21T02:48:38+05:45",
+            author: "NepaCalc",
             dateModified: new Date(rawDate).toISOString(),
             image: "https://nepacalc.com/images/og/gold-price-nepal.jpg",
           }
@@ -272,83 +275,6 @@ export default async function Page() {
         })}}
       />
 
-      
-      {/* ── FAQPage schema — AEO: powers FAQ rich results ── */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "@id": "https://nepacalc.com/market-rates/live-gold-price/#faq-schema",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "What is the gold price in Nepal today?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": `Today's official gold price in Nepal is Rs. ${gold24k ? gold24k.toLocaleString('en-IN') : 'N/A'} per Tola for 24K Hallmark Gold and Rs. ${gold22k ? gold22k.toLocaleString('en-IN') : 'N/A'} per Tola for 22K Tejabi Gold, as published by FENEGOSIDA.`
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Who sets the gold price in Nepal?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "The Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA) sets the official gold price in Nepal daily. Their rates are the benchmark used by all licensed gold and silver dealers across the country."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What is the difference between 24K Hallmark and 22K Tejabi gold in Nepal?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "24K Hallmark gold (Chhapawal) is pure 99.9% gold and carries the highest price. 22K Tejabi gold is 91.6% pure gold alloyed with other metals, making it more durable for jewellery. FENEGOSIDA publishes separate daily rates for both grades."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "How much is 1 gram of gold in Nepal today?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": `1 gram of 24K Hallmark gold in Nepal today costs approximately Rs. ${gold24k ? Math.round(gold24k / 11.6638).toLocaleString('en-IN') : 'N/A'}, calculated from today's FENEGOSIDA rate of Rs. ${gold24k ? gold24k.toLocaleString('en-IN') : 'N/A'} per Tola (1 Tola = 11.6638 grams).`
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "How often does the gold price change in Nepal?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "FENEGOSIDA publishes new official gold rates once every business day, typically by 11:00 AM Nepal Time (NPT). The rate reflects international spot market movements and import costs for that day."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "How many grams is 1 Tola of gold in Nepal?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "1 Tola of gold equals 11.6638 grams in Nepal. This is the official FENEGOSIDA measurement standard. 1 Tola also equals 16 Aana or 100 Lal."
-              }
-            }
-          ]
-        })}}
-      />
-
-
-
-
-      {/* ── Speakable schema — AIO: tells Google which sections to read aloud ── */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebPage",
-          "@id": "https://nepacalc.com/market-rates/live-gold-price/#speakable",
-          "speakable": {
-            "@type": "SpeakableSpecification",
-            "cssSelector": ["#todays-gold-price", "#quick-answer", "#faq"]
-          }
-        })}}
-      />
 
       {/* ── Interactive dashboard (client component) ── */}
       {/* disableSchema prevents CalcWrapper from emitting a duplicate JSON-LD block */}

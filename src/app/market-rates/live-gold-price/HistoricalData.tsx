@@ -321,7 +321,7 @@ export default function HistoricalData() {
                 </div>
                 <div className="flex items-center justify-between text-[11px] font-medium text-slate-500 border-b border-slate-50 pb-2">
                   <span>Updated:</span>
-                  <span className="text-slate-800">Dynamic</span>
+                  <span className="text-slate-800">Daily (FENEGOSIDA)</span>
                 </div>
                 <div className="flex items-center justify-between text-[11px] font-medium text-slate-500 border-b border-slate-50 pb-2">
                   <span>Format:</span>

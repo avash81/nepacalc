@@ -2,6 +2,8 @@ import { MetadataRoute } from 'next';
 import { fetchFirestoreCollection } from '@/lib/firestore-rest';
 import { CATEGORIES, CALCULATORS } from '@/data/calculators';
 import { CATEGORY_URL_MAP } from '@/config/GlobalConfig';
+import fs from 'fs';
+import path from 'path';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://nepacalc.com';
@@ -18,6 +20,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   };
   // Updated to today to signal fresh content to crawlers
   const lastModDate = new Date();
+
+  let goldRateDate = lastModDate;
+  try {
+    const mrPath = path.join(process.cwd(), 'public', 'data', 'market-rates.json');
+    if (fs.existsSync(mrPath)) {
+      const mrData = JSON.parse(fs.readFileSync(mrPath, 'utf8'));
+      if (mrData.rate_date) {
+        goldRateDate = new Date(mrData.rate_date + 'T00:00:00Z');
+      }
+    }
+  } catch (e) {
+    console.error('sitemap gold date read error:', e);
+  }
 
   // History year pages — 2019 through 2026, daily updates, high priority for SEO
   const historyYearPages = ['2026', '2025', '2024', '2023', '2022', '2021', '2020', '2019'].map((yr) => ({
@@ -106,7 +121,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     
     return {
       url: cleanUrl(isDirectRoute ? `/${calc.slug}` : `/calculator/${calc.slug}`),
-      lastModified: calc.slug === 'nea-bill' ? new Date('2026-06-19T00:00:00Z') : (isMarketRate ? new Date() : lastModDate),
+      lastModified: calc.slug === 'nea-bill' ? new Date('2026-06-19T00:00:00Z') : (isGoldPage ? goldRateDate : (isMarketRate ? new Date() : lastModDate)),
       changeFrequency: isMarketRate ? ('daily' as const) : (isCritical ? 'daily' as const : 'weekly' as const),
       // Gold price is highest-value page — priority 1.0 (same as homepage)
       priority: isGoldPage ? 1.0 : calc.slug === 'nea-bill' ? 0.95 : (isCritical ? 0.9 : (isMarketRate ? 0.9 : 0.75)),
