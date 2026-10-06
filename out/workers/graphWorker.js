@@ -107,7 +107,7 @@ function generateImplicit(data) {
           scope.x = -halfSize + i * step;
           scope.y = -halfSize + j * step;
           scope.z = -halfSize + k * step;
-          grid[i * (res+1)*(res+1) + j * (res+1) + k] = compiled.evaluate({ x: scope.x, y: scope.z, z: scope.y });
+          grid[i * (res+1)*(res+1) + j * (res+1) + k] = compiled.evaluate({ x: scope.x, y: scope.y, z: scope.z });
         }
       }
     }
