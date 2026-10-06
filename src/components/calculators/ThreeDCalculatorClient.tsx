@@ -469,7 +469,7 @@ export default function ThreeDCalculatorClient() {
               <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Equations</h2>
               <button
                 aria-label="Add Graph"
-                onClick={() => addGraph('z = sin(sqrt(x^2 + y^2))')}
+                onClick={() => addGraph('')}
                 className="flex items-center gap-1 px-2 py-0.5 rounded bg-blue-600 hover:bg-blue-700 text-white text-[9px] font-bold uppercase transition-all"
               >
                 <Plus className="w-3 h-3" /> Add
