@@ -95,7 +95,7 @@ function generateImplicit(data) {
   try {
     const parts = equation.toLowerCase().split('=');
     // @ts-ignore
-    const compiled = math.compile(`(${parts[0]}), (${parts[1] || '0'})`);
+    const compiled = math.compile(`(${parts[0]}) - (${parts[1] || '0'})`);
     const scope = { x: 0, y: 0, z: 0 };
     if (params) {
         for (const p of params) scope[p.name.toLowerCase()] = p.value;
