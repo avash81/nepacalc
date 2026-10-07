@@ -142,7 +142,7 @@ function Chip({ label, active, onClick }: { label: string; active?: boolean; onC
     <button
       type="button"
       onClick={onClick}
-      className={`px-3 py-1.5 rounded-full text-[12px] font-bold border transition-colors whitespace-nowrap
+      className={`px-2.5 py-1 rounded-full text-[11px] font-semibold border transition-colors whitespace-nowrap
         ${active
           ? 'bg-[#1A73E8] text-white border-[#1A73E8]'
           : 'bg-white text-[#5F6368] border-[#DADCE0] hover:border-[#1A73E8] hover:text-[#1A73E8]'
@@ -157,27 +157,27 @@ function Chip({ label, active, onClick }: { label: string; active?: boolean; onC
 // ─── Checkbox toggle ──────────────────────────────────────────────────────────
 function Toggle({
   checked, onChange, label, helper,
-}: { checked: boolean; onChange: () => void; label: string; helper: string }) {
+}: { checked: boolean; onChange: () => void; label: string; helper?: string }) {
   return (
-    <label className="flex items-start gap-3 cursor-pointer select-none group">
+    <label className="flex items-center gap-2 cursor-pointer select-none group">
       <div
         role="checkbox"
         aria-checked={checked}
         onClick={onChange}
-        className={`mt-0.5 w-5 h-5 shrink-0 rounded border-2 flex items-center justify-center transition-all
+        className={`w-4 h-4 shrink-0 rounded border flex items-center justify-center transition-all
           ${checked ? 'bg-[#1A73E8] border-[#1A73E8]' : 'border-[#DADCE0] bg-white group-hover:border-[#1A73E8]'}`}
         tabIndex={0}
         onKeyDown={e => e.key === ' ' && onChange()}
       >
         {checked && (
-          <svg className="w-3 h-3 text-white" viewBox="0 0 12 9" fill="none">
-            <path d="M1 4l3 3 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <svg className="w-2.5 h-2.5 text-white" viewBox="0 0 12 9" fill="none">
+            <path d="M1 4l3 3 7-7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         )}
       </div>
-      <div>
-        <span className="text-sm font-semibold text-[#202124]">{label}</span>
-        <p className="text-[11px] text-[#70757A] mt-0.5">{helper}</p>
+      <div className="flex items-baseline gap-1.5">
+        <span className="text-xs font-semibold text-[#202124]">{label}</span>
+        {helper && <span className="text-[10px] text-[#70757A] hidden sm:inline">({helper})</span>}
       </div>
     </label>
   );
@@ -284,12 +284,12 @@ export default function DateDuration() {
 
   // ─── Inputs panel ──────────────────────────────────────────────────────────
   const inputsPanel = (
-    <div className="space-y-5 pb-2">
+    <div className="space-y-3 pb-1">
 
       {/* Quick presets */}
       <div>
-        <p className="text-[11px] font-bold uppercase tracking-widest text-[#70757A] mb-2">Quick Dates</p>
-        <div className="flex flex-wrap gap-2">
+        <p className="text-[10px] font-bold uppercase tracking-widest text-[#70757A] mb-1.5">Quick Dates</p>
+        <div className="flex flex-wrap gap-1.5">
           {PRESETS.map(({ key, label }) => (
             <Chip
               key={key}
@@ -302,10 +302,10 @@ export default function DateDuration() {
       </div>
 
       {/* Date inputs with swap */}
-      <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] gap-3 items-end">
+      <div className="grid grid-cols-[1fr_auto_1fr] gap-2 items-end">
         {/* Start Date */}
-        <div className="space-y-1">
-          <label htmlFor="dd-start" className="text-[11px] font-bold uppercase tracking-widest text-[#70757A]">
+        <div className="space-y-1 min-w-0">
+          <label htmlFor="dd-start" className="text-[10px] font-bold uppercase tracking-widest text-[#70757A] block truncate">
             Start Date
           </label>
           <input
@@ -314,26 +314,26 @@ export default function DateDuration() {
             value={start}
             onChange={e => handleDateChange('start', e.target.value)}
             aria-label="Start Date"
-            className="w-full h-11 px-3 border border-[#DADCE0] rounded-lg bg-white text-sm font-semibold text-[#202124] focus:border-[#1A73E8] focus:ring-2 focus:ring-[#1A73E8]/20 outline-none transition-all"
+            className="w-full h-9 px-2.5 border border-[#DADCE0] rounded-lg bg-white text-xs sm:text-sm font-semibold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
           />
         </div>
 
         {/* Swap button */}
-        <div className="flex items-end justify-center pb-0.5">
+        <div className="flex items-center justify-center pb-0.5">
           <button
             type="button"
             onClick={swapDates}
             aria-label="Swap start and end dates"
             title="Swap start and end dates"
-            className="w-10 h-11 flex items-center justify-center rounded-lg border border-[#DADCE0] bg-white text-[#5F6368] hover:border-[#1A73E8] hover:text-[#1A73E8] hover:bg-[#E8F0FE] transition-all"
+            className="w-8 h-9 flex items-center justify-center rounded-lg border border-[#DADCE0] bg-white text-[#5F6368] hover:border-[#1A73E8] hover:text-[#1A73E8] hover:bg-[#E8F0FE] transition-all"
           >
-            <ArrowLeftRight className="w-4 h-4" />
+            <ArrowLeftRight className="w-3.5 h-3.5" />
           </button>
         </div>
 
         {/* End Date */}
-        <div className="space-y-1">
-          <label htmlFor="dd-end" className="text-[11px] font-bold uppercase tracking-widest text-[#70757A]">
+        <div className="space-y-1 min-w-0">
+          <label htmlFor="dd-end" className="text-[10px] font-bold uppercase tracking-widest text-[#70757A] block truncate">
             End Date
           </label>
           <input
@@ -342,28 +342,27 @@ export default function DateDuration() {
             value={end}
             onChange={e => handleDateChange('end', e.target.value)}
             aria-label="End Date"
-            className="w-full h-11 px-3 border border-[#DADCE0] rounded-lg bg-white text-sm font-semibold text-[#202124] focus:border-[#1A73E8] focus:ring-2 focus:ring-[#1A73E8]/20 outline-none transition-all"
+            className="w-full h-9 px-2.5 border border-[#DADCE0] rounded-lg bg-white text-xs sm:text-sm font-semibold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
           />
         </div>
       </div>
 
-      {/* Include end date */}
-      <Toggle
-        checked={includeEnd}
-        onChange={() => setIncludeEnd(v => !v)}
-        label="Include end date"
-        helper="Count both the start date and end date."
-      />
+      {/* Row with Toggle and Reset */}
+      <div className="flex items-center justify-between pt-0.5">
+        <Toggle
+          checked={includeEnd}
+          onChange={() => setIncludeEnd(v => !v)}
+          label="Include end date"
+          helper="count both dates"
+        />
 
-      {/* Reset */}
-      <div className="flex gap-2 pt-1">
         <button
           type="button"
           onClick={reset}
           aria-label="Reset calculator"
-          className="flex items-center gap-1.5 px-3 py-2 text-[12px] font-semibold text-[#5F6368] border border-[#DADCE0] rounded-lg bg-white hover:bg-[#F8F9FA] transition-colors"
+          className="flex items-center gap-1 px-2.5 py-1 text-[11px] font-semibold text-[#5F6368] border border-[#DADCE0] rounded-md bg-white hover:bg-[#F8F9FA] transition-colors"
         >
-          <RotateCcw className="w-3.5 h-3.5" /> Reset
+          <RotateCcw className="w-3 h-3" /> Reset
         </button>
       </div>
     </div>
@@ -371,66 +370,66 @@ export default function DateDuration() {
 
   // ─── Results panel ──────────────────────────────────────────────────────────
   const resultsPanel = (
-    <div className="space-y-4 printable-result" role="region" aria-label="Calculation results">
+    <div className="space-y-2.5 printable-result" role="region" aria-label="Calculation results">
       {!diff ? (
-        <div className="h-32 flex flex-col items-center justify-center text-[#70757A] gap-2">
-          <Calendar className="w-8 h-8 opacity-30" />
-          <p className="text-sm">Enter valid dates above.</p>
+        <div className="h-28 flex flex-col items-center justify-center text-[#70757A] gap-1.5">
+          <Calendar className="w-6 h-6 opacity-30" />
+          <p className="text-xs">Enter valid dates above.</p>
         </div>
       ) : (
         <>
           {/* Reversed dates notice */}
           {diff.isReversed && (
-            <div className="bg-[#FFF8E1] border border-[#F9AB00] rounded-lg px-4 py-2.5 flex items-start gap-2.5 text-sm text-[#202124]">
-              <span className="text-[#F9AB00] font-bold mt-0.5">⚠</span>
-              <span>End date is earlier than start date. Showing duration from the earlier date. Use <strong>⇄</strong> to swap.</span>
+            <div className="bg-[#FFF8E1] border border-[#F9AB00] rounded-lg px-3 py-2 flex items-start gap-2 text-xs text-[#202124]">
+              <span className="text-[#F9AB00] font-bold">⚠</span>
+              <span>End date is earlier than start date. Showing duration from earlier date. Use <strong>⇄</strong> to swap.</span>
             </div>
           )}
 
           {/* ── PRIMARY RESULT ── */}
-          <div className="bg-[#1A73E8] rounded-xl px-6 py-5 text-white text-center">
+          <div className="bg-[#1A73E8] rounded-lg px-5 py-4 text-white text-center">
             <div
-              className="text-5xl sm:text-6xl font-black tracking-tight tabular-nums leading-none"
+              className="text-4xl sm:text-5xl font-black tracking-tight tabular-nums leading-none"
               aria-label={`${diff.totalDays} total calendar days`}
             >
               {diff.totalDays.toLocaleString()}
             </div>
-            <div className="text-xs font-bold uppercase tracking-widest mt-2 opacity-75">
+            <div className="text-[11px] font-bold uppercase tracking-wider mt-1.5 opacity-80">
               Total Calendar Days
             </div>
             {includeEnd && (
-              <div className="mt-1.5 text-[11px] opacity-60">Inclusive — both dates counted</div>
+              <div className="mt-1 text-[10px] opacity-70">Inclusive — both dates counted</div>
             )}
           </div>
 
-          {/* ── CALCULATION TRANSPARENCY ── */}
-          <div className="px-4 py-3 bg-[#FAFAFA] border border-[#DADCE0] rounded-lg">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-[#70757A] mb-2">How the result is calculated</p>
-            <p className="font-mono text-sm text-[#202124]">
-              {fmtDate(diff.hiISO)} − {fmtDate(diff.loISO)} = {(diff.totalDays - (includeEnd ? 1 : 0)).toLocaleString()} days
-            </p>
-            {includeEnd && (
-              <p className="font-mono text-sm text-[#1A73E8] mt-1">
-                {(diff.totalDays - 1).toLocaleString()} + 1 = {diff.totalDays.toLocaleString()} days
-                <span className="font-sans text-[10px] text-[#70757A] ml-2 not-italic">(include end date)</span>
-              </p>
-            )}
-          </div>
-
-          {/* ── CALENDAR DURATION ── */}
-          <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg px-5 py-4 text-center">
-            <div className="text-xl font-bold text-[#202124] tracking-wide">
+          {/* ── CALENDAR DURATION (Directly below result summary) ── */}
+          <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg px-4 py-2.5 text-center">
+            <div className="text-lg sm:text-xl font-bold text-[#202124] tracking-wide">
               {fmtCalDuration(diff.yrs, diff.mos, diff.dys)}
             </div>
-            <div className="text-[10px] font-bold uppercase tracking-widest text-[#70757A] mt-1">
+            <div className="text-[9px] font-bold uppercase tracking-widest text-[#70757A] mt-0.5">
               Calendar Duration
             </div>
           </div>
 
+          {/* ── CALCULATION TRANSPARENCY ── */}
+          <div className="px-3.5 py-2 bg-[#FAFAFA] border border-[#DADCE0] rounded-lg">
+            <p className="text-[9px] font-bold uppercase tracking-widest text-[#70757A] mb-1">How the result is calculated</p>
+            <p className="font-mono text-xs text-[#202124]">
+              {fmtDate(diff.hiISO)} − {fmtDate(diff.loISO)} = {(diff.totalDays - (includeEnd ? 1 : 0)).toLocaleString()} days
+            </p>
+            {includeEnd && (
+              <p className="font-mono text-xs text-[#1A73E8] mt-0.5">
+                {(diff.totalDays - 1).toLocaleString()} + 1 = {diff.totalDays.toLocaleString()} days
+                <span className="font-sans text-[10px] text-[#70757A] ml-1.5 not-italic">(include end date)</span>
+              </p>
+            )}
+          </div>
+
           {/* ── WEEKS ── */}
-          <div className="bg-white border border-[#DADCE0] rounded-lg px-5 py-3 flex items-center justify-between">
-            <span className="text-[11px] font-bold uppercase tracking-widest text-[#70757A]">Weeks</span>
-            <span className="text-base font-bold text-[#202124]">{fmtWeeks(diff.weeks, diff.remDays)}</span>
+          <div className="bg-white border border-[#DADCE0] rounded-lg px-4 py-2.5 flex items-center justify-between">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-[#70757A]">Weeks</span>
+            <span className="text-sm font-bold text-[#202124]">{fmtWeeks(diff.weeks, diff.remDays)}</span>
           </div>
 
           {/* ── MORE RESULTS ── */}
@@ -440,48 +439,48 @@ export default function DateDuration() {
               onClick={() => setShowMoreResults(v => !v)}
               aria-expanded={showMoreResults}
               aria-controls="more-results-panel"
-              className="w-full flex items-center justify-between px-4 py-3 bg-[#F8F9FA] hover:bg-[#E8F0FE] text-[11px] font-bold uppercase tracking-widest text-[#5F6368] transition-colors"
+              className="w-full flex items-center justify-between px-3.5 py-2 bg-[#F8F9FA] hover:bg-[#E8F0FE] text-[10px] font-bold uppercase tracking-widest text-[#5F6368] transition-colors"
             >
               More Results
-              {showMoreResults ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              {showMoreResults ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
             </button>
 
             {showMoreResults && (
-              <div id="more-results-panel" className="px-4 py-3 bg-white space-y-3">
+              <div id="more-results-panel" className="px-3.5 py-2.5 bg-white space-y-2.5">
                 {/* Hours / Minutes / Seconds */}
-                <div className="grid grid-cols-3 gap-2">
+                <div className="grid grid-cols-3 gap-1.5">
                   {[
                     { label: 'Hours',   value: diff.hours.toLocaleString() },
                     { label: 'Minutes', value: diff.minutes.toLocaleString() },
                     { label: 'Seconds', value: diff.seconds.toLocaleString() },
                   ].map(({ label, value }) => (
-                    <div key={label} className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-3 text-center">
-                      <div className="text-sm font-black text-[#202124] tabular-nums break-all">{value}</div>
-                      <div className="text-[9px] font-bold uppercase text-[#70757A] mt-0.5">{label}</div>
+                    <div key={label} className="bg-[#F8F9FA] border border-[#DADCE0] rounded-md p-2 text-center">
+                      <div className="text-xs font-black text-[#202124] tabular-nums break-all">{value}</div>
+                      <div className="text-[8px] font-bold uppercase text-[#70757A] mt-0.5">{label}</div>
                     </div>
                   ))}
                 </div>
 
                 {/* Business / Weekend days */}
-                <div className="grid grid-cols-2 gap-2">
-                  <div className="bg-[#F0FDF4] border border-[#86EFAC] rounded-lg p-3 text-center">
-                    <div className="text-lg font-black text-[#16a34a] tabular-nums">
+                <div className="grid grid-cols-2 gap-1.5">
+                  <div className="bg-[#F0FDF4] border border-[#86EFAC] rounded-md p-2 text-center">
+                    <div className="text-base font-black text-[#16a34a] tabular-nums">
                       {diff.businessDays.toLocaleString()}
                     </div>
-                    <div className="text-[9px] font-bold uppercase text-[#16a34a] mt-0.5">Business Days</div>
-                    <div className="text-[9px] text-[#6b7280] mt-0.5">Weekdays only</div>
+                    <div className="text-[8px] font-bold uppercase text-[#16a34a] mt-0.5">Business Days</div>
+                    <div className="text-[8px] text-[#6b7280]">Weekdays only</div>
                   </div>
-                  <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-3 text-center">
-                    <div className="text-lg font-black text-[#202124] tabular-nums">
+                  <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-md p-2 text-center">
+                    <div className="text-base font-black text-[#202124] tabular-nums">
                       {diff.weekendDays.toLocaleString()}
                     </div>
-                    <div className="text-[9px] font-bold uppercase text-[#70757A] mt-0.5">Weekend Days</div>
+                    <div className="text-[8px] font-bold uppercase text-[#70757A] mt-0.5">Weekend Days</div>
                   </div>
                 </div>
 
                 {/* Leap days (only if nonzero) */}
                 {diff.leapDays > 0 && (
-                  <div className="text-xs text-[#5F6368] px-1">
+                  <div className="text-[11px] text-[#5F6368] px-1">
                     Includes {diff.leapDays} leap {diff.leapDays === 1 ? 'day' : 'days'} (Feb 29).
                   </div>
                 )}
@@ -491,41 +490,41 @@ export default function DateDuration() {
 
           {/* ── DATE RANGE ── */}
           <div className="border border-[#DADCE0] rounded-lg overflow-hidden">
-            <div className="px-4 py-2 bg-[#F8F9FA] border-b border-[#DADCE0]">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-[#70757A]">Date Range</p>
+            <div className="px-3 py-1.5 bg-[#F8F9FA] border-b border-[#DADCE0]">
+              <p className="text-[9px] font-bold uppercase tracking-widest text-[#70757A]">Date Range</p>
             </div>
-            <div className="px-4 py-3 bg-white">
-              <div className="flex items-center gap-3 text-sm text-[#202124]">
+            <div className="px-3.5 py-2 bg-white">
+              <div className="flex items-center gap-2.5 text-xs text-[#202124]">
                 <span className="font-semibold text-[#1A73E8]">{fmtDate(diff.loISO)}</span>
-                <div className="flex-1 relative h-2 bg-[#E8F0FE] rounded-full overflow-hidden">
+                <div className="flex-1 relative h-1.5 bg-[#E8F0FE] rounded-full overflow-hidden">
                   <div className="absolute inset-y-0 left-0 bg-[#1A73E8] rounded-full w-full" />
                 </div>
                 <span className="font-semibold text-[#1A73E8]">{fmtDate(diff.hiISO)}</span>
               </div>
-              <p className="text-center text-[11px] text-[#70757A] mt-1.5">
+              <p className="text-center text-[10px] text-[#70757A] mt-1">
                 {diff.totalDays.toLocaleString()} {diff.totalDays === 1 ? 'day' : 'days'}
               </p>
             </div>
           </div>
 
           {/* ── ACTIONS ── */}
-          <div className="grid grid-cols-2 gap-2 no-print">
+          <div className="grid grid-cols-2 gap-2 no-print pt-0.5">
             <button
               type="button"
               onClick={copyResult}
               aria-label="Copy result to clipboard"
-              className="flex items-center justify-center gap-1.5 py-2.5 rounded-lg border border-[#DADCE0] bg-white hover:bg-[#F8F9FA] text-[#202124] text-[12px] font-semibold transition-colors"
+              className="flex items-center justify-center gap-1.5 py-2 rounded-lg border border-[#DADCE0] bg-white hover:bg-[#F8F9FA] text-[#202124] text-[11px] font-semibold transition-colors"
             >
-              <Copy className="w-3.5 h-3.5 shrink-0" />
+              <Copy className="w-3 h-3 shrink-0" />
               <span>{copied ? 'Copied!' : 'Copy'}</span>
             </button>
             <button
               type="button"
               onClick={shareUrl}
               aria-label="Copy shareable link"
-              className="flex items-center justify-center gap-1.5 py-2.5 rounded-lg border border-[#DADCE0] bg-white hover:bg-[#F8F9FA] text-[#202124] text-[12px] font-semibold transition-colors"
+              className="flex items-center justify-center gap-1.5 py-2 rounded-lg border border-[#DADCE0] bg-white hover:bg-[#F8F9FA] text-[#202124] text-[11px] font-semibold transition-colors"
             >
-              <Share2 className="w-3.5 h-3.5 shrink-0" />
+              <Share2 className="w-3 h-3 shrink-0" />
               <span>Share</span>
             </button>
           </div>
