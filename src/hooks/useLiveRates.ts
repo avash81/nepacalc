@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 
@@ -126,7 +126,9 @@ function buildRates(
   rateDate: string = dataDate,
   sourceName: string = 'FENEGOSIDA',
   goldPrev?: number,
-  silverPrev?: number
+  silverPrev?: number,
+  goldTenGram?: number,
+  silverTenGram?: number
 ): LiveRates {
   const flat = (v: number): RateStats => ({
     current: v, high24h: v, low24h: v, change24h: 0, changePercent24h: 0
@@ -147,6 +149,7 @@ function buildRates(
     gold: {
       tolaNPR: { current: gold, previous: goldPrev ?? gold },
       tejabiTolaNPR: tejabi,
+      tenGramNPR: goldTenGram,
       tolaInternationalNPR: Math.round(2350 * 0.375 * nprUsd),
       spotUSD: 2350,
       provider,
@@ -159,6 +162,7 @@ function buildRates(
     },
     silver: {
       tolaNPR: { current: silver, previous: silverPrev ?? silver },
+      tenGramNPR: silverTenGram,
       tolaInternationalNPR: Math.round(28.5 * 0.375 * nprUsd),
     },
   };
@@ -182,7 +186,7 @@ export function useLiveRates(initialRawData?: any) {
       const provider = isFallback ? (initialRawData.source ?? 'FENEGOSIDA') + ' · Last verified: ' + rateDate : (initialRawData.source ?? 'FENEGOSIDA') + ' · ' + rateDate;
       const todayNPT = new Date(Date.now() + (5 * 60 + 45) * 60000).toISOString().split('T')[0];
       const isFresh = rateDate === todayNPT && !isFallback;
-      return buildRates(gold, tejabi, silver, FALLBACK_USD, {}, provider, initialRawData.fetched_at ?? new Date().toISOString(), date, isFresh, rateStatus, rateDate, sourceName, initialRawData.gold?.tolaNPR?.previous, initialRawData.silver?.tolaNPR?.previous);
+      return buildRates(gold, tejabi, silver, FALLBACK_USD, {}, provider, initialRawData.fetched_at ?? new Date().toISOString(), date, isFresh, rateStatus, rateDate, sourceName, initialRawData.gold?.tolaNPR?.previous, initialRawData.silver?.tolaNPR?.previous, initialRawData.gold?.tenGramNPR, initialRawData.silver?.tenGramNPR);
     }
     return null;
   });
@@ -291,7 +295,9 @@ export function useLiveRates(initialRawData?: any) {
         date, isFresh,
         rateStatus, rateDate, sourceName,
         json.gold?.tolaNPR?.previous,
-        json.silver?.tolaNPR?.previous
+        json.silver?.tolaNPR?.previous,
+        json.gold?.tenGramNPR,
+        json.silver?.tenGramNPR
       );
 
       setRates(updated);

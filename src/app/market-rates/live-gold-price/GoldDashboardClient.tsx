@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useEffect } from 'react';
 import { useLiveRates } from '@/hooks/useLiveRates';
@@ -127,12 +127,12 @@ export default function GoldDashboardClient({ initialGold, initialSilver, initia
   
   const tejabiTolaNPR = rates.gold.tejabiTolaNPR;
   const tejabiDisplayRate = tejabiTolaNPR === 0 ? "Not Published" : `Rs. ${fmt(tejabiTolaNPR)}`;
-  const tejabi10gDisplay = tejabiTolaNPR === 0 ? "Not Published" : `Rs. ${fmt(Math.round(tejabiTolaNPR / 1.1664))}`;
+  const tejabi10gDisplay = tejabiTolaNPR === 0 ? "Not Published" : `Rs. ${fmt(Math.round(tejabiTolaNPR / 1.16638))}`;
   // Silver fallback: initialSilver from build-time is more accurate than the old 4840 constant
   const silverTolaNPR = rates.silver?.tolaNPR?.current ?? initialSilver ?? 4965;
 
-  const gold10gNPR = rates.gold.tenGramNPR || Math.round(tolaNPR.current / 1.1664);
-  const silver10gNPR = rates.silver?.tenGramNPR || Math.round(silverTolaNPR / 1.1664);
+  const gold10gNPR = rates.gold.tenGramNPR ?? rawRates?.gold?.tenGramNPR ?? Math.round(tolaNPR.current / 1.16638);
+  const silver10gNPR = rates.silver?.tenGramNPR ?? rawRates?.silver?.tenGramNPR ?? Math.round(silverTolaNPR / 1.16638);
 
   const tables = [
     { label: '24K Hallmark Gold', np: 'छापावाल सुन (प्रति तोला)', display: `Rs. ${fmt(tolaNPR.current)}`, unit: '1 Tola' },

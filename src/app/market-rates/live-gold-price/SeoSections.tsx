@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import PricePerformanceWidget from '@/components/widgets/PricePerformanceWidget';
 import { BookOpen, Scale, Globe, ShieldCheck, CheckCircle2, FileText, Search } from 'lucide-react';
 import HistoricalData from './HistoricalData';
@@ -105,7 +105,7 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
                 <th scope="col" className="py-3 px-4 font-bold text-slate-700">Gold price in Nepal today</th>
                 <td className="py-3 px-4 text-slate-600 font-medium">
                   {hallmarkCurrent && tejabiCurrent
-                    ? `Today's gold price in Nepal is Rs. ${fmt(hallmarkCurrent)} per Tola for 24K Hallmark Gold and Rs. ${fmt(tejabiCurrent)} per Tola for 22K Tejabi Gold. The 24K Hallmark rate is Rs. ${fmt(rates?.gold?.tenGramNPR || 249915)} per 10 grams, while silver is Rs. ${fmt(silverCurrent || 4415)} per Tola, according to FENEGOSIDA.`
+                    ? `Today's gold price in Nepal is Rs. ${fmt(hallmarkCurrent)} per Tola for 24K Hallmark Gold and Rs. ${fmt(tejabiCurrent)} per Tola for 22K Tejabi Gold. The 24K Hallmark rate is Rs. ${fmt(rates?.gold?.tenGramNPR ?? (hallmarkCurrent ? Math.round(hallmarkCurrent / 1.16638) : 0))} per 10 grams, while silver is Rs. ${fmt(silverCurrent ?? 0)} per Tola, according to FENEGOSIDA.`
                     : "The official gold price in Nepal is updated daily at 10:30 AM by FENEGOSIDA. The 24K Hallmark and 22K Tejabi gold rates are determined by international spot prices, currency exchange rates, and local customs duties."}
                 </td>
               </tr>
