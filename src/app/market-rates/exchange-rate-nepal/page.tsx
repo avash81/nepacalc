@@ -82,21 +82,47 @@ export default async function Page() {
   // Server-side helpers for the static SEO table below the dashboard
   const nrbRatesArr: any[] = initialRates.nrb_rates ?? [];
 
+
+  // SSR Dataset schema — rendered in static HTML so Googlebot reads it directly
+  const datasetSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
+    '@id': 'https://nepacalc.com/market-rates/exchange-rate-nepal/#dataset',
+    name: 'Nepal Rastra Bank Daily Exchange Rates',
+    description: 'Daily exchange rates for major currencies against Nepalese Rupee (NPR) based on official Nepal Rastra Bank (NRB) reference rates. Includes USD, EUR, GBP, AUD, AED, QAR, SAR, INR and more.',
+    url: 'https://nepacalc.com/market-rates/exchange-rate-nepal/',
+    dateModified: new Date(rawDate).toISOString(),
+    temporalCoverage: '2024/..',
+    creator: {
+      '@type': 'Organization',
+      '@id': 'https://nepacalc.com/#organization',
+      name: 'NepaCalc',
+      url: 'https://nepacalc.com',
+    },
+    license: 'https://creativecommons.org/licenses/by/4.0/',
+    includedInDataCatalog: {
+      '@type': 'DataCatalog',
+      '@id': 'https://nepacalc.com/market-rates/#datacatalog',
+      name: 'NepaCalc Market Rates',
+      url: 'https://nepacalc.com/market-rates/',
+    },
+    isPartOf: {
+      '@type': 'WebSite',
+      '@id': 'https://nepacalc.com/#website',
+    },
+    mainEntityOfPage: {
+      '@id': 'https://nepacalc.com/market-rates/exchange-rate-nepal/#webpage',
+    },
+  };
   return (
+    <>
+      {/* SSR Dataset schema */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(datasetSchema) }} />
     <div className="bg-white min-h-screen">
       <CalcWrapper
         title="NRB Exchange Rate Today Nepal (2083/84)"
         description="Check today's official Nepal Rastra Bank (NRB) exchange rates including USD to NPR, EUR, GBP, AUD, AED, QAR, SAR and INR."
         crumbs={[{ label: 'Market Rates', href: '/market-rates/' }, { label: 'Exchange Rate Nepal' }]}
-        dataset={{
-          name: "Nepal Rastra Bank Daily Exchange Rates",
-          description: "Daily exchange rates for major currencies against Nepalese Rupee (NPR) based on official Nepal Rastra Bank (NRB) reference rates. Includes USD, EUR, GBP, AUD, AED, QAR, SAR, INR and more.",
-          url: "https://nepacalc.com/market-rates/exchange-rate-nepal/",
-          publishedTime: '2026-04-21T02:48:38+05:45',
-      modifiedTime: new Date(rawDate).toISOString(),
-          temporalCoverage: "2024/..",
-          license: "https://creativecommons.org/licenses/by/4.0/",
-        }}
         faqs={[
           { q: "What is the Nepal Rastra Bank (NRB) exchange rate?", a: "The Nepal Rastra Bank (NRB) exchange rate is the official foreign exchange reference rate published by Nepal's central bank every banking day. It provides the official buying and selling rates for major international currencies including USD, EUR, GBP, AUD, AED, SAR, QAR, JPY, and INR. Commercial banks and licensed money exchange institutions use these rates as the benchmark for their daily foreign exchange transactions." },
           { q: "What is today's dollar rate in Nepal?", a: "The US Dollar (USD) exchange rate changes every banking day based on official rates published by Nepal Rastra Bank. The live exchange rate table on this page displays today's official USD buying and selling rates. For the latest USD to NPR rate, always refer to the official daily NRB update." },
@@ -620,5 +646,6 @@ export default async function Page() {
         </div>
       </CalcWrapper>
     </div>
+    </>
   );
 }
