@@ -95,7 +95,6 @@ export default async function Page() {
           publishedTime: '2026-04-21T02:48:38+05:45',
       modifiedTime: new Date(rawDate).toISOString(),
           temporalCoverage: "2024/..",
-          isPartOf: "https://nepacalc.com/market-rates/#collection",
           license: "https://creativecommons.org/licenses/by/4.0/",
         }}
         faqs={[
