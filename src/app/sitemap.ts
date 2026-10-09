@@ -82,6 +82,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/nepal/nepal-budget',
     '/market-rates', '/market-rates/history',
     '/guide',
+    '/how-much-gold-can-you-bring-to-nepal',
     '/nepal/bluebook-renewal-nepal',
     '/income-tax',
     '/income-tax/nepal-income-tax-slab-2083-84',

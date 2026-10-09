@@ -4,8 +4,9 @@ import Link from 'next/link';
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
   title: 'How Much Gold Can You Bring to Nepal? (Official Rules)',
-  description:
-    'Find out how much gold you can bring to Nepal — duty-free jewellery limits, raw gold allowances, customs duty rates and official rules for 2083/84.',
+    description:
+    'Find out how much gold you can bring to Nepal. Check duty-free jewellery limits, raw gold allowances, customs duty rates and official rules.',
+  robots: 'index, follow',
   keywords: [
     'how much gold can you bring to nepal',
     'gold allowance nepal',
@@ -21,8 +22,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'How Much Gold Can You Bring to Nepal? (Official Rules)',
-    description:
-      'Duty-free jewellery limits, raw gold allowances, customs duty and official Nepal rules for 2083/84 — verified against the Department of Customs.',
+        description:
+      'Duty-free jewellery limits, raw gold allowances, customs duty and official Nepal rules — verified against the Department of Customs.',
     url: 'https://nepacalc.com/how-much-gold-can-you-bring-to-nepal/',
     siteName: 'NepaCalc',
     type: 'article',
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'How Much Gold Can You Bring to Nepal? (Official Rules)',
     description:
-      'Duty-free jewellery limits, raw gold allowances, customs duty and official Nepal rules for 2083/84.',
+      'Duty-free jewellery limits, raw gold allowances, customs duty and official Nepal rules.',
   },
   robots: {
     index: true,
@@ -47,7 +48,7 @@ const articleSchema = {
   '@id': 'https://nepacalc.com/how-much-gold-can-you-bring-to-nepal/#article',
   headline: 'How Much Gold Can You Bring to Nepal?',
   description:
-    'Duty-free jewellery limits, raw gold allowances, customs duty and official Nepal rules for 2083/84.',
+      'Duty-free jewellery limits, raw gold allowances, customs duty and official Nepal rules.',
   url: 'https://nepacalc.com/how-much-gold-can-you-bring-to-nepal/',
   datePublished: '2026-10-09',
   dateModified: new Date().toISOString().split('T')[0],
@@ -325,68 +326,65 @@ export default function Page() {
           </section>
 
           {/* ── Section 8: FAQ ── */}
-          <section className="mb-10">
-            <h2 className="text-2xl font-black text-slate-900 mb-6 border-b border-slate-100 pb-2">
-              Frequently Asked Questions
-            </h2>
-            <div className="space-y-4">
-              {[
-                {
-                  q: 'How much gold can I bring to Nepal duty-free?',
-                  a: 'According to the Department of Customs, the duty-free gold jewellery allowance is up to 25 grams for men and up to 50 grams for women. These limits apply to gold jewellery, not raw gold.',
-                },
-                {
-                  q: 'Can I bring raw gold to Nepal from abroad?',
-                  a: 'According to the Department of Customs, Nepali passengers arriving from abroad may bring up to 100 grams of raw gold by paying customs duty. Do not assume the jewellery allowance applies to raw gold, bars or coins.',
-                },
-                {
-                  q: 'What customs duty do I pay on gold brought to Nepal?',
-                  a: "The exact customs duty rate on gold in Nepal is set in Schedule 4 of the Customs Tariff Act. The applicable rate should be verified directly with the Department of Customs before travelling, as rates can change annually.",
-                },
-                {
-                  q: 'Does the jewellery allowance apply to gold bars and coins?',
-                  a: 'No. The duty-free jewellery allowance applies specifically to gold jewellery. Gold bars, coins and other forms of raw or semi-processed gold are assessed under a separate provision. Do not assume the same limit applies.',
-                },
-                {
-                  q: 'What happens if I bring more gold than allowed into Nepal?',
-                  a: 'Gold and gold jewellery brought in excess of the permitted allowance is subject to customs duty. If undeclared excess gold is detected at the border, it may be confiscated and the passenger may face additional penalties under customs law.',
-                },
-                {
-                  q: 'Do the gold allowance rules apply to foreign tourists?',
-                  a: "Foreign tourists are subject to different customs provisions than returning Nepali nationals. Confirm the specific allowance for foreign visitors directly with the Department of Customs before your journey.",
-                },
-              ].map(({ q, a }) => (
-                <div key={q} className="border-b border-slate-100 pb-5">
-                  <h3 className="font-bold text-slate-900 mb-2">{q}</h3>
-                  <p className="text-slate-700 leading-relaxed text-sm">{a}</p>
+                      <section className="mb-10">
+              <h2 className="text-2xl font-black text-slate-900 mb-4 border-b border-slate-100 pb-2">
+                Frequently Asked Questions
+              </h2>
+              <div className="space-y-4">
+                <div>
+                  <h3 className="font-bold text-slate-900 mb-1">How much gold can I bring to Nepal duty-free?</h3>
+                  <p className="text-slate-700 leading-relaxed text-sm">
+                    According to the Department of Customs, the duty-free gold jewellery allowance is up to 25 grams for men and up to 50 grams for women. These limits apply to gold jewellery, not raw gold. For broader context on market rules, read the <Link href="/blog/nepal-gold-price-analysis-2083/" className="text-blue-600 hover:underline">Nepal gold price analysis for 2083</Link>.
+                  </p>
                 </div>
-              ))}
-            </div>
-          </section>
+                <div>
+                  <h3 className="font-bold text-slate-900 mb-1">Can I bring raw gold to Nepal from abroad?</h3>
+                  <p className="text-slate-700 leading-relaxed text-sm">According to the Department of Customs, Nepali passengers arriving from abroad may bring up to 100 grams of raw gold by paying customs duty. Do not assume the jewellery allowance applies to raw gold, bars or coins.</p>
+                </div>
+                <div>
+                  <h3 className="font-bold text-slate-900 mb-1">What customs duty do I pay on gold brought to Nepal?</h3>
+                  <p className="text-slate-700 leading-relaxed text-sm">The exact customs duty rate on gold in Nepal is set in Schedule 4 of the Customs Tariff Act. The applicable rate should be verified directly with the Department of Customs before travelling, as rates can change annually.</p>
+                </div>
+                <div>
+                  <h3 className="font-bold text-slate-900 mb-1">Does the jewellery allowance apply to gold bars and coins?</h3>
+                  <p className="text-slate-700 leading-relaxed text-sm">No. The duty-free jewellery allowance applies specifically to gold jewellery. Gold bars, coins and other forms of raw or semi-processed gold are assessed under a separate provision. Do not assume the same limit applies.</p>
+                </div>
+                <div>
+                  <h3 className="font-bold text-slate-900 mb-1">What happens if I bring more gold than allowed into Nepal?</h3>
+                  <p className="text-slate-700 leading-relaxed text-sm">Gold and gold jewellery brought in excess of the permitted allowance is subject to customs duty. If undeclared excess gold is detected at the border, it may be confiscated and the passenger may face additional penalties under customs law.</p>
+                </div>
+                <div>
+                  <h3 className="font-bold text-slate-900 mb-1">Do the gold allowance rules apply to foreign tourists?</h3>
+                  <p className="text-slate-700 leading-relaxed text-sm">
+                    Foreign tourists are subject to different customs provisions than returning Nepali nationals. Confirm the specific allowance with the <a href="https://tiairport.com.np/public/index.php/faq/en" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Tribhuvan International Airport guidelines</a> before your journey.
+                  </p>
+                </div>
+              </div>
+            </section>
 
           {/* ── Section 9: Related Pages ── */}
           <section className="mb-4">
-            <h2 className="text-2xl font-black text-slate-900 mb-4 border-b border-slate-100 pb-2 not-prose">
-              Related Pages
-            </h2>
-            <div className="grid sm:grid-cols-2 gap-3 not-prose">
-              {[
-                { href: '/market-rates/', label: 'Daily Market Rates Overview' },
-                { href: '/market-rates/silver-price-nepal/', label: 'Live Silver Price in Nepal' },
-                { href: '/market-rates/exchange-rate-nepal/', label: 'NRB Foreign Exchange Rate' },
-                { href: '/market-rates/remittance/', label: 'Latest Remittance Rates' },
-                { href: '/market-rates/history/', label: 'Historical Market Rates' },
-              ].map(({ href, label }) => (
-                <Link
-                  key={href}
-                  href={href}
-                  className="flex items-center gap-2 px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold text-slate-700 hover:bg-amber-50 hover:border-amber-300 hover:text-amber-900 transition-all"
-                >
-                  <span className="text-amber-500">→</span> {label}
-                </Link>
-              ))}
-            </div>
-          </section>
+              <h2 className="text-2xl font-black text-slate-900 mb-3 border-b border-slate-100 pb-2 not-prose">
+                Related Pages
+              </h2>
+              <div className="grid sm:grid-cols-2 gap-2 not-prose">
+                {[
+                  { href: '/market-rates/', label: 'Daily Market Rates Overview' },
+                  { href: '/market-rates/silver-price-nepal/', label: 'Live Silver Price in Nepal' },
+                  { href: '/market-rates/exchange-rate-nepal/', label: 'NRB Foreign Exchange Rate' },
+                  { href: '/market-rates/remittance/', label: 'Latest Remittance Rates' },
+                  { href: '/market-rates/history/', label: 'Historical Market Rates' },
+                ].map(({ href, label }) => (
+                  <Link
+                    key={href}
+                    href={href}
+                    className="flex items-center px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-[13px] font-semibold text-slate-700 hover:bg-slate-100 transition-all"
+                  >
+                    {label}
+                  </Link>
+                ))}
+              </div>
+            </section>
 
         </article>
       </div>
