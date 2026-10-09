@@ -1,4 +1,4 @@
-RewriteEngine On
+﻿RewriteEngine On
 
 # 0. Force mail subdomain to main domain (Google canonical fix)
 RewriteCond %{HTTP_HOST} ^mail\.nepacalc\.com$ [NC]
@@ -28,6 +28,7 @@ RewriteRule ^blog/nea-tariff-rates-2083-84/?$ /electricity/nepal-unit-price/ [L,
 # assets/images path never existed — redirect to logo
 RewriteRule ^assets/images/(.*)$ /logo.png [L,R=301]
 # Missing /images/og/ dynamic images → og-image.png
+RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^images/og/(.*)$ /og-image.png [L,R=301]
 # Missing individual images → logo fallback
 RewriteRule ^images/nrb-exchange-rate-today-nepal\.webp$ /logo.png [L,R=301]
