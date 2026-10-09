@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import Link from 'next/link';
 
 // ─── Metadata ─────────────────────────────────────────────────────────────────
@@ -6,7 +6,6 @@ export const metadata: Metadata = {
   title: 'How Much Gold Can You Bring to Nepal? (Official Rules)',
     description:
     'Find out how much gold you can bring to Nepal. Check duty-free jewellery limits, raw gold allowances, customs duty rates and official rules.',
-  robots: 'index, follow',
   keywords: [
     'how much gold can you bring to nepal',
     'gold allowance nepal',
