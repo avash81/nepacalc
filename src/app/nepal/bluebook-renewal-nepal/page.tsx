@@ -838,7 +838,7 @@ export default function BluebookRenewalPage() {
               The total amount payable during a renewal transaction is the sum of multiple components, not a single fixed number. Use this formula:
             </p>
             <div className="my-4 rounded-xl bg-slate-900 text-white p-5 font-mono text-sm leading-relaxed">
-              <p className="text-emerald-400 mb-1">// Total Renewal Cost</p>
+              <p className="text-emerald-400 mb-1">{"// Total Renewal Cost"}</p>
               <p>Total = <span className="text-yellow-300">Vehicle Tax</span> (provincial)</p>
               <p className="pl-8">+ <span className="text-yellow-300">Renewal Fee</span> (Rs 300 bike / Rs 500 car)</p>
               <p className="pl-8">+ <span className="text-yellow-300">Insurance Premium</span> (mandatory)</p>
