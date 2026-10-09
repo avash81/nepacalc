@@ -23,6 +23,12 @@ export default function Page() {
         <p className="text-[13px] text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed">
           If your jewellery weight is in Lal, Aana or Grams, convert it first using our <a href="/calculator/gold-converter/" className="text-blue-700 font-bold underline hover:text-blue-900">Gold Weight Converter</a>.
         </p>
+        <p className="text-[13px] text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed mt-4">
+          To understand how Nepal gold prices have moved in 2083 and what is influencing the market, read the <a href="/blog/nepal-gold-price-analysis-2083/" className="text-blue-700 font-bold underline hover:text-blue-900">Nepal gold price analysis for 2083</a>.
+        </p>
+        <p className="text-[13px] text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed mt-4">
+          For a detailed breakdown of duty-free limits and baggage rules, see our guide on <a href="/how-much-gold-can-you-bring-to-nepal/" className="text-blue-700 font-bold underline hover:text-blue-900">how much gold you can bring to Nepal</a>.
+        </p>
       </div>
     </div>
   );

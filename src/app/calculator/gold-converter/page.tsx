@@ -1208,6 +1208,16 @@ export default async function Page() {
             </div>
           </div>
 
+          <div className="mb-6 bg-amber-50 p-4 rounded-xl border border-amber-200">
+            <p className="text-sm text-slate-700 leading-relaxed">
+              Want to know what is driving the gold price in Nepal right now? Read the{" "}
+              <Link href="/blog/nepal-gold-price-analysis-2083/" className="text-blue-600 font-bold hover:underline">
+                Nepal gold price analysis for 2083
+              </Link>{" "}
+              for a detailed breakdown of market trends.
+            </p>
+          </div>
+
           <h2 id="faqs" className="text-2xl font-black text-slate-900 mt-12 mb-6">Frequently Asked Questions</h2>
           <div className="space-y-6">
             {faqSchema.mainEntity.map((faq, index) => (

@@ -176,6 +176,17 @@ export default async function Page() {
         <h2>Frequently Asked Questions About Gold Price in Nepal</h2>
       </div>
 
+      {/* Related reading */}
+      <div className="max-w-[94%] mx-auto px-4 sm:px-6 py-3 text-[13px] text-slate-500 font-medium">
+        For a deeper look at recent trends and what is driving today&apos;s rate, read our{" "}
+        <a href="/blog/nepal-gold-price-analysis-2083/" className="text-blue-700 font-bold hover:underline">
+          Nepal gold price analysis for 2083
+        </a>. If you are travelling from abroad, check our guide on{" "}
+        <a href="/how-much-gold-can-you-bring-to-nepal/" className="text-blue-700 font-bold hover:underline">
+          how much gold you can bring to Nepal
+        </a>.
+      </div>
+
       
       {/* ── FAQPage schema — AEO: powers FAQ rich results ── */}
       <script
