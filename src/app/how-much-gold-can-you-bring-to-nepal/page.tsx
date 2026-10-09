@@ -240,7 +240,7 @@ export default function Page() {
             </p>
             <p className="text-slate-700 leading-relaxed mb-4">
               Confirm the exact allowance for foreign visitors directly with the{' '}
-              <a href="https://www.customs.gov.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold hover:underline">
+              <a href="https://www.customs.gov.np/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 font-bold hover:underline">
                 Department of Customs
               </a>{' '}
               before your journey, as the provisions for tourists are separate from those for Nepali nationals.
@@ -269,7 +269,7 @@ export default function Page() {
             <h3 className="text-lg font-bold text-slate-900 mt-6 mb-2">Check the Latest Official Customs Tariff</h3>
             <p className="text-slate-700 leading-relaxed mb-4">
               Nepal&apos;s Department of Customs publishes its integrated customs tariff, which is the official source to consult for applicable tariff rates. The exact customs duty rate is defined in Schedule 4 of the Customs Tariff Act, which can be verified via the{' '}
-              <a href="https://lawcommission.gov.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+              <a href="https://lawcommission.gov.np/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">
                 Nepal Law Commission
               </a>
               .
@@ -288,7 +288,7 @@ export default function Page() {
             </h2>
             <p className="text-slate-700 leading-relaxed mb-4">
               Bringing gold into Nepal in excess of the permitted allowance without paying the applicable customs duty is a customs violation. The Department of Customs published{' '}
-              <a href="https://www.customs.gov.np/content/140/information-of-private-use-goods-that-passengers/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+              <a href="https://www.customs.gov.np/content/140/information-of-private-use-goods-that-passengers/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">
                 passenger-goods notice
               </a>{' '}
               sets out specific consequences for passengers who carry gold beyond the allowed limit.
@@ -356,7 +356,7 @@ export default function Page() {
                 <div>
                   <h3 className="font-bold text-slate-900 mb-1">Do the gold allowance rules apply to foreign tourists?</h3>
                   <p className="text-slate-700 leading-relaxed text-sm">
-                    Foreign tourists are subject to different customs provisions than returning Nepali nationals. Confirm the specific allowance with the <a href="https://tiairport.com.np/public/index.php/faq/en" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Tribhuvan International Airport guidelines</a> before your journey.
+                    Foreign tourists are subject to different customs provisions than returning Nepali nationals. Confirm the specific allowance with the <a href="https://tiairport.com.np/public/index.php/faq/en" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Tribhuvan International Airport guidelines</a> before your journey.
                   </p>
                 </div>
               </div>
