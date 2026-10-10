@@ -250,49 +250,8 @@ export const healthSEO: Record<string, SEOContent> = {
         ]
         },
         
-        content: (
-        <>
-        
-        
-        <div className="space-y-12">
-        <div className="bg-sky-50/50 border-l-4 border-sky-600 rounded-r-xl p-8 shadow-sm">
-        <h2 className="text-sky-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-        Understanding Your Daily Calorie Needs
-        </h2>
-        <p className="text-slate-800 text-base leading-relaxed">
-        Managing your calories is the foundation of healthy weight management. By understanding your <strong>Total Daily Energy Expenditure (TDEE)</strong>, you can make informed decisions about your diet and exercise. This <a href="/calculator/calorie-calculator/" className="text-sky-600 hover:text-sky-800 underline font-semibold transition-colors">Calorie Tool</a> provides a high-precision calculation of your daily energy needs.
-         For a broader understanding, you may also want to explore <a href="/calculator/linear-solver/" className="text-blue-600 hover:text-blue-800 underline transition-colors">Linear Equation Solver</a>.</p>
-        
-        </div>
-        
-        <section>
-        <h3 className="text-2xl font-black text-slate-900 mb-6">1. The Components of Burn</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="p-8 bg-white border border-slate-200 rounded-2xl shadow-sm">
-        <h4 className="text-sm font-black uppercase text-sky-600 mb-4">BMR (60-75%)</h4>
-        <p className="text-xs text-slate-600 leading-relaxed">The energy required for vital functions at rest. This is the baseline energy needed to stay alive. Many users also utilize <a href="/calculator/nepal-stocks/" className="text-blue-600 hover:text-blue-800 underline transition-colors">this nepse estimator</a> alongside this analysis.</p>
-        </div>
-        <div className="p-8 bg-white border border-slate-200 rounded-2xl shadow-sm">
-        <h4 className="text-sm font-black uppercase text-indigo-600 mb-4">TEF (10%)</h4>
-        <p className="text-xs text-slate-600 leading-relaxed">The Thermic Effect of Food. The energy used to digest and process the nutrients you consume. You can gain deeper insights by using <a href="/calculator/lcm-gcf-calculator/" className="text-blue-600 hover:text-blue-800 underline transition-colors">LCM & GCF Calculator</a>.</p>
-        </div>
-        </div>
-        </section>
-        <section className="bg-slate-900 text-white rounded-2xl p-8 border border-slate-800 shadow-xl overflow-hidden relative">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-sky-600 rounded-full blur-[120px] opacity-20 pointer-events-none" />
-        <h3 className="text-xl font-black mb-6 relative z-10">Standard Advice</h3>
-        <p className="text-sm text-slate-300 leading-relaxed relative z-10">
-        For personalized advice, combine your calorie planning with our <a href="/calculator/water-intake/" className="text-sky-400 underline font-bold">Hydration Tool</a>. Remember, sustainable weight loss is a combination of healthy nutrition and regular activity.
-         Official regulatory standards and data benchmarks are frequently aligned with references from the <a href="https://www.fao.org/nutrition/en/" target="_blank" rel="dofollow noopener" className="text-blue-600 hover:text-blue-800 underline transition-colors">FAO Nutrition Standards</a>.</p>
-        </section>
-        </div>
-        </>
-    ),
-    faqs: [
-      { question: "How many calories should I eat?", answer: "It depends on your age, weight, height, and activity level. Use our calculator to find your personalized daily target." },
-      { question: "What is TDEE?", answer: "Total Daily Energy Expenditure is the total number of calories you burn in a day." }
-    ]
-  },
+        content: null
+    },
   'body-fat': {
     title: "Body Fat Calculator | Body Composition Tool",
     description: "Calculate your body fat percentage using the U.S. Navy method. Understand your body composition and track your fitness progress accurately.",
@@ -930,4 +889,5 @@ export const healthSEO: Record<string, SEOContent> = {
     ]
   }
 };
+
 
