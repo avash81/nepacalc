@@ -646,15 +646,15 @@ export default function WeightConverter() {
               <ul className="space-y-2 text-sm text-[#5F6368]">
                 <li>
                   <Link href="/market-rates/live-gold-price/" className="text-[#1967D2] font-semibold hover:underline">Live Gold Price</Link>
-                  {' '}&mdash; view the current gold price in Nepal.
+                  : view the current gold price in Nepal.
                 </li>
                 <li>
                   <Link href="/calculator/unit-converter/" className="text-[#1967D2] font-semibold hover:underline">Unit Converter</Link>
-                  {' '}&mdash; explore additional unit conversions.
+                  : explore additional unit conversions.
                 </li>
                 <li>
                   <Link href="/converters/" className="text-[#1967D2] font-semibold hover:underline">All Conversion Tools</Link>
-                  {' '}&mdash; browse other available conversion tools.
+                  : browse other available conversion tools.
                 </li>
               </ul>
             </div>
