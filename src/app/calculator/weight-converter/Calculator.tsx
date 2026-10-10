@@ -18,7 +18,7 @@ const UNITS: Record<string, { name: string; factor: number }> = {
 const DEFAULT_STATE = {
   value: 1,
   from: 'kg',
-  to: 'lb',
+  to: 'tola',
   goldPricePerTola: 150000, // NPR
 };
 
@@ -101,8 +101,8 @@ export default function WeightConverter() {
 
             <div className="grid grid-cols-2 gap-3">
               {[
-                { label: '1 kg equals', val: '2.2046 lb' },
-                { label: '1 lb equals', val: '453.59 g' },
+                { label: '1 kg equals', val: '85.735 Tola' },
+                { label: '1 Tola equals', val: '11.6638 g' },
               ].map((item, i) => (
                 <div key={i} className="p-4 bg-white border border-slate-200 rounded-xl shadow-sm text-center">
                   <span className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">{item.label}</span>
