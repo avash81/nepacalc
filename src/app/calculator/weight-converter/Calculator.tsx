@@ -29,11 +29,13 @@ export default function WeightConverter() {
   const updateState = (u: Partial<typeof DEFAULT_STATE>) => setState({ ...state, ...u });
 
   const result = useMemo(() => {
+    if (isNaN(value) || value < 0) return '0';
     const r = (value * UNITS[from].factor) / UNITS[to].factor;
-    return r.toLocaleString(undefined, { maximumFractionDigits: 6 });
+    return r.toLocaleString(undefined, { maximumFractionDigits: 7 });
   }, [value, from, to]);
 
   const goldValue = useMemo(() => {
+    if (isNaN(value) || value < 0 || isNaN(goldPricePerTola) || goldPricePerTola < 0) return 0;
     // Current input converted to Tola
     const tolas = (value * UNITS[from].factor) / UNITS['tola'].factor;
     return tolas * goldPricePerTola;
@@ -45,8 +47,8 @@ export default function WeightConverter() {
     <CalculatorErrorBoundary calculatorName="Weight Converter">
       <ModernCalcLayout hideH1={false}
       crumbs={[{ label: 'Converters', href: '/converters/' }, { label: 'Weight Converter' }]}
-        title="Weight & Mass Converter"
-        description="Convert seamlessly between kilograms, pounds, grams, ounces, metric tons, and Nepal's unique gold Tola standard with high precision."
+        title="Weight Converter: Kg to Tola, Grams & Pounds"
+        description="Convert kilograms, grams, pounds, ounces and Nepal-standard tola with an online weight converter. View common conversions and estimate gold value per tola."
         icon={Scale}
         inputs={
           <div className="space-y-6">
@@ -101,7 +103,7 @@ export default function WeightConverter() {
 
             <div className="grid grid-cols-2 gap-3">
               {[
-                { label: '1 kg equals', val: '85.735 Tola' },
+                { label: '1 kg equals', val: '85.7353 Tola' },
                 { label: '1 Tola equals', val: '11.6638 g' },
               ].map((item, i) => (
                 <div key={i} className="p-4 bg-white border border-slate-200 rounded-xl shadow-sm text-center">
