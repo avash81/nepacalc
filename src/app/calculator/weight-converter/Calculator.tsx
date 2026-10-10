@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
 import { CalculatorErrorBoundary } from '@/components/calculator/CalculatorErrorBoundary';
 import { useSyncState } from '@/hooks/useSyncState';
-import { ArrowLeftRight, Gem, Scale, Check, Copy } from 'lucide-react';
+import { ArrowLeftRight, Scale, Check, Copy } from 'lucide-react';
 
 const UNITS: Record<string, { name: string; short: string; factor: number }> = {
   kg:     { name: 'Kilogram (kg)',       short: 'kg',   factor: 1000 },
@@ -27,14 +27,12 @@ interface CalcState {
   value: string | number;
   from: string;
   to: string;
-  goldPricePerTola: string | number;
 }
 
 const DEFAULT_STATE: CalcState = {
   value: '',
   from: 'kg',
   to: 'tola',
-  goldPricePerTola: '',
 };
 
 function InteractiveWeightTable() {
@@ -157,8 +155,8 @@ function InteractiveWeightTable() {
 }
 
 export default function WeightConverter() {
-  const [state, setState] = useSyncState<CalcState>('weight_converter_v4', DEFAULT_STATE);
-  const { value, from, to, goldPricePerTola } = state;
+  const [state, setState] = useSyncState<CalcState>('weight_converter_v5', DEFAULT_STATE);
+  const { value, from, to } = state;
   const [copied, setCopied] = useState(false);
 
   const numValue = useMemo(() => {
@@ -166,12 +164,6 @@ export default function WeightConverter() {
     const n = Number(value);
     return isNaN(n) || n < 0 ? 0 : n;
   }, [value]);
-
-  const numGoldPrice = useMemo(() => {
-    if (goldPricePerTola === '' || goldPricePerTola === null || goldPricePerTola === undefined) return 0;
-    const n = Number(goldPricePerTola);
-    return isNaN(n) || n < 0 ? 0 : n;
-  }, [goldPricePerTola]);
 
   const updateState = (u: Partial<CalcState>) => setState({ ...state, ...u });
 
@@ -196,16 +188,6 @@ export default function WeightConverter() {
       updateState({ value: Number(sourceNum.toFixed(6)) });
     }
   };
-
-  const goldValue = useMemo(() => {
-    if (numValue === 0 || numGoldPrice === 0) return 0;
-    return ((numValue * UNITS[from].factor) / UNITS['tola'].factor) * numGoldPrice;
-  }, [numValue, from, numGoldPrice]);
-
-  const currentTolas = useMemo(() => {
-    if (numValue === 0) return 0;
-    return (numValue * UNITS[from].factor) / UNITS['tola'].factor;
-  }, [numValue, from]);
 
   const swap = () => { updateState({ from: to, to: from }); };
 
@@ -343,55 +325,6 @@ export default function WeightConverter() {
               </div>
             </div>
 
-            {/* Nepal Gold Standard + Gold Value Estimator — compact flat strip */}
-            <div className="pt-2 border-t border-[#F1F3F4]">
-              <div className="flex flex-col sm:flex-row sm:items-start gap-4">
-                {/* Nepal Gold Standard info */}
-                <div className="flex items-start gap-2 flex-1 min-w-0">
-                  <div className="p-1 bg-amber-100/70 rounded text-amber-700 shrink-0 mt-0.5">
-                    <Gem className="w-3 h-3" />
-                  </div>
-                  <div className="min-w-0">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#5F6368] block mb-0.5">Nepal Gold Standard</span>
-                    <span className="text-xs text-[#202124] font-semibold">1 Tola = 11.6638 g</span>
-                    <span className="text-[11px] text-[#70757A] ml-2">· 1 kg = 85.7353 Tola</span>
-                  </div>
-                </div>
-
-                {/* Divider on desktop */}
-                <div className="hidden sm:block w-px bg-[#DADCE0] self-stretch" />
-
-                {/* Value Estimator */}
-                <div className="flex items-center gap-3 flex-1 min-w-0">
-                  <div className="p-1 bg-green-100/70 rounded text-green-700 shrink-0">
-                    <Scale className="w-3 h-3" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <label className="text-[10px] font-bold uppercase tracking-wider text-[#5F6368] block mb-1">
-                      Value Estimator
-                      <span className="ml-1.5 font-normal normal-case text-[#9AA0A6]">({currentTolas.toFixed(2)} Tola)</span>
-                    </label>
-                    <div className="flex items-center gap-2">
-                      <div className="relative flex-1 max-w-[160px]">
-                        <span className="absolute left-2 top-1/2 -translate-y-1/2 text-[11px] font-medium text-[#70757A]">Rs.</span>
-                        <input
-                          type="number"
-                          value={goldPricePerTola}
-                          onChange={e => updateState({ goldPricePerTola: e.target.value })}
-                          className="w-full h-7 pl-8 pr-2 rounded border border-[#DADCE0] bg-white text-xs font-mono text-[#202124] focus:border-gray-400 outline-none transition-colors"
-                          placeholder="Price/Tola"
-                        />
-                      </div>
-                      {numGoldPrice > 0 && (
-                        <span className="text-xs font-black font-mono text-[#202124] whitespace-nowrap">
-                          = NPR {goldValue.toLocaleString(undefined, { maximumFractionDigits: 0 })}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         }
         details={
