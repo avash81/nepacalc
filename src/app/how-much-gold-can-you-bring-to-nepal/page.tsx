@@ -125,7 +125,7 @@ const faqSchema = {
       name: 'Does the Jewellery Allowance Apply to Gold Bars and Coins?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Do not assume that it does. Gold bars, coins and other forms of raw or semi-processed gold may be treated differently from finished ornaments. Confirm the applicable provision before travelling.',
+        text: 'Do not assume that it does. Gold bars, coins and other forms of raw or semi-processed gold may be treated differently from finished ornaments. The same categorizations often apply to silver; check the live silver price in nepal and specific customs limits before travelling.',
       },
     },
     {
@@ -364,7 +364,7 @@ export default function Page() {
             <p className="text-slate-700 leading-relaxed mb-2">Before estimating customs duty, confirm:</p>
             <ul className="list-disc pl-6 text-slate-700 space-y-2 mb-4">
               <li><strong>Type of gold:</strong> Is it finished jewellery, a bar, a coin or another form?</li>
-              <li><strong>Passenger eligibility:</strong> Which customs provisions apply to your circumstances?</li>
+              <li><strong>Passenger eligibility:</strong> Which customs provisions apply to your circumstances? For instance, returning workers with <Link href="/market-rates/remittance/" className="text-blue-600 font-bold hover:underline">remittance</Link> records may qualify for different allowances.</li>
               <li><strong>Quantity:</strong> What is the total weight of the gold?</li>
               <li><strong>Applicable allowance:</strong> Does the item qualify for a duty-free or other passenger concession?</li>
               <li><strong>Applicable rate:</strong> What duty and other charges, if any, apply under the current rules?</li>
@@ -410,12 +410,12 @@ export default function Page() {
               Practical Tips Before You Travel
             </h2>
             <ul className="list-disc pl-6 text-slate-700 space-y-3">
-              <li><strong>Check the latest official rules.</strong> Read the Department of Customs passenger-goods notice before travelling.</li>
+              <li><strong>Check the latest official rules.</strong> Read the Department of Customs passenger-goods notice before travelling. You can also review <Link href="/market-rates/history/" className="text-blue-600 font-bold hover:underline">historical market rates</Link> if you are analyzing past gold prices.</li>
               <li><strong>Weigh your gold in advance.</strong> Know the weight of the jewellery or other gold you plan to carry. Use the gold weight converter if you need to convert another unit into grams.</li>
               <li><strong>Keep purchase documents if available.</strong> Receipts may help explain where and when you purchased the gold. Ask Customs whether specific documents are required for your circumstances.</li>
               <li><strong>Confirm the category of gold.</strong> Do not assume that jewellery, bars, coins and bullion have the same allowance or duty treatment.</li>
               <li><strong>Check declaration requirements.</strong> If your goods are dutiable, controlled or otherwise required to be declared, follow the customs declaration procedure.</li>
-              <li><strong>Verify the rules before each trip.</strong> Passenger provisions and tariff information may change. Confirm the current requirements rather than relying on an older article.</li>
+              <li><strong>Verify the rules before each trip.</strong> Passenger provisions and tariff information may change. Confirm the current requirements and check the <Link href="/market-rates/" className="text-blue-600 font-bold hover:underline">daily market rates overview</Link> rather than relying on an older article.</li>
             </ul>
           </section>
 
@@ -446,7 +446,7 @@ export default function Page() {
               <div>
                 <h3 className="font-bold text-slate-900 mb-1">Does the Jewellery Allowance Apply to Gold Bars and Coins?</h3>
                 <p className="text-slate-700 leading-relaxed text-sm">
-                  Do not assume that it does. Gold bars, coins and other forms of raw or semi-processed gold may be treated differently from finished ornaments. Confirm the applicable provision before travelling.
+                  Do not assume that it does. Gold bars, coins and other forms of raw or semi-processed gold may be treated differently from finished ornaments. The same categorizations often apply to silver; check the <Link href="/market-rates/silver-price-nepal/" className="text-blue-600 font-bold hover:underline">live silver price in nepal</Link> and specific customs limits before travelling.
                 </p>
               </div>
               <div>
@@ -481,30 +481,7 @@ export default function Page() {
             </ul>
           </section>
 
-          {/* ── Section 10: Related Pages ── */}
-          <section className="mb-4 mt-10">
-            <h2 className="text-2xl font-black text-slate-900 mb-3 border-b border-slate-100 pb-2 not-prose">Related Pages</h2>
-            <div className="grid sm:grid-cols-2 gap-2 not-prose">
-              {[
-                { href: '/market-rates/live-gold-price/', label: 'Live Gold Price in Nepal' },
-                { href: '/calculator/gold-converter/', label: 'Gold Weight Converter' },
-                { href: '/calculator/gold-tax/', label: 'Gold Tax Calculator' },
-                { href: '/market-rates/silver-price-nepal/', label: 'Live Silver Price in Nepal' },
-                { href: '/market-rates/', label: 'Daily Market Rates Overview' },
-                { href: '/market-rates/exchange-rate-nepal/', label: 'NRB Foreign Exchange Rate' },
-                { href: '/market-rates/remittance/', label: 'Latest Remittance Rates' },
-                { href: '/market-rates/history/', label: 'Historical Market Rates' },
-              ].map(({ href, label }) => (
-                <Link
-                  key={href}
-                  href={href}
-                  className="flex items-center px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-[13px] font-semibold text-slate-700 hover:bg-slate-100 transition-all"
-                >
-                  {label}
-                </Link>
-              ))}
-            </div>
-          </section>
+          
 
         </article>
       </div>
