@@ -69,7 +69,8 @@ const customSchema = {
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "NEPSE WACC Calculator"
+          "name": "NEPSE WACC Calculator",
+          "item": "https://nepacalc.com/calculator/nepse-wacc/"
         }
       ]
     },

@@ -215,7 +215,6 @@ function generateSchema(
           name: 'NepaCalc Market Rates',
           url: 'https://nepacalc.com/market-rates/',
         },
-        isPartOf: { '@type': 'WebSite', '@id': websiteId },
         mainEntityOfPage: data.url ? { '@id': `${data.url}#webpage` } : undefined,
       };
 
