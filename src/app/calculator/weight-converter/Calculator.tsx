@@ -237,26 +237,29 @@ export default function WeightConverter() {
             </div>
 
             {/* Converter Row */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
               {/* FROM */}
-              <div className="flex-1 flex items-center gap-2 bg-white border border-[#DADCE0] rounded-lg px-3 py-2.5 focus-within:border-gray-400 transition-colors">
+              <div className="flex-1 flex items-center bg-white border border-[#DADCE0] rounded-lg overflow-hidden focus-within:border-gray-400 focus-within:ring-1 focus-within:ring-gray-400 transition-all shadow-sm h-12">
                 <input
                   type="number"
                   value={value}
                   placeholder="Enter amount"
                   onChange={e => updateState({ value: e.target.value })}
                   min={0}
-                  className="flex-1 min-w-0 bg-transparent font-mono text-lg font-bold text-[#202124] outline-none placeholder:text-[#DADCE0]"
+                  className="flex-1 w-full bg-transparent font-mono text-lg font-bold text-[#202124] outline-none placeholder:text-[#DADCE0] px-4 h-full"
                 />
-                <select
-                  value={from}
-                  onChange={e => updateState({ from: e.target.value })}
-                  className="shrink-0 h-8 pl-2 pr-6 rounded border border-[#DADCE0] bg-slate-50 text-xs font-semibold text-[#202124] outline-none cursor-pointer appearance-none max-w-[150px] truncate"
-                >
-                  {Object.entries(UNITS).map(([k, v]) => (
-                    <option key={k} value={k}>{v.name}</option>
-                  ))}
-                </select>
+                <div className="relative shrink-0 h-full border-l border-[#DADCE0] bg-slate-50 flex items-center">
+                  <select
+                    value={from}
+                    onChange={e => updateState({ from: e.target.value })}
+                    className="h-full pl-3 pr-8 bg-transparent text-sm font-semibold text-[#202124] outline-none cursor-pointer appearance-none w-full min-w-[120px] max-w-[160px] truncate"
+                  >
+                    {Object.entries(UNITS).map(([k, v]) => (
+                      <option key={k} value={k}>{v.name}</option>
+                    ))}
+                  </select>
+                  <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[#5F6368] text-xs">▼</div>
+                </div>
               </div>
 
               {/* Swap */}
@@ -264,31 +267,34 @@ export default function WeightConverter() {
                 type="button"
                 onClick={swap}
                 title="Swap units"
-                className="self-center h-8 w-8 shrink-0 rounded-full border border-[#DADCE0] bg-white hover:bg-slate-50 flex items-center justify-center transition-all text-[#5F6368]"
+                className="self-center h-10 w-10 shrink-0 rounded-full border border-[#DADCE0] bg-white hover:bg-slate-50 flex items-center justify-center transition-all text-[#5F6368] shadow-sm my-1 sm:my-0"
                 aria-label="Swap units"
               >
-                <ArrowLeftRight className="w-3.5 h-3.5" />
+                <ArrowLeftRight className="w-4 h-4" />
               </button>
 
               {/* TO */}
-              <div className="flex-1 flex items-center gap-2 bg-slate-50 border border-[#DADCE0] rounded-lg px-3 py-2.5 focus-within:border-gray-400 transition-colors">
+              <div className="flex-1 flex items-center bg-slate-50 border border-[#DADCE0] rounded-lg overflow-hidden focus-within:border-gray-400 focus-within:ring-1 focus-within:ring-gray-400 transition-all shadow-sm h-12">
                 <input
                   type="number"
                   value={value === '' ? '' : Number(rawTargetValue.toFixed(7))}
                   placeholder="Result"
                   onChange={e => handleTargetChange(e.target.value)}
                   min={0}
-                  className="flex-1 min-w-0 bg-transparent font-mono text-lg font-bold text-[#202124] outline-none placeholder:text-[#DADCE0]"
+                  className="flex-1 w-full bg-transparent font-mono text-lg font-bold text-[#202124] outline-none placeholder:text-[#DADCE0] px-4 h-full"
                 />
-                <select
-                  value={to}
-                  onChange={e => updateState({ to: e.target.value })}
-                  className="shrink-0 h-8 pl-2 pr-6 rounded border border-[#DADCE0] bg-white text-xs font-semibold text-[#202124] outline-none cursor-pointer appearance-none max-w-[150px] truncate"
-                >
-                  {Object.entries(UNITS).map(([k, v]) => (
-                    <option key={k} value={k}>{v.name}</option>
-                  ))}
-                </select>
+                <div className="relative shrink-0 h-full border-l border-[#DADCE0] bg-white flex items-center">
+                  <select
+                    value={to}
+                    onChange={e => updateState({ to: e.target.value })}
+                    className="h-full pl-3 pr-8 bg-transparent text-sm font-semibold text-[#202124] outline-none cursor-pointer appearance-none w-full min-w-[120px] max-w-[160px] truncate"
+                  >
+                    {Object.entries(UNITS).map(([k, v]) => (
+                      <option key={k} value={k}>{v.name}</option>
+                    ))}
+                  </select>
+                  <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[#5F6368] text-xs">▼</div>
+                </div>
               </div>
             </div>
 
