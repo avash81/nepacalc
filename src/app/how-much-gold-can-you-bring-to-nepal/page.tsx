@@ -3,9 +3,9 @@ import Link from 'next/link';
 
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
-  title: 'How Much Gold Can You Bring to Nepal? (Official Rules)',
+  title: 'How Much Gold Can You Bring to Nepal? Customs Rules',
   description:
-    'Find out how much gold you can bring to Nepal. Check duty-free jewellery limits, raw gold allowances, customs duty rates and official rules.',
+    'Find out how much gold you can bring to Nepal, including jewellery limits, raw gold rules, customs duty and declaration requirements. Check official guidance.',
   keywords: [
     'how much gold can you bring to nepal',
     'gold allowance nepal',
@@ -20,18 +20,27 @@ export const metadata: Metadata = {
     canonical: 'https://nepacalc.com/how-much-gold-can-you-bring-to-nepal/',
   },
   openGraph: {
-    title: 'How Much Gold Can You Bring to Nepal? (Official Rules)',
+    title: 'How Much Gold Can You Bring to Nepal? Customs Rules',
     description:
-      'Duty-free jewellery limits, raw gold allowances, customs duty and official Nepal rules verified against the Department of Customs.',
+      'Find out how much gold you can bring to Nepal, including jewellery limits, raw gold rules, customs duty and declaration requirements. Check official guidance.',
     url: 'https://nepacalc.com/how-much-gold-can-you-bring-to-nepal/',
     siteName: 'NepaCalc',
     type: 'article',
+    images: [
+      {
+        url: 'https://nepacalc.com/images/gold-customs-nepal.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Gold jewellery, coins, and travel documents',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'How Much Gold Can You Bring to Nepal? (Official Rules)',
+    title: 'How Much Gold Can You Bring to Nepal? Customs Rules',
     description:
-      'Duty-free jewellery limits, raw gold allowances, customs duty and official Nepal rules.',
+      'Find out how much gold you can bring to Nepal, including jewellery limits, raw gold rules, customs duty and declaration requirements. Check official guidance.',
+    images: ['https://nepacalc.com/images/gold-customs-nepal.jpg'],
   },
   robots: {
     index: true,
@@ -171,6 +180,15 @@ export default function Page() {
           <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight mb-6 not-prose">
             How Much Gold Can You Bring to Nepal?
           </h1>
+
+          {/* Featured Image */}
+          <figure className="mb-10 not-prose rounded-xl overflow-hidden shadow-sm border border-slate-200">
+            <img 
+              src="/images/gold-customs-nepal.jpg" 
+              alt="Traveler declaring gold jewelry at a customs desk" 
+              className="w-full h-auto object-cover aspect-video"
+            />
+          </figure>
 
           {/* ── Section 1: Quick Answer ── */}
           <div className="bg-amber-50 border border-amber-200 rounded-xl p-6 mb-10 not-prose">
