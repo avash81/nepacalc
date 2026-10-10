@@ -184,14 +184,15 @@ export default function WeightConverter() {
             <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
               <h2 className="text-xl font-black text-[#202124] mb-4">Weight Conversion: Kilograms, Pounds, Grams and Tola</h2>
               <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
-                <p>Use this weight converter to convert between kilograms, grams, pounds, ounces and Tola. Enter a value, select the original and target units, and view the converted result.</p>
-                <p>In Nepal, Tola is commonly used to measure gold and other precious metals. For Nepal-standard conversions, 1 Tola equals 11.6638 grams.</p>
+                <p>Use this weight converter to convert kilograms, grams, pounds, ounces and Nepal-standard Tola. Enter a value, select the original and target units, and view the converted result.</p>
+                <p>In Nepal, one Tola is equal to 11.6638 grams. Tola values can differ across regional standards, so confirm the applicable standard when converting precious-metal weights.</p>
                 <h3 className="font-bold text-[#202124] mt-4">Common Weight Conversions</h3>
                 <ul className="list-disc pl-5 space-y-1">
                   <li>1 kilogram = 1,000 grams</li>
                   <li>1 kilogram ≈ 2.20462 pounds</li>
                   <li>1 pound = 453.59237 grams</li>
-                  <li>1 Tola = 11.6638 grams</li>
+                  <li>1 Nepal-standard Tola = 11.6638 grams</li>
+                  <li>1 kilogram ≈ 85.7353 Nepal-standard Tola</li>
                 </ul>
               </div>
             </div>
@@ -202,10 +203,10 @@ export default function WeightConverter() {
                 <li>Enter the weight you want to convert.</li>
                 <li>Select the original unit in the From field.</li>
                 <li>Select the target unit in the To field.</li>
-                <li>View the converted result.</li>
-                <li>Use the swap control to reverse the conversion direction.</li>
+                <li>Read the converted result.</li>
+                <li>Use the swap control to reverse the conversion when needed.</li>
+                <li>To estimate gold value, enter the applicable price per Tola in the Gold Value Estimator.</li>
               </ol>
-              <p className="text-sm text-[#5F6368] mt-4">For the Gold Value Estimator, enter the price per Tola to estimate the value of the entered precious-metal weight.</p>
             </div>
 
             <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
@@ -219,16 +220,30 @@ export default function WeightConverter() {
                 </ul>
                 <p>For Nepal-standard Tola conversions, the calculation uses 1 Tola = 11.6638 grams.</p>
                 <p className="font-bold text-[#202124] bg-slate-50 p-3 rounded border border-slate-200">Formula for kilograms to Tola:<br/>Tola = (kilograms × 1,000) ÷ 11.6638</p>
+
+                  <h3 className="font-bold text-[#202124] mt-6 mb-2">How to Convert Tola to Kilograms</h3>
+                  <p>To convert Nepal-standard Tola to kilograms, multiply the number of Tola by 11.6638 and divide by 1,000.</p>
+                  <p>Examples:</p>
+                  <ul className="list-disc pl-5 space-y-1">
+                    <li>1 Tola = 0.0116638 kg</li>
+                    <li>100 Tola = 1.16638 kg</li>
+                  </ul>
+                  <p>Use the calculator to convert other values in either direction.</p>
               </div>
             </div>
 
             <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
               <h2 className="text-xl font-black text-[#202124] mb-4">How Many Tola Are in 1 kg?</h2>
               <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
-                <p>One kilogram is approximately <strong>85.7353 Nepal-standard Tola</strong>.</p>
-                <p>This conversion uses the standard that 1 Tola equals 11.6638 grams.</p>
-                <p>To convert kilograms to Tola, multiply the kilogram value by 1,000 and divide by 11.6638. For example, 1 kg is approximately 85.7353 Tola, while 2 kg is approximately 171.4705 Tola.</p>
-                <p className="text-xs italic">The result may vary if a different regional Tola standard is used.</p>
+                <p>One kilogram is approximately <strong>85.7353 Nepal-standard Tola</strong>, using 1 Tola = 11.6638 grams.</p>
+                <p>Examples:</p>
+                <ul className="list-disc pl-5 space-y-1">
+                  <li>0.5 kg ≈ 42.8676 Tola</li>
+                  <li>1 kg ≈ 85.7353 Tola</li>
+                  <li>2 kg ≈ 171.4705 Tola</li>
+                  <li>5 kg ≈ 428.6763 Tola</li>
+                </ul>
+                <p className="text-xs italic">These values use the Nepal-standard Tola. Other regional standards may produce different results.</p>
               </div>
             </div>
 
@@ -239,8 +254,8 @@ export default function WeightConverter() {
                 <table className="w-full text-sm text-left">
                   <thead className="bg-slate-50 text-slate-600 font-bold border-b border-slate-200">
                     <tr>
-                      <th className="py-3 px-4">Kilograms (kg)</th>
-                      <th className="py-3 px-4">Approximate Tola</th>
+                      <th className="py-3 px-4">Kilograms</th>
+                      <th className="py-3 px-4">Nepal-standard Tola (approx.)</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100">
@@ -293,16 +308,16 @@ export default function WeightConverter() {
             answer: "Multiply the kilogram value by approximately 2.20462 to get pounds. For example, 1 kg is approximately 2.20462 lb."
           },
           {
-            question: "What is the difference between a weight ounce and a fluid ounce?",
-            answer: "A weight ounce measures mass, while a fluid ounce measures volume. They are different units and are not interchangeable."
+            question: "What is the difference between an ounce and a fluid ounce?",
+            answer: "An ounce is a unit of weight or mass, while a fluid ounce measures volume. They are not interchangeable."
           },
           {
-            question: "How many kilograms are in one metric tonne?",
+            question: "How many kilograms are in a metric tonne?",
             answer: "One metric tonne equals 1,000 kilograms."
           },
           {
-            question: "Can the Gold Value Estimator be used for silver?",
-            answer: "The estimator can calculate a value using the rate entered per Tola. For silver, enter an appropriate silver price per Tola."
+            question: "Can I use the estimator for silver?",
+            answer: "Yes. Enter the applicable silver price per Tola to estimate value. Make sure the price and weight use the same Tola standard."
           },
           {
             question: "Is weight the same as mass?",
