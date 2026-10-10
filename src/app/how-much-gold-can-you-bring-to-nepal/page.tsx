@@ -179,9 +179,7 @@ export default function Page() {
               Nepal&apos;s Civil Aviation Authority of Nepal (CAAN) AIP customs guidance dated 30 April 2024 lists a duty-free allowance of up to 25 grams of gold ornaments for men and 50 grams for women. These figures come from dated guidance and should not be assumed to reflect every current customs provision.
             </p>
             <p className="text-amber-900 text-sm leading-relaxed">
-              Gold jewellery and raw gold, such as bars or bullion, may be subject to different rules. Before travelling, check the latest{' '}
-              <a href="https://www.customs.gov.np/content/140/information-of-private-use-goods-that-passengers/" target="_blank" rel="nofollow noopener noreferrer" className="font-bold underline hover:text-amber-700">Department of Customs passenger-goods notice</a>{' '}
-              and confirm the requirements for your circumstances.
+              Gold jewellery and raw gold, such as bars or bullion, may be subject to different rules. Before travelling, check the latest Department of Customs passenger-goods notice and confirm the requirements for your circumstances.
             </p>
           </div>
 
@@ -194,7 +192,7 @@ export default function Page() {
               The amount of gold you can bring into Nepal depends on the type of gold you carry and the customs rules that apply to your journey. Gold jewellery, bars, coins and bullion should not automatically be treated as having the same allowance.
             </p>
             <p className="text-slate-700 leading-relaxed mb-4">
-              CAAN&apos;s AIP customs guidance dated 30 April 2024 lists the following duty-free allowances for gold ornaments:
+              <a href="https://e-aip.caanepal.gov.np/_uploads/_pdf/781312de50dea9a38fba9585f5d3e1d1.pdf" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">CAAN&apos;s AIP customs guidance, dated 30 April 2024</a>, lists the following duty-free allowances for gold ornaments:
             </p>
 
             {/* Allowance table */}
@@ -225,9 +223,6 @@ export default function Page() {
 
             <p className="text-slate-700 leading-relaxed mb-4 mt-6">
               If you are comparing the cost of buying gold abroad with prices in Nepal, check the <Link href="/market-rates/live-gold-price/" className="text-blue-600 font-bold hover:underline">live gold price in Nepal</Link> before your trip.
-            </p>
-            <p className="text-slate-700 leading-relaxed mb-4">
-              Official source: <a href="https://e-aip.caanepal.gov.np/_uploads/_pdf/781312de50dea9a38fba9585f5d3e1d1.pdf" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">CAAN AIP customs requirements (PDF)</a>.
             </p>
           </section>
 
@@ -286,9 +281,9 @@ export default function Page() {
             <h3 className="text-lg font-bold text-slate-900 mt-6 mb-2">Where to Check the Latest Gold Customs Rules in Nepal</h3>
             <p className="text-slate-700 leading-relaxed mb-2">For the latest information, consult these official sources:</p>
             <ul className="list-disc pl-6 text-slate-700 space-y-2 mb-4">
-              <li><a href="https://www.customs.gov.np/content/140/information-of-private-use-goods-that-passengers/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Department of Customs &mdash; Passenger Goods Information</a></li>
-              <li><a href="https://e-aip.caanepal.gov.np/_uploads/_pdf/781312de50dea9a38fba9585f5d3e1d1.pdf" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Civil Aviation Authority of Nepal &mdash; AIP Customs Requirements (PDF)</a></li>
-              <li><a href="https://customs.gov.np/content/46/integrated-tariff-rate/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Department of Customs &mdash; Integrated Tariff Rates</a></li>
+              <li>Department of Customs &mdash; Passenger Goods Information</li>
+              <li>Civil Aviation Authority of Nepal &mdash; AIP Customs Requirements (PDF)</li>
+              <li>Department of Customs &mdash; Integrated Tariff Rates</li>
             </ul>
             <p className="text-slate-700 leading-relaxed mb-4">
               Rules and tariff provisions can change. Check the latest official guidance before travelling, especially if you plan to carry a substantial quantity of gold or items other than ordinary personal jewellery.
@@ -333,7 +328,7 @@ export default function Page() {
               If you are carrying gold jewellery or another form of gold into Nepal, check the latest passenger-goods rules before travelling. If you are unsure whether your item must be declared or whether duty applies, contact the Department of Customs for guidance.
             </p>
             <p className="text-slate-700 leading-relaxed mb-4">
-              The <a href="https://www.customs.gov.np/content/140/information-of-private-use-goods-that-passengers/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Department of Customs passenger-goods notice</a> is the starting point for checking the current rules. The precise allowance for your circumstances should be confirmed with Customs.
+              The Department of Customs passenger-goods notice is the starting point for checking the current rules. The precise allowance for your circumstances should be confirmed with Customs.
             </p>
           </section>
 
@@ -364,7 +359,7 @@ export default function Page() {
 
             <h3 className="text-lg font-bold text-slate-900 mt-6 mb-2">Check the Latest Official Customs Tariff</h3>
             <p className="text-slate-700 leading-relaxed mb-4">
-              Use the <a href="https://customs.gov.np/content/46/integrated-tariff-rate/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Department of Customs integrated tariff</a> to check the current tariff information. You can also consult the <a href="https://mof.gov.np/content/1742/economic-bill--2083/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Ministry of Finance Economic Bill 2083</a> and the <a href="https://lawcommission.gov.np/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Nepal Law Commission</a> for relevant legal provisions.
+              Use the <a href="https://customs.gov.np/content/46/integrated-tariff-rate/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Department of Customs integrated tariff</a> to check the current tariff information. You can also consult the Ministry of Finance Economic Bill 2083 and the Nepal Law Commission for relevant legal provisions.
             </p>
             <p className="text-slate-700 leading-relaxed mb-4">
               The applicable rate must be confirmed for the specific item and current rules. Do not rely on an older article or an estimated calculator result as a substitute for official confirmation.
@@ -386,10 +381,10 @@ export default function Page() {
               The CAAN AIP explains that passengers carrying prohibited, controlled or dutiable goods should declare them through the Red Channel. Passengers whose goods do not exceed the applicable duty-free concession may use the Green Channel, but they may still be checked.
             </p>
             <p className="text-slate-700 leading-relaxed mb-4">
-              If you are unsure whether your gold is permitted or must be declared, contact the <a href="https://www.customs.gov.np/content/140/information-of-private-use-goods-that-passengers/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Department of Customs</a> before travelling.
+              If you are unsure whether your gold is permitted or must be declared, contact the Department of Customs before travelling.
             </p>
             <p className="text-slate-700 leading-relaxed mb-4">
-              For more detail, consult the <a href="https://e-aip.caanepal.gov.np/_uploads/_pdf/781312de50dea9a38fba9585f5d3e1d1.pdf" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">CAAN AIP customs requirements (PDF)</a>.
+              For more detail, consult the CAAN AIP customs requirements (PDF).
             </p>
           </section>
 
@@ -399,8 +394,8 @@ export default function Page() {
               Practical Tips Before You Travel
             </h2>
             <ul className="list-disc pl-6 text-slate-700 space-y-3">
-              <li><strong>Check the latest official rules.</strong> Read the <a href="https://www.customs.gov.np/content/140/information-of-private-use-goods-that-passengers/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Department of Customs passenger-goods notice</a> before travelling.</li>
-              <li><strong>Weigh your gold in advance.</strong> Know the weight of the jewellery or other gold you plan to carry. Use the <Link href="/calculator/gold-converter/" className="text-blue-600 hover:underline">gold weight converter</Link> if you need to convert another unit into grams.</li>
+              <li><strong>Check the latest official rules.</strong> Read the Department of Customs passenger-goods notice before travelling.</li>
+              <li><strong>Weigh your gold in advance.</strong> Know the weight of the jewellery or other gold you plan to carry. Use the gold weight converter if you need to convert another unit into grams.</li>
               <li><strong>Keep purchase documents if available.</strong> Receipts may help explain where and when you purchased the gold. Ask Customs whether specific documents are required for your circumstances.</li>
               <li><strong>Confirm the category of gold.</strong> Do not assume that jewellery, bars, coins and bullion have the same allowance or duty treatment.</li>
               <li><strong>Check declaration requirements.</strong> If your goods are dutiable, controlled or otherwise required to be declared, follow the customs declaration procedure.</li>
@@ -429,7 +424,7 @@ export default function Page() {
               <div>
                 <h3 className="font-bold text-slate-900 mb-1">What Customs Duty Do I Pay on Gold Brought to Nepal?</h3>
                 <p className="text-slate-700 leading-relaxed text-sm">
-                  The amount depends on the applicable tariff, the type and quantity of gold, and whether a passenger concession applies. Check the <a href="https://customs.gov.np/content/46/integrated-tariff-rate/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">official integrated customs tariff</a> and confirm the applicable rate with Customs.
+                  The amount depends on the applicable tariff, the type and quantity of gold, and whether a passenger concession applies. Check the official integrated customs tariff and confirm the applicable rate with Customs.
                 </p>
               </div>
               <div>
@@ -453,13 +448,24 @@ export default function Page() {
               <div>
                 <h3 className="font-bold text-slate-900 mb-1">Where Can I Check the Official Rules for Bringing Gold to Nepal?</h3>
                 <p className="text-slate-700 leading-relaxed text-sm">
-                  Start with the <a href="https://www.customs.gov.np/content/140/information-of-private-use-goods-that-passengers/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Department of Customs passenger-goods notice</a> and the <a href="https://e-aip.caanepal.gov.np/_uploads/_pdf/781312de50dea9a38fba9585f5d3e1d1.pdf" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">CAAN AIP customs requirements</a>. For tariff information, consult the <a href="https://customs.gov.np/content/46/integrated-tariff-rate/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Department of Customs integrated tariff</a>. If the official information does not clearly cover your item, contact Customs before travelling.
+                  Start with the Department of Customs passenger-goods notice and the CAAN AIP customs requirements. For tariff information, consult the Department of Customs integrated tariff. If the official information does not clearly cover your item, contact Customs before travelling.
                 </p>
               </div>
             </div>
           </section>
 
-          {/* ── Section 9: Related Pages ── */}
+          {/* ── Section 9: Official Legal References ── */}
+          <section className="mb-10">
+            <h2 className="text-2xl font-black text-slate-900 mb-3 border-b border-slate-100 pb-2 not-prose">
+              Official Legal References
+            </h2>
+            <ul className="list-disc pl-6 text-slate-700 space-y-2 mb-4">
+              <li><a href="https://mof.gov.np/content/1742/economic-bill--2083/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Ministry of Finance Economic Bill 2083</a></li>
+              <li><a href="https://lawcommission.gov.np/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Nepal Law Commission</a></li>
+            </ul>
+          </section>
+
+          {/* ── Section 10: Related Pages ── */}
           <section className="mb-4 mt-10">
             <h2 className="text-2xl font-black text-slate-900 mb-3 border-b border-slate-100 pb-2 not-prose">Related Pages</h2>
             <div className="grid sm:grid-cols-2 gap-2 not-prose">
