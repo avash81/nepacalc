@@ -5,7 +5,7 @@ const canonical = 'https://nepacalc.com/calculator/calorie-calculator/';
 const ogImage   = 'https://nepacalc.com/og-image.png';
 
 export const metadata: Metadata = {
-  title: 'Daily Calorie Calculator | Estimate Your Needs',
+  title: 'Calorie Calculator: Estimates the Number of Calories Needed Each Day',
   description:
     'Use this daily calorie calculator to estimate maintenance calories and daily targets for weight loss or gain based on your age, body size, and activity.',
   alternates: {
@@ -24,18 +24,18 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Daily Calorie Calculator | Estimate Your Needs',
+    title: 'Calorie Calculator: Estimates the Number of Calories Needed Each Day',
     description:
       'Use this daily calorie calculator to estimate maintenance calories and daily targets for weight loss or gain based on your age, body size, and activity.',
     url: canonical,
     siteName: 'NepaCalc Nepal',
     type: 'website',
     locale: 'en_NP',
-    images: [{ url: ogImage, width: 1200, height: 630, alt: 'Daily Calorie Calculator' }],
+    images: [{ url: ogImage, width: 1200, height: 630, alt: 'Calorie Calculator: Estimates the Number of Calories Needed Each Day' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Daily Calorie Calculator | Estimate Your Needs',
+    title: 'Calorie Calculator: Estimates the Number of Calories Needed Each Day',
     description:
       'Use this daily calorie calculator to estimate maintenance calories and daily targets for weight loss or gain based on your age, body size, and activity.',
     images: [ogImage],
