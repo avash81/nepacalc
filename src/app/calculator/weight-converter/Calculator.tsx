@@ -165,16 +165,16 @@ export default function WeightConverter() {
         description="Convert kilograms, grams, pounds, ounces and Nepal-standard tola with an online weight converter. View common conversions and estimate gold value per tola."
         icon={Scale}
         inputs={
-          <div className="space-y-4 w-full">
+          <div className="space-y-5 w-full">
             {/* Quick Preset Chips */}
-            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none text-xs">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-[#70757A] shrink-0 mr-1">Quick:</span>
+            <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none text-xs border-b border-[#F1F3F4] mb-2">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#70757A] shrink-0">Quick:</span>
               {PRESETS.map((p, i) => (
                 <button
                   key={i}
                   type="button"
                   onClick={() => updateState({ value: p.val, from: p.f, to: p.t })}
-                  className="px-2.5 py-1 rounded-full bg-[#F1F3F4] hover:bg-[#E8F0FE] hover:text-[#1A73E8] text-[#3C4043] font-semibold text-xs whitespace-nowrap transition-colors border border-transparent hover:border-[#BFDBFE]"
+                  className="px-3 py-1.5 rounded-full bg-slate-50 hover:bg-slate-100 text-[#3C4043] font-medium text-xs whitespace-nowrap transition-colors border border-[#DADCE0]"
                 >
                   {p.label}
                 </button>
@@ -182,98 +182,96 @@ export default function WeightConverter() {
             </div>
 
             {/* Dual-Interactive Converter Card */}
-            <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-2xl p-4 sm:p-6 shadow-sm space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-[1fr,auto,1fr] gap-3 sm:gap-4 items-center">
+            <div className="bg-white border border-[#DADCE0] rounded-xl p-5 shadow-sm space-y-5">
+              <div className="flex flex-col md:flex-row gap-4 items-center">
                 {/* FROM */}
-                <div className="bg-white border-2 border-[#DADCE0] focus-within:border-[#1A73E8] rounded-xl p-3 sm:p-4 shadow-sm transition-all">
-                  <div className="flex items-center justify-between mb-1">
-                    <label className="text-[11px] font-bold uppercase tracking-wider text-[#5F6368]">From Amount</label>
-                    <span className="text-[10px] font-bold text-[#70757A] uppercase">{UNITS[from].short}</span>
+                <div className="w-full flex-1 border border-[#DADCE0] focus-within:border-gray-400 rounded-lg p-4 transition-all bg-white">
+                  <div className="flex items-center justify-between mb-2">
+                    <label className="text-xs font-bold uppercase tracking-wider text-[#5F6368]">From Amount</label>
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-3">
                     <input
                       type="number"
                       value={value === 0 ? '' : value}
                       placeholder="0"
                       onChange={e => updateState({ value: e.target.value === '' ? 0 : Number(e.target.value) })}
                       min={0}
-                      className="w-full bg-transparent font-mono text-2xl sm:text-3xl font-extrabold text-[#202124] outline-none"
+                      className="w-full flex-1 bg-transparent font-mono text-2xl sm:text-3xl font-bold text-[#202124] outline-none min-w-[50px]"
                     />
-                    <div className="relative shrink-0 w-36 sm:w-44">
+                    <div className="relative shrink-0 w-[140px] sm:w-[180px]">
                       <select
                         value={from}
                         onChange={e => updateState({ from: e.target.value })}
-                        className="w-full h-10 pl-3 pr-7 rounded-lg border border-[#DADCE0] bg-[#F8F9FA] text-xs sm:text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none cursor-pointer appearance-none truncate"
+                        className="w-full h-11 pl-3 pr-8 rounded border border-[#DADCE0] bg-slate-50 text-sm font-semibold text-[#202124] outline-none cursor-pointer appearance-none truncate"
                       >
                         {Object.entries(UNITS).map(([k, v]) => (
                           <option key={k} value={k}>{v.name}</option>
                         ))}
                       </select>
-                      <div className="absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-[#5F6368] text-xs">▼</div>
+                      <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[#5F6368] text-xs">▼</div>
                     </div>
                   </div>
                 </div>
 
                 {/* Swap */}
-                <div className="flex justify-center -my-1 md:my-0">
+                <div className="flex justify-center shrink-0">
                   <button
                     type="button"
                     onClick={swap}
                     title="Swap conversion units"
-                    className="h-10 w-10 sm:h-11 sm:w-11 rounded-full border border-[#DADCE0] bg-white hover:bg-[#E8F0FE] hover:border-[#1A73E8] hover:text-[#1A73E8] flex items-center justify-center transition-all shadow-sm text-[#5F6368] group"
+                    className="h-10 w-10 rounded-full border border-[#DADCE0] bg-slate-50 hover:bg-slate-100 flex items-center justify-center transition-all text-[#5F6368]"
                     aria-label="Swap units"
                   >
-                    <ArrowLeftRight className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" />
+                    <ArrowLeftRight className="w-4 h-4" />
                   </button>
                 </div>
 
                 {/* TO */}
-                <div className="bg-[#E8F0FE]/70 border-2 border-[#1A73E8] rounded-xl p-3 sm:p-4 shadow-sm transition-all">
-                  <div className="flex items-center justify-between mb-1">
-                    <label className="text-[11px] font-bold uppercase tracking-wider text-[#1967D2]">Converted Result</label>
-                    <span className="text-[10px] font-bold text-[#1967D2] uppercase">{UNITS[to].short}</span>
+                <div className="w-full flex-1 border border-[#DADCE0] focus-within:border-gray-400 rounded-lg p-4 transition-all bg-slate-50">
+                  <div className="flex items-center justify-between mb-2">
+                    <label className="text-xs font-bold uppercase tracking-wider text-[#5F6368]">Converted Result</label>
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-3">
                     <input
                       type="number"
                       value={rawTargetValue === 0 ? '' : Number(rawTargetValue.toFixed(7))}
                       placeholder="0"
                       onChange={e => handleTargetChange(e.target.value)}
                       min={0}
-                      className="w-full bg-transparent font-mono text-2xl sm:text-3xl font-extrabold text-[#1967D2] outline-none"
+                      className="w-full flex-1 bg-transparent font-mono text-2xl sm:text-3xl font-bold text-[#202124] outline-none min-w-[50px]"
                     />
-                    <div className="relative shrink-0 w-36 sm:w-44">
+                    <div className="relative shrink-0 w-[140px] sm:w-[180px]">
                       <select
                         value={to}
                         onChange={e => updateState({ to: e.target.value })}
-                        className="w-full h-10 pl-3 pr-7 rounded-lg border border-[#BFDBFE] bg-white text-xs sm:text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none cursor-pointer appearance-none truncate"
+                        className="w-full h-11 pl-3 pr-8 rounded border border-[#DADCE0] bg-white text-sm font-semibold text-[#202124] outline-none cursor-pointer appearance-none truncate"
                       >
                         {Object.entries(UNITS).map(([k, v]) => (
                           <option key={k} value={k}>{v.name}</option>
                         ))}
                       </select>
-                      <div className="absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-[#5F6368] text-xs">▼</div>
+                      <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[#5F6368] text-xs">▼</div>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Formula strip + Copy */}
-              <div className="pt-3 border-t border-[#DADCE0] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <span className="font-bold text-[#202124] text-sm">
-                    {value} {UNITS[from].name} = <span className="text-[#1A73E8] font-mono">{resultStr} {UNITS[to].name}</span>
+              <div className="pt-4 border-t border-[#F1F3F4] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-sm">
+                <div className="flex items-center gap-3 flex-wrap">
+                  <span className="font-medium text-[#202124]">
+                    {value} {UNITS[from].name} = <strong className="font-mono text-indigo-600">{resultStr} {UNITS[to].name}</strong>
                   </span>
                   <button
                     type="button"
                     onClick={copyResult}
-                    className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#5F6368] hover:text-[#1A73E8] bg-white border border-[#DADCE0] rounded px-2 py-0.5 transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs font-medium text-[#5F6368] hover:text-[#202124] bg-white border border-[#DADCE0] rounded px-2.5 py-1 transition-colors"
                   >
-                    {copied ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
+                    {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
                     <span>{copied ? 'Copied' : 'Copy'}</span>
                   </button>
                 </div>
-                <div className="text-[11px] font-mono text-[#70757A]">
+                <div className="text-xs font-mono text-[#70757A]">
                   Multiplier: × {(UNITS[from].factor / UNITS[to].factor).toFixed(6)}
                 </div>
               </div>
@@ -281,59 +279,61 @@ export default function WeightConverter() {
 
             {/* Nepal Gold Standard + Gold Value Estimator */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="bg-[#FFFDF7] border border-[#FDE68A] rounded-xl p-4 flex flex-col justify-between space-y-3 shadow-xs">
+              {/* Card 1 */}
+              <div className="bg-white border border-[#DADCE0] rounded-xl p-5 flex flex-col justify-between space-y-4 shadow-sm">
                 <div className="flex items-start gap-3">
-                  <div className="p-2 bg-amber-100 rounded-lg text-amber-700 shrink-0 mt-0.5">
+                  <div className="p-2 bg-amber-50 rounded text-amber-600 shrink-0">
                     <Gem className="w-4 h-4" />
                   </div>
-                  <div className="space-y-0.5">
-                    <div className="text-xs font-black uppercase tracking-wider text-amber-900">Nepal Gold Standard (FENEGOSIDA)</div>
-                    <p className="text-xs text-amber-800 leading-relaxed font-medium">
-                      In Nepal, precious metals follow the official legal standard: <strong>1 Tola = exactly 11.6638 grams</strong>.
+                  <div>
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-[#202124] mb-1">Nepal Gold Standard</h3>
+                    <p className="text-xs text-[#5F6368] leading-relaxed">
+                      In Nepal, precious metals follow the official legal standard: <strong>1 Tola = 11.6638 g</strong>.
                     </p>
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-2 pt-2 border-t border-amber-200/60">
-                  <div className="p-2 bg-white/90 border border-amber-200/80 rounded-lg text-center">
-                    <span className="block text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">1 kg equals</span>
-                    <span className="block text-sm font-black text-[#202124]">85.7353 Tola</span>
+                <div className="grid grid-cols-2 gap-3 pt-3 border-t border-[#F1F3F4]">
+                  <div>
+                    <span className="block text-[10px] font-bold text-[#70757A] uppercase tracking-wider mb-0.5">1 kg equals</span>
+                    <span className="block text-sm font-semibold text-[#202124]">85.7353 Tola</span>
                   </div>
-                  <div className="p-2 bg-white/90 border border-amber-200/80 rounded-lg text-center">
-                    <span className="block text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">1 Tola equals</span>
-                    <span className="block text-sm font-black text-[#202124]">11.6638 g</span>
+                  <div>
+                    <span className="block text-[10px] font-bold text-[#70757A] uppercase tracking-wider mb-0.5">1 Tola equals</span>
+                    <span className="block text-sm font-semibold text-[#202124]">11.6638 g</span>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white border border-[#DADCE0] rounded-xl p-4 flex flex-col justify-between space-y-3 shadow-xs">
-                <div className="flex items-center justify-between border-b border-[#F1F3F4] pb-2">
-                  <div className="flex items-center gap-1.5">
-                    <div className="p-1 bg-amber-50 rounded text-amber-600">
-                      <Gem className="w-3.5 h-3.5" />
+              {/* Card 2 */}
+              <div className="bg-white border border-[#DADCE0] rounded-xl p-5 flex flex-col justify-between space-y-4 shadow-sm">
+                <div className="flex items-center justify-between border-b border-[#F1F3F4] pb-3">
+                  <div className="flex items-center gap-2">
+                    <div className="p-1.5 bg-green-50 rounded text-green-600">
+                      <Scale className="w-3.5 h-3.5" />
                     </div>
-                    <span className="text-xs font-black uppercase tracking-wider text-[#202124]">Gold Value Estimator</span>
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#202124]">Value Estimator</span>
                   </div>
-                  <span className="text-[10px] text-[#70757A] font-semibold bg-[#F8F9FA] px-2 py-0.5 rounded border border-[#DADCE0]">
+                  <span className="text-[11px] text-[#5F6368] font-medium bg-slate-50 px-2 py-0.5 rounded border border-[#DADCE0]">
                     {currentTolas.toFixed(2)} Tola
                   </span>
                 </div>
-                <div className="space-y-1">
-                  <label className="text-[10px] font-bold uppercase tracking-wider text-[#70757A] block">Gold Price (NPR per Tola)</label>
+                <div className="space-y-1.5">
+                  <label className="text-[10px] font-bold uppercase tracking-wider text-[#70757A] block">Gold/Silver Price (NPR per Tola)</label>
                   <div className="relative">
-                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-[#70757A]">Rs.</span>
+                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm font-medium text-[#70757A]">Rs.</span>
                     <input
                       type="number"
                       value={goldPricePerTola === 0 ? '' : goldPricePerTola}
                       onChange={e => updateState({ goldPricePerTola: e.target.value === '' ? 0 : Number(e.target.value) })}
-                      className="w-full h-9 pl-9 pr-3 rounded-lg border border-[#DADCE0] text-sm font-bold font-mono text-[#202124] focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none"
+                      className="w-full h-10 pl-10 pr-3 rounded border border-[#DADCE0] text-sm font-medium font-mono text-[#202124] focus:border-gray-400 outline-none transition-colors"
                       placeholder="150000"
                       min={0}
                     />
                   </div>
                 </div>
-                <div className="pt-2 border-t border-[#F1F3F4] flex items-baseline justify-between">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#70757A]">Estimated Value</span>
-                  <span className="text-base sm:text-lg font-black text-amber-700 tracking-tight font-mono">
+                <div className="pt-3 border-t border-[#F1F3F4] flex items-center justify-between">
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#5F6368]">Estimated Value</span>
+                  <span className="text-lg font-bold text-[#202124] font-mono">
                     NPR {goldValue.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                   </span>
                 </div>
