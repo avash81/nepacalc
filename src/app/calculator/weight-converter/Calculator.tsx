@@ -37,6 +37,125 @@ const DEFAULT_STATE: CalcState = {
   goldPricePerTola: '',
 };
 
+function InteractiveWeightTable() {
+  const [selectedUnit, setSelectedUnit] = useState<'kg' | 'g' | 'tola' | 'lb'>('kg');
+
+  const tableData = useMemo(() => {
+    switch (selectedUnit) {
+      case 'kg':
+        return {
+          headers: ['Kilograms', 'Grams', 'Pounds', 'Nepal Tola'],
+          rows: [
+            { c1: '0.1',  c2: '100',    c3: '0.22046',  c4: '8.5735' },
+            { c1: '0.25', c2: '250',    c3: '0.55116',  c4: '21.4338' },
+            { c1: '0.5',  c2: '500',    c3: '1.10231',  c4: '42.8676' },
+            { c1: '1',    c2: '1,000',  c3: '2.20462',  c4: '85.7353' },
+            { c1: '2',    c2: '2,000',  c3: '4.40925',  c4: '171.4705' },
+            { c1: '5',    c2: '5,000',  c3: '11.02311', c4: '428.6763' },
+            { c1: '10',   c2: '10,000', c3: '22.04623', c4: '857.3526' },
+          ]
+        };
+      case 'g':
+        return {
+          headers: ['Grams', 'Kilograms', 'Pounds', 'Nepal Tola'],
+          rows: [
+            { c1: '1',     c2: '0.001', c3: '0.00220', c4: '0.0857' },
+            { c1: '10',    c2: '0.01',  c3: '0.02205', c4: '0.8574' },
+            { c1: '50',    c2: '0.05',  c3: '0.11023', c4: '4.2868' },
+            { c1: '100',   c2: '0.1',   c3: '0.22046', c4: '8.5735' },
+            { c1: '250',   c2: '0.25',  c3: '0.55116', c4: '21.4338' },
+            { c1: '500',   c2: '0.5',   c3: '1.10231', c4: '42.8676' },
+            { c1: '1,000', c2: '1',     c3: '2.20462', c4: '85.7353' },
+          ]
+        };
+      case 'tola':
+        return {
+          headers: ['Nepal Tola', 'Grams', 'Kilograms', 'Pounds'],
+          rows: [
+            { c1: '1',     c2: '11.6638',  c3: '0.01166', c4: '0.02572' },
+            { c1: '5',     c2: '58.319',   c3: '0.05832', c4: '0.12857' },
+            { c1: '10',    c2: '116.638',  c3: '0.11664', c4: '0.25714' },
+            { c1: '50',    c2: '583.19',   c3: '0.58319', c4: '1.28570' },
+            { c1: '100',   c2: '1,166.38', c3: '1.16638', c4: '2.57140' },
+            { c1: '500',   c2: '5,831.9',  c3: '5.83190', c4: '12.85700' },
+            { c1: '1,000', c2: '11,663.8', c3: '11.6638', c4: '25.71400' },
+          ]
+        };
+      case 'lb':
+        return {
+          headers: ['Pounds', 'Kilograms', 'Grams', 'Nepal Tola'],
+          rows: [
+            { c1: '0.5', c2: '0.22680', c3: '226.8',   c4: '19.4444' },
+            { c1: '1',   c2: '0.45359', c3: '453.6',   c4: '38.8889' },
+            { c1: '2',   c2: '0.90718', c3: '907.2',   c4: '77.7778' },
+            { c1: '5',   c2: '2.26796', c3: '2,268.0', c4: '194.4444' },
+            { c1: '10',  c2: '4.53592', c3: '4,535.9', c4: '388.8889' },
+            { c1: '20',  c2: '9.07185', c3: '9,071.9', c4: '777.7778' },
+            { c1: '50',  c2: '22.6796', c3: '22,679.6',c4: '1,944.4444' },
+          ]
+        };
+    }
+  }, [selectedUnit]);
+
+  return (
+    <div className="bg-white border border-[#DADCE0] rounded-xl p-5 sm:p-6 shadow-sm">
+      <h2 className="text-xl sm:text-2xl font-black text-[#202124] mb-1">Weight Conversion Table</h2>
+      <p className="text-sm text-[#5F6368] mb-4">Select a base unit to view common conversion reference values.</p>
+
+      {/* Radio Unit Selection */}
+      <div className="flex flex-wrap gap-4 sm:gap-6 mb-6">
+        {[
+          { key: 'kg', label: 'Kilograms' },
+          { key: 'g', label: 'Grams' },
+          { key: 'tola', label: 'Tola' },
+          { key: 'lb', label: 'Pounds' },
+        ].map((unit) => (
+          <label key={unit.key} className="flex items-center gap-2 cursor-pointer text-sm font-semibold text-[#202124]">
+            <input
+              type="radio"
+              name="tableUnit"
+              value={unit.key}
+              checked={selectedUnit === unit.key}
+              onChange={() => setSelectedUnit(unit.key as any)}
+              className="w-4 h-4 text-black focus:ring-black border-gray-300 cursor-pointer"
+            />
+            <span>{unit.label}</span>
+          </label>
+        ))}
+      </div>
+
+      {/* Table */}
+      <div className="overflow-x-auto border border-[#DADCE0] rounded-lg mb-4">
+        <table className="w-full text-sm border-collapse text-center">
+          <thead>
+            <tr className="bg-slate-50 border-b border-[#DADCE0]">
+              {tableData.headers.map((h, idx) => (
+                <th key={idx} scope="col" className="py-2.5 px-4 font-black text-[#202124] text-xs sm:text-sm">
+                  {h}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-[#F1F3F4]">
+            {tableData.rows.map((row, i) => (
+              <tr key={i} className="hover:bg-slate-50 transition-colors">
+                <td className="py-2.5 px-4 font-semibold text-[#202124] tabular-nums">{row.c1}</td>
+                <td className="py-2.5 px-4 text-[#5F6368] tabular-nums">{row.c2}</td>
+                <td className="py-2.5 px-4 text-[#5F6368] tabular-nums">{row.c3}</td>
+                <td className="py-2.5 px-4 text-[#5F6368] tabular-nums">{row.c4}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <p className="text-xs text-[#70757A]">
+        Illustrative reference values using Nepal-standard 1 Tola = 11.6638 g.
+      </p>
+    </div>
+  );
+}
+
 export default function WeightConverter() {
   const [state, setState] = useSyncState<CalcState>('weight_converter_v4', DEFAULT_STATE);
   const { value, from, to, goldPricePerTola } = state;
@@ -224,64 +343,52 @@ export default function WeightConverter() {
               </div>
             </div>
 
-            {/* Nepal Gold Standard + Gold Value Estimator */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
-              {/* Card 1 */}
-              <div className="bg-slate-50 border border-[#DADCE0] rounded-lg p-3.5 flex flex-col justify-between space-y-3">
-                <div className="flex items-start gap-2.5">
-                  <div className="p-1.5 bg-amber-100/60 rounded text-amber-700 shrink-0">
-                    <Gem className="w-3.5 h-3.5" />
+            {/* Nepal Gold Standard + Gold Value Estimator — compact flat strip */}
+            <div className="pt-2 border-t border-[#F1F3F4]">
+              <div className="flex flex-col sm:flex-row sm:items-start gap-4">
+                {/* Nepal Gold Standard info */}
+                <div className="flex items-start gap-2 flex-1 min-w-0">
+                  <div className="p-1 bg-amber-100/70 rounded text-amber-700 shrink-0 mt-0.5">
+                    <Gem className="w-3 h-3" />
                   </div>
-                  <div>
-                    <h3 className="text-xs font-bold uppercase tracking-wider text-[#202124] mb-0.5">Nepal Gold Standard</h3>
-                    <p className="text-[11px] text-[#5F6368] leading-relaxed">
-                      In Nepal, precious metals follow the official legal standard: <strong>1 Tola = 11.6638 g</strong>.
-                    </p>
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-2 pt-2 border-t border-[#DADCE0]/60">
-                  <div>
-                    <span className="block text-[9px] font-bold text-[#70757A] uppercase tracking-wider mb-0.5">1 kg equals</span>
-                    <span className="block text-xs font-semibold text-[#202124]">85.7353 Tola</span>
-                  </div>
-                  <div>
-                    <span className="block text-[9px] font-bold text-[#70757A] uppercase tracking-wider mb-0.5">1 Tola equals</span>
-                    <span className="block text-xs font-semibold text-[#202124]">11.6638 g</span>
+                  <div className="min-w-0">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#5F6368] block mb-0.5">Nepal Gold Standard</span>
+                    <span className="text-xs text-[#202124] font-semibold">1 Tola = 11.6638 g</span>
+                    <span className="text-[11px] text-[#70757A] ml-2">· 1 kg = 85.7353 Tola</span>
                   </div>
                 </div>
-              </div>
 
-              {/* Card 2 */}
-              <div className="bg-slate-50 border border-[#DADCE0] rounded-lg p-3.5 flex flex-col justify-between space-y-3">
-                <div className="flex items-center justify-between border-b border-[#DADCE0]/60 pb-2">
-                  <div className="flex items-center gap-2">
-                    <div className="p-1.5 bg-green-100/60 rounded text-green-700">
-                      <Scale className="w-3.5 h-3.5" />
+                {/* Divider on desktop */}
+                <div className="hidden sm:block w-px bg-[#DADCE0] self-stretch" />
+
+                {/* Value Estimator */}
+                <div className="flex items-center gap-3 flex-1 min-w-0">
+                  <div className="p-1 bg-green-100/70 rounded text-green-700 shrink-0">
+                    <Scale className="w-3 h-3" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <label className="text-[10px] font-bold uppercase tracking-wider text-[#5F6368] block mb-1">
+                      Value Estimator
+                      <span className="ml-1.5 font-normal normal-case text-[#9AA0A6]">({currentTolas.toFixed(2)} Tola)</span>
+                    </label>
+                    <div className="flex items-center gap-2">
+                      <div className="relative flex-1 max-w-[160px]">
+                        <span className="absolute left-2 top-1/2 -translate-y-1/2 text-[11px] font-medium text-[#70757A]">Rs.</span>
+                        <input
+                          type="number"
+                          value={goldPricePerTola}
+                          onChange={e => updateState({ goldPricePerTola: e.target.value })}
+                          className="w-full h-7 pl-8 pr-2 rounded border border-[#DADCE0] bg-white text-xs font-mono text-[#202124] focus:border-gray-400 outline-none transition-colors"
+                          placeholder="Price/Tola"
+                        />
+                      </div>
+                      {numGoldPrice > 0 && (
+                        <span className="text-xs font-black font-mono text-[#202124] whitespace-nowrap">
+                          = NPR {goldValue.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                        </span>
+                      )}
                     </div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-[#202124]">Value Estimator</span>
                   </div>
-                  <span className="text-[10px] text-[#5F6368] font-medium bg-white px-2 py-0.5 rounded border border-[#DADCE0]">
-                    {currentTolas.toFixed(2)} Tola
-                  </span>
-                </div>
-                <div className="space-y-1">
-                  <label className="text-[9px] font-bold uppercase tracking-wider text-[#70757A] block">Gold/Silver Price (NPR per Tola)</label>
-                  <div className="relative">
-                    <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs font-medium text-[#70757A]">Rs.</span>
-                    <input
-                      type="number"
-                      value={goldPricePerTola}
-                      onChange={e => updateState({ goldPricePerTola: e.target.value })}
-                      className="w-full h-8 pl-9 pr-2.5 rounded border border-[#DADCE0] bg-white text-xs font-medium font-mono text-[#202124] focus:border-gray-400 outline-none transition-colors"
-                      placeholder="Enter price..."
-                    />
-                  </div>
-                </div>
-                <div className="pt-2 border-t border-[#DADCE0]/60 flex items-center justify-between">
-                  <span className="text-[10px] font-bold text-[#70757A] uppercase tracking-wider">Estimated Value</span>
-                  <span className="text-xs font-black font-mono text-[#202124]">
-                    NPR {goldValue.toLocaleString(undefined, { maximumFractionDigits: 2 })}
-                  </span>
                 </div>
               </div>
             </div>
@@ -289,6 +396,9 @@ export default function WeightConverter() {
         }
         details={
           <div className="space-y-6">
+
+            {/* Interactive Weight Table (Radio Selectors) */}
+            <InteractiveWeightTable />
 
             {/* 1. Direct Answer: How Many Tola Are in 1 kg? */}
             <div className="bg-white border border-[#DADCE0] rounded-xl p-5 sm:p-6 shadow-sm">
