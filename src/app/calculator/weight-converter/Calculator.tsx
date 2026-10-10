@@ -92,7 +92,7 @@ export default function WeightConverter() {
 
   const copyResult = () => {
     if (typeof navigator !== 'undefined' && navigator.clipboard) {
-      navigator.clipboard.writeText(`${value || 0} ${UNITS[from].name} = ${resultStr} ${UNITS[to].name}`);
+      navigator.clipboard.writeText(`${value || 0} ${UNITS[from].short} = ${resultStr} ${UNITS[to].short}`);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     }
@@ -118,9 +118,9 @@ export default function WeightConverter() {
         description="Convert kilograms, grams, pounds, ounces and Nepal-standard tola with an online weight converter. View common conversions and estimate gold value per tola."
         icon={Scale}
         inputs={
-          <div className="bg-white border border-[#DADCE0] rounded-xl p-4 sm:p-5 shadow-sm space-y-4 w-full">
+          <div className="bg-white border border-[#DADCE0] rounded-xl p-3.5 sm:p-5 shadow-sm space-y-4 w-full">
             {/* Quick Preset Chips */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-1 text-xs border-b border-[#F1F3F4]">
+            <div className="flex items-center gap-2 overflow-x-auto pb-1 text-xs border-b border-[#F1F3F4] scrollbar-none">
               <span className="text-[10px] font-bold uppercase tracking-wider text-[#70757A] shrink-0">Quick:</span>
               {PRESETS.map((p, i) => (
                 <button
@@ -134,21 +134,21 @@ export default function WeightConverter() {
               ))}
             </div>
 
-            {/* Dual Converter Section */}
-            <div className="flex flex-col md:flex-row gap-3 items-center">
+            {/* Dual Converter Section - Fully Responsive on Mobile */}
+            <div className="flex flex-col md:flex-row gap-3 items-stretch md:items-center">
               {/* FROM */}
               <div className="w-full flex-1 border border-[#DADCE0] focus-within:border-gray-400 rounded-lg p-3 transition-all bg-white">
                 <label className="text-[11px] font-bold uppercase tracking-wider text-[#5F6368] block mb-1">From Amount</label>
-                <div className="flex items-center gap-2">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                   <input
                     type="number"
                     value={value}
                     placeholder="0"
                     onChange={e => updateState({ value: e.target.value })}
                     min={0}
-                    className="w-full flex-1 bg-transparent font-mono text-xl sm:text-2xl font-bold text-[#202124] outline-none min-w-[50px]"
+                    className="w-full sm:flex-1 bg-transparent font-mono text-2xl sm:text-3xl font-bold text-[#202124] outline-none"
                   />
-                  <div className="relative shrink-0 w-[130px] sm:w-[160px]">
+                  <div className="relative shrink-0 w-full sm:w-[160px]">
                     <select
                       value={from}
                       onChange={e => updateState({ from: e.target.value })}
@@ -163,32 +163,32 @@ export default function WeightConverter() {
                 </div>
               </div>
 
-              {/* Swap */}
-              <div className="flex justify-center shrink-0">
+              {/* Swap Button */}
+              <div className="flex justify-center shrink-0 my-1 md:my-0">
                 <button
                   type="button"
                   onClick={swap}
                   title="Swap conversion units"
-                  className="h-9 w-9 rounded-full border border-[#DADCE0] bg-slate-50 hover:bg-slate-100 flex items-center justify-center transition-all text-[#5F6368]"
+                  className="h-9 w-9 rounded-full border border-[#DADCE0] bg-slate-50 hover:bg-slate-100 flex items-center justify-center transition-all text-[#5F6368] shadow-xs"
                   aria-label="Swap units"
                 >
-                  <ArrowLeftRight className="w-3.5 h-3.5" />
+                  <ArrowLeftRight className="w-4 h-4" />
                 </button>
               </div>
 
               {/* TO */}
               <div className="w-full flex-1 border border-[#DADCE0] focus-within:border-gray-400 rounded-lg p-3 transition-all bg-slate-50">
                 <label className="text-[11px] font-bold uppercase tracking-wider text-[#5F6368] block mb-1">Converted Result</label>
-                <div className="flex items-center gap-2">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                   <input
                     type="number"
                     value={value === '' ? '' : Number(rawTargetValue.toFixed(7))}
                     placeholder="0"
                     onChange={e => handleTargetChange(e.target.value)}
                     min={0}
-                    className="w-full flex-1 bg-transparent font-mono text-xl sm:text-2xl font-bold text-[#202124] outline-none min-w-[50px]"
+                    className="w-full sm:flex-1 bg-transparent font-mono text-2xl sm:text-3xl font-bold text-[#202124] outline-none"
                   />
-                  <div className="relative shrink-0 w-[130px] sm:w-[160px]">
+                  <div className="relative shrink-0 w-full sm:w-[160px]">
                     <select
                       value={to}
                       onChange={e => updateState({ to: e.target.value })}
@@ -208,7 +208,7 @@ export default function WeightConverter() {
             <div className="pt-3 border-t border-[#F1F3F4] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
               <div className="flex items-center gap-2 flex-wrap">
                 <span className="font-medium text-[#202124]">
-                  {value || 0} {UNITS[from].name} = <strong className="font-mono text-indigo-600">{resultStr} {UNITS[to].name}</strong>
+                  {value || 0} {UNITS[from].short} = <strong className="font-mono text-indigo-600">{resultStr} {UNITS[to].short}</strong>
                 </span>
                 <button
                   type="button"
