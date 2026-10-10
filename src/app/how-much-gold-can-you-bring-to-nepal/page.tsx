@@ -182,7 +182,7 @@ export default function Page() {
           </h1>
 
           {/* Featured Image */}
-          <figure className="mb-10 not-prose rounded-xl overflow-hidden shadow-sm border border-slate-200">
+          <figure className="mb-10 not-prose rounded-xl overflow-hidden shadow-sm border border-slate-200 lg:w-1/2 lg:mx-auto">
             <img 
               src="/images/gold-customs-nepal.jpg" 
               alt="Traveler declaring gold jewelry at a customs desk" 
@@ -204,7 +204,7 @@ export default function Page() {
           {/* ── Section 2: How Much Gold ── */}
           <section className="mb-10">
             <h2 className="text-2xl font-black text-slate-900 mb-4 border-b border-slate-100 pb-2">
-              How Much Gold Can You Bring to Nepal?
+              Duty-Free Gold Allowance Limits
             </h2>
             <p className="text-slate-700 leading-relaxed mb-4">
               The amount of gold you can bring into Nepal depends on the type of gold you carry and the customs rules that apply to your journey. Gold jewellery, bars, coins and bullion should not automatically be treated as having the same allowance.
