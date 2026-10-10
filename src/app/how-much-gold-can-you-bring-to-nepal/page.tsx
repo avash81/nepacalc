@@ -210,7 +210,7 @@ export default function Page() {
               The amount of gold you can bring into Nepal depends on the type of gold you carry and the customs rules that apply to your journey. Gold jewellery, bars, coins and bullion should not automatically be treated as having the same allowance.
             </p>
             <p className="text-slate-700 leading-relaxed mb-4">
-              <a href="https://e-aip.caanepal.gov.np/_uploads/_pdf/781312de50dea9a38fba9585f5d3e1d1.pdf" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">CAAN&apos;s AIP customs guidance, dated 30 April 2024</a>, lists the following duty-free allowances for gold ornaments:
+              CAAN&apos;s AIP customs guidance, dated 30 April 2024, lists the following duty-free allowances for gold ornaments:
             </p>
 
             {/* Allowance table */}
@@ -234,13 +234,13 @@ export default function Page() {
             <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 my-4 not-prose">
               <p className="text-slate-700 text-sm leading-relaxed font-semibold">
                 Important: These figures are from the dated CAAN AIP guidance. Check the latest{' '}
-                <a href="https://www.customs.gov.np/content/140/information-of-private-use-goods-that-passengers/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Department of Customs passenger-goods notice</a>{' '}
+                Department of Customs passenger-goods notice{' '}
                 before relying on them for a current journey. Confirm the current provisions for additional jewellery and raw gold directly with Customs.
               </p>
             </div>
 
             <p className="text-slate-700 leading-relaxed mb-4 mt-6">
-              If you are comparing the cost of buying gold abroad with prices in Nepal, check the <Link href="/market-rates/live-gold-price/" className="text-blue-600 font-bold hover:underline">live gold price in Nepal</Link> before your trip.
+              If you are comparing the cost of buying gold abroad with the <Link href="/market-rates/live-gold-price/" className="text-blue-600 font-bold hover:underline">gold price in nepal</Link>, check the local rates before your trip. To check exact gram measurements, use a <Link href="/calculator/gold-converter/" className="text-blue-600 font-bold hover:underline">gold conversion</Link> calculator.
             </p>
           </section>
 
@@ -299,9 +299,9 @@ export default function Page() {
             <h3 className="text-lg font-bold text-slate-900 mt-6 mb-2">Where to Check the Latest Gold Customs Rules in Nepal</h3>
             <p className="text-slate-700 leading-relaxed mb-2">For the latest information, consult these official sources:</p>
             <ul className="list-disc pl-6 text-slate-700 space-y-2 mb-4">
-              <li>Department of Customs &mdash; Passenger Goods Information</li>
-              <li>Civil Aviation Authority of Nepal &mdash; AIP Customs Requirements (PDF)</li>
-              <li>Department of Customs &mdash; Integrated Tariff Rates</li>
+              <li><a href="https://www.customs.gov.np/content/140/information-of-private-use-goods-that-passengers/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Department of Customs Passenger Goods Information</a></li>
+              <li><a href="https://e-aip.caanepal.gov.np/_uploads/_pdf/781312de50dea9a38fba9585f5d3e1d1.pdf" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Civil Aviation Authority of Nepal AIP Customs Requirements (PDF)</a></li>
+              <li><a href="https://customs.gov.np/content/46/integrated-tariff-rate/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Department of Customs Integrated Tariff Rates</a></li>
             </ul>
             <p className="text-slate-700 leading-relaxed mb-4">
               Rules and tariff provisions can change. Check the latest official guidance before travelling, especially if you plan to carry a substantial quantity of gold or items other than ordinary personal jewellery.
@@ -329,9 +329,7 @@ export default function Page() {
             <p className="text-slate-700 leading-relaxed mb-4">
               Gold bars, bullion, coins and other forms of raw or semi-processed gold should not automatically be assumed to qualify for the jewellery allowance. Confirm whether your item is permitted and what duty or other conditions apply.
             </p>
-            <p className="text-slate-700 leading-relaxed mb-4">
-              If you need to convert a weight from ounces or another unit into grams, use the <Link href="/calculator/gold-converter/" className="text-blue-600 font-bold hover:underline">gold weight converter</Link> before checking the applicable customs rules.
-            </p>
+            
           </section>
 
           {/* ── Section 4: Foreign Tourists ── */}
@@ -377,7 +375,7 @@ export default function Page() {
 
             <h3 className="text-lg font-bold text-slate-900 mt-6 mb-2">Check the Latest Official Customs Tariff</h3>
             <p className="text-slate-700 leading-relaxed mb-4">
-              Use the <a href="https://customs.gov.np/content/46/integrated-tariff-rate/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Department of Customs integrated tariff</a> to check the current tariff information. You can also consult the Ministry of Finance Economic Bill 2083 and the Nepal Law Commission for relevant legal provisions.
+              Use the Department of Customs integrated tariff to check the current tariff information. You can also consult the Ministry of Finance Economic Bill 2083 and the Nepal Law Commission for relevant legal provisions.
             </p>
             <p className="text-slate-700 leading-relaxed mb-4">
               The applicable rate must be confirmed for the specific item and current rules. Do not rely on an older article or an estimated calculator result as a substitute for official confirmation.
