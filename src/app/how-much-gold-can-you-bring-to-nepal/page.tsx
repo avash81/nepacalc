@@ -180,7 +180,7 @@ export default function Page() {
             </p>
             <p className="text-amber-900 text-sm leading-relaxed">
               Gold jewellery and raw gold, such as bars or bullion, may be subject to different customs provisions. Before travelling, check the latest{' '}
-              <a href="https://www.customs.gov.np/content/140/information-of-private-use-goods-that-passengers/" target="_blank" rel="nofollow noopener noreferrer" className="font-bold underline hover:text-amber-700">Department of Customs passenger-goods notice</a>{' '}
+              <span className="font-bold text-amber-900">Department of Customs passenger-goods notice</span>{' '}
               and confirm the rules that apply to your nationality and the type of gold you are carrying.
             </p>
           </div>
@@ -223,17 +223,7 @@ export default function Page() {
               </p>
             </div>
 
-            <p className="text-slate-700 leading-relaxed mb-4 mt-6">
-              Official sources:
-            </p>
-            <ul className="list-disc pl-6 text-slate-700 space-y-2 mb-4">
-              <li>
-                <a href="https://www.customs.gov.np/content/140/information-of-private-use-goods-that-passengers/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Department of Customs: Passenger-goods notice</a>
-              </li>
-              <li>
-                <a href="https://e-aip.caanepal.gov.np/_uploads/_pdf/781312de50dea9a38fba9585f5d3e1d1.pdf" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">CAAN AIP: Customs requirements for passengers (PDF)</a>
-              </li>
-            </ul>
+
           </section>
 
           {/* ── Section 3: Gold Jewellery vs Raw Gold ── */}
@@ -317,7 +307,7 @@ export default function Page() {
               <li><strong>Applicable rate:</strong> What duty and other charges, if any, apply under the current rules?</li>
             </ul>
             <p className="text-slate-700 leading-relaxed mb-4">
-              Once these details are confirmed, you can estimate the potential cost. A calculator can help with an estimate, but it cannot determine your legal eligibility for a customs concession.
+              Once these details are confirmed, you can estimate the potential cost. A <Link href="/calculator/gold-tax/" className="text-blue-600 font-bold hover:underline">gold tax calculator</Link> can help with an estimate, but it cannot determine your legal eligibility for a customs concession.
             </p>
 
             <h3 className="text-lg font-bold text-slate-900 mt-6 mb-2">Check the Latest Official Customs Tariff</h3>
@@ -327,12 +317,6 @@ export default function Page() {
             <ul className="list-disc pl-6 text-slate-700 space-y-2 mb-4">
               <li>
                 <a href="https://customs.gov.np/content/46/integrated-tariff-rate/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Department of Customs: Integrated Tariff Rate</a>
-              </li>
-              <li>
-                <a href="https://mof.gov.np/content/1742/economic-bill--2083/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Ministry of Finance: Economic Bill 2083</a>
-              </li>
-              <li>
-                <a href="https://lawcommission.gov.np/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Nepal Law Commission</a>
               </li>
             </ul>
             <p className="text-slate-700 leading-relaxed mb-4">
@@ -371,13 +355,9 @@ export default function Page() {
               Practical Tips Before You Travel
             </h2>
             <ul className="list-disc pl-6 text-slate-700 space-y-3">
-              <li><strong>Check the latest official rules.</strong> Read the{' '}
-                <a href="https://www.customs.gov.np/content/140/information-of-private-use-goods-that-passengers/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Department of Customs passenger-goods notice</a>{' '}
-                before travelling. Do not rely solely on older articles or summaries.
+              <li><strong>Check the latest official rules.</strong> Read the <strong>Department of Customs passenger-goods notice</strong> before travelling. Do not rely solely on older articles or summaries.
               </li>
-              <li><strong>Weigh your gold in advance.</strong> Know the weight of the jewellery or other gold you plan to carry. Use a{' '}
-                <Link href="/calculator/gold-converter/" className="text-blue-600 hover:underline">gold weight converter</Link>{' '}
-                if you need to convert another unit into grams.
+              <li><strong>Weigh your gold in advance.</strong> Know the weight of the jewellery or other gold you plan to carry. Use a <strong>gold weight converter</strong> if you need to convert another unit into grams.
               </li>
               <li><strong>Keep purchase documents if available.</strong> Receipts or other documents can help explain where the gold came from and its purchase details. Ask Customs whether any particular documents are required for your situation.</li>
               <li><strong>Confirm the category of gold.</strong> Do not assume that jewellery, bars, coins and bullion have the same allowance or duty treatment.</li>
@@ -408,7 +388,7 @@ export default function Page() {
               <div>
                 <h3 className="font-bold text-slate-900 mb-1">What Customs Duty Do I Pay on Gold Brought to Nepal?</h3>
                 <p className="text-slate-700 leading-relaxed text-sm">
-                  The amount depends on the applicable customs classification, passenger provisions, quantity and current tariff rate. Check the <a href="https://customs.gov.np/content/46/integrated-tariff-rate/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">official integrated customs tariff</a> and confirm the rate with Customs before travelling. This page does not quote a specific rate because the applicable rate must be verified for the item and current rules.
+                  The amount depends on the applicable customs classification, passenger provisions, quantity and current tariff rate. Check the official integrated customs tariff and confirm the rate with Customs before travelling. This page does not quote a specific rate because the applicable rate must be verified for the item and current rules.
                 </p>
               </div>
               <div>
@@ -432,7 +412,7 @@ export default function Page() {
               <div>
                 <h3 className="font-bold text-slate-900 mb-1">Where Can I Check the Official Rules for Bringing Gold to Nepal?</h3>
                 <p className="text-slate-700 leading-relaxed text-sm">
-                  Start with the <a href="https://www.customs.gov.np/content/140/information-of-private-use-goods-that-passengers/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Department of Customs passenger-goods notice</a> and the <a href="https://e-aip.caanepal.gov.np/_uploads/_pdf/781312de50dea9a38fba9585f5d3e1d1.pdf" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">CAAN AIP customs requirements</a>. For tariff classifications and rates, consult the <a href="https://customs.gov.np/content/46/integrated-tariff-rate/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Department of Customs integrated tariff</a>. If the published information does not clearly cover your item, contact Customs before travelling.
+                  Start with the Department of Customs passenger-goods notice and the CAAN AIP customs requirements. For tariff classifications and rates, consult the Department of Customs integrated tariff. If the published information does not clearly cover your item, contact Customs before travelling.
                 </p>
               </div>
             </div>
@@ -440,14 +420,15 @@ export default function Page() {
 
           {/* ── Section 9: Related Pages ── */}
           <section className="mb-4 mt-10">
-            <h2 className="text-2xl font-black text-slate-900 mb-3 border-b border-slate-100 pb-2 not-prose">
-              Related Pages
-            </h2>
+            <h2 className="text-2xl font-black text-slate-900 mb-3 border-b border-slate-100 pb-2 not-prose">Official Legal References</h2>
+            <ul className="list-disc pl-6 text-slate-700 space-y-2 mb-8 text-sm">
+              <li><a href="https://mof.gov.np/content/1742/economic-bill--2083/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Ministry of Finance: Economic Bill 2083</a></li>
+              <li><a href="https://lawcommission.gov.np/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Nepal Law Commission</a></li>
+            </ul>
+
+            <h2 className="text-2xl font-black text-slate-900 mb-3 border-b border-slate-100 pb-2 not-prose">Related Pages</h2>
             <div className="grid sm:grid-cols-2 gap-2 not-prose">
               {[
-                { href: '/market-rates/live-gold-price/', label: 'Live Gold Price in Nepal' },
-                { href: '/calculator/gold-converter/', label: 'Gold Weight Converter' },
-                { href: '/calculator/gold-tax/', label: 'Gold Tax Calculator' },
                 { href: '/market-rates/silver-price-nepal/', label: 'Live Silver Price in Nepal' },
                 { href: '/market-rates/', label: 'Daily Market Rates Overview' },
                 { href: '/market-rates/exchange-rate-nepal/', label: 'NRB Foreign Exchange Rate' },
