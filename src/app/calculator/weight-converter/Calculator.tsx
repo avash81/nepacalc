@@ -6,13 +6,21 @@ import { useSyncState } from '@/hooks/useSyncState';
 import { ArrowLeftRight, Gem, Scale, Check, Copy } from 'lucide-react';
 
 const UNITS: Record<string, { name: string; short: string; factor: number }> = {
-  kg:   { name: 'Kilogram (kg)',      short: 'kg',   factor: 1000 },
-  g:    { name: 'Gram (g)',           short: 'g',    factor: 1 },
-  mg:   { name: 'Milligram (mg)',     short: 'mg',   factor: 0.001 },
-  lb:   { name: 'Pound (lb)',         short: 'lb',   factor: 453.592 },
-  oz:   { name: 'Ounce (oz)',         short: 'oz',   factor: 28.3495 },
-  tola: { name: 'Tola (Nepal Gold)',  short: 'tola', factor: 11.6638 },
-  ton:  { name: 'Metric Ton (t)',     short: 'ton',  factor: 1000000 },
+  kg:     { name: 'Kilogram (kg)',       short: 'kg',   factor: 1000 },
+  g:      { name: 'Gram (g)',            short: 'g',    factor: 1 },
+  mg:     { name: 'Milligram (mg)',      short: 'mg',   factor: 0.001 },
+  ug:     { name: 'Microgram (µg)',      short: 'µg',   factor: 0.000001 },
+  t:      { name: 'Metric Tonne (t)',    short: 't',    factor: 1000000 },
+  lb:     { name: 'Pound (lb)',          short: 'lb',   factor: 453.59237 },
+  oz:     { name: 'Ounce (oz)',          short: 'oz',   factor: 28.349523125 },
+  st:     { name: 'Stone (st)',          short: 'st',   factor: 6350.29318 },
+  ton_us: { name: 'US Short Ton',        short: 'US t', factor: 907184.74 },
+  ton_uk: { name: 'Imperial Long Ton',   short: 'UK t', factor: 1016046.9088 },
+  tola:   { name: 'Nepal Tola',         short: 'tola', factor: 11.6638 },
+  ozt:    { name: 'Troy Ounce (ozt)',    short: 'ozt',  factor: 31.1034768 },
+  dwt:    { name: 'Pennyweight (dwt)',   short: 'dwt',  factor: 1.55517384 },
+  ct:     { name: 'Carat (ct)',          short: 'ct',   factor: 0.2 },
+  gr:     { name: 'Grain (gr)',          short: 'gr',   factor: 0.06479891 },
 };
 
 const DEFAULT_STATE = {
@@ -26,6 +34,7 @@ export default function WeightConverter() {
   const [state, setState] = useSyncState('weight_converter_v2', DEFAULT_STATE);
   const { value, from, to, goldPricePerTola } = state;
   const [copied, setCopied] = useState(false);
+  const [tableTab, setTableTab] = useState<'kg' | 'g' | 'tola' | 'lb'>('kg');
 
   const updateState = (u: Partial<typeof DEFAULT_STATE>) => setState({ ...state, ...u });
 
@@ -82,6 +91,74 @@ export default function WeightConverter() {
     { label: '10 Tola → kg', val: 10, f: 'tola', t: 'kg' },
     { label: '1 kg → lbs', val: 1, f: 'kg', t: 'lb' },
   ];
+
+  // ── Pre-computed table data (validated against UNITS factors) ─────────────
+  const TABLE_DATA = {
+    kg: [
+      { base: '0.1 kg',  g: '100',      lb: '0.22046', tola: '8.5735' },
+      { base: '0.25 kg', g: '250',      lb: '0.55116', tola: '21.4338' },
+      { base: '0.5 kg',  g: '500',      lb: '1.10231', tola: '42.8677' },
+      { base: '1 kg',    g: '1,000',    lb: '2.20462', tola: '85.7353' },
+      { base: '2 kg',    g: '2,000',    lb: '4.40925', tola: '171.4707' },
+      { base: '5 kg',    g: '5,000',    lb: '11.02311', tola: '428.6768' },
+      { base: '10 kg',   g: '10,000',   lb: '22.04623', tola: '857.3535' },
+    ],
+    g: [
+      { base: '1 g',     kg: '0.001',   oz: '0.03527',  tola: '0.08574' },
+      { base: '10 g',    kg: '0.01',    oz: '0.35274',  tola: '0.85735' },
+      { base: '100 g',   kg: '0.1',     oz: '3.52740',  tola: '8.57354' },
+      { base: '500 g',   kg: '0.5',     oz: '17.63698', tola: '42.86768' },
+      { base: '1,000 g', kg: '1',       oz: '35.27396', tola: '85.73535' },
+    ],
+    tola: [
+      { base: '1 tola',   g: '11.6638',   kg: '0.011664',  oz: '0.41143' },
+      { base: '5 tola',   g: '58.319',    kg: '0.058319',  oz: '2.05714' },
+      { base: '10 tola',  g: '116.638',   kg: '0.116638',  oz: '4.11428' },
+      { base: '50 tola',  g: '583.19',    kg: '0.58319',   oz: '20.57142' },
+      { base: '100 tola', g: '1,166.38',  kg: '1.16638',   oz: '41.14284' },
+    ],
+    lb: [
+      { base: '0.5 lb', kg: '0.226796', g: '226.796',  oz: '8' },
+      { base: '1 lb',   kg: '0.453592', g: '453.592',  oz: '16' },
+      { base: '2 lb',   kg: '0.907185', g: '907.185',  oz: '32' },
+      { base: '5 lb',   kg: '2.267962', g: '2,267.962', oz: '80' },
+      { base: '10 lb',  kg: '4.535924', g: '4,535.924', oz: '160' },
+    ],
+  };
+
+  const TAB_DEFS: { key: 'kg' | 'g' | 'tola' | 'lb'; label: string }[] = [
+    { key: 'kg',   label: 'Kilograms' },
+    { key: 'g',    label: 'Grams' },
+    { key: 'tola', label: 'Nepal Tola' },
+    { key: 'lb',   label: 'Pounds' },
+  ];
+
+  const TABLE_COLS: Record<string, { header: string; field: string; base?: boolean }[]> = {
+    kg:   [
+      { header: 'Kilograms',          field: 'base', base: true },
+      { header: 'Grams (g)',          field: 'g' },
+      { header: 'Pounds (lb)',        field: 'lb' },
+      { header: 'Nepal Tola',        field: 'tola' },
+    ],
+    g:    [
+      { header: 'Grams',              field: 'base', base: true },
+      { header: 'Kilograms (kg)',     field: 'kg' },
+      { header: 'Ounces (oz)',        field: 'oz' },
+      { header: 'Nepal Tola',        field: 'tola' },
+    ],
+    tola: [
+      { header: 'Nepal Tola',        field: 'base', base: true },
+      { header: 'Grams (g)',          field: 'g' },
+      { header: 'Kilograms (kg)',     field: 'kg' },
+      { header: 'Ounces (oz)',        field: 'oz' },
+    ],
+    lb:   [
+      { header: 'Pounds',             field: 'base', base: true },
+      { header: 'Kilograms (kg)',     field: 'kg' },
+      { header: 'Grams (g)',          field: 'g' },
+      { header: 'Ounces (oz)',        field: 'oz' },
+    ],
+  };
 
   return (
     <CalculatorErrorBoundary calculatorName="Weight Converter">
@@ -293,7 +370,7 @@ export default function WeightConverter() {
             </div>
           </div>
         }
-                sidebar={{
+        sidebar={{
           title: "Related Calculators",
           links: [
             { label: 'Gold Converter', href: '/calculator/gold-converter/' },
@@ -304,8 +381,172 @@ export default function WeightConverter() {
             { label: 'Universal Unit Converter', href: '/calculator/unit-converter/' }
           ],
         }}
-                details={
-          <div className="space-y-8">
+        details={
+          <div className="space-y-6">
+
+            {/* ── TABLE 1: Interactive Tabbed Common Conversions ── */}
+            <div className="bg-white border border-[#DADCE0] rounded-xl overflow-hidden shadow-sm">
+              <div className="px-5 py-4 border-b border-[#DADCE0] bg-[#F8F9FA]">
+                <h2 className="text-lg font-black text-[#202124]">Common Weight Conversion Table</h2>
+                <p className="text-xs text-[#5F6368] mt-0.5">Select a unit to view its conversions.</p>
+              </div>
+
+              {/* Tab Pills */}
+              <div className="flex flex-wrap gap-2 px-5 pt-4 pb-2">
+                {TAB_DEFS.map(tab => (
+                  <button
+                    key={tab.key}
+                    type="button"
+                    onClick={() => setTableTab(tab.key)}
+                    className={`px-4 py-1.5 rounded-full text-xs font-bold border transition-all ${
+                      tableTab === tab.key
+                        ? 'bg-indigo-600 border-indigo-600 text-white shadow'
+                        : 'bg-white border-[#DADCE0] text-[#5F6368] hover:bg-indigo-50 hover:border-indigo-300 hover:text-indigo-700'
+                    }`}
+                    aria-pressed={tableTab === tab.key}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Active Table */}
+              <div className="overflow-x-auto px-5 pb-5">
+                <table className="w-full text-sm border-collapse">
+                  <thead>
+                    <tr className="border-b-2 border-[#DADCE0]">
+                      {TABLE_COLS[tableTab].map(col => (
+                        <th
+                          key={col.field}
+                          scope="col"
+                          className={`py-2.5 px-3 text-left text-[11px] font-black uppercase tracking-wider ${
+                            col.base ? 'text-indigo-700' : 'text-[#5F6368]'
+                          }`}
+                        >
+                          {col.header}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-[#F1F3F4]">
+                    {(TABLE_DATA[tableTab] as Record<string, string>[]).map((row, i) => (
+                      <tr key={i} className="hover:bg-slate-50 transition-colors">
+                        {TABLE_COLS[tableTab].map(col => (
+                          <td
+                            key={col.field}
+                            className={`py-2.5 px-3 tabular-nums ${
+                              col.base
+                                ? 'font-black text-indigo-700'
+                                : 'font-semibold text-[#202124]'
+                            }`}
+                          >
+                            {row[col.field]}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <p className="text-[11px] text-[#9AA0A6] mt-3">
+                  Values rounded for display. 1 Nepal Tola = 11.6638 g (FENEGOSIDA standard).
+                </p>
+              </div>
+            </div>
+
+            {/* ── TABLE 2: Precious Metal & Jewelry Reference ── */}
+            <div className="bg-white border border-[#DADCE0] rounded-xl overflow-hidden shadow-sm">
+              <div className="px-5 py-4 border-b border-[#DADCE0] bg-[#FFFDF7]">
+                <h2 className="text-lg font-black text-[#202124]">Precious Metal & Jewelry Weight Reference</h2>
+                <p className="text-xs text-[#5F6368] mt-0.5">Nepal Tola, troy ounce, pennyweight, carat — used for gold, silver and gemstones.</p>
+              </div>
+              <div className="overflow-x-auto px-5 pb-5 pt-4">
+                <table className="w-full text-sm border-collapse">
+                  <thead>
+                    <tr className="border-b-2 border-[#DADCE0]">
+                      <th scope="col" className="py-2.5 px-3 text-left text-[11px] font-black uppercase tracking-wider text-amber-700">Nepal Tola</th>
+                      <th scope="col" className="py-2.5 px-3 text-left text-[11px] font-black uppercase tracking-wider text-[#5F6368]">Grams (g)</th>
+                      <th scope="col" className="py-2.5 px-3 text-left text-[11px] font-black uppercase tracking-wider text-[#5F6368]">Kilograms (kg)</th>
+                      <th scope="col" className="py-2.5 px-3 text-left text-[11px] font-black uppercase tracking-wider text-[#5F6368]">Troy Oz (ozt)</th>
+                      <th scope="col" className="py-2.5 px-3 text-left text-[11px] font-black uppercase tracking-wider text-[#5F6368]">Pennyweight (dwt)</th>
+                      <th scope="col" className="py-2.5 px-3 text-left text-[11px] font-black uppercase tracking-wider text-[#5F6368]">Carats (ct)</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-[#F1F3F4]">
+                    {[
+                      { tola: '1',   g: '11.6638',  kg: '0.011664', ozt: '0.37513', dwt: '7.50251', ct: '58.319' },
+                      { tola: '5',   g: '58.319',   kg: '0.058319', ozt: '1.87564', dwt: '37.5128', ct: '291.595' },
+                      { tola: '10',  g: '116.638',  kg: '0.116638', ozt: '3.75128', dwt: '75.0256', ct: '583.19' },
+                      { tola: '50',  g: '583.19',   kg: '0.58319',  ozt: '18.7564', dwt: '375.128', ct: '2,915.95' },
+                      { tola: '100', g: '1,166.38', kg: '1.16638',  ozt: '37.5128', dwt: '750.256', ct: '5,831.9' },
+                    ].map((row, i) => (
+                      <tr key={i} className="hover:bg-amber-50/30 transition-colors">
+                        <td className="py-2.5 px-3 font-black text-amber-700 tabular-nums">{row.tola}</td>
+                        <td className="py-2.5 px-3 font-semibold text-[#202124] tabular-nums">{row.g}</td>
+                        <td className="py-2.5 px-3 font-semibold text-[#202124] tabular-nums">{row.kg}</td>
+                        <td className="py-2.5 px-3 font-semibold text-[#202124] tabular-nums">{row.ozt}</td>
+                        <td className="py-2.5 px-3 font-semibold text-[#202124] tabular-nums">{row.dwt}</td>
+                        <td className="py-2.5 px-3 font-semibold text-[#202124] tabular-nums">{row.ct}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <p className="text-[11px] text-[#9AA0A6] mt-3">
+                  1 Nepal Tola = 11.6638 g · 1 Troy oz (ozt) = 31.1034768 g · 1 Pennyweight = 1.55517384 g · 1 Carat = 0.2 g.
+                  Troy ounce differs from avoirdupois ounce (28.349523125 g).
+                </p>
+              </div>
+            </div>
+
+            {/* ── TABLE 3: Complete Unit Reference ── */}
+            <div className="bg-white border border-[#DADCE0] rounded-xl overflow-hidden shadow-sm">
+              <div className="px-5 py-4 border-b border-[#DADCE0] bg-[#F8F9FA]">
+                <h2 className="text-lg font-black text-[#202124]">All Supported Units — Reference Table</h2>
+                <p className="text-xs text-[#5F6368] mt-0.5">All 15 units supported by this calculator, with their gram equivalents.</p>
+              </div>
+              <div className="overflow-x-auto px-5 pb-5 pt-4">
+                <table className="w-full text-sm border-collapse">
+                  <thead>
+                    <tr className="border-b-2 border-[#DADCE0]">
+                      <th scope="col" className="py-2.5 px-3 text-left text-[11px] font-black uppercase tracking-wider text-[#202124]">Unit Name</th>
+                      <th scope="col" className="py-2.5 px-3 text-left text-[11px] font-black uppercase tracking-wider text-[#5F6368]">Abbreviation</th>
+                      <th scope="col" className="py-2.5 px-3 text-left text-[11px] font-black uppercase tracking-wider text-[#5F6368]">Category</th>
+                      <th scope="col" className="py-2.5 px-3 text-left text-[11px] font-black uppercase tracking-wider text-[#5F6368]">Grams Equivalent</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-[#F1F3F4]">
+                    {[
+                      { name: 'Microgram',       abbr: 'µg',    cat: 'Metric',          g: '0.000001' },
+                      { name: 'Milligram',        abbr: 'mg',    cat: 'Metric',          g: '0.001' },
+                      { name: 'Gram',             abbr: 'g',     cat: 'Metric',          g: '1' },
+                      { name: 'Kilogram',         abbr: 'kg',    cat: 'Metric',          g: '1,000' },
+                      { name: 'Metric Tonne',     abbr: 't',     cat: 'Metric',          g: '1,000,000' },
+                      { name: 'Grain',            abbr: 'gr',    cat: 'Traditional',     g: '0.06479891' },
+                      { name: 'Carat',            abbr: 'ct',    cat: 'Gemstone',        g: '0.2' },
+                      { name: 'Pennyweight',      abbr: 'dwt',   cat: 'Precious metals', g: '1.55517384' },
+                      { name: 'Ounce (avoirdupois)', abbr: 'oz', cat: 'Imperial/US',     g: '28.349523125' },
+                      { name: 'Troy Ounce',       abbr: 'ozt',   cat: 'Precious metals', g: '31.1034768' },
+                      { name: 'Nepal Tola',      abbr: 'tola',  cat: 'Nepal standard',  g: '11.6638' },
+                      { name: 'Pound',            abbr: 'lb',    cat: 'Imperial/US',     g: '453.59237' },
+                      { name: 'Stone',            abbr: 'st',    cat: 'Imperial',        g: '6,350.29318' },
+                      { name: 'US Short Ton',     abbr: 'US t',  cat: 'US customary',    g: '907,184.74' },
+                      { name: 'Imperial Long Ton',abbr: 'UK t',  cat: 'Imperial',        g: '1,016,046.91' },
+                    ].map((row, i) => (
+                      <tr key={i} className="hover:bg-slate-50 transition-colors">
+                        <td className="py-2.5 px-3 font-semibold text-[#202124]">{row.name}</td>
+                        <td className="py-2.5 px-3 font-mono text-xs font-bold text-indigo-700">{row.abbr}</td>
+                        <td className="py-2.5 px-3 text-[#5F6368]">{row.cat}</td>
+                        <td className="py-2.5 px-3 font-mono font-semibold text-[#202124] tabular-nums">{row.g}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <p className="text-[11px] text-[#9AA0A6] mt-3">
+                  Nepal Tola uses the FENEGOSIDA standard (11.6638 g). Troy ounce and avoirdupois ounce have different factors — do not interchange them.
+                </p>
+              </div>
+            </div>
+
+            {/* ── Editorial Content (kept from before) ── */}
             <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
               <h2 className="text-xl font-black text-[#202124] mb-4">Weight Conversion: Kilograms, Pounds, Grams and Tola</h2>
               <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
@@ -346,14 +587,14 @@ export default function WeightConverter() {
                 <p>For Nepal-standard Tola conversions, the calculation uses 1 Tola = 11.6638 grams.</p>
                 <p className="font-bold text-[#202124] bg-slate-50 p-3 rounded border border-slate-200">Formula for kilograms to Tola:<br/>Tola = (kilograms × 1,000) ÷ 11.6638</p>
 
-                  <h3 className="font-bold text-[#202124] mt-6 mb-2">How to Convert Tola to Kilograms</h3>
-                  <p>To convert Nepal-standard Tola to kilograms, multiply the number of Tola by 11.6638 and divide by 1,000.</p>
-                  <p>Examples:</p>
-                  <ul className="list-disc pl-5 space-y-1">
-                    <li>1 Tola = 0.0116638 kg</li>
-                    <li>100 Tola = 1.16638 kg</li>
-                  </ul>
-                  <p>Use the calculator to convert other values in either direction.</p>
+                <h3 className="font-bold text-[#202124] mt-6 mb-2">How to Convert Tola to Kilograms</h3>
+                <p>To convert Nepal-standard Tola to kilograms, multiply the number of Tola by 11.6638 and divide by 1,000.</p>
+                <p>Examples:</p>
+                <ul className="list-disc pl-5 space-y-1">
+                  <li>1 Tola = 0.0116638 kg</li>
+                  <li>100 Tola = 1.16638 kg</li>
+                </ul>
+                <p>Use the calculator to convert other values in either direction.</p>
               </div>
             </div>
 
@@ -370,52 +611,6 @@ export default function WeightConverter() {
                 </ul>
                 <p className="text-xs italic">These values use the Nepal-standard Tola. Other regional standards may produce different results.</p>
               </div>
-            </div>
-
-            <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-              <h2 className="text-xl font-black text-[#202124] mb-4">Kilograms to Tola Conversion Chart</h2>
-              <p className="text-sm text-[#5F6368] mb-4">The following values use the Nepal-standard conversion of 1 Tola = 11.6638 grams.</p>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm text-left">
-                  <thead className="bg-slate-50 text-slate-600 font-bold border-b border-slate-200">
-                    <tr>
-                      <th className="py-3 px-4">Kilograms</th>
-                      <th className="py-3 px-4">Nepal-standard Tola (approx.)</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-100">
-                    <tr className="hover:bg-slate-50">
-                      <td className="py-2 px-4">0.1</td>
-                      <td className="py-2 px-4">8.5735</td>
-                    </tr>
-                    <tr className="hover:bg-slate-50">
-                      <td className="py-2 px-4">0.25</td>
-                      <td className="py-2 px-4">21.4338</td>
-                    </tr>
-                    <tr className="hover:bg-slate-50">
-                      <td className="py-2 px-4">0.5</td>
-                      <td className="py-2 px-4">42.8676</td>
-                    </tr>
-                    <tr className="hover:bg-slate-50 text-indigo-700 font-bold bg-indigo-50/30">
-                      <td className="py-2 px-4">1</td>
-                      <td className="py-2 px-4">85.7353</td>
-                    </tr>
-                    <tr className="hover:bg-slate-50">
-                      <td className="py-2 px-4">2</td>
-                      <td className="py-2 px-4">171.4705</td>
-                    </tr>
-                    <tr className="hover:bg-slate-50">
-                      <td className="py-2 px-4">5</td>
-                      <td className="py-2 px-4">428.6763</td>
-                    </tr>
-                    <tr className="hover:bg-slate-50">
-                      <td className="py-2 px-4">10</td>
-                      <td className="py-2 px-4">857.3526</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <p className="text-xs text-slate-500 mt-4">These values are rounded for display. Use the converter for other amounts.</p>
             </div>
           </div>
         }
@@ -453,5 +648,3 @@ export default function WeightConverter() {
     </CalculatorErrorBoundary>
   );
 }
-
-
