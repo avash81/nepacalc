@@ -559,7 +559,9 @@ export default function WeightConverter() {
             <div className="bg-white border border-[#DADCE0] rounded-xl p-5 sm:p-6 shadow-sm">
               <h2 className="text-xl sm:text-2xl font-black text-[#202124] mb-3">Weight Conversion Formula</h2>
               <p className="text-sm text-[#5F6368] leading-relaxed mb-4">
-                The converter can use grams as an internal base unit. To convert between two units, multiply the input value by the source unit's gram factor, then divide by the target unit's gram factor.
+                The converter uses grams as an internal base unit, consistent with{' '}
+                <a href="https://committee.iso.org/cms/live/live/en/sites/isoorg/contents/data/standard/07/69/76921.html?browse=ics" target="_blank" rel="noopener noreferrer" className="text-[#1967D2] hover:underline">international quantities and units standards</a>
+                . To convert between two units, multiply the input value by the source unit&apos;s gram factor, then divide by the target unit&apos;s gram factor.
               </p>
               <div className="bg-slate-50 border border-[#DADCE0] rounded-lg p-3 mb-4">
                 <code className="text-sm text-[#202124]">Result = (Input value * Source factor in grams) / Target factor in grams</code>
@@ -575,24 +577,24 @@ export default function WeightConverter() {
             {/* 8. Frequently Asked Questions */}
             <div className="bg-white border border-[#DADCE0] rounded-xl p-5 sm:p-6 shadow-sm">
               <h2 className="text-xl sm:text-2xl font-black text-[#202124] mb-6">Frequently Asked Questions</h2>
-              
+
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-base font-bold text-[#202124] mb-2">How many Tola are in 1 kg?</h3>
+                  <h3 className="text-base font-bold text-[#202124] mb-2">1. How many Tola are in 1 kg?</h3>
                   <p className="text-sm text-[#5F6368] leading-relaxed">
                     One kilogram is approximately <strong className="text-[#202124]">85.7353 Tola</strong> when using a Tola definition of 11.6638 grams. The result may differ if a different regional Tola standard is used.
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-base font-bold text-[#202124] mb-2">How many grams are in 1 Tola?</h3>
+                  <h3 className="text-base font-bold text-[#202124] mb-2">2. How many grams are in 1 Tola?</h3>
                   <p className="text-sm text-[#5F6368] leading-relaxed">
                     Using the 11.6638-gram Tola definition, <strong className="text-[#202124]">1 Tola = 11.6638 grams</strong>. Check which Tola standard applies when converting precious-metal weights.
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-base font-bold text-[#202124] mb-2">How do I convert kilograms to pounds?</h3>
+                  <h3 className="text-base font-bold text-[#202124] mb-2">3. How do I convert kilograms to pounds?</h3>
                   <p className="text-sm text-[#5F6368] leading-relaxed mb-2">
                     Multiply the weight in kilograms by <strong className="text-[#202124]">2.20462262</strong> to convert it to pounds.
                   </p>
@@ -605,21 +607,21 @@ export default function WeightConverter() {
                 </div>
 
                 <div>
-                  <h3 className="text-base font-bold text-[#202124] mb-2">What is the difference between a troy ounce and an ounce?</h3>
+                  <h3 className="text-base font-bold text-[#202124] mb-2">4. What is the difference between a troy ounce and an ounce?</h3>
                   <p className="text-sm text-[#5F6368] leading-relaxed">
                     A standard avoirdupois ounce equals approximately <strong className="text-[#202124]">28.3495 grams</strong>, while a troy ounce equals approximately <strong className="text-[#202124]">31.1035 grams</strong>. Troy ounces are commonly used to measure precious metals such as gold and silver; avoirdupois ounces are used for everyday weight measurements.
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-base font-bold text-[#202124] mb-2">How many kilograms are in a metric tonne?</h3>
+                  <h3 className="text-base font-bold text-[#202124] mb-2">5. How many kilograms are in a metric tonne?</h3>
                   <p className="text-sm text-[#5F6368] leading-relaxed">
                     One metric tonne equals <strong className="text-[#202124]">1,000 kilograms</strong>. For example, 2 metric tonnes equal 2,000 kg. A metric tonne is different from a US short ton and an Imperial long ton.
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-base font-bold text-[#202124] mb-2">Can I use this converter to estimate the value of silver by Tola?</h3>
+                  <h3 className="text-base font-bold text-[#202124] mb-2">6. Can I use this converter to estimate the value of silver by Tola?</h3>
                   <p className="text-sm text-[#5F6368] leading-relaxed">
                     This converter can convert silver weight between supported units. For silver value in Nepal, check the current{' '}
                     <Link href="/market-rates/silver-price-nepal/" className="text-[#1967D2] hover:underline">silver price in Nepal</Link>
@@ -628,9 +630,11 @@ export default function WeightConverter() {
                 </div>
 
                 <div>
-                  <h3 className="text-base font-bold text-[#202124] mb-2">Is weight the same as mass?</h3>
+                  <h3 className="text-base font-bold text-[#202124] mb-2">7. Is weight the same as mass?</h3>
                   <p className="text-sm text-[#5F6368] leading-relaxed">
-                    Not exactly. <strong className="text-[#202124]">Mass</strong> measures the amount of matter in an object, while <strong className="text-[#202124]">weight</strong> is the force of gravity acting on that mass. In everyday use, people often use &quot;weight&quot; to mean mass, and this converter converts mass units such as kilograms, grams, and pounds.
+                    Not exactly. <strong className="text-[#202124]">Mass</strong> measures the amount of matter in an object, while <strong className="text-[#202124]">weight</strong> is the force of gravity acting on that mass. In everyday use, people often use &quot;weight&quot; to mean mass, and this converter converts{' '}
+                    <a href="https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8" target="_blank" rel="noopener noreferrer" className="text-[#1967D2] hover:underline">mass units</a>
+                    {' '}such as kilograms, grams, and pounds.
                   </p>
                 </div>
               </div>
