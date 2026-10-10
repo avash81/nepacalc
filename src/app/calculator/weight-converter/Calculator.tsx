@@ -219,97 +219,83 @@ export default function WeightConverter() {
         description="Convert kilograms, grams, pounds, ounces and Nepal-standard tola with an online weight converter. View common conversions and estimate gold value per tola."
         icon={Scale}
         inputs={
-          <div className="bg-white border border-[#DADCE0] rounded-xl p-3.5 sm:p-5 shadow-sm space-y-4 w-full">
+          <div className="space-y-3 w-full">
             {/* Quick Preset Chips */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-1 text-xs border-b border-[#F1F3F4] scrollbar-none">
+            <div className="flex items-center gap-2 overflow-x-auto scrollbar-none">
               <span className="text-[10px] font-bold uppercase tracking-wider text-[#70757A] shrink-0">Quick:</span>
               {PRESETS.map((p, i) => (
                 <button
                   key={i}
                   type="button"
                   onClick={() => updateState({ value: p.val, from: p.f, to: p.t })}
-                  className="px-2.5 py-1 rounded-full bg-slate-50 hover:bg-slate-100 text-[#3C4043] font-medium text-xs whitespace-nowrap transition-colors border border-[#DADCE0]"
+                  className="px-2.5 py-1 rounded-full bg-white hover:bg-slate-50 text-[#3C4043] font-medium text-xs whitespace-nowrap transition-colors border border-[#DADCE0]"
                 >
                   {p.label}
                 </button>
               ))}
             </div>
 
-            {/* Dual Converter Section - Fully Responsive on Mobile */}
-            <div className="flex flex-col md:flex-row gap-3 items-stretch md:items-center">
+            {/* Converter Row */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
               {/* FROM */}
-              <div className="w-full flex-1 border border-[#DADCE0] focus-within:border-gray-400 rounded-lg p-3 transition-all bg-white">
-                <label className="text-[11px] font-bold uppercase tracking-wider text-[#5F6368] block mb-1">From Amount</label>
-                <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-                  <input
-                    type="number"
-                    value={value}
-                    placeholder="0"
-                    onChange={e => updateState({ value: e.target.value })}
-                    min={0}
-                    className="w-full sm:flex-1 bg-transparent font-mono text-2xl sm:text-3xl font-bold text-[#202124] outline-none"
-                  />
-                  <div className="relative shrink-0 w-full sm:w-[160px]">
-                    <select
-                      value={from}
-                      onChange={e => updateState({ from: e.target.value })}
-                      className="w-full h-10 pl-2.5 pr-7 rounded border border-[#DADCE0] bg-slate-50 text-xs font-semibold text-[#202124] outline-none cursor-pointer appearance-none truncate"
-                    >
-                      {Object.entries(UNITS).map(([k, v]) => (
-                        <option key={k} value={k}>{v.name}</option>
-                      ))}
-                    </select>
-                    <div className="absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-[#5F6368] text-xs">▼</div>
-                  </div>
-                </div>
+              <div className="flex-1 flex items-center gap-2 bg-white border border-[#DADCE0] rounded-lg px-3 py-2.5 focus-within:border-gray-400 transition-colors">
+                <input
+                  type="number"
+                  value={value}
+                  placeholder="Enter amount"
+                  onChange={e => updateState({ value: e.target.value })}
+                  min={0}
+                  className="flex-1 min-w-0 bg-transparent font-mono text-lg font-bold text-[#202124] outline-none placeholder:text-[#DADCE0]"
+                />
+                <select
+                  value={from}
+                  onChange={e => updateState({ from: e.target.value })}
+                  className="shrink-0 h-8 pl-2 pr-6 rounded border border-[#DADCE0] bg-slate-50 text-xs font-semibold text-[#202124] outline-none cursor-pointer appearance-none max-w-[150px] truncate"
+                >
+                  {Object.entries(UNITS).map(([k, v]) => (
+                    <option key={k} value={k}>{v.name}</option>
+                  ))}
+                </select>
               </div>
 
-              {/* Swap Button */}
-              <div className="flex justify-center shrink-0 my-1 md:my-0">
-                <button
-                  type="button"
-                  onClick={swap}
-                  title="Swap conversion units"
-                  className="h-9 w-9 rounded-full border border-[#DADCE0] bg-slate-50 hover:bg-slate-100 flex items-center justify-center transition-all text-[#5F6368] shadow-xs"
-                  aria-label="Swap units"
-                >
-                  <ArrowLeftRight className="w-4 h-4" />
-                </button>
-              </div>
+              {/* Swap */}
+              <button
+                type="button"
+                onClick={swap}
+                title="Swap units"
+                className="self-center h-8 w-8 shrink-0 rounded-full border border-[#DADCE0] bg-white hover:bg-slate-50 flex items-center justify-center transition-all text-[#5F6368]"
+                aria-label="Swap units"
+              >
+                <ArrowLeftRight className="w-3.5 h-3.5" />
+              </button>
 
               {/* TO */}
-              <div className="w-full flex-1 border border-[#DADCE0] focus-within:border-gray-400 rounded-lg p-3 transition-all bg-slate-50">
-                <label className="text-[11px] font-bold uppercase tracking-wider text-[#5F6368] block mb-1">Converted Result</label>
-                <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-                  <input
-                    type="number"
-                    value={value === '' ? '' : Number(rawTargetValue.toFixed(7))}
-                    placeholder="0"
-                    onChange={e => handleTargetChange(e.target.value)}
-                    min={0}
-                    className="w-full sm:flex-1 bg-transparent font-mono text-2xl sm:text-3xl font-bold text-[#202124] outline-none"
-                  />
-                  <div className="relative shrink-0 w-full sm:w-[160px]">
-                    <select
-                      value={to}
-                      onChange={e => updateState({ to: e.target.value })}
-                      className="w-full h-10 pl-2.5 pr-7 rounded border border-[#DADCE0] bg-white text-xs font-semibold text-[#202124] outline-none cursor-pointer appearance-none truncate"
-                    >
-                      {Object.entries(UNITS).map(([k, v]) => (
-                        <option key={k} value={k}>{v.name}</option>
-                      ))}
-                    </select>
-                    <div className="absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-[#5F6368] text-xs">▼</div>
-                  </div>
-                </div>
+              <div className="flex-1 flex items-center gap-2 bg-slate-50 border border-[#DADCE0] rounded-lg px-3 py-2.5 focus-within:border-gray-400 transition-colors">
+                <input
+                  type="number"
+                  value={value === '' ? '' : Number(rawTargetValue.toFixed(7))}
+                  placeholder="Result"
+                  onChange={e => handleTargetChange(e.target.value)}
+                  min={0}
+                  className="flex-1 min-w-0 bg-transparent font-mono text-lg font-bold text-[#202124] outline-none placeholder:text-[#DADCE0]"
+                />
+                <select
+                  value={to}
+                  onChange={e => updateState({ to: e.target.value })}
+                  className="shrink-0 h-8 pl-2 pr-6 rounded border border-[#DADCE0] bg-white text-xs font-semibold text-[#202124] outline-none cursor-pointer appearance-none max-w-[150px] truncate"
+                >
+                  {Object.entries(UNITS).map(([k, v]) => (
+                    <option key={k} value={k}>{v.name}</option>
+                  ))}
+                </select>
               </div>
             </div>
 
             {/* Formula strip + Copy */}
-            <div className="pt-3 border-t border-[#F1F3F4] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
-              <div className="flex items-center gap-2 flex-wrap">
-                <span className="font-medium text-[#202124]">
-                  {value || 0} {UNITS[from].short} = <strong className="font-mono text-indigo-600">{resultStr} {UNITS[to].short}</strong>
+            <div className="flex items-center justify-between text-xs text-[#70757A] px-0.5">
+              <div className="flex items-center gap-2">
+                <span className="text-[#202124]">
+                  {value || 0} {UNITS[from].short} = <strong className="font-mono">{resultStr} {UNITS[to].short}</strong>
                 </span>
                 <button
                   type="button"
@@ -320,9 +306,7 @@ export default function WeightConverter() {
                   <span>{copied ? 'Copied' : 'Copy'}</span>
                 </button>
               </div>
-              <div className="text-[11px] font-mono text-[#70757A]">
-                Multiplier: × {(UNITS[from].factor / UNITS[to].factor).toFixed(6)}
-              </div>
+              <span className="font-mono text-[11px]">1 {UNITS[from].short} = {(UNITS[from].factor / UNITS[to].factor).toFixed(6)} {UNITS[to].short}</span>
             </div>
 
           </div>
