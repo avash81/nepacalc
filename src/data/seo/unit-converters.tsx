@@ -343,8 +343,5 @@ export const unitConvertersSEO: Record<string, SEOContent> = {
     title: "Weight Converter | KG, Pounds, Ounces & More",
     description: "Convert between Kilograms, Pounds, Ounces, and Grams. A perfect tool for shipping, cooking, and heavy weight calculations.",
     content: <></>,
-    faqs: [
-      { question: "Is weight the same as mass?", answer: "In everyday language, yes. But in physics, mass is the amount of matter, and weight is the force of gravity on that matter." }
-    ]
   }
 };
