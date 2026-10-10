@@ -342,6 +342,6 @@ export const unitConvertersSEO: Record<string, SEOContent> = {
   'weight-converter': {
     title: "Weight Converter | KG, Pounds, Ounces & More",
     description: "Convert between Kilograms, Pounds, Ounces, and Grams. A perfect tool for shipping, cooking, and heavy weight calculations.",
-    content: <></>,
+    content: null,
   }
 };
