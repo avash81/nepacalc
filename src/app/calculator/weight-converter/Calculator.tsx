@@ -482,11 +482,7 @@ export default function WeightConverter() {
 
               <h3 className="text-lg font-bold text-[#202124] mb-2">Gold and Silver Conversions</h3>
               <p className="text-sm text-[#5F6368] leading-relaxed">
-                For dedicated gold and silver weight conversions, use the{' '}
-                <Link href="/calculator/gold-converter/" className="text-[#1967D2] hover:underline">gold converter</Link>
-                {' '}or the{' '}
-                <Link href="/calculator/silver-converter/" className="text-[#1967D2] hover:underline">silver converter</Link>
-                . These tools are designed specifically for precious-metal weights and use the same Tola standard as this converter.
+                For dedicated gold and silver weight conversions, see the gold converter and silver converter listed in the Related Tools section below. These tools use the same Tola standard as this converter.
               </p>
             </div>
 
@@ -615,19 +611,14 @@ export default function WeightConverter() {
                 <div>
                   <h3 className="text-base font-bold text-[#202124] mb-2">Can I use this converter to estimate the value of silver by Tola?</h3>
                   <p className="text-sm text-[#5F6368] leading-relaxed">
-                    This converter can convert silver weight between supported units. For silver value in Nepal, check the current{' '}
-                    <Link href="/market-rates/silver-price-nepal/" className="text-[#1967D2] hover:underline">silver price in Nepal</Link>
-                    . For dedicated silver weight conversion, use the{' '}
-                    <Link href="/calculator/silver-converter/" className="text-[#1967D2] hover:underline">silver converter</Link>.
+                    This converter can convert silver weight between supported units. For the current silver price and a dedicated silver weight tool, see the Related Tools section below.
                   </p>
                 </div>
 
                 <div>
                   <h3 className="text-base font-bold text-[#202124] mb-2">Is weight the same as mass?</h3>
                   <p className="text-sm text-[#5F6368] leading-relaxed">
-                    Not exactly. <strong className="text-[#202124]">Mass</strong> measures the amount of matter in an object, while <strong className="text-[#202124]">weight</strong> is the force of gravity acting on that mass. In everyday use, people often use &quot;weight&quot; to mean mass, and this converter converts{' '}
-                    <a href="https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8" target="_blank" rel="noopener noreferrer" className="text-[#1967D2] hover:underline">mass units</a>
-                    {' '}such as kilograms, grams, and pounds.
+                    Not exactly. <strong className="text-[#202124]">Mass</strong> measures the amount of matter in an object, while <strong className="text-[#202124]">weight</strong> is the force of gravity acting on that mass. In everyday use, people often use &quot;weight&quot; to mean mass, and this converter converts mass units such as kilograms, grams, and pounds.
                   </p>
                 </div>
               </div>
