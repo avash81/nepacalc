@@ -425,13 +425,10 @@ export default function WeightConverter() {
                   </tbody>
                 </table>
               </div>
-              <p className="text-sm text-[#5F6368] leading-relaxed mb-2">
-                An avoirdupois ounce is commonly used for everyday weight measurements. A troy ounce is used for precious metals. These units are different and should not be interchanged.
-              </p>
               <p className="text-sm text-[#5F6368] leading-relaxed">
-                For additional reference, see the{' '}
-                <a href="https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8" target="_blank" rel="noopener noreferrer" className="text-[#1967D2] hover:underline">NIST conversion factors</a>
-                {' '}for commonly used measurement units.
+                An avoirdupois ounce is commonly used for everyday weight measurements. A troy ounce is used for precious metals. These units are different and should not be interchanged. See the NIST Guide to the SI for{' '}
+                <a href="https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8" target="_blank" rel="noopener noreferrer" className="text-[#1967D2] hover:underline">conversion factors</a>
+                {' '}for these and other commonly used measurement units.
               </p>
             </div>
 
@@ -628,7 +625,9 @@ export default function WeightConverter() {
                 <div>
                   <h3 className="text-base font-bold text-[#202124] mb-2">Is weight the same as mass?</h3>
                   <p className="text-sm text-[#5F6368] leading-relaxed">
-                    Not exactly. <strong className="text-[#202124]">Mass</strong> measures the amount of matter in an object, while <strong className="text-[#202124]">weight</strong> is the force of gravity acting on that mass. In everyday use, people often use &quot;weight&quot; to mean mass, and this converter converts mass units such as kilograms, grams, and pounds.
+                    Not exactly. <strong className="text-[#202124]">Mass</strong> measures the amount of matter in an object, while <strong className="text-[#202124]">weight</strong> is the force of gravity acting on that mass. In everyday use, people often use &quot;weight&quot; to mean mass, and this converter converts{' '}
+                    <a href="https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8" target="_blank" rel="noopener noreferrer" className="text-[#1967D2] hover:underline">mass units</a>
+                    {' '}such as kilograms, grams, and pounds.
                   </p>
                 </div>
               </div>
