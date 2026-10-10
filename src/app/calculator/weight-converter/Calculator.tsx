@@ -4,6 +4,7 @@ import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
 import { CalculatorErrorBoundary } from '@/components/calculator/CalculatorErrorBoundary';
 import { useSyncState } from '@/hooks/useSyncState';
 import { ArrowLeftRight, Scale, Check, Copy } from 'lucide-react';
+import Link from 'next/link';
 
 const UNITS: Record<string, { name: string; short: string; factor: number }> = {
   kg:     { name: 'Kilogram (kg)',       short: 'kg',   factor: 1000 },
@@ -424,8 +425,13 @@ export default function WeightConverter() {
                   </tbody>
                 </table>
               </div>
-              <p className="text-sm text-[#5F6368] leading-relaxed">
+              <p className="text-sm text-[#5F6368] leading-relaxed mb-2">
                 An avoirdupois ounce is commonly used for everyday weight measurements. A troy ounce is used for precious metals. These units are different and should not be interchanged.
+              </p>
+              <p className="text-sm text-[#5F6368] leading-relaxed">
+                For additional reference, see the{' '}
+                <a href="https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8" target="_blank" rel="noopener noreferrer" className="text-[#1967D2] hover:underline">NIST conversion factors</a>
+                {' '}for commonly used measurement units.
               </p>
             </div>
 
@@ -477,9 +483,13 @@ export default function WeightConverter() {
                 <li>1 carat = 0.2 grams.</li>
               </ul>
 
-              <h3 className="text-lg font-bold text-[#202124] mb-2">Gold and Silver Value Estimator</h3>
+              <h3 className="text-lg font-bold text-[#202124] mb-2">Gold and Silver Conversions</h3>
               <p className="text-sm text-[#5F6368] leading-relaxed">
-                You can estimate the value of your converted weight using the tool above. Enter a price per Tola to estimate a value. Make sure the currency and Tola standard you use match the market you are estimating for.
+                For dedicated gold and silver weight conversions, use the{' '}
+                <Link href="/calculator/gold-converter/" className="text-[#1967D2] hover:underline">gold converter</Link>
+                {' '}or the{' '}
+                <Link href="/calculator/silver-converter/" className="text-[#1967D2] hover:underline">silver converter</Link>
+                . These tools are designed specifically for precious-metal weights and use the same Tola standard as this converter.
               </p>
             </div>
 
@@ -608,7 +618,10 @@ export default function WeightConverter() {
                 <div>
                   <h3 className="text-base font-bold text-[#202124] mb-2">Can I use this converter to estimate the value of silver by Tola?</h3>
                   <p className="text-sm text-[#5F6368] leading-relaxed">
-                    You can use the converter to convert silver weight between supported units. If the page&apos;s value estimator supports silver and lets you enter a price per Tola, you can also use that price to estimate value. The estimate depends on the price you enter and the Tola standard selected; it is not a live market price unless the tool explicitly provides current market data.
+                    This converter can convert silver weight between supported units. For silver value in Nepal, check the current{' '}
+                    <Link href="/market-rates/silver-price-nepal/" className="text-[#1967D2] hover:underline">silver price in Nepal</Link>
+                    . For dedicated silver weight conversion, use the{' '}
+                    <Link href="/calculator/silver-converter/" className="text-[#1967D2] hover:underline">silver converter</Link>.
                   </p>
                 </div>
 
@@ -619,6 +632,37 @@ export default function WeightConverter() {
                   </p>
                 </div>
               </div>
+            </div>
+
+            {/* Related Resources */}
+            <div className="bg-white border border-[#DADCE0] rounded-xl p-5 sm:p-6 shadow-sm">
+              <h2 className="text-xl sm:text-2xl font-black text-[#202124] mb-4">Related Tools</h2>
+              <ul className="space-y-2 text-sm text-[#5F6368]">
+                <li>
+                  <Link href="/calculator/gold-converter/" className="text-[#1967D2] font-semibold hover:underline">Gold Converter</Link>
+                  {' '}&mdash; convert gold weight between grams, tola, troy ounces and more.
+                </li>
+                <li>
+                  <Link href="/calculator/silver-converter/" className="text-[#1967D2] font-semibold hover:underline">Silver Converter</Link>
+                  {' '}&mdash; convert silver weight using the same unit set.
+                </li>
+                <li>
+                  <Link href="/market-rates/live-gold-price/" className="text-[#1967D2] font-semibold hover:underline">Live Gold Price</Link>
+                  {' '}&mdash; view the current gold price in Nepal.
+                </li>
+                <li>
+                  <Link href="/market-rates/silver-price-nepal/" className="text-[#1967D2] font-semibold hover:underline">Silver Price in Nepal</Link>
+                  {' '}&mdash; view the current silver price per tola.
+                </li>
+                <li>
+                  <Link href="/calculator/unit-converter/" className="text-[#1967D2] font-semibold hover:underline">Unit Converter</Link>
+                  {' '}&mdash; explore additional unit conversions.
+                </li>
+                <li>
+                  <Link href="/converters/" className="text-[#1967D2] font-semibold hover:underline">All Conversion Tools</Link>
+                  {' '}&mdash; browse other available conversion tools.
+                </li>
+              </ul>
             </div>
 
           </div>
