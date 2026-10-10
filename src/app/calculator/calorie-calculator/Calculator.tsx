@@ -6,11 +6,11 @@ import { Calculator, Apple, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
 
 const ACTIVITY_LEVELS = [
-  { id: 'sedentary',  label: 'Sedentary — little or no exercise', mult: 1.2 },
-  { id: 'light',      label: 'Lightly active — light exercise or activity around 1–3 days per week', mult: 1.375 },
-  { id: 'moderate',   label: 'Moderately active — moderate exercise or activity around 3–5 days per week', mult: 1.55 },
-  { id: 'very',       label: 'Very active — hard exercise or activity around 6–7 days per week', mult: 1.725 },
-  { id: 'extra',      label: 'Extra active — very hard training or physically demanding work', mult: 1.9 },
+  { id: 'sedentary',  label: 'Sedentary: little or no exercise', mult: 1.2 },
+  { id: 'light',      label: 'Lightly active: light exercise or activity around 1-3 days per week', mult: 1.375 },
+  { id: 'moderate',   label: 'Moderately active: moderate exercise or activity around 3-5 days per week', mult: 1.55 },
+  { id: 'very',       label: 'Very active: hard exercise or activity around 6-7 days per week', mult: 1.725 },
+  { id: 'extra',      label: 'Extra active: very hard training or physically demanding work', mult: 1.9 },
 ];
 
 export default function CalorieCalculator() {
@@ -97,25 +97,13 @@ export default function CalorieCalculator() {
   return (
     <ModernCalcLayout
       slug="calorie-calculator"
-      hideH1={true}
       crumbs={[{ label: 'Home', href: '/' }, { label: 'Calculators', href: '/calculator/' }, { label: 'Calorie Calculator' }]}
-      title="Calorie Calculator"
+      title="Daily Calorie Calculator"
+      titleClassName="text-2xl sm:text-3xl font-black text-[#202124] tracking-tight mb-2"
       description="Estimate your daily calorie needs to maintain, lose, or gain weight."
       icon={Apple}
       inputs={
         <div className="space-y-6">
-          <div className="mb-2">
-            <h1 className="text-2xl font-black text-[#202124] mb-2">Daily Calorie Calculator</h1>
-            <div className="space-y-2 mb-4">
-              <p className="text-[#5F6368] text-sm leading-relaxed">
-                Use this daily calorie calculator to estimate how many calories you need each day based on your age, sex, height, weight, and activity level. It estimates your daily calorie needs for maintaining your current weight, losing weight, or gaining weight.
-              </p>
-              <p className="text-[#5F6368] text-sm leading-relaxed">
-                Enter your details and select the activity level that best reflects your usual routine to get your estimated daily calorie targets. Your results are estimates rather than exact measurements, and your actual calorie needs may vary.
-              </p>
-            </div>
-          </div>
-
           <div className="space-y-2">
             <label className={labelClasses}>Biological sex</label>
             <div className="flex gap-3">
@@ -277,6 +265,15 @@ export default function CalorieCalculator() {
       }
       details={
         <div className="space-y-8">
+          <div className="space-y-3">
+            <p className="text-sm text-[#5F6368] leading-relaxed">
+              Use this daily calorie calculator to estimate how many calories you need each day based on your age, sex, height, weight, and activity level. It estimates your daily calorie needs for maintaining your current weight, losing weight, or gaining weight.
+            </p>
+            <p className="text-sm text-[#5F6368] leading-relaxed">
+              Enter your details and select the activity level that best reflects your usual routine to get your estimated daily calorie targets. Your results are estimates rather than exact measurements, and your actual calorie needs may vary.
+            </p>
+          </div>
+
           {/* Section 1: Merged S1 + S2 */}
           <div className="space-y-2">
             <h2 className="text-xl font-black text-[#202124]">How Many Calories Do You Need Each Day?</h2>
@@ -302,7 +299,7 @@ export default function CalorieCalculator() {
               <Link href="/calculator/bmr/" className="text-teal-600 font-semibold hover:underline">
                 BMR Calculator
               </Link>{' '}
-              to explore your basal metabolic rate in detail.
+              to estimate your basal metabolic rate.
             </p>
           </div>
 
@@ -339,7 +336,7 @@ export default function CalorieCalculator() {
               <li className="leading-relaxed"><strong className="text-[#202124]">Gain weight:</strong> The calculator applies a modest surplus of 250 kcal/day above maintenance.</li>
             </ul>
             <p className="text-sm text-[#5F6368] leading-relaxed">
-              These targets reflect standard calculation formulas rather than guaranteed outcomes. For another perspective on your body measurements, you can also check our{' '}
+              These targets reflect standard calculation formulas rather than guaranteed outcomes. For another perspective on your measurements, try our{' '}
               <Link href="/calculator/bmi/" className="text-teal-600 font-semibold hover:underline">
                 BMI Calculator
               </Link>.
@@ -447,16 +444,17 @@ export default function CalorieCalculator() {
             <h2 className="text-xl font-black text-[#202124]">Related Calculators</h2>
             <ul className="space-y-2 text-sm text-[#5F6368]">
               <li>
+                You can also estimate your daily water needs with our{' '}
                 <Link href="/calculator/water-intake/" className="text-teal-600 font-semibold hover:underline">
                   Water Intake Calculator
-                </Link>{' '}
-                — Estimate your recommended daily fluid and hydration needs.
+                </Link>.
               </li>
               <li>
+                You can also explore our{' '}
                 <Link href="/calculator/body-fat/" className="text-teal-600 font-semibold hover:underline">
                   Body Fat Calculator
                 </Link>{' '}
-                — Estimate your body composition and body fat percentage.
+                for an estimate of body fat percentage.
               </li>
             </ul>
           </div>
