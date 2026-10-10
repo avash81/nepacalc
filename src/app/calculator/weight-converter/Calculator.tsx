@@ -229,16 +229,6 @@ export default function WeightConverter() {
             answer: "Technically, no. Mass is the amount of matter in an object (measured in kg) and is constant everywhere in the universe. Weight is the gravitational force acting on that mass (measured in Newtons) and would differ on the Moon. However, in everyday usage, both terms are used interchangeably to refer to what a scale measures on Earth."
           }
         ]}
-        howToUse={{
-          steps: [
-            "Enter the numerical weight or mass value you want to convert.",
-            "Select the starting unit from the 'From' dropdown.",
-            "Select your desired target unit from the 'To' dropdown.",
-            "The result is displayed instantly in real-time.",
-            "Use the Swap button to reverse the conversion direction.",
-            "Input today's gold price per Tola (NPR) to estimate the precious metal value."
-          ]
-        }}
       />
     </CalculatorErrorBoundary>
   );
