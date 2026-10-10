@@ -106,10 +106,6 @@ export default async function Page() {
       name: 'NepaCalc Market Rates',
       url: 'https://nepacalc.com/market-rates/',
     },
-    isPartOf: {
-      '@type': 'WebSite',
-      '@id': 'https://nepacalc.com/#website',
-    },
     mainEntityOfPage: {
       '@id': 'https://nepacalc.com/market-rates/exchange-rate-nepal/#webpage',
     },
