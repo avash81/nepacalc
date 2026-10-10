@@ -89,58 +89,58 @@ const faqSchema = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'How much gold can I bring to Nepal duty-free?',
+      name: 'How Much Gold Can I Bring to Nepal Duty-Free?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'CAANs AIP customs guidance dated 30 April 2024 lists up to 25 grams of gold ornaments for men and up to 50 grams for women as duty-free. Check the latest Department of Customs passenger-goods notice to confirm whether these limits and conditions remain applicable to your journey.',
+        text: 'CAANs AIP customs guidance dated 30 April 2024 lists up to 25 grams of gold ornaments for men and up to 50 grams for women as duty-free. Check the latest Department of Customs notice to confirm the rules that apply to your journey.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Can I bring raw gold to Nepal from abroad?',
+      name: 'Can I Bring Raw Gold to Nepal from Abroad?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Raw gold is a separate category from finished jewellery. Do not assume that the jewellery allowance applies to gold bars, coins or bullion. Check the current official rules or contact the Department of Customs to confirm whether your item is permitted and what duties or other conditions apply.',
+        text: 'Raw gold is a separate category from finished jewellery. Do not assume that gold bars, coins or bullion qualify for the jewellery allowance. Check the current rules with the Department of Customs before travelling.',
       },
     },
     {
       '@type': 'Question',
-      name: 'What customs duty do I pay on gold brought to Nepal?',
+      name: 'What Customs Duty Do I Pay on Gold Brought to Nepal?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'The amount depends on the applicable customs classification, passenger provisions, quantity and current tariff rate. Check the official integrated customs tariff and confirm the rate with Customs before travelling. This page does not quote a specific rate because the applicable rate must be verified for the item and current rules.',
+        text: 'The amount depends on the applicable tariff, the type and quantity of gold, and whether a passenger concession applies. Check the official integrated customs tariff and confirm the applicable rate with Customs.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Does the jewellery allowance apply to gold bars and coins?',
+      name: 'Does the Jewellery Allowance Apply to Gold Bars and Coins?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Do not assume that it does. Gold bars, coins and other forms of raw gold may be treated differently from finished ornaments. Confirm the applicable provision with Customs before carrying them into Nepal.',
+        text: 'Do not assume that it does. Gold bars, coins and other forms of raw or semi-processed gold may be treated differently from finished ornaments. Confirm the applicable provision before travelling.',
       },
     },
     {
       '@type': 'Question',
-      name: 'What happens if I bring more gold than the permitted allowance?',
+      name: 'What Happens If I Bring More Gold Than the Permitted Allowance?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'You may need to declare the gold and pay the applicable duty, but the outcome depends on the current rules and the circumstances. Additional restrictions or enforcement action may apply. Confirm the requirements with Customs before travelling rather than assuming that excess gold can always be brought in by paying duty.',
+        text: 'You may need to declare the gold and pay applicable duty, but the outcome depends on the current rules and circumstances. Some items or situations may be subject to additional restrictions or enforcement action. Confirm the requirements with Customs.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Do the gold allowance rules apply to foreign tourists?',
+      name: 'Do the Gold Allowance Rules Apply to Foreign Tourists?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'The provisions that apply may depend on the passengers circumstances. Foreign visitors should check the current official passenger-goods notice and confirm the applicable allowance directly with Customs instead of assuming that the rules for returning Nepali citizens also apply to them.',
+        text: 'The applicable provisions may depend on the passengers circumstances. Foreign visitors should check the latest official passenger-goods notice and confirm the relevant allowance directly with Customs.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Where can I check the official rules for bringing gold to Nepal?',
+      name: 'Where Can I Check the Official Rules for Bringing Gold to Nepal?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Start with the Department of Customs passenger-goods notice and the CAAN AIP customs requirements. For tariff classifications and rates, consult the Department of Customs integrated tariff. If the published information does not clearly cover your item, contact Customs before travelling.',
+        text: 'Start with the Department of Customs passenger-goods notice and the CAAN AIP customs requirements. For tariff information, consult the Department of Customs integrated tariff. If the official information does not clearly cover your item, contact Customs before travelling.',
       },
     }
   ],
@@ -176,12 +176,12 @@ export default function Page() {
           <div className="bg-amber-50 border border-amber-200 rounded-xl p-6 mb-10 not-prose">
             <h2 className="text-lg font-bold text-amber-900 mb-3">Quick Answer</h2>
             <p className="text-amber-900 text-sm leading-relaxed mb-4">
-              Nepal&apos;s Civil Aviation Authority of Nepal (CAAN) AIP customs guidance dated 30 April 2024 lists a duty-free allowance of <strong>up to 25 grams of gold ornaments for men</strong> and <strong>50 grams for women</strong>. This guidance should not be treated as confirmation that the same limits remain unchanged under the latest customs rules.
+              Nepal&apos;s Civil Aviation Authority of Nepal (CAAN) AIP customs guidance dated 30 April 2024 lists a duty-free allowance of up to 25 grams of gold ornaments for men and 50 grams for women. These figures come from dated guidance and should not be assumed to reflect every current customs provision.
             </p>
             <p className="text-amber-900 text-sm leading-relaxed">
-              Gold jewellery and raw gold, such as bars or bullion, may be subject to different customs provisions. Before travelling, check the latest{' '}
-              <span className="font-bold text-amber-900">Department of Customs passenger-goods notice</span>{' '}
-              and confirm the rules that apply to your nationality and the type of gold you are carrying.
+              Gold jewellery and raw gold, such as bars or bullion, may be subject to different rules. Before travelling, check the latest{' '}
+              <a href="https://www.customs.gov.np/content/140/information-of-private-use-goods-that-passengers/" target="_blank" rel="nofollow noopener noreferrer" className="font-bold underline hover:text-amber-700">Department of Customs passenger-goods notice</a>{' '}
+              and confirm the requirements for your circumstances.
             </p>
           </div>
 
@@ -191,12 +191,10 @@ export default function Page() {
               How Much Gold Can You Bring to Nepal?
             </h2>
             <p className="text-slate-700 leading-relaxed mb-4">
-              The amount of gold you can bring into Nepal depends on the type of gold, the applicable passenger allowance, and whether customs duty is payable. If you are buying gold abroad, checking the{' '}
-              <Link href="/market-rates/live-gold-price/" className="text-blue-600 font-bold hover:underline">live gold price in Nepal</Link>{' '}
-              can help you compare prices before your trip.
+              The amount of gold you can bring into Nepal depends on the type of gold you carry and the customs rules that apply to your journey. Gold jewellery, bars, coins and bullion should not automatically be treated as having the same allowance.
             </p>
             <p className="text-slate-700 leading-relaxed mb-4">
-              CAAN&apos;s AIP customs guidance, dated 30 April 2024, lists the following duty-free allowance for gold ornaments:
+              CAAN&apos;s AIP customs guidance dated 30 April 2024 lists the following duty-free allowances for gold ornaments:
             </p>
 
             {/* Allowance table */}
@@ -206,8 +204,8 @@ export default function Page() {
                   <tr>
                     <th className="px-4 py-3 text-left font-black text-slate-900 text-[11px] uppercase tracking-wider">Passenger</th>
                     <th className="px-4 py-3 text-left font-black text-slate-900 text-[11px] uppercase tracking-wider">Type of gold</th>
-                    <th className="px-4 py-3 text-left font-black text-slate-900 text-[11px] uppercase tracking-wider">Allowance listed in the CAAN AIP</th>
-                    <th className="px-4 py-3 text-left font-black text-slate-900 text-[11px] uppercase tracking-wider">Customs treatment stated in that guidance</th>
+                    <th className="px-4 py-3 text-left font-black text-slate-900 text-[11px] uppercase tracking-wider">Allowance in the CAAN AIP</th>
+                    <th className="px-4 py-3 text-left font-black text-slate-900 text-[11px] uppercase tracking-wider">Treatment stated in the guidance</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 text-slate-700">
@@ -219,11 +217,18 @@ export default function Page() {
             
             <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 my-4 not-prose">
               <p className="text-slate-700 text-sm leading-relaxed font-semibold">
-                Important: These figures come from the dated CAAN AIP guidance. Check the latest Department of Customs passenger-goods notice before relying on them for a current journey. The current allowance and treatment of additional jewellery or raw gold should be confirmed with Customs.
+                Important: These figures are from the dated CAAN AIP guidance. Check the latest{' '}
+                <a href="https://www.customs.gov.np/content/140/information-of-private-use-goods-that-passengers/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Department of Customs passenger-goods notice</a>{' '}
+                before relying on them for a current journey. Confirm the current provisions for additional jewellery and raw gold directly with Customs.
               </p>
             </div>
 
-
+            <p className="text-slate-700 leading-relaxed mb-4 mt-6">
+              If you are comparing the cost of buying gold abroad with prices in Nepal, check the <Link href="/market-rates/live-gold-price/" className="text-blue-600 font-bold hover:underline">live gold price in Nepal</Link> before your trip.
+            </p>
+            <p className="text-slate-700 leading-relaxed mb-4">
+              Official source: <a href="https://e-aip.caanepal.gov.np/_uploads/_pdf/781312de50dea9a38fba9585f5d3e1d1.pdf" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">CAAN AIP customs requirements (PDF)</a>.
+            </p>
           </section>
 
           {/* ── Section 3: Gold Jewellery vs Raw Gold ── */}
@@ -232,35 +237,24 @@ export default function Page() {
               Gold Jewellery vs Raw Gold: What Is the Difference?
             </h2>
             <p className="text-slate-700 leading-relaxed mb-4">
-              Gold jewellery and raw gold should not be treated as the same category when checking Nepal&apos;s customs rules. The applicable allowance and duty treatment may differ according to the form of gold and the passenger provisions in force.
+              Gold jewellery and raw gold may be subject to different customs provisions in Nepal. The rules depend on the form of gold and the passenger provisions that apply.
             </p>
             
             <h3 className="text-lg font-bold text-slate-900 mt-6 mb-2">Gold Jewellery</h3>
             <p className="text-slate-700 leading-relaxed mb-4">
-              Gold jewellery means finished ornaments worn or carried as personal accessories. The CAAN AIP guidance dated 30 April 2024 lists duty-free allowances of up to 25 grams for men and 50 grams for women.
+              Gold jewellery means finished ornaments worn or carried as personal accessories. CAAN&apos;s AIP guidance dated 30 April 2024 lists duty-free allowances of up to 25 grams for men and 50 grams for women. Check the latest official notice to confirm the rules that apply to your journey.
             </p>
             <p className="text-slate-700 leading-relaxed mb-4">
-              The same guidance notes that items such as rings, bangles and chains made in ordinary ornament shapes without chemicals are not accepted as ornaments under its stated provisions. If you are carrying jewellery that may not qualify as an ornament, ask Customs how it will be classified.
+              The same guidance states that certain rings, bangles and chains made in ordinary ornament shapes without chemicals are not accepted as ornaments under its provisions. If you are unsure how your item will be classified, ask Customs before travelling.
             </p>
 
             <h3 className="text-lg font-bold text-slate-900 mt-6 mb-2">Raw Gold, Bars and Coins</h3>
             <p className="text-slate-700 leading-relaxed mb-4">
-              Raw gold is different from finished jewellery. Gold bars, bullion, coins and other forms of gold should not automatically be assumed to qualify for the jewellery allowance.
+              Gold bars, bullion, coins and other forms of raw or semi-processed gold should not automatically be assumed to qualify for the jewellery allowance. Confirm whether your item is permitted and what duty or other conditions apply.
             </p>
             <p className="text-slate-700 leading-relaxed mb-4">
-              Before travelling with raw gold, check the latest passenger-goods notice and ask the Department of Customs which provisions, duties and restrictions apply to your particular item.
+              If you need to convert a weight from ounces or another unit into grams, use the <Link href="/calculator/gold-converter/" className="text-blue-600 font-bold hover:underline">gold weight converter</Link> before checking the applicable customs rules.
             </p>
-            <p className="text-slate-700 leading-relaxed mb-4">
-              If you need to convert a gold weight from ounces or another unit into grams, use a{' '}
-              <Link href="/calculator/gold-converter/" className="text-blue-600 font-bold hover:underline">gold weight converter</Link>{' '}
-              before checking the applicable customs limit.
-            </p>
-            
-            <div className="bg-red-50 border border-red-200 rounded-xl p-4 my-4 not-prose">
-              <p className="text-red-900 text-sm font-semibold leading-relaxed">
-                Remember: Do not assume that the jewellery allowance also applies to gold bars, coins or bullion. Confirm the rules for the exact form of gold you plan to carry.
-              </p>
-            </div>
           </section>
 
           {/* ── Section 4: Foreign Tourists ── */}
@@ -269,19 +263,13 @@ export default function Page() {
               Rules for Foreign Tourists Bringing Gold to Nepal
             </h2>
             <p className="text-slate-700 leading-relaxed mb-4">
-              Foreign visitors entering Nepal should check the customs provisions that apply to their circumstances. The allowance for a foreign tourist should not automatically be assumed to be the same as the allowance for a Nepali citizen returning from abroad.
+              Foreign visitors entering Nepal should check the customs provisions that apply to their circumstances. Do not assume that the allowance for a foreign tourist is identical to the allowance for a Nepali citizen returning from abroad.
             </p>
             <p className="text-slate-700 leading-relaxed mb-4">
-              If you are visiting Nepal with personal gold jewellery, check the current passenger-goods rules before travelling. If the gold you carry may exceed the applicable duty-free allowance, or if you are unsure how it should be classified, contact Customs for guidance on whether you need to declare it and pay duty.
+              If you are carrying gold jewellery or another form of gold into Nepal, check the latest passenger-goods rules before travelling. If you are unsure whether your item must be declared or whether duty applies, contact the Department of Customs for guidance.
             </p>
             <p className="text-slate-700 leading-relaxed mb-4">
-              The CAAN AIP guidance dated 30 April 2024 provides customs information for passengers arriving on international flights. However, the exact current allowance for your situation should be confirmed against the latest official rules.
-            </p>
-            <p className="text-slate-700 leading-relaxed mb-4">
-              Official reference:{' '}
-              <a href="https://www.customs.gov.np/content/140/information-of-private-use-goods-that-passengers/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">
-                Department of Customs passenger-goods notice
-              </a>.
+              The <a href="https://www.customs.gov.np/content/140/information-of-private-use-goods-that-passengers/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Department of Customs passenger-goods notice</a> is the starting point for checking the current rules. The precise allowance for your circumstances should be confirmed with Customs.
             </p>
           </section>
 
@@ -291,36 +279,31 @@ export default function Page() {
               How Much Customs Duty Must You Pay on Gold in Nepal?
             </h2>
             <p className="text-slate-700 leading-relaxed mb-4">
-              The amount of customs duty payable on gold depends on the applicable rules, the category and quantity of gold, and the passenger&apos;s eligibility for any concession.
+              The customs duty payable on gold brought into Nepal depends on the applicable tariff, the category and quantity of gold, and whether the passenger qualifies for a customs concession.
             </p>
             <p className="text-slate-700 leading-relaxed mb-4">
-              Do not assume that one duty rate applies to all gold jewellery, bars, coins or bullion. First establish how Customs classifies the item and whether a passenger allowance applies.
+              Do not assume that the same duty rate or passenger allowance applies to jewellery, gold bars, coins and bullion. Confirm how your item is classified before estimating the cost.
             </p>
             
             <h3 className="text-lg font-bold text-slate-900 mt-6 mb-2">How Is Gold Customs Duty Determined?</h3>
-            <p className="text-slate-700 leading-relaxed mb-2">Before estimating the duty on gold brought into Nepal, confirm:</p>
+            <p className="text-slate-700 leading-relaxed mb-2">Before estimating customs duty, confirm:</p>
             <ul className="list-disc pl-6 text-slate-700 space-y-2 mb-4">
-              <li><strong>Type of gold:</strong> Is it finished jewellery, a bar, a coin or another form of gold?</li>
-              <li><strong>Passenger eligibility:</strong> Which customs provisions apply to your nationality and circumstances?</li>
-              <li><strong>Quantity:</strong> What is the total weight of the gold you are carrying?</li>
-              <li><strong>Allowance:</strong> Does the item qualify for a duty-free or other passenger concession?</li>
+              <li><strong>Type of gold:</strong> Is it finished jewellery, a bar, a coin or another form?</li>
+              <li><strong>Passenger eligibility:</strong> Which customs provisions apply to your circumstances?</li>
+              <li><strong>Quantity:</strong> What is the total weight of the gold?</li>
+              <li><strong>Applicable allowance:</strong> Does the item qualify for a duty-free or other passenger concession?</li>
               <li><strong>Applicable rate:</strong> What duty and other charges, if any, apply under the current rules?</li>
             </ul>
             <p className="text-slate-700 leading-relaxed mb-4">
-              Once these details are confirmed, you can estimate the potential cost. A <Link href="/calculator/gold-tax/" className="text-blue-600 font-bold hover:underline">gold tax calculator</Link> can help with an estimate, but it cannot determine your legal eligibility for a customs concession.
+              A <Link href="/calculator/gold-tax/" className="text-blue-600 font-bold hover:underline">gold tax calculator</Link> may help you estimate costs if it uses the correct, current rates. It cannot determine whether your item qualifies for a customs concession, so verify the rules with Customs.
             </p>
 
             <h3 className="text-lg font-bold text-slate-900 mt-6 mb-2">Check the Latest Official Customs Tariff</h3>
             <p className="text-slate-700 leading-relaxed mb-4">
-              The Department of Customs publishes Nepal&apos;s integrated customs tariff, which is an official starting point for checking tariff classifications and applicable rates.
+              Use the <a href="https://customs.gov.np/content/46/integrated-tariff-rate/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Department of Customs integrated tariff</a> to check the current tariff information. You can also consult the <a href="https://mof.gov.np/content/1742/economic-bill--2083/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Ministry of Finance Economic Bill 2083</a> and the <a href="https://lawcommission.gov.np/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Nepal Law Commission</a> for relevant legal provisions.
             </p>
-            <ul className="list-disc pl-6 text-slate-700 space-y-2 mb-4">
-              <li>
-                <a href="https://customs.gov.np/content/46/integrated-tariff-rate/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Department of Customs: Integrated Tariff Rate</a>
-              </li>
-            </ul>
             <p className="text-slate-700 leading-relaxed mb-4">
-              The rate applicable to a particular item should be checked against the current tariff and relevant legal provisions. Do not rely on an older article or an estimated calculator result as a substitute for confirmation from Customs.
+              The applicable rate must be confirmed for the specific item and current rules. Do not rely on an older article or an estimated calculator result as a substitute for official confirmation.
             </p>
           </section>
 
@@ -330,22 +313,19 @@ export default function Page() {
               What Happens If You Bring More Gold Than Allowed?
             </h2>
             <p className="text-slate-700 leading-relaxed mb-4">
-              If you carry gold that exceeds the applicable passenger allowance, you may need to declare it and pay the duty required under the current rules. The consequences depend on the item, the applicable legal provisions and the circumstances of the case.
+              If you carry gold that exceeds the applicable passenger allowance, you may need to declare it and pay the duty required under the current rules. The outcome depends on the type of gold, the applicable legal provisions and the circumstances.
             </p>
             <p className="text-slate-700 leading-relaxed mb-4">
-              Do not assume that excess gold can automatically be brought into Nepal simply by paying duty. Some items or circumstances may be subject to additional restrictions or enforcement action.
+              Do not assume that every item can be brought into Nepal simply by paying duty. Restrictions or other enforcement action may apply in some circumstances.
             </p>
             <p className="text-slate-700 leading-relaxed mb-4">
-              If you are unsure whether your gold is permitted, contact the Department of Customs before travelling. On arrival, follow the instructions of customs officials and use the Red Channel if you are carrying goods that must be declared.
+              The CAAN AIP explains that passengers carrying prohibited, controlled or dutiable goods should declare them through the Red Channel. Passengers whose goods do not exceed the applicable duty-free concession may use the Green Channel, but they may still be checked.
             </p>
             <p className="text-slate-700 leading-relaxed mb-4">
-              The CAAN AIP explains that passengers carrying prohibited, controlled or dutiable goods should declare them through the Red Channel. Passengers who do not have goods exceeding the applicable duty-free concession may use the Green Channel, but they may still be checked.
+              If you are unsure whether your gold is permitted or must be declared, contact the <a href="https://www.customs.gov.np/content/140/information-of-private-use-goods-that-passengers/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Department of Customs</a> before travelling.
             </p>
             <p className="text-slate-700 leading-relaxed mb-4">
-              Official reference:{' '}
-              <a href="https://e-aip.caanepal.gov.np/_uploads/_pdf/781312de50dea9a38fba9585f5d3e1d1.pdf" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">
-                CAAN AIP customs requirements (PDF)
-              </a>.
+              For more detail, consult the <a href="https://e-aip.caanepal.gov.np/_uploads/_pdf/781312de50dea9a38fba9585f5d3e1d1.pdf" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">CAAN AIP customs requirements (PDF)</a>.
             </p>
           </section>
 
@@ -355,15 +335,12 @@ export default function Page() {
               Practical Tips Before You Travel
             </h2>
             <ul className="list-disc pl-6 text-slate-700 space-y-3">
-              <li><strong>Check the latest official rules.</strong> Read the <strong>Department of Customs passenger-goods notice</strong> before travelling. Do not rely solely on older articles or summaries.
-              </li>
-              <li><strong>Weigh your gold in advance.</strong> Know the weight of the jewellery or other gold you plan to carry. Use a <strong>gold weight converter</strong> if you need to convert another unit into grams.
-              </li>
-              <li><strong>Keep purchase documents if available.</strong> Receipts or other documents can help explain where the gold came from and its purchase details. Ask Customs whether any particular documents are required for your situation.</li>
+              <li><strong>Check the latest official rules.</strong> Read the <a href="https://www.customs.gov.np/content/140/information-of-private-use-goods-that-passengers/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Department of Customs passenger-goods notice</a> before travelling.</li>
+              <li><strong>Weigh your gold in advance.</strong> Know the weight of the jewellery or other gold you plan to carry. Use the <Link href="/calculator/gold-converter/" className="text-blue-600 hover:underline">gold weight converter</Link> if you need to convert another unit into grams.</li>
+              <li><strong>Keep purchase documents if available.</strong> Receipts may help explain where and when you purchased the gold. Ask Customs whether specific documents are required for your circumstances.</li>
               <li><strong>Confirm the category of gold.</strong> Do not assume that jewellery, bars, coins and bullion have the same allowance or duty treatment.</li>
-              <li><strong>Ask before travelling if you are unsure.</strong> Contact the Department of Customs to confirm the current allowance, applicable duty and declaration requirements for your specific item.</li>
-              <li><strong>Declare goods when required.</strong> If the goods you are carrying are dutiable, controlled or otherwise required to be declared, follow the customs declaration procedure.</li>
-              <li><strong>Check the rules again before each trip.</strong> Customs notices, tariff rates and passenger provisions may be revised. Use the latest official information rather than assuming last year&apos;s rules still apply.</li>
+              <li><strong>Check declaration requirements.</strong> If your goods are dutiable, controlled or otherwise required to be declared, follow the customs declaration procedure.</li>
+              <li><strong>Verify the rules before each trip.</strong> Passenger provisions and tariff information may change. Confirm the current requirements rather than relying on an older article.</li>
             </ul>
           </section>
 
@@ -376,43 +353,43 @@ export default function Page() {
               <div>
                 <h3 className="font-bold text-slate-900 mb-1">How Much Gold Can I Bring to Nepal Duty-Free?</h3>
                 <p className="text-slate-700 leading-relaxed text-sm">
-                  CAAN&apos;s AIP customs guidance dated 30 April 2024 lists up to 25 grams of gold ornaments for men and up to 50 grams for women as duty-free. Check the latest Department of Customs passenger-goods notice to confirm whether these limits and conditions remain applicable to your journey.
+                  CAAN&apos;s AIP customs guidance dated 30 April 2024 lists up to 25 grams of gold ornaments for men and up to 50 grams for women as duty-free. Check the latest Department of Customs notice to confirm the rules that apply to your journey.
                 </p>
               </div>
               <div>
                 <h3 className="font-bold text-slate-900 mb-1">Can I Bring Raw Gold to Nepal from Abroad?</h3>
                 <p className="text-slate-700 leading-relaxed text-sm">
-                  Raw gold is a separate category from finished jewellery. Do not assume that the jewellery allowance applies to gold bars, coins or bullion. Check the current official rules or contact the Department of Customs to confirm whether your item is permitted and what duties or other conditions apply.
+                  Raw gold is a separate category from finished jewellery. Do not assume that gold bars, coins or bullion qualify for the jewellery allowance. Check the current rules with the Department of Customs before travelling.
                 </p>
               </div>
               <div>
                 <h3 className="font-bold text-slate-900 mb-1">What Customs Duty Do I Pay on Gold Brought to Nepal?</h3>
                 <p className="text-slate-700 leading-relaxed text-sm">
-                  The amount depends on the applicable customs classification, passenger provisions, quantity and current tariff rate. Check the official integrated customs tariff and confirm the rate with Customs before travelling. This page does not quote a specific rate because the applicable rate must be verified for the item and current rules.
+                  The amount depends on the applicable tariff, the type and quantity of gold, and whether a passenger concession applies. Check the <a href="https://customs.gov.np/content/46/integrated-tariff-rate/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">official integrated customs tariff</a> and confirm the applicable rate with Customs.
                 </p>
               </div>
               <div>
                 <h3 className="font-bold text-slate-900 mb-1">Does the Jewellery Allowance Apply to Gold Bars and Coins?</h3>
                 <p className="text-slate-700 leading-relaxed text-sm">
-                  Do not assume that it does. Gold bars, coins and other forms of raw gold may be treated differently from finished ornaments. Confirm the applicable provision with Customs before carrying them into Nepal.
+                  Do not assume that it does. Gold bars, coins and other forms of raw or semi-processed gold may be treated differently from finished ornaments. Confirm the applicable provision before travelling.
                 </p>
               </div>
               <div>
                 <h3 className="font-bold text-slate-900 mb-1">What Happens If I Bring More Gold Than the Permitted Allowance?</h3>
                 <p className="text-slate-700 leading-relaxed text-sm">
-                  You may need to declare the gold and pay the applicable duty, but the outcome depends on the current rules and the circumstances. Additional restrictions or enforcement action may apply. Confirm the requirements with Customs before travelling rather than assuming that excess gold can always be brought in by paying duty.
+                  You may need to declare the gold and pay applicable duty, but the outcome depends on the current rules and circumstances. Some items or situations may be subject to additional restrictions or enforcement action. Confirm the requirements with Customs.
                 </p>
               </div>
               <div>
                 <h3 className="font-bold text-slate-900 mb-1">Do the Gold Allowance Rules Apply to Foreign Tourists?</h3>
                 <p className="text-slate-700 leading-relaxed text-sm">
-                  The provisions that apply may depend on the passenger&apos;s circumstances. Foreign visitors should check the current official passenger-goods notice and confirm the applicable allowance directly with Customs instead of assuming that the rules for returning Nepali citizens also apply to them.
+                  The applicable provisions may depend on the passenger&apos;s circumstances. Foreign visitors should check the latest official passenger-goods notice and confirm the relevant allowance directly with Customs.
                 </p>
               </div>
               <div>
                 <h3 className="font-bold text-slate-900 mb-1">Where Can I Check the Official Rules for Bringing Gold to Nepal?</h3>
                 <p className="text-slate-700 leading-relaxed text-sm">
-                  Start with the Department of Customs passenger-goods notice and the CAAN AIP customs requirements. For tariff classifications and rates, consult the Department of Customs integrated tariff. If the published information does not clearly cover your item, contact Customs before travelling.
+                  Start with the <a href="https://www.customs.gov.np/content/140/information-of-private-use-goods-that-passengers/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Department of Customs passenger-goods notice</a> and the <a href="https://e-aip.caanepal.gov.np/_uploads/_pdf/781312de50dea9a38fba9585f5d3e1d1.pdf" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">CAAN AIP customs requirements</a>. For tariff information, consult the <a href="https://customs.gov.np/content/46/integrated-tariff-rate/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Department of Customs integrated tariff</a>. If the official information does not clearly cover your item, contact Customs before travelling.
                 </p>
               </div>
             </div>
@@ -420,15 +397,12 @@ export default function Page() {
 
           {/* ── Section 9: Related Pages ── */}
           <section className="mb-4 mt-10">
-            <h2 className="text-2xl font-black text-slate-900 mb-3 border-b border-slate-100 pb-2 not-prose">Official Legal References</h2>
-            <ul className="list-disc pl-6 text-slate-700 space-y-2 mb-8 text-sm">
-              <li><a href="https://mof.gov.np/content/1742/economic-bill--2083/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Ministry of Finance: Economic Bill 2083</a></li>
-              <li><a href="https://lawcommission.gov.np/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Nepal Law Commission</a></li>
-            </ul>
-
             <h2 className="text-2xl font-black text-slate-900 mb-3 border-b border-slate-100 pb-2 not-prose">Related Pages</h2>
             <div className="grid sm:grid-cols-2 gap-2 not-prose">
               {[
+                { href: '/market-rates/live-gold-price/', label: 'Live Gold Price in Nepal' },
+                { href: '/calculator/gold-converter/', label: 'Gold Weight Converter' },
+                { href: '/calculator/gold-tax/', label: 'Gold Tax Calculator' },
                 { href: '/market-rates/silver-price-nepal/', label: 'Live Silver Price in Nepal' },
                 { href: '/market-rates/', label: 'Daily Market Rates Overview' },
                 { href: '/market-rates/exchange-rate-nepal/', label: 'NRB Foreign Exchange Rate' },
@@ -444,9 +418,6 @@ export default function Page() {
                 </Link>
               ))}
             </div>
-            <p className="text-xs text-slate-500 italic mt-6">
-              Editorial note: The gold-ornament figures in this article are attributed to the CAAN AIP customs guidance dated 30 April 2024. Confirm the current passenger-goods notice and applicable tariff before publishing any specific allowance for additional jewellery or raw gold, or any exact duty rate or penalty. Update this article when the relevant current official provision has been verified.
-            </p>
           </section>
 
         </article>
