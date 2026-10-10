@@ -370,7 +370,7 @@ export default function Page() {
               <li><strong>Applicable rate:</strong> What duty and other charges, if any, apply under the current rules?</li>
             </ul>
             <p className="text-slate-700 leading-relaxed mb-4">
-              A <Link href="/calculator/gold-tax/" className="text-blue-600 font-bold hover:underline">gold tax calculator</Link> may help you estimate costs if it uses the correct, current rates. It cannot determine whether your item qualifies for a customs concession, so verify the rules with Customs.
+              A <Link href="/calculator/gold-tax/" className="text-blue-600 font-bold hover:underline">gold tax calculator</Link> may help you estimate costs if it uses the correct, current rates. If the customs duty on your gold is calculated based on an international purchase invoice, you may also need to check the official <Link href="/market-rates/exchange-rate-nepal/" className="text-blue-600 font-bold hover:underline">exchange rate in nepal</Link>. It cannot determine whether your item qualifies for a customs concession, so verify the rules with Customs.
             </p>
 
             <h3 className="text-lg font-bold text-slate-900 mt-6 mb-2">Check the Latest Official Customs Tariff</h3>
