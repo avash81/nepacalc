@@ -231,6 +231,70 @@ export default function Page() {
             </p>
           </section>
 
+          {/* ── Section 2.5: Country Specific ── */}
+          <section className="mb-10">
+            <h2 className="text-2xl font-black text-slate-900 mb-4 border-b border-slate-100 pb-2">
+              How Much Gold Can You Bring to Nepal from Australia, Dubai, India, or the USA?
+            </h2>
+            <p className="text-slate-700 leading-relaxed mb-4">
+              If you are travelling to Nepal from Australia, Dubai (UAE), India, the USA, or another country, check Nepal&apos;s current customs rules before bringing gold with you. The applicable requirements may depend on the type and quantity of gold, your passenger status, and the customs provisions in force when you arrive.
+            </p>
+            <p className="text-slate-700 leading-relaxed mb-4">
+              Do not assume that gold purchased abroad automatically qualifies for a duty-free allowance. Also, do not assume that Nepal applies a different gold allowance simply because you are arriving from a particular country.
+            </p>
+
+            <h3 className="text-lg font-bold text-slate-900 mt-6 mb-2">Bringing Gold to Nepal from Australia</h3>
+            <p className="text-slate-700 leading-relaxed mb-4">
+              If you are travelling from Australia to Nepal with gold jewellery, check the current Nepal customs allowance before departure. If you plan to carry gold bars, coins, or bullion, verify the rules for those items separately rather than assuming they are treated like personal jewellery.
+            </p>
+            <p className="text-slate-700 leading-relaxed mb-4">
+              Keep your purchase receipts and any relevant documents available, and confirm whether you need to declare the gold when arriving in Nepal.
+            </p>
+
+            <h3 className="text-lg font-bold text-slate-900 mt-6 mb-2">Bringing Gold to Nepal from Dubai or the UAE</h3>
+            <p className="text-slate-700 leading-relaxed mb-4">
+              If you are bringing gold from Dubai or another part of the UAE, check Nepal&apos;s current passenger-goods rules before travelling. The fact that gold was purchased in Dubai does not, by itself, establish that it qualifies for a duty-free allowance in Nepal.
+            </p>
+            <p className="text-slate-700 leading-relaxed mb-4">
+              Check the requirements for your particular gold item, including whether it is jewellery, a coin, a bar, or bullion, and confirm any applicable declaration and customs-duty requirements.
+            </p>
+
+            <h3 className="text-lg font-bold text-slate-900 mt-6 mb-2">Bringing Gold to Nepal from India</h3>
+            <p className="text-slate-700 leading-relaxed mb-4">
+              If you are travelling from India to Nepal with gold, verify the customs requirements applicable to your journey and circumstances. Do not assume that India&apos;s gold import rules and Nepal&apos;s gold import rules are the same.
+            </p>
+            <p className="text-slate-700 leading-relaxed mb-4">
+              Before travelling, confirm the current Nepal-side requirements, including whether the gold must be declared and whether customs duty or other conditions apply.
+            </p>
+
+            <h3 className="text-lg font-bold text-slate-900 mt-6 mb-2">Bringing Gold to Nepal from the USA</h3>
+            <p className="text-slate-700 leading-relaxed mb-4">
+              Passengers travelling from the USA to Nepal should check Nepal&apos;s current customs rules before carrying gold jewellery, coins, bars, or bullion. The country of purchase alone does not determine whether an item qualifies for a duty-free allowance.
+            </p>
+            <p className="text-slate-700 leading-relaxed mb-4">
+              Keep relevant purchase documents and verify the requirements for the type and quantity of gold you intend to bring.
+            </p>
+
+            <h3 className="text-lg font-bold text-slate-900 mt-6 mb-2">Bringing Gold to Nepal from Other Countries</h3>
+            <p className="text-slate-700 leading-relaxed mb-4">
+              If you are arriving in Nepal from another country, check the same official Nepal customs requirements before travelling. Do not rely solely on a seller&apos;s advice, another country&apos;s import rules, or information about allowances that may have applied in a previous year.
+            </p>
+            <p className="text-slate-700 leading-relaxed mb-4">
+              If your situation is not clearly covered by the published guidance, contact Nepal Customs to confirm the applicable requirements before your trip.
+            </p>
+
+            <h3 className="text-lg font-bold text-slate-900 mt-6 mb-2">Where to Check the Latest Gold Customs Rules in Nepal</h3>
+            <p className="text-slate-700 leading-relaxed mb-2">For the latest information, consult these official sources:</p>
+            <ul className="list-disc pl-6 text-slate-700 space-y-2 mb-4">
+              <li><a href="https://www.customs.gov.np/content/140/information-of-private-use-goods-that-passengers/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Department of Customs &mdash; Passenger Goods Information</a></li>
+              <li><a href="https://e-aip.caanepal.gov.np/_uploads/_pdf/781312de50dea9a38fba9585f5d3e1d1.pdf" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Civil Aviation Authority of Nepal &mdash; AIP Customs Requirements (PDF)</a></li>
+              <li><a href="https://customs.gov.np/content/46/integrated-tariff-rate/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Department of Customs &mdash; Integrated Tariff Rates</a></li>
+            </ul>
+            <p className="text-slate-700 leading-relaxed mb-4">
+              Rules and tariff provisions can change. Check the latest official guidance before travelling, especially if you plan to carry a substantial quantity of gold or items other than ordinary personal jewellery.
+            </p>
+          </section>
+
           {/* ── Section 3: Gold Jewellery vs Raw Gold ── */}
           <section className="mb-10">
             <h2 className="text-2xl font-black text-slate-900 mb-4 border-b border-slate-100 pb-2">
