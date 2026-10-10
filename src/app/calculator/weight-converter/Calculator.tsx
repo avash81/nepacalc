@@ -168,16 +168,16 @@ export default function WeightConverter() {
             </div>
           </div>
         }
-        sidebar={{
+                sidebar={{
           title: "Related Calculators",
           links: [
-          { label: 'BMI Calculator', href: '/calculator/bmi/' },
-            { label: 'Remittance Calculator', href: '/calculator/remittance-calculator/' },
-            { label: 'Percentage Calculator', href: '/calculator/percentage/' },
-          { label: "Gratuity Calc", href: "/calculator/gratuity-calculator/" },
-          { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
-          { label: "Income Tax", href: "/calculator/nepal-income-tax/" }
-        ],
+            { label: 'Gold Converter', href: '/calculator/gold-converter/' },
+            { label: 'Silver Converter', href: '/calculator/silver-converter/' },
+            { label: 'Length Converter', href: '/calculator/length-converter/' },
+            { label: 'Area Calculator', href: '/calculator/area-calculator/' },
+            { label: 'Nepal Land Converter', href: '/calculator/nepal-land/' },
+            { label: 'Universal Unit Converter', href: '/calculator/unit-converter/' }
+          ],
         }}
                 details={
           <div className="space-y-8">
