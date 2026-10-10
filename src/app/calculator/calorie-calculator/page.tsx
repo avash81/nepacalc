@@ -1,13 +1,46 @@
-import { calcMeta } from '@/lib/calcMeta';
 import type { Metadata } from 'next';
 import CalorieCalculator from './Calculator';
 
-export const metadata = calcMeta({
-  title: "Calorie Calculator | Daily Needs & Weight Loss Goals Nepal NepaCalc",
-  description: "Calculate your daily calorie needs for weight loss, maintenance, or muscle gain. Tailored for Nepalese lifestyles with BMR and TDEE precision.",
-  slug: 'calorie-calculator',
-  keywords: ["calorie calculator nepal", "daily calorie needs", "calorie deficit for weight loss", "tdee calculator nepal", "how many calories to eat", "fitness nutrition nepal"],
-});
+const canonical = 'https://nepacalc.com/calculator/calorie-calculator/';
+const ogImage   = 'https://nepacalc.com/og-image.png';
+
+export const metadata: Metadata = {
+  title: 'Daily Calorie Calculator | Estimate Your Needs',
+  description:
+    'Use this daily calorie calculator to estimate maintenance calories and daily targets for weight loss or gain based on your age, body size, and activity.',
+  alternates: {
+    canonical,
+    languages: { 'en-NP': canonical, 'x-default': canonical },
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  openGraph: {
+    title: 'Daily Calorie Calculator | Estimate Your Needs',
+    description:
+      'Use this daily calorie calculator to estimate maintenance calories and daily targets for weight loss or gain based on your age, body size, and activity.',
+    url: canonical,
+    siteName: 'NepaCalc Nepal',
+    type: 'website',
+    locale: 'en_NP',
+    images: [{ url: ogImage, width: 1200, height: 630, alt: 'Daily Calorie Calculator' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Daily Calorie Calculator | Estimate Your Needs',
+    description:
+      'Use this daily calorie calculator to estimate maintenance calories and daily targets for weight loss or gain based on your age, body size, and activity.',
+    images: [ogImage],
+  },
+};
 
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
@@ -26,49 +59,44 @@ const faqSchema = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'How many calories do I need per day in Nepal?',
-      acceptedAnswer: { '@type': 'Answer', text: 'This depends on your activity level. A sedentary worker in Kathmandu might need 1,800-2,000 calories, while an active trekker could require over 3,000 calories.' },
+      name: 'How do I calculate my daily calorie needs?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Daily calorie needs are estimated using your age, sex, height, weight, and activity level. A calorie calculator uses these details to estimate your BMR and TDEE to provide a daily calorie target.',
+      },
     },
     {
       '@type': 'Question',
-      name: 'How many calories should I cut to lose 1kg a week?',
-      acceptedAnswer: { '@type': 'Answer', text: 'To lose 1kg of fat, you need a deficit of roughly 7,700 calories. A daily deficit of 500-700 calories is generally recommended for safe, sustainable weight loss.' },
+      name: 'What are maintenance calories?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Maintenance calories are the estimated number of calories you need each day to maintain your current weight. Your activity level and personal characteristics determine this figure.',
+      },
     },
     {
       '@type': 'Question',
-      name: 'Do calories from Dal Bhat count differently?',
-      acceptedAnswer: { '@type': 'Answer', text: 'A calorie is a unit of energy, but nutritional quality matters. Dal Bhat is a balanced meal providing sustained energy, making it superior to processed snacks.' },
+      name: 'Does activity level affect how many calories I need?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Physical activity increases the total energy your body burns each day. A more active routine requires more energy than a sedentary routine, though exact energy expenditure varies between individuals.',
+      },
     },
     {
       '@type': 'Question',
-      name: 'Should I track my exercise calories separately?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Our calculator includes an activity factor (TDEE). While exercise burns calories, most people overestimate the burn; tracking through TDEE is more accurate.' },
+      name: 'Can a calorie calculator tell me how many calories to eat to lose weight?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'A calorie calculator estimates a lower daily calorie target relative to your maintenance needs (such as a 500 kcal deficit). However, the result is an estimate and does not guarantee a specific rate of weight change.',
+      },
     },
     {
       '@type': 'Question',
-      name: 'What is the minimum calories I should eat daily?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Generally, men should not go below 1,500 and women below 1,200 calories without medical supervision to ensure adequate nutrient intake.' },
+      name: 'Is a calorie calculator result exact?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. Calorie calculators provide estimates based on mathematical population models. Your actual daily energy expenditure may vary.',
+      },
     },
-    {
-      '@type': 'Question',
-      name: 'Why is the Mifflin-St Jeor equation used instead of Harris-Benedict?',
-      acceptedAnswer: { '@type': 'Answer', text: 'The original Harris-Benedict equation was created in 1919 and tends to overestimate caloric needs by about 5-10%. The Mifflin-St Jeor equation, developed in 1990, accounts for modern lifestyle changes and is clinically proven to be the most accurate predictive formula for today\'s population.' },
-    },
-    {
-      '@type': 'Question',
-      name: 'Should I recalculate my calories as I lose weight?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Yes. As your body mass decreases, the amount of energy required to sustain it also decreases. You should recalculate your TDEE for every 3 to 5 kilograms of weight lost to ensure your caloric deficit remains mathematically intact.' },
-    },
-    {
-      '@type': 'Question',
-      name: 'Why does biological sex impact the calorie calculation?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Due to hormonal differences, men naturally carry a higher percentage of metabolically active lean muscle mass and lower essential fat percentages than women. Muscle tissue burns significantly more calories at rest, which is reflected in the differing mathematical constants.' },
-    },
-    {
-      '@type': 'Question',
-      name: 'How long will it take to see results on a 500-calorie deficit?',
-      acceptedAnswer: { '@type': 'Answer', text: 'A 500-calorie daily deficit equals a 3,500-calorie weekly deficit. Since 1 kilogram of body fat contains roughly 7,700 calories, this protocol mathematically forces your body to burn exactly 0.45 kg (1 pound) of pure fat every week.' },
-    }
   ],
 };
 

@@ -222,37 +222,12 @@ export const healthSEO: Record<string, SEOContent> = {
         ]
         },
         
-        'calorie-calculator': {
-        title: "Calorie Calculator | Daily Energy Needs Tool",
-        description: "Calculate your daily calorie requirements for weight loss, gain, or maintenance. Includes personalized macronutrient breakdowns and activity-based tracking.",
-        
-        howToUse: {
-        steps: [
-        "1. Personal Data: Input your age, weight, height, and gender.",
-        "2. Activity Level: Select your daily exercise frequency.",
-        "3. Your Goal: Choose to lose, maintain, or gain weight.",
-        "4. TDEE Calculation: The tool calculates your Total Daily Energy Expenditure.",
-        "5. Plan: Apply a calorie deficit or surplus based on your goals.",
-        "6. Macros: Review your recommended protein, fat, and carb breakdown.",
-        "7. Units: Toggle between Calories (kcal) and Kilojoules (kJ).",
-        "8. Healthy Limits: Ensure your target is above your BMR for safety."
-        ]
-        },
-        
-        formula: {
-        title: "TDEE Calculation Formula",
-        description: "Weight change is determined by the difference between your energy intake and energy expenditure.",
-        raw: "TDEE = BMR * Activity Factor",
-        variables: [
-        "TDEE = Total Daily Energy Expenditure.",
-        "BMR = Basal Metabolic Rate (Mifflin-St Jeor).",
-        "Activity Factor = 1.2 to 1.9."
-        ]
-        },
-        
-        content: null
-    },
-  'body-fat': {
+                'calorie-calculator': {
+          title: "Calorie Calculator | Daily Energy Needs Tool",
+          description: "Calculate your daily calorie requirements for weight loss, gain, or maintenance. Includes personalized macronutrient breakdowns and activity-based tracking.",
+          content: null
+      },
+    'body-fat': {
     title: "Body Fat Calculator | Body Composition Tool",
     description: "Calculate your body fat percentage using the U.S. Navy method. Understand your body composition and track your fitness progress accurately.",
     howToUse: {
