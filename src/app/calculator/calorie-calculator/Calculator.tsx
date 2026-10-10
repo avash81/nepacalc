@@ -281,7 +281,11 @@ export default function CalorieCalculator() {
               The number of calories you need each day depends on several personal factors, including your age, sex, height, weight, and activity level. These variables determine your body&apos;s baseline energy expenditure and how much fuel is required to maintain your current weight.
             </p>
             <p className="text-sm text-[#5F6368] leading-relaxed">
-              Calorie requirements also change based on your individual goals. Maintaining weight generally involves matching your calorie intake to your daily energy expenditure, whereas losing or gaining weight requires adjusting intake relative to that baseline. Because individual metabolism and lifestyle factors vary, there is no single calorie target that works for everyone.
+              Calorie requirements also change based on your individual goals. Maintaining weight involves balancing energy intake with expenditure, while tracking your{' '}
+              <Link href="/calculator/water-intake/" className="text-teal-600 font-semibold hover:underline">
+                daily fluid needs
+              </Link>{' '}
+              ensures proper hydration throughout the day. Because individual metabolism and lifestyle factors vary, there is no single calorie target that works for everyone.
             </p>
           </div>
 
@@ -347,7 +351,10 @@ export default function CalorieCalculator() {
           <div className="space-y-2">
             <h2 className="text-xl font-black text-[#202124]">Are Calorie Calculator Results Exact?</h2>
             <p className="text-sm text-[#5F6368] leading-relaxed">
-              A calorie intake calculator provides an estimate of your daily energy requirements rather than an exact laboratory measurement. Predictive formulas cannot fully account for individual differences in metabolic rate, genetics, body composition, or hormonal health.
+              A calorie intake calculator provides an estimate of your daily energy requirements rather than an exact laboratory measurement. Predictive formulas cannot fully account for individual differences in metabolic rate, genetics,{' '}
+              <Link href="/calculator/body-fat/" className="text-teal-600 font-semibold hover:underline">
+                body composition
+              </Link>, or hormonal health.
             </p>
             <p className="text-sm text-[#5F6368] leading-relaxed">
               Use your estimated results as an informed starting point rather than an inflexible rule. For broader evidence-based guidance on energy balance and nutrition, consult a qualified healthcare professional or review the{' '}
@@ -437,26 +444,6 @@ export default function CalorieCalculator() {
                 Using your TDEE, the tool calculates daily calorie targets for weight maintenance, a moderate deficit for weight loss, or a modest surplus for weight gain.
               </p>
             </div>
-          </div>
-
-          {/* Section 8: Related Calculators */}
-          <div className="space-y-3 pt-4 border-t border-[#DADCE0]">
-            <h2 className="text-xl font-black text-[#202124]">Related Calculators</h2>
-            <ul className="space-y-2 text-sm text-[#5F6368]">
-              <li>
-                You can also estimate your daily water needs with our{' '}
-                <Link href="/calculator/water-intake/" className="text-teal-600 font-semibold hover:underline">
-                  Water Intake Calculator
-                </Link>.
-              </li>
-              <li>
-                You can also explore our{' '}
-                <Link href="/calculator/body-fat/" className="text-teal-600 font-semibold hover:underline">
-                  Body Fat Calculator
-                </Link>{' '}
-                for an estimate of body fat percentage.
-              </li>
-            </ul>
           </div>
         </div>
       }
