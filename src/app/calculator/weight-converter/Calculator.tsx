@@ -179,54 +179,134 @@ export default function WeightConverter() {
           { label: "Income Tax", href: "/calculator/nepal-income-tax/" }
         ],
         }}
-        details={
+                details={
           <div className="space-y-8">
             <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-              <h2 className="text-xl font-black text-[#202124] mb-4">Mass Metrology: Metric, Imperial & the Tola Standard</h2>
+              <h2 className="text-xl font-black text-[#202124] mb-4">Weight Conversion: Kilograms, Pounds, Grams and Tola</h2>
               <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
-                <p>
-                  The world operates on two primary mass measurement systems in daily life. The <strong className="text-[#202124]">Metric (SI) system</strong>, anchored by the Kilogram, is the global scientific and commercial standard used by 195 countries. It is based on powers of 10, making scaling (grams to kilograms to metric tons) intuitive and computationally clean. Our <strong className="text-[#202124]">weight converter</strong> handles all conversions through a centralized Gram-based pivot for mathematical precision.
-                </p>
-                <p>
-                  Uniquely for Nepal and South Asia, our tool also integrates the <strong className="text-[#202124]">Tola</strong>, a traditional precious metal measurement still universally used in jewelry markets across Nepal, India, and Pakistan. The Tola is now legally defined as exactly 11.6638 grams, bridging the traditional and modern worlds of mass measurement seamlessly.
-                </p>
+                <p>Use this weight converter to convert between kilograms, grams, pounds, ounces and Tola. Enter a value, select the original and target units, and view the converted result.</p>
+                <p>In Nepal, Tola is commonly used to measure gold and other precious metals. For Nepal-standard conversions, 1 Tola equals 11.6638 grams.</p>
+                <h3 className="font-bold text-[#202124] mt-4">Common Weight Conversions</h3>
+                <ul className="list-disc pl-5 space-y-1">
+                  <li>1 kilogram = 1,000 grams</li>
+                  <li>1 kilogram ≈ 2.20462 pounds</li>
+                  <li>1 pound = 453.59237 grams</li>
+                  <li>1 Tola = 11.6638 grams</li>
+                </ul>
               </div>
             </div>
 
             <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-              <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Structural Differences Between Weight Systems</h3>
-              <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-                <li><strong className="text-[#1A73E8]">Metric (SI) System:</strong> Powers of 10 architecture. 1 kg = 1,000 g = 1,000,000 mg. Used exclusively in all scientific, medical, and officially international commercial applications globally.</li>
-                <li><strong className="text-[#188038]">Imperial System (UK/US):</strong> Non-decimal structure. 1 pound (lb) = 16 ounces (oz). 2,000 lbs = 1 short ton (US). Used commercially in the USA and in everyday UK life. All values are anchored to: 1 lb = exactly 453.59237 grams by international treaty.</li>
-                <li><strong className="text-[#D93025]">The Tola (South Asian Standard):</strong> The Tola predates both modern systems, originating from the mass of a silver rupee coin during the Mughal era. Its current value of 11.6638 grams was standardized under British India. Today, all gold pricing in Nepal (e.g., 'price per tola') references this exact definition.</li>
-              </ul>
+              <h2 className="text-xl font-black text-[#202124] mb-4">How to Use the Weight Converter</h2>
+              <ol className="list-decimal pl-5 space-y-2 text-sm text-[#5F6368] leading-relaxed">
+                <li>Enter the weight you want to convert.</li>
+                <li>Select the original unit in the From field.</li>
+                <li>Select the target unit in the To field.</li>
+                <li>View the converted result.</li>
+                <li>Use the swap control to reverse the conversion direction.</li>
+              </ol>
+              <p className="text-sm text-[#5F6368] mt-4">For the Gold Value Estimator, enter the price per Tola to estimate the value of the entered precious-metal weight.</p>
+            </div>
+
+            <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+              <h2 className="text-xl font-black text-[#202124] mb-4">Weight Conversion Formula</h2>
+              <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+                <p>To convert a weight from one unit to another, multiply the original value by the appropriate conversion factor. For example:</p>
+                <ul className="list-disc pl-5 space-y-1">
+                  <li>Kilograms to grams: multiply by 1,000.</li>
+                  <li>Kilograms to pounds: multiply by approximately 2.20462.</li>
+                  <li>Kilograms to Nepal-standard Tola: multiply by approximately 85.7353.</li>
+                </ul>
+                <p>For Nepal-standard Tola conversions, the calculation uses 1 Tola = 11.6638 grams.</p>
+                <p className="font-bold text-[#202124] bg-slate-50 p-3 rounded border border-slate-200">Formula for kilograms to Tola:<br/>Tola = (kilograms × 1,000) ÷ 11.6638</p>
+              </div>
+            </div>
+
+            <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+              <h2 className="text-xl font-black text-[#202124] mb-4">How Many Tola Are in 1 kg?</h2>
+              <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+                <p>One kilogram is approximately <strong>85.7353 Nepal-standard Tola</strong>.</p>
+                <p>This conversion uses the standard that 1 Tola equals 11.6638 grams.</p>
+                <p>To convert kilograms to Tola, multiply the kilogram value by 1,000 and divide by 11.6638. For example, 1 kg is approximately 85.7353 Tola, while 2 kg is approximately 171.4705 Tola.</p>
+                <p className="text-xs italic">The result may vary if a different regional Tola standard is used.</p>
+              </div>
+            </div>
+
+            <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+              <h2 className="text-xl font-black text-[#202124] mb-4">Kilograms to Tola Conversion Chart</h2>
+              <p className="text-sm text-[#5F6368] mb-4">The following values use the Nepal-standard conversion of 1 Tola = 11.6638 grams.</p>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm text-left">
+                  <thead className="bg-slate-50 text-slate-600 font-bold border-b border-slate-200">
+                    <tr>
+                      <th className="py-3 px-4">Kilograms (kg)</th>
+                      <th className="py-3 px-4">Approximate Tola</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    <tr className="hover:bg-slate-50">
+                      <td className="py-2 px-4">0.1</td>
+                      <td className="py-2 px-4">8.5735</td>
+                    </tr>
+                    <tr className="hover:bg-slate-50">
+                      <td className="py-2 px-4">0.25</td>
+                      <td className="py-2 px-4">21.4338</td>
+                    </tr>
+                    <tr className="hover:bg-slate-50">
+                      <td className="py-2 px-4">0.5</td>
+                      <td className="py-2 px-4">42.8676</td>
+                    </tr>
+                    <tr className="hover:bg-slate-50 text-indigo-700 font-bold bg-indigo-50/30">
+                      <td className="py-2 px-4">1</td>
+                      <td className="py-2 px-4">85.7353</td>
+                    </tr>
+                    <tr className="hover:bg-slate-50">
+                      <td className="py-2 px-4">2</td>
+                      <td className="py-2 px-4">171.4705</td>
+                    </tr>
+                    <tr className="hover:bg-slate-50">
+                      <td className="py-2 px-4">5</td>
+                      <td className="py-2 px-4">428.6763</td>
+                    </tr>
+                    <tr className="hover:bg-slate-50">
+                      <td className="py-2 px-4">10</td>
+                      <td className="py-2 px-4">857.3526</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-xs text-slate-500 mt-4">These values are rounded for display. Use the converter for other amounts.</p>
             </div>
           </div>
         }
         faqs={[
           {
-            question: "What exactly is a Tola and why is it used for gold in Nepal?",
-            answer: "The Tola is a traditional South Asian unit of mass standardized as exactly 11.6638 grams. It has been the universal precious metals standard in Nepal, India, and Pakistan for centuries because gold and silver merchants historically kept their scales calibrated in Tola. All gold prices quoted in Nepal (e.g., daily rates from the Nepal Gold & Silver Dealers' Association) are per Tola."
+            question: "How many Tola are in 1 kg?",
+            answer: "One kilogram is approximately 85.7353 Nepal-standard Tola, using 1 Tola = 11.6638 grams."
+          },
+          {
+            question: "How many grams are in 1 Tola?",
+            answer: "One Nepal-standard Tola equals 11.6638 grams."
+          },
+          {
+            question: "How do I convert kilograms to pounds?",
+            answer: "Multiply the kilogram value by approximately 2.20462 to get pounds. For example, 1 kg is approximately 2.20462 lb."
           },
           {
             question: "What is the difference between a weight ounce and a fluid ounce?",
-            answer: "A weight ounce (oz) is a unit of mass (approximately 28.35 grams), used for weighing solids like food or precious metals. A fluid ounce (fl oz) is a unit of volume (approximately 29.57 mL), used for measuring liquids. They are completely different dimensions and should never be confused."
+            answer: "A weight ounce measures mass, while a fluid ounce measures volume. They are different units and are not interchangeable."
           },
           {
-            question: "Why does 1 kilogram = 2.20462 pounds and not a round number?",
-            answer: "Because the kilogram and pound systems were developed independently in different countries without a coordinated mathematical relationship. The exact equivalence (1 lb = 0.45359237 kg) was defined by international treaty in 1959 to standardize conversions globally."
+            question: "How many kilograms are in one metric tonne?",
+            answer: "One metric tonne equals 1,000 kilograms."
           },
           {
-            question: "How many kilograms is one metric ton?",
-            answer: "One metric ton (tonne) is exactly 1,000 kilograms or 1,000,000 grams. This differs from the US Short Ton (2,000 lbs ≈ 907 kg) and the UK Long Ton (2,240 lbs ≈ 1,016 kg). The metric ton is the standard for international trade and scientific use."
-          },
-          {
-            question: "Can I use the Gold Value Estimator for silver as well?",
-            answer: "Yes. The estimator calculates the value of any entered weight at the rate you input per Tola. Simply enter the current silver price per Tola (available from the Nepal Gold & Silver Dealers' Association) to get an accurate silver valuation."
+            question: "Can the Gold Value Estimator be used for silver?",
+            answer: "The estimator can calculate a value using the rate entered per Tola. For silver, enter an appropriate silver price per Tola."
           },
           {
             question: "Is weight the same as mass?",
-            answer: "Technically, no. Mass is the amount of matter in an object (measured in kg) and is constant everywhere in the universe. Weight is the gravitational force acting on that mass (measured in Newtons) and would differ on the Moon. However, in everyday usage, both terms are used interchangeably to refer to what a scale measures on Earth."
+            answer: "Mass measures the amount of matter in an object. Weight is the force of gravity acting on that mass. In everyday use, the terms are often used interchangeably."
           }
         ]}
       />
