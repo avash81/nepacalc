@@ -161,10 +161,7 @@ export default function PaintCalculator() {
       description="Estimate paint quantity, coverage, and total painting costs in Nepal for a single wall, room, or ceiling. Calculate litres, coats, and NPR budget."
       icon={PaintBucket}
       intro={
-        <div className="space-y-2 mb-2">
-          <p className="text-xs sm:text-sm text-[#5F6368] leading-relaxed">
-            Estimate paint quantity, coverage, and total painting costs in Nepal for a single wall, whole room, or ceiling.
-          </p>
+        <div className="mb-2">
           <div className="bg-white border border-[#DADCE0] rounded-lg p-3 sm:p-4 shadow-sm">
             <h2 className="text-base sm:text-lg font-bold text-[#202124] mb-1.5">
               Calculate Paint Required for Your Walls or Room
@@ -720,10 +717,10 @@ export default function PaintCalculator() {
                 {' '}: Calculate cement, sand, and aggregate volume ratios.
               </li>
               <li>
-                <Link href="/calculator/area-converter/" className="text-[#1967D2] font-bold hover:underline">
-                  Area Converter
+                <Link href="/calculator/area-calculator/" className="text-[#1967D2] font-bold hover:underline">
+                  Area Calculator
                 </Link>
-                {' '}: Convert between square feet, square meters, ropani, aana, and bigha.
+                {' '}: Convert and calculate area between square feet, square meters, ropani, aana, and bigha.
               </li>
             </ul>
           </div>
