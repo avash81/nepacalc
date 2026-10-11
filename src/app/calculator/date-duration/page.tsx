@@ -23,11 +23,13 @@ export const metadata: Metadata = {
     url: 'https://nepacalc.com/calculator/date-duration/',
     siteName: 'NepaCalc',
     type: 'website',
+    images: [{ url: 'https://nepacalc.com/images/3d-graph-calculator-og.webp', width: 1200, height: 630, alt: 'Date Duration Calculator - Days Between Dates | NepaCalc' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Date Duration Calculator: Days Between Dates | NepaCalc',
     description: 'Calculate the exact duration between two dates in days, weeks, months and years. Include the end date, count business days, and see the result instantly.',
+    images: ['https://nepacalc.com/images/3d-graph-calculator-og.webp'],
   },
 };
 
