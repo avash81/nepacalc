@@ -38,8 +38,9 @@ function CompactField({
         min={min}
         value={value === 0 ? '' : value}
         placeholder=""
+        onWheel={e => e.currentTarget.blur()}
         onChange={e => onChange(e.target.value === '' ? 0 : Math.max(min, Number(e.target.value) || 0))}
-        className="w-full h-9 px-3 bg-white border border-[#DADCE0] rounded-lg text-sm font-bold text-[#202124] focus:border-[#1967D2] focus:ring-1 focus:ring-[#1967D2] outline-none"
+        className="w-full h-9 px-3 bg-white border border-[#DADCE0] rounded-lg text-sm font-bold text-[#202124] focus:border-[#1967D2] focus:ring-1 focus:ring-[#1967D2] outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
       />
       {hint && <p className="text-[10px] text-[#9AA0A6] mt-0.5">{hint}</p>}
     </div>
@@ -173,7 +174,7 @@ export default function PaintCalculator() {
         { label: 'Paint Calculator' },
       ]}
       title="Calculate Paint Quantity and Painting Cost"
-      description="Estimate paint quantity, coverage, and total painting costs in Nepal for a single wall, room, or ceiling. Calculate litres, coats, and NPR budget."
+      description="Estimate paint quantity, coverage, and total painting costs for a single wall, room, or ceiling. Calculate litres, coats, and total project budget."
       icon={PaintBucket}
       faqLayout="static"
       inputs={
@@ -272,7 +273,7 @@ export default function PaintCalculator() {
                 {addPrimer && (
                   <div className="grid grid-cols-2 gap-2 pt-1">
                     <CompactField id="pc" label="Primer Coverage" unit="sq ft/L" value={pCov} onChange={setPCov} min={10} hint="70-90 sq ft/L" />
-                    <CompactField id="pp" label="Primer Price" unit="NPR/L" value={pPrice} onChange={setPPrice} min={1} />
+                    <CompactField id="pp" label="Primer Price" unit="per L" value={pPrice} onChange={setPPrice} min={1} hint="Price per litre" />
                   </div>
                 )}
               </div>
@@ -289,7 +290,7 @@ export default function PaintCalculator() {
                 </label>
                 {addLabour && (
                   <div className="pt-1">
-                    <CompactField id="lr" label="Labour Rate" unit="NPR/sq ft" value={labRate} onChange={setLabRate} min={1} hint="Typical: NPR 15-30 per sq ft" />
+                    <CompactField id="lr" label="Labour Rate" unit="per sq ft" value={labRate} onChange={setLabRate} min={1} hint="Labour rate per sq ft" />
                   </div>
                 )}
               </div>
@@ -332,11 +333,11 @@ export default function PaintCalculator() {
               <CompactField
                 id="pr"
                 label="Paint Price"
-                unit="NPR/L"
+                unit="per L"
                 value={price}
                 onChange={setPrice}
                 min={1}
-                hint="Price per litre in NPR."
+                hint="Price per litre in your currency."
               />
             </div>
           </div>
@@ -375,29 +376,29 @@ export default function PaintCalculator() {
           {/* Cost Breakdown Table */}
           <div className="bg-white border border-[#DADCE0] rounded-xl overflow-hidden">
             <div className="px-3.5 py-2 bg-[#F8F9FA] border-b border-[#DADCE0]">
-              <span className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Cost Breakdown (NPR)</span>
+              <span className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Cost Breakdown</span>
             </div>
             <div className="divide-y divide-[#F1F3F4]">
               <StatRow
                 label={`Paint (${calc.litres} L)`}
-                value={`NPR ${calc.paintCost.toLocaleString()}`}
-                sub={`${calc.litres} L × NPR ${price}/L`}
+                value={`${calc.paintCost.toLocaleString()}`}
+                sub={`${calc.litres} L × ${price}/L`}
               />
               {addPrimer && (
                 <StatRow
                   label={`Primer (${calc.primerL} L)`}
-                  value={`NPR ${calc.primerCost.toLocaleString()}`}
-                  sub={`${calc.primerL} L × NPR ${pPrice}/L`}
+                  value={`${calc.primerCost.toLocaleString()}`}
+                  sub={`${calc.primerL} L × ${pPrice}/L`}
                 />
               )}
               {addLabour && (
                 <StatRow
                   label="Labour"
-                  value={`NPR ${calc.labCost.toLocaleString()}`}
-                  sub={`${calc.area} sq ft × NPR ${labRate}/sq ft`}
+                  value={`${calc.labCost.toLocaleString()}`}
+                  sub={`${calc.area} sq ft × ${labRate}/sq ft`}
                 />
               )}
-              <StatRow label="Total Estimate" value={`NPR ${calc.total.toLocaleString()}`} highlight />
+              <StatRow label="Total Estimate" value={`${calc.total.toLocaleString()}`} highlight />
             </div>
           </div>
         </div>
@@ -656,16 +657,16 @@ export default function PaintCalculator() {
                     <thead className="bg-[#F8F9FA] border-b border-[#DADCE0]">
                       <tr>
                         <th className="px-4 py-2.5 text-left font-black text-[#202124] text-[11px] uppercase tracking-wider">Cost Item</th>
-                        <th className="px-4 py-2.5 text-right font-black text-[#202124] text-[11px] uppercase tracking-wider">Typical Range (Nepal)</th>
+                        <th className="px-4 py-2.5 text-right font-black text-[#202124] text-[11px] uppercase tracking-wider">Unit / Rate Basis</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-[#F1F3F4]">
                       {[
-                        ['Interior emulsion paint', 'NPR 350-700 per litre'],
-                        ['Exterior weather coat', 'NPR 600-1,200 per litre'],
-                        ['Primer', 'NPR 250-400 per litre'],
-                        ['Labour (interior walls)', 'NPR 15-30 per sq ft'],
-                        ['Putty / pari application', 'NPR 8-15 per sq ft'],
+                        ['Interior emulsion paint', 'Per litre (100–120 sq ft coverage)'],
+                        ['Exterior weather coat', 'Per litre (60–80 sq ft coverage)'],
+                        ['Primer coat', 'Per litre (70–90 sq ft coverage)'],
+                        ['Labour (interior walls)', 'Per square foot of paintable area'],
+                        ['Surface preparation / putty', 'Per square foot of surface'],
                       ].map(([i, r]) => (
                         <tr key={i} className="hover:bg-slate-50">
                           <td className="px-4 py-2 font-medium text-[#202124]">{i}</td>

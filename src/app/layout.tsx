@@ -172,6 +172,15 @@ export default function RootLayout({
         <MobileNav />
 
         <GoogleAnalytics />
+        <Script id="disable-wheel-number-inputs" strategy="afterInteractive">
+          {`
+            document.addEventListener('wheel', function(e) {
+              if (document.activeElement && document.activeElement.type === 'number') {
+                document.activeElement.blur();
+              }
+            }, { passive: true });
+          `}
+        </Script>
       </body>
     </html>
   );
