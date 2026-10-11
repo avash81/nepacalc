@@ -18,14 +18,14 @@ export const metadata: Metadata = {
     title: "Weight Converter: Kg to Tola, Grams & Pounds",
     description: "Convert kilograms, grams, pounds, ounces and Nepal-standard tola with an online weight converter. View common conversions and estimate gold value per tola.",
     url: "https://nepacalc.com/calculator/weight-converter/",
-    images: [{ url: 'https://nepacalc.com/og-image.png', width: 1200, height: 630, alt: 'Weight Converter - Kg to Tola, Grams & Pounds | NepaCalc' }],
+    images: [{ url: 'https://nepacalc.com/images/og/weight-converter.jpg', width: 1200, height: 630, alt: 'Weight Converter - Kg to Tola, Grams & Pounds | NepaCalc' }],
   },
   twitter: {
     ...baseMeta.twitter,
     card: 'summary_large_image',
     title: "Weight Converter: Kg to Tola, Grams & Pounds",
     description: "Convert kilograms, grams, pounds, ounces and Nepal-standard tola with an online weight converter. View common conversions and estimate gold value per tola.",
-    images: ['https://nepacalc.com/og-image.png'],
+    images: ['https://nepacalc.com/images/og/weight-converter.jpg'],
   },
   alternates: {
     canonical: "https://nepacalc.com/calculator/weight-converter/",
