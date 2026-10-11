@@ -5,10 +5,11 @@ import Link from 'next/link';
 
 export const metadata = calcMeta({
   title: "Nepal Income Tax 2082/83: Complete Guide to Slabs, SSF Waiver and TDS Rules",
-  description: "Comprehensive guide to Nepal income tax FY 2082/83. IRD-verified progressive tax slabs for single and married filers, SSF waiver mechanics, EPF/CIT deductions, female 10% FRTC rebate, TDS deposit rules, and two fully worked payslip examples at Rs 60,000 and Rs 1,20,000 monthly gross.",
+  description: "Nepal income tax FY 2082/83 guide by NepaCalc. Check IRD progressive slabs, SSF waiver rules, salary deductions, female tax rebate, and worked examples.",
   slug: "blog/nepal-income-tax-guide-2082-83",
   keywords: ["nepal income tax 2082/83", "income tax slab nepal", "ird tax calculator", "ssf waiver nepal", "tds calculator nepal", "nepal income tax slab 1% up to 500000", "nepal individual income tax slab 2081/82", "salary tax calculator nepal", "nepal income tax married couple 600000"],
   canonical: "/blog/nepal-income-tax-guide-2082-83/",
+  ogImage: "https://nepacalc.com/images/nepal-income-tax-slab-2083-84.webp",
 });
 
 export default function TaxGuideBlog() {
@@ -17,6 +18,7 @@ export default function TaxGuideBlog() {
     "@type": "Article",
     "headline": "Nepal Income Tax 2082/83: Complete Guide to Slabs, SSF Waiver and TDS Rules",
     "description": "Comprehensive guide to Nepal income tax FY 2082/83. IRD-verified progressive tax slabs for single and married filers, SSF waiver mechanics, EPF/CIT deductions, female 10% FRTC rebate, TDS deposit rules, and two fully worked payslip examples at Rs 60,000 and Rs 1,20,000 monthly gross.",
+    "image": ["https://nepacalc.com/images/nepal-income-tax-slab-2083-84.webp"],
     "url": "https://nepacalc.com/blog/nepal-income-tax-guide-2082-83/",
     "datePublished": "2026-05-20",
     "dateModified": "2026-05-20",
@@ -41,50 +43,50 @@ export default function TaxGuideBlog() {
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "What is the Nepal income tax slab for FY 2082/83 with 1% up to Rs 5,00,000?",
+        "name": "What is the Nepal income tax slab for FY 2082/83 with 1% up to Rs 5,00,000: Is this the same as 2081/82?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The 1% on the first Rs 5,00,000 (single filer) is the Social Security Tax (SST), not income tax. It is fully waived for employees enrolled in the Social Security Fund (SSF). Non-SSF employees pay this 1% SST. Above Rs 5,00,000: 10% on Rs 5,00,001–7,00,000; 20% on Rs 7,00,001–10,00,000; 30% on Rs 10,00,001–20,00,000; 36% on Rs 20,00,001–50,00,000; 39% above Rs 50,00,000. These rates are unchanged from FY 2081/82. Source: Finance Act 2082, First Schedule."
+          "text": "Yes. The Finance Act 2082 made no changes to individual income tax slabs. The 1% on Band 1 (up to Rs 5,00,000 for single filers, Rs 6,00,000 for married) remains as Social Security Tax, waived for SSF contributors. Bands 2–6 rates (10%, 20%, 30%, 36%, 39%) and their thresholds are also unchanged from FY 2081/82."
         }
       },
       {
         "@type": "Question",
-        "name": "What is the income tax slab for married couples in Nepal with Rs 6,00,000 threshold?",
+        "name": "How does the IRD tax calculator work, and is NepaCalc's calculator IRD-verified?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Married couple filers get a higher Band 1 threshold: the 1% SST applies on income up to Rs 6,00,000 (vs Rs 5,00,000 for single filers). SSF-enrolled married filers pay Rs 0 on this band. Above Rs 6,00,000: 10% on Rs 6,00,001–8,00,000; 20% on Rs 8,00,001–11,00,000; 30% on Rs 11,00,001–20,00,000; 36% on Rs 20,00,001–50,00,000; 39% above Rs 50,00,000. Source: Finance Act 2082, First Schedule, Part 2."
+          "text": "The IRD's official portal (ird.gov.np) provides tax forms, PAN registration, and e-filing services but does not provide a live public salary tax calculator. NepaCalc's Nepal income tax calculator applies the official Finance Act 2082 rates published by IRD: the exact data used in payroll systems."
         }
       },
       {
         "@type": "Question",
-        "name": "How does the SSF waiver eliminate the 1% SST on Nepal income tax?",
+        "name": "What is the salary tax calculator, and how do I calculate my take-home salary in Nepal?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Employees enrolled in the Social Security Fund (SSF) have their entire Band 1 SST (1% on first Rs 5,00,000 for single or Rs 6,00,000 for married) completely waived, saving Rs 5,000 to Rs 6,000 per year. SSF enrollment is mandatory for all formal employers with 10+ employees under Social Security Act 2074. If SSF-enrolled, the TDS should show zero tax on Band 1. Only SSF enrollment (not EPF) triggers this waiver."
+          "text": "Take-home salary in Nepal equals Gross Salary minus Employee SSF (11% of basic), minus Monthly TDS (annual tax divided by 12), and CIT if applicable. For SSF-enrolled employees, monthly deduction is approximately 6.6% on gross plus the applicable tax band rate on taxable income."
         }
       },
       {
         "@type": "Question",
-        "name": "How does Nepal's monthly TDS deduction work for salaried employees?",
+        "name": "Nepal income tax slab for married couple: Is the Rs 6,00,000 threshold for both spouses combined or per person?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "TDS (Tax Deducted at Source) = Annual Income Tax ÷ 12. Your employer computes your projected annual tax at the start of each fiscal year based on your salary, filing status, SSF enrollment, and declared deductions. This annual amount is divided by 12 and deducted monthly. Employers must deposit TDS with IRD by the 25th of the following month. Late deposits attract 15% per annum interest. The legal basis is Income Tax Act 2058, Sections 87–92."
+          "text": "The Rs 6,00,000 Band 1 threshold under the married filing option applies to the individual taxpayer who opts for married status, not the combined income of both spouses. Each spouse files independently under their own slab structure."
         }
       },
       {
         "@type": "Question",
-        "name": "Who qualifies for the female 10% tax rebate (FRTC) in Nepal?",
+        "name": "What is TDS in Nepal, and is TDS the same as income tax?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Female taxpayers with employment income only qualify for a 10% rebate on total computed income tax under Finance Act 2082. The rebate is applied after the full slab calculation: computed tax × 10% = rebate amount; final tax = computed tax − rebate. The rebate does NOT apply to women who also earn rental, business, or investment income. It applies to the computed tax, not to assessable income, so it saves more for higher-income earners."
+          "text": "TDS (Tax Deducted at Source) is not a separate tax; it is the collection mechanism for income tax. Your annual income tax is computed once, divided by 12, and deducted monthly by your employer so that total deductions match your annual tax liability."
         }
       },
       {
         "@type": "Question",
-        "name": "What is the IRD income tax filing deadline in Nepal for FY 2082/83?",
+        "name": "How do I verify that my employer's TDS deduction is correct?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Salaried employees with employment income only do not need to file separately, as TDS covers their obligation. Self-employed individuals and business owners must file annual returns with IRD by the end of Poush (approximately mid-January). Late filing penalty: Rs 100/day (minimum Rs 1,00,000, maximum Rs 25,000? No, wait: Rs 100/day (minimum Rs 1,000, maximum Rs 25,000)). Late payment interest: 15% per annum. E-filing is available at ird.gov.np. Employers must deposit monthly TDS by the 25th of the following month."
+          "text": "Collect your gross salary, filing status, SSF enrollment status, and allowable deductions. Use the NepaCalc income tax calculator to compute your annual tax, divide by 12 for monthly TDS, and compare it with your payslip. If a discrepancy exists, request your employer's TDS computation sheet under ITA 2058, Section 90."
         }
       }
     ]
@@ -749,7 +751,6 @@ export default function TaxGuideBlog() {
                 <span className="text-xs transition-transform group-open:rotate-180">▼</span>
               </summary>
               <div className="p-4 border-t border-slate-100 text-sm text-slate-600 leading-relaxed bg-white">
-                <p className="text-xs text-blue-600 font-bold mb-2">🔍 GSC query: "nepal income tax slab 2081/82 1% up to 500000": 6 impressions, 0 clicks</p>
                 Yes. The Finance Act 2082 (passed Ashadh 2082) made no changes to individual income tax slabs. The 1% on Band 1 (up to Rs 5,00,000 for single filers, Rs 6,00,000 for married) remains as Social Security Tax, waived for SSF contributors. Bands 2–6 rates (10%, 20%, 30%, 36%, 39%) and their thresholds are also unchanged. The content of this guide is fully applicable for FY 2082/83. Any page or calculator still showing 2081/82 data contains the same rates; just note that the year label should say 2082/83 for current fiscal year accuracy.
               </div>
             </details>
@@ -760,7 +761,6 @@ export default function TaxGuideBlog() {
                 <span className="text-xs transition-transform group-open:rotate-180">▼</span>
               </summary>
               <div className="p-4 border-t border-slate-100 text-sm text-slate-600 leading-relaxed bg-white">
-                <p className="text-xs text-blue-600 font-bold mb-2">🔍 GSC query: "ird tax calculator": 4 impressions, 0 clicks</p>
                 The IRD's official portal (ird.gov.np) provides tax forms, PAN registration, and e-filing services but does not provide a live public-facing salary tax calculator. NepaCalc's <Link href="/calculator/nepal-income-tax/" className="text-blue-600 underline font-bold">Nepal income tax calculator</Link> applies the Finance Act 2082 rates from IRD's official published schedule, the same data your employer's payroll system should use. The calculator is not affiliated with IRD, but all formula inputs (slab rates, deduction caps, SSF waiver logic, FRTC rebate) are sourced from IRD's official tax rate schedule and Finance Act 2082. For definitive tax rulings on complex situations, consult a registered tax consultant or contact IRD directly.
               </div>
             </details>
@@ -771,7 +771,6 @@ export default function TaxGuideBlog() {
                 <span className="text-xs transition-transform group-open:rotate-180">▼</span>
               </summary>
               <div className="p-4 border-t border-slate-100 text-sm text-slate-600 leading-relaxed bg-white">
-                <p className="text-xs text-blue-600 font-bold mb-2">🔍 GSC query: "salary tax calculator nepal": 2 impressions, 0 clicks</p>
                 Your take-home salary in Nepal = Gross Salary − Employee SSF (11% of basic) − Monthly TDS (annual tax ÷ 12) − CIT (if applicable). The <Link href="/calculator/nepal-salary/" className="text-blue-600 underline font-bold">Nepal salary calculator 2082/83</Link> computes all three deductions and shows your net bank credit, employer CTC, and annual totals. For a quick mental estimate: if you are SSF-enrolled, your total monthly deduction is approximately 6.6% (SSF on gross) plus your tax band rate applied to taxable income. The worked examples in Sections 9 and 10 above show the exact arithmetic for Rs 60,000 and Rs 1,20,000 gross.
               </div>
             </details>
@@ -782,7 +781,6 @@ export default function TaxGuideBlog() {
                 <span className="text-xs transition-transform group-open:rotate-180">▼</span>
               </summary>
               <div className="p-4 border-t border-slate-100 text-sm text-slate-600 leading-relaxed bg-white">
-                <p className="text-xs text-blue-600 font-bold mb-2">🔍 GSC query: "nepal income tax slab married couple 600000": 2 impressions, 0 clicks</p>
                 The Rs 6,00,000 Band 1 threshold under the married filing option applies to the individual taxpayer who opts for married status, not the combined income of both spouses. Each spouse files independently. If one spouse earns Rs 14,00,000 and the other earns Rs 6,00,000, each files separately under their own slab structure. The higher-earning spouse can choose the married threshold (Rs 6L Band 1) regardless of the other spouse's income level. Both spouses cannot simultaneously claim the full married threshold against the same household income pool.
               </div>
             </details>
@@ -793,7 +791,6 @@ export default function TaxGuideBlog() {
                 <span className="text-xs transition-transform group-open:rotate-180">▼</span>
               </summary>
               <div className="p-4 border-t border-slate-100 text-sm text-slate-600 leading-relaxed bg-white">
-                <p className="text-xs text-blue-600 font-bold mb-2">🔍 GSC queries: "tds in nepal", "tds calculator nepal": 5 impressions combined, 0 clicks</p>
                 TDS (Tax Deducted at Source) is NOT a separate tax; it is the collection mechanism for income tax. Your annual income tax is computed once, divided by 12, and deducted monthly by your employer. The total TDS deducted over 12 months should equal your annual income tax liability exactly. If your employer over-deducts, you can claim a refund from IRD. If they under-deduct, you owe the balance. The <Link href="/calculator/tds-calculator/" className="text-blue-600 underline font-bold">Nepal TDS calculator</Link> helps employers and HR departments verify the correct monthly deduction amount. For vehicle tax calculations, see the <Link href="/calculator/nepal-vehicle-tax/" className="text-blue-600 underline font-bold">Nepal vehicle tax calculator</Link>.
               </div>
             </details>
@@ -804,7 +801,6 @@ export default function TaxGuideBlog() {
                 <span className="text-xs transition-transform group-open:rotate-180">▼</span>
               </summary>
               <div className="p-4 border-t border-slate-100 text-sm text-slate-600 leading-relaxed bg-white">
-                <p className="text-xs text-blue-600 font-bold mb-2">🔍 GSC query: "salary tax calculator": 2 impressions, 0 clicks</p>
                 Follow these four steps: (1) Collect your gross salary, filing status, SSF enrollment status, and any declared deductions (insurance premiums). (2) Use the <Link href="/calculator/nepal-income-tax/" className="text-blue-600 underline font-bold">NepaCalc income tax calculator</Link> to compute your correct annual tax. (3) Divide by 12 to get your correct monthly TDS. (4) Compare with your payslip deduction. If discrepancy exists, request your employer's TDS computation sheet (your employer is required to provide this on request under ITA 2058, Section 90). Common errors include: using wrong year's slab rates, not applying SSF waiver, or not applying FRTC for female employees.
               </div>
             </details>
