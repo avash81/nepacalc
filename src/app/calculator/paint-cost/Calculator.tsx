@@ -161,20 +161,44 @@ export default function PaintCalculator() {
       description="Estimate paint quantity, coverage, and total painting costs in Nepal for a single wall, room, or ceiling. Calculate litres, coats, and NPR budget."
       icon={PaintBucket}
       intro={
-        <div className="mb-2">
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-3 sm:p-4 shadow-sm">
-            <h2 className="text-base sm:text-lg font-bold text-[#202124] mb-1.5">
-              Calculate Paint Required for Your Walls or Room
-            </h2>
-            <p className="text-xs sm:text-sm text-[#5F6368] leading-relaxed mb-1.5">
-              Use this paint calculator to estimate how much paint you need for your walls or room. Enter your measurements, select the number of coats, and provide the paint coverage rate to calculate the estimated paint quantity in litres.
-            </p>
-            <p className="text-xs sm:text-sm text-[#5F6368] leading-relaxed mb-1.5">
-              For a single wall, enter its width and height. For a room, measure the walls you want to paint. If you also want to paint the ceiling, calculate its area separately. Subtract doors and windows that will not be painted, where applicable.
-            </p>
-            <p className="text-xs sm:text-sm text-[#5F6368] leading-relaxed">
-              The amount of paint you need depends on the paintable area, number of coats, paint coverage, and surface condition. Check the paint container or manufacturer&apos;s instructions for the recommended coverage rate.
-            </p>
+        <div className="grid grid-cols-2 gap-3 mb-1">
+          {/* Inputs */}
+          <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-xl p-4">
+            <p className="text-[10px] font-black text-[#5F6368] uppercase tracking-widest mb-2.5">What You Enter</p>
+            <ul className="space-y-1.5">
+              {[
+                'Wall or room dimensions',
+                'Number of coats',
+                'Coverage rate (sq ft/L)',
+                'Paint price per litre (NPR)',
+              ].map(item => (
+                <li key={item} className="flex items-start gap-2 text-[11px] text-[#202124] font-medium">
+                  <span className="mt-0.5 w-3.5 h-3.5 rounded-full bg-[#1967D2]/10 flex-shrink-0 flex items-center justify-center">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#1967D2] block" />
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          {/* Outputs */}
+          <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-xl p-4">
+            <p className="text-[10px] font-black text-[#5F6368] uppercase tracking-widest mb-2.5">What You Get</p>
+            <ul className="space-y-1.5">
+              {[
+                'Paint required (litres)',
+                'Total coating area (sq ft)',
+                'Litres rounded up to buy',
+                'Estimated cost (NPR)',
+              ].map(item => (
+                <li key={item} className="flex items-start gap-2 text-[11px] text-[#202124] font-medium">
+                  <span className="mt-0.5 w-3.5 h-3.5 rounded-full bg-orange-500/10 flex-shrink-0 flex items-center justify-center">
+                    <span className="w-1.5 h-1.5 rounded-full bg-orange-500 block" />
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       }
@@ -402,6 +426,22 @@ export default function PaintCalculator() {
       }
       details={
         <div className="space-y-6">
+          {/* Intro: Calculate Paint Required for Your Walls or Room */}
+          <div className="bg-white border border-[#DADCE0] rounded-xl p-5 sm:p-7 shadow-xs">
+            <h2 className="text-xl sm:text-2xl font-black text-[#202124] mb-3">
+              Calculate Paint Required for Your Walls or Room
+            </h2>
+            <p className="text-sm text-[#5F6368] leading-relaxed mb-2">
+              Use this paint calculator to estimate how much paint you need for your walls or room. Enter your measurements, select the number of coats, and provide the paint coverage rate to calculate the estimated paint quantity in litres.
+            </p>
+            <p className="text-sm text-[#5F6368] leading-relaxed mb-2">
+              For a single wall, enter its width and height. For a room, measure the walls you want to paint. If you also want to paint the ceiling, calculate its area separately. Subtract doors and windows that will not be painted, where applicable.
+            </p>
+            <p className="text-sm text-[#5F6368] leading-relaxed">
+              The amount of paint you need depends on the paintable area, number of coats, paint coverage, and surface condition. Check the paint container or manufacturer&apos;s instructions for the recommended coverage rate.
+            </p>
+          </div>
+
           {/* Section: How Much Paint Do You Need? */}
           <div className="bg-white border border-[#DADCE0] rounded-xl p-5 sm:p-7 shadow-xs">
             <h2 className="text-xl sm:text-2xl font-black text-[#202124] mb-4">
