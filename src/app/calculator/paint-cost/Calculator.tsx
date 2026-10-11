@@ -160,51 +160,10 @@ export default function PaintCalculator() {
       title="Calculate Paint Quantity and Painting Cost"
       description="Estimate paint quantity, coverage, and total painting costs in Nepal for a single wall, room, or ceiling. Calculate litres, coats, and NPR budget."
       icon={PaintBucket}
-      intro={
-        <div className="grid grid-cols-2 gap-3 mb-1">
-          {/* Inputs */}
-          <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-xl p-4">
-            <p className="text-[10px] font-black text-[#5F6368] uppercase tracking-widest mb-2.5">What You Enter</p>
-            <ul className="space-y-1.5">
-              {[
-                'Wall or room dimensions',
-                'Number of coats',
-                'Coverage rate (sq ft/L)',
-                'Paint price per litre (NPR)',
-              ].map(item => (
-                <li key={item} className="flex items-start gap-2 text-[11px] text-[#202124] font-medium">
-                  <span className="mt-0.5 w-3.5 h-3.5 rounded-full bg-[#1967D2]/10 flex-shrink-0 flex items-center justify-center">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#1967D2] block" />
-                  </span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-          {/* Outputs */}
-          <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-xl p-4">
-            <p className="text-[10px] font-black text-[#5F6368] uppercase tracking-widest mb-2.5">What You Get</p>
-            <ul className="space-y-1.5">
-              {[
-                'Paint required (litres)',
-                'Total coating area (sq ft)',
-                'Litres rounded up to buy',
-                'Estimated cost (NPR)',
-              ].map(item => (
-                <li key={item} className="flex items-start gap-2 text-[11px] text-[#202124] font-medium">
-                  <span className="mt-0.5 w-3.5 h-3.5 rounded-full bg-orange-500/10 flex-shrink-0 flex items-center justify-center">
-                    <span className="w-1.5 h-1.5 rounded-full bg-orange-500 block" />
-                  </span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      }
       inputs={
-        <div className="space-y-3">
-          {/* Mode Selector Tabs */}
+        <div className="flex flex-col justify-between h-full space-y-4">
+          <div className="space-y-3">
+            {/* Mode Selector Tabs */}
           <div>
             <div className="grid grid-cols-5 gap-1 bg-[#F1F3F4] p-1 rounded-lg">
               {MODES.map(m => (
@@ -366,6 +325,11 @@ export default function PaintCalculator() {
             </div>
           </div>
         </div>
+
+          <p className="text-[11px] text-[#9AA0A6] leading-relaxed px-1 pt-2 border-t border-[#F1F3F4] mt-auto">
+            Estimates only. Actual paint quantity varies with surface texture, product, and application method. Always check the coverage rate on your paint can.
+          </p>
+        </div>
       }
       results={
         <div className="space-y-3">
@@ -418,10 +382,6 @@ export default function PaintCalculator() {
               <StatRow label="Total Estimate" value={`NPR ${calc.total.toLocaleString()}`} highlight />
             </div>
           </div>
-
-          <p className="text-[10px] text-[#9AA0A6] leading-relaxed px-0.5">
-            Estimates only. Actual paint quantity varies with surface texture, product, and application method. Always check the coverage rate on your paint can.
-          </p>
         </div>
       }
       details={

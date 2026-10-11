@@ -184,17 +184,17 @@ export function ModernCalcLayout({
           </div>
         </div>
       ) : (
-        <div className="flex flex-col md:flex-row md:items-start divide-y md:divide-y-0 md:divide-x divide-[#DADCE0]">
-          <div className="flex-1 w-full bg-white relative">
-            <div className="p-4 lg:p-6">{inputs}</div>
+        <div className="flex flex-col md:flex-row md:items-stretch divide-y md:divide-y-0 md:divide-x divide-[#DADCE0]">
+          <div className="flex-1 w-full bg-white relative flex flex-col">
+            <div className="p-4 lg:p-6 flex-1 flex flex-col">{inputs}</div>
           </div>
-          <div className="w-full md:w-[320px] lg:w-[450px] bg-white shrink-0 lg:sticky lg:top-20 border-t md:border-t-0 border-[#DADCE0]">
-            <div className="p-4 flex flex-col gap-4">
-              <div className="bg-white border border-[#DADCE0] rounded-md overflow-hidden flex flex-col shadow-sm">
+          <div className="w-full md:w-[320px] lg:w-[450px] bg-white shrink-0 border-t md:border-t-0 border-[#DADCE0] flex flex-col">
+            <div className="p-4 flex flex-col gap-4 flex-1">
+              <div className="bg-white border border-[#DADCE0] rounded-md overflow-hidden flex flex-col shadow-sm flex-1">
                 <div className="px-4 py-2.5 border-b border-[#DADCE0] bg-[#F8F9FA]">
                   <h3 className="text-[11px] font-bold uppercase tracking-wider text-[#70757A]">Result Summary</h3>
                 </div>
-                <div className="flex-1 p-6 flex flex-col justify-center bg-white">{results}</div>
+                <div className="flex-1 p-6 flex flex-col justify-start bg-white">{results}</div>
               </div>
               {resultsBottom && <div>{resultsBottom}</div>}
             </div>
