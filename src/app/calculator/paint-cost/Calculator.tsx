@@ -445,7 +445,16 @@ export default function PaintCalculator() {
               How Much Area Does 1 Litre of Paint Cover?
             </h2>
             <p className="text-sm text-[#5F6368] leading-relaxed mb-4">
-              One litre of paint can cover approximately 100-120 square feet of a smooth wall with one coat, depending on the paint product and surface condition. Actual coverage varies by manufacturer, paint type, surface texture, and application method, so always check the coverage rate on the paint container or technical data sheet.
+              One litre of paint can cover approximately 100-120 square feet of a smooth wall with one coat, depending on the paint product and surface condition. Actual coverage varies by manufacturer, paint type, surface texture, and application method, so always check the coverage rate on the paint container or refer to official manufacturer resources such as Dulux&apos;s{' '}
+              <a
+                href="https://www.dulux.com.au/services/paint-calculator/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#1967D2] font-semibold hover:underline"
+              >
+                paint coverage and calculation guidance
+              </a>
+              .
             </p>
             <p className="text-sm text-[#5F6368] leading-relaxed mb-6">
               Rough, porous, or unprimed surfaces may require more paint than smooth, prepared walls. Exterior masonry paint and specialist finishes can also have different coverage rates.
@@ -515,7 +524,11 @@ export default function PaintCalculator() {
               How to Calculate Paint for a Wall, Room, or Ceiling
             </h2>
             <p className="text-sm text-[#5F6368] leading-relaxed mb-5">
-              To estimate how much paint you need, calculate the surface area you plan to paint, not just the floor area of the room. Measure the walls or ceiling, subtract any doors and windows you will not paint, and use the paint&apos;s stated coverage rate to estimate the required litres.
+              To estimate how much paint you need, calculate the surface area you plan to paint, not just the floor area of the room. Measure the walls or ceiling, subtract any doors and windows you will not paint, and use the paint&apos;s stated coverage rate to estimate the required litres. If you need to calculate irregular wall dimensions or convert units between square feet and square meters, you can use our{' '}
+              <Link href="/calculator/area-calculator/" className="text-[#1967D2] font-semibold hover:underline">
+                Area Calculator
+              </Link>{' '}
+              to determine your total surface area first.
             </p>
 
             <div className="space-y-5">
