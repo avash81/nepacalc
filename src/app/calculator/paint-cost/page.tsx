@@ -4,9 +4,9 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   ...calcMeta({
-    title: 'Paint Calculator - Estimate Paint Quantity and Cost in Nepal',
+    title: 'Paint Calculator Online: Estimate Paint Needed',
     description:
-      'Calculate how much paint you need in litres for one wall, a room or a ceiling. Estimate total painting cost in NPR including paint, primer and labour. Works for interior, exterior, gloss and masonry paint.',
+      'Estimate paint quantity and cost for your project. Enter your wall area, number of coats, coverage per litre and paint price to calculate how much paint you need.',
     slug: 'calculator/paint-cost',
     keywords: [
       'paint calculator',
@@ -30,9 +30,9 @@ export const metadata: Metadata = {
     ],
   }),
   openGraph: {
-    title: 'Paint Calculator - Estimate Paint Quantity and Cost in Nepal',
+    title: 'How Much Paint Do You Need for Your Project?',
     description:
-      'Calculate how much paint you need in litres for one wall, a room or a ceiling. Estimate total painting cost in NPR.',
+      'Find your estimated paint requirement using surface area, coverage per litre and number of coats. Add your paint price to estimate material cost.',
     url: 'https://nepacalc.com/calculator/paint-cost/',
     siteName: 'NepaCalc',
     type: 'website',
@@ -47,9 +47,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Paint Calculator - Estimate Paint Quantity and Cost in Nepal',
+    title: 'Paint Quantity Calculator for Your Walls',
     description:
-      'Calculate how much paint you need in litres for one wall, a room or a ceiling. Estimate total painting cost in NPR.',
+      "Calculate the paint needed for your measured area. Use your paint's coverage rate and number of coats to estimate the litres required.",
     images: ['https://nepacalc.com/images/og/paint-calculator-nepal.jpg'],
   },
   alternates: {

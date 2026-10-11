@@ -157,7 +157,7 @@ export default function PaintCalculator() {
         { label: 'Calculators', href: '/calculator/' },
         { label: 'Paint Calculator' },
       ]}
-      title="Paint Calculator - Estimate Paint Quantity and Cost in Nepal"
+      title="Calculate Paint Quantity and Painting Cost"
       description="Estimate paint quantity, coverage, and total painting costs in Nepal for a single wall, room, or ceiling. Calculate litres, coats, and NPR budget."
       icon={PaintBucket}
       intro={
