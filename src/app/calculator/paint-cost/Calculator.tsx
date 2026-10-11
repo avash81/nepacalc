@@ -37,9 +37,10 @@ function CompactField({
         id={id}
         type="number"
         min={min}
-        value={value}
-        onChange={e => onChange(Math.max(min, Number(e.target.value) || 0))}
-        className="w-full h-9 px-3 bg-white border border-[#DADCE0] rounded-lg text-sm font-bold text-[#202124] focus:border-[#1967D2] focus:ring-1 focus:ring-[#1967D2] outline-none"
+        value={value === 0 ? '' : value}
+        placeholder="0"
+        onChange={e => onChange(e.target.value === '' ? 0 : Math.max(min, Number(e.target.value) || 0))}
+        className="w-full h-9 px-3 bg-white border border-[#DADCE0] rounded-lg text-sm font-bold text-[#202124] focus:border-[#1967D2] focus:ring-1 focus:ring-[#1967D2] outline-none placeholder:font-normal placeholder:text-[#9AA0A6]"
       />
       {hint && <p className="text-[10px] text-[#9AA0A6] mt-0.5">{hint}</p>}
     </div>
@@ -73,41 +74,41 @@ function StatRow({
 }
 
 export default function PaintCalculator() {
-  const [mode, setMode] = useSyncState<Mode>('pnt_v5_mode', 'room');
+  const [mode, setMode] = useSyncState<Mode>('pnt_v6_mode', 'room');
 
   // Quick area mode
-  const [quickArea, setQuickArea] = useSyncState('pnt_v5_qa', 500);
+  const [quickArea, setQuickArea] = useSyncState('pnt_v6_qa', 0);
 
   // Wall mode
-  const [wLen, setWLen] = useSyncState('pnt_v5_wl', 12);
-  const [wHt, setWHt] = useSyncState('pnt_v5_wh', 9);
-  const [nWalls, setNWalls] = useSyncState('pnt_v5_nw', 4);
-  const [wDoors, setWDoors] = useSyncState('pnt_v5_wd', 1);
-  const [wWins, setWWins] = useSyncState('pnt_v5_ww', 2);
+  const [wLen, setWLen] = useSyncState('pnt_v6_wl', 0);
+  const [wHt, setWHt] = useSyncState('pnt_v6_wh', 0);
+  const [nWalls, setNWalls] = useSyncState('pnt_v6_nw', 0);
+  const [wDoors, setWDoors] = useSyncState('pnt_v6_wd', 0);
+  const [wWins, setWWins] = useSyncState('pnt_v6_ww', 0);
 
   // Room mode
-  const [rLen, setRLen] = useSyncState('pnt_v5_rl', 15);
-  const [rWid, setRWid] = useSyncState('pnt_v5_rw', 12);
-  const [rHt, setRHt] = useSyncState('pnt_v5_rh', 9);
-  const [rDoors, setRDoors] = useSyncState('pnt_v5_rd', 1);
-  const [rWins, setRWins] = useSyncState('pnt_v5_rwin', 2);
-  const [inclCeil, setInclCeil] = useSyncState('pnt_v5_ic', false);
+  const [rLen, setRLen] = useSyncState('pnt_v6_rl', 0);
+  const [rWid, setRWid] = useSyncState('pnt_v6_rw', 0);
+  const [rHt, setRHt] = useSyncState('pnt_v6_rh', 0);
+  const [rDoors, setRDoors] = useSyncState('pnt_v6_rd', 0);
+  const [rWins, setRWins] = useSyncState('pnt_v6_rwin', 0);
+  const [inclCeil, setInclCeil] = useSyncState('pnt_v6_ic', false);
 
   // Ceiling mode
-  const [cLen, setCLen] = useSyncState('pnt_v5_cl', 15);
-  const [cWid, setCWid] = useSyncState('pnt_v5_cw', 12);
+  const [cLen, setCLen] = useSyncState('pnt_v6_cl', 0);
+  const [cWid, setCWid] = useSyncState('pnt_v6_cw', 0);
 
   // Shared paint settings
-  const [coats, setCoats] = useSyncState('pnt_v5_coats', 2);
-  const [coverage, setCoverage] = useSyncState('pnt_v5_cov', 100);
-  const [price, setPrice] = useSyncState('pnt_v5_pr', 450);
+  const [coats, setCoats] = useSyncState('pnt_v6_coats', 2);
+  const [coverage, setCoverage] = useSyncState('pnt_v6_cov', 0);
+  const [price, setPrice] = useSyncState('pnt_v6_pr', 0);
 
   // Cost mode extras
-  const [addPrimer, setAddPrimer] = useSyncState('pnt_v5_ap', false);
-  const [pCov, setPCov] = useSyncState('pnt_v5_pcov', 80);
-  const [pPrice, setPPrice] = useSyncState('pnt_v5_ppr', 300);
-  const [addLabour, setAddLabour] = useSyncState('pnt_v5_al', false);
-  const [labRate, setLabRate] = useSyncState('pnt_v5_lr', 20);
+  const [addPrimer, setAddPrimer] = useSyncState('pnt_v6_ap', false);
+  const [pCov, setPCov] = useSyncState('pnt_v6_pcov', 0);
+  const [pPrice, setPPrice] = useSyncState('pnt_v6_ppr', 0);
+  const [addLabour, setAddLabour] = useSyncState('pnt_v6_al', false);
+  const [labRate, setLabRate] = useSyncState('pnt_v6_lr', 0);
 
   // Paintable area calculation
   const paintableArea = useMemo(() => {
