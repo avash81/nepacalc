@@ -17,7 +17,8 @@ interface ModernCalcLayoutProps {
   resultsBottom?: ReactNode;
   howToUse?: { steps: string[] };
   formula?: { title: string; description: string; latex?: string; raw?: string; variables?: string[] };
-  faqs?: { question: string; answer: string }[];
+  faqs?: { question: string; answer: React.ReactNode }[];
+  faqLayout?: 'accordion' | 'static';
   sidebar?: {
     title: string;
     subtitle?: string;
@@ -45,7 +46,7 @@ interface ModernCalcLayoutProps {
 }
 
 export function ModernCalcLayout({
-  title, description, icon: Icon = Calculator, inputs, results, resultsBottom, howToUse, formula, faqs, sidebar, relatedTools, seoContent, auditPanel, details, crumbs, slug, fullWidth = false, layout = 'split', ads, hideH1 = false, intro, customSchema, compactHeader = false, titleClassName, sidebarPosition = 'side', calculatorPosition = 'main'
+  title, description, icon: Icon = Calculator, inputs, results, resultsBottom, howToUse, formula, faqs, faqLayout = 'accordion', sidebar, relatedTools, seoContent, auditPanel, details, crumbs, slug, fullWidth = false, layout = 'split', ads, hideH1 = false, intro, customSchema, compactHeader = false, titleClassName, sidebarPosition = 'side', calculatorPosition = 'main'
 }: ModernCalcLayoutProps) {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [liveRates, setLiveRates] = useState<MarketRate[]>([]);
@@ -185,16 +186,16 @@ export function ModernCalcLayout({
         </div>
       ) : (
         <div className="flex flex-col md:flex-row md:items-stretch divide-y md:divide-y-0 md:divide-x divide-[#DADCE0]">
-          <div className="flex-1 w-full bg-white relative flex flex-col">
-            <div className="p-4 lg:p-6 flex-1 flex flex-col">{inputs}</div>
+          <div className="flex-1 w-full bg-white relative flex flex-col justify-between p-4 lg:p-6">
+            {inputs}
           </div>
-          <div className="w-full md:w-[320px] lg:w-[450px] bg-white shrink-0 border-t md:border-t-0 border-[#DADCE0] flex flex-col">
-            <div className="p-4 flex flex-col gap-4 flex-1">
-              <div className="bg-white border border-[#DADCE0] rounded-md overflow-hidden flex flex-col shadow-sm flex-1">
-                <div className="px-4 py-2.5 border-b border-[#DADCE0] bg-[#F8F9FA]">
-                  <h3 className="text-[11px] font-bold uppercase tracking-wider text-[#70757A]">Result Summary</h3>
-                </div>
-                <div className="flex-1 p-6 flex flex-col justify-start bg-white">{results}</div>
+          <div className="w-full md:w-[380px] lg:w-[480px] xl:w-[500px] bg-[#F8F9FA] shrink-0 border-t md:border-t-0 border-[#DADCE0] flex flex-col">
+            <div className="px-4 py-3 border-b border-[#DADCE0] bg-[#F8F9FA]">
+              <h3 className="text-[11px] font-bold uppercase tracking-wider text-[#70757A]">Result Summary</h3>
+            </div>
+            <div className="p-4 lg:p-6 flex flex-col gap-3 flex-1 justify-between">
+              <div className="space-y-3">
+                {results}
               </div>
               {resultsBottom && <div>{resultsBottom}</div>}
             </div>
@@ -228,7 +229,7 @@ export function ModernCalcLayout({
           howto: howToSteps ? { name: `How to use ${title}`, description: description, steps: howToSteps, url: pathname ? `https://nepacalc.com${normalizeLink(pathname)}` : undefined } : undefined
         }} 
       />
-      <div className="max-w-[1280px] mx-auto px-4 pt-2 pb-16">
+      <div className="max-w-[1280px] mx-auto px-4 pt-2 pb-4">
         {((processedCrumbs && processedCrumbs.length > 0) || !hideH1) && (
           <div className={`mb-2 pb-2 flex flex-col md:flex-row md:items-end justify-between gap-2 border-b border-[#dadce0]`}>
             <div>
@@ -327,19 +328,37 @@ export function ModernCalcLayout({
                   <HelpCircle className="w-5 h-5 text-[#1A73E8]" />
                   <h2 className="text-base font-black text-[#202124]">Frequently Asked Questions</h2>
                 </div>
-                <div className="divide-y divide-[#DADCE0]">
-                  {enrichedFAQs.map((faq, idx) => (
-                    <div key={idx} className="bg-white">
-                      <button onClick={() => setOpenFaq(openFaq === idx ? null : idx)} className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-[#F8F9FA] transition-all group">
-                        <h3 className={`text-sm font-bold pr-8 transition-colors ${openFaq === idx ? 'text-[#1A73E8]' : 'text-[#202124]'}`}>{faq.question}</h3>
-                        <ChevronRight className={`w-4 h-4 text-[#70757A] transition-transform duration-300 ${openFaq === idx ? 'rotate-90 text-[#1A73E8]' : ''}`} />
-                      </button>
-                      <div className={`overflow-hidden transition-all duration-300 ease-in-out ${openFaq === idx ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                        <div className="px-6 pb-6 text-sm leading-relaxed text-[#5F6368] border-t border-[#F1F3F4] pt-4">{faq.answer}</div>
+                {faqLayout === 'static' ? (
+                  <div className="divide-y divide-[#DADCE0]">
+                    {enrichedFAQs.map((faq, idx) => (
+                      <div key={idx} className="p-6 bg-white space-y-2.5">
+                        <h3 className="text-sm sm:text-base font-bold text-[#202124] flex items-start gap-2.5">
+                          <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[#E8F0FE] text-[#1A73E8] text-xs font-black flex items-center justify-center mt-0.5">
+                            {idx + 1}
+                          </span>
+                          <span>{faq.question}</span>
+                        </h3>
+                        <div className="text-sm leading-relaxed text-[#5F6368] pl-[34px]">
+                          {faq.answer}
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="divide-y divide-[#DADCE0]">
+                    {enrichedFAQs.map((faq, idx) => (
+                      <div key={idx} className="bg-white">
+                        <button onClick={() => setOpenFaq(openFaq === idx ? null : idx)} className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-[#F8F9FA] transition-all group">
+                          <h3 className={`text-sm font-bold pr-8 transition-colors ${openFaq === idx ? 'text-[#1A73E8]' : 'text-[#202124]'}`}>{faq.question}</h3>
+                          <ChevronRight className={`w-4 h-4 text-[#70757A] transition-transform duration-300 ${openFaq === idx ? 'rotate-90 text-[#1A73E8]' : ''}`} />
+                        </button>
+                        <div className={`overflow-hidden transition-all duration-300 ease-in-out ${openFaq === idx ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                          <div className="px-6 pb-6 text-sm leading-relaxed text-[#5F6368] border-t border-[#F1F3F4] pt-4">{faq.answer}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
 

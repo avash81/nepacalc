@@ -160,8 +160,9 @@ export default function PaintCalculator() {
       title="Calculate Paint Quantity and Painting Cost"
       description="Estimate paint quantity, coverage, and total painting costs in Nepal for a single wall, room, or ceiling. Calculate litres, coats, and NPR budget."
       icon={PaintBucket}
+      faqLayout="static"
       inputs={
-        <div className="flex flex-col justify-between h-full space-y-4">
+        <div className="flex flex-col justify-between h-full space-y-3">
           <div className="space-y-3">
             {/* Mode Selector Tabs */}
           <div>
@@ -326,15 +327,17 @@ export default function PaintCalculator() {
           </div>
         </div>
 
-          <p className="text-[11px] text-[#9AA0A6] leading-relaxed px-1 pt-2 border-t border-[#F1F3F4] mt-auto">
-            Estimates only. Actual paint quantity varies with surface texture, product, and application method. Always check the coverage rate on your paint can.
-          </p>
+          <div className="pt-2 border-t border-[#F1F3F4]">
+            <p className="text-[11px] text-[#9AA0A6] leading-relaxed px-0.5 m-0">
+              Estimates only. Actual paint quantity varies with surface texture, product, and application method. Always check the coverage rate on your paint can.
+            </p>
+          </div>
         </div>
       }
       results={
-        <div className="space-y-3">
+        <div className="space-y-2.5">
           {/* Main Result Card */}
-          <div className="bg-[#E8F0FE] border border-[#1967D2]/30 rounded-xl p-4 text-center" aria-live="polite">
+          <div className="bg-[#E8F0FE] border border-[#1967D2]/30 rounded-xl p-3 sm:p-3.5 text-center" aria-live="polite">
             <div className="text-[11px] font-black text-[#1967D2] uppercase tracking-widest mb-0.5">Paint Required</div>
             <div className="text-4xl sm:text-5xl font-black text-[#202124] leading-none">{calc.litres}</div>
             <div className="text-sm font-bold text-[#5F6368] mt-1">litres</div>
@@ -742,43 +745,82 @@ export default function PaintCalculator() {
       faqs={[
         {
           question: 'How can I calculate how much paint I need?',
-          answer:
-            'Measure the surface you want to paint, subtract the area of doors and windows if they will not be painted, and multiply the result by the number of coats. Then divide by the paint coverage per litre. Formula: Paint required (litres) = Net paintable area (sq ft) × Number of coats ÷ Coverage (sq ft per litre per coat). Check the paint container or technical data sheet for its stated coverage rate.',
+          answer: (
+            <div className="space-y-2.5">
+              <p>Measure the surface you want to paint, subtract the area of doors and windows if they will not be painted, and multiply the result by the number of coats. Then divide by the paint&apos;s coverage per litre.</p>
+              <p className="font-semibold text-[#202124]">Formula:</p>
+              <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded px-3 py-2 font-mono text-xs text-[#202124] leading-relaxed">
+                Paint required (litres) = Net paintable area (sq ft) × Number of coats ÷ Coverage (sq ft per litre per coat)
+              </div>
+              <p>Check the paint container or technical data sheet for its stated coverage rate.</p>
+            </div>
+          ),
         },
         {
           question: 'How much paint do I need for a 100 sq ft wall?',
-          answer:
-            'For a 100 sq ft wall, assuming the paint covers 100 sq ft per litre per coat, you would need approximately 1 litre for one coat or 2 litres for two coats. This estimate excludes extra paint for touch-ups and wastage. Actual requirements depend on the paint product and the condition of the wall.',
+          answer: (
+            <div className="space-y-2.5">
+              <p>For a 100 sq ft wall, assuming the paint covers 100 sq ft per litre per coat, you would need approximately <strong className="text-[#202124]">1 litre for one coat or 2 litres for two coats</strong>. This estimate excludes extra paint for touch-ups and wastage.</p>
+              <p>Actual requirements depend on the paint product and the condition of the wall.</p>
+            </div>
+          ),
         },
         {
           question: 'How much paint do I need for 500 sq ft?',
-          answer:
-            'For 500 sq ft of paintable surface, using a coverage rate of 100 sq ft per litre per coat, the estimate is 5 litres for one coat or 10 litres for two coats. Use the coverage rate on your chosen paint product for a more accurate result.',
+          answer: (
+            <div className="space-y-2.5">
+              <p>For 500 sq ft of paintable surface, using a coverage rate of 100 sq ft per litre per coat, the estimate is <strong className="text-[#202124]">5 litres for one coat or 10 litres for two coats</strong>.</p>
+              <p>Use the coverage rate on your chosen paint product for a more accurate result.</p>
+            </div>
+          ),
         },
         {
           question: 'How much paint do I need for a 12 × 12 room?',
-          answer:
-            'A room measuring 12 × 12 ft has a floor area of 144 sq ft, but that is not the total area of its walls. To calculate wall paint, you also need the wall height and the area of any doors or windows that will not be painted. For the ceiling, the area would be 144 sq ft if the ceiling has the same length and width as the floor. Calculate walls and ceiling separately if both will be painted.',
+          answer: (
+            <div className="space-y-2.5">
+              <p>A room measuring 12 × 12 ft has a floor area of 144 sq ft, but that is not the total area of its walls. To calculate wall paint, you also need the wall height and the area of any doors or windows that will not be painted.</p>
+              <p>For the ceiling, the area would be 144 sq ft if the ceiling has the same length and width as the floor. Calculate walls and ceiling separately if both will be painted.</p>
+            </div>
+          ),
         },
         {
           question: 'How much area does 1 litre of paint cover?',
-          answer:
-            'A typical estimate is around 100-120 sq ft per litre for one coat on a smooth wall, but coverage varies by product and surface. Rough, porous, or unprepared surfaces may require more paint. Always check the manufacturer coverage information.',
+          answer: (
+            <div className="space-y-2.5">
+              <p>A typical estimate is around <strong className="text-[#202124]">100–120 sq ft per litre for one coat on a smooth wall</strong>, but coverage varies by product and surface. Rough, porous, or unprepared surfaces may require more paint.</p>
+              <p>Always check the manufacturer&apos;s coverage information.</p>
+            </div>
+          ),
         },
         {
           question: 'What is the formula for calculating paint coverage in litres?',
-          answer:
-            'First calculate the net paintable area. Divide that area by the coverage per litre, then multiply by the number of coats. For example, a 500 sq ft surface using paint that covers 130 sq ft per litre per coat requires approximately 7.7 litres for two coats: 500 ÷ 130 × 2 = 7.69 litres.',
+          answer: (
+            <div className="space-y-2.5">
+              <p>First calculate the net paintable area. Divide that area by the coverage per litre, then multiply by the number of coats.</p>
+              <p>For example, a 500 sq ft surface using paint that covers 130 sq ft per litre per coat requires approximately 7.7 litres for two coats:</p>
+              <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded px-3 py-2 font-mono text-xs text-[#202124]">
+                500 ÷ 130 × 2 = 7.69 litres
+              </div>
+            </div>
+          ),
         },
         {
           question: 'Does a paint calculator include doors, windows, and ceilings?',
-          answer:
-            'That depends on the calculator mode. In our calculator, One Wall and Room modes allow you to deduct standard doors and windows, and Room mode has a toggle to include the ceiling area. You can also calculate the ceiling separately using Ceiling mode.',
+          answer: (
+            <div className="space-y-2.5">
+              <p>That depends on the calculator. A room-based calculator may ask for wall dimensions and openings, while some tools also include ceilings, trim, or other surfaces.</p>
+              <p>Check which measurements and surfaces the tool supports before relying on its estimate.</p>
+            </div>
+          ),
         },
         {
           question: 'How do I calculate paint cost?',
-          answer:
-            'Multiply the required litres by the price per litre to estimate the paint cost. If you want the full project cost, add any primer, other materials, and labour charges that apply. Prices vary by product and location, so use current local prices in NPR rather than relying on estimates from another country.',
+          answer: (
+            <div className="space-y-2.5">
+              <p>Multiply the required litres by the price per litre to estimate the paint cost. If you want the full project cost, add any primer, other materials, and labour charges that apply.</p>
+              <p>Prices vary by product and location, so use current local prices rather than relying on estimates from another country.</p>
+            </div>
+          ),
         },
       ]}
     />

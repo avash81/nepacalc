@@ -163,7 +163,7 @@ export default function RootLayout({
         <Navbar />
         <main id="main-content" className="pt-16 min-h-[85vh]">
           <div className="flex flex-col h-full">
-            <div className="flex-grow pb-8">
+            <div className="flex-grow pb-0">
               {children}
             </div>
             <Footer />
