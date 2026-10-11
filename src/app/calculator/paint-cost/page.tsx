@@ -1,75 +1,155 @@
 import { calcMeta } from '@/lib/calcMeta';
 import PaintCalculator from './Calculator';
-import { CalcWrapper } from '@/components/calculator/CalcWrapper';
-import { PillarFAQ } from '@/components/seo/PillarFAQ';
+import type { Metadata } from 'next';
 
-export const metadata = calcMeta({
-  title: "Paint Cost Calculator | Wall Area & Budget Estimator Nepal NepaCalc",
-  description: "Estimate the cost of painting your home in Nepal. Calculate paint quantity (liters), primer needs, and labor costs for interior and exterior walls.",
-  slug: 'paint-cost',
-  keywords: ["paint cost calculator nepal", "wall painting budget", "paint quantity estimator", "interior painting cost nepal", "asian paints price calculator", "berger paints coverage"],
-});
+export const metadata: Metadata = {
+  ...calcMeta({
+    title: 'Paint Calculator - Estimate Paint Quantity and Cost in Nepal',
+    description:
+      'Calculate how much paint you need in litres for one wall, a room or a ceiling. Estimate total painting cost in NPR including paint, primer and labour. Works for interior, exterior, gloss and masonry paint.',
+    slug: 'calculator/paint-cost',
+    keywords: [
+      'paint calculator',
+      'paint calculator online',
+      'paint calculator nepal',
+      'how much paint do i need',
+      'paint coverage calculator',
+      'paint cost calculator',
+      'wall paint calculator',
+      'room paint calculator',
+      'paint calculator for one wall',
+      'paint coverage per litre',
+      'painting cost calculator nepal',
+      'interior paint calculator',
+      'ceiling paint calculator',
+      'gloss paint calculator',
+      'masonry paint coverage calculator',
+      '1 litre paint coverage in square feet',
+      'how to calculate paint coverage in litres',
+      'how to calculate square footage for painting',
+    ],
+  }),
+  openGraph: {
+    title: 'Paint Calculator - Estimate Paint Quantity and Cost in Nepal',
+    description:
+      'Calculate how much paint you need in litres for one wall, a room or a ceiling. Estimate total painting cost in NPR.',
+    url: 'https://nepacalc.com/calculator/paint-cost/',
+    siteName: 'NepaCalc',
+    type: 'website',
+    images: [
+      {
+        url: 'https://nepacalc.com/images/og/paint-calculator-nepal.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Paint Calculator - Estimate Paint Quantity and Cost in Nepal',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Paint Calculator - Estimate Paint Quantity and Cost in Nepal',
+    description:
+      'Calculate how much paint you need in litres for one wall, a room or a ceiling. Estimate total painting cost in NPR.',
+    images: ['https://nepacalc.com/images/og/paint-calculator-nepal.jpg'],
+  },
+  alternates: {
+    canonical: 'https://nepacalc.com/calculator/paint-cost/',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1 },
+  },
+};
 
-const PAINT_FAQS = [
-  {
-    question: "How much area does 1 liter of paint cover in Nepal?",
-    answer: "Standard interior emulsion paint covers approximately 100 to 120 square feet per liter for a single coat. For the recommended two-coat finish, 1 liter covers about 50-60 square feet."
-  },
-  {
-    question: "How many coats of paint are necessary for new walls?",
-    answer: "For newly plastered walls, you should apply one coat of primer followed by at least two coats of emulsion paint to ensure proper color depth and durability."
-  },
-  {
-    question: "Do I need to calculate the ceiling area separately?",
-    answer: "Yes. The ceiling area is typically equal to the floor area. Forgetting to include the ceiling can result in under-ordering paint by 25% or more."
-  },
-  {
-    question: "How do I account for doors and windows in the paint budget?",
-    answer: "A standard door is roughly 21 sq. ft. and a window is 12-16 sq. ft. Subtracting these from your total wall area prevents over-spending on expensive paint."
-  },
-  {
-    question: "What is the average labor cost for painting in Nepal?",
-    answer: "Labor costs typically range from Rs. 15 to Rs. 30 per square foot for interior work, depending on whether the scope includes wall putty (pari) and sanding."
-  }
-];
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  '@id': 'https://nepacalc.com/calculator/paint-cost/#breadcrumb',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://nepacalc.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Calculators', item: 'https://nepacalc.com/calculator/' },
+    { '@type': 'ListItem', position: 3, name: 'Paint Calculator', item: 'https://nepacalc.com/calculator/paint-cost/' },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How can I calculate how much paint I need?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Measure the surface you want to paint, subtract the area of doors and windows if they will not be painted, and multiply the result by the number of coats. Then divide by the paint coverage per litre. Formula: Paint required (litres) = Net paintable area (sq ft) × Number of coats ÷ Coverage (sq ft per litre per coat). Check the paint container or technical data sheet for its stated coverage rate.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How much paint do I need for a 100 sq ft wall?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'For a 100 sq ft wall, assuming the paint covers 100 sq ft per litre per coat, you would need approximately 1 litre for one coat or 2 litres for two coats. This estimate excludes extra paint for touch-ups and wastage. Actual requirements depend on the paint product and the condition of the wall.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How much paint do I need for 500 sq ft?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'For 500 sq ft of paintable surface, using a coverage rate of 100 sq ft per litre per coat, the estimate is 5 litres for one coat or 10 litres for two coats. Use the coverage rate on your chosen paint product for a more accurate result.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How much paint do I need for a 12 × 12 room?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'A room measuring 12 × 12 ft has a floor area of 144 sq ft, but that is not the total area of its walls. To calculate wall paint, you also need the wall height and the area of any doors or windows that will not be painted. For the ceiling, the area would be 144 sq ft if the ceiling has the same length and width as the floor. Calculate walls and ceiling separately if both will be painted.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How much area does 1 litre of paint cover?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'A typical estimate is around 100-120 sq ft per litre for one coat on a smooth wall, but coverage varies by product and surface. Rough, porous, or unprepared surfaces may require more paint. Always check the manufacturer coverage information.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the formula for calculating paint coverage in litres?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'First calculate the net paintable area. Divide that area by the coverage per litre, then multiply by the number of coats. For example, a 500 sq ft surface using paint that covers 130 sq ft per litre per coat requires approximately 7.7 litres for two coats: 500 ÷ 130 × 2 = 7.69 litres.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does a paint calculator include doors, windows, and ceilings?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'That depends on the calculator mode. In our calculator, One Wall and Room modes allow you to deduct standard doors and windows, and Room mode has a toggle to include the ceiling area. You can also calculate the ceiling separately using Ceiling mode.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do I calculate paint cost?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Multiply the required litres by the price per litre to estimate the paint cost. If you want the full project cost, add any primer, other materials, and labour charges that apply. Prices vary by product and location, so use current local prices in NPR rather than relying on estimates from another country.',
+      },
+    },
+  ],
+};
 
 export default function Page() {
   return (
-    <div className="bg-white min-h-screen">
-      <CalcWrapper 
-        hideHeader={true}
-        title="Paint Cost Calculator"
-        description="Professional estimation engine for wall area, paint quantity, and material budgets tailored for Nepalese home renovations."
-        crumbs={[{ label: 'Calculators', href: '/calculator/' }, { label: 'Paint Cost' }]}
-        isNepal={true}
-        relatedCalcs={[
-          { name: 'Brick Calculator', slug: 'brick-calculator' },
-          { name: 'Concrete Mix', slug: 'concrete-mix' },
-          { name: 'Unit Converter', slug: 'unit-converter' }
-        ]}
-        formula="Total = (Total Area / Coverage) × Price per Liter"
-      >
-        <PaintCalculator />
-        <div className="hp-container pb-24 border-t border-slate-100 pt-20">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tighter mb-8 bg-white border border-[#dadce0] text-[#202124] px-6 py-3 rounded-2xl inline-block">
-              Renovation Guide: Painting Costs in Nepal
-            </h2>
-            
-            <div className="prose prose-slate max-w-none mb-12">
-              <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
-                Transforming your home starts with a realistic budget. In the Nepalese market, where brands like <strong>Asian Paints, Berger, and Kansai Nerolac</strong> dominate, understanding coverage ratios is the key to cost-effective renovation.
-              </p>
-              <p className="text-slate-700 text-base leading-relaxed mb-6">
-                Our <strong>Painting Budget Laboratory</strong> accounts for both interior and exterior emulsions. By factoring in the number of coats, primer requirements, and local labor rates, we provide a comprehensive financial breakdown that helps you manage your home improvement project without surprises.
-              </p>
-            </div>
-
-            <PillarFAQ  faqs={PAINT_FAQS} title="Painting & Material FAQ" />
-          </div>
-        </div>
-      </CalcWrapper>    </div>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <PaintCalculator />
+    </>
   );
 }
-
-
