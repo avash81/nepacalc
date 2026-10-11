@@ -1,7 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
-import { useSyncState } from '@/hooks/useSyncState';
+import { useMemo, useState, useEffect } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
 import { PaintBucket } from 'lucide-react';
 import Link from 'next/link';
@@ -38,9 +37,9 @@ function CompactField({
         type="number"
         min={min}
         value={value === 0 ? '' : value}
-        placeholder="0"
+        placeholder=""
         onChange={e => onChange(e.target.value === '' ? 0 : Math.max(min, Number(e.target.value) || 0))}
-        className="w-full h-9 px-3 bg-white border border-[#DADCE0] rounded-lg text-sm font-bold text-[#202124] focus:border-[#1967D2] focus:ring-1 focus:ring-[#1967D2] outline-none placeholder:font-normal placeholder:text-[#9AA0A6]"
+        className="w-full h-9 px-3 bg-white border border-[#DADCE0] rounded-lg text-sm font-bold text-[#202124] focus:border-[#1967D2] focus:ring-1 focus:ring-[#1967D2] outline-none"
       />
       {hint && <p className="text-[10px] text-[#9AA0A6] mt-0.5">{hint}</p>}
     </div>
@@ -74,41 +73,56 @@ function StatRow({
 }
 
 export default function PaintCalculator() {
-  const [mode, setMode] = useSyncState<Mode>('pnt_v6_mode', 'room');
+  const [mode, setMode] = useState<Mode>('room');
 
   // Quick area mode
-  const [quickArea, setQuickArea] = useSyncState('pnt_v6_qa', 0);
+  const [quickArea, setQuickArea] = useState(0);
 
   // Wall mode
-  const [wLen, setWLen] = useSyncState('pnt_v6_wl', 0);
-  const [wHt, setWHt] = useSyncState('pnt_v6_wh', 0);
-  const [nWalls, setNWalls] = useSyncState('pnt_v6_nw', 0);
-  const [wDoors, setWDoors] = useSyncState('pnt_v6_wd', 0);
-  const [wWins, setWWins] = useSyncState('pnt_v6_ww', 0);
+  const [wLen, setWLen] = useState(0);
+  const [wHt, setWHt] = useState(0);
+  const [nWalls, setNWalls] = useState(0);
+  const [wDoors, setWDoors] = useState(0);
+  const [wWins, setWWins] = useState(0);
 
   // Room mode
-  const [rLen, setRLen] = useSyncState('pnt_v6_rl', 0);
-  const [rWid, setRWid] = useSyncState('pnt_v6_rw', 0);
-  const [rHt, setRHt] = useSyncState('pnt_v6_rh', 0);
-  const [rDoors, setRDoors] = useSyncState('pnt_v6_rd', 0);
-  const [rWins, setRWins] = useSyncState('pnt_v6_rwin', 0);
-  const [inclCeil, setInclCeil] = useSyncState('pnt_v6_ic', false);
+  const [rLen, setRLen] = useState(0);
+  const [rWid, setRWid] = useState(0);
+  const [rHt, setRHt] = useState(0);
+  const [rDoors, setRDoors] = useState(0);
+  const [rWins, setRWins] = useState(0);
+  const [inclCeil, setInclCeil] = useState(false);
 
   // Ceiling mode
-  const [cLen, setCLen] = useSyncState('pnt_v6_cl', 0);
-  const [cWid, setCWid] = useSyncState('pnt_v6_cw', 0);
+  const [cLen, setCLen] = useState(0);
+  const [cWid, setCWid] = useState(0);
 
   // Shared paint settings
-  const [coats, setCoats] = useSyncState('pnt_v6_coats', 2);
-  const [coverage, setCoverage] = useSyncState('pnt_v6_cov', 0);
-  const [price, setPrice] = useSyncState('pnt_v6_pr', 0);
+  const [coats, setCoats] = useState(2);
+  const [coverage, setCoverage] = useState(0);
+  const [price, setPrice] = useState(0);
 
   // Cost mode extras
-  const [addPrimer, setAddPrimer] = useSyncState('pnt_v6_ap', false);
-  const [pCov, setPCov] = useSyncState('pnt_v6_pcov', 0);
-  const [pPrice, setPPrice] = useSyncState('pnt_v6_ppr', 0);
-  const [addLabour, setAddLabour] = useSyncState('pnt_v6_al', false);
-  const [labRate, setLabRate] = useSyncState('pnt_v6_lr', 0);
+  const [addPrimer, setAddPrimer] = useState(false);
+  const [pCov, setPCov] = useState(0);
+  const [pPrice, setPPrice] = useState(0);
+  const [addLabour, setAddLabour] = useState(false);
+  const [labRate, setLabRate] = useState(0);
+
+  // Clear any legacy localStorage keys to ensure inputs are completely blank on every session
+  useEffect(() => {
+    try {
+      if (typeof window !== 'undefined') {
+        Object.keys(localStorage).forEach(k => {
+          if (k.startsWith('cp_pnt_')) {
+            localStorage.removeItem(k);
+          }
+        });
+      }
+    } catch {
+      // ignore
+    }
+  }, []);
 
   // Paintable area calculation
   const paintableArea = useMemo(() => {
