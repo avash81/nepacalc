@@ -124,11 +124,6 @@ export default function NepalElectricityUnitPricePage() {
               { text: "Identify your meter capacity (e.g., 5A, 15A, 30A)." },
               { text: "Enter these details into the NepaCalc NEA Bill Calculator to get your exact bill." }
             ]
-          },
-          dataset: {
-            name: "Nepal Electricity Tariff Rates",
-            description: "Official domestic electricity tariff rates for Nepal.",
-            license: "https://creativecommons.org/licenses/by/4.0/"
           }
         }}
       />

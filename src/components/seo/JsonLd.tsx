@@ -209,12 +209,7 @@ function generateSchema(
         spatialCoverage: data.spatialCoverage,
         creator: { '@type': 'Organization', '@id': orgId, name: 'NepaCalc', url: 'https://nepacalc.com' },
         license: data.license,
-        includedInDataCatalog: {
-          '@type': 'DataCatalog',
-          '@id': 'https://nepacalc.com/market-rates/#datacatalog',
-          name: 'NepaCalc Market Rates',
-          url: 'https://nepacalc.com/market-rates/',
-        },
+        ...(data.isPartOf ? { isPartOf: typeof data.isPartOf === 'string' ? data.isPartOf : data.isPartOf.url } : {}),
         mainEntityOfPage: data.url ? { '@id': `${data.url}#webpage` } : undefined,
       };
 
