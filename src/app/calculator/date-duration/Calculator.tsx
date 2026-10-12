@@ -660,9 +660,9 @@ export default function DateDuration() {
           </div>
         </section>
 
-        {/* 8. Excel */}
+        {/* 8. Excel and Google Sheets */}
         <section id="excel">
-          <h2 className="text-lg font-bold text-[#1967D2] mb-2">How to Calculate Days Between Dates in Excel</h2>
+          <h2 className="text-lg font-bold text-[#1967D2] mb-2">How to Calculate Days Between Dates in Excel and Google Sheets</h2>
           <p className="text-[#5F6368] text-sm mb-3">If the start date is in A2 and the end date is in B2:</p>
           <div className="space-y-1.5">
             {[
@@ -763,7 +763,7 @@ export default function DateDuration() {
             ['#leap-years', 'Leap Years'],
             ['#business-days', 'Business Days'],
             ['#examples', 'Examples'],
-            ['#excel', 'Excel Formulas'],
+            ['#excel', 'Excel & Sheets'],
             ['#common-mistakes', 'Common Mistakes'],
             ['#faq', 'FAQ'],
             ['#related', 'Related Calculators'],
@@ -794,7 +794,7 @@ export default function DateDuration() {
         { label: 'Calculators', href: '/calculator/' },
         { label: 'Date Duration Calculator' },
       ]}
-      title="Date Duration Calculator - Days Between Dates"
+      title="Date Duration Calculator"
       description="Calculate the time between two dates in days, weeks, months and years."
       icon={Calendar}
       inputs={inputsPanel}
