@@ -287,7 +287,7 @@ export default function DateDuration() {
       {/* Quick presets */}
       <div>
         <p className="text-[10px] font-bold uppercase tracking-widest text-[#70757A] mb-1">Quick Dates</p>
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar sm:flex-wrap">
+        <div className="flex items-center gap-1.5 overflow-x-auto flex-nowrap py-0.5 no-scrollbar touch-pan-x">
           {PRESETS.map(({ key, label }) => (
             <Chip
               key={key}
