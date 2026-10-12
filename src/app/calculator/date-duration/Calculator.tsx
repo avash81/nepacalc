@@ -142,7 +142,7 @@ function Chip({ label, active, onClick }: { label: string; active?: boolean; onC
     <button
       type="button"
       onClick={onClick}
-      className={`px-2.5 py-1 rounded-full text-[11px] font-semibold border transition-colors whitespace-nowrap
+      className={`px-2.5 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-[11px] font-semibold border transition-colors whitespace-nowrap shrink-0
         ${active
           ? 'bg-[#1A73E8] text-white border-[#1A73E8]'
           : 'bg-white text-[#5F6368] border-[#DADCE0] hover:border-[#1A73E8] hover:text-[#1A73E8]'
@@ -199,8 +199,7 @@ export default function DateDuration() {
   const [end, setEnd]     = useState('2025-12-31');
   const [includeEnd, setIncludeEnd] = useState(false);
   const [activePreset, setActivePreset] = useState<string | null>('thisYear');
-  const [showMoreResults, setShowMoreResults] = useState(false);
-    const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   // Hydrate from URL params on mount
   useEffect(() => {
@@ -236,7 +235,6 @@ export default function DateDuration() {
     setEnd(r.end);
     setIncludeEnd(false);
     setActivePreset('thisYear');
-    setShowMoreResults(false);
   };
 
   const handleDateChange = (field: 'start' | 'end', val: string) => {
@@ -288,8 +286,8 @@ export default function DateDuration() {
 
       {/* Quick presets */}
       <div>
-        <p className="text-[10px] font-bold uppercase tracking-widest text-[#70757A] mb-1.5">Quick Dates</p>
-        <div className="flex flex-wrap gap-1.5">
+        <p className="text-[10px] font-bold uppercase tracking-widest text-[#70757A] mb-1">Quick Dates</p>
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar sm:flex-wrap">
           {PRESETS.map(({ key, label }) => (
             <Chip
               key={key}
@@ -432,60 +430,50 @@ export default function DateDuration() {
             <span className="text-sm font-bold text-[#202124]">{fmtWeeks(diff.weeks, diff.remDays)}</span>
           </div>
 
-          {/* ── MORE RESULTS ── */}
+          {/* ── MORE RESULTS (Permanently visible) ── */}
           <div className="border border-[#DADCE0] rounded-lg overflow-hidden">
-            <button
-              type="button"
-              onClick={() => setShowMoreResults(v => !v)}
-              aria-expanded={showMoreResults}
-              aria-controls="more-results-panel"
-              className="w-full flex items-center justify-between px-3.5 py-2 bg-[#F8F9FA] hover:bg-[#E8F0FE] text-[10px] font-bold uppercase tracking-widest text-[#5F6368] transition-colors"
-            >
-              More Results
-              {showMoreResults ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
-            </button>
-
-            {showMoreResults && (
-              <div id="more-results-panel" className="px-3.5 py-2.5 bg-white space-y-2.5">
-                {/* Hours / Minutes / Seconds */}
-                <div className="grid grid-cols-3 gap-1.5">
-                  {[
-                    { label: 'Hours',   value: diff.hours.toLocaleString() },
-                    { label: 'Minutes', value: diff.minutes.toLocaleString() },
-                    { label: 'Seconds', value: diff.seconds.toLocaleString() },
-                  ].map(({ label, value }) => (
-                    <div key={label} className="bg-[#F8F9FA] border border-[#DADCE0] rounded-md p-2 text-center">
-                      <div className="text-xs font-black text-[#202124] tabular-nums break-all">{value}</div>
-                      <div className="text-[8px] font-bold uppercase text-[#70757A] mt-0.5">{label}</div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Business / Weekend days */}
-                <div className="grid grid-cols-2 gap-1.5">
-                  <div className="bg-[#F0FDF4] border border-[#86EFAC] rounded-md p-2 text-center">
-                    <div className="text-base font-black text-[#16a34a] tabular-nums">
-                      {diff.businessDays.toLocaleString()}
-                    </div>
-                    <div className="text-[8px] font-bold uppercase text-[#16a34a] mt-0.5">Business Days</div>
-                    <div className="text-[8px] text-[#6b7280]">Weekdays only</div>
+            <div className="px-3 py-1.5 bg-[#F8F9FA] border-b border-[#DADCE0]">
+              <span className="text-[9px] font-bold uppercase tracking-widest text-[#5F6368]">More Results</span>
+            </div>
+            <div className="p-2 sm:p-2.5 bg-white space-y-2">
+              {/* Hours / Minutes / Seconds */}
+              <div className="grid grid-cols-3 gap-1.5">
+                {[
+                  { label: 'Hours',   value: diff.hours.toLocaleString() },
+                  { label: 'Minutes', value: diff.minutes.toLocaleString() },
+                  { label: 'Seconds', value: diff.seconds.toLocaleString() },
+                ].map(({ label, value }) => (
+                  <div key={label} className="bg-[#F8F9FA] border border-[#DADCE0] rounded p-1.5 text-center">
+                    <div className="text-xs font-black text-[#202124] tabular-nums break-all leading-tight">{value}</div>
+                    <div className="text-[8px] font-bold uppercase text-[#70757A] mt-0.5">{label}</div>
                   </div>
-                  <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-md p-2 text-center">
-                    <div className="text-base font-black text-[#202124] tabular-nums">
-                      {diff.weekendDays.toLocaleString()}
-                    </div>
-                    <div className="text-[8px] font-bold uppercase text-[#70757A] mt-0.5">Weekend Days</div>
-                  </div>
-                </div>
-
-                {/* Leap days (only if nonzero) */}
-                {diff.leapDays > 0 && (
-                  <div className="text-[11px] text-[#5F6368] px-1">
-                    Includes {diff.leapDays} leap {diff.leapDays === 1 ? 'day' : 'days'} (Feb 29).
-                  </div>
-                )}
+                ))}
               </div>
-            )}
+
+              {/* Business / Weekend days */}
+              <div className="grid grid-cols-2 gap-1.5">
+                <div className="bg-[#F0FDF4] border border-[#86EFAC] rounded p-1.5 text-center">
+                  <div className="text-sm sm:text-base font-black text-[#16a34a] tabular-nums leading-tight">
+                    {diff.businessDays.toLocaleString()}
+                  </div>
+                  <div className="text-[8px] font-bold uppercase text-[#16a34a] mt-0.5">Business Days</div>
+                  <div className="text-[8px] text-[#6b7280]">Weekdays only</div>
+                </div>
+                <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded p-1.5 text-center">
+                  <div className="text-sm sm:text-base font-black text-[#202124] tabular-nums leading-tight">
+                    {diff.weekendDays.toLocaleString()}
+                  </div>
+                  <div className="text-[8px] font-bold uppercase text-[#70757A] mt-0.5">Weekend Days</div>
+                </div>
+              </div>
+
+              {/* Leap days (only if nonzero) */}
+              {diff.leapDays > 0 && (
+                <div className="text-[10px] text-[#5F6368] px-1">
+                  Includes {diff.leapDays} leap {diff.leapDays === 1 ? 'day' : 'days'} (Feb 29).
+                </div>
+              )}
+            </div>
           </div>
 
           {/* ── DATE RANGE ── */}
