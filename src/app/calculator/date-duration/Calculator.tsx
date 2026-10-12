@@ -282,11 +282,11 @@ export default function DateDuration() {
 
   // ─── Inputs panel ──────────────────────────────────────────────────────────
   const inputsPanel = (
-    <div className="space-y-3 pb-1">
+    <div className="space-y-2.5 -mt-1 sm:-mt-2 pb-1">
 
       {/* Quick presets */}
       <div>
-        <p className="text-[10px] font-bold uppercase tracking-widest text-[#70757A] mb-1">Quick Dates</p>
+        <p className="text-[9px] font-bold uppercase tracking-widest text-[#70757A] mb-0.5">Quick Dates</p>
         <div className="flex items-center gap-1.5 overflow-x-auto flex-nowrap py-0.5 no-scrollbar touch-pan-x">
           {PRESETS.map(({ key, label }) => (
             <Chip
