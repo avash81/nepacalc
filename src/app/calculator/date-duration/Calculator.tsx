@@ -398,7 +398,7 @@ export default function DateDuration() {
               Total Calendar Days
             </div>
             {includeEnd && (
-              <div className="mt-1 text-[10px] opacity-70">Inclusive — both dates counted</div>
+              <div className="mt-1 text-[10px] opacity-70">Inclusive: both dates counted</div>
             )}
           </div>
 
@@ -541,8 +541,15 @@ export default function DateDuration() {
         {/* 1. Direct Answer */}
         <section id="days-between-dates">
           <h2 className="text-lg font-bold text-[#1967D2] mb-2">How Many Days Are Between Two Dates?</h2>
-          <p className="text-[#202124] text-sm leading-relaxed">
-            Enter a start date and an end date above. The calculator subtracts the start date from the end date to give the elapsed number of calendar days. Turn on <strong>Include end date</strong> when both dates should be counted.
+          <p className="text-[#202124] text-sm leading-relaxed mb-3">
+            Enter a start date and an end date above. The calculator determines the number of calendar days between them using two standard methods:
+          </p>
+          <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-3 space-y-1.5 text-sm font-mono text-[#202124] mb-3">
+            <div><strong className="text-[#1967D2]">Elapsed days</strong> = End date − Start date</div>
+            <div><strong className="text-[#1967D2]">Inclusive days</strong> = Elapsed days + 1</div>
+          </div>
+          <p className="text-[#5F6368] text-sm leading-relaxed">
+            For example, from July 1 to July 5, the elapsed duration is 4 days (July 5 − July 1). If you turn on <strong>Include end date</strong>, both July 1 and July 5 are counted, giving 5 inclusive days.
           </p>
         </section>
 
@@ -609,7 +616,7 @@ export default function DateDuration() {
         <section id="leap-years">
           <h2 className="text-lg font-bold text-[#1967D2] mb-2">Leap Years and Date Duration</h2>
           <p className="text-[#5F6368] text-sm leading-relaxed">
-            Date durations can cross leap years, which contain 366 days instead of 365. The calculator uses the actual calendar dates when determining the duration, so February&nbsp;29 is included when it falls within the selected date range.
+            Date durations can cross leap years, which contain 366 days instead of 365 because February has 29 days instead of 28. The calculator uses exact calendar dates when determining durations, automatically accounting for February 29 whenever it falls within the selected date range.
           </p>
         </section>
 
@@ -617,7 +624,7 @@ export default function DateDuration() {
         <section id="business-days">
           <h2 className="text-lg font-bold text-[#1967D2] mb-2">Calendar Days vs. Business Days</h2>
           <p className="text-[#5F6368] text-sm leading-relaxed">
-            Calendar days include every day in the date range. Business-day calculations count weekdays only and exclude Saturdays and Sundays. Public holidays are not excluded, as holiday rules vary by country and region.
+            Calendar days count every consecutive day in the selected date range, including Saturdays and Sundays. In contrast, the calculator&apos;s business-day count includes weekdays only (Monday through Friday) and excludes Saturdays and Sundays. Public holidays are not excluded by this calculator, as statutory holiday schedules vary widely by country, state, and organization.
           </p>
         </section>
 
@@ -627,19 +634,19 @@ export default function DateDuration() {
           <div className="space-y-2">
             {[
               {
-                title: 'Short range — same month',
-                range: 'July 1, 2025 to July 5, 2025',
-                lines: ['Standard: 4 days', 'Inclusive: 5 days'],
+                title: 'Full calendar year (2025)',
+                range: 'January 1, 2025 to December 31, 2025',
+                lines: ['Elapsed: 364 days', 'Inclusive: 365 days (full common year)'],
               },
               {
-                title: 'Full calendar year',
+                title: 'Consecutive year milestone',
                 range: 'January 1, 2025 to January 1, 2026',
-                lines: ['Elapsed: 365 days'],
+                lines: ['Elapsed: 365 days (exactly 1 year)', 'Inclusive: 366 days'],
               },
               {
-                title: 'Leap year range',
-                range: 'January 1, 2024 to January 1, 2025',
-                lines: ['Elapsed: 366 days (2024 is a leap year)'],
+                title: 'Leap year range (2024)',
+                range: 'January 1, 2024 to December 31, 2024',
+                lines: ['Elapsed: 365 days', 'Inclusive: 366 days (includes February 29)'],
               },
             ].map(ex => (
               <div key={ex.title} className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg px-4 py-3">
@@ -661,7 +668,7 @@ export default function DateDuration() {
             {[
               { code: '=B2-A2',             desc: 'Simple subtraction' },
               { code: '=DAYS(B2,A2)',        desc: 'DAYS function' },
-              { code: '=DATEDIF(A2,B2,"d")', desc: 'DATEDIF — elapsed days' },
+              { code: '=DATEDIF(A2,B2,"d")', desc: 'DATEDIF: elapsed days' },
               { code: '=NETWORKDAYS(A2,B2)', desc: 'Weekdays only' },
             ].map(({ code, desc }) => (
               <div key={code} className="flex items-center gap-3 bg-[#F8F9FA] border border-[#DADCE0] rounded px-3 py-2">
@@ -690,24 +697,32 @@ export default function DateDuration() {
           <div className="space-y-4">
             {[
               {
-                q: 'How do I calculate the number of days between two dates?',
-                a: 'Subtract the start date from the end date. For example, July 1 to July 5 is 4 elapsed days. Enable Include end date when both dates should be counted.',
+                q: 'How do I calculate days between two dates?',
+                a: 'Subtract the start date from the end date to get the elapsed day count. If you need to count both the beginning and ending dates as full calendar days, add 1 (inclusive count).',
               },
               {
-                q: 'Does the calculator include leap years?',
-                a: 'Yes. Date ranges use the actual calendar dates, including February 29 during leap years.',
+                q: 'What is inclusive versus exclusive counting?',
+                a: 'Exclusive (standard elapsed) counting measures the duration between dates without counting the end date as a full day (End date − Start date). Inclusive counting includes both the start date and end date (Elapsed days + 1).',
               },
               {
-                q: 'Does the calculator count weekends?',
-                a: 'Calendar-day results include weekends. Business-day results count weekdays only and exclude weekends.',
+                q: 'Does the calculator account for leap years?',
+                a: 'Yes. The calculator uses exact Gregorian calendar logic. If the selected date range spans February 29 of a leap year (such as 2024 or 2028), that 366th day is automatically included in the count.',
               },
               {
-                q: 'What is the difference between inclusive and exclusive dates?',
-                a: 'Standard elapsed counting measures the time between the dates. Inclusive counting includes both the start date and end date.',
+                q: 'Does it count weekends?',
+                a: 'Yes. The total calendar days count includes all Saturdays and Sundays. The calculator also breaks out business days (weekdays) and weekend days separately in the results.',
               },
               {
-                q: 'Can I calculate business days between two dates?',
-                a: 'Yes. Expand More Results to see Business Days — weekdays only, weekends excluded.',
+                q: 'Can it calculate business days?',
+                a: 'Yes. Expand More Results to see the Business Days count, which counts Monday through Friday and excludes weekends (Saturdays and Sundays).',
+              },
+              {
+                q: 'How are months and years calculated?',
+                a: 'Months and years are determined using calendar-based date subtraction rather than dividing by a fixed 30 or 365 days. The calculator accounts for the varying lengths of individual months (28, 29, 30, or 31 days) to show exact elapsed years, months, and remaining days.',
+              },
+              {
+                q: 'Why can the months and years differ from the total number of days?',
+                a: 'Total days measure the elapsed time between two dates. The years, months, and days breakdown uses calendar units, and months have different lengths. As a result, the calendar duration does not always convert directly into the same total number of days. Use the total calendar days result when you need the exact day count.',
               },
             ].map(({ q, a }) => (
               <div key={q}>
@@ -729,7 +744,7 @@ export default function DateDuration() {
             ].map(({ label, href, desc }) => (
               <li key={href}>
                 <Link href={href} className="font-semibold text-[#1A73E8] hover:underline">{label}</Link>
-                <span className="text-[#5F6368]"> — {desc}</span>
+                <span className="text-[#5F6368]">: {desc}</span>
               </li>
             ))}
           </ul>
@@ -779,7 +794,7 @@ export default function DateDuration() {
         { label: 'Calculators', href: '/calculator/' },
         { label: 'Date Duration Calculator' },
       ]}
-      title="Date Duration Calculator – Days Between Dates"
+      title="Date Duration Calculator - Days Between Dates"
       description="Calculate the time between two dates in days, weeks, months and years."
       icon={Calendar}
       inputs={inputsPanel}

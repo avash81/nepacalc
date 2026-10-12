@@ -3,7 +3,7 @@ import Calculator from './Calculator';
 
 export const metadata: Metadata = {
   title: 'Date Duration Calculator: Days Between Dates | NepaCalc',
-  description: 'Calculate the exact duration between two dates in days, weeks, months and years. Include the end date, count business days, and see the result instantly.',
+  description: 'Calculate the days between two dates with NepaCalc. View total days, weeks, calendar duration and business days, with inclusive counting and leap-year support.',
   alternates: {
     canonical: 'https://nepacalc.com/calculator/date-duration/',
   },
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Date Duration Calculator: Days Between Dates | NepaCalc',
-    description: 'Calculate the exact duration between two dates in days, weeks, months and years. Include the end date, count business days, and see the result instantly.',
+    description: 'Calculate the days between two dates with NepaCalc. View total days, weeks, calendar duration and business days, with inclusive counting and leap-year support.',
     url: 'https://nepacalc.com/calculator/date-duration/',
     siteName: 'NepaCalc',
     type: 'website',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Date Duration Calculator: Days Between Dates | NepaCalc',
-    description: 'Calculate the exact duration between two dates in days, weeks, months and years. Include the end date, count business days, and see the result instantly.',
+    description: 'Calculate the days between two dates with NepaCalc. View total days, weeks, calendar duration and business days, with inclusive counting and leap-year support.',
     images: ['https://nepacalc.com/images/og/date-duration-calculator.jpg'],
   },
 };
@@ -40,42 +40,58 @@ export default function Page() {
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "How do I calculate the number of days between two dates?",
+        "name": "How do I calculate days between two dates?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Subtract the start date from the end date. For example, July 1 to July 5 is 4 elapsed days. Enable Include end date when both dates should be counted."
+          "text": "Subtract the start date from the end date to get the elapsed day count. If you need to count both the beginning and ending dates as full calendar days, add 1 (inclusive count)."
         }
       },
       {
         "@type": "Question",
-        "name": "Does the calculator include leap years?",
+        "name": "What is inclusive versus exclusive counting?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. Date ranges are calculated using the actual calendar dates, including February 29 during leap years."
+          "text": "Exclusive (standard elapsed) counting measures the duration between dates without counting the end date as a full day (End date − Start date). Inclusive counting includes both the start date and end date (Elapsed days + 1)."
         }
       },
       {
         "@type": "Question",
-        "name": "Does the calculator count weekends?",
+        "name": "Does the calculator account for leap years?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Calendar-day results include weekends. When business-day counting is enabled, weekends are excluded."
+          "text": "Yes. The calculator uses exact Gregorian calendar logic. If the selected date range spans February 29 of a leap year (such as 2024 or 2028), that 366th day is automatically included in the count."
         }
       },
       {
         "@type": "Question",
-        "name": "What is the difference between inclusive and exclusive date counting?",
+        "name": "Does it count weekends?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Standard elapsed counting measures the time between the dates without counting the end date as a full day. Inclusive counting counts both the start and end dates."
+          "text": "Yes. The total calendar days count includes all Saturdays and Sundays. The calculator also breaks out business days (weekdays) and weekend days separately in the results."
         }
       },
       {
         "@type": "Question",
-        "name": "Can I calculate business days between two dates?",
+        "name": "Can it calculate business days?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. The calculator shows business days (weekdays only) in the results. Weekend days are shown separately."
+          "text": "Yes. Expand More Results to see the Business Days count, which counts Monday through Friday and excludes weekends (Saturdays and Sundays)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How are months and years calculated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Months and years are determined using calendar-based date subtraction rather than dividing by a fixed 30 or 365 days. The calculator accounts for the varying lengths of individual months (28, 29, 30, or 31 days) to show exact elapsed years, months, and remaining days."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why can the months and years differ from the total number of days?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Total days measure the elapsed time between two dates. The years, months, and days breakdown uses calendar units, and months have different lengths. As a result, the calendar duration does not always convert directly into the same total number of days. Use the total calendar days result when you need the exact day count."
         }
       }
     ]
