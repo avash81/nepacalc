@@ -56,9 +56,7 @@ export async function generateMetadata(): Promise<Metadata> {
       url: 'https://nepacalc.com/market-rates/live-gold-price/',
       siteName: 'NepaCalc',
       images: [{ url: 'https://nepacalc.com/images/og/gold-price-nepal.jpg', width: 1200, height: 630, alt: 'Gold Price in Nepal Today - Live FENEGOSIDA Rate | NepaCalc' }],
-      type: 'article',
-      publishedTime: '2026-04-21T02:48:38+05:45',
-      modifiedTime: new Date(getLiveData().date).toISOString()
+      type: 'website',
     },
     twitter: {
       card: 'summary_large_image',
@@ -99,15 +97,6 @@ export default async function Page() {
             description: "Check today's official gold and silver prices in Nepal based on FENEGOSIDA benchmarks.",
             isPartOf: "https://nepacalc.com/#website",
             primaryImageOfPage: "https://nepacalc.com/images/og/gold-price-nepal.jpg",
-            image: "https://nepacalc.com/images/og/gold-price-nepal.jpg",
-          },
-          article: {
-            url: "https://nepacalc.com/market-rates/live-gold-price/",
-            headline: "Gold Price in Nepal Today (आजको सुनको भाउ)",
-            description: "Check today's official gold and silver prices in Nepal based on FENEGOSIDA benchmarks.",
-            datePublished: "2026-04-21T02:48:38+05:45",
-            author: "NepaCalc",
-            dateModified: new Date(rawDate).toISOString(),
             image: "https://nepacalc.com/images/og/gold-price-nepal.jpg",
           }
         }} 
