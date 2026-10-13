@@ -1212,7 +1212,7 @@ export default async function Page() {
             <p className="text-sm text-slate-700 leading-relaxed">
               Want to know what is driving the gold price in Nepal right now? Read the{" "}
               <Link href="/blog/nepal-gold-price-analysis-2083/" className="text-blue-600 font-bold hover:underline">
-                Nepal gold price analysis for 2083
+                Nepal gold price analysis
               </Link>{" "}
               for a detailed breakdown of market trends.
             </p>

@@ -53,7 +53,7 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
         </h2>
         <div className="bg-amber-50/50 border border-amber-100 rounded-2xl p-6 mb-8">
           <p className="text-[15px] leading-relaxed text-slate-700 font-medium">
-            Today&apos;s Nepal gold price reflects international LBMA spot prices, the USD/NPR exchange rate, customs duty detailed in our <Link href="/blog/nepal-gold-price-analysis-2083/" className="text-blue-600 hover:underline font-bold">Nepal gold price analysis for 2083</Link>, and FENEGOSIDA&apos;s official daily benchmark. Retail jewellery prices may differ because of making charges, wastage, and VAT.
+            Today&apos;s Nepal gold price reflects international LBMA spot prices, the USD/NPR exchange rate, customs duty detailed in our <Link href="/blog/nepal-gold-price-analysis-2083/" className="text-blue-600 hover:underline font-bold">Nepal gold price analysis</Link>, and FENEGOSIDA&apos;s official daily benchmark. Retail jewellery prices may differ because of making charges, wastage, and VAT.
           </p>
         </div>
 
@@ -607,7 +607,7 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
         <span className="text-slate-300">|</span>
         <Link href="/market-rates/remittance/" className="text-slate-600 hover:text-amber-600 hover:underline">Remittance Rates Nepal</Link>
         <span className="text-slate-300">|</span>
-        <Link href="/blog/nepal-gold-price-analysis-2083/" className="text-slate-600 hover:text-amber-600 hover:underline">Nepal Gold Price Analysis 2083</Link>
+        <Link href="/blog/nepal-gold-price-analysis-2083/" className="text-slate-600 hover:text-amber-600 hover:underline">Nepal Gold Price Analysis</Link>
         <span className="text-slate-300">|</span>
         <Link href="/how-much-gold-can-you-bring-to-nepal/" className="text-slate-600 hover:text-amber-600 hover:underline">How Much Gold Can You Bring to Nepal</Link>
       </div>
