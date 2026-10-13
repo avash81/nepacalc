@@ -241,7 +241,6 @@ export default async function Page() {
           "isAccessibleForFree": true,
           "inLanguage": "en",
           "license": "https://creativecommons.org/licenses/by/4.0/",
-          "dateModified": new Date(rawDate).toISOString(),
           "variableMeasured": ["Gold Price 24K per Tola NPR", "Gold Price 22K per Tola NPR", "Silver Price per Tola NPR", "Gold Price per 10g NPR"],
           "measurementTechnique": "Official FENEGOSIDA benchmark rate published daily",
           "hasPart": [
