@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import PricePerformanceWidget from '@/components/widgets/PricePerformanceWidget';
 import { BookOpen, Scale, Globe, ShieldCheck, CheckCircle2, FileText, Search } from 'lucide-react';
 import HistoricalData from './HistoricalData';
@@ -53,7 +53,7 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
         </h2>
         <div className="bg-amber-50/50 border border-amber-100 rounded-2xl p-6 mb-8">
           <p className="text-[15px] leading-relaxed text-slate-700 font-medium">
-            Today&apos;s Nepal gold price reflects international LBMA spot prices, the USD/NPR exchange rate, customs duty, and FENEGOSIDA&apos;s official daily benchmark. Retail jewellery prices may differ because of making charges, wastage, and VAT.
+            Today&apos;s Nepal gold price reflects international LBMA spot prices, the USD/NPR exchange rate, customs duty detailed in our <Link href="/blog/nepal-gold-price-analysis-2083/" className="text-blue-600 hover:underline font-bold">Nepal gold price analysis for 2083</Link>, and FENEGOSIDA&apos;s official daily benchmark. Retail jewellery prices may differ because of making charges, wastage, and VAT.
           </p>
         </div>
 
@@ -227,7 +227,7 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
             {  title: 'Check FENEGOSIDA Rate', desc: "Verify today's official rate before entering any shop. It is published daily around 10:00 AM NPT." },
             {  title: 'Compare Making Charges', desc: 'Jyala (making charges) typically range from 5% to 15%. Compare across 2–3 shops.' },
             {  title: 'Confirm Purity', desc: '24K = 99.99% pure (investment). 22K Tejabi = 91.6% pure (jewelry). Know what you are buying.' },
-            {  title: 'Use Gold Tax Calculator', desc: <><a href="/calculator/gold-tax/" className="text-blue-600 hover:underline font-bold">Calculate import duties and VAT</a> if you are buying from abroad or importing bullion.</> },
+            {  title: 'Use Gold Tax Calculator', desc: <><a href="/calculator/gold-tax/" className="text-blue-600 hover:underline font-bold">Calculate import duties and VAT</a> or verify customs limits on <Link href="/how-much-gold-can-you-bring-to-nepal/" className="text-blue-600 hover:underline font-bold">how much gold you can bring to Nepal</Link> when arriving from abroad.</> },
           ].map(({ title, desc }) => (
             <div key={title} className="bg-amber-50 border border-amber-100 p-4 rounded-xl">
               
@@ -608,6 +608,8 @@ export default function SeoSections({ rates, fmt: fmtProp }: SeoSectionsProps = 
         <Link href="/market-rates/remittance/" className="text-slate-600 hover:text-amber-600 hover:underline">Remittance Rates Nepal</Link>
         <span className="text-slate-300">|</span>
         <Link href="/blog/nepal-gold-price-analysis-2083/" className="text-slate-600 hover:text-amber-600 hover:underline">Nepal Gold Price Analysis 2083</Link>
+        <span className="text-slate-300">|</span>
+        <Link href="/how-much-gold-can-you-bring-to-nepal/" className="text-slate-600 hover:text-amber-600 hover:underline">How Much Gold Can You Bring to Nepal</Link>
       </div>
 
     </div>
