@@ -135,7 +135,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     
     return {
       url: cleanUrl(isDirectRoute ? `/${calc.slug}` : `/calculator/${calc.slug}`),
-      lastModified: calc.slug === 'nea-bill' ? new Date('2026-06-19T00:00:00Z') : (isGoldPage || calc.slug.includes('silver') ? goldRateDate : (isMarketRate ? forexDate : lastModDate)),
+      lastModified: calc.slug === 'nea-bill' ? new Date('2026-06-19T00:00:00Z') : ((isGoldPage || calc.slug.includes('silver')) ? lastModDate : (isMarketRate ? forexDate : lastModDate)),
       changeFrequency: isMarketRate ? ('daily' as const) : (isCritical ? 'daily' as const : 'weekly' as const),
       // Gold price is highest-value page — priority 1.0 (same as homepage)
       priority: isGoldPage ? 1.0 : calc.slug === 'nea-bill' ? 0.95 : (isCritical ? 0.9 : (isMarketRate ? 0.9 : 0.75)),
