@@ -77,7 +77,7 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       title: 'Live Silver Price in Nepal Today | Chandi Rate Per Tola & Gram',
       description,
-      type: 'article',
+      type: 'website',
       url: 'https://nepacalc.com/market-rates/silver-price-nepal/',
       images: [
         {
@@ -136,47 +136,6 @@ const schemaGraph = {
       primaryImageOfPage: {
         '@id': 'https://nepacalc.com/market-rates/silver-price-nepal/#primaryimage',
       },
-    },
-    {
-      '@type': 'Article',
-      '@id': 'https://nepacalc.com/market-rates/silver-price-nepal/#article',
-      isPartOf: {
-        '@id': 'https://nepacalc.com/market-rates/silver-price-nepal/#webpage',
-      },
-      author: {
-        '@id': 'https://nepacalc.com/#organization',
-      },
-      headline: 'Live Silver Price in Nepal Today',
-      datePublished: '2026-04-21T02:48:38+05:45',
-      dateModified: '', 
-      mainEntityOfPage: {
-        '@id': 'https://nepacalc.com/market-rates/silver-price-nepal/#webpage',
-      },
-      publisher: {
-        '@id': 'https://nepacalc.com/#organization',
-      },
-      image: {
-        '@id': 'https://nepacalc.com/market-rates/silver-price-nepal/#primaryimage',
-      },
-      articleSection: 'Market Rates',
-      keywords: [
-        'Silver Price Nepal',
-        'Chandi Rate',
-        'Live Silver Price Today',
-        'FENEGOSIDA Silver',
-      ],
-      mentions: [
-        { '@type': 'Thing', name: 'Silver' },
-        { '@type': 'Thing', name: 'Chandi' },
-        { '@type': 'Thing', name: 'Tola' },
-        { '@type': 'Thing', name: 'Gram' },
-        { '@type': 'Thing', name: 'Kilogram' },
-        { '@type': 'Thing', name: 'Nepal Rastra Bank' },
-        { '@type': 'Thing', name: 'XAG/USD' },
-        { '@type': 'Thing', name: 'Precious Metal' },
-        { '@type': 'Thing', name: 'Bullion' },
-        { '@type': 'Thing', name: 'FENEGOSIDA' },
-      ],
     },
     {
       '@type': 'ImageObject',
@@ -310,9 +269,8 @@ export default async function Page() {
   const dynamicDescription = `Today's live silver price in Nepal from FENEGOSIDA: ${priceSnippet} per tola. Check the current Chandi rate per gram and kg.`;
 
   const dynamicSchema = JSON.parse(JSON.stringify(schemaGraph));
-  if (dynamicSchema['@graph'] && dynamicSchema['@graph'][3]) {
-    dynamicSchema['@graph'][3].dateModified = new Date(rawDate).toISOString();
-    dynamicSchema['@graph'][3].description = dynamicDescription;
+  if (dynamicSchema['@graph'] && dynamicSchema['@graph'][1]) {
+    dynamicSchema['@graph'][1].description = dynamicDescription;
   }
 
   const fmt = (n: number) => n.toLocaleString('en-IN');
