@@ -1,24 +1,24 @@
 {
   "gold": {
     "tolaNPR": {
-      "current": 289500,
-      "previous": 292200
+      "current": 288400,
+      "previous": 289500
     },
-    "tenGramNPR": 248200,
-    "tejabiTolaNPR": 288800
+    "tenGramNPR": 247255,
+    "tejabiTolaNPR": 287700
   },
   "silver": {
     "tolaNPR": {
-      "current": 4255,
-      "previous": 4355
+      "current": 4035,
+      "previous": 4255
     },
-    "tenGramNPR": 3648
+    "tenGramNPR": 3459.5
   },
   "source": "FENEGOSIDA",
   "source_url": "https://api.fenegosida.org/api/website/v1/Dashboard/today",
   "source_name": "Federation of Nepal Gold & Silver Dealers’ Association",
-  "rate_date": "2026-10-14",
-  "published_at": "2026-10-14T04:49:19.983+00:00",
-  "fetched_at": "2026-10-14T05:01:13.383Z",
+  "rate_date": "2026-10-15",
+  "published_at": "2026-10-15T04:49:56.188+00:00",
+  "fetched_at": "2026-10-15T05:02:08.482Z",
   "status": "verified"
 }
