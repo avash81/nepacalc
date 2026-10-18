@@ -154,30 +154,30 @@ export default function MomoCalculator() {
           <div className="border-t border-[#DADCE0]" />
 
           {/* Primary Controls */}
-          <div className="space-y-4">
+          <div className="space-y-5">
             {/* Type */}
             <div className="space-y-1.5">
-              <label htmlFor="type-0" className="text-[13px] font-bold text-[#202124] block">Momo type</label>
+              <label htmlFor="type-0" className="text-sm font-bold text-[#202124] block">Momo type</label>
               <div className="relative">
                 <select
                   id="type-0"
                   value={items[0].type}
                   onChange={e => updateItem(0, { type: e.target.value })}
-                  className="w-full h-10 pl-3 pr-10 bg-white border border-[#DADCE0] rounded-md text-[13px] font-bold text-[#202124] focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none appearance-none cursor-pointer"
+                  className="w-full h-11 pl-4 pr-10 bg-white border border-[#DADCE0] hover:border-slate-400 rounded-lg text-sm font-bold text-[#202124] focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none appearance-none cursor-pointer shadow-sm transition-all"
                   aria-label="Select momo type"
                 >
                   {MOMO_TYPES.map(t => (
                     <option key={t.id} value={t.id}>{t.label} Momo</option>
                   ))}
                 </select>
-                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#5F6368] pointer-events-none" />
+                <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#5F6368] pointer-events-none" />
               </div>
-              <p className="text-[11px] text-[#5F6368]">Standard estimate: {MOMO_TYPES.find(x => x.id === items[0].type)?.cal} kcal/piece steamed</p>
+              <p className="text-xs text-[#5F6368] font-medium pt-0.5">Standard estimate: {MOMO_TYPES.find(x => x.id === items[0].type)?.cal} kcal/piece steamed</p>
             </div>
 
             {/* Method */}
-            <div className="space-y-1.5">
-              <label className="text-[13px] font-bold text-[#202124] block">Cooking method</label>
+            <div className="space-y-2">
+              <label className="text-sm font-bold text-[#202124] block">Cooking method</label>
               <div className="flex flex-wrap gap-2">
                 {COOKING_METHODS.map(cm => (
                   <button
@@ -185,7 +185,7 @@ export default function MomoCalculator() {
                     onClick={() => updateItem(0, { method: cm.id })}
                     aria-label={`Select ${cm.label} method`}
                     aria-pressed={items[0].method === cm.id}
-                    className={`px-3 py-1.5 text-[12px] font-bold rounded-md border transition-all ${items[0].method === cm.id ? 'bg-[#202124] border-[#202124] text-white' : 'bg-white border-[#DADCE0] text-[#5F6368] hover:bg-slate-50'}`}
+                    className={`px-3.5 py-2 text-xs font-bold rounded-lg border transition-all shadow-sm ${items[0].method === cm.id ? 'bg-[#202124] border-[#202124] text-white' : 'bg-white border-[#DADCE0] text-[#5F6368] hover:bg-slate-50 hover:border-slate-300'}`}
                   >
                     {cm.label}
                   </button>
@@ -195,15 +195,15 @@ export default function MomoCalculator() {
 
             {/* Quantity */}
             <div className="space-y-2">
-              <label className="text-[13px] font-bold text-[#202124] block">Quantity</label>
+              <label className="text-sm font-bold text-[#202124] block">Quantity</label>
               <div className="flex items-center gap-2">
-                <button aria-label="Decrease quantity" onClick={() => updateItem(0, { pieces: Math.max(1, items[0].pieces - 1) })} className="w-10 h-10 flex items-center justify-center border border-[#DADCE0] rounded-md text-[#5F6368] hover:bg-slate-50 font-bold text-lg">−</button>
-                <span className="w-8 text-center font-bold text-[#202124] text-sm">{items[0].pieces}</span>
-                <button aria-label="Increase quantity" onClick={() => updateItem(0, { pieces: Math.min(100, items[0].pieces + 1) })} className="w-10 h-10 flex items-center justify-center border border-[#DADCE0] rounded-md text-[#5F6368] hover:bg-slate-50 font-bold text-lg">+</button>
+                <button aria-label="Decrease quantity" onClick={() => updateItem(0, { pieces: Math.max(1, items[0].pieces - 1) })} className="w-10 h-10 flex items-center justify-center border border-[#DADCE0] rounded-lg bg-white text-[#5F6368] hover:bg-slate-50 font-bold text-lg shadow-sm transition-all">−</button>
+                <span className="w-9 text-center font-bold text-[#202124] text-sm">{items[0].pieces}</span>
+                <button aria-label="Increase quantity" onClick={() => updateItem(0, { pieces: Math.min(100, items[0].pieces + 1) })} className="w-10 h-10 flex items-center justify-center border border-[#DADCE0] rounded-lg bg-white text-[#5F6368] hover:bg-slate-50 font-bold text-lg shadow-sm transition-all">+</button>
               </div>
               <div className="flex flex-wrap gap-1.5 pt-1">
                 {[1, 2, 4, 6, 8, 10, 12, 20].map(n => (
-                  <button key={n} onClick={() => updateItem(0, { pieces: n })} className={`px-2 py-1 text-[11px] font-bold rounded border transition-all ${items[0].pieces === n ? 'bg-[#202124] border-[#202124] text-white' : 'bg-white border-[#DADCE0] text-[#5F6368] hover:bg-slate-50'}`}>
+                  <button key={n} onClick={() => updateItem(0, { pieces: n })} className={`px-2.5 py-1 text-xs font-bold rounded-md border transition-all ${items[0].pieces === n ? 'bg-[#202124] border-[#202124] text-white' : 'bg-white border-[#DADCE0] text-[#5F6368] hover:bg-slate-50'}`}>
                     {n}
                   </button>
                 ))}
@@ -211,17 +211,17 @@ export default function MomoCalculator() {
             </div>
 
             {/* Sauces */}
-            <div className="space-y-1.5 pt-2">
+            <div className="space-y-1.5 pt-1">
               {items[0].sauces.length === 0 ? (
                 <details className="group">
-                  <summary className="text-[13px] font-bold text-[#1967D2] cursor-pointer list-none select-none inline-flex items-center gap-1">
+                  <summary className="text-sm font-bold text-[#1967D2] cursor-pointer list-none select-none inline-flex items-center gap-1.5 hover:underline">
                     <Plus className="w-4 h-4" /> Add sauce / extras
                   </summary>
                   <div className="pt-3 grid grid-cols-2 sm:grid-cols-3 gap-2">
                     {SAUCES.map(s => (
-                      <label key={s.id} className="flex items-center gap-1.5 cursor-pointer p-1.5 border border-[#DADCE0] rounded bg-white hover:bg-slate-50">
-                        <input type="checkbox" checked={false} onChange={() => toggleSauce(0, s.id)} className="w-3.5 h-3.5 rounded border-[#DADCE0] text-[#1967D2] focus:ring-[#1967D2]" aria-label={`Add ${s.label}`} />
-                        <span className="text-[11px] font-bold text-[#202124] leading-none">{s.label} <span className="font-normal text-[#5F6368]">+{s.cal}</span></span>
+                      <label key={s.id} className="flex items-center gap-2 cursor-pointer p-2 border border-[#DADCE0] rounded-lg bg-white hover:bg-slate-50 shadow-sm transition-all">
+                        <input type="checkbox" checked={false} onChange={() => toggleSauce(0, s.id)} className="w-4 h-4 rounded border-[#DADCE0] text-[#1967D2] focus:ring-[#1967D2]" aria-label={`Add ${s.label}`} />
+                        <span className="text-xs font-bold text-[#202124] leading-none">{s.label} <span className="font-normal text-[#5F6368]">+{s.cal}</span></span>
                       </label>
                     ))}
                   </div>
@@ -229,26 +229,26 @@ export default function MomoCalculator() {
               ) : (
                 <div>
                   <details className="group" open>
-                    <summary className="text-[13px] font-bold text-[#202124] cursor-pointer list-none select-none flex items-center justify-between">
+                    <summary className="text-sm font-bold text-[#202124] cursor-pointer list-none select-none flex items-center justify-between">
                       Sauce / extras <ChevronDown className="w-4 h-4 group-open:rotate-180 transition-transform" />
                     </summary>
                     <div className="pt-3 grid grid-cols-2 sm:grid-cols-3 gap-2 mb-3">
                       {SAUCES.map(s => (
-                        <label key={s.id} className="flex items-center gap-1.5 cursor-pointer p-1.5 border border-[#DADCE0] rounded bg-white hover:bg-slate-50">
-                          <input type="checkbox" checked={items[0].sauces.includes(s.id)} onChange={() => toggleSauce(0, s.id)} className="w-3.5 h-3.5 rounded border-[#DADCE0] text-[#1967D2] focus:ring-[#1967D2]" aria-label={s.label} />
-                          <span className="text-[11px] font-bold text-[#202124] leading-none">{s.label} <span className="font-normal text-[#5F6368]">+{s.cal}</span></span>
+                        <label key={s.id} className="flex items-center gap-2 cursor-pointer p-2 border border-[#DADCE0] rounded-lg bg-white hover:bg-slate-50 shadow-sm transition-all">
+                          <input type="checkbox" checked={items[0].sauces.includes(s.id)} onChange={() => toggleSauce(0, s.id)} className="w-4 h-4 rounded border-[#DADCE0] text-[#1967D2] focus:ring-[#1967D2]" aria-label={s.label} />
+                          <span className="text-xs font-bold text-[#202124] leading-none">{s.label} <span className="font-normal text-[#5F6368]">+{s.cal}</span></span>
                         </label>
                       ))}
                     </div>
                   </details>
                   <div className="flex flex-wrap gap-2 items-center mt-2">
-                    <span className="text-[11px] font-bold text-[#5F6368]">Extras:</span>
+                    <span className="text-xs font-bold text-[#5F6368]">Extras:</span>
                     {items[0].sauces.map(sid => {
                       const s = SAUCES.find(x => x.id === sid)!;
                       return (
-                        <span key={sid} className="inline-flex items-center gap-1 px-2 py-1 bg-slate-100 rounded-full text-[11px] font-bold text-[#202124]">
+                        <span key={sid} className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-slate-100 rounded-full text-xs font-bold text-[#202124]">
                           {s.label}
-                          <button aria-label={`Remove ${s.label}`} onClick={() => toggleSauce(0, sid)} className="text-[#5F6368] hover:text-rose-500"><X className="w-3 h-3"/></button>
+                          <button aria-label={`Remove ${s.label}`} onClick={() => toggleSauce(0, sid)} className="text-[#5F6368] hover:text-rose-500"><X className="w-3.5 h-3.5"/></button>
                         </span>
                       );
                     })}
