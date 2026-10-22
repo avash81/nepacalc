@@ -61,7 +61,7 @@ interface Preset {
 
 const PRESETS: Preset[] = [
   { label: 'Room (12×14 ft)', shape: 'rectangle', unit: 'ft', params: { length: 14, width: 12 }, note: 'Standard bedroom floor space' },
-  { label: 'Plot (4 Aana)', shape: 'rectangle', unit: 'ft', params: { length: 45.63, width: 30 }, note: '1,369 sq ft standard Kathmandu house plot' },
+  { label: 'Garden Plot (1,369 sq ft)', shape: 'rectangle', unit: 'ft', params: { length: 45.63, width: 30 }, note: '1,369 sq ft example plot (45.63 × 30 ft)' },
   { label: 'Olympic Pool (50×25 m)', shape: 'rectangle', unit: 'm', params: { length: 50, width: 25 }, note: '1,250 m² competition pool surface' },
   { label: 'Round Table (Ø 5 ft)', shape: 'circle', unit: 'ft', params: { diameter: 5, radius: 2.5 }, note: 'Dining table surface area' },
   { label: 'Triangular Gable (8×6 m)', shape: 'triangle', unit: 'm', params: { base: 8, height: 6 }, note: 'Roof gable wall area' },
@@ -300,8 +300,8 @@ export default function AreaCalculator() {
         { label: 'Calculators', href: '/calculator/' },
         { label: 'Area Calculator' },
       ]}
-      title="Area Calculator — Accurate 2D Surface & Plot Area"
-      description="Quickly calculate the surface area of squares, rectangles, circles, triangles, trapezoids, parallelograms, and ellipses with live metric, imperial, and Nepali land conversions."
+      title="Area Calculator — Find the Area of Any Shape Online"
+      description="Find the area of squares, rectangles, circles, triangles, trapezoids, parallelograms, rhombuses, and ellipses. Instant results in m², sq ft, acres, hectares, and more."
       icon={Shapes}
       relatedTools={[
         { label: "Nepal Land Converter", href: "/calculator/nepal-land/" },
@@ -846,39 +846,40 @@ export default function AreaCalculator() {
                 </div>
               </div>
 
-              {/* Nepali Land Measurement Card (Chetrafal) */}
-              <div className="bg-white border border-[#DADCE0] rounded-xl overflow-hidden shadow-xs">
-                <div className="px-5 py-3 bg-[#F8F9FA] border-b border-[#DADCE0] flex items-center justify-between">
+              {/* Regional Land Units — collapsible for Nepal / South Asia users */}
+              <details className="bg-white border border-[#DADCE0] rounded-xl overflow-hidden shadow-xs">
+                <summary className="px-5 py-3 bg-[#F8F9FA] border-b border-[#DADCE0] flex items-center justify-between cursor-pointer select-none list-none">
                   <span className="text-[11px] font-black text-[#202124] uppercase tracking-wider">
-                    Nepali Real Estate Units (क्षेत्रफल / Chetrafal)
+                    Regional Land Units — Ropani · Bigha · Kattha
                   </span>
-                  <Link href="/calculator/nepal-land/" className="text-[11px] text-[#1A73E8] font-bold hover:underline">
-                    Detailed Converter &rarr;
-                  </Link>
-                </div>
+                  <span className="text-[11px] text-[#1A73E8] font-bold whitespace-nowrap">Nepal / South Asia ▾</span>
+                </summary>
                 <div className="p-4 space-y-3">
+                  <p className="text-[11px] text-[#5F6368] leading-relaxed">
+                    Traditional land measurement units used in Nepal and parts of South Asia. Use the{' '}
+                    <Link href="/calculator/nepal-land/" className="text-[#1A73E8] font-bold hover:underline">Nepal Land Converter</Link> for a full multi-tier breakdown.
+                  </p>
                   <div className="p-3 bg-[#FEF7E0] border border-[#FEEFC3] rounded-lg">
                     <div className="text-[10px] uppercase font-bold text-[#B06000] tracking-wider mb-0.5">
-                      Hills & Kathmandu (Ropani-Aana-Paisa-Daam)
+                      Ropani System — Hills / Kathmandu Valley
                     </div>
                     <div className="text-sm font-black text-[#202124]">
-                      {calc.nepalLand.ropani} Ropani - {calc.nepalLand.aana} Aana - {calc.nepalLand.paisa} Paisa - {calc.nepalLand.daam} Daam
+                      {calc.nepalLand.ropani} Ropani · {calc.nepalLand.aana} Aana · {calc.nepalLand.paisa} Paisa · {calc.nepalLand.daam} Daam
                     </div>
                     <div className="text-xs text-[#5F6368] mt-1">
-                      Total Aana Equivalent: <strong className="text-[#202124]">{calc.nepalLand.totalAana} Aana</strong>
+                      Total: <strong className="text-[#202124]">{calc.nepalLand.totalAana} Aana</strong>
                     </div>
                   </div>
-
                   <div className="p-3 bg-[#E6F4EA] border border-[#CEEAD6] rounded-lg">
                     <div className="text-[10px] uppercase font-bold text-[#137333] tracking-wider mb-0.5">
-                      Terai Region (Bigha-Kattha-Dhur)
+                      Bigha System — Terai / Plains
                     </div>
                     <div className="text-sm font-black text-[#202124]">
-                      {calc.nepalLand.bigha} Bigha - {calc.nepalLand.kattha} Kattha - {calc.nepalLand.dhur} Dhur
+                      {calc.nepalLand.bigha} Bigha · {calc.nepalLand.kattha} Kattha · {calc.nepalLand.dhur} Dhur
                     </div>
                   </div>
                 </div>
-              </div>
+              </details>
             </>
           )}
 
@@ -926,7 +927,7 @@ export default function AreaCalculator() {
           "Enter known dimensions in the input fields. For circles, toggle between radius and diameter.",
           "Check the primary area result card, applied formula, and step-by-step arithmetic.",
           "Review the live multi-unit conversion table to see equivalents in square feet, square meters, acres, hectares, and square miles.",
-          "For real estate, refer to the Nepali Land section showing Aana, Ropani, Bigha, and Kattha."
+          "For land plots, check the multi-unit table for acres, hectares, and square miles. Expand the Regional Land Units section for Ropani, Aana, and Bigha measurements (Nepal / South Asia)."
         ]
       }}
       formula={{
@@ -940,7 +941,7 @@ export default function AreaCalculator() {
           answer: "Measure the length and width of the room in feet or meters. Multiply the length by the width to get the square footage (or square meters). For example, a 12 ft by 14 ft bedroom has an area of 168 square feet (15.61 m²). If tiling, add 10% for cutting waste."
         },
         {
-          question: "How do I find the area of an irregular plot of land (chetrafal)?",
+          question: "How do I calculate the area of an irregular plot or field?",
           answer: "Divide the irregular parcel into non-overlapping triangles. Measure the three side lengths of each triangle and apply Heron's formula (A = √[s(s-a)(s-b)(s-c)]) to calculate each triangle's area, then sum them together for the total land area."
         },
         {
@@ -948,12 +949,12 @@ export default function AreaCalculator() {
           answer: "1 square meter equals exactly 10.7639 square feet. To convert square meters to square feet, multiply by 10.7639. To convert square feet to square meters, divide by 10.7639."
         },
         {
-          question: "How many square feet are in 1 Aana and 1 Ropani?",
-          answer: "In the Kathmandu Valley and hilly regions of Nepal: 1 Aana = 342.25 square feet (31.80 m²). 1 Ropani = 16 Aana = 5,476 square feet (508.74 m²)."
+          question: "How many square feet are in 1 acre?",
+          answer: "One acre equals exactly 43,560 square feet (4,046.86 m² or 0.4047 hectares). It is the standard land unit in the US, UK, Canada, and parts of South Asia — roughly the area of a standard football field."
         },
         {
-          question: "How many square feet are in 1 Kattha and 1 Bigha?",
-          answer: "In the Terai region of Nepal: 1 Dhur = 182.25 square feet. 1 Kattha = 20 Dhur = 3,645 square feet (338.63 m²). 1 Bigha = 20 Kattha = 72,900 square feet (6,772.63 m²)."
+          question: "What is the difference between an acre and a hectare?",
+          answer: "A hectare equals 10,000 square meters (107,639 sq ft or 2.471 acres) — the international standard in Europe, Australia, and most of Asia. An acre (43,560 sq ft) is preferred in the US, UK, and Canada. Both appear automatically in the multi-unit results table above."
         },
         {
           question: "What is Heron's Formula for triangle area?",

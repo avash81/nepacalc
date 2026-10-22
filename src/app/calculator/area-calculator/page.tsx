@@ -4,27 +4,32 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   ...calcMeta({
-    title: 'Area Calculator – Calculate Area of Any Shape (m², ft², Aana)',
+    title: 'Free Area Calculator – Find Area of Any Shape Online',
     description:
-      'Free online area calculator to calculate surface area for squares, rectangles, circles, triangles, trapezoids, and plots. Supports metric, imperial, and Nepali land units.',
+      'Free online area calculator — find the area of any shape: square, rectangle, circle, triangle, trapezoid, parallelogram or ellipse. Instant results in m², sq ft, acres and hectares.',
     slug: 'area-calculator',
     keywords: [
       'area calculator',
       'online area calculator',
+      'free area calculator',
       'shape area calculator',
       'find area',
-      'total area calculator',
-      'area computation',
-      'area measurement tool',
-      'chetrafal calculator',
-      'area plot calculator',
       'calculate area formula',
+      'area formula calculator',
+      'total area calculator',
+      'net area calculator',
+      'area computation',
+      'area measurement',
+      'area measurement tool',
+      'measure area online',
+      'area solver',
+      'chetrafal calculator',
     ],
   }),
   openGraph: {
-    title: 'Area Calculator – Calculate Area of Any Shape Online',
+    title: 'Free Area Calculator – Find the Area of Any 2D Shape Online',
     description:
-      'Free online area calculator to calculate surface area for squares, rectangles, circles, triangles, trapezoids, and plots with live conversions.',
+      'Find the area of squares, rectangles, circles, triangles, trapezoids, parallelograms, and ellipses. Instant metric, imperial, acre and hectare conversions.',
     url: 'https://nepacalc.com/calculator/area-calculator/',
     siteName: 'NepaCalc',
     type: 'website',
@@ -73,10 +78,10 @@ const faqSchema = {
     },
     {
       '@type': 'Question',
-      name: 'How do I find the area of an irregular plot of land (chetrafal)?',
+      name: 'How do I calculate the area of an irregular plot or field?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Divide the irregular parcel into non-overlapping triangles. Measure the three side lengths of each triangle and apply Heron\'s formula (A = √[s(s-a)(s-b)(s-c)]) to calculate each triangle\'s area, then sum them together for total land area.',
+        text: 'Divide the plot into non-overlapping triangles, measure each triangle\'s three side lengths, and apply Heron\'s formula (A = √[s(s-a)(s-b)(s-c)]) to each sub-area, then sum them. This triangulation method works for any irregular polygon, field, or land parcel.',
       },
     },
     {
@@ -89,10 +94,10 @@ const faqSchema = {
     },
     {
       '@type': 'Question',
-      name: 'How many square feet are in 1 Aana and 1 Ropani?',
+      name: 'How many square feet are in 1 acre?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'In the Kathmandu Valley and hilly regions of Nepal: 1 Aana = 342.25 square feet (31.80 m²). 1 Ropani = 16 Aana = 5,476 square feet (508.74 m²).',
+        text: 'One acre equals exactly 43,560 square feet (4,046.86 m² or 0.4047 hectares). It is the standard land unit in the US, UK, Canada, and parts of South Asia — roughly the size of a standard football field.',
       },
     },
     {
