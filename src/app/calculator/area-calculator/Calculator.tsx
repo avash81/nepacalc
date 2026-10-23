@@ -281,6 +281,7 @@ export default function AreaCalculator() {
       title="Area Calculator: Find the Area of Any Shape Online"
       description="Find the area of squares, rectangles, circles, triangles, trapezoids, parallelograms, rhombuses, and ellipses. Instant results in m², sq ft, acres, hectares, and more."
       icon={Shapes}
+      faqLayout="static"
       relatedTools={[
         { label: "Nepal Land Converter", href: "/calculator/nepal-land/" },
         { label: "Circumference Calculator", href: "/calculator/circumference-calculator/" },

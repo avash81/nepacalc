@@ -102,10 +102,26 @@ const faqSchema = {
     },
     {
       '@type': 'Question',
+      name: 'What is the difference between an acre and a hectare?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'A hectare equals 10,000 square meters (107,639 sq ft or 2.471 acres), the standard in metric countries: Europe, Australia, China, and most of Asia. An acre (43,560 sq ft) is used in the US, UK, and Canada. Both appear automatically in the multi-unit results table above.',
+      },
+    },
+    {
+      '@type': 'Question',
       name: 'What is Heron\'s Formula for triangle area?',
       acceptedAnswer: {
         '@type': 'Answer',
         text: 'Heron\'s formula calculates the area of a triangle when all 3 side lengths (a, b, c) are known without needing perpendicular height. First calculate semi-perimeter s = (a + b + c) / 2. Then Area = √[s × (s - a) × (s - b) × (s - c)].',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How is net area calculated for wall painting?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Net wall area equals total gross wall area (2 × (Length + Width) × Height) minus openings for doors and windows. This gives the exact paintable surface area to estimate paint gallons or liters.',
       },
     },
   ],

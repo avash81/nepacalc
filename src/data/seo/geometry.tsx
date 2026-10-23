@@ -325,14 +325,14 @@ export const geometrySEO: Record<string, SEOContent> = {
             </section>
         </div>
     ),
-    faqs: [
-      { question: "How do I calculate the area of a shape?", answer: "To calculate area, identify the shape and apply its corresponding formula. For a rectangle or square, multiply length by width (A = l × w). For a triangle, multiply half the base by perpendicular height (A = ½ × b × h). For a circle, multiply Pi by the radius squared (A = π × r²)." },
-      { question: "How do I calculate the area of an irregular land plot or field?", answer: "The standard surveying method is triangulation: divide the irregular plot into several non-overlapping triangles. Measure the three side lengths of each triangle and apply Heron's formula (A = √[s(s-a)(s-b)(s-c)]) to find each sub-area, then sum them together." },
+        faqs: [
+      { question: "How do I calculate the area of a room or floor?", answer: "Measure the length and width of the room in feet or meters. Multiply the length by the width to get the square footage (or square meters). For example, a 12 ft by 14 ft bedroom has an area of 168 square feet (15.61 m²). If tiling, add 10% for cutting waste." },
+      { question: "How do I calculate the area of an irregular plot or field?", answer: "Divide the irregular parcel into non-overlapping triangles. Measure the three side lengths of each triangle and apply Heron's formula (A = √[s(s-a)(s-b)(s-c)]) to calculate each triangle's area, then sum them together for the total land area." },
       { question: "How do I convert square meters (m²) to square feet (sq ft)?", answer: "1 square meter equals exactly 10.7639 square feet. To convert square meters to square feet, multiply by 10.7639. To convert square feet to square meters, divide by 10.7639." },
       { question: "How many square feet are in 1 acre?", answer: "One acre equals exactly 43,560 square feet (4,046.86 m² or 0.4047 hectares). It is the standard land unit in the US, UK, Canada, and parts of South Asia, roughly the area of a football field. The area calculator shows acres automatically in every result." },
-      { question: "What is the difference between an acre and a hectare?", answer: "A hectare equals 10,000 square meters (107,639 sq ft or 2.471 acres), the standard in metric countries: Europe, Australia, China, and most of Asia. An acre (43,560 sq ft) is used in the US, UK, and Canada. Both units appear automatically in every result this area calculator produces." },
-      { question: "What is the difference between gross area and net area?", answer: "Gross area is the total boundary footprint of a space. Net area is the usable space remaining after subtracting cut-outs, interior columns, partitions, stairwells, doors, or windows." },
-      { question: "How do I calculate square miles or square kilometers?", answer: "1 square mile equals 640 acres or 2.58999 square kilometers (27,878,400 square feet). For regional and district measurements, enter linear miles or kilometers into the calculator and observe the square mile / square kilometer result card." }
+      { question: "What is the difference between an acre and a hectare?", answer: "A hectare equals 10,000 square meters (107,639 sq ft or 2.471 acres), the standard in metric countries: Europe, Australia, China, and most of Asia. An acre (43,560 sq ft) is used in the US, UK, and Canada. Both appear automatically in every result this area calculator produces." },
+      { question: "What is Heron's Formula for triangle area?", answer: "Heron's formula calculates the area of a triangle when all 3 side lengths (a, b, c) are known without needing perpendicular height. First calculate semi-perimeter s = (a + b + c) / 2. Then Area = √[s × (s - a) × (s - b) × (s - c)]." },
+      { question: "How is net area calculated for wall painting?", answer: "Net wall area equals total gross wall area (2 × (Length + Width) × Height) minus openings for doors and windows. This gives the exact paintable surface area to estimate paint gallons or liters." }
     ]
   },
   'geometry-3d': {
