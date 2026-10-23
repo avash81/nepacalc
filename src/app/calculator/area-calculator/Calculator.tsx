@@ -51,22 +51,6 @@ const SHAPES: { id: ShapeType; name: string; icon: React.ReactNode; desc: string
   { id: 'ellipse', name: 'Ellipse', icon: <Circle className="w-4 h-4 scale-x-125" />, desc: 'π × a × b' },
 ];
 
-interface Preset {
-  label: string;
-  shape: ShapeType;
-  unit: LinearUnit;
-  params: Record<string, number>;
-  note: string;
-}
-
-const PRESETS: Preset[] = [
-  { label: 'Room (12×14 ft)', shape: 'rectangle', unit: 'ft', params: { length: 14, width: 12 }, note: 'Standard bedroom floor space' },
-  { label: 'Garden Plot (1,369 sq ft)', shape: 'rectangle', unit: 'ft', params: { length: 45.63, width: 30 }, note: '1,369 sq ft example plot (45.63 × 30 ft)' },
-  { label: 'Olympic Pool (50×25 m)', shape: 'rectangle', unit: 'm', params: { length: 50, width: 25 }, note: '1,250 m² competition pool surface' },
-  { label: 'Round Table (Ø 5 ft)', shape: 'circle', unit: 'ft', params: { diameter: 5, radius: 2.5 }, note: 'Dining table surface area' },
-  { label: 'Triangular Gable (8×6 m)', shape: 'triangle', unit: 'm', params: { base: 8, height: 6 }, note: 'Roof gable wall area' },
-];
-
 export default function AreaCalculator() {
   const [shape, setShape] = useState<ShapeType>('rectangle');
   const [unit, setUnit] = useState<LinearUnit>('m');
@@ -98,12 +82,6 @@ export default function AreaCalculator() {
 
   const updateParam = (key: string, val: number) => {
     setParams(prev => ({ ...prev, [key]: Math.max(0, val) }));
-  };
-
-  const applyPreset = (p: Preset) => {
-    setShape(p.shape);
-    setUnit(p.unit);
-    setParams(prev => ({ ...prev, ...p.params }));
   };
 
   const unitDef = UNITS.find(u => u.id === unit) || UNITS[0];
@@ -300,7 +278,7 @@ export default function AreaCalculator() {
         { label: 'Calculators', href: '/calculator/' },
         { label: 'Area Calculator' },
       ]}
-      title="Area Calculator — Find the Area of Any Shape Online"
+      title="Area Calculator: Find the Area of Any Shape Online"
       description="Find the area of squares, rectangles, circles, triangles, trapezoids, parallelograms, rhombuses, and ellipses. Instant results in m², sq ft, acres, hectares, and more."
       icon={Shapes}
       relatedTools={[
@@ -312,31 +290,9 @@ export default function AreaCalculator() {
       ]}
       inputs={
         <div className="space-y-6">
-          {/* Presets Quick Bar */}
-          <div>
-            <div className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider mb-2 flex items-center justify-between">
-              <span>Quick Example Presets</span>
-              <span className="text-[10px] text-[#80868B] lowercase font-normal">Click to load</span>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {PRESETS.map((p, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => applyPreset(p)}
-                  className="px-3 py-1.5 text-xs font-semibold rounded-full border border-[#DADCE0] bg-white text-[#3C4043] hover:border-[#1A73E8] hover:bg-[#F8F9FA] transition-all shadow-xs cursor-pointer"
-                  title={p.note}
-                >
-                  {p.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="border-t border-[#DADCE0]" />
-
           {/* Step 1: Shape Selector */}
           <div className="space-y-2.5">
-            <label className={labelCls}>Step 1 — Select Geometric Shape</label>
+            <label className={labelCls}>Step 1: Select Geometric Shape</label>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               {SHAPES.map((s) => (
                 <button
@@ -361,7 +317,7 @@ export default function AreaCalculator() {
           {/* Step 2: Linear Unit Selection */}
           <div className="space-y-1.5">
             <div className="flex items-center justify-between">
-              <label className={labelCls}>Step 2 — Measurement Unit</label>
+              <label className={labelCls}>Step 2: Measurement Unit</label>
               <span className="text-xs text-[#5F6368] font-medium">All inputs will use this unit</span>
             </div>
             <div className="grid grid-cols-4 sm:grid-cols-8 gap-1.5">
@@ -386,7 +342,7 @@ export default function AreaCalculator() {
           {/* Step 3: Shape Specific Inputs */}
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <label className={labelCls}>Step 3 — Enter Dimensions</label>
+              <label className={labelCls}>Step 3: Enter Dimensions</label>
               <span className="text-xs font-semibold text-[#1A73E8]">Unit: {unitDef.label}</span>
             </div>
 
@@ -846,11 +802,11 @@ export default function AreaCalculator() {
                 </div>
               </div>
 
-              {/* Regional Land Units — collapsible for Nepal / South Asia users */}
+              {/* Regional Land Units: collapsible for Nepal / South Asia users */}
               <details className="bg-white border border-[#DADCE0] rounded-xl overflow-hidden shadow-xs">
                 <summary className="px-5 py-3 bg-[#F8F9FA] border-b border-[#DADCE0] flex items-center justify-between cursor-pointer select-none list-none">
                   <span className="text-[11px] font-black text-[#202124] uppercase tracking-wider">
-                    Regional Land Units — Ropani · Bigha · Kattha
+                    Regional Land Units: Ropani · Bigha · Kattha
                   </span>
                   <span className="text-[11px] text-[#1A73E8] font-bold whitespace-nowrap">Nepal / South Asia ▾</span>
                 </summary>
@@ -861,7 +817,7 @@ export default function AreaCalculator() {
                   </p>
                   <div className="p-3 bg-[#FEF7E0] border border-[#FEEFC3] rounded-lg">
                     <div className="text-[10px] uppercase font-bold text-[#B06000] tracking-wider mb-0.5">
-                      Ropani System — Hills / Kathmandu Valley
+                      Ropani System (Hills / Kathmandu Valley)
                     </div>
                     <div className="text-sm font-black text-[#202124]">
                       {calc.nepalLand.ropani} Ropani · {calc.nepalLand.aana} Aana · {calc.nepalLand.paisa} Paisa · {calc.nepalLand.daam} Daam
@@ -872,7 +828,7 @@ export default function AreaCalculator() {
                   </div>
                   <div className="p-3 bg-[#E6F4EA] border border-[#CEEAD6] rounded-lg">
                     <div className="text-[10px] uppercase font-bold text-[#137333] tracking-wider mb-0.5">
-                      Bigha System — Terai / Plains
+                      Bigha System (Terai / Plains)
                     </div>
                     <div className="text-sm font-black text-[#202124]">
                       {calc.nepalLand.bigha} Bigha · {calc.nepalLand.kattha} Kattha · {calc.nepalLand.dhur} Dhur
@@ -950,11 +906,11 @@ export default function AreaCalculator() {
         },
         {
           question: "How many square feet are in 1 acre?",
-          answer: "One acre equals exactly 43,560 square feet (4,046.86 m² or 0.4047 hectares). It is the standard land unit in the US, UK, Canada, and parts of South Asia — roughly the area of a standard football field."
+          answer: "One acre equals exactly 43,560 square feet (4,046.86 m² or 0.4047 hectares). It is the standard land unit in the US, UK, Canada, and parts of South Asia, roughly the area of a standard football field."
         },
         {
           question: "What is the difference between an acre and a hectare?",
-          answer: "A hectare equals 10,000 square meters (107,639 sq ft or 2.471 acres) — the international standard in Europe, Australia, and most of Asia. An acre (43,560 sq ft) is preferred in the US, UK, and Canada. Both appear automatically in the multi-unit results table above."
+          answer: "A hectare equals 10,000 square meters (107,639 sq ft or 2.471 acres), the international standard in Europe, Australia, and most of Asia. An acre (43,560 sq ft) is preferred in the US, UK, and Canada. Both appear automatically in the multi-unit results table above."
         },
         {
           question: "What is Heron's Formula for triangle area?",

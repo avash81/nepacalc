@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   ...calcMeta({
     title: 'Free Area Calculator – Find Area of Any Shape Online',
     description:
-      'Free online area calculator — find the area of any shape: square, rectangle, circle, triangle, trapezoid, parallelogram or ellipse. Instant results in m², sq ft, acres and hectares.',
+      'Free online area calculator to find the area of any shape: square, rectangle, circle, triangle, trapezoid, parallelogram or ellipse. Instant results in m², sq ft, acres and hectares.',
     slug: 'area-calculator',
     keywords: [
       'area calculator',
@@ -97,7 +97,7 @@ const faqSchema = {
       name: 'How many square feet are in 1 acre?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'One acre equals exactly 43,560 square feet (4,046.86 m² or 0.4047 hectares). It is the standard land unit in the US, UK, Canada, and parts of South Asia — roughly the size of a standard football field.',
+        text: 'One acre equals exactly 43,560 square feet (4,046.86 m² or 0.4047 hectares). It is the standard land unit in the US, UK, Canada, and parts of South Asia, roughly the size of a standard football field.',
       },
     },
     {

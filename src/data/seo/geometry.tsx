@@ -3,8 +3,8 @@ import { SEOContent } from './types';
 
 export const geometrySEO: Record<string, SEOContent> = {
   'area-calculator': {
-    title: "Area Calculator — Calculate Area for Any Shape Online",
-    description: "Free online area calculator — find the area of any 2D shape: square, rectangle, circle, triangle, trapezoid, parallelogram, rhombus or ellipse. Instant results in m², sq ft, acres, hectares, and regional land units.",
+    title: "Area Calculator: Calculate Area for Any Shape Online",
+    description: "Free online area calculator to find the area of any 2D shape: square, rectangle, circle, triangle, trapezoid, parallelogram, rhombus or ellipse. Instant results in m², sq ft, acres, hectares, and regional land units.",
     
     howToUse: {
       steps: [
@@ -33,25 +33,7 @@ export const geometrySEO: Record<string, SEOContent> = {
     
     content: (
         <div className="space-y-16">
-            <div className="bg-[#0f172a] text-white rounded-[2.5rem] p-8 sm:p-12 border border-slate-800 shadow-2xl relative overflow-hidden">
-                <div className="relative z-10">
-                    <h2 className="text-blue-400 font-black text-xs uppercase tracking-[0.4em] mb-4">
-                        Comprehensive Geometric Reference
-                    </h2>
-                    <h3 className="text-3xl sm:text-4xl font-black mb-6 leading-tight">
-                        Online Area Calculator & Surface Measurement Guide
-                    </h3>
-                    <p className="text-slate-300 text-base sm:text-lg leading-relaxed mb-6 max-w-4xl">
-                        Whether you need to find the area of a room for tile installation, estimate a wall for painting, measure a farm field in acres or hectares, or compute a real estate plot in square feet, this free area calculator delivers instant, verified results across all standard geometric shapes and unit systems.
-                    </p>
-                    <div className="flex flex-wrap gap-2.5">
-                        <span className="px-3.5 py-1.5 rounded-full bg-slate-800 text-blue-300 text-xs font-semibold border border-slate-700">Square Feet & Meters</span>
-                        <span className="px-3.5 py-1.5 rounded-full bg-slate-800 text-blue-300 text-xs font-semibold border border-slate-700">Acres & Hectares</span>
-                        <span className="px-3.5 py-1.5 rounded-full bg-slate-800 text-blue-300 text-xs font-semibold border border-slate-700">Square Miles & Km²</span>
-                        <span className="px-3.5 py-1.5 rounded-full bg-slate-800 text-blue-300 text-xs font-semibold border border-slate-700">Acres, Hectares & Regional Units</span>
-                    </div>
-                </div>
-            </div>
+            
 
             <section className="space-y-8">
                 <h3 className="text-2xl sm:text-3xl font-black text-slate-900">
@@ -179,10 +161,10 @@ export const geometrySEO: Record<string, SEOContent> = {
 
             <section className="mt-12 bg-white rounded-3xl p-8 sm:p-10 border border-slate-200 shadow-sm space-y-6">
                 <h3 className="text-2xl sm:text-3xl font-black text-slate-900">
-                    3. Land Area Units — Acres, Hectares &amp; Regional Systems
+                    3. Land Area Units: Acres, Hectares &amp; Regional Systems
                 </h3>
                 <p className="text-slate-600 leading-relaxed">
-                    When measuring land — whether a garden plot, agricultural field, housing estate, or national park — two units dominate internationally: the <strong>acre</strong> (standard in the US, UK, Canada, and parts of South Asia) and the <strong>hectare</strong> (the SI standard used throughout Europe, Australia, and most of Asia). Regional systems remain common across South and East Asia. Use the area calculator above to compute any shape; acres and hectares appear automatically in the results table.
+                    When measuring land (whether a garden plot, agricultural field, housing estate, or national park), two units dominate internationally: the <strong>acre</strong> (standard in the US, UK, Canada, and parts of South Asia) and the <strong>hectare</strong> (the SI standard used throughout Europe, Australia, and most of Asia). Regional systems remain common across South and East Asia. Use the area calculator above to compute any shape; acres and hectares appear automatically in the results table.
                 </p>
                 <div className="overflow-x-auto">
                     <table className="w-full text-sm text-left border border-slate-200 rounded-xl overflow-hidden">
@@ -217,7 +199,7 @@ export const geometrySEO: Record<string, SEOContent> = {
                             <tr className="hover:bg-slate-50/50">
                                 <td className="p-3.5 font-bold text-slate-900">1 Cent</td>
                                 <td className="p-3.5">435.6 sq ft · 40.47 m² (= 0.01 acres)</td>
-                                <td className="p-3.5">South India — Tamil Nadu, Kerala, Karnataka</td>
+                                <td className="p-3.5">South India: Tamil Nadu, Kerala, Karnataka</td>
                             </tr>
                             <tr className="hover:bg-slate-50/50">
                                 <td className="p-3.5 font-bold text-slate-900">1 Guntha</td>
@@ -234,7 +216,7 @@ export const geometrySEO: Record<string, SEOContent> = {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="bg-slate-800 text-white rounded-2xl p-6">
-                        <h4 className="text-lg font-bold text-amber-400 mb-3">Nepal — Ropani &amp; Bigha Systems</h4>
+                        <h4 className="text-lg font-bold text-amber-400 mb-3">Nepal: Ropani &amp; Bigha Systems</h4>
                         <ul className="space-y-2 text-sm text-slate-300">
                             <li><strong>1 Ropani</strong> = 16 Aana = 5,476 sq ft (508.74 m²)</li>
                             <li><strong>1 Aana</strong> = 342.25 sq ft (31.80 m²)</li>
@@ -244,9 +226,9 @@ export const geometrySEO: Record<string, SEOContent> = {
                         </ul>
                     </div>
                     <div className="bg-slate-800 text-white rounded-2xl p-6">
-                        <h4 className="text-lg font-bold text-emerald-400 mb-3">India — Bigha &amp; Regional Units</h4>
+                        <h4 className="text-lg font-bold text-emerald-400 mb-3">India: Bigha &amp; Regional Units</h4>
                         <ul className="space-y-2 text-sm text-slate-300">
-                            <li><strong>1 Bigha</strong> varies by state — typically 1,333–4,356 m²</li>
+                            <li><strong>1 Bigha</strong> varies by state, typically 1,333–4,356 m²</li>
                             <li><strong>1 Katha</strong> (Bengal) = 720 sq ft (66.89 m²)</li>
                             <li><strong>1 Cent</strong> (South India) = 435.6 sq ft (0.01 acres)</li>
                             <li><strong>1 Guntha</strong> = 1,089 sq ft (0.025 acres)</li>
@@ -260,10 +242,10 @@ export const geometrySEO: Record<string, SEOContent> = {
 
             <section className="mt-12 bg-white rounded-3xl p-8 border border-slate-200 shadow-sm space-y-6">
                 <h3 className="text-2xl font-black text-slate-900">
-                    4. Gross vs. Net Area — Practical Area Calculations for Flooring, Paint & Tiling
+                    4. Gross vs. Net Area: Practical Area Calculations for Flooring, Paint & Tiling
                 </h3>
                 <p className="text-slate-600 leading-relaxed">
-                    Accurate area computation is essential when estimating materials. The <strong>total area</strong> of a surface is the gross geometric measurement; subtract openings like doors and windows to get the <strong>net usable area</strong> — the actual quantity to order:
+                    Accurate area computation is essential when estimating materials. The <strong>total area</strong> of a surface is the gross geometric measurement; subtract openings like doors and windows to get the <strong>net usable area</strong>, the actual quantity to order:
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="p-6 bg-slate-50 border border-slate-200 rounded-2xl">
@@ -337,8 +319,8 @@ export const geometrySEO: Record<string, SEOContent> = {
       { question: "How do I calculate the area of a shape?", answer: "To calculate area, identify the shape and apply its corresponding formula. For a rectangle or square, multiply length by width (A = l × w). For a triangle, multiply half the base by perpendicular height (A = ½ × b × h). For a circle, multiply Pi by the radius squared (A = π × r²)." },
       { question: "How do I calculate the area of an irregular land plot or field?", answer: "The standard surveying method is triangulation: divide the irregular plot into several non-overlapping triangles. Measure the three side lengths of each triangle and apply Heron's formula (A = √[s(s-a)(s-b)(s-c)]) to find each sub-area, then sum them together." },
       { question: "How do I convert square meters (m²) to square feet (sq ft)?", answer: "1 square meter equals exactly 10.7639 square feet. To convert square meters to square feet, multiply by 10.7639. To convert square feet to square meters, divide by 10.7639." },
-      { question: "How many square feet are in 1 acre?", answer: "One acre equals exactly 43,560 square feet (4,046.86 m² or 0.4047 hectares). It is the standard land unit in the US, UK, Canada, and parts of South Asia — roughly the area of a football field. The area calculator shows acres automatically in every result." },
-      { question: "What is the difference between an acre and a hectare?", answer: "A hectare equals 10,000 square meters (107,639 sq ft or 2.471 acres) — the standard in metric countries: Europe, Australia, China, and most of Asia. An acre (43,560 sq ft) is used in the US, UK, and Canada. Both units appear automatically in every result this area calculator produces." },
+      { question: "How many square feet are in 1 acre?", answer: "One acre equals exactly 43,560 square feet (4,046.86 m² or 0.4047 hectares). It is the standard land unit in the US, UK, Canada, and parts of South Asia, roughly the area of a football field. The area calculator shows acres automatically in every result." },
+      { question: "What is the difference between an acre and a hectare?", answer: "A hectare equals 10,000 square meters (107,639 sq ft or 2.471 acres), the standard in metric countries: Europe, Australia, China, and most of Asia. An acre (43,560 sq ft) is used in the US, UK, and Canada. Both units appear automatically in every result this area calculator produces." },
       { question: "What is the difference between gross area and net area?", answer: "Gross area is the total boundary footprint of a space. Net area is the usable space remaining after subtracting cut-outs, interior columns, partitions, stairwells, doors, or windows." },
       { question: "How do I calculate square miles or square kilometers?", answer: "1 square mile equals 640 acres or 2.58999 square kilometers (27,878,400 square feet). For regional and district measurements, enter linear miles or kilometers into the calculator and observe the square mile / square kilometer result card." }
     ]
