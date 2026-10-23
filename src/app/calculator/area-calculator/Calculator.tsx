@@ -339,8 +339,6 @@ export default function AreaCalculator() {
             </div>
           </div>
 
-          <div className="border-t border-[#DADCE0]" />
-
           {/* Step 3: Shape Specific Inputs */}
           <div className="space-y-4">
             <div className="flex items-center justify-between">
@@ -678,7 +676,7 @@ export default function AreaCalculator() {
           </div>
 
           {/* Optional Net Area Cut-out Subtraction */}
-          <div className="pt-4 border-t border-[#DADCE0]">
+          <div className="pt-2">
             <div className="flex items-center justify-between mb-2">
               <label className="flex items-center gap-2 cursor-pointer text-xs font-bold text-[#202124]">
                 <input

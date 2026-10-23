@@ -363,17 +363,16 @@ export function ModernCalcLayout({
             )}
 
             {relatedTools && relatedTools.length > 0 && (
-              <div className="related-tools-section bg-white border border-[#DADCE0] rounded-lg shadow-sm p-5 space-y-3">
-                <h3 className="text-xs font-bold text-[#5F6368] uppercase tracking-wider">Related Calculators</h3>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              <div className="related-tools-section pt-2">
+                <p className="text-xs font-bold text-[#5F6368] uppercase tracking-wider mb-2">Related Calculators</p>
+                <div className="flex flex-wrap gap-2">
                   {relatedTools.map((tool, idx) => (
                     <Link
                       key={idx}
                       href={tool.href}
-                      className="flex items-center justify-between p-2.5 rounded-lg border border-[#DADCE0] bg-[#F8F9FA] hover:bg-white hover:border-[#1A73E8] hover:text-[#1A73E8] transition-all text-xs font-bold text-[#202124] group"
+                      className="inline-flex items-center px-3 py-1.5 rounded-full border border-[#DADCE0] bg-[#F8F9FA] hover:bg-white hover:border-[#1A73E8] hover:text-[#1A73E8] transition-all text-xs font-semibold text-[#202124]"
                     >
-                      <span>{tool.label}</span>
-                      <span className="text-[#1A73E8] group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+                      {tool.label}
                     </Link>
                   ))}
                 </div>
