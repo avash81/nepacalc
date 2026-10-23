@@ -215,23 +215,33 @@ export const geometrySEO: Record<string, SEOContent> = {
                     </table>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="bg-slate-800 text-white rounded-2xl p-6">
-                        <h4 className="text-lg font-bold text-amber-400 mb-3">Nepal: Ropani &amp; Bigha Systems</h4>
-                        <ul className="space-y-2 text-sm text-slate-300">
-                            <li><strong>1 Ropani</strong> = 16 Aana = 5,476 sq ft (508.74 m²)</li>
-                            <li><strong>1 Aana</strong> = 342.25 sq ft (31.80 m²)</li>
-                            <li><strong>1 Bigha</strong> = 72,900 sq ft (6,772 m² ≈ 1.68 acres)</li>
-                            <li><strong>1 Kattha</strong> = 3,645 sq ft (338.63 m²)</li>
-                            <li><a href="/calculator/nepal-land/" className="text-amber-300 underline font-semibold">Nepal Land Converter →</a></li>
+                    <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6">
+                        <h4 className="text-base font-bold text-slate-900 mb-3 flex items-center gap-2">
+                            <span className="w-2 h-2 rounded-full bg-amber-500"></span>
+                            Nepal: Ropani &amp; Bigha Systems
+                        </h4>
+                        <ul className="space-y-2 text-sm text-slate-700">
+                            <li><strong className="text-slate-900">1 Ropani</strong> = 16 Aana = 5,476 sq ft (508.74 m²)</li>
+                            <li><strong className="text-slate-900">1 Aana</strong> = 342.25 sq ft (31.80 m²)</li>
+                            <li><strong className="text-slate-900">1 Bigha</strong> = 72,900 sq ft (6,772 m² ≈ 1.68 acres)</li>
+                            <li><strong className="text-slate-900">1 Kattha</strong> = 3,645 sq ft (338.63 m²)</li>
+                            <li className="pt-1">
+                                <a href="/calculator/nepal-land/" className="text-blue-600 hover:text-blue-800 underline font-semibold">
+                                    Nepal Land Converter &rarr;
+                                </a>
+                            </li>
                         </ul>
                     </div>
-                    <div className="bg-slate-800 text-white rounded-2xl p-6">
-                        <h4 className="text-lg font-bold text-emerald-400 mb-3">India: Bigha &amp; Regional Units</h4>
-                        <ul className="space-y-2 text-sm text-slate-300">
-                            <li><strong>1 Bigha</strong> varies by state, typically 1,333–4,356 m²</li>
-                            <li><strong>1 Katha</strong> (Bengal) = 720 sq ft (66.89 m²)</li>
-                            <li><strong>1 Cent</strong> (South India) = 435.6 sq ft (0.01 acres)</li>
-                            <li><strong>1 Guntha</strong> = 1,089 sq ft (0.025 acres)</li>
+                    <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6">
+                        <h4 className="text-base font-bold text-slate-900 mb-3 flex items-center gap-2">
+                            <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                            India: Bigha &amp; Regional Units
+                        </h4>
+                        <ul className="space-y-2 text-sm text-slate-700">
+                            <li><strong className="text-slate-900">1 Bigha</strong> varies by state, typically 1,333–4,356 m²</li>
+                            <li><strong className="text-slate-900">1 Katha</strong> (Bengal) = 720 sq ft (66.89 m²)</li>
+                            <li><strong className="text-slate-900">1 Cent</strong> (South India) = 435.6 sq ft (0.01 acres)</li>
+                            <li><strong className="text-slate-900">1 Guntha</strong> = 1,089 sq ft (0.025 acres)</li>
                         </ul>
                     </div>
                 </div>
