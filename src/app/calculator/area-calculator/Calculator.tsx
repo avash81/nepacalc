@@ -283,11 +283,12 @@ export default function AreaCalculator() {
       icon={Shapes}
       faqLayout="static"
       relatedTools={[
+        { label: "Circumference & Perimeter", href: "/calculator/circumference-calculator/" },
+        { label: "3D Volume & Surface Area", href: "/calculator/geometry-3d/" },
+        { label: "All-in-One Unit Converter", href: "/calculator/unit-converter/" },
+        { label: "Percentage Calculator", href: "/calculator/percentage/" },
+        { label: "Construction Estimator", href: "/calculator/construction-calculator/" },
         { label: "Nepal Land Converter", href: "/calculator/nepal-land/" },
-        { label: "Circumference Calculator", href: "/calculator/circumference-calculator/" },
-        { label: "Unit Converter", href: "/calculator/unit-converter/" },
-        { label: "3D Geometry & Volume", href: "/calculator/geometry-3d/" },
-        { label: "Percentage Calculator", href: "/calculator/percentage/" }
       ]}
       inputs={
         <div className="space-y-6">

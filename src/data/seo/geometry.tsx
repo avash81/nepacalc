@@ -279,50 +279,6 @@ export const geometrySEO: Record<string, SEOContent> = {
                 </div>
             </section>
 
-            <section className="mt-12 bg-white border border-slate-200 rounded-[2.5rem] p-8 sm:p-12 shadow-sm">
-                <h3 className="text-2xl sm:text-3xl font-black text-slate-900 mb-3">Related Area Measurement & Geometry Calculators</h3>
-                <p className="text-slate-600 mb-8 leading-relaxed">
-                    Link your 2D area calculations with complementary utilities:
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <div className="bg-slate-50 hover:bg-blue-50/50 p-5 rounded-2xl border border-slate-200 transition-colors">
-                        <a href="/calculator/circumference-calculator/" className="font-bold text-slate-900 hover:text-blue-600 block mb-1">
-                            Circumference &amp; Perimeter &rarr;
-                        </a>
-                        <p className="text-xs text-slate-500">Calculate perimeter lengths for circular and polygonal boundaries.</p>
-                    </div>
-                    <div className="bg-slate-50 hover:bg-blue-50/50 p-5 rounded-2xl border border-slate-200 transition-colors">
-                        <a href="/calculator/geometry-3d/" className="font-bold text-slate-900 hover:text-blue-600 block mb-1">
-                            3D Volume &amp; Surface Area &rarr;
-                        </a>
-                        <p className="text-xs text-slate-500">Solve 3D capacity for cylinders, spheres, cones, and prisms.</p>
-                    </div>
-                    <div className="bg-slate-50 hover:bg-blue-50/50 p-5 rounded-2xl border border-slate-200 transition-colors">
-                        <a href="/calculator/unit-converter/" className="font-bold text-slate-900 hover:text-blue-600 block mb-1">
-                            All-in-One Unit Converter &rarr;
-                        </a>
-                        <p className="text-xs text-slate-500">Quickly switch between metric and imperial linear measurements.</p>
-                    </div>
-                    <div className="bg-slate-50 hover:bg-blue-50/50 p-5 rounded-2xl border border-slate-200 transition-colors">
-                        <a href="/calculator/percentage/" className="font-bold text-slate-900 hover:text-blue-600 block mb-1">
-                            Percentage Calculator &rarr;
-                        </a>
-                        <p className="text-xs text-slate-500">Compute waste allowances, scaling ratios, and proportional adjustments.</p>
-                    </div>
-                    <div className="bg-slate-50 hover:bg-blue-50/50 p-5 rounded-2xl border border-slate-200 transition-colors">
-                        <a href="/calculator/construction-calculator/" className="font-bold text-slate-900 hover:text-blue-600 block mb-1">
-                            Construction Estimator &rarr;
-                        </a>
-                        <p className="text-xs text-slate-500">Estimate brick, plaster, concrete, and drywall quantities from square footage.</p>
-                    </div>
-                    <div className="bg-slate-50 hover:bg-blue-50/50 p-5 rounded-2xl border border-slate-200 transition-colors">
-                        <a href="/calculator/nepal-land/" className="font-bold text-slate-900 hover:text-blue-600 block mb-1">
-                            Nepal Land Converter &rarr;
-                        </a>
-                        <p className="text-xs text-slate-500">Convert sq ft to Ropani, Aana, Bigha, and Kattha for Nepal land measurement.</p>
-                    </div>
-                </div>
-            </section>
         </div>
     ),
         faqs: [
