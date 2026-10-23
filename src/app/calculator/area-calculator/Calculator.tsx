@@ -710,6 +710,14 @@ export default function AreaCalculator() {
               </div>
             )}
           </div>
+
+          {/* Quick Guidance Note */}
+          <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs text-[#5F6368] leading-relaxed">
+            <strong className="text-[#202124] flex items-center gap-1.5 mb-1">
+              <HelpCircle className="w-3.5 h-3.5 text-[#1A73E8]" /> Measurement Tip
+            </strong>
+            Always verify that all input measurements share the same dimension scale. If measuring irregular plots, use triangulation (dividing the polygon into triangles) to calculate total surface area without distortion.
+          </div>
         </div>
       }
       results={
@@ -838,14 +846,6 @@ export default function AreaCalculator() {
               </details>
             </>
           )}
-
-          {/* Quick Guidance Note */}
-          <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs text-[#5F6368] leading-relaxed">
-            <strong className="text-[#202124] flex items-center gap-1.5 mb-1">
-              <HelpCircle className="w-3.5 h-3.5 text-[#1A73E8]" /> Measurement Tip
-            </strong>
-            Always verify that all input measurements share the same dimension scale. If measuring irregular plots, use triangulation (dividing the polygon into triangles) to calculate total surface area without distortion.
-          </div>
         </div>
       }
       details={
