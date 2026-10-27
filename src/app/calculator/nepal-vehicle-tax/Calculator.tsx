@@ -2,67 +2,199 @@
 import { useMemo } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
 import {
-  Car, Bike, ShieldCheck, AlertCircle, Zap, Activity, Globe,
+  Car, ShieldCheck, AlertCircle, Zap, Activity, Globe,
   Landmark, Wallet, Table, BatteryCharging, Truck, Bus,
-  Tractor, Package
+  Tractor, MapPin
 } from 'lucide-react';
 import { useSyncState } from '@/hooks/useSyncState';
 import {
   PieChart as RePieChart, Pie, Cell, Tooltip, ResponsiveContainer
 } from 'recharts';
 
-// ─── 2083/84 RATE CONSTANTS ───────────────────────────────────────────────────
+// ─── TYPES ────────────────────────────────────────────────────────────────────
 
-const BIKE_RATES = [
-  { max: 125,      rate: 3000,  label: 'Up to 125cc (Activa, Ntorq, Splendor)' },
-  { max: 150,      rate: 5000,  label: '126–150cc (Pulsar 150, FZ)' },
-  { max: 225,      rate: 6500,  label: '151–225cc (Apache, Bullet 350)' },
-  { max: 400,      rate: 12000, label: '226–400cc (Duke 250/390, Himalayan)' },
-  { max: 650,      rate: 25000, label: '401–650cc (Interceptor 650)' },
-  { max: Infinity, rate: 35000, label: '651cc+ (Superbikes)' },
+type CalcMode        = 'renewal' | 'ev_import';
+type EngineType      = 'combustion' | 'electric';
+type VehicleCategory = 'bike' | 'car_private' | 'car_public' | 'bus' | 'truck' | 'agri';
+type ProvinceId      = 'bagmati' | 'koshi' | 'gandaki' | 'lumbini' | 'madhesh' | 'karnali' | 'sudurpashchim';
+
+// ─── PROVINCE METADATA ────────────────────────────────────────────────────────
+
+const PROVINCES: { id: ProvinceId; label: string; hint: string }[] = [
+  { id: 'bagmati',       label: 'Bagmati Province',        hint: 'Kathmandu, Lalitpur, Bhaktapur' },
+  { id: 'koshi',         label: 'Koshi Province',          hint: 'Biratnagar, Dharan, Itahari' },
+  { id: 'gandaki',       label: 'Gandaki Province',         hint: 'Pokhara, Baglung, Gorkha' },
+  { id: 'lumbini',       label: 'Lumbini Province',         hint: 'Butwal, Bhairahawa, Dang' },
+  { id: 'madhesh',       label: 'Madhesh Province',         hint: 'Janakpur, Birgunj, Hetauda' },
+  { id: 'karnali',       label: 'Karnali Province',         hint: 'Surkhet, Jumla, Dailekh' },
+  { id: 'sudurpashchim', label: 'Sudurpashchim Province',   hint: 'Dhangadhi, Mahendranagar' },
 ];
 
-const CAR_PRIVATE_RATES = [
-  { max: 1000,     rate: 22000, label: 'Up to 1000cc' },
-  { max: 1500,     rate: 25000, label: '1001–1500cc' },
-  { max: 2000,     rate: 27000, label: '1501–2000cc' },
-  { max: 2500,     rate: 37000, label: '2001–2500cc' },
-  { max: 3000,     rate: 50000, label: '2501–3000cc' },
-  { max: 3500,     rate: 65000, label: '3001–3500cc' },
-  { max: Infinity, rate: 70000, label: '3500cc+' },
-];
+// ─── PROVINCE-WISE RATE TABLES ────────────────────────────────────────────────
 
-const CAR_PUBLIC_RATES = [
-  { max: 1500,     rate: 4000,  label: 'Up to 1500cc (Taxi)' },
-  { max: Infinity, rate: 6000,  label: '1500cc+ (Taxi/Commercial)' },
+type RateSlab = { max: number; rate: number; label: string };
+
+// Motorcycle / Two-Wheeler – by engine CC
+const PROVINCE_BIKE_RATES: Record<ProvinceId, RateSlab[]> = {
+  bagmati: [
+    { max: 125,      rate: 3000,  label: 'Up to 125cc (Activa, Ntorq, Splendor)' },
+    { max: 150,      rate: 5000,  label: '126–150cc (Pulsar 150, FZ)' },
+    { max: 225,      rate: 6500,  label: '151–225cc (Apache, Bullet 350)' },
+    { max: 400,      rate: 12000, label: '226–400cc (Duke 250/390, Himalayan)' },
+    { max: 650,      rate: 25000, label: '401–650cc (Interceptor 650)' },
+    { max: Infinity, rate: 35000, label: '651cc+ (Superbikes)' },
+  ],
+  koshi: [
+    { max: 125,      rate: 2500,  label: 'Up to 125cc' },
+    { max: 150,      rate: 4000,  label: '126–150cc' },
+    { max: 225,      rate: 5500,  label: '151–225cc' },
+    { max: 400,      rate: 10000, label: '226–400cc' },
+    { max: 650,      rate: 22000, label: '401–650cc' },
+    { max: Infinity, rate: 32000, label: '651cc+' },
+  ],
+  gandaki: [
+    { max: 125,      rate: 2500,  label: 'Up to 125cc' },
+    { max: 150,      rate: 4000,  label: '126–150cc' },
+    { max: 225,      rate: 5500,  label: '151–225cc' },
+    { max: 400,      rate: 10000, label: '226–400cc' },
+    { max: 650,      rate: 22000, label: '401–650cc' },
+    { max: Infinity, rate: 32000, label: '651cc+' },
+  ],
+  lumbini: [
+    { max: 125,      rate: 2500,  label: 'Up to 125cc' },
+    { max: 150,      rate: 4000,  label: '126–150cc' },
+    { max: 225,      rate: 5500,  label: '151–225cc' },
+    { max: 400,      rate: 10000, label: '226–400cc' },
+    { max: 650,      rate: 22000, label: '401–650cc' },
+    { max: Infinity, rate: 30000, label: '651cc+' },
+  ],
+  madhesh: [
+    { max: 125,      rate: 3000,  label: 'Up to 125cc' },
+    { max: 150,      rate: 5000,  label: '126–150cc' },
+    { max: 225,      rate: 6500,  label: '151–225cc' },
+    { max: 400,      rate: 11000, label: '226–400cc' },
+    { max: 650,      rate: 20000, label: '401–650cc' },
+    { max: Infinity, rate: 20000, label: '651cc+' },
+  ],
+  karnali: [
+    { max: 125,      rate: 2700,  label: 'Up to 125cc' },
+    { max: 150,      rate: 4300,  label: '126–150cc' },
+    { max: 225,      rate: 5500,  label: '151–225cc' },
+    { max: 400,      rate: 10000, label: '226–400cc' },
+    { max: 650,      rate: 16000, label: '401–650cc' },
+    { max: Infinity, rate: 20000, label: '651cc+' },
+  ],
+  sudurpashchim: [
+    { max: 125,      rate: 2800,  label: 'Up to 125cc' },
+    { max: 150,      rate: 5000,  label: '126–150cc' },
+    { max: 225,      rate: 6500,  label: '151–225cc' },
+    { max: 400,      rate: 11000, label: '226–400cc' },
+    { max: 650,      rate: 20000, label: '401–650cc' },
+    { max: Infinity, rate: 30000, label: '651cc+' },
+  ],
+};
+
+// Private Car / Jeep / Van – by engine CC
+const PROVINCE_CAR_PRIVATE_RATES: Record<ProvinceId, RateSlab[]> = {
+  bagmati: [
+    { max: 1000,     rate: 22000, label: 'Up to 1000cc' },
+    { max: 1500,     rate: 25000, label: '1001–1500cc' },
+    { max: 2000,     rate: 27000, label: '1501–2000cc' },
+    { max: 2500,     rate: 37000, label: '2001–2500cc' },
+    { max: 3000,     rate: 50000, label: '2501–3000cc' },
+    { max: 3500,     rate: 65000, label: '3001–3500cc' },
+    { max: Infinity, rate: 70000, label: '3500cc+' },
+  ],
+  koshi: [
+    { max: 1000,     rate: 23000, label: 'Up to 1000cc' },
+    { max: 1500,     rate: 25000, label: '1001–1500cc' },
+    { max: 2000,     rate: 32000, label: '1501–2000cc' },
+    { max: 2500,     rate: 38000, label: '2001–2500cc' },
+    { max: 3000,     rate: 52000, label: '2501–3000cc' },
+    { max: 3500,     rate: 65000, label: '3001–3500cc' },
+    { max: Infinity, rate: 70000, label: '3500cc+' },
+  ],
+  gandaki: [
+    { max: 1000,     rate: 22000, label: 'Up to 1000cc' },
+    { max: 1500,     rate: 25000, label: '1001–1500cc' },
+    { max: 2000,     rate: 27000, label: '1501–2000cc' },
+    { max: 2500,     rate: 37000, label: '2001–2500cc' },
+    { max: 3000,     rate: 50000, label: '2501–3000cc' },
+    { max: 3500,     rate: 65000, label: '3001–3500cc' },
+    { max: Infinity, rate: 70000, label: '3500cc+' },
+  ],
+  lumbini: [
+    { max: 1000,     rate: 22000, label: 'Up to 1000cc' },
+    { max: 1500,     rate: 25000, label: '1001–1500cc' },
+    { max: 2000,     rate: 27000, label: '1501–2000cc' },
+    { max: 2500,     rate: 37000, label: '2001–2500cc' },
+    { max: 3000,     rate: 50000, label: '2501–3000cc' },
+    { max: 3500,     rate: 65000, label: '3001–3500cc' },
+    { max: Infinity, rate: 70000, label: '3500cc+' },
+  ],
+  madhesh: [
+    { max: 1000,     rate: 22000, label: 'Up to 1000cc' },
+    { max: 1500,     rate: 25000, label: '1001–1500cc' },
+    { max: 2000,     rate: 27000, label: '1501–2000cc' },
+    { max: 2500,     rate: 37000, label: '2001–2500cc' },
+    { max: 3000,     rate: 50000, label: '2501–3000cc' },
+    { max: 3500,     rate: 60000, label: '3001–3500cc' },
+    { max: Infinity, rate: 65000, label: '3500cc+' },
+  ],
+  karnali: [
+    { max: 1000,     rate: 22000, label: 'Up to 1000cc' },
+    { max: 1500,     rate: 25000, label: '1001–1500cc' },
+    { max: 2000,     rate: 27000, label: '1501–2000cc' },
+    { max: 2500,     rate: 37000, label: '2001–2500cc' },
+    { max: 3000,     rate: 50000, label: '2501–3000cc' },
+    { max: 3500,     rate: 60000, label: '3001–3500cc' },
+    { max: Infinity, rate: 65000, label: '3500cc+' },
+  ],
+  sudurpashchim: [
+    { max: 1000,     rate: 22000, label: 'Up to 1000cc' },
+    { max: 1500,     rate: 25000, label: '1001–1500cc' },
+    { max: 2000,     rate: 27000, label: '1501–2000cc' },
+    { max: 2500,     rate: 37000, label: '2001–2500cc' },
+    { max: 3000,     rate: 50000, label: '2501–3000cc' },
+    { max: 3500,     rate: 65000, label: '3001–3500cc' },
+    { max: Infinity, rate: 70000, label: '3500cc+' },
+  ],
+};
+
+// ─── UNIFORM RATES (same across all provinces) ────────────────────────────────
+
+// Public Taxi – taxed by CC
+const CAR_PUBLIC_RATES: RateSlab[] = [
+  { max: 1500,     rate: 4000, label: 'Up to 1500cc (Taxi)' },
+  { max: Infinity, rate: 6000, label: '1500cc+ (Taxi/Commercial)' },
 ];
 
 // Bus/Microbus – taxed by number of seats
-const BUS_RATES = [
+const BUS_RATES: RateSlab[] = [
   { max: 14,       rate: 8000,  label: '1–14 Seats (Microbus)' },
   { max: 25,       rate: 12000, label: '15–25 Seats (Minibus)' },
   { max: 35,       rate: 18000, label: '26–35 Seats (Medium Bus)' },
   { max: Infinity, rate: 35000, label: '36+ Seats (Large Bus)' },
 ];
 
-// Truck/Lorry – taxed by weight capacity (metric tonnes)
-const TRUCK_RATES = [
+// Truck/Lorry – taxed by weight (tonnes)
+const TRUCK_RATES: RateSlab[] = [
   { max: 3,        rate: 10000, label: 'Up to 3 Tonnes' },
   { max: 5,        rate: 15000, label: '3–5 Tonnes' },
   { max: 10,       rate: 25000, label: '5–10 Tonnes' },
   { max: Infinity, rate: 35000, label: '10+ Tonnes' },
 ];
 
-// EV Annual Road Tax – by motor output kW
-const EV_BIKE_RATE  = 2500;  // flat for all e-scooters / e-bikes
-const EV_CAR_RATES  = [
+// EV Annual Road Tax – by motor output kW (uniform across provinces)
+const EV_BIKE_RATE = 2500;
+const EV_CAR_RATES: RateSlab[] = [
   { max: 50,       rate: 5000,  label: '10 kW to 50 kW' },
   { max: 125,      rate: 15000, label: '51 kW to 125 kW' },
   { max: 200,      rate: 20000, label: '126 kW to 200 kW' },
   { max: Infinity, rate: 30000, label: 'Above 200 kW' },
 ];
 
-// EV Import CIF Clean Infrastructure Investment Fee tiers
+// EV Import CIF – federal level, not provincial
 const CIF_TIERS = [
   { maxLakh: 20,       feeRate: 0.025,  label: 'Up to Rs. 20 Lakh',           customsRate: 0.20 },
   { maxLakh: 30,       feeRate: 0.075,  label: 'Rs. 20 Lakh to Rs. 30 Lakh',  customsRate: 0.20 },
@@ -73,14 +205,14 @@ const CIF_TIERS = [
 
 // Progressive delay penalty config
 const DELAY_STATUSES = [
-  { id: 'ontime',       label: 'On Time (Within 90-Day Grace)',  basePenalty: 0,    renewMult: 1, yearsBack: 0 },
-  { id: '30days',       label: '1–30 Days Past Grace Period',    basePenalty: 0.05, renewMult: 2, yearsBack: 0 },
-  { id: '45days',       label: '31–45 Days Past Grace Period',   basePenalty: 0.10, renewMult: 2, yearsBack: 0 },
-  { id: 'end_fy',       label: '46 Days to End of Fiscal Year',  basePenalty: 0.20, renewMult: 2, yearsBack: 0 },
-  { id: '1_year',       label: '1 Full Fiscal Year Late',        basePenalty: 0.32, renewMult: 2, yearsBack: 1 },
-  { id: '2_years',      label: '2 Fiscal Years Late',            basePenalty: 0.64, renewMult: 2, yearsBack: 2 },
-  { id: '3_years',      label: '3 Fiscal Years Late',            basePenalty: 0.96, renewMult: 2, yearsBack: 3 },
-  { id: '4_years',      label: '4 Fiscal Years Late',            basePenalty: 1.28, renewMult: 2, yearsBack: 4 },
+  { id: 'ontime',       label: 'On Time (Within 90-Day Grace)',    basePenalty: 0,    renewMult: 1, yearsBack: 0 },
+  { id: '30days',       label: '1–30 Days Past Grace Period',      basePenalty: 0.05, renewMult: 2, yearsBack: 0 },
+  { id: '45days',       label: '31–45 Days Past Grace Period',     basePenalty: 0.10, renewMult: 2, yearsBack: 0 },
+  { id: 'end_fy',       label: '46 Days to End of Fiscal Year',    basePenalty: 0.20, renewMult: 2, yearsBack: 0 },
+  { id: '1_year',       label: '1 Full Fiscal Year Late',          basePenalty: 0.32, renewMult: 2, yearsBack: 1 },
+  { id: '2_years',      label: '2 Fiscal Years Late',              basePenalty: 0.64, renewMult: 2, yearsBack: 2 },
+  { id: '3_years',      label: '3 Fiscal Years Late',              basePenalty: 0.96, renewMult: 2, yearsBack: 3 },
+  { id: '4_years',      label: '4 Fiscal Years Late',              basePenalty: 1.28, renewMult: 2, yearsBack: 4 },
   { id: '5_years_plus', label: '5+ Years Late (4-Yr Cap Applies)', basePenalty: 1.60, renewMult: 2, yearsBack: 4 },
 ];
 
@@ -90,41 +222,36 @@ function formatNPR(n: number) {
   return 'Rs. ' + Math.round(n).toLocaleString('en-IN');
 }
 
-function formatLakh(n: number) {
-  return 'Rs. ' + n.toFixed(2) + ' Lakh';
-}
-
 // ─── COMPONENT ────────────────────────────────────────────────────────────────
 
-type CalcMode   = 'renewal' | 'ev_import';
-type EngineType = 'combustion' | 'electric';
-type VehicleCategory = 'bike' | 'car_private' | 'car_public' | 'bus' | 'truck' | 'agri';
-
 export default function NepalVehicleTaxCalculator({ details }: { details?: React.ReactNode }) {
-  const [state, setState] = useSyncState('nepal_vehicle_tax_v9', {
-    calcMode:    'renewal'    as CalcMode,
-    engineType:  'combustion' as EngineType,
-    vCategory:   'bike'       as VehicleCategory,
-    engineCC:    '' as number | '',
-    motorKw:     '' as number | '',
-    seats:       '' as number | '',
-    weightTon:   '' as number | '',
-    cifLakh:     '' as number | '',
-    delayStatus: 'ontime',
+  const [state, setState] = useSyncState('nepal_vehicle_tax_v10', {
+    calcMode:        'renewal'    as CalcMode,
+    engineType:      'combustion' as EngineType,
+    vCategory:       'bike'       as VehicleCategory,
+    province:        'bagmati'    as ProvinceId,
+    engineCC:        '' as number | '',
+    motorKw:         '' as number | '',
+    seats:           '' as number | '',
+    weightTon:       '' as number | '',
+    cifLakh:         '' as number | '',
+    delayStatus:     'ontime',
     customInsurance: '' as number | '',
     customRenewal:   '' as number | '',
     customPollution: '' as number | '',
   });
 
   const {
-    calcMode, engineType, vCategory,
+    calcMode, engineType, vCategory, province,
     engineCC, motorKw, seats, weightTon, cifLakh, delayStatus,
     customInsurance, customRenewal, customPollution
   } = state;
 
   const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
 
-  // ── RENEWAL MATH ──────────────────────────────────────────────────────────
+  const activeProvince = PROVINCES.find(p => p.id === province) ?? PROVINCES[0];
+
+  // ── RENEWAL MATH ────────────────────────────────────────────────────────────
   const renewalResult = useMemo(() => {
     let baseTax   = 0;
     let slabLabel = '';
@@ -140,18 +267,20 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
         baseTax   = found?.rate ?? 0;
         slabLabel = found?.label ?? '';
         renewFee  = 500;
-        // 50% discount for public EVs
         if (vCategory === 'car_public') baseTax = baseTax * 0.5;
       }
     } else {
+      const bikeRates = PROVINCE_BIKE_RATES[province];
+      const carRates  = PROVINCE_CAR_PRIVATE_RATES[province];
+
       switch (vCategory) {
         case 'bike': {
-          const f = BIKE_RATES.find(s => Number(engineCC) <= s.max);
+          const f = bikeRates.find(s => Number(engineCC) <= s.max);
           baseTax = f?.rate ?? 0; slabLabel = f?.label ?? ''; renewFee = 300;
           break;
         }
         case 'car_private': {
-          const f = CAR_PRIVATE_RATES.find(s => Number(engineCC) <= s.max);
+          const f = carRates.find(s => Number(engineCC) <= s.max);
           baseTax = f?.rate ?? 0; slabLabel = f?.label ?? ''; renewFee = 500;
           break;
         }
@@ -178,7 +307,6 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
     }
 
     const delayConfig  = DELAY_STATUSES.find(d => d.id === delayStatus) || DELAY_STATUSES[0];
-    // 4-Year Cap: back taxes capped at 4 years regardless of actual delay
     const yearsOwed    = Math.min(1 + delayConfig.yearsBack, 4);
     const totalBaseTax = baseTax * yearsOwed;
     const penaltyFine  = baseTax * delayConfig.basePenalty;
@@ -186,45 +314,45 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
     const finalRenew     = Number(customRenewal)   || 0;
     const finalPollution = Number(customPollution) || 0;
 
-    const total    = totalBaseTax + penaltyFine + finalInsurance + finalRenew + finalPollution;
-    const isLate   = delayStatus !== 'ontime';
+    const total  = totalBaseTax + penaltyFine + finalInsurance + finalRenew + finalPollution;
+    const isLate = delayStatus !== 'ontime';
 
     const pieData = [
-      { name: 'Govt Base Tax',     value: totalBaseTax },
-      { name: 'Late Penalties',    value: penaltyFine  },
+      { name: 'Govt Base Tax',     value: totalBaseTax  },
+      { name: 'Late Penalties',    value: penaltyFine   },
       { name: 'Insurance Premium', value: finalInsurance },
-      { name: 'Renewal Fee',       value: finalRenew   },
-      { name: 'Pollution Check',   value: finalPollution }
+      { name: 'Renewal Fee',       value: finalRenew    },
+      { name: 'Pollution Check',   value: finalPollution },
     ];
 
     return { baseTax: totalBaseTax, penaltyFine, insuranceEst: finalInsurance, finalRenew, pollutionCheck: finalPollution, total, slabLabel, pieData, isLate, yearsOwed, renewFee };
-  }, [engineType, vCategory, engineCC, motorKw, seats, weightTon, delayStatus, customInsurance, customRenewal, customPollution]);
+  }, [engineType, vCategory, province, engineCC, motorKw, seats, weightTon, delayStatus, customInsurance, customRenewal, customPollution]);
 
-  // ── EV IMPORT / CIF MATH ──────────────────────────────────────────────────
+  // ── EV IMPORT / CIF MATH ────────────────────────────────────────────────────
   const cifResult = useMemo(() => {
-    const cifNPR    = Number(cifLakh) * 100000;
-    const tier      = CIF_TIERS.find(t => Number(cifLakh) <= t.maxLakh) || CIF_TIERS[CIF_TIERS.length - 1];
-    const customs   = cifNPR * tier.customsRate;         // flat 20%
-    const cleanFee  = cifNPR * tier.feeRate;             // progressive clean infrastructure levy
+    const cifNPR   = Number(cifLakh) * 100000;
+    const tier     = CIF_TIERS.find(t => Number(cifLakh) <= t.maxLakh) || CIF_TIERS[CIF_TIERS.length - 1];
+    const customs  = cifNPR * tier.customsRate;
+    const cleanFee = cifNPR * tier.feeRate;
     const landedEst = cifNPR + customs + cleanFee;
 
     const pieData = [
-      { name: 'CIF Value',                    value: cifNPR   },
-      { name: 'Customs Duty (20%)',           value: customs  },
-      { name: 'Clean Infrastructure Levy',    value: cleanFee },
+      { name: 'CIF Value',                 value: cifNPR   },
+      { name: 'Customs Duty (20%)',         value: customs  },
+      { name: 'Clean Infrastructure Levy',  value: cleanFee },
     ];
 
     return { cifNPR, customs, cleanFee, landedEst, tier, pieData };
   }, [cifLakh]);
 
-  // ── VEHICLE CATEGORY OPTIONS ───────────────────────────────────────────────
+  // ── VEHICLE CATEGORY OPTIONS ─────────────────────────────────────────────────
   const allCategories = [
-    { id: 'bike',       label: 'Two-Wheeler',        sub: 'Bike / Scooter',        icon: Bike,    evAllowed: true },
-    { id: 'car_private',label: 'Four-Wheeler',       sub: 'Private Car / Jeep',    icon: Car,     evAllowed: true },
-    { id: 'car_public', label: 'Taxi / Commercial',  sub: 'Public Four-Wheeler',   icon: Car,     evAllowed: true },
-    { id: 'bus',        label: 'Bus / Microbus',     sub: 'Passenger Transport',   icon: Bus,     evAllowed: false },
-    { id: 'truck',      label: 'Truck / Lorry',      sub: 'Goods / Cargo',         icon: Truck,   evAllowed: false },
-    { id: 'agri',       label: 'Agricultural',       sub: 'Tractor / Three-Wheeler',icon: Tractor, evAllowed: false },
+    { id: 'bike',        label: 'Two-Wheeler',    sub: 'Bike / Scooter',          evAllowed: true  },
+    { id: 'car_private', label: 'Four-Wheeler',   sub: 'Private Car / Jeep',      evAllowed: true  },
+    { id: 'car_public',  label: 'Taxi / Comm.',   sub: 'Public Four-Wheeler',     evAllowed: true  },
+    { id: 'bus',         label: 'Bus / Microbus', sub: 'Passenger Transport',     evAllowed: false },
+    { id: 'truck',       label: 'Truck / Lorry',  sub: 'Goods / Cargo',           evAllowed: false },
+    { id: 'agri',        label: 'Agricultural',   sub: 'Tractor / Three-Wheeler', evAllowed: false },
   ];
 
   const visibleCategories = engineType === 'electric'
@@ -233,24 +361,38 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
 
   const PIE_COLORS = ['#1A73E8', '#D93025', '#188038', '#fbbf24', '#9b59b6'];
 
+  // Active slab rates for the rate matrix table
+  const activeRates: RateSlab[] = (() => {
+    if (engineType === 'electric') {
+      if (vCategory === 'bike') return [{ max: Infinity, rate: EV_BIKE_RATE, label: 'Standard EV Bike / Scooter' }];
+      return EV_CAR_RATES;
+    }
+    if (vCategory === 'bike')        return PROVINCE_BIKE_RATES[province];
+    if (vCategory === 'car_private') return PROVINCE_CAR_PRIVATE_RATES[province];
+    if (vCategory === 'car_public')  return CAR_PUBLIC_RATES;
+    if (vCategory === 'bus')         return BUS_RATES;
+    if (vCategory === 'truck')       return TRUCK_RATES;
+    return [{ max: Infinity, rate: 3000, label: 'Agricultural / Three-Wheeler' }];
+  })();
+
   return (
     <ModernCalcLayout
       slug="nepal-vehicle-tax"
       crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'Vehicle Tax' }]}
       title="Nepal Vehicle Tax 2083/84"
-      description="The definitive blue-book renewal engine for Nepal. Calculate annual road tax for all vehicle types — bikes, cars, buses, trucks, and EVs — plus EV import duties using the 2083/84 CIF model."
+      description="Calculate annual road tax for all vehicle types across all 7 provinces of Nepal — bikes, cars, buses, trucks, and EVs — plus EV import duties using the 2083/84 CIF model."
       fullWidth={true}
       icon={Car}
       inputs={
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-8 gap-y-3">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-8 gap-y-4">
 
-          {/* ── MASTER MODE TOGGLE ─────────────────────────────────── */}
+          {/* ── CALCULATOR MODE ──────────────────────────────────────── */}
           <div className="space-y-2">
             <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Calculator Mode</label>
             <div className="grid grid-cols-2 gap-3">
               {[
-                { id: 'renewal',   label: 'Annual Bluebook Renewal',   icon: Table },
-                { id: 'ev_import', label: 'EV Import Duty (CIF)',       icon: BatteryCharging },
+                { id: 'renewal',   label: 'Annual Bluebook Renewal',  icon: Table },
+                { id: 'ev_import', label: 'EV Import Duty (CIF)',      icon: BatteryCharging },
               ].map(opt => (
                 <button
                   key={opt.id}
@@ -286,8 +428,26 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
                 </div>
               </div>
 
-              {/* ── LEFT COLUMN GROUP: Vehicle Category + Delay Status ── */}
-              <div className="space-y-3">
+              {/* ── LEFT COLUMN: Province + Vehicle Category + Delay ─── */}
+              <div className="space-y-4">
+
+                {/* Province Selector */}
+                <div className="space-y-2">
+                  <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider flex items-center gap-1.5">
+                    <MapPin className="w-3.5 h-3.5" /> Province / Registration Office
+                  </label>
+                  <select
+                    value={province}
+                    onChange={e => update({ province: e.target.value as ProvinceId })}
+                    className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all appearance-none"
+                  >
+                    {PROVINCES.map(p => (
+                      <option key={p.id} value={p.id}>{p.label} – {p.hint}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Vehicle Category */}
                 <div className="space-y-2">
                   <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Vehicle Category</label>
                   <div className="grid grid-cols-3 gap-2">
@@ -295,11 +455,10 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
                       <button
                         key={opt.id}
                         onClick={() => update({ vCategory: opt.id as VehicleCategory })}
-                        className={`flex flex-col items-center justify-center gap-1.5 p-3 rounded-md border transition-all ${vCategory === opt.id ? 'border-[#1A73E8] bg-[#E8F0FE] text-[#1A73E8]' : 'border-[#DADCE0] bg-white text-[#5F6368] hover:border-[#1A73E8]'}`}
+                        className={`flex flex-col items-center justify-center gap-0.5 p-2.5 rounded-md border transition-all ${vCategory === opt.id ? 'border-[#1A73E8] bg-[#E8F0FE] text-[#1A73E8]' : 'border-[#DADCE0] bg-white text-[#5F6368] hover:border-[#1A73E8]'}`}
                       >
-                        <opt.icon className="w-5 h-5" />
                         <span className="text-[9px] font-black uppercase text-center leading-tight">{opt.label}</span>
-                        <span className="text-[8px] font-bold text-center leading-tight opacity-60">{opt.sub}</span>
+                        <span className="text-[8px] font-semibold text-center leading-tight opacity-60">{opt.sub}</span>
                       </button>
                     ))}
                   </div>
@@ -322,8 +481,8 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
                 </div>
               </div>
 
-              {/* ── RIGHT COLUMN GROUP: Capacity + Clear + Alert ──────── */}
-              <div className="space-y-3">
+              {/* ── RIGHT COLUMN: Capacity + Clear + Alert ───────────── */}
+              <div className="space-y-4">
                 {/* Dynamic Capacity Input */}
                 {vCategory === 'bus' ? (
                   <div className="space-y-2">
@@ -372,7 +531,10 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
                 )}
 
                 {/* Clear Calculator */}
-                <button onClick={() => update({ engineCC: '', motorKw: '', seats: '', weightTon: '', cifLakh: '', delayStatus: 'ontime', customInsurance: '', customRenewal: '', customPollution: '' })} className="w-full h-10 bg-[#F1F3F4] hover:bg-[#E8EAED] text-[#5F6368] hover:text-[#202124] text-sm font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
+                <button
+                  onClick={() => update({ engineCC: '', motorKw: '', seats: '', weightTon: '', cifLakh: '', delayStatus: 'ontime', customInsurance: '', customRenewal: '', customPollution: '' })}
+                  className="w-full h-10 bg-[#F1F3F4] hover:bg-[#E8EAED] text-[#5F6368] hover:text-[#202124] text-sm font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm"
+                >
                   Clear Calculator
                 </button>
 
@@ -396,7 +558,7 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
               </div>
             </>
           ) : (
-            /* ── EV IMPORT CIF MODE ────────────────────────────────── */
+            /* ── EV IMPORT CIF MODE ──────────────────────────────────── */
             <>
               <div className="p-4 bg-blue-50 border border-blue-200 rounded-md">
                 <p className="text-[10px] text-blue-800 font-bold uppercase leading-relaxed">
@@ -416,44 +578,41 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
             </>
           )}
 
-
-              {/* ── OPTIONAL FEES ──────────────────────────────────────── */}
-              {calcMode === 'renewal' && (
-                <div className="xl:col-span-2 border-t border-[#DADCE0] pt-3 mt-1">
-                  <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider block mb-2">Optional Add-ons (Enter amount in Rs.)</label>
-                  <div className="grid grid-cols-3 gap-3">
-                    <div className="space-y-1">
-                      <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Third-Party Insurance</label>
-                      <input
-                        type="number" min={0} placeholder="e.g. 2200" value={customInsurance}
-                        onWheel={(e) => (e.target as HTMLInputElement).blur()}
-                        onChange={e => update({ customInsurance: e.target.value === '' ? '' : Number(e.target.value) })}
-                        className="w-full h-9 px-3 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
-                      />
-                    </div>
-                    <div className="space-y-1">
-                      <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Bluebook Renewal Fee</label>
-                      <input
-                        type="number" min={0} placeholder="e.g. 500" value={customRenewal}
-                        onWheel={(e) => (e.target as HTMLInputElement).blur()}
-                        onChange={e => update({ customRenewal: e.target.value === '' ? '' : Number(e.target.value) })}
-                        className="w-full h-9 px-3 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
-                      />
-                    </div>
-                    <div className="space-y-1">
-                      <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Pollution Check Fee</label>
-                      <input
-                        type="number" min={0} placeholder="e.g. 400" value={customPollution}
-                        onWheel={(e) => (e.target as HTMLInputElement).blur()}
-                        onChange={e => update({ customPollution: e.target.value === '' ? '' : Number(e.target.value) })}
-                        className="w-full h-9 px-3 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
-                      />
-                    </div>
-                  </div>
+          {/* ── OPTIONAL FEES ──────────────────────────────────────────── */}
+          {calcMode === 'renewal' && (
+            <div className="xl:col-span-2 border-t border-[#DADCE0] pt-3 mt-1">
+              <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider block mb-2">Optional Add-ons (Enter amount in Rs.)</label>
+              <div className="grid grid-cols-3 gap-3">
+                <div className="space-y-1">
+                  <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Third-Party Insurance</label>
+                  <input
+                    type="number" min={0} placeholder="e.g. 2200" value={customInsurance}
+                    onWheel={(e) => (e.target as HTMLInputElement).blur()}
+                    onChange={e => update({ customInsurance: e.target.value === '' ? '' : Number(e.target.value) })}
+                    className="w-full h-9 px-3 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
+                  />
                 </div>
-              )}
-
-
+                <div className="space-y-1">
+                  <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Bluebook Renewal Fee</label>
+                  <input
+                    type="number" min={0} placeholder="e.g. 500" value={customRenewal}
+                    onWheel={(e) => (e.target as HTMLInputElement).blur()}
+                    onChange={e => update({ customRenewal: e.target.value === '' ? '' : Number(e.target.value) })}
+                    className="w-full h-9 px-3 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Pollution Check Fee</label>
+                  <input
+                    type="number" min={0} placeholder="e.g. 400" value={customPollution}
+                    onWheel={(e) => (e.target as HTMLInputElement).blur()}
+                    onChange={e => update({ customPollution: e.target.value === '' ? '' : Number(e.target.value) })}
+                    className="w-full h-9 px-3 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
+                  />
+                </div>
+              </div>
+            </div>
+          )}
 
         </div>
       }
@@ -464,7 +623,7 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
               {renewalResult.isLate && <div className="absolute top-0 left-0 w-full h-1 bg-red-500" />}
               <div className={`text-[10px] font-bold uppercase tracking-wider ${renewalResult.isLate ? 'text-red-700' : 'text-[#1A73E8]'}`}>Total Renewal Liability</div>
               <div className={`text-4xl font-black ${renewalResult.isLate ? 'text-red-700' : 'text-[#1A73E8]'}`}>{formatNPR(renewalResult.total)}</div>
-              <div className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Province: Bagmati Std FY 2083/84</div>
+              <div className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">{activeProvince.label} – FY 2083/84</div>
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div className="border border-[#DADCE0] rounded-md p-4 text-center bg-white">
@@ -517,12 +676,13 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
       }
       details={
         <div className="space-y-6">
-           <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-md flex gap-3 items-center">
-              <Globe className="w-5 h-5 text-[#1A73E8] shrink-0" />
-              <p className="text-[9px] text-[#5F6368] font-bold leading-relaxed uppercase">
-                 Vehicle Imports: Since EVs and vehicles are imported in foreign currency (usually USD or INR), always verify the <a href="/market-rates/exchange-rate-nepal/" className="text-[#1A73E8] underline font-bold">USD to NPR Exchange Rate</a> to calculate exact landed CIF costs before customs.
-              </p>
-           </div>
+          <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-md flex gap-3 items-center">
+            <Globe className="w-5 h-5 text-[#1A73E8] shrink-0" />
+            <p className="text-[9px] text-[#5F6368] font-bold leading-relaxed uppercase">
+              Vehicle Imports: Since EVs and vehicles are imported in foreign currency (usually USD or INR), always verify the <a href="/market-rates/exchange-rate-nepal/" className="text-[#1A73E8] underline font-bold">USD to NPR Exchange Rate</a> to calculate exact landed CIF costs before customs.
+            </p>
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Pie Chart */}
             <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
@@ -571,6 +731,10 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
                 {calcMode === 'renewal' && (
                   <>
                     <div className="p-3 rounded-md bg-[#F8F9FA] border border-[#DADCE0] flex justify-between items-center">
+                      <span className="text-[10px] font-bold text-[#5F6368] uppercase">Province</span>
+                      <span className="text-xs font-black text-[#202124]">{activeProvince.label}</span>
+                    </div>
+                    <div className="p-3 rounded-md bg-[#F8F9FA] border border-[#DADCE0] flex justify-between items-center">
                       <span className="text-[10px] font-bold text-[#5F6368] uppercase">Tax Slab</span>
                       <span className="text-xs font-black text-[#202124]">{renewalResult.slabLabel}</span>
                     </div>
@@ -611,13 +775,13 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
             </div>
           </div>
 
-          {/* Full Rate Matrix Table */}
+          {/* Province Rate Matrix Table */}
           <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm overflow-hidden">
             <div className="px-6 py-4 border-b border-[#DADCE0] bg-[#F8F9FA] flex items-center gap-2">
               <Table className="w-4 h-4 text-[#1A73E8]" />
               <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">
                 {calcMode === 'renewal'
-                  ? `Bagmati Province Tax Matrix – ${engineType === 'electric' ? 'EV kW Slabs' : vCategory.replace('_', ' ').toUpperCase()} (FY 2083/84)`
+                  ? `${activeProvince.label} Tax Matrix – ${engineType === 'electric' ? 'EV kW Slabs' : vCategory.replace('_', ' ').toUpperCase()} (FY 2083/84)`
                   : 'EV Import CIF Clean Infrastructure Fee Tiers (FY 2083/84)'}
               </h3>
             </div>
@@ -643,35 +807,37 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#F1F3F4]">
-                  {calcMode === 'renewal' ? (() => {
-                    let rates: { label: string; rate: number }[] = [];
-                    if (engineType === 'electric') {
-                      if (vCategory === 'bike') rates = [{ label: 'Standard EV Bike/Scooter', rate: EV_BIKE_RATE }];
-                      else rates = EV_CAR_RATES;
-                    } else if (vCategory === 'bike')        rates = BIKE_RATES;
-                    else if (vCategory === 'car_private')   rates = CAR_PRIVATE_RATES;
-                    else if (vCategory === 'car_public')    rates = CAR_PUBLIC_RATES;
-                    else if (vCategory === 'bus')           rates = BUS_RATES;
-                    else if (vCategory === 'truck')         rates = TRUCK_RATES;
-                    else rates = [{ label: 'Agricultural / Three-Wheeler', rate: 3000 }];
-                    return rates.map((s, i) => (
-                      <tr key={i} className="text-sm hover:bg-[#F8F9FA] transition-colors">
-                        <td className="px-5 py-3 font-bold text-[#3C4043]">{s.label}</td>
-                        <td className="px-5 py-3 text-right font-black text-[#5F6368]">{formatNPR(s.rate)}</td>
-                        <td className="px-5 py-3 text-right font-black text-[#D93025]">{formatNPR(s.rate * 1.2)}</td>
-                      </tr>
-                    ));
-                  })() : CIF_TIERS.map((t, i) => (
-                    <tr key={i} className="text-sm hover:bg-[#F8F9FA] transition-colors">
-                      <td className="px-5 py-3 font-bold text-[#3C4043]">{t.label}</td>
-                      <td className="px-5 py-3 text-right font-black text-[#D93025]">20% of CIF</td>
-                      <td className="px-5 py-3 text-right font-black text-amber-700">{(t.feeRate * 100).toFixed(1)}%</td>
-                    </tr>
-                  ))}
+                  {calcMode === 'renewal'
+                    ? activeRates.map((s, i) => (
+                        <tr key={i} className="text-sm hover:bg-[#F8F9FA] transition-colors">
+                          <td className="px-5 py-3 font-bold text-[#3C4043]">{s.label}</td>
+                          <td className="px-5 py-3 text-right font-black text-[#5F6368]">{formatNPR(s.rate)}</td>
+                          <td className="px-5 py-3 text-right font-black text-[#D93025]">{formatNPR(s.rate * 1.2)}</td>
+                        </tr>
+                      ))
+                    : CIF_TIERS.map((t, i) => (
+                        <tr key={i} className="text-sm hover:bg-[#F8F9FA] transition-colors">
+                          <td className="px-5 py-3 font-bold text-[#3C4043]">{t.label}</td>
+                          <td className="px-5 py-3 text-right font-black text-[#D93025]">20% of CIF</td>
+                          <td className="px-5 py-3 text-right font-black text-amber-700">{(t.feeRate * 100).toFixed(1)}%</td>
+                        </tr>
+                      ))
+                  }
                 </tbody>
               </table>
             </div>
           </div>
+
+          {/* Province disclaimer */}
+          {calcMode === 'renewal' && (
+            <div className="p-3 bg-amber-50 border border-amber-200 rounded-md flex gap-2 items-start">
+              <MapPin className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
+              <p className="text-[10px] text-amber-800 font-bold leading-relaxed uppercase">
+                Rates are based on {activeProvince.label} Finance Act. Always verify your exact bill at your provincial Transport Management Office (TMO) or via the Nagarik App before payment.
+              </p>
+            </div>
+          )}
+
           {details}
         </div>
       }
@@ -679,17 +845,17 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
         title: "Auto Hub Nepal",
         subtitle: "Compliance Tools",
         links: [
-          { label: "Salary Calculator", href: "/calculator/nepal-salary/", icon: Wallet },
-          { label: "Income Tax Tool",   href: "/calculator/nepal-income-tax/", icon: Landmark },
-          { label: "DoTM Official",     href: "https://dotm.gov.np", icon: Globe },
-          { label: "Activity Monitor",  href: "/calculator/nepal-vehicle-tax/", icon: Activity },
+          { label: "Salary Calculator", href: "/calculator/nepal-salary/",      icon: Wallet },
+          { label: "Income Tax Tool",   href: "/calculator/nepal-income-tax/",   icon: Landmark },
+          { label: "DoTM Official",     href: "https://dotm.gov.np",             icon: Globe },
+          { label: "Activity Monitor",  href: "/calculator/nepal-vehicle-tax/",  icon: Activity },
         ],
       }}
       relatedTools={[
-        { label: "Home Loan EMI",    href: "/calculator/nepal-home-loan/" },
-        { label: "Salary Calculator",href: "/calculator/nepal-salary/" },
-        { label: "Income Tax",       href: "/calculator/nepal-income-tax/" },
-        { label: "Gold Tax",         href: "/calculator/gold-tax/" },
+        { label: "Home Loan EMI",     href: "/calculator/nepal-home-loan/" },
+        { label: "Salary Calculator", href: "/calculator/nepal-salary/" },
+        { label: "Income Tax",        href: "/calculator/nepal-income-tax/" },
+        { label: "Gold Tax",          href: "/calculator/gold-tax/" },
       ]}
     />
   );
