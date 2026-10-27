@@ -4,7 +4,7 @@ import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
 import {
   Car, ShieldCheck, AlertCircle, Zap, Activity, Globe,
   Landmark, Wallet, Table, BatteryCharging, Truck, Bus,
-  Tractor, MapPin
+  Tractor, MapPin, ChevronDown
 } from 'lucide-react';
 import { useSyncState } from '@/hooks/useSyncState';
 import {
@@ -20,14 +20,14 @@ type ProvinceId      = 'bagmati' | 'koshi' | 'gandaki' | 'lumbini' | 'madhesh' |
 
 // ─── PROVINCE METADATA ────────────────────────────────────────────────────────
 
-const PROVINCES: { id: ProvinceId; label: string; hint: string }[] = [
-  { id: 'bagmati',       label: 'Bagmati Province',        hint: 'Kathmandu, Lalitpur, Bhaktapur' },
-  { id: 'koshi',         label: 'Koshi Province',          hint: 'Biratnagar, Dharan, Itahari' },
-  { id: 'gandaki',       label: 'Gandaki Province',         hint: 'Pokhara, Baglung, Gorkha' },
-  { id: 'lumbini',       label: 'Lumbini Province',         hint: 'Butwal, Bhairahawa, Dang' },
-  { id: 'madhesh',       label: 'Madhesh Province',         hint: 'Janakpur, Birgunj, Hetauda' },
-  { id: 'karnali',       label: 'Karnali Province',         hint: 'Surkhet, Jumla, Dailekh' },
-  { id: 'sudurpashchim', label: 'Sudurpashchim Province',   hint: 'Dhangadhi, Mahendranagar' },
+const PROVINCES: { id: ProvinceId; label: string }[] = [
+  { id: 'bagmati',       label: 'Bagmati Province' },
+  { id: 'koshi',         label: 'Koshi Province' },
+  { id: 'gandaki',       label: 'Gandaki Province' },
+  { id: 'lumbini',       label: 'Lumbini Province' },
+  { id: 'madhesh',       label: 'Madhesh Province' },
+  { id: 'karnali',       label: 'Karnali Province' },
+  { id: 'sudurpashchim', label: 'Sudurpashchim Province' },
 ];
 
 // ─── PROVINCE-WISE RATE TABLES ────────────────────────────────────────────────
@@ -391,15 +391,14 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
             <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Calculator Mode</label>
             <div className="grid grid-cols-2 gap-3">
               {[
-                { id: 'renewal',   label: 'Annual Bluebook Renewal',  icon: Table },
-                { id: 'ev_import', label: 'EV Import Duty (CIF)',      icon: BatteryCharging },
+                { id: 'renewal',   label: 'Annual Bluebook Renewal' },
+                { id: 'ev_import', label: 'EV Import Duty (CIF)' },
               ].map(opt => (
                 <button
                   key={opt.id}
                   onClick={() => update({ calcMode: opt.id as CalcMode })}
-                  className={`flex items-center justify-center gap-2 p-4 rounded-md border transition-all ${calcMode === opt.id ? 'border-[#1A73E8] bg-[#E8F0FE] text-[#1A73E8]' : 'border-[#DADCE0] bg-white text-[#5F6368] hover:border-[#1A73E8]'}`}
+                  className={`flex items-center justify-center p-2.5 rounded-md border transition-all ${calcMode === opt.id ? 'border-[#1A73E8] bg-[#E8F0FE] text-[#1A73E8]' : 'border-[#DADCE0] bg-white text-[#5F6368] hover:border-[#1A73E8]'}`}
                 >
-                  <opt.icon className="w-4 h-4 shrink-0" />
                   <span className="text-[10px] font-black uppercase text-center leading-tight">{opt.label}</span>
                 </button>
               ))}
@@ -413,15 +412,14 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
                 <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Engine Protocol</label>
                 <div className="grid grid-cols-2 gap-3">
                   {[
-                    { id: 'combustion', label: 'Combustion (Petrol/Diesel)', icon: Zap },
-                    { id: 'electric',   label: 'Electric (EV)',               icon: BatteryCharging },
+                    { id: 'combustion', label: 'Combustion (Petrol/Diesel)' },
+                    { id: 'electric',   label: 'Electric (EV)' },
                   ].map(opt => (
                     <button
                       key={opt.id}
                       onClick={() => update({ engineType: opt.id as EngineType, vCategory: 'bike' })}
-                      className={`flex items-center justify-center gap-2 p-4 rounded-md border transition-all ${engineType === opt.id ? 'border-[#1A73E8] bg-[#E8F0FE] text-[#1A73E8]' : 'border-[#DADCE0] bg-white text-[#5F6368] hover:border-[#1A73E8]'}`}
+                      className={`flex items-center justify-center p-2.5 rounded-md border transition-all ${engineType === opt.id ? 'border-[#1A73E8] bg-[#E8F0FE] text-[#1A73E8]' : 'border-[#DADCE0] bg-white text-[#5F6368] hover:border-[#1A73E8]'}`}
                     >
-                      <opt.icon className="w-4 h-4 shrink-0" />
                       <span className="text-[10px] font-black uppercase text-center leading-tight">{opt.label}</span>
                     </button>
                   ))}
@@ -434,17 +432,20 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
                 {/* Province Selector */}
                 <div className="space-y-2">
                   <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider flex items-center gap-1.5">
-                    <MapPin className="w-3.5 h-3.5" /> Province / Registration Office
+                    <MapPin className="w-3.5 h-3.5" /> Province
                   </label>
-                  <select
-                    value={province}
-                    onChange={e => update({ province: e.target.value as ProvinceId })}
-                    className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all appearance-none"
-                  >
-                    {PROVINCES.map(p => (
-                      <option key={p.id} value={p.id}>{p.label} – {p.hint}</option>
-                    ))}
-                  </select>
+                  <div className="relative">
+                    <select
+                      value={province}
+                      onChange={e => update({ province: e.target.value as ProvinceId })}
+                      className="w-full h-12 pl-4 pr-10 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all appearance-none cursor-pointer"
+                    >
+                      {PROVINCES.map(p => (
+                        <option key={p.id} value={p.id}>{p.label}</option>
+                      ))}
+                    </select>
+                    <ChevronDown className="w-4 h-4 text-[#5F6368] absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                  </div>
                 </div>
 
                 {/* Vehicle Category */}
@@ -463,25 +464,9 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
                     ))}
                   </div>
                 </div>
-
-                {/* Delay Status */}
-                <div className="space-y-2">
-                  <label className="text-[11px] font-bold text-[#D93025] uppercase tracking-wider flex items-center gap-1.5">
-                    <AlertCircle className="w-3.5 h-3.5" /> Bluebook Renewal Delay Status
-                  </label>
-                  <select
-                    value={delayStatus}
-                    onChange={e => update({ delayStatus: e.target.value })}
-                    className="w-full h-12 px-4 bg-red-50/50 border border-red-200 rounded-md text-sm font-bold text-red-900 focus:border-red-500 focus:ring-1 focus:ring-red-500 outline-none transition-all appearance-none"
-                  >
-                    {DELAY_STATUSES.map(s => (
-                      <option key={s.id} value={s.id}>{s.label}</option>
-                    ))}
-                  </select>
-                </div>
               </div>
 
-              {/* ── RIGHT COLUMN: Capacity + Clear + Alert ───────────── */}
+              {/* ── RIGHT COLUMN: Capacity + Clear + Alert + Delay Status ── */}
               <div className="space-y-4">
                 {/* Dynamic Capacity Input */}
                 {vCategory === 'bus' ? (
@@ -555,6 +540,25 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
                     </p>
                   </div>
                 )}
+
+                {/* Delay Status */}
+                <div className="space-y-2">
+                  <label className="text-[11px] font-bold text-[#D93025] uppercase tracking-wider flex items-center gap-1.5">
+                    <AlertCircle className="w-3.5 h-3.5" /> Bluebook Renewal Delay Status
+                  </label>
+                  <div className="relative">
+                    <select
+                      value={delayStatus}
+                      onChange={e => update({ delayStatus: e.target.value })}
+                      className="w-full h-12 pl-4 pr-10 bg-red-50/50 border border-red-200 rounded-md text-sm font-bold text-red-900 focus:border-red-500 focus:ring-1 focus:ring-red-500 outline-none transition-all appearance-none cursor-pointer"
+                    >
+                      {DELAY_STATUSES.map(s => (
+                        <option key={s.id} value={s.id}>{s.label}</option>
+                      ))}
+                    </select>
+                    <ChevronDown className="w-4 h-4 text-red-700 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                  </div>
+                </div>
               </div>
             </>
           ) : (
