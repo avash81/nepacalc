@@ -225,7 +225,7 @@ function formatNPR(n: number) {
 // ─── COMPONENT ────────────────────────────────────────────────────────────────
 
 export default function NepalVehicleTaxCalculator({ details }: { details?: React.ReactNode }) {
-  const [state, setState] = useSyncState('nepal_vehicle_tax_v10', {
+  const [state, setState] = useSyncState('nepal_vehicle_tax_v11', {
     calcMode:        'renewal'    as CalcMode,
     engineType:      'combustion' as EngineType,
     vCategory:       'bike'       as VehicleCategory,
