@@ -4,7 +4,7 @@ import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
 import {
   Car, ShieldCheck, AlertCircle, Zap, Activity, Globe,
   Landmark, Wallet, Table, BatteryCharging, Truck, Bus,
-  Tractor, MapPin, ChevronDown
+  Tractor, MapPin, ChevronDown, Clock
 } from 'lucide-react';
 import { useSyncState } from '@/hooks/useSyncState';
 import {
@@ -205,15 +205,15 @@ const CIF_TIERS = [
 
 // Progressive delay penalty config
 const DELAY_STATUSES = [
-  { id: 'ontime',       label: 'On Time (Within 90-Day Grace)',    basePenalty: 0,    renewMult: 1, yearsBack: 0 },
-  { id: '30days',       label: '1–30 Days Past Grace Period',      basePenalty: 0.05, renewMult: 2, yearsBack: 0 },
-  { id: '45days',       label: '31–45 Days Past Grace Period',     basePenalty: 0.10, renewMult: 2, yearsBack: 0 },
-  { id: 'end_fy',       label: '46 Days to End of Fiscal Year',    basePenalty: 0.20, renewMult: 2, yearsBack: 0 },
-  { id: '1_year',       label: '1 Full Fiscal Year Late',          basePenalty: 0.32, renewMult: 2, yearsBack: 1 },
-  { id: '2_years',      label: '2 Fiscal Years Late',              basePenalty: 0.64, renewMult: 2, yearsBack: 2 },
-  { id: '3_years',      label: '3 Fiscal Years Late',              basePenalty: 0.96, renewMult: 2, yearsBack: 3 },
-  { id: '4_years',      label: '4 Fiscal Years Late',              basePenalty: 1.28, renewMult: 2, yearsBack: 4 },
-  { id: '5_years_plus', label: '5+ Years Late (4-Yr Cap Applies)', basePenalty: 1.60, renewMult: 2, yearsBack: 4 },
+  { id: 'ontime',       label: 'On Time (Within 90-Day Grace Period)', basePenalty: 0,    renewMult: 1, yearsBack: 0 },
+  { id: '30days',       label: '1–30 Days Late (+5% Fine)',            basePenalty: 0.05, renewMult: 2, yearsBack: 0 },
+  { id: '45days',       label: '31–45 Days Late (+10% Fine)',           basePenalty: 0.10, renewMult: 2, yearsBack: 0 },
+  { id: 'end_fy',       label: '46 Days to End of Fiscal Year (+20% Fine)', basePenalty: 0.20, renewMult: 2, yearsBack: 0 },
+  { id: '1_year',       label: '1 Fiscal Year Late (+32% Fine)',        basePenalty: 0.32, renewMult: 2, yearsBack: 1 },
+  { id: '2_years',      label: '2 Fiscal Years Late (+64% Fine)',       basePenalty: 0.64, renewMult: 2, yearsBack: 2 },
+  { id: '3_years',      label: '3 Fiscal Years Late (+96% Fine)',       basePenalty: 0.96, renewMult: 2, yearsBack: 3 },
+  { id: '4_years',      label: '4 Fiscal Years Late (+128% Fine)',      basePenalty: 1.28, renewMult: 2, yearsBack: 4 },
+  { id: '5_years_plus', label: '5+ Years Late (Max 4-Yr Cap Applied)',  basePenalty: 1.60, renewMult: 2, yearsBack: 4 },
 ];
 
 // ─── HELPERS ──────────────────────────────────────────────────────────────────
@@ -523,42 +523,40 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
                   Clear Calculator
                 </button>
 
-                {/* Contextual Alert */}
-                {renewalResult.isLate ? (
-                  <div className="p-2.5 bg-red-50 border border-red-200 rounded-md flex gap-2 items-center">
-                    <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
-                    <p className="text-[10px] text-red-800 font-bold leading-relaxed uppercase">
-                      Late fine applied. Renewal fee doubled to {formatNPR(renewalResult.finalRenew)}.
-                      {delayStatus === '5_years_plus' && ' Base tax capped at 4 years under DoTM regulations.'}
-                    </p>
-                  </div>
-                ) : (
-                  <div className="p-2.5 bg-emerald-50 border border-emerald-200 rounded-md flex gap-2 items-center">
-                    <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
-                    <p className="text-[10px] text-emerald-800 font-bold leading-relaxed uppercase">
-                      Within the 90-day grace period. No penalties applied.
-                    </p>
-                  </div>
-                )}
-
                 {/* Delay Status */}
                 <div className="space-y-2">
-                  <label className="text-[11px] font-bold text-[#D93025] uppercase tracking-wider flex items-center gap-1.5">
-                    <AlertCircle className="w-3.5 h-3.5" /> Bluebook Renewal Delay Status
+                  <label className={`text-[11px] font-bold uppercase tracking-wider flex items-center gap-1.5 ${renewalResult.isLate ? 'text-[#D93025]' : 'text-[#5F6368]'}`}>
+                    {renewalResult.isLate ? <AlertCircle className="w-3.5 h-3.5 text-[#D93025]" /> : <Clock className="w-3.5 h-3.5 text-[#5F6368]" />}
+                    Bluebook Renewal Status
                   </label>
                   <div className="relative">
                     <select
                       value={delayStatus}
                       onChange={e => update({ delayStatus: e.target.value })}
-                      className="w-full h-12 pl-4 pr-10 bg-red-50/50 border border-red-200 rounded-md text-sm font-bold text-red-900 focus:border-red-500 focus:ring-1 focus:ring-red-500 outline-none transition-all appearance-none cursor-pointer"
+                      className={`w-full h-12 pl-4 pr-10 rounded-md text-sm font-bold outline-none transition-all appearance-none cursor-pointer ${
+                        renewalResult.isLate
+                          ? 'bg-red-50/50 border border-red-300 text-red-950 focus:border-red-500 focus:ring-1 focus:ring-red-500'
+                          : 'bg-white border border-[#DADCE0] text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8]'
+                      }`}
                     >
                       {DELAY_STATUSES.map(s => (
                         <option key={s.id} value={s.id}>{s.label}</option>
                       ))}
                     </select>
-                    <ChevronDown className="w-4 h-4 text-red-700 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                    <ChevronDown className={`w-4 h-4 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none ${renewalResult.isLate ? 'text-red-700' : 'text-[#5F6368]'}`} />
                   </div>
                 </div>
+
+                {/* Adaptive Late Penalty Alert */}
+                {renewalResult.isLate && (
+                  <div className="p-2.5 bg-red-50 border border-red-200 rounded-md flex gap-2 items-center">
+                    <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
+                    <p className="text-[10px] text-red-800 font-bold leading-relaxed uppercase">
+                      Late penalty applied: +{Math.round((DELAY_STATUSES.find(d => d.id === delayStatus)?.basePenalty ?? 0) * 100)}% on base road tax ({formatNPR(renewalResult.penaltyFine)}).
+                      {delayStatus === '5_years_plus' && ' Base tax capped at 4 years under DoTM regulations.'}
+                    </p>
+                  </div>
+                )}
               </div>
             </>
           ) : (
