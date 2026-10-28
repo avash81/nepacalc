@@ -56,11 +56,11 @@ export interface LiveRates {
 // These are ONLY used when the server is totally unreachable.
 // IMPORTANT: Update these every time a new build is cut so the static fallback
 // stays within ~1% of the current market price.
-// Last updated: 2026-10-27 (automated build)
-const FALLBACK_GOLD_TOLA   = 282300;  // FENEGOSIDA 2026-10-27
-const FALLBACK_TEJABI_TOLA = 281600;  // FENEGOSIDA 2026-10-27
-const FALLBACK_SILVER_TOLA = 3970;    // FENEGOSIDA 2026-10-27
-const FALLBACK_DATE        = '2026-10-27';
+// Last updated: 2026-10-28 (automated build)
+const FALLBACK_GOLD_TOLA   = 283200;  // FENEGOSIDA 2026-10-28
+const FALLBACK_TEJABI_TOLA = 282500;  // FENEGOSIDA 2026-10-28
+const FALLBACK_SILVER_TOLA = 3980;    // FENEGOSIDA 2026-10-28
+const FALLBACK_DATE        = '2026-10-28';
 const FALLBACK_USD         = 133.5;
 
 // ─── Polling intervals ───────────────────────────────────────────────────────
