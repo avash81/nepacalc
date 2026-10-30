@@ -10,7 +10,7 @@ interface Props {
 export function CalculatorCard({ calc, compact = false }: Props) {
   return (
     <Link
-      href={calc.slug.includes('/') ? `/${calc.slug}` : `/calculator/${calc.slug}`}
+      href={calc.slug.includes('/') ? `/${calc.slug}/` : `/calculator/${calc.slug}/`}
       className={`
         group flex items-start gap-4 px-4 py-4 bg-white
         border border-[var(--border)] rounded-lg hover:border-[var(--primary)] hover:shadow-md transition-all
