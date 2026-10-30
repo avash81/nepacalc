@@ -222,6 +222,67 @@ const nextConfig = {
         destination: '/engineering/formulas/',
         permanent: true,
       },
+      // GSC fixes: broken concatenated paths, legacy paths, and trailing slash enforcement
+      {
+        source: '/calculator/math-tools/calculus',
+        destination: '/math-tools/calculus/',
+        permanent: true,
+      },
+      {
+        source: '/calculator/math-tools/calculus/',
+        destination: '/math-tools/calculus/',
+        permanent: true,
+      },
+      {
+        source: '/math-tools/geometry',
+        destination: '/engineering/geometry/',
+        permanent: true,
+      },
+      {
+        source: '/math-tools/geometry/',
+        destination: '/engineering/geometry/',
+        permanent: true,
+      },
+      {
+        source: '/calculator/area-calculator',
+        destination: '/calculator/area-calculator/',
+        permanent: true,
+      },
+      {
+        source: '/calculator/marks-needed',
+        destination: '/calculator/marks-needed/',
+        permanent: true,
+      },
+      {
+        source: '/calculator/probability',
+        destination: '/calculator/probability/',
+        permanent: true,
+      },
+      {
+        source: '/calculator/roman-numerals',
+        destination: '/calculator/roman-numerals/',
+        permanent: true,
+      },
+      {
+        source: '/calculator/concrete-mix',
+        destination: '/calculator/concrete-mix/',
+        permanent: true,
+      },
+      {
+        source: '/calculator/simple-calculator',
+        destination: '/calculator/simple-calculator/',
+        permanent: true,
+      },
+      {
+        source: '/math-tools/fourfunction',
+        destination: '/math-tools/fourfunction/',
+        permanent: true,
+      },
+      {
+        source: '/math-tools/programmer',
+        destination: '/math-tools/programmer/',
+        permanent: true,
+      },
     ];
   },
   // Webpack: tree shaking only

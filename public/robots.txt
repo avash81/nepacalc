@@ -4,7 +4,10 @@ Content-Signal: search=yes,ai-train=no
 
 # Default rules for all crawlers
 User-agent: *
+Allow: /robots.txt
 Allow: /
+Disallow: /*/index.txt
+Disallow: /*.txt$
 
 # Protected areas
 Disallow: /api/
@@ -18,11 +21,15 @@ Disallow: /*?source=
 # Bing
 User-agent: bingbot
 Allow: /
+Disallow: /*/index.txt
+Disallow: /*.txt$
 Crawl-delay: 2
 
 # Yandex
 User-agent: YandexBot
 Allow: /
+Disallow: /*/index.txt
+Disallow: /*.txt$
 Crawl-delay: 5
 
 # AI Crawlers

@@ -1,2 +1,21 @@
+# Primary Directory Redirect
 /directory/ /calculator/ 301
 /directory /calculator/ 301
+
+# Broken concatenated path fix (GSC error)
+/calculator/math-tools/calculus/ /math-tools/calculus/ 301
+/calculator/math-tools/calculus /math-tools/calculus/ 301
+
+# Legacy duplicate path redirect to canonical
+/math-tools/geometry/ /engineering/geometry/ 301
+/math-tools/geometry /engineering/geometry/ 301
+
+# Trailing slash canonical enforcement
+/calculator/area-calculator /calculator/area-calculator/ 301
+/calculator/marks-needed /calculator/marks-needed/ 301
+/calculator/probability /calculator/probability/ 301
+/calculator/roman-numerals /calculator/roman-numerals/ 301
+/calculator/concrete-mix /calculator/concrete-mix/ 301
+/calculator/simple-calculator /calculator/simple-calculator/ 301
+/math-tools/fourfunction /math-tools/fourfunction/ 301
+/math-tools/programmer /math-tools/programmer/ 301
