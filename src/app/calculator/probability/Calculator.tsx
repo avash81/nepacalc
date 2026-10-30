@@ -1,361 +1,444 @@
 'use client';
 import { useState, useMemo } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
-import { Dices, PieChart, TrendingUp, Info, ShieldCheck, Microscope, History, GraduationCap, Landmark, Target, Binary, Award } from 'lucide-react';
+import { Dices, PieChart, Info, ShieldCheck, Binary, Layers, HelpCircle, CheckCircle2 } from 'lucide-react';
 
-const SCENARIOS = [
-  { label: 'Dice Roll (Standard 6-sided)',  f: 1, t: 6 },
-  { label: 'Coin Flip (Fair)',     f: 1, t: 2 },
-  { label: 'Draw Ace from Deck',  f: 4, t: 52 },
-  { label: 'Lottery (1 in 45)',f: 1, t: 45 },
-  { label: 'Rare Event (1 in 10,000)',f: 1, t: 10000 },
-  { label: 'High Confidence (95%)',f: 95, t: 100 },
+const SINGLE_SCENARIOS = [
+  { label: 'Coin Toss (Heads/Tails)', f: 1, t: 2 },
+  { label: 'Die Roll (Single Number)', f: 1, t: 6 },
+  { label: 'Draw an Ace from Deck', f: 4, t: 52 },
+  { label: 'Draw Any Spade Suit', f: 13, t: 52 },
+  { label: 'Pair of Dice Sum = 7', f: 6, t: 36 },
+  { label: 'Lottery Ticket (1 in 45)', f: 1, t: 45 },
 ];
 
 export default function ProbabilityCalc() {
-  const [favorable, setFavorable] = useState(1);
-  const [total, setTotal]         = useState(6);
+  const [activeTab, setActiveTab] = useState<'single' | 'double'>('single');
 
-  const res = useMemo(() => {
-    if (total <= 0) return { prob: 0, pct: '0%', odds: '0:0', complement: '100%', ratio: '0/0' };
-    const p = Math.min(favorable / total, 1);
-    return { 
-        prob: p.toFixed(4), 
-        pct: (p * 100).toFixed(2) + '%', 
-        odds: `${favorable}:${Math.max(0, total - favorable)}`, 
-        complement: ((1-p)*100).toFixed(2) + '%',
-        ratio: `${favorable}/${total}`
+  // Single event inputs
+  const [favorable, setFavorable] = useState(1);
+  const [total, setTotal] = useState(6);
+
+  // Two events inputs
+  const [probA, setProbA] = useState(50); // in percent
+  const [probB, setProbB] = useState(50); // in percent
+  const [eventType, setEventType] = useState<'independent' | 'mutually_exclusive'>('independent');
+
+  // Single event calculations
+  const singleRes = useMemo(() => {
+    if (total <= 0) return { prob: '0.0000', pct: '0.00%', odds: '0:0', complement: '100.00%', ratio: '0/0', numPct: 0 };
+    const p = Math.min(Math.max(favorable / total, 0), 1);
+    const pctVal = p * 100;
+    const compVal = (1 - p) * 100;
+    return {
+      prob: p.toFixed(4),
+      pct: pctVal.toFixed(2) + '%',
+      numPct: pctVal,
+      odds: `${favorable}:${Math.max(0, total - favorable)}`,
+      complement: compVal.toFixed(2) + '%',
+      ratio: `${favorable}/${total}`
     };
   }, [favorable, total]);
 
-  const inputCls = "w-full px-6 py-4 rounded-2xl border border-[#DADCE0] bg-white font-black text-2xl focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all shadow-sm text-[#202124]";
-  const labelCls = "text-[11px] font-black uppercase text-[#70757A] tracking-wider mb-2 block";
+  // Two events calculations
+  const doubleRes = useMemo(() => {
+    const pa = Math.min(Math.max(probA / 100, 0), 1);
+    const pb = Math.min(Math.max(probB / 100, 0), 1);
+
+    if (eventType === 'independent') {
+      const pAnd = pa * pb;
+      const pOr = pa + pb - pAnd;
+      const pAOnly = pa * (1 - pb);
+      const pBOnly = pb * (1 - pa);
+      const pNeither = (1 - pa) * (1 - pb);
+
+      return {
+        pAndPct: (pAnd * 100).toFixed(2) + '%',
+        pOrPct: (pOr * 100).toFixed(2) + '%',
+        pAOnlyPct: (pAOnly * 100).toFixed(2) + '%',
+        pBOnlyPct: (pBOnly * 100).toFixed(2) + '%',
+        pNeitherPct: (pNeither * 100).toFixed(2) + '%',
+        pAndNum: pAnd * 100,
+        pOrNum: pOr * 100,
+      };
+    } else {
+      const pAnd = 0;
+      const pOr = Math.min(pa + pb, 1);
+      const pAOnly = pa;
+      const pBOnly = pb;
+      const pNeither = Math.max(0, 1 - (pa + pb));
+
+      return {
+        pAndPct: '0.00% (Cannot happen together)',
+        pOrPct: (pOr * 100).toFixed(2) + '%',
+        pAOnlyPct: (pAOnly * 100).toFixed(2) + '%',
+        pBOnlyPct: (pBOnly * 100).toFixed(2) + '%',
+        pNeitherPct: (pNeither * 100).toFixed(2) + '%',
+        pAndNum: 0,
+        pOrNum: pOr * 100,
+      };
+    }
+  }, [probA, probB, eventType]);
+
+  const inputCls = "w-full px-4 py-3 rounded-xl border border-slate-300 bg-white font-mono text-xl font-black focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all shadow-sm text-slate-800";
+  const labelCls = "text-xs font-bold text-slate-700 uppercase tracking-wide block mb-1.5";
 
   return (
-    <ModernCalcLayout 
+    <ModernCalcLayout
       slug="probability"
       crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'Probability Calculator' }]}
-      title="Professional Probability"
-      description="The definitive resource for Bayesian and frequentist probability. Calculate odds, success percentages, and sample space ratios with academic precision for NEB and international research."
+      title="Probability Calculator"
+      description="Calculate single-event probabilities, odds ratios, complements, and compound two-event scenarios (independent vs. mutually exclusive) with step-by-step mathematical formulas."
       icon={Dices}
       inputs={
         <div className="space-y-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 p-6 bg-white border border-[#DADCE0] rounded-lg shadow-sm">
-            <div className="space-y-2">
-              <label className={labelCls}>Favorable Outcomes ($n$)</label>
-              <input type="number" value={favorable} onChange={e => setFavorable(Number(e.target.value))} min={0} className={inputCls} />
-              <p className="text-[10px] text-[#70757A] font-medium italic">Number of ways the desired event can occur.</p>
-            </div>
-            <div className="space-y-2">
-              <label className={labelCls}>Total Sample Space ($N$)</label>
-              <input type="number" value={total} onChange={e => setTotal(Number(e.target.value))} min={1} className={inputCls} />
-              <p className="text-[10px] text-[#70757A] font-medium italic">Total number of possible outcomes.</p>
-            </div>
+          {/* Mode Tabs */}
+          <div className="flex bg-slate-100 p-1.5 rounded-xl border border-slate-200">
+            <button
+              onClick={() => setActiveTab('single')}
+              className={`flex-1 py-2.5 px-4 rounded-lg font-bold text-sm flex items-center justify-center gap-2 transition-all ${
+                activeTab === 'single'
+                  ? 'bg-white text-blue-600 shadow-sm border border-slate-200/60'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <Dices className="w-4 h-4" />
+              Single Event P(A)
+            </button>
+            <button
+              onClick={() => setActiveTab('double')}
+              className={`flex-1 py-2.5 px-4 rounded-lg font-bold text-sm flex items-center justify-center gap-2 transition-all ${
+                activeTab === 'double'
+                  ? 'bg-white text-blue-600 shadow-sm border border-slate-200/60'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <Layers className="w-4 h-4" />
+              Two Events: A and B
+            </button>
           </div>
 
-          <div className="space-y-3 pt-6 border-t border-[#F1F3F4]">
-            <label className="text-[10px] font-black uppercase text-[#70757A] tracking-[0.2em]">Institutional Presets</label>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-              {SCENARIOS.map(s => (
-                <button key={s.label} onClick={() => { setFavorable(s.f); setTotal(s.t); }}
-                  className="p-4 border border-[#DADCE0] rounded-2xl bg-white hover:bg-[#E8F0FE] hover:border-[#1A73E8] text-left flex flex-col justify-between items-start transition-all shadow-sm group">
-                  <span className="text-[10px] font-black text-[#202124] mb-2 uppercase tracking-tight group-hover:text-[#1A73E8]">{s.label}</span>
-                  <span className="text-xs font-black text-[#1A73E8] bg-[#E8F0FE] px-3 py-1 rounded-full">{s.f} in {s.t}</span>
-                </button>
-              ))}
-            </div>
-          </div>
+          {activeTab === 'single' ? (
+            <>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-6 bg-slate-50 border border-slate-200 rounded-2xl shadow-inner">
+                <div className="space-y-1">
+                  <label className={labelCls}>Favorable Outcomes (n)</label>
+                  <input
+                    type="number"
+                    value={favorable}
+                    onChange={e => setFavorable(Math.max(0, Number(e.target.value)))}
+                    min={0}
+                    className={inputCls}
+                  />
+                  <p className="text-xs text-slate-500">Ways your target outcome can happen.</p>
+                </div>
+                <div className="space-y-1">
+                  <label className={labelCls}>Total Sample Space (N)</label>
+                  <input
+                    type="number"
+                    value={total}
+                    onChange={e => setTotal(Math.max(1, Number(e.target.value)))}
+                    min={1}
+                    className={inputCls}
+                  />
+                  <p className="text-xs text-slate-500">Total number of possible outcomes.</p>
+                </div>
+              </div>
 
-          <div className="p-5 bg-[#F8F9FA] border border-[#DADCE0] rounded-2xl flex items-start gap-4 shadow-inner">
-             <Binary className="w-5 h-5 text-[#1A73E8] shrink-0 mt-0.5" />
-             <div>
-                <div className="text-[10px] font-black uppercase text-[#70757A] mb-1 tracking-widest">Theoretical Axiom</div>
-                <code className="text-sm font-mono text-[#1A73E8] font-black">{'$P(A) = \\frac{n(A)}{n(S)}$'}</code>
-             </div>
+              {/* Quick Preset Buttons */}
+              <div className="space-y-2.5">
+                <label className="text-xs font-bold uppercase tracking-wider text-slate-600">Quick Scenario Presets</label>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                  {SINGLE_SCENARIOS.map(s => (
+                    <button
+                      key={s.label}
+                      onClick={() => { setFavorable(s.f); setTotal(s.t); }}
+                      className="p-3 border border-slate-200 rounded-xl bg-white hover:bg-blue-50 hover:border-blue-300 text-left transition-all shadow-sm group"
+                    >
+                      <div className="text-xs font-bold text-slate-800 group-hover:text-blue-600 line-clamp-1">{s.label}</div>
+                      <div className="text-[11px] font-mono text-blue-600 mt-1 font-semibold">{s.f} in {s.t}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </>
+          ) : (
+            <div className="space-y-5 p-6 bg-slate-50 border border-slate-200 rounded-2xl shadow-inner">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <label className={labelCls}>Probability of Event A (%)</label>
+                  <div className="relative">
+                    <input
+                      type="number"
+                      value={probA}
+                      onChange={e => setProbA(Math.min(100, Math.max(0, Number(e.target.value))))}
+                      min={0}
+                      max={100}
+                      className={inputCls}
+                    />
+                    <span className="absolute right-4 top-3 text-sm font-bold text-slate-400">%</span>
+                  </div>
+                  <p className="text-xs text-slate-500">e.g., 50% for coin flip</p>
+                </div>
+
+                <div className="space-y-1">
+                  <label className={labelCls}>Probability of Event B (%)</label>
+                  <div className="relative">
+                    <input
+                      type="number"
+                      value={probB}
+                      onChange={e => setProbB(Math.min(100, Math.max(0, Number(e.target.value))))}
+                      min={0}
+                      max={100}
+                      className={inputCls}
+                    />
+                    <span className="absolute right-4 top-3 text-sm font-bold text-slate-400">%</span>
+                  </div>
+                  <p className="text-xs text-slate-500">e.g., 50% for 2nd coin flip</p>
+                </div>
+              </div>
+
+              <div className="space-y-2 pt-2 border-t border-slate-200">
+                <label className={labelCls}>Event Relationship Type</label>
+                <div className="grid grid-cols-2 gap-3">
+                  <button
+                    onClick={() => setEventType('independent')}
+                    className={`p-3.5 rounded-xl border text-left transition-all ${
+                      eventType === 'independent'
+                        ? 'border-blue-500 bg-blue-50 text-blue-900 ring-2 ring-blue-200'
+                        : 'border-slate-300 bg-white text-slate-700 hover:bg-slate-100'
+                    }`}
+                  >
+                    <div className="font-bold text-sm flex items-center gap-1.5">
+                      {eventType === 'independent' && <CheckCircle2 className="w-4 h-4 text-blue-600" />}
+                      Independent Events
+                    </div>
+                    <div className="text-[11px] text-slate-500 mt-1">Event A does not influence Event B (e.g., two coin flips).</div>
+                  </button>
+
+                  <button
+                    onClick={() => setEventType('mutually_exclusive')}
+                    className={`p-3.5 rounded-xl border text-left transition-all ${
+                      eventType === 'mutually_exclusive'
+                        ? 'border-blue-500 bg-blue-50 text-blue-900 ring-2 ring-blue-200'
+                        : 'border-slate-300 bg-white text-slate-700 hover:bg-slate-100'
+                    }`}
+                  >
+                    <div className="font-bold text-sm flex items-center gap-1.5">
+                      {eventType === 'mutually_exclusive' && <CheckCircle2 className="w-4 h-4 text-blue-600" />}
+                      Mutually Exclusive
+                    </div>
+                    <div className="text-[11px] text-slate-500 mt-1">Cannot occur together (e.g., rolling a 1 or a 6 on a single die).</div>
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div className="p-4 bg-blue-50 border border-blue-200 rounded-xl flex items-start gap-3">
+            <Binary className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
+            <div className="text-xs text-blue-950">
+              <span className="font-bold">Standard Probability Rule:</span> P(E) = n(E) / n(S). Probability is always between 0 (impossible) and 1 (100% certain).
+            </div>
           </div>
         </div>
       }
       results={
         <div className="space-y-6">
-          <div className="p-12 bg-white border border-[#DADCE0] rounded-lg text-center relative overflow-hidden shadow-sm group">
-            <Dices className="absolute -left-6 -bottom-6 w-40 h-40 text-[#DADCE0]/20 -rotate-12 group-hover:rotate-0 transition-transform duration-700" />
-            <div className="relative z-10">
-              <div className="text-[11px] font-black uppercase tracking-[0.4em] text-[#1A73E8] mb-6">Success Probability</div>
-              <div className="text-8xl lg:text-9xl font-black tracking-tighter text-[#202124] font-mono mb-6">{res.pct}</div>
-              <div className="inline-block px-8 py-3 bg-[#E8F0FE] text-[#1A73E8] rounded-full text-xs font-black border border-[#1A73E8]/10 shadow-sm">
-                  {res.ratio} Ratio Representation
-              </div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-3 gap-4">
-            {[
-              { label: 'Decimal',    val: res.prob, desc: '$0 \le P \le 1$' },
-              { label: 'Odds',       val: res.odds, desc: 'Success:Failure' },
-              { label: 'Complement', val: res.complement, desc: '$1 - P(A)$' },
-            ].map(({ label, val, desc }) => (
-              <div key={label} className="p-6 bg-white border border-[#DADCE0] rounded-lg text-center shadow-md group hover:border-[#1A73E8] transition-colors">
-                <div className="text-[9px] font-black uppercase text-[#70757A] tracking-widest mb-2 group-hover:text-[#1A73E8]">{label}</div>
-                <div className="text-2xl font-black text-[#202124] font-mono">{val}</div>
-                <div className="text-[8px] font-bold text-[#70757A] mt-1 opacity-60 uppercase">{desc}</div>
-              </div>
-            ))}
-          </div>
-
-          <div className="p-8 bg-white border border-[#DADCE0] rounded-lg space-y-4 shadow-sm">
-            <div className="flex justify-between text-[10px] font-black uppercase tracking-widest">
-              <span className="text-[#1A73E8]">Likelihood of Event ($P$)</span>
-              <span className="text-[#D93025]">Inverse Probability ($Q$)</span>
-            </div>
-            <div className="h-6 flex rounded-full overflow-hidden w-full bg-[#F1F3F4] border border-[#DADCE0] p-1">
-              <div className="bg-gradient-to-r from-[#4285F4] to-[#1A73E8] rounded-full transition-all duration-1000 ease-out shadow-sm" style={{ width: res.pct }} />
-            </div>
-            <div className="flex justify-between items-center">
-                <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-[#1A73E8]" />
-                    <span className="text-xs font-black text-[#202124]">{res.pct}</span>
+          {activeTab === 'single' ? (
+            <>
+              {/* Single Event Primary Result */}
+              <div className="p-8 bg-blue-600 rounded-2xl text-center shadow-md text-white relative overflow-hidden">
+                <Dices className="absolute -left-6 -bottom-6 w-36 h-36 text-white/10 -rotate-12" />
+                <div className="relative z-10 space-y-3">
+                  <div className="text-xs font-bold uppercase tracking-widest text-blue-200">Probability of Occurrence</div>
+                  <div className="text-6xl sm:text-7xl font-black tracking-tight font-mono">{singleRes.pct}</div>
+                  <div className="inline-block px-4 py-1.5 bg-white/20 rounded-lg text-sm font-bold backdrop-blur-sm border border-white/30">
+                    Fraction: {singleRes.ratio}
+                  </div>
                 </div>
-                <div className="flex items-center gap-2">
-                    <span className="text-xs font-black text-[#D93025]">{res.complement}</span>
-                    <div className="w-3 h-3 rounded-full bg-[#D93025]" />
-                </div>
-            </div>
-          </div>
+              </div>
 
-          <div className="p-5 bg-[#E8F0FE] border border-[#C5D9F7] rounded-2xl flex items-center gap-4 shadow-sm">
-                <ShieldCheck className="w-6 h-6 text-[#1A73E8]" />
-                <p className="text-[11px] text-[#202124] leading-relaxed font-medium">Verified by frequentist mathematical axioms. All calculations assume independent event variables within a finite sample space.</p>
+              {/* Metric Breakdown Cards */}
+              <div className="grid grid-cols-3 gap-3">
+                <div className="p-4 bg-white border border-slate-200 rounded-xl text-center shadow-sm">
+                  <div className="text-[10px] font-bold uppercase text-slate-500 tracking-wider mb-1">Decimal Form</div>
+                  <div className="text-xl font-black text-slate-800 font-mono">{singleRes.prob}</div>
+                  <div className="text-[10px] text-slate-400 mt-1">0 ≤ P ≤ 1</div>
+                </div>
+                <div className="p-4 bg-white border border-slate-200 rounded-xl text-center shadow-sm">
+                  <div className="text-[10px] font-bold uppercase text-slate-500 tracking-wider mb-1">Odds Ratio</div>
+                  <div className="text-xl font-black text-slate-800 font-mono">{singleRes.odds}</div>
+                  <div className="text-[10px] text-slate-400 mt-1">Success : Fail</div>
+                </div>
+                <div className="p-4 bg-white border border-slate-200 rounded-xl text-center shadow-sm">
+                  <div className="text-[10px] font-bold uppercase text-slate-500 tracking-wider mb-1">Complement (Not Occurring)</div>
+                  <div className="text-xl font-black text-rose-600 font-mono">{singleRes.complement}</div>
+                  <div className="text-[10px] text-slate-400 mt-1">1 − P(A)</div>
+                </div>
+              </div>
+
+              {/* Visual Probability Bar */}
+              <div className="p-5 bg-white border border-slate-200 rounded-xl space-y-3 shadow-sm">
+                <div className="flex justify-between text-xs font-bold">
+                  <span className="text-blue-600">Likelihood P: {singleRes.pct}</span>
+                  <span className="text-rose-600">Unlikely Q: {singleRes.complement}</span>
+                </div>
+                <div className="h-4 flex rounded-full overflow-hidden bg-slate-100 border border-slate-200 p-0.5">
+                  <div
+                    className="bg-blue-600 rounded-full transition-all duration-500 ease-out"
+                    style={{ width: `${Math.min(Math.max(singleRes.numPct, 0), 100)}%` }}
+                  />
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              {/* Two Events Results Matrix */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="p-6 bg-blue-600 rounded-2xl text-white shadow-md text-center space-y-2">
+                  <div className="text-xs font-bold uppercase tracking-wider text-blue-200">Both Occur: P(A and B)</div>
+                  <div className="text-4xl font-black font-mono">{doubleRes.pAndPct}</div>
+                  <div className="text-xs text-blue-100 opacity-90 font-mono">
+                    {eventType === 'independent' ? 'P(A) × P(B)' : 'Mutually exclusive: 0%'}
+                  </div>
+                </div>
+
+                <div className="p-6 bg-slate-900 rounded-2xl text-white shadow-md text-center space-y-2">
+                  <div className="text-xs font-bold uppercase tracking-wider text-slate-400">At Least One Occurs: P(A or B)</div>
+                  <div className="text-4xl font-black font-mono text-emerald-400">{doubleRes.pOrPct}</div>
+                  <div className="text-xs text-slate-400 font-mono">
+                    {eventType === 'independent' ? 'P(A) + P(B) − P(A ∩ B)' : 'P(A) + P(B)'}
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white border border-slate-200 rounded-xl divide-y divide-slate-100 shadow-sm">
+                <div className="p-4 flex justify-between items-center">
+                  <div>
+                    <div className="text-xs font-bold text-slate-800">Only Event A Occurs</div>
+                    <div className="text-[11px] text-slate-500 font-mono">P(A) and not P(B)</div>
+                  </div>
+                  <span className="text-base font-black text-slate-800 font-mono">{doubleRes.pAOnlyPct}</span>
+                </div>
+                <div className="p-4 flex justify-between items-center">
+                  <div>
+                    <div className="text-xs font-bold text-slate-800">Only Event B Occurs</div>
+                    <div className="text-[11px] text-slate-500 font-mono">P(B) and not P(A)</div>
+                  </div>
+                  <span className="text-base font-black text-slate-800 font-mono">{doubleRes.pBOnlyPct}</span>
+                </div>
+                <div className="p-4 flex justify-between items-center">
+                  <div>
+                    <div className="text-xs font-bold text-slate-800">Neither Event Occurs</div>
+                    <div className="text-[11px] text-slate-500 font-mono">1 − P(A or B)</div>
+                  </div>
+                  <span className="text-base font-black text-rose-600 font-mono">{doubleRes.pNeitherPct}</span>
+                </div>
+              </div>
+            </>
+          )}
+
+          <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl flex items-center gap-3">
+            <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0" />
+            <p className="text-xs text-slate-600 leading-relaxed">
+              Calculated following standard probability axioms (Kolmogorov). Compatible with Grade 10 SEE, NEB Class 11/12, and TU/KU engineering curricula.
+            </p>
           </div>
         </div>
       }
       details={
         <div className="space-y-8">
-          {/* Section 1: The Philosophy of Chance */}
-          <section className="bg-white border border-[#DADCE0] rounded-lg p-12 shadow-sm relative overflow-hidden">
-            <div className="absolute -top-12 -right-12 opacity-5">
-                <History className="w-64 h-64" />
-            </div>
-            <div className="flex items-center gap-4 mb-8">
-              <div className="bg-[#E8F0FE] p-4 rounded-2xl">
-                  <Landmark className="w-8 h-8 text-[#1A73E8]" />
-              </div>
-              <h2 className="text-4xl font-black text-[#202124] tracking-tighter">The Sentinel of Certainty: Deciphering Probability</h2>
-            </div>
-            <div className="prose prose-md text-[#5F6368] max-w-none leading-relaxed space-y-6">
+          <section className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+            <h2 className="text-xl font-bold text-slate-900 mb-3">Understanding Probability & Random Experiments</h2>
+            <div className="space-y-3 text-sm text-slate-600 leading-relaxed">
               <p>
-                Probability is the branch of mathematics that serves as the bridge between raw uncertainty and predictable intelligence. Originating from the studies of games of chance in 17th-century Europe by mathematicians like Pascal and Fermat, probability has evolved into the cornerstone of modern science, finance, and engineering. It is the mathematical quantification of the likelihood that an event will occur, bounded strictly between the values of 0 (absolute impossibility) and 1 (absolute certainty).
+                Probability is the quantitative measure of how likely an outcome or event is to occur during a random experiment. In everyday life, finance, weather forecasting, sports, and engineering, probability transforms uncertain guesses into reliable numerical expectations bounded strictly between <strong>0 (impossible)</strong> and <strong>1 (100% certain)</strong>.
               </p>
               <p>
-                In the academic landscape of Nepal, probability is a mandatory pillar of the <a href="https://neb.gov.np" className="text-[#1A73E8] font-bold hover:underline">National Examination Board (NEB)</a> curriculum. From the introduction of sample spaces in Grade 8 to the complex conditional and Bayesian theorems in Grade 12, probability is the gatekeeper of logical reasoning. Our <strong>Institutional Probability Calculator</strong> is designed to meet these academic standards, providing a source of truth for students in <strong>Kathmandu</strong>, <strong>Lalitpur</strong>, and <strong>Bhaktapur</strong> who require high-precision verification for their algebraic proofs.
-              </p>
-              <p>
-                Whether you are analyzing the risk of a monsoon-related event in the <strong>Terai region</strong> or calculating the success rate of a startup in the emerging <strong>Nepal IT sector</strong>, the fundamental ratio of favorable outcomes to the total sample space remains the universal standard for decision-making.
+                In school and competitive exams (such as NEB, Lok Sewa Aayog, and Indian JEE/CAT), students regularly encounter questions involving coins, playing cards, rolling dice, marbles in a bag, and compound events. This tool provides an instant check for both single and compound scenarios.
               </p>
             </div>
           </section>
 
-          {/* Section 2: Sample Space & Events */}
-          <section className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-12 shadow-sm">
-            <div className="flex items-center gap-4 mb-10">
-              <div className="bg-[#E6F4EA] p-4 rounded-2xl">
-                  <Microscope className="w-8 h-8 text-[#188038]" />
+          <section className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-slate-900 mb-4">The Key Formulas</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
+              <div className="p-4 bg-slate-50 rounded-lg border border-slate-200 space-y-1">
+                <div className="font-bold text-blue-700 font-sans">Single Event Probability:</div>
+                <div className="text-slate-800">P(A) = Favorable / Total = n(A) / n(S)</div>
+                <div className="text-slate-500 font-sans mt-2">Example: Rolling a 4 on a 6-sided die = 1/6 = 16.67%.</div>
               </div>
-              <h2 className="text-4xl font-black text-[#202124] tracking-tighter">The Anatomy of a Random Experiment</h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-sm">
-              <div className="space-y-6">
-                <div className="group">
-                    <h3 className="text-2xl font-black text-[#202124] border-l-4 border-[#1A73E8] pl-5 mb-4">1. The Sample Space ($S$)</h3>
-                    <p className="text-[#5F6368] leading-relaxed">
-                        The Sample Space is the set of all possible outcomes of a random experiment. In a standard 52-card deck, the sample space $n(S) = 52$. In a fair coin flip, $n(S) = 2$. Defining the sample space correctly is the most critical step in probability calculation; a misidentified sample space leads to flawed statistical conclusions.
-                    </p>
-                </div>
-                <div className="group">
-                    <h3 className="text-2xl font-black text-[#202124] border-l-4 border-[#188038] pl-5 mb-4">2. The Favorable Event ($E$)</h3>
-                    <p className="text-[#5F6368] leading-relaxed">
-                        An event is a subset of the sample space. If you want to calculate the probability of drawing a 'Spade' from a deck, your favorable outcomes $n(E) = 13$. The probability is then the ratio of $n(E)$ to $n(S)$, resulting in $13/52 = 0.25$ or 25%.
-                    </p>
-                </div>
+              <div className="p-4 bg-slate-50 rounded-lg border border-slate-200 space-y-1">
+                <div className="font-bold text-blue-700 font-sans">Complement Rule:</div>
+                <div className="text-slate-800">P(not A) = 1 − P(A)</div>
+                <div className="text-slate-500 font-sans mt-2">The odds that an event will NOT happen.</div>
               </div>
-              <div className="bg-white p-10 rounded-lg shadow-inner border border-[#DADCE0] space-y-6">
-                    <h4 className="text-lg font-black text-[#202124]">Axioms of Probability</h4>
-                    <ul className="space-y-4 text-[#5F6368]">
-                        <li className="flex items-center gap-3">
-                            <div className="w-2 h-2 rounded-full bg-[#1A73E8]" />
-                            <span><strong>Non-Negativity:</strong> $P(A) \ge 0$ for any event $A$.</span>
-                        </li>
-                        <li className="flex items-center gap-3">
-                            <div className="w-2 h-2 rounded-full bg-[#188038]" />
-                            <span><strong>Normalization:</strong> $P(S) = 1$ (Certainty).</span>
-                        </li>
-                        <li className="flex items-center gap-3">
-                            <div className="w-2 h-2 rounded-full bg-[#D93025]" />
-                            <span><strong>Additivity:</strong> For mutually exclusive events, $P(A \cup B) = P(A) + P(B)$.</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-          </section>
-
-          {/* Section 3: Applications in Nepal */}
-          <section className="bg-white border border-[#DADCE0] rounded-lg p-12 shadow-sm">
-            <div className="flex items-center gap-4 mb-8">
-              <div className="bg-[#FEF7E0] p-4 rounded-2xl">
-                  <GraduationCap className="w-8 h-8 text-[#F29900]" />
+              <div className="p-4 bg-slate-50 rounded-lg border border-slate-200 space-y-1">
+                <div className="font-bold text-blue-700 font-sans">Independent Compound Events:</div>
+                <div className="text-slate-800">P(A and B) = P(A) × P(B)</div>
+                <div className="text-slate-500 font-sans mt-2">Example: Flipping two heads in a row = 0.5 × 0.5 = 25%.</div>
               </div>
-              <h2 className="text-3xl font-black text-[#202124] tracking-tighter">Institutional Alignment: NEB & Lok Sewa Standards</h2>
-            </div>
-            <div className="prose prose-md text-[#5F6368] max-w-none leading-relaxed space-y-6">
-              <p>
-                In the Nepalese education system, probability is more than just a chapter in a textbook; it is a critical component of the <strong>Aptitude Test</strong> for the <strong>Lok Sewa Aayog</strong> (Public Service Commission). Candidates seeking positions as Section Officers or Subba are frequently tested on their ability to solve complex probability puzzles involving cards, balls in a bag, and the probability of intersecting events ($P(A \cap B)$).
-              </p>
-              <p>
-                At the university level, specifically at <strong>Tribhuvan University (TU)</strong> and <strong>Kathmandu University (KU)</strong>, probability theory is the bedrock of <strong>Engineering Mathematics</strong> and <strong>Management Science</strong>. Students utilize probability for "Queueing Theory" in traffic management in Kathmandu and "Reliability Engineering" for hydropower projects across the country.
-              </p>
-              <p>
-                Our tool ensures that students can verify their results using the same algorithmic precision required by these high-stakes institutions. By supporting multiple output formats (Decimal, Percentage, and Odds), we cater to both the academic researcher and the professional risk analyst.
-              </p>
-            </div>
-          </section>
-
-          {/* Section 4: Real-World Scenarios */}
-          <section className="bg-gradient-to-br from-[#1A1A2E] to-[#16213E] text-white rounded-lg p-12 shadow-sm relative overflow-hidden">
-            <div className="absolute -bottom-10 -left-10 opacity-10">
-                <TrendingUp className="w-64 h-64" />
-            </div>
-            <h2 className="text-4xl font-black mb-10 border-b border-[#dadce0] pb-6 tracking-tighter">Industrial Topology & Practical Utility</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <div className="space-y-6 text-slate-300 leading-relaxed text-sm">
-                    <div className="flex gap-4">
-                        <div className="w-1 bg-[#1A73E8] shrink-0" />
-                        <p>
-                            <strong>Insurance & Risk:</strong> Insurance companies in Nepal use probability to set premiums for vehicle and health insurance. By analyzing the frequency of past accidents (favorable outcomes) against the total number of insured vehicles (sample space), they determine the "Risk Factor" for different regions.
-                        </p>
-                    </div>
-                    <div className="flex gap-4">
-                        <div className="w-1 bg-[#188038] shrink-0" />
-                        <p>
-                            <strong>Agriculture (Terai Region):</strong> Farmers and agronomists utilize probability to determine the likelihood of rainfall during the planting season. This data, often sourced from the <strong>Department of Hydrology and Meteorology</strong>, helps in selecting the optimal time for seed dispersal.
-                        </p>
-                    </div>
-                </div>
-                <div className="bg-white/10 p-8 rounded-lg border border-white/20 backdrop-blur-md">
-                    <h4 className="text-[#202124] font-black mb-4 flex items-center gap-2">
-                         <Target className="w-5 h-5 text-[#8AB4F8]" />
-                         Goal Benchmarks
-                    </h4>
-                    <p className="text-slate-300 text-xs leading-relaxed mb-4">
-                        Probability is a dimensionless ratio. Our engine converts this into actionable intelligence.
-                    </p>
-                    <div className="space-y-3">
-                         <div className="flex justify-between text-[10px] font-black uppercase text-[#8AB4F8]">
-                             <span>Success Threshold</span>
-                             <span>Result</span>
-                         </div>
-                         <div className="bg-[#f8f9fa] p-3 rounded-xl border border-[#dadce0] flex justify-between items-center">
-                             <span className="text-[10px] font-bold text-[#202124] uppercase">Coin Flip</span>
-                             <span className="text-xs font-mono font-black text-[#8AB4F8]">50.00%</span>
-                         </div>
-                         <div className="bg-[#f8f9fa] p-3 rounded-xl border border-[#dadce0] flex justify-between items-center">
-                             <span className="text-[10px] font-bold text-[#202124] uppercase">Dice Roll (Single)</span>
-                             <span className="text-xs font-mono font-black text-[#8AB4F8]">16.67%</span>
-                         </div>
-                         <div className="bg-[#f8f9fa] p-3 rounded-xl border border-[#dadce0] flex justify-between items-center">
-                             <span className="text-[10px] font-bold text-[#202124] uppercase">Ace from Deck</span>
-                             <span className="text-xs font-mono font-black text-[#8AB4F8]">7.69%</span>
-                         </div>
-                    </div>
-                </div>
+              <div className="p-4 bg-slate-50 rounded-lg border border-slate-200 space-y-1">
+                <div className="font-bold text-blue-700 font-sans">Union of Events (Either A or B):</div>
+                <div className="text-slate-800">P(A or B) = P(A) + P(B) − P(A and B)</div>
+                <div className="text-slate-500 font-sans mt-2">Subtracts the overlap so joint outcomes aren't double counted.</div>
+              </div>
             </div>
           </section>
         </div>
       }
       howToUse={{
         steps: [
-          "Establish the Sample Space ($N$): Identify the total number of possible outcomes for your experiment (e.g., 52 for a deck of cards).",
-          "Identify Favorable Events ($n$): Count the number of specific outcomes you are interested in (e.g., 4 if you are looking for Aces).",
-          "Data Entry: Input these variables into the primary calculation matrix. Our engine instantly processes the ratio.",
-          "Review Probability Matrix: Analyze the percentage and decimal outputs. A result of 100% indicates absolute certainty.",
-          "Check Odds & Complement: Consult the secondary cards to see the betting odds (Success:Failure) and the probability of the event NOT occurring."
+          "For a single event (e.g., dice roll, lottery, card draw), choose 'Single Event P(A)' and enter the favorable outcomes (n) and total possible sample space (N).",
+          "For compound scenarios (e.g., flipping two coins, two independent student pass rates), switch to 'Two Events: A and B'.",
+          "Select whether the two events are 'Independent' (one does not affect the other) or 'Mutually Exclusive' (both cannot happen simultaneously).",
+          "Review the resulting percentages, decimal probabilities, odds ratios, and complement values."
         ]
       }}
       formula={{
-        title: "Theoretical Probability Identity",
-        description: "The following LaTeX identities represent the algorithmic foundations of our institutional-grade probability engine.",
-        raw: "$$\\begin{aligned} \\text{Probability P(E): } & \\frac{n(E)}{n(S)} \\\\ \\text{Complement P(E'): } & 1 - P(E) \\\\ \\text{Odds for Event: } & n(E) : (n(S) - n(E)) \\\\ \\text{Percentage: } & P(E) \\times 100 \\end{aligned}$$"
+        title: "Mathematical Probability Identities",
+        description: "Core axiomatic probability definitions according to Kolmogorov axioms:",
+        raw: "$$\\begin{aligned} \\text{Single Event: } & P(A) = \\frac{n(A)}{n(S)} \\\\ \\text{Complement: } & P(A') = 1 - P(A) \\\\ \\text{Odds: } & n(A) : (n(S) - n(A)) \\\\ \\text{Independent Intersection: } & P(A \\cap B) = P(A) \\times P(B) \\\\ \\text{General Addition Rule: } & P(A \\cup B) = P(A) + P(B) - P(A \\cap B) \\end{aligned}$$"
       }}
       faqs={[
         {
           question: "What is the difference between probability and odds?",
-          answer: "Probability is the ratio of favorable outcomes to the TOTAL outcomes. Odds are the ratio of favorable outcomes to UNFAVORABLE outcomes. For example, if you have 1 chance in 10, the probability is 1/10 (10%), but the odds are 1:9."
+          answer: "Probability is the ratio of favorable outcomes to the TOTAL possible outcomes (e.g. 1 in 6 = 16.67%). Odds compare favorable outcomes directly to unfavorable outcomes (e.g. 1 : 5)."
         },
         {
-          question: "Can a probability ever be greater than 1 or 100%?",
-          answer: "No. By definition, a probability is a part of a whole. It cannot exceed the total sample space. A probability of 1 (100%) means the event is certain to happen."
+          question: "Can probability ever be greater than 100% or less than 0%?",
+          answer: "No. A probability of 0% indicates an impossible event (e.g., rolling a 7 on a standard 6-sided die), while 100% represents absolute certainty (e.g., drawing either a red or black card from a standard deck)."
         },
         {
-          question: "What is the 'Complement' of a probability?",
-          answer: "The complement is the probability that the event will NOT occur. It is calculated by subtracting the success probability from 1 (or 100%). If there is a 20% chance of rain, the complement is an 80% chance of no rain."
+          question: "What is the difference between Independent and Mutually Exclusive events?",
+          answer: "Independent events do not influence each other (like flipping two different coins). Mutually exclusive events cannot occur at the same time (like rolling a die and getting both a 2 and a 5 on a single roll)."
         },
         {
-          question: "How does this tool help with NEB Grade 12 Math?",
-          answer: "NEB students often have to solve probability problems involving permutations and combinations. This tool helps by providing a final 'Source of Truth' for the basic ratios, allowing students to verify their complex algebraic workings."
+          question: "What is the Complement of an event?",
+          answer: "The complement represents the event NOT happening. It is calculated as 1 − P(A). If the probability of rain is 30%, the complement (no rain) is 70%."
         },
         {
-          question: "What is an 'Independent Event'?",
-          answer: "An independent event is one where the outcome does not affect the next event. For example, if you flip a coin, the result (Heads or Tails) does not change the probability of the next flip. Each flip remains 50/50."
-        },
-        {
-          question: "What is 'Conditional Probability'?",
-          answer: "Conditional probability is the likelihood of an event occurring given that another event has already occurred. This tool calculates 'Simple Probability'. For conditional calculations ($P(A|B)$), you must adjust the sample space according to the condition."
-        },
-        {
-          question: "How is probability used in the Nepal Stock Exchange (NEPSE)?",
-          answer: "Analysts use historic data to calculate the probability of a stock reaching a certain price target. While not a guarantee, it helps in 'Risk Management' and setting 'Stop-Loss' orders."
-        },
-        {
-          question: "What does 'Mutually Exclusive' mean in probability?",
-          answer: "Two events are mutually exclusive if they cannot happen at the same time. For example, you cannot roll a 1 AND a 6 on a single die at the same time."
-        },
-        {
-          question: "Why is the sample space so important?",
-          answer: "The sample space is the denominator of your probability fraction. If you miscalculate the total possibilities (e.g., forgetting the Joker in a deck of cards), your entire probability will be mathematically incorrect."
-        },
-        {
-          question: "What is the 'Law of Large Numbers'?",
-          answer: "This law states that as you repeat an experiment many times (like flipping a coin 1,000 times), the actual frequency of outcomes will get closer and closer to the theoretical probability (50%)."
-        },
-        {
-          question: "How do I use this for 'Draws without Replacement'?",
-          answer: "If you draw a card and DON'T put it back, the sample space changes for the next draw. For the first draw, use 52 as the total. for the second, use 51. Our calculator is perfect for calculating each individual step."
-        },
-        {
-          question: "Can I use this for sports betting?",
-          answer: "While this gives you the pure 'Mathematical Odds', bookmakers usually add a 'Margin' (Vigorish). Their odds will always be lower than the mathematical truth provided by this tool."
+          question: "How do I calculate probabilities without replacement?",
+          answer: "When an item is drawn and not replaced, the total sample space decreases for subsequent draws. For example, drawing two Aces from a deck: first draw is 4/52; second draw is 3/51. Multiply them: (4/52) × (3/51) = 1/221 (0.45%)."
         }
       ]}
       sidebar={{
-        title: "Institutional Resources",
+        title: "Related Calculators",
         links: [
           { label: "Z-Score Calculator", href: "/calculator/z-score/" },
           { label: "Standard Deviation", href: "/calculator/standard-deviation/" },
-          { label: "NEB Math Portal", href: "https://neb.gov.np" },
-          { label: "NSO Nepal", href: "https://cbs.gov.np" },
-          { label: "Statistics Plus", href: "/calculator/statistics-plus/" },
-        ],
-        banner: {
-          title: "Academic Excellence",
-          description: "Providing the gold standard for mathematical tools in the Nepalese educational ecosystem.",
-          image: "/images/math-banner.jpg"
-        }
+          { label: "Marks Needed Calculator", href: "/calculator/marks-needed/" },
+          { label: "Ratio & Proportion", href: "/calculator/ratio-proportion/" },
+          { label: "Simple Calculator", href: "/calculator/simple-calculator/" },
+        ]
       }}
       relatedTools={[
         { label: "Z-Score Tool", href: "/calculator/z-score/" },
         { label: "Standard Deviation", href: "/calculator/standard-deviation/" },
-        { label: "Statistics Plus", href: "/calculator/statistics-plus/" },
-        { label: "Ratio Calculator", href: "/calculator/ratio-proportion/" }
+        { label: "Ratio Calculator", href: "/calculator/ratio-proportion/" },
+        { label: "Marks Needed", href: "/calculator/marks-needed/" }
       ]}
     />
   );
 }
-
