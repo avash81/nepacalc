@@ -1,7 +1,7 @@
 'use client';
 import { useState, useMemo } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
-import { Type, Copy, Check, Calendar, ArrowRightLeft, Sparkles, BookOpen } from 'lucide-react';
+import { Type, Copy, Check, Calendar, ArrowRightLeft, Sparkles } from 'lucide-react';
 
 const MAP: [number, string][] = [
   [1000, 'M'], [900, 'CM'], [500, 'D'], [400, 'CD'],
@@ -143,7 +143,7 @@ export default function RomanNumeralsCalculator() {
       hideH1={false}
       crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'Roman Numerals' }]}
       title="Roman Numerals Converter"
-      description="Convert modern Arabic numbers to Roman numerals, convert dates to Roman numerals for tattoos or engravings, and view step-by-step mathematical additive expansions."
+      description="Convert Arabic numbers to Roman numerals and vice versa. Generate formatted Roman numeral dates for tattoos, wedding gifts, and engravings with step-by-step mathematical expansion."
       icon={Type}
       inputs={
         <div className="space-y-6">
@@ -215,7 +215,7 @@ export default function RomanNumeralsCalculator() {
             <div className="p-6 bg-slate-50 border border-slate-200 rounded-2xl shadow-inner space-y-6">
               <div className="space-y-1">
                 <h3 className="text-sm font-bold text-slate-900">Enter Calendar Date</h3>
-                <p className="text-xs text-slate-600">Great for anniversary tattoos, wedding plaques, watches, and graduations.</p>
+                <p className="text-xs text-slate-600">Perfect for anniversary tattoos, wedding plaques, watches, and diplomas.</p>
               </div>
 
               <div className="grid grid-cols-3 gap-3">
@@ -371,7 +371,7 @@ export default function RomanNumeralsCalculator() {
                 <h3 className="text-xs font-bold uppercase tracking-wider text-slate-700">Additive Step-by-Step Breakdown</h3>
               </div>
               <p className="text-xs text-slate-600">
-                Roman numerals are composed by decomposing the Arabic integer into descending powers:
+                Roman numerals decompose integers into descending powers:
               </p>
               <div className="flex flex-wrap gap-2 items-center text-sm font-mono bg-slate-50 p-3 rounded-lg border border-slate-200">
                 <span className="font-bold text-slate-800">{numberInput} =</span>
@@ -391,18 +391,18 @@ export default function RomanNumeralsCalculator() {
           <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
             <div className="px-5 py-3 bg-slate-50 border-b border-slate-200 flex justify-between items-center">
               <h3 className="text-xs font-bold uppercase tracking-wider text-slate-700">Common Real-World Examples</h3>
-              <span className="text-[11px] text-slate-400 font-medium">Click to load</span>
+              <span className="text-[11px] text-slate-400 font-medium">Click to test</span>
             </div>
             <div className="divide-y divide-slate-100">
               {[
-                [1, 'I', 'First / Single'],
-                [4, 'IV', 'Subtractive 5 - 1'],
-                [9, 'IX', 'Subtractive 10 - 1'],
-                [40, 'XL', 'Subtractive 50 - 10'],
-                [90, 'XC', 'Subtractive 100 - 10'],
-                [400, 'CD', 'Subtractive 500 - 100'],
-                [900, 'CM', 'Subtractive 1000 - 100'],
-                [1994, 'MCMXCIV', 'Pop culture classic'],
+                [1, 'I', 'Single / Unit'],
+                [4, 'IV', 'Subtractive 5 − 1'],
+                [9, 'IX', 'Subtractive 10 − 1'],
+                [40, 'XL', 'Subtractive 50 − 10'],
+                [90, 'XC', 'Subtractive 100 − 10'],
+                [400, 'CD', 'Subtractive 500 − 100'],
+                [900, 'CM', 'Subtractive 1000 − 100'],
+                [1994, 'MCMXCIV', '1000 + 900 + 90 + 4'],
                 [2024, 'MMXXIV', 'Year 2024'],
                 [2026, 'MMXXVI', 'Year 2026']
               ].map(([n, r, desc]) => (
@@ -446,54 +446,6 @@ export default function RomanNumeralsCalculator() {
           "Check the Additive Step-by-Step breakdown to see exactly which Roman letters correspond to thousands, hundreds, tens, and units."
         ]
       }}
-      details={
-        <div className="space-y-8">
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h2 className="text-xl font-black text-[#202124] mb-4">Ancient Rome's Number System: Additive & Subtractive Logic</h2>
-            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
-              <p>Roman numerals originated in ancient Rome, derived from tally marks carved into wood or stone. The system uses 7 Latin letter symbols (I, V, X, L, C, D, M) to represent values using two mathematical rules: <strong className="text-[#202124]">additive notation</strong> (placing larger values before smaller ones to sum them) and <strong className="text-[#202124]">subtractive notation</strong> (placing a smaller value before a larger one to indicate subtraction). Our converter implements both rules with full bidirectional accuracy.</p>
-              <p>Despite the dominance of Hindu-Arabic numerals (0–9) in modern mathematics, Roman numerals remain a living convention in film and television production copyright dates, clock and watch dials, book prefaces, sports competitions, anniversary gifts, and tattoo designs.</p>
-            </div>
-          </div>
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">The 6 Subtractive Notation Rules</h3>
-            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#1A73E8]">IV = 4 (not IIII):</strong> I before V subtracts 1 from 5.</li>
-              <li><strong className="text-[#1A73E8]">IX = 9 (not VIIII):</strong> I before X subtracts 1 from 10.</li>
-              <li><strong className="text-[#188038]">XL = 40 (not XXXX):</strong> X before L subtracts 10 from 50.</li>
-              <li><strong className="text-[#188038]">XC = 90 (not LXXXX):</strong> X before C subtracts 10 from 100.</li>
-              <li><strong className="text-[#D93025]">CD = 400 (not CCCC):</strong> C before D subtracts 100 from 500.</li>
-              <li><strong className="text-[#D93025]">CM = 900 (not DCCCC):</strong> C before M subtracts 100 from 1000.</li>
-            </ul>
-          </div>
-        </div>
-      }
-      faqs={[
-        {
-          question: "How do I write a date in Roman numerals for a tattoo or engraving?",
-          answer: "Switch to our 'Date to Roman' tab above. Select your day, month, and year. For example, October 24, 2024 is commonly written as XXIV · X · MMXXIV (Day · Month · Year) or X · XXIV · MMXXIV (Month · Day · Year). Middle dots (·) or slashes (/) are the preferred separators."
-        },
-        {
-          question: "Why is the maximum number 3,999 in standard Roman notation?",
-          answer: "The largest symbol is M (1,000). To write 4,000, you'd need MMMM, but the traditional rule prohibits more than 3 identical symbols consecutively. The extended system uses a vinculum (overline) to denote ×1,000, but standard keyboards cannot produce it, making 3,999 (MMMCMXCIX) the standard practical maximum."
-        },
-        {
-          question: "How do subtractive notation rules work?",
-          answer: "Only powers of 10 (I, X, C) can be used subtractively, and only before the next two higher values. I can precede V and X. X can precede L and C. C can precede D and M. Symbols V, L, and D are never used subtractively."
-        },
-        {
-          question: "What year is MMXXVI in Roman numerals?",
-          answer: "MM = 2000, XX = 20, VI = 6. Therefore MMXXVI = 2026. Our calculator confirms this instantly in the bidirectional input."
-        },
-        {
-          question: "Why don't Roman numerals have a zero?",
-          answer: "The Roman numeral system was a tally-based counting system, not a positional place-value numeral system. The concept of zero as a placeholder was developed by Indian mathematicians and later transmitted globally, long after Roman numerals were established."
-        },
-        {
-          question: "What does MCMXCIX mean?",
-          answer: "M = 1000, CM = 900, XC = 90, IX = 9. Total: 1000 + 900 + 90 + 9 = 1999. This is how the year 1999 is written in Roman numerals, as seen on many late-20th century buildings and film copyrights."
-        }
-      ]}
     />
   );
 }

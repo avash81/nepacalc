@@ -1,7 +1,7 @@
 'use client';
 import { useState, useMemo } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
-import { Dices, PieChart, Info, ShieldCheck, Binary, Layers, HelpCircle, CheckCircle2 } from 'lucide-react';
+import { Dices, Layers, CheckCircle2, ShieldCheck, Binary } from 'lucide-react';
 
 const SINGLE_SCENARIOS = [
   { label: 'Coin Toss (Heads/Tails)', f: 1, t: 2 },
@@ -69,7 +69,7 @@ export default function ProbabilityCalc() {
       const pNeither = Math.max(0, 1 - (pa + pb));
 
       return {
-        pAndPct: '0.00% (Cannot happen together)',
+        pAndPct: '0.00% (Cannot occur simultaneously)',
         pOrPct: (pOr * 100).toFixed(2) + '%',
         pAOnlyPct: (pAOnly * 100).toFixed(2) + '%',
         pBOnlyPct: (pBOnly * 100).toFixed(2) + '%',
@@ -178,7 +178,7 @@ export default function ProbabilityCalc() {
                     />
                     <span className="absolute right-4 top-3 text-sm font-bold text-slate-400">%</span>
                   </div>
-                  <p className="text-xs text-slate-500">e.g., 50% for coin flip</p>
+                  <p className="text-xs text-slate-500">e.g. 50% for coin flip</p>
                 </div>
 
                 <div className="space-y-1">
@@ -194,7 +194,7 @@ export default function ProbabilityCalc() {
                     />
                     <span className="absolute right-4 top-3 text-sm font-bold text-slate-400">%</span>
                   </div>
-                  <p className="text-xs text-slate-500">e.g., 50% for 2nd coin flip</p>
+                  <p className="text-xs text-slate-500">e.g. 16.67% for rolling a 6</p>
                 </div>
               </div>
 
@@ -213,7 +213,7 @@ export default function ProbabilityCalc() {
                       {eventType === 'independent' && <CheckCircle2 className="w-4 h-4 text-blue-600" />}
                       Independent Events
                     </div>
-                    <div className="text-[11px] text-slate-500 mt-1">Event A does not influence Event B (e.g., two coin flips).</div>
+                    <div className="text-[11px] text-slate-500 mt-1">Event A does not influence Event B (e.g., two distinct coin tosses).</div>
                   </button>
 
                   <button
@@ -228,7 +228,7 @@ export default function ProbabilityCalc() {
                       {eventType === 'mutually_exclusive' && <CheckCircle2 className="w-4 h-4 text-blue-600" />}
                       Mutually Exclusive
                     </div>
-                    <div className="text-[11px] text-slate-500 mt-1">Cannot occur together (e.g., rolling a 1 or a 6 on a single die).</div>
+                    <div className="text-[11px] text-slate-500 mt-1">Cannot occur together (e.g., rolling a 1 or a 6 on a single die roll).</div>
                   </button>
                 </div>
               </div>
@@ -238,7 +238,7 @@ export default function ProbabilityCalc() {
           <div className="p-4 bg-blue-50 border border-blue-200 rounded-xl flex items-start gap-3">
             <Binary className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
             <div className="text-xs text-blue-950">
-              <span className="font-bold">Standard Probability Rule:</span> P(E) = n(E) / n(S). Probability is always between 0 (impossible) and 1 (100% certain).
+              <span className="font-bold">Standard Probability Axiom:</span> P(E) = n(E) ÷ n(S). Probability is bounded between 0 (impossible) and 1 (100% certainty).
             </div>
           </div>
         </div>
@@ -272,7 +272,7 @@ export default function ProbabilityCalc() {
                   <div className="text-[10px] text-slate-400 mt-1">Success : Fail</div>
                 </div>
                 <div className="p-4 bg-white border border-slate-200 rounded-xl text-center shadow-sm">
-                  <div className="text-[10px] font-bold uppercase text-slate-500 tracking-wider mb-1">Complement (Not Occurring)</div>
+                  <div className="text-[10px] font-bold uppercase text-slate-500 tracking-wider mb-1">Complement</div>
                   <div className="text-xl font-black text-rose-600 font-mono">{singleRes.complement}</div>
                   <div className="text-[10px] text-slate-400 mt-1">1 − P(A)</div>
                 </div>
@@ -305,7 +305,7 @@ export default function ProbabilityCalc() {
                 </div>
 
                 <div className="p-6 bg-slate-900 rounded-2xl text-white shadow-md text-center space-y-2">
-                  <div className="text-xs font-bold uppercase tracking-wider text-slate-400">At Least One Occurs: P(A or B)</div>
+                  <div className="text-xs font-bold uppercase tracking-wider text-slate-400">At Least One: P(A or B)</div>
                   <div className="text-4xl font-black font-mono text-emerald-400">{doubleRes.pOrPct}</div>
                   <div className="text-xs text-slate-400 font-mono">
                     {eventType === 'independent' ? 'P(A) + P(B) − P(A ∩ B)' : 'P(A) + P(B)'}
@@ -342,87 +342,11 @@ export default function ProbabilityCalc() {
           <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl flex items-center gap-3">
             <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0" />
             <p className="text-xs text-slate-600 leading-relaxed">
-              Calculated following standard probability axioms (Kolmogorov). Compatible with Grade 10 SEE, NEB Class 11/12, and TU/KU engineering curricula.
+              Calculated following classical probability axioms. Applicable for secondary school math (Grade 10 SEE, Class 11/12), Lok Sewa quantitative aptitude, and college statistics.
             </p>
           </div>
         </div>
       }
-      details={
-        <div className="space-y-8">
-          <section className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
-            <h2 className="text-xl font-bold text-slate-900 mb-3">Understanding Probability & Random Experiments</h2>
-            <div className="space-y-3 text-sm text-slate-600 leading-relaxed">
-              <p>
-                Probability is the quantitative measure of how likely an outcome or event is to occur during a random experiment. In everyday life, finance, weather forecasting, sports, and engineering, probability transforms uncertain guesses into reliable numerical expectations bounded strictly between <strong>0 (impossible)</strong> and <strong>1 (100% certain)</strong>.
-              </p>
-              <p>
-                In school and competitive exams (such as NEB, Lok Sewa Aayog, and Indian JEE/CAT), students regularly encounter questions involving coins, playing cards, rolling dice, marbles in a bag, and compound events. This tool provides an instant check for both single and compound scenarios.
-              </p>
-            </div>
-          </section>
-
-          <section className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-slate-900 mb-4">The Key Formulas</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
-              <div className="p-4 bg-slate-50 rounded-lg border border-slate-200 space-y-1">
-                <div className="font-bold text-blue-700 font-sans">Single Event Probability:</div>
-                <div className="text-slate-800">P(A) = Favorable / Total = n(A) / n(S)</div>
-                <div className="text-slate-500 font-sans mt-2">Example: Rolling a 4 on a 6-sided die = 1/6 = 16.67%.</div>
-              </div>
-              <div className="p-4 bg-slate-50 rounded-lg border border-slate-200 space-y-1">
-                <div className="font-bold text-blue-700 font-sans">Complement Rule:</div>
-                <div className="text-slate-800">P(not A) = 1 − P(A)</div>
-                <div className="text-slate-500 font-sans mt-2">The odds that an event will NOT happen.</div>
-              </div>
-              <div className="p-4 bg-slate-50 rounded-lg border border-slate-200 space-y-1">
-                <div className="font-bold text-blue-700 font-sans">Independent Compound Events:</div>
-                <div className="text-slate-800">P(A and B) = P(A) × P(B)</div>
-                <div className="text-slate-500 font-sans mt-2">Example: Flipping two heads in a row = 0.5 × 0.5 = 25%.</div>
-              </div>
-              <div className="p-4 bg-slate-50 rounded-lg border border-slate-200 space-y-1">
-                <div className="font-bold text-blue-700 font-sans">Union of Events (Either A or B):</div>
-                <div className="text-slate-800">P(A or B) = P(A) + P(B) − P(A and B)</div>
-                <div className="text-slate-500 font-sans mt-2">Subtracts the overlap so joint outcomes aren't double counted.</div>
-              </div>
-            </div>
-          </section>
-        </div>
-      }
-      howToUse={{
-        steps: [
-          "For a single event (e.g., dice roll, lottery, card draw), choose 'Single Event P(A)' and enter the favorable outcomes (n) and total possible sample space (N).",
-          "For compound scenarios (e.g., flipping two coins, two independent student pass rates), switch to 'Two Events: A and B'.",
-          "Select whether the two events are 'Independent' (one does not affect the other) or 'Mutually Exclusive' (both cannot happen simultaneously).",
-          "Review the resulting percentages, decimal probabilities, odds ratios, and complement values."
-        ]
-      }}
-      formula={{
-        title: "Mathematical Probability Identities",
-        description: "Core axiomatic probability definitions according to Kolmogorov axioms:",
-        raw: "$$\\begin{aligned} \\text{Single Event: } & P(A) = \\frac{n(A)}{n(S)} \\\\ \\text{Complement: } & P(A') = 1 - P(A) \\\\ \\text{Odds: } & n(A) : (n(S) - n(A)) \\\\ \\text{Independent Intersection: } & P(A \\cap B) = P(A) \\times P(B) \\\\ \\text{General Addition Rule: } & P(A \\cup B) = P(A) + P(B) - P(A \\cap B) \\end{aligned}$$"
-      }}
-      faqs={[
-        {
-          question: "What is the difference between probability and odds?",
-          answer: "Probability is the ratio of favorable outcomes to the TOTAL possible outcomes (e.g. 1 in 6 = 16.67%). Odds compare favorable outcomes directly to unfavorable outcomes (e.g. 1 : 5)."
-        },
-        {
-          question: "Can probability ever be greater than 100% or less than 0%?",
-          answer: "No. A probability of 0% indicates an impossible event (e.g., rolling a 7 on a standard 6-sided die), while 100% represents absolute certainty (e.g., drawing either a red or black card from a standard deck)."
-        },
-        {
-          question: "What is the difference between Independent and Mutually Exclusive events?",
-          answer: "Independent events do not influence each other (like flipping two different coins). Mutually exclusive events cannot occur at the same time (like rolling a die and getting both a 2 and a 5 on a single roll)."
-        },
-        {
-          question: "What is the Complement of an event?",
-          answer: "The complement represents the event NOT happening. It is calculated as 1 − P(A). If the probability of rain is 30%, the complement (no rain) is 70%."
-        },
-        {
-          question: "How do I calculate probabilities without replacement?",
-          answer: "When an item is drawn and not replaced, the total sample space decreases for subsequent draws. For example, drawing two Aces from a deck: first draw is 4/52; second draw is 3/51. Multiply them: (4/52) × (3/51) = 1/221 (0.45%)."
-        }
-      ]}
       sidebar={{
         title: "Related Calculators",
         links: [
@@ -433,12 +357,14 @@ export default function ProbabilityCalc() {
           { label: "Simple Calculator", href: "/calculator/simple-calculator/" },
         ]
       }}
-      relatedTools={[
-        { label: "Z-Score Tool", href: "/calculator/z-score/" },
-        { label: "Standard Deviation", href: "/calculator/standard-deviation/" },
-        { label: "Ratio Calculator", href: "/calculator/ratio-proportion/" },
-        { label: "Marks Needed", href: "/calculator/marks-needed/" }
-      ]}
+      howToUse={{
+        steps: [
+          "For a single event (e.g. dice roll, card draw, coin toss), choose 'Single Event P(A)' and enter favorable outcomes (n) and total possible sample space (N).",
+          "For compound events (e.g. two coin flips or simultaneous tests), switch to 'Two Events: A and B'.",
+          "Select 'Independent' if one event does not influence the other, or 'Mutually Exclusive' if both cannot happen at once.",
+          "Review the resulting percentages, decimal forms, betting odds, and complement probabilities."
+        ]
+      }}
     />
   );
 }

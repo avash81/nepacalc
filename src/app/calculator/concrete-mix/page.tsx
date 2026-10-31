@@ -4,32 +4,36 @@ import { JsonLd } from '@/components/seo/JsonLd';
 
 export const metadata = calcMeta({
   title: "Concrete Mix Calculator | Cement Bags, Sand & Aggregate for M5–M25 – NepaCalc",
-  description: "Calculate the exact number of cement bags, cubic feet of sand, and aggregate required for any concrete grade (M5 to M25). Accounts for the 1.54 dry volume factor and wastage.",
+  description: "Calculate cement bags, sand CFT, coarse aggregate CFT, and tractor trolley loads for concrete grades M5 to M25. Automatically accounts for the 1.54 dry volume factor and site wastage.",
   slug: 'concrete-mix',
-  keywords: ["concrete mix calculator", "cement bag calculator nepal", "m20 concrete ratio", "sand aggregate quantity calculator", "dry volume factor", "civil engineering calculator nepal"],
+  keywords: ["concrete mix calculator", "cement bag calculator nepal", "m20 concrete ratio", "sand aggregate quantity calculator", "dry volume factor 1.54", "civil engineering calculator nepal", "tractor load sand aggregate"],
 });
 
 const CONCRETE_FAQS = [
   {
-    question: "What is the standard concrete mix ratio for house construction in Nepal?",
-    answer: "For standard residential construction in Nepal, M20 grade concrete (1:1.5:3 — cement:sand:aggregate) is used for slabs and beams. For columns and footings under high load, M25 (1:1:2) is preferred. M15 (1:2:4) is used for non-structural elements like plinth filling."
+    question: "What is the standard concrete mix grade used for residential house slabs in Nepal?",
+    answer: "In Nepal, residential RCC slabs and beams almost universally specify M20 grade (nominal ratio 1 : 1.5 : 3 of cement : sand : aggregate). For columns, heavily loaded shear walls, and footings, structural engineers often recommend M25 (1 : 1 : 2). Non-structural elements like plinth soling, compound walls, or floor leveling use leaner mixes such as M10 or M15."
   },
   {
-    question: "How many bags of cement are needed per cubic meter of M20 concrete?",
-    answer: "For M20 grade, approximately 8 bags (400 kg) of cement are needed per cubic meter of finished concrete. This calculator applies the 1.54 dry volume factor automatically to account for the volume reduction when dry materials are mixed with water."
+    question: "How many cement bags are required per cubic meter (m³) of M20 concrete?",
+    answer: "For standard M20 nominal mix (1:1.5:3), approximately 8.0 to 8.2 bags (50 kg each) of cement are required per cubic meter of finished wet concrete. This calculation includes the mandatory 1.54 dry volume expansion factor before adding any contractor site wastage allowance."
   },
   {
-    question: "What is the dry volume factor (1.54) and why is it needed?",
-    answer: "When dry cement, sand, and aggregate are mixed with water and compacted, the volume reduces by about 35%. To compensate, you must order 1.54× the wet volume in dry materials. Without this correction, you would under-order materials and run short mid-pour."
+    question: "What is the dry volume factor (1.54) and why must it be applied?",
+    answer: "When dry cement, sand, and aggregate are mixed with water and compacted on site, the dry granules settle into each other's voids, shrinking the total volume by roughly 33% to 35%. Therefore, you must order 1.54 cubic meters of dry materials for every 1.0 cubic meter of solid compacted concrete desired. Ordering based on wet volume alone results in running out of concrete mid-pour."
   },
   {
-    question: "What does the 'M' number in concrete grades mean?",
-    answer: "The 'M' stands for Mix and the number is the compressive strength in N/mm² (Newtons per square millimeter) after 28 days of curing. M20 concrete achieves 20 N/mm² — enough for most residential structural work. M25 achieves 25 N/mm² for higher-load applications."
+    question: "How much material is needed for a 100 sq. ft. slab with 4 inches thickness in Nepal?",
+    answer: "A 100 sq. ft. slab at 4 inches (0.333 ft) thickness has a wet volume of 33.33 cubic feet (0.944 m³). Applying the 1.54 dry volume factor yields 51.33 CFT of dry mix. For standard M20 concrete (1:1.5:3): you need approximately 7.5 to 8 bags of cement (50 kg), 14 cubic feet of sand (~0.14 tractor trolley), and 28 cubic feet of aggregate (~0.28 tractor trolley), plus roughly 5% extra for formwork wastage."
   },
   {
-    question: "How much material is needed for a 100 sq ft slab at 4 inches thickness in Nepal?",
-    answer: "A 100 sq ft × 4 inch thick slab has a wet volume of approximately 3.7 cu ft (0.105 m³). Using M20 mix, after applying the 1.54 dry factor, you need roughly 1 cement bag (50 kg), 1.5 cu ft sand, and 3 cu ft aggregate — before adding any wastage allowance."
+    question: "How much sand and aggregate (rodi) fit into a standard tractor trolley in Nepal?",
+    answer: "In Kathmandu, Pokhara, and across Nepal, local supply yards measure aggregates by the tractor trolley or tipper truck. A standard two-wheel drive tractor trolley holds approximately 100 to 110 CFT (cubic feet) of sand or crushed stone. A larger 6-wheeler tipper truck typically carries 300 to 350 CFT."
   },
+  {
+    question: "What is the recommended water-cement ratio for hand-mixed or machine-mixed concrete?",
+    answer: "The recommended water-cement ratio by weight is between 0.45 and 0.55. For every 50 kg bag of cement, you need approximately 25 to 27 liters of clean water. Adding excessive water makes concrete easier to pour but drastically reduces its 28-day compressive strength and causes shrinkage cracks."
+  }
 ];
 
 export default function Page() {
@@ -38,7 +42,7 @@ export default function Page() {
       <JsonLd
         type="unified"
         name="Concrete Mix Calculator"
-        description="Calculate cement bags, sand, and aggregate required for any concrete grade from M5 to M25, with dry volume factor and wastage adjustment."
+        description="Calculate cement bags, sand CFT, aggregate CFT, tractor loads, and mixing water for concrete grades from M5 to M25 with the 1.54 dry factor."
         url="https://nepacalc.com/calculator/concrete-mix/"
         category="EducationalApplication"
         breadcrumbItems={[
@@ -48,92 +52,98 @@ export default function Page() {
         ]}
         faqs={CONCRETE_FAQS}
       />
+
       <Calculator />
 
-      {/* Content section — server rendered */}
+      {/* Practical Civil Engineering Reference */}
       <div className="max-w-4xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12 space-y-8">
 
-        {/* Grade reference table */}
-        <section className="bg-white border border-[#DADCE0] rounded-xl p-8 shadow-sm">
-          <h2 className="text-sm font-black uppercase tracking-widest text-[#202124] border-l-4 border-blue-500 pl-3 mb-6">
-            Concrete Grade Reference (M5 to M25)
+        {/* Concrete Grades Table */}
+        <section className="bg-white border border-[#DADCE0] rounded-xl p-6 sm:p-8 shadow-sm">
+          <h2 className="text-sm font-black uppercase tracking-widest text-[#202124] border-l-4 border-blue-600 pl-3 mb-6">
+            Standard Concrete Grades & Mix Proportions (IS 456 / NBC)
           </h2>
           <div className="overflow-x-auto">
             <table className="w-full text-xs text-left border border-[#DADCE0] rounded-md overflow-hidden">
               <thead className="bg-[#F8F9FA] text-[#70757A] uppercase font-bold">
                 <tr>
                   <th className="px-4 py-3">Grade</th>
-                  <th className="px-4 py-3">Mix Ratio (C:S:A)</th>
-                  <th className="px-4 py-3">Strength (N/mm²)</th>
+                  <th className="px-4 py-3">Mix Ratio (C : S : A)</th>
+                  <th className="px-4 py-3">28-Day Strength</th>
                   <th className="px-4 py-3">Cement Bags / m³</th>
-                  <th className="px-4 py-3">Typical Use in Nepal</th>
+                  <th className="px-4 py-3">Typical Application in Nepal</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#DADCE0] text-[#3C4043]">
-                <tr className="hover:bg-[#fcfcfc]"><td className="px-4 py-3 font-mono font-bold">M5</td><td className="px-4 py-3 font-mono">1:5:10</td><td className="px-4 py-3">5</td><td className="px-4 py-3">~2.8</td><td className="px-4 py-3 text-[#5F6368]">Mass concrete, blinding layers</td></tr>
-                <tr className="hover:bg-[#fcfcfc]"><td className="px-4 py-3 font-mono font-bold">M7.5</td><td className="px-4 py-3 font-mono">1:4:8</td><td className="px-4 py-3">7.5</td><td className="px-4 py-3">~3.6</td><td className="px-4 py-3 text-[#5F6368]">Plain concrete, rubble masonry</td></tr>
-                <tr className="hover:bg-[#fcfcfc]"><td className="px-4 py-3 font-mono font-bold">M10</td><td className="px-4 py-3 font-mono">1:3:6</td><td className="px-4 py-3">10</td><td className="px-4 py-3">~4.4</td><td className="px-4 py-3 text-[#5F6368]">Lean concrete, non-structural floors</td></tr>
-                <tr className="hover:bg-[#fcfcfc]"><td className="px-4 py-3 font-mono font-bold">M15</td><td className="px-4 py-3 font-mono">1:2:4</td><td className="px-4 py-3">15</td><td className="px-4 py-3">~6.3</td><td className="px-4 py-3 text-[#5F6368]">Pathways, compound walls, plinth filling</td></tr>
-                <tr className="hover:bg-[#fcfcfc] bg-blue-50/40"><td className="px-4 py-3 font-mono font-bold text-blue-700">M20 ★</td><td className="px-4 py-3 font-mono">1:1.5:3</td><td className="px-4 py-3">20</td><td className="px-4 py-3 font-bold">~8.0</td><td className="px-4 py-3 text-[#5F6368]">Slabs, beams — standard residential use</td></tr>
-                <tr className="hover:bg-[#fcfcfc]"><td className="px-4 py-3 font-mono font-bold">M25</td><td className="px-4 py-3 font-mono">1:1:2</td><td className="px-4 py-3">25</td><td className="px-4 py-3">~10.7</td><td className="px-4 py-3 text-[#5F6368]">Columns, high-load footings, bridges</td></tr>
+                <tr className="hover:bg-[#fcfcfc]"><td className="px-4 py-3 font-mono font-bold">M5</td><td className="px-4 py-3 font-mono">1 : 5 : 10</td><td className="px-4 py-3">5 N/mm²</td><td className="px-4 py-3">~2.8</td><td className="px-4 py-3 text-[#5F6368]">Mass concrete, mud mat foundation base</td></tr>
+                <tr className="hover:bg-[#fcfcfc]"><td className="px-4 py-3 font-mono font-bold">M7.5</td><td className="px-4 py-3 font-mono">1 : 4 : 8</td><td className="px-4 py-3">7.5 N/mm²</td><td className="px-4 py-3">~3.6</td><td className="px-4 py-3 text-[#5F6368]">Plain cement concrete (PCC), stone masonry bedding</td></tr>
+                <tr className="hover:bg-[#fcfcfc]"><td className="px-4 py-3 font-mono font-bold">M10</td><td className="px-4 py-3 font-mono">1 : 3 : 6</td><td className="px-4 py-3">10 N/mm²</td><td className="px-4 py-3">~4.4</td><td className="px-4 py-3 text-[#5F6368]">Sub-base flooring, compound perimeter walls</td></tr>
+                <tr className="hover:bg-[#fcfcfc]"><td className="px-4 py-3 font-mono font-bold">M15</td><td className="px-4 py-3 font-mono">1 : 2 : 4</td><td className="px-4 py-3">15 N/mm²</td><td className="px-4 py-3">~6.3</td><td className="px-4 py-3 text-[#5F6368]">Non-structural slabs, walkways, plinth filling</td></tr>
+                <tr className="hover:bg-[#fcfcfc] bg-blue-50/50"><td className="px-4 py-3 font-mono font-bold text-blue-700">M20 ★</td><td className="px-4 py-3 font-mono font-bold">1 : 1.5 : 3</td><td className="px-4 py-3 font-bold">20 N/mm²</td><td className="px-4 py-3 font-bold text-blue-700">~8.1</td><td className="px-4 py-3 text-[#202124] font-medium">Standard RCC house slabs, beams, lintels (Most common)</td></tr>
+                <tr className="hover:bg-[#fcfcfc]"><td className="px-4 py-3 font-mono font-bold text-emerald-700">M25</td><td className="px-4 py-3 font-mono font-bold">1 : 1 : 2</td><td className="px-4 py-3 font-bold">25 N/mm²</td><td className="px-4 py-3 font-bold text-emerald-700">~10.7</td><td className="px-4 py-3 text-[#5F6368]">Heavy structural columns, deep footings, water tanks</td></tr>
               </tbody>
             </table>
           </div>
-          <p className="text-xs text-[#5F6368] mt-3">★ M20 is the most commonly specified grade for residential construction across Nepal.</p>
+          <p className="text-xs text-[#5F6368] mt-3">★ Note: M20 is the minimum grade recommended by Nepal National Building Code (NBC) for reinforced concrete structural members.</p>
         </section>
 
-        {/* How the calculation works */}
-        <section className="bg-white border border-[#DADCE0] rounded-xl p-8 shadow-sm">
-          <h3 className="text-sm font-black uppercase tracking-widest text-[#202124] border-l-4 border-emerald-500 pl-3 mb-6">
-            How the Calculation Works
+        {/* Step by Step Breakdown */}
+        <section className="bg-white border border-[#DADCE0] rounded-xl p-6 sm:p-8 shadow-sm">
+          <h3 className="text-sm font-black uppercase tracking-widest text-[#202124] border-l-4 border-emerald-600 pl-3 mb-6">
+            The 1.54 Dry Volume Factor Explained
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {[
-              { step: '1', title: 'Wet Volume Input', body: 'Enter the volume of concrete you need in cubic meters or cubic feet (length × width × thickness of the slab or structural element).' },
-              { step: '2', title: 'Apply Dry Volume Factor', body: 'Multiply wet volume by 1.54. This accounts for the ~35% volume loss when dry materials compact during mixing. Skipping this leads to material shortfall mid-pour.' },
-              { step: '3', title: 'Add Wastage', body: 'A 5–10% wastage buffer is added for spillage, over-mixing, and uneven surfaces. Higher for complex formwork shapes, lower for flat slabs.' },
-            ].map(({ step, title, body }) => (
-              <div key={step} className="p-5 bg-[#F8F9FA] rounded-xl border border-[#DADCE0]">
-                <div className="w-7 h-7 rounded-full bg-[#1A73E8] text-white text-xs font-black flex items-center justify-center mb-3">{step}</div>
-                <h4 className="font-bold text-[#202124] text-sm mb-2">{title}</h4>
-                <p className="text-xs text-[#5F6368] leading-relaxed">{body}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-5 p-4 bg-[#E8F0FE] border border-[#D2E3FC] rounded-lg">
-            <p className="text-xs text-[#1967D2] font-bold">
-              Formula: Cement (bags) = [Wet Volume × Dry Factor × (1 + Wastage%) × (Cement ratio / Sum of ratios)] ÷ 0.0347 m³/bag
-            </p>
+            <div className="p-5 bg-[#F8F9FA] rounded-xl border border-[#DADCE0] space-y-2">
+              <div className="w-7 h-7 rounded-full bg-blue-600 text-white text-xs font-black flex items-center justify-center">1</div>
+              <h4 className="font-bold text-[#202124] text-sm">Measure Wet Volume</h4>
+              <p className="text-xs text-[#5F6368] leading-relaxed">
+                Compute the geometric volume of your formwork: <code>Length × Width × Thickness</code>. For example, a 30 ft × 20 ft slab at 4 inches thick = 200 CFT (5.66 m³).
+              </p>
+            </div>
+            <div className="p-5 bg-[#F8F9FA] rounded-xl border border-[#DADCE0] space-y-2">
+              <div className="w-7 h-7 rounded-full bg-emerald-600 text-white text-xs font-black flex items-center justify-center">2</div>
+              <h4 className="font-bold text-[#202124] text-sm">Multiply by 1.54</h4>
+              <p className="text-xs text-[#5F6368] leading-relaxed">
+                Water fills voids between aggregate and sand grains, reducing bulk volume by ~35%. Multiplying by 1.54 converts required wet concrete into raw dry bulk materials to buy.
+              </p>
+            </div>
+            <div className="p-5 bg-[#F8F9FA] rounded-xl border border-[#DADCE0] space-y-2">
+              <div className="w-7 h-7 rounded-full bg-purple-600 text-white text-xs font-black flex items-center justify-center">3</div>
+              <h4 className="font-bold text-[#202124] text-sm">Distribute by Mix Ratio</h4>
+              <p className="text-xs text-[#5F6368] leading-relaxed">
+                Divide dry volume by the sum of parts (e.g. 1 + 1.5 + 3 = 5.5 for M20). Multiply by cement, sand, and aggregate ratios, and add 5% for site spillage.
+              </p>
+            </div>
           </div>
         </section>
 
-        {/* Wastage guide */}
-        <section className="bg-white border border-[#DADCE0] rounded-xl p-8 shadow-sm">
-          <h3 className="text-sm font-black uppercase tracking-widest text-[#202124] border-l-4 border-orange-500 pl-3 mb-6">
-            Wastage Percentage Guide
+        {/* Site Wastage Recommendations */}
+        <section className="bg-white border border-[#DADCE0] rounded-xl p-6 sm:p-8 shadow-sm">
+          <h3 className="text-sm font-black uppercase tracking-widest text-[#202124] border-l-4 border-amber-600 pl-3 mb-6">
+            Recommended Material Wastage Allowances
           </h3>
           <div className="overflow-x-auto">
             <table className="w-full text-xs text-left border border-[#DADCE0] rounded-md overflow-hidden">
               <thead className="bg-[#F8F9FA] text-[#70757A] uppercase font-bold">
                 <tr>
-                  <th className="px-4 py-3">Work Type</th>
+                  <th className="px-4 py-3">Pour Scenario</th>
                   <th className="px-4 py-3">Recommended Wastage</th>
-                  <th className="px-4 py-3">Reason</th>
+                  <th className="px-4 py-3">Practical Explanation</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#DADCE0] text-[#3C4043]">
-                <tr className="hover:bg-[#fcfcfc]"><td className="px-4 py-3 font-medium">Flat RCC slab (machine mixed)</td><td className="px-4 py-3 font-bold text-emerald-600">3–5%</td><td className="px-4 py-3 text-[#5F6368]">Clean pour, minimal spillage</td></tr>
-                <tr className="hover:bg-[#fcfcfc]"><td className="px-4 py-3 font-medium">Columns and beams</td><td className="px-4 py-3 font-bold text-blue-600">5–7%</td><td className="px-4 py-3 text-[#5F6368]">Narrow formwork, some spillage</td></tr>
-                <tr className="hover:bg-[#fcfcfc]"><td className="px-4 py-3 font-medium">Hand-mixed concrete</td><td className="px-4 py-3 font-bold text-orange-600">8–10%</td><td className="px-4 py-3 text-[#5F6368]">Less precise batching</td></tr>
-                <tr className="hover:bg-[#fcfcfc]"><td className="px-4 py-3 font-medium">Foundation / footing</td><td className="px-4 py-3 font-bold text-orange-600">7–10%</td><td className="px-4 py-3 text-[#5F6368]">Irregular excavation edges absorb extra</td></tr>
+                <tr className="hover:bg-[#fcfcfc]"><td className="px-4 py-3 font-medium">Machine-mixed slab with smooth plywood shuttering</td><td className="px-4 py-3 font-bold text-emerald-700">3% to 5%</td><td className="px-4 py-3 text-[#5F6368]">Minimal leakage through sealed joints and uniform depth</td></tr>
+                <tr className="hover:bg-[#fcfcfc]"><td className="px-4 py-3 font-medium">Columns, beams, and tight formwork</td><td className="px-4 py-3 font-bold text-blue-700">5% to 7%</td><td className="px-4 py-3 text-[#5F6368]">Spillage during bucket lifting or concrete pump hopper transfers</td></tr>
+                <tr className="hover:bg-[#fcfcfc]"><td className="px-4 py-3 font-medium">Hand-mixed batches on open ground</td><td className="px-4 py-3 font-bold text-amber-700">8% to 10%</td><td className="px-4 py-3 text-[#5F6368]">Material loss on soil floor, wind dispersion of dry cement dust</td></tr>
+                <tr className="hover:bg-[#fcfcfc]"><td className="px-4 py-3 font-medium">Foundation trenches and irregular earth excavations</td><td className="px-4 py-3 font-bold text-amber-700">8% to 12%</td><td className="px-4 py-3 text-[#5F6368]">Rough trench walls absorb extra concrete beyond exact blueprint dimensions</td></tr>
               </tbody>
             </table>
           </div>
         </section>
 
-        {/* FAQs */}
-        <section className="bg-white border border-[#DADCE0] rounded-xl p-8 shadow-sm">
-          <h3 className="text-sm font-black uppercase tracking-widest text-[#202124] border-l-4 border-purple-500 pl-3 mb-6">
+        {/* Frequently Asked Questions */}
+        <section className="bg-white border border-[#DADCE0] rounded-xl p-6 sm:p-8 shadow-sm">
+          <h3 className="text-sm font-black uppercase tracking-widest text-[#202124] border-l-4 border-blue-600 pl-3 mb-6">
             Frequently Asked Questions
           </h3>
           <div className="space-y-4">

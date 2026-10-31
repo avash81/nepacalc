@@ -1,173 +1,427 @@
 'use client';
 import { useState, useMemo } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
-import { Activity } from 'lucide-react';
+import { Activity, ArrowRight, Gauge, Zap, Compass } from 'lucide-react';
 
-type Mode = 'force' | 'work' | 'power' | 'pressure';
+type MechanicsMode = 'fma' | 'work' | 'power' | 'pressure';
 
-const MODES: { key: Mode; label: string; formula: string; l1: string; l2: string; u: string }[] = [
-  { key: 'force',    label: 'Force',    formula: 'F = m × a', l1: 'Mass (kg)',    l2: 'Acceleration (m/s²)', u: 'N'  },
-  { key: 'work',     label: 'Work',     formula: 'W = F × d', l1: 'Force (N)',    l2: 'Distance (m)',         u: 'J'  },
-  { key: 'power',    label: 'Power',    formula: 'P = W / t', l1: 'Work (J)',     l2: 'Time (s)',             u: 'W'  },
-  { key: 'pressure', label: 'Pressure', formula: 'P = F / A', l1: 'Force (N)',    l2: 'Area (m²)',            u: 'Pa' },
-];
+// Mode 1: Newton's Law (F = ma) solve targets
+type FmaTarget = 'force' | 'mass' | 'accel';
 
 export default function ForceCalc() {
-  const [mode, setMode] = useState<Mode>('force');
-  const [v1, setV1] = useState('10');
-  const [v2, setV2] = useState('2');
+  const [mode, setMode] = useState<MechanicsMode>('fma');
 
-  const res = useMemo(() => {
-    const n1 = parseFloat(v1), n2 = parseFloat(v2);
-    if (isNaN(n1) || isNaN(n2)) return null;
-    const m = MODES.find(m => m.key === mode)!;
-    const val = ['force','work'].includes(mode) ? n1 * n2 : n1 / n2;
-    return { val: val.toFixed(4).replace(/\.0000$/, ''), unit: m.u, formula: m.formula };
-  }, [v1, v2, mode]);
+  // F = ma state
+  const [fmaTarget, setFmaTarget] = useState<FmaTarget>('force');
+  const [mass, setMass] = useState('10'); // kg
+  const [accel, setAccel] = useState('9.8'); // m/s²
+  const [force, setForce] = useState('98'); // N
 
-  const current = MODES.find(m => m.key === mode)!;
+  // Work state: W = F * d
+  const [workForce, setWorkForce] = useState('50'); // N
+  const [distance, setDistance] = useState('5'); // m
+
+  // Power state: P = W / t
+  const [powerWork, setPowerWork] = useState('250'); // J
+  const [time, setTime] = useState('5'); // s
+
+  // Pressure state: P = F / A
+  const [pressForce, setPressForce] = useState('500'); // N
+  const [area, setArea] = useState('0.05'); // m²
+
+  // Quick gravity presets for acceleration
+  const setGravityPreset = (val: string) => {
+    setAccel(val);
+  };
+
+  // Calculations
+  const result = useMemo(() => {
+    if (mode === 'fma') {
+      const m = parseFloat(mass);
+      const a = parseFloat(accel);
+      const f = parseFloat(force);
+
+      if (fmaTarget === 'force') {
+        if (isNaN(m) || isNaN(a)) return null;
+        const val = m * a;
+        const kn = val / 1000;
+        const lbf = val * 0.224809;
+        return {
+          primary: `${val.toFixed(2).replace(/\.00$/, '')} N`,
+          val,
+          unit: 'Newtons (N)',
+          equation: `F = m × a = ${m} kg × ${a} m/s² = ${val.toFixed(2)} N`,
+          subValues: [
+            { label: 'Kilonewtons (kN)', val: `${kn.toFixed(4).replace(/\.?0+$/, '')} kN` },
+            { label: 'Pound-force (lbf)', val: `${lbf.toFixed(2)} lbf` },
+            { label: 'Dynes', val: `${(val * 1e5).toLocaleString('en-US')} dyn` },
+          ]
+        };
+      } else if (fmaTarget === 'mass') {
+        if (isNaN(f) || isNaN(a) || a === 0) return null;
+        const val = f / a;
+        const g = val * 1000;
+        const lbs = val * 2.20462;
+        return {
+          primary: `${val.toFixed(2).replace(/\.00$/, '')} kg`,
+          val,
+          unit: 'Kilograms (kg)',
+          equation: `m = F / a = ${f} N ÷ ${a} m/s² = ${val.toFixed(2)} kg`,
+          subValues: [
+            { label: 'Grams (g)', val: `${g.toFixed(1)} g` },
+            { label: 'Pounds (lbs)', val: `${lbs.toFixed(2)} lbs` },
+          ]
+        };
+      } else {
+        // accel
+        if (isNaN(f) || isNaN(m) || m === 0) return null;
+        const val = f / m;
+        const ft_s2 = val * 3.28084;
+        const g_force = val / 9.80665;
+        return {
+          primary: `${val.toFixed(2).replace(/\.00$/, '')} m/s²`,
+          val,
+          unit: 'Meters per second² (m/s²)',
+          equation: `a = F / m = ${f} N ÷ ${m} kg = ${val.toFixed(2)} m/s²`,
+          subValues: [
+            { label: 'Feet per second²', val: `${ft_s2.toFixed(2)} ft/s²` },
+            { label: 'Earth G-Force', val: `${g_force.toFixed(2)} g` },
+          ]
+        };
+      }
+    } else if (mode === 'work') {
+      const f = parseFloat(workForce);
+      const d = parseFloat(distance);
+      if (isNaN(f) || isNaN(d)) return null;
+      const w = f * d;
+      return {
+        primary: `${w.toFixed(2).replace(/\.00$/, '')} J`,
+        val: w,
+        unit: 'Joules (J)',
+        equation: `W = F × d = ${f} N × ${d} m = ${w.toFixed(2)} J`,
+        subValues: [
+          { label: 'Kilojoules (kJ)', val: `${(w / 1000).toFixed(3)} kJ` },
+          { label: 'Calories (cal)', val: `${(w / 4.184).toFixed(2)} cal` },
+          { label: 'Foot-pounds (ft·lb)', val: `${(w * 0.737562).toFixed(2)} ft·lb` },
+        ]
+      };
+    } else if (mode === 'power') {
+      const w = parseFloat(powerWork);
+      const t = parseFloat(time);
+      if (isNaN(w) || isNaN(t) || t === 0) return null;
+      const p = w / t;
+      return {
+        primary: `${p.toFixed(2).replace(/\.00$/, '')} W`,
+        val: p,
+        unit: 'Watts (W)',
+        equation: `P = W / t = ${w} J ÷ ${t} s = ${p.toFixed(2)} W`,
+        subValues: [
+          { label: 'Kilowatts (kW)', val: `${(p / 1000).toFixed(3)} kW` },
+          { label: 'Horsepower (hp)', val: `${(p / 745.7).toFixed(2)} hp` },
+          { label: 'Joules per second', val: `${p.toFixed(1)} J/s` },
+        ]
+      };
+    } else {
+      // pressure
+      const f = parseFloat(pressForce);
+      const a = parseFloat(area);
+      if (isNaN(f) || isNaN(a) || a === 0) return null;
+      const pr = f / a;
+      return {
+        primary: `${pr.toFixed(2).replace(/\.00$/, '')} Pa`,
+        val: pr,
+        unit: 'Pascals (N/m²)',
+        equation: `P = F / A = ${f} N ÷ ${a} m² = ${pr.toFixed(2)} Pa`,
+        subValues: [
+          { label: 'Kilopascals (kPa)', val: `${(pr / 1000).toFixed(2)} kPa` },
+          { label: 'Bar', val: `${(pr / 100000).toFixed(4)} bar` },
+          { label: 'PSI (lbs/in²)', val: `${(pr * 0.000145038).toFixed(3)} psi` },
+        ]
+      };
+    }
+  }, [mode, fmaTarget, mass, accel, force, workForce, distance, powerWork, time, pressForce, area]);
+
+  const inputCls = "w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white font-mono text-lg font-bold focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all shadow-sm";
+  const labelCls = "text-xs font-bold text-slate-700 uppercase tracking-wide block mb-1";
 
   return (
-    <ModernCalcLayout hideH1={false}
+    <ModernCalcLayout
+      hideH1={false}
       crumbs={[{ label: 'Engineering', href: '/engineering/' }, { label: 'Physics Force Calculator' }]}
-      title="Physics Force & Work Calculator"
-      description="Calculate Newtonian mechanics including Force (F=ma), Work (W=Fd), Power (P=W/t), and Pressure (P=F/A)."
+      title="Physics Force & Mechanics Calculator"
+      description="Calculate Force (F = ma), Mass, Acceleration, Work (W = Fd), Power (P = W/t), and Pressure (P = F/A) with SI unit conversions."
       icon={Activity}
       inputs={
         <div className="space-y-6">
-          <div className="space-y-2">
-            <label className="text-sm font-bold text-slate-800">Calculation Target</label>
-            <div className="grid grid-cols-2 gap-3">
-              {MODES.map(m => (
-                <button key={m.key} onClick={() => setMode(m.key)}
-                  className={`py-3 px-4 rounded-lg flex flex-col items-center justify-center border transition-all ${mode === m.key ? 'bg-[#1a73e8] text-[#202124] border-blue-600 shadow-md' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'}`}>
-                  <span className="font-bold text-sm">{m.label}</span>
-                  <span className={`text-[10px] font-mono mt-1 ${mode === m.key ? 'text-blue-200' : 'text-slate-400'}`}>{m.formula}</span>
+          {/* Main Mode Tabs */}
+          <div>
+            <label className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 block">
+              Mechanics Target Formula
+            </label>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              {[
+                { key: 'fma', label: 'Force (F = ma)', desc: 'Newton 2nd Law' },
+                { key: 'work', label: 'Work (W = Fd)', desc: 'Force × Distance' },
+                { key: 'power', label: 'Power (P = W/t)', desc: 'Work ÷ Time' },
+                { key: 'pressure', label: 'Pressure (P = F/A)', desc: 'Force ÷ Area' },
+              ].map(tab => (
+                <button
+                  key={tab.key}
+                  onClick={() => setMode(tab.key as MechanicsMode)}
+                  className={`p-3 rounded-xl border text-center transition-all ${
+                    mode === tab.key
+                      ? 'border-blue-600 bg-blue-50 text-blue-900 ring-1 ring-blue-500'
+                      : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
+                  }`}
+                >
+                  <div className="text-xs font-bold">{tab.label}</div>
+                  <div className="text-[10px] text-slate-500 mt-0.5">{tab.desc}</div>
                 </button>
               ))}
             </div>
           </div>
 
-          <div className="space-y-4 pt-4 border-t border-slate-100">
-            <div className="space-y-2">
-              <label className="text-sm font-bold text-slate-800">{current.l1}</label>
-              <input type="number" value={v1} onChange={e => setV1(e.target.value)}
-                className="w-full px-4 py-3 border border-slate-200 rounded-lg bg-slate-50 font-mono text-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all" />
+          {/* Mode 1: F = ma */}
+          {mode === 'fma' && (
+            <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-5">
+              <div>
+                <label className="text-xs font-bold uppercase text-slate-600 mb-1.5 block">What do you want to solve for?</label>
+                <div className="grid grid-cols-3 gap-2">
+                  {[
+                    { key: 'force', label: 'Force (F)' },
+                    { key: 'mass', label: 'Mass (m)' },
+                    { key: 'accel', label: 'Acceleration (a)' },
+                  ].map(t => (
+                    <button
+                      key={t.key}
+                      onClick={() => setFmaTarget(t.key as FmaTarget)}
+                      className={`py-2 px-3 text-xs font-bold rounded-lg border transition-all ${
+                        fmaTarget === t.key
+                          ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
+                          : 'bg-white border-slate-300 text-slate-700 hover:bg-slate-100'
+                      }`}
+                    >
+                      {t.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {fmaTarget === 'force' && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-1">
+                    <label className={labelCls}>Mass (m)</label>
+                    <div className="relative">
+                      <input type="number" step="any" value={mass} onChange={e => setMass(e.target.value)} className={inputCls} />
+                      <span className="absolute right-3 top-2.5 text-xs font-bold text-slate-400">kg</span>
+                    </div>
+                  </div>
+                  <div className="space-y-1">
+                    <label className={labelCls}>Acceleration (a)</label>
+                    <div className="relative">
+                      <input type="number" step="any" value={accel} onChange={e => setAccel(e.target.value)} className={inputCls} />
+                      <span className="absolute right-3 top-2.5 text-xs font-bold text-slate-400">m/s²</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {fmaTarget === 'mass' && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-1">
+                    <label className={labelCls}>Force (F)</label>
+                    <div className="relative">
+                      <input type="number" step="any" value={force} onChange={e => setForce(e.target.value)} className={inputCls} />
+                      <span className="absolute right-3 top-2.5 text-xs font-bold text-slate-400">N</span>
+                    </div>
+                  </div>
+                  <div className="space-y-1">
+                    <label className={labelCls}>Acceleration (a)</label>
+                    <div className="relative">
+                      <input type="number" step="any" value={accel} onChange={e => setAccel(e.target.value)} className={inputCls} />
+                      <span className="absolute right-3 top-2.5 text-xs font-bold text-slate-400">m/s²</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {fmaTarget === 'accel' && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-1">
+                    <label className={labelCls}>Force (F)</label>
+                    <div className="relative">
+                      <input type="number" step="any" value={force} onChange={e => setForce(e.target.value)} className={inputCls} />
+                      <span className="absolute right-3 top-2.5 text-xs font-bold text-slate-400">N</span>
+                    </div>
+                  </div>
+                  <div className="space-y-1">
+                    <label className={labelCls}>Mass (m)</label>
+                    <div className="relative">
+                      <input type="number" step="any" value={mass} onChange={e => setMass(e.target.value)} className={inputCls} />
+                      <span className="absolute right-3 top-2.5 text-xs font-bold text-slate-400">kg</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Gravity Presets */}
+              <div className="space-y-2 pt-2 border-t border-slate-200">
+                <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wide">Quick Acceleration Presets</span>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    { label: 'Earth Gravity (9.81 m/s²)', val: '9.80665' },
+                    { label: 'Moon Gravity (1.62 m/s²)', val: '1.62' },
+                    { label: 'Mars Gravity (3.72 m/s²)', val: '3.72' },
+                    { label: 'Car 0-100 in 6s (4.63 m/s²)', val: '4.63' },
+                  ].map(p => (
+                    <button
+                      key={p.label}
+                      onClick={() => setGravityPreset(p.val)}
+                      className="px-2.5 py-1 text-xs font-medium bg-white border border-slate-300 rounded-md hover:bg-blue-50 hover:text-blue-700 transition-colors"
+                    >
+                      {p.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
-            <div className="space-y-2">
-              <label className="text-sm font-bold text-slate-800">{current.l2}</label>
-              <input type="number" value={v2} onChange={e => setV2(e.target.value)}
-                className="w-full px-4 py-3 border border-slate-200 rounded-lg bg-slate-50 font-mono text-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all" />
+          )}
+
+          {/* Mode 2: Work (W = F * d) */}
+          {mode === 'work' && (
+            <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <label className={labelCls}>Force Applied (F)</label>
+                  <div className="relative">
+                    <input type="number" step="any" value={workForce} onChange={e => setWorkForce(e.target.value)} className={inputCls} />
+                    <span className="absolute right-3 top-2.5 text-xs font-bold text-slate-400">N</span>
+                  </div>
+                </div>
+                <div className="space-y-1">
+                  <label className={labelCls}>Displacement (d)</label>
+                  <div className="relative">
+                    <input type="number" step="any" value={distance} onChange={e => setDistance(e.target.value)} className={inputCls} />
+                    <span className="absolute right-3 top-2.5 text-xs font-bold text-slate-400">m</span>
+                  </div>
+                </div>
+              </div>
+              <p className="text-xs text-slate-500">Assumes force is aligned with the direction of movement (cos θ = 1).</p>
             </div>
-          </div>
+          )}
+
+          {/* Mode 3: Power (P = W / t) */}
+          {mode === 'power' && (
+            <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <label className={labelCls}>Work Done / Energy (W)</label>
+                  <div className="relative">
+                    <input type="number" step="any" value={powerWork} onChange={e => setPowerWork(e.target.value)} className={inputCls} />
+                    <span className="absolute right-3 top-2.5 text-xs font-bold text-slate-400">J</span>
+                  </div>
+                </div>
+                <div className="space-y-1">
+                  <label className={labelCls}>Time Elapsed (t)</label>
+                  <div className="relative">
+                    <input type="number" step="any" value={time} onChange={e => setTime(e.target.value)} className={inputCls} />
+                    <span className="absolute right-3 top-2.5 text-xs font-bold text-slate-400">seconds</span>
+                  </div>
+                </div>
+              </div>
+              <p className="text-xs text-slate-500">Power is the rate of energy transfer. 1 Watt = 1 Joule per second.</p>
+            </div>
+          )}
+
+          {/* Mode 4: Pressure (P = F / A) */}
+          {mode === 'pressure' && (
+            <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <label className={labelCls}>Normal Force (F)</label>
+                  <div className="relative">
+                    <input type="number" step="any" value={pressForce} onChange={e => setPressForce(e.target.value)} className={inputCls} />
+                    <span className="absolute right-3 top-2.5 text-xs font-bold text-slate-400">N</span>
+                  </div>
+                </div>
+                <div className="space-y-1">
+                  <label className={labelCls}>Contact Surface Area (A)</label>
+                  <div className="relative">
+                    <input type="number" step="any" value={area} onChange={e => setArea(e.target.value)} className={inputCls} />
+                    <span className="absolute right-3 top-2.5 text-xs font-bold text-slate-400">m²</span>
+                  </div>
+                </div>
+              </div>
+              <p className="text-xs text-slate-500">1 m² = 10,000 cm². Smaller contact area produces vastly higher pressure.</p>
+            </div>
+          )}
         </div>
       }
       results={
-        <div className="space-y-6">
-          <div className="p-8 bg-blue-50 border border-blue-100 rounded-xl text-center shadow-inner">
-            <div className="text-xs font-bold uppercase text-blue-600 mb-2">{current.label} Result</div>
-            {res ? (
-              <div className="flex flex-col items-center justify-center">
-                <div className="text-5xl font-black text-slate-900 tracking-tighter font-mono mb-1">{res.val}</div>
-                <div className="text-lg font-bold text-slate-500">{res.unit}</div>
+        <div className="space-y-5">
+          {/* Hero Result Card */}
+          <div className="p-7 bg-blue-600 text-white rounded-2xl shadow-md text-center relative overflow-hidden">
+            <Gauge className="absolute -right-4 -bottom-4 w-32 h-32 text-white/10" />
+            <div className="relative z-10 space-y-2">
+              <div className="text-xs font-bold uppercase tracking-widest text-blue-200">
+                Calculated {mode === 'fma' ? fmaTarget.toUpperCase() : mode.toUpperCase()}
               </div>
-            ) : (
-              <div className="text-base font-medium text-slate-400 py-4">Enter valid numerical values</div>
-            )}
+              <div className="text-4xl sm:text-5xl font-black font-mono tracking-tight">
+                {result ? result.primary : '—'}
+              </div>
+              <div className="text-xs text-blue-100 font-medium">
+                {result ? result.unit : 'Enter positive numbers'}
+              </div>
+            </div>
           </div>
 
-          <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
-            <div className="px-4 py-2 bg-slate-50 border-b border-slate-200">
-               <span className="text-xs font-bold text-slate-500 uppercase">Input Summary</span>
+          {/* Equation Breakdown */}
+          {result && (
+            <div className="p-4 bg-white border border-slate-200 rounded-xl space-y-2 shadow-sm">
+              <span className="text-[11px] font-bold uppercase text-slate-500 tracking-wider">Formula Substitution</span>
+              <div className="p-2.5 bg-slate-50 border border-slate-200 rounded-lg font-mono text-sm font-bold text-slate-800 break-all">
+                {result.equation}
+              </div>
             </div>
-            <div className="divide-y divide-slate-100">
-              {[
-                { label: current.l1.split('(')[0].trim(), val: `${v1} ${current.l1.split('(')[1]?.replace(')','') || ''}` },
-                { label: current.l2.split('(')[0].trim(), val: `${v2} ${current.l2.split('(')[1]?.replace(')','') || ''}` },
-                { label: 'Equation Used', val: current.formula }
-              ].map(({ label, val }) => (
-                <div key={label} className="p-4 flex justify-between items-center">
-                  <span className="text-sm font-medium text-slate-600">{label}</span>
-                  <span className="text-sm font-bold font-mono text-slate-900">{val}</span>
-                </div>
-              ))}
+          )}
+
+          {/* Alternative Units */}
+          {result && result.subValues.length > 0 && (
+            <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+              <div className="px-4 py-2.5 bg-slate-50 border-b border-slate-200">
+                <span className="text-xs font-bold text-slate-600 uppercase tracking-wider">Equivalent Units</span>
+              </div>
+              <div className="divide-y divide-slate-100">
+                {result.subValues.map(sub => (
+                  <div key={sub.label} className="p-3.5 flex justify-between items-center text-sm">
+                    <span className="text-slate-600 font-medium">{sub.label}</span>
+                    <span className="font-mono font-bold text-slate-900">{sub.val}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       }
       sidebar={{
-        title: "Physics & Engineering",
+        title: "Related Physics Tools",
         links: [
-          { label: 'Kinetic Energy', href: '/calculator/physics-energy/' },
-          { label: 'Geometry Calculator', href: '/calculator/geometry-3d/' },
+          { label: 'Kinetic Energy (E = ½mv²)', href: '/calculator/physics-energy/' },
           { label: 'Scientific Calculator', href: '/calculator/scientific-calculator/' },
-          { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
-          { label: "Nepal Salary", href: "/calculator/nepal-salary/" },
-          { label: "Age Calculator", href: "/calculator/age-calculator/" }
+          { label: 'Unit Converter', href: '/calculator/unit-converter/' },
+          { label: 'Simple Calculator', href: '/calculator/simple-calculator/' },
+          { label: 'Probability Calculator', href: '/calculator/probability/' },
         ],
       }}
       howToUse={{
         steps: [
-          "Select the physical property you want to calculate: Force, Work, Power, or Pressure.",
-          "Note the formula displayed for the selected property (e.g., F = m × a).",
-          "Enter the first parameter in the specified unit (e.g., Mass in kg).",
-          "Enter the second parameter in the specified unit (e.g., Acceleration in m/s²).",
-          "The calculation updates instantly and displays the correct SI unit (Newtons, Joules, Watts, or Pascals)."
+          "Select the equation: Newton's Second Law (F = ma), Work (W = Fd), Power (P = W/t), or Pressure (P = F/A).",
+          "For Force, choose whether to calculate Force, Mass, or Acceleration.",
+          "Enter your values in standard SI units (kilograms, meters, seconds, Newtons).",
+          "Use the Quick Acceleration Presets to test Earth, Moon, or Mars gravity.",
+          "Review the primary result alongside automatic unit conversions (kN, lbf, dynes, horsepower, PSI)."
         ]
       }}
-      details={
-        <div className="space-y-8">
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h2 className="text-xl font-black text-[#202124] mb-4">Newtonian Mechanics: The Four Fundamental Equations</h2>
-            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
-              <p>
-                Isaac Newton's laws of classical mechanics, published in his <em>Principia Mathematica</em> (1687), form the bedrock of all macroscopic physics and engineering. Our <strong className="text-[#202124]">physics calculator</strong> consolidates the four most foundational derived equations into a single precision engine: Newton's Second Law (Force), the Work-Energy theorem (Work), the rate of energy transfer (Power), and the surface concentration of force (Pressure).
-              </p>
-              <p>
-                Every equation in this tool operates within the International System of Units (SI), ensuring that inputs and outputs are directly compatible with all global physics, engineering, and academic standards. The engine performs exact floating-point arithmetic, displaying results to 4 decimal places before stripping trailing zeros for clarity.
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Deep Dive: The Four Physical Laws</h3>
-            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#1A73E8]">Force (F = ma):</strong> Newton's Second Law. A net force applied to an object produces an acceleration proportional to the force and inversely proportional to the object's mass. 1 Newton = 1 kg·m/s². Example: pushing a 10 kg box with 20 N of force produces 2 m/s² of acceleration.</li>
-              <li><strong className="text-[#188038]">Work (W = Fd):</strong> Energy transferred to or from an object via an applied force over a displacement. Only the component of force parallel to displacement does work. 1 Joule = 1 N·m. Example: lifting a 10 N box by 3 meters requires 30 J of work.</li>
-              <li><strong className="text-[#D93025]">Power (P = W/t):</strong> The rate at which energy is transferred or work is done. A 100W light bulb consumes 100 Joules of energy per second. Human peak mechanical power output is approximately 1-2 kilowatts during intense bursts.</li>
-              <li><strong className="text-[#F29900]">Pressure (P = F/A):</strong> Force distributed over an area. This is why sharp needles pierce skin with minimal force (tiny area = massive pressure) while snowshoes prevent sinking (large area = minimal pressure).</li>
-            </ul>
-          </div>
-        </div>
-      }
-      faqs={[
-        {
-          question: "What is the SI unit of Force and what does it represent?",
-          answer: "The SI unit of force is the Newton (N), named after Isaac Newton. One Newton is defined as the force required to accelerate a mass of 1 kilogram at a rate of 1 meter per second squared (1 N = 1 kg·m/s²). Earth's gravity exerts approximately 9.81 N on a 1 kg object."
-        },
-        {
-          question: "What is the difference between Work and Energy?",
-          answer: "In physics, Work is the process of energy transfer, it describes an action (applying force over distance). Energy is the capacity to do work. Work done ON a system increases its energy; work done BY a system decreases it. Both are measured in Joules, making them numerically equivalent despite being conceptually distinct."
-        },
-        {
-          question: "What is the difference between Power and Energy?",
-          answer: "Energy (Joules) is the total amount of work done or transferred. Power (Watts) is the rate at which that energy is used. A 100W motor running for 10 seconds uses the same energy (1000 J) as a 1000W motor running for 1 second, but they have very different power ratings."
-        },
-        {
-          question: "Why does Pressure depend on Area and not just Force?",
-          answer: "Pressure measures how concentrated a force is. The same 100 N force applied to a 1 cm² area creates 1 MPa of pressure, enough to pierce metal. Applied to a 100 cm² area, it creates only 10 kPa, barely enough to dent foam. This principle is used in hydraulic presses, needles, and pneumatic systems."
-        },
-        {
-          question: "What is a Joule in everyday terms?",
-          answer: "One Joule is roughly the energy needed to lift a 100-gram apple 1 meter upward against gravity. A 2,000-calorie daily diet provides about 8,400,000 Joules of energy. A single AA battery stores approximately 10,000 Joules."
-        },
-        {
-          question: "Can I use this calculator for rotational motion?",
-          answer: "No. This calculator covers linear (translational) Newtonian mechanics. For rotational mechanics, the analogous formulas are: Torque (τ = Iα), Rotational Work (W = τθ), and Rotational Power (P = τω), where I is moment of inertia, α is angular acceleration, θ is angle, and ω is angular velocity."
-        }
-      ]}
     />
   );
 }
-
-
