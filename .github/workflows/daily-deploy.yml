@@ -48,23 +48,23 @@ jobs:
           cat public/data/market-rates.json
 
       # ── IMMEDIATE DIRECT UPLOAD: Upload rate files via cPanel FileManager API ──
-      # Runs immediately before git commit so that price files are updated on live site instantly.
+      # Runs immediately so price files are updated on live site instantly.
       - name: Upload rate JSON files via cPanel FileManager API
         id: fileman_upload
         continue-on-error: true
         run: |
-          echo "📤 Uploading rate files directly to public_html/data via cPanel Fileman API..."
+          echo "Uploading rate files directly to public_html/data via cPanel Fileman API..."
           for FILE in market-rates.json live-rates.json forex-rates.json daily-history.json; do
             SRC="out/data/${FILE}"
             if [ -f "$SRC" ]; then
-              echo "  ↑ Uploading $FILE..."
+              echo "Uploading $FILE..."
               RES=$(curl -k -s \
                 -H "Authorization: cpanel nepacalc:${{ secrets.CPANEL_API_TOKEN }}" \
                 -F "dir=public_html/data" \
                 -F "overwrite=1" \
                 -F "file-1=@${SRC};filename=${FILE}" \
                 "https://194.233.72.227:2083/execute/Fileman/upload_files")
-              echo "    Response: $RES"
+              echo "Response: $RES"
             fi
           done
 
@@ -87,7 +87,7 @@ jobs:
       - name: Trigger cPanel VersionControlDeployment
         continue-on-error: true
         run: |
-          echo "🔄 Triggering cPanel VersionControlDeployment/create..."
+          echo "Triggering cPanel VersionControlDeployment/create..."
           curl -k -s \
             -H "Authorization: cpanel nepacalc:${{ secrets.CPANEL_API_TOKEN }}" \
             "https://194.233.72.227:2083/execute/VersionControlDeployment/create?repository_root=%2Fhome%2Fnepacalc%2Frepositories%2Fnepacalc"
@@ -98,14 +98,4 @@ jobs:
         run: |
           sleep 10
           echo "Checking live site market-rates.json..."
-          curl -s -H "User-Agent: Mozilla/5.0" "https://nepacalc.com/data/market-rates.json" | python3 -c "
-import sys, json
-try:
-    d = json.load(sys.stdin)
-    print('✅ LIVE SITE VERIFIED:')
-    print('  Rate Date:', d.get('rate_date'))
-    print('  Gold Tola:', d.get('gold', {}).get('tolaNPR', {}).get('current'))
-    print('  Silver Tola:', d.get('silver', {}).get('tolaNPR', {}).get('current'))
-except Exception as e:
-    print('Verification parse error:', e)
-"
+          curl -s -H "User-Agent: Mozilla/5.0" "https://nepacalc.com/data/market-rates.json"
