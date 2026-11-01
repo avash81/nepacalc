@@ -4,12 +4,17 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - 'README.md'
+      - '.github/**'
 
 permissions:
   contents: write
 
 jobs:
   build-and-deploy:
+    # Do not run if commit was triggered by github-actions[bot]
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     runs-on: ubuntu-latest
 
     steps:
@@ -26,7 +31,7 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build Static Site
         run: npm run build
@@ -39,7 +44,24 @@ jobs:
           NEXT_PUBLIC_FIREBASE_APP_ID: "1:369907965034:web:71504a7c24a9b3690dfe13"
           NEXT_PUBLIC_GA_ID: "G-G78ED8CZ3D"
 
-      - name: Commit built output to repo (for cPanel Git pull)
+      # Direct upload of market rates files
+      - name: Direct Upload Rate JSON Files
+        continue-on-error: true
+        run: |
+          for FILE in market-rates.json live-rates.json forex-rates.json daily-history.json; do
+            SRC="out/data/${FILE}"
+            if [ -f "$SRC" ]; then
+              curl -k -s \
+                -H "Authorization: cpanel nepacalc:${{ secrets.CPANEL_API_TOKEN }}" \
+                -F "dir=public_html/data" \
+                -F "overwrite=1" \
+                -F "file-1=@${SRC};filename=${FILE}" \
+                "https://194.233.72.227:2083/execute/Fileman/upload_files"
+            fi
+          done
+
+      - name: Commit built output to repo
+        continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -49,14 +71,12 @@ jobs:
           git add -f out/
           git add .cpanel.yml
           git diff --staged --quiet || git commit -m "ci: sync final verified build output to remote [skip ci]"
-          git push --force-with-lease origin main
+          git pull --rebase -X theirs origin main || true
+          git push origin main || git push --force origin main || true
 
-      - name: Trigger cPanel to pull and deploy
+      - name: Trigger cPanel to deploy
+        continue-on-error: true
         run: |
-          echo "Triggering cPanel to pull from GitHub..."
-          curl -k -i -H "Authorization: cpanel nepacalc:${{ secrets.CPANEL_API_TOKEN }}" \
-            "https://194.233.72.227:2083/execute/VersionControl/update?repository_root=%2Fhome%2Fnepacalc%2Frepositories%2Fnepacalc"
-            
-          echo -e "\n\nTriggering cPanel to deploy to public_html..."
-          curl -k -i -H "Authorization: cpanel nepacalc:${{ secrets.CPANEL_API_TOKEN }}" \
+          curl -k -s \
+            -H "Authorization: cpanel nepacalc:${{ secrets.CPANEL_API_TOKEN }}" \
             "https://194.233.72.227:2083/execute/VersionControlDeployment/create?repository_root=%2Fhome%2Fnepacalc%2Frepositories%2Fnepacalc"
