@@ -59,66 +59,86 @@ jobs:
           git diff --staged --quiet || git commit -m "ci: daily auto-deploy with fresh FENEGOSIDA rates [skip ci]"
           git push --force-with-lease origin main
 
-      # ── cPanel Deploy: Primary via VersionControlDeployment (skip broken update step) ──
-      - name: Trigger cPanel deploy (VersionControlDeployment)
+      # ── PRIMARY: Upload key JSON files directly via cPanel FileManager API ──
+      # This bypasses git entirely and guarantees the JSON files are live immediately.
+      - name: Upload rate JSON files via cPanel FileManager API
+        id: fileman_upload
+        continue-on-error: true
+        run: |
+          echo "📤 Uploading rate files directly to public_html via cPanel FileManager API..."
+          UPLOAD_OK=true
+
+          for FILE in market-rates.json live-rates.json forex-rates.json daily-history.json; do
+            SRC="out/data/${FILE}"
+            if [ ! -f "$SRC" ]; then
+              echo "⚠️  $SRC not found, skipping."
+              continue
+            fi
+            echo "  ↑ Uploading $FILE..."
+            HTTP_CODE=$(curl -k -s -o /tmp/upload_${FILE}.json -w "%{http_code}" \
+              -H "Authorization: cpanel nepacalc:${{ secrets.CPANEL_API_TOKEN }}" \
+              -F "dir=/public_html/data" \
+              -F "file-1=@${SRC};type=application/json" \
+              "https://194.233.72.227:2083/execute/Fileman/upload_files?dir=%2Fpublic_html%2Fdata&overwrite=1")
+            echo "    HTTP: $HTTP_CODE"
+            cat /tmp/upload_${FILE}.json 2>/dev/null || true
+            RESPONSE_STATUS=$(python3 -c "import json; d=json.load(open('/tmp/upload_${FILE}.json')); print(d.get('status',0))" 2>/dev/null || echo "0")
+            if [ "$HTTP_CODE" = "200" ] && [ "$RESPONSE_STATUS" = "1" ]; then
+              echo "    ✅ $FILE uploaded successfully."
+            else
+              echo "    ❌ $FILE upload failed (HTTP $HTTP_CODE, status $RESPONSE_STATUS)."
+              UPLOAD_OK=false
+            fi
+          done
+
+          if [ "$UPLOAD_OK" = "true" ]; then
+            echo "fileman_ok=true" >> $GITHUB_OUTPUT
+            echo "✅ All rate files uploaded to public_html/data/"
+          else
+            echo "fileman_ok=false" >> $GITHUB_OUTPUT
+            echo "⚠️  Some files failed to upload via FileManager."
+          fi
+
+      # ── SECONDARY: Trigger cPanel git deploy (pulls full site update) ──
+      - name: Trigger cPanel VersionControlDeployment
         id: cpanel_deploy
         continue-on-error: true
         run: |
-          echo "Triggering cPanel VersionControlDeployment/create..."
+          echo "🔄 Triggering cPanel VersionControlDeployment/create (full site git deploy)..."
           HTTP_CODE=$(curl -k -s -o /tmp/cpanel_deploy.json -w "%{http_code}" \
             -H "Authorization: cpanel nepacalc:${{ secrets.CPANEL_API_TOKEN }}" \
             "https://194.233.72.227:2083/execute/VersionControlDeployment/create?repository_root=%2Fhome%2Fnepacalc%2Frepositories%2Fnepacalc")
           echo "HTTP status: $HTTP_CODE"
           cat /tmp/cpanel_deploy.json
           if [ "$HTTP_CODE" = "200" ]; then
-            STATUS=$(python3 -c "import json,sys; d=json.load(open('/tmp/cpanel_deploy.json')); print(d.get('status',0))")
+            STATUS=$(python3 -c "import json; d=json.load(open('/tmp/cpanel_deploy.json')); print(d.get('status',0))" 2>/dev/null || echo "0")
             if [ "$STATUS" = "1" ]; then
-              echo "✅ cPanel VersionControlDeployment triggered successfully."
               echo "deploy_ok=true" >> $GITHUB_OUTPUT
+              echo "✅ cPanel git deployment queued (deploy_id: $(python3 -c \"import json; d=json.load(open('/tmp/cpanel_deploy.json')); print(d.get('data',{}).get('deploy_id','?'))\" 2>/dev/null))."
             else
-              ERRORS=$(python3 -c "import json,sys; d=json.load(open('/tmp/cpanel_deploy.json')); print(d.get('errors','unknown'))")
-              echo "❌ cPanel returned status=0. Errors: $ERRORS"
+              ERRORS=$(python3 -c "import json; d=json.load(open('/tmp/cpanel_deploy.json')); print(d.get('errors','unknown'))" 2>/dev/null || echo "unknown")
               echo "deploy_ok=false" >> $GITHUB_OUTPUT
+              echo "❌ cPanel git deploy returned status=0. Errors: $ERRORS"
             fi
           else
-            echo "❌ cPanel returned HTTP $HTTP_CODE — EPERM or server error."
             echo "deploy_ok=false" >> $GITHUB_OUTPUT
+            echo "❌ cPanel returned HTTP $HTTP_CODE"
           fi
 
-      # ── cPanel Deploy: Fallback via VersionControl/update then deploy ──
-      - name: Fallback — cPanel pull then deploy
-        if: steps.cpanel_deploy.outputs.deploy_ok != 'true'
+      # ── FTP Fallback: Upload all built files if FileManager fails ──
+      - name: FTP Fallback — upload full site
+        if: steps.fileman_upload.outputs.fileman_ok != 'true' && steps.cpanel_deploy.outputs.deploy_ok != 'true'
         continue-on-error: true
         run: |
-          echo "⚠️  Primary deploy failed. Trying VersionControl/update first..."
-          HTTP_PULL=$(curl -k -s -o /tmp/cpanel_pull.json -w "%{http_code}" \
-            -H "Authorization: cpanel nepacalc:${{ secrets.CPANEL_API_TOKEN }}" \
-            "https://194.233.72.227:2083/execute/VersionControl/update?repository_root=%2Fhome%2Fnepacalc%2Frepositories%2Fnepacalc")
-          echo "Pull HTTP: $HTTP_PULL"
-          cat /tmp/cpanel_pull.json || true
-          sleep 5
-          echo "Retrying VersionControlDeployment/create after pull..."
-          HTTP_DEPLOY=$(curl -k -s -o /tmp/cpanel_deploy2.json -w "%{http_code}" \
-            -H "Authorization: cpanel nepacalc:${{ secrets.CPANEL_API_TOKEN }}" \
-            "https://194.233.72.227:2083/execute/VersionControlDeployment/create?repository_root=%2Fhome%2Fnepacalc%2Frepositories%2Fnepacalc")
-          echo "Deploy HTTP: $HTTP_DEPLOY"
-          cat /tmp/cpanel_deploy2.json || true
-
-      # ── FTP Fallback: Upload key data files directly to public_html ──
-      - name: FTP Fallback — upload data files directly
-        if: steps.cpanel_deploy.outputs.deploy_ok != 'true'
-        continue-on-error: true
-        run: |
-          echo "⚠️  cPanel API failed. Attempting FTP upload of data files..."
+          echo "⚠️  Both primary methods failed. Trying FTP fallback..."
           if [ -z "${{ secrets.FTP_PASSWORD }}" ]; then
             echo "⏭️  FTP_PASSWORD secret not set — skipping FTP fallback."
             exit 0
           fi
-          # Install lftp
           sudo apt-get install -y lftp 2>/dev/null || true
-          # Upload market-rates and live-rates to public_html/data/
           lftp -c "
             set ftp:ssl-allow no;
+            set net:timeout 30;
             open -u nepacalc,${{ secrets.FTP_PASSWORD }} ftp://nepacalc.com;
             put out/data/market-rates.json -o public_html/data/market-rates.json;
             put out/data/live-rates.json   -o public_html/data/live-rates.json;
@@ -126,11 +146,13 @@ jobs:
             quit
           " && echo "✅ FTP upload succeeded." || echo "❌ FTP upload failed."
 
-      # ── Final status check ──
+      # ── Final verification ──
       - name: Verify live site rates
         if: always()
         run: |
-          sleep 10
+          sleep 15
+          EXPECTED_DATE=$(python3 -c "from datetime import datetime; print(datetime.utcnow().strftime('%Y-%m-%d'))")
+          echo "Expected date: $EXPECTED_DATE"
           echo "Checking live site market-rates.json..."
           HTTP=$(curl -s -o /tmp/live_rates.json -w "%{http_code}" \
             -H "User-Agent: Mozilla/5.0 (NepaCalc-CI-Check)" \
@@ -139,15 +161,20 @@ jobs:
           if [ -f /tmp/live_rates.json ]; then
             LIVE_DATE=$(python3 -c "import json; d=json.load(open('/tmp/live_rates.json')); print(d.get('rate_date','unknown'))" 2>/dev/null || echo "parse error")
             LIVE_GOLD=$(python3 -c "import json; d=json.load(open('/tmp/live_rates.json')); print(d.get('gold',{}).get('tolaNPR',{}).get('current','?'))" 2>/dev/null || echo "parse error")
-            echo "Live site rate_date: $LIVE_DATE  |  Gold: Rs.$LIVE_GOLD"
-            TODAY=$(date +%Y-%m-%d)
-            if [ "$LIVE_DATE" = "$TODAY" ]; then
-              echo "✅ Live site is showing TODAY's rates ($TODAY)."
+            LIVE_SILVER=$(python3 -c "import json; d=json.load(open('/tmp/live_rates.json')); print(d.get('silver',{}).get('tolaNPR',{}).get('current','?'))" 2>/dev/null || echo "parse error")
+            echo "Live site: date=$LIVE_DATE | Gold=Rs.$LIVE_GOLD | Silver=Rs.$LIVE_SILVER"
+            if [ "$LIVE_DATE" = "$EXPECTED_DATE" ]; then
+              echo "✅ Live site is showing TODAY's rates ($EXPECTED_DATE). Deploy successful!"
             else
-              echo "⚠️  Live site still shows $LIVE_DATE — cPanel deploy likely pending. Manual action needed."
+              echo "⚠️  Live site still shows $LIVE_DATE (expected $EXPECTED_DATE)."
+              echo "   The git deploy may still be running on cPanel (takes 1-3 min after queuing)."
               echo ""
-              echo "  ➜ Login to cPanel: https://194.233.72.227:2083"
-              echo "  ➜ Go to: Git™ Version Control > nepacalc > Pull or Deploy"
-              echo "  ➜ Click: Update from Remote, then Deploy HEAD Commit"
+              echo "   If still stale after 5 mins, manual fix needed:"
+              echo "   ➜ Login: https://194.233.72.227:2083"
+              echo "   ➜ Git™ Version Control > nepacalc > Pull or Deploy"
+              echo "   ➜ Click: Update from Remote, then Deploy HEAD Commit"
+              echo ""
+              echo "   OR: Check cPanel Manage API Tokens and regenerate CPANEL_API_TOKEN"
+              echo "   then update it in GitHub Secrets > Settings > Secrets > Actions"
             fi
           fi
