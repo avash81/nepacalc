@@ -47,7 +47,7 @@ jobs:
           echo "=== market-rates.json ==="
           cat public/data/market-rates.json
 
-      - name: Commit built output & trigger cPanel deploy
+      - name: Commit built output to GitHub
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -59,12 +59,95 @@ jobs:
           git diff --staged --quiet || git commit -m "ci: daily auto-deploy with fresh FENEGOSIDA rates [skip ci]"
           git push --force-with-lease origin main
 
-      - name: Trigger cPanel to pull and deploy
+      # ── cPanel Deploy: Primary via VersionControlDeployment (skip broken update step) ──
+      - name: Trigger cPanel deploy (VersionControlDeployment)
+        id: cpanel_deploy
+        continue-on-error: true
         run: |
-          echo "Triggering cPanel to pull from GitHub..."
-          curl -k -i -H "Authorization: cpanel nepacalc:${{ secrets.CPANEL_API_TOKEN }}" \
-            "https://194.233.72.227:2083/execute/VersionControl/update?repository_root=%2Fhome%2Fnepacalc%2Frepositories%2Fnepacalc"
-            
-          echo -e "\n\nTriggering cPanel to deploy to public_html..."
-          curl -k -i -H "Authorization: cpanel nepacalc:${{ secrets.CPANEL_API_TOKEN }}" \
-            "https://194.233.72.227:2083/execute/VersionControlDeployment/create?repository_root=%2Fhome%2Fnepacalc%2Frepositories%2Fnepacalc"
+          echo "Triggering cPanel VersionControlDeployment/create..."
+          HTTP_CODE=$(curl -k -s -o /tmp/cpanel_deploy.json -w "%{http_code}" \
+            -H "Authorization: cpanel nepacalc:${{ secrets.CPANEL_API_TOKEN }}" \
+            "https://194.233.72.227:2083/execute/VersionControlDeployment/create?repository_root=%2Fhome%2Fnepacalc%2Frepositories%2Fnepacalc")
+          echo "HTTP status: $HTTP_CODE"
+          cat /tmp/cpanel_deploy.json
+          if [ "$HTTP_CODE" = "200" ]; then
+            STATUS=$(python3 -c "import json,sys; d=json.load(open('/tmp/cpanel_deploy.json')); print(d.get('status',0))")
+            if [ "$STATUS" = "1" ]; then
+              echo "✅ cPanel VersionControlDeployment triggered successfully."
+              echo "deploy_ok=true" >> $GITHUB_OUTPUT
+            else
+              ERRORS=$(python3 -c "import json,sys; d=json.load(open('/tmp/cpanel_deploy.json')); print(d.get('errors','unknown'))")
+              echo "❌ cPanel returned status=0. Errors: $ERRORS"
+              echo "deploy_ok=false" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "❌ cPanel returned HTTP $HTTP_CODE — EPERM or server error."
+            echo "deploy_ok=false" >> $GITHUB_OUTPUT
+          fi
+
+      # ── cPanel Deploy: Fallback via VersionControl/update then deploy ──
+      - name: Fallback — cPanel pull then deploy
+        if: steps.cpanel_deploy.outputs.deploy_ok != 'true'
+        continue-on-error: true
+        run: |
+          echo "⚠️  Primary deploy failed. Trying VersionControl/update first..."
+          HTTP_PULL=$(curl -k -s -o /tmp/cpanel_pull.json -w "%{http_code}" \
+            -H "Authorization: cpanel nepacalc:${{ secrets.CPANEL_API_TOKEN }}" \
+            "https://194.233.72.227:2083/execute/VersionControl/update?repository_root=%2Fhome%2Fnepacalc%2Frepositories%2Fnepacalc")
+          echo "Pull HTTP: $HTTP_PULL"
+          cat /tmp/cpanel_pull.json || true
+          sleep 5
+          echo "Retrying VersionControlDeployment/create after pull..."
+          HTTP_DEPLOY=$(curl -k -s -o /tmp/cpanel_deploy2.json -w "%{http_code}" \
+            -H "Authorization: cpanel nepacalc:${{ secrets.CPANEL_API_TOKEN }}" \
+            "https://194.233.72.227:2083/execute/VersionControlDeployment/create?repository_root=%2Fhome%2Fnepacalc%2Frepositories%2Fnepacalc")
+          echo "Deploy HTTP: $HTTP_DEPLOY"
+          cat /tmp/cpanel_deploy2.json || true
+
+      # ── FTP Fallback: Upload key data files directly to public_html ──
+      - name: FTP Fallback — upload data files directly
+        if: steps.cpanel_deploy.outputs.deploy_ok != 'true'
+        continue-on-error: true
+        run: |
+          echo "⚠️  cPanel API failed. Attempting FTP upload of data files..."
+          if [ -z "${{ secrets.FTP_PASSWORD }}" ]; then
+            echo "⏭️  FTP_PASSWORD secret not set — skipping FTP fallback."
+            exit 0
+          fi
+          # Install lftp
+          sudo apt-get install -y lftp 2>/dev/null || true
+          # Upload market-rates and live-rates to public_html/data/
+          lftp -c "
+            set ftp:ssl-allow no;
+            open -u nepacalc,${{ secrets.FTP_PASSWORD }} ftp://nepacalc.com;
+            put out/data/market-rates.json -o public_html/data/market-rates.json;
+            put out/data/live-rates.json   -o public_html/data/live-rates.json;
+            put out/data/forex-rates.json  -o public_html/data/forex-rates.json;
+            quit
+          " && echo "✅ FTP upload succeeded." || echo "❌ FTP upload failed."
+
+      # ── Final status check ──
+      - name: Verify live site rates
+        if: always()
+        run: |
+          sleep 10
+          echo "Checking live site market-rates.json..."
+          HTTP=$(curl -s -o /tmp/live_rates.json -w "%{http_code}" \
+            -H "User-Agent: Mozilla/5.0 (NepaCalc-CI-Check)" \
+            "https://nepacalc.com/data/market-rates.json")
+          echo "HTTP status: $HTTP"
+          if [ -f /tmp/live_rates.json ]; then
+            LIVE_DATE=$(python3 -c "import json; d=json.load(open('/tmp/live_rates.json')); print(d.get('rate_date','unknown'))" 2>/dev/null || echo "parse error")
+            LIVE_GOLD=$(python3 -c "import json; d=json.load(open('/tmp/live_rates.json')); print(d.get('gold',{}).get('tolaNPR',{}).get('current','?'))" 2>/dev/null || echo "parse error")
+            echo "Live site rate_date: $LIVE_DATE  |  Gold: Rs.$LIVE_GOLD"
+            TODAY=$(date +%Y-%m-%d)
+            if [ "$LIVE_DATE" = "$TODAY" ]; then
+              echo "✅ Live site is showing TODAY's rates ($TODAY)."
+            else
+              echo "⚠️  Live site still shows $LIVE_DATE — cPanel deploy likely pending. Manual action needed."
+              echo ""
+              echo "  ➜ Login to cPanel: https://194.233.72.227:2083"
+              echo "  ➜ Go to: Git™ Version Control > nepacalc > Pull or Deploy"
+              echo "  ➜ Click: Update from Remote, then Deploy HEAD Commit"
+            fi
+          fi
