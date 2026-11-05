@@ -1,3 +1,4 @@
+// Route: /market-rates/international-gold-silver/
 import { Metadata } from 'next';
 import InternationalGoldClient, { InternationalRatesData } from './InternationalGoldClient';
 import fs from 'fs';
