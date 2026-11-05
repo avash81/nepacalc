@@ -54,7 +54,7 @@ jobs:
         continue-on-error: true
         run: |
           echo "Uploading rate files directly to public_html/data via cPanel Fileman API..."
-          for FILE in market-rates.json live-rates.json forex-rates.json daily-history.json; do
+          for FILE in market-rates.json live-rates.json forex-rates.json daily-history.json international-rates.json; do
             SRC="out/data/${FILE}"
             if [ -f "$SRC" ]; then
               echo "Uploading $FILE..."
@@ -78,7 +78,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/avash81/nepacalc.git
           git add -f out/
-          git add .cpanel.yml public/data/live-rates.json public/data/market-rates.json public/data/forex-rates.json public/data/historical-rates.json
+          git add .cpanel.yml public/data/live-rates.json public/data/market-rates.json public/data/forex-rates.json public/data/historical-rates.json public/data/international-rates.json
           git diff --staged --quiet || git commit -m "ci: daily auto-deploy with fresh FENEGOSIDA rates [skip ci]"
           git pull --rebase -X theirs origin main || true
           git push origin main || git push --force origin main || true
