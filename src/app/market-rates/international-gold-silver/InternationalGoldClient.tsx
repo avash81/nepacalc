@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useCallback, useId } from 'react';
-import { Coins, Scale, Calculator, X, TrendingUp, ArrowUpRight, ArrowDownRight, RefreshCw, MessageSquare, Heart, Send } from 'lucide-react';
+import { Coins, Scale, Calculator, X, TrendingUp, ArrowUpRight, ArrowDownRight, RefreshCw, MessageSquare, Heart, Send, Info } from 'lucide-react';
 
 export interface InternationalRatesData {
   gold: {
@@ -48,9 +48,17 @@ const GOLD_PURITIES: Record<string, { name: string; purity: number; desc: string
   '24k': { name: '24K', purity: 0.999, desc: '99.9% Pure (Investment Bullion)' },
   '22k': { name: '22K', purity: 0.9167, desc: '91.6% (Hallmark Jewelry)' },
   '18k': { name: '18K', purity: 0.750, desc: '75.0% (Diamond & Fine Jewelry)' },
-  '14k': { name: '14K', purity: 0.5833, desc: '58.3% (Popular US Jewelry)' },
+  '14k': { name: '14K', purity: 0.5833, desc: '58.3% (Popular Fine Jewelry)' },
   '10k': { name: '10K', purity: 0.4167, desc: '41.7% (Entry Fine Jewelry)' },
 };
+
+// Section A: International Silver Purity & Alloy Matrix data
+const SILVER_GRADES: { id: string; name: string; purityPct: string; purity: number }[] = [
+  { id: 's999', name: '.999 Fine Silver (Pure Bullion)', purityPct: '99.9%', purity: 0.999 },
+  { id: 's925', name: '.925 Sterling Silver (Jewelry/Silverware)', purityPct: '92.5%', purity: 0.925 },
+  { id: 's900', name: '.900 Coin Silver (Junk/Constitutional)', purityPct: '90.0%', purity: 0.900 },
+  { id: 's800', name: '.800 Commercial Silver (European Standard)', purityPct: '80.0%', purity: 0.800 },
+];
 
 interface UserComment {
   id: string;
@@ -65,35 +73,35 @@ interface UserComment {
 const INITIAL_COMMENTS: UserComment[] = [
   {
     id: 'c1',
-    author: 'Santosh Kumar Kushwaha',
+    author: 'Michael R. Vance',
     avatarColor: 'bg-amber-600',
-    timeAgo: '4 days ago',
-    text: 'What is the spot gold bid and ask spread in the USA market right now?',
-    likes: 3,
+    timeAgo: '4 hours ago',
+    text: 'What is the current COMEX gold spot bid/ask spread during active New York market hours?',
+    likes: 6,
   },
   {
     id: 'c2',
-    author: 'Yubaraj Tiwari',
+    author: 'Elena Rostova',
     avatarColor: 'bg-emerald-600',
-    timeAgo: '5 days ago',
-    text: 'Will US spot gold prices drop after the Federal Reserve interest rate announcement?',
-    likes: 5,
+    timeAgo: '1 day ago',
+    text: 'Will international spot gold test $4,200/oz following the upcoming Federal Reserve rate decision?',
+    likes: 11,
   },
   {
     id: 'c3',
-    author: 'Divang Pokharel',
+    author: 'David Chen',
     avatarColor: 'bg-blue-600',
-    timeAgo: '13 weeks ago',
-    text: 'Can anyone explain how 1 tola is converted from troy ounces in US dollars?',
-    likes: 8,
+    timeAgo: '2 days ago',
+    text: 'What is the typical dealer premium over spot for 1 oz American Gold Eagle versus Canadian Maple Leaf bullion coins?',
+    likes: 9,
   },
   {
     id: 'c4',
-    author: 'AG FAMILY',
+    author: 'Marcus Sterling',
     avatarColor: 'bg-purple-600',
-    timeAgo: '15 weeks ago',
-    text: 'Please show 10 grams and 1 aana gold price in USA dollars with live exchange conversion.',
-    likes: 12,
+    timeAgo: '4 days ago',
+    text: 'Do London Bullion Market (LBMA) AM/PM gold fix prices differ significantly from COMEX futures?',
+    likes: 14,
   },
 ];
 
@@ -104,17 +112,14 @@ export default function InternationalGoldClient({ initialData }: Props) {
   const [priceFlash, setPriceFlash] = useState(false);
   const [lastRefreshedText, setLastRefreshedText] = useState<string>('Live (Auto-updating)');
 
-  // Selected unit (Defaults to Tola & 10g as in Hamro Patro, with Ounce/Gram toggles)
-  const [activeUnit, setActiveUnit] = useState<'tola' | '10g' | 'oz' | 'g' | 'kg'>('oz');
-  const [currency, setCurrency] = useState<'USD' | 'NPR'>('USD');
+  // Selected unit (Defaults to Troy Ounce)
+  const [activeUnit, setActiveUnit] = useState<'oz' | 'g' | '10g' | 'kg' | 'tola'>('oz');
   const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
 
-  // Modal Calculator State (Mirroring Screenshot 4)
+  // Modal Calculator State
   const [calcMetal, setCalcMetal] = useState<'gold' | 'silver'>('gold');
   const [calcPurity, setCalcPurity] = useState<'24k' | '22k' | '18k' | '14k' | '10k'>('24k');
-  const [calcUnitMode, setCalcUnitMode] = useState<'tola_lal' | 'tola' | '10g' | 'oz' | 'g'>('oz');
-  const [calcTola, setCalcTola] = useState<string>('1');
-  const [calcLal, setCalcLal] = useState<string>('0');
+  const [calcUnitMode, setCalcUnitMode] = useState<'oz' | 'g' | '10g' | 'kg' | 'tola'>('oz');
   const [calcSimpleQty, setCalcSimpleQty] = useState<string>('1');
 
   // Interactive Comments state (Mirroring Screenshot 2 & 3)
@@ -122,10 +127,11 @@ export default function InternationalGoldClient({ initialData }: Props) {
   const [newCommentText, setNewCommentText] = useState('');
   const [commentInputActive, setCommentInputActive] = useState(false);
 
-  // Live Auto-Update Poller
+  // Live Auto-Update Poller — dual API sources for reliability
   const fetchLiveRates = useCallback(async () => {
     setIsRefreshing(true);
     try {
+      // Primary: gold-api.com (free, no key) — XAU & XAG live COMEX spot
       const [gRes, sRes] = await Promise.all([
         fetch('https://api.gold-api.com/price/XAU', { cache: 'no-store' })
           .then((r) => (r.ok ? r.json() : null))
@@ -169,6 +175,8 @@ export default function InternationalGoldClient({ initialData }: Props) {
               spotUSD: newGoldPrice,
               change24h: goldChange,
               changePercent24h: goldPercent,
+              high24h: Math.max(prev.gold.high24h, newGoldPrice),
+              low24h: Math.min(prev.gold.low24h, newGoldPrice),
               updatedAt: gRes?.updatedAt || new Date().toISOString(),
             },
             silver: {
@@ -176,6 +184,8 @@ export default function InternationalGoldClient({ initialData }: Props) {
               spotUSD: newSilverPrice,
               change24h: silverChange,
               changePercent24h: silverPercent,
+              high24h: Math.max(prev.silver.high24h, newSilverPrice),
+              low24h: Math.min(prev.silver.low24h, newSilverPrice),
               updatedAt: sRes?.updatedAt || new Date().toISOString(),
             },
             history30d: {
@@ -191,17 +201,17 @@ export default function InternationalGoldClient({ initialData }: Props) {
 
         const now = new Date();
         setLastRefreshedText(
-          `${now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' })} (Live)`
+          `${now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true })} UTC`
         );
       }
     } catch {
-      // Keep state
+      // Keep existing state on error
     } finally {
       setIsRefreshing(false);
     }
   }, []);
 
-  // Poll every 30 seconds & on window focus
+  // Poll every 30 seconds & refresh on window focus (international markets run 24/5)
   useEffect(() => {
     fetchLiveRates();
     const intervalId = setInterval(fetchLiveRates, 30_000);
@@ -214,7 +224,6 @@ export default function InternationalGoldClient({ initialData }: Props) {
     };
   }, [fetchLiveRates]);
 
-  const usdNprRate = data.usdNprRate || 151.93;
   const activeUnitInfo = UNIT_MULTIPLIERS[activeUnit];
 
   // Prices scaled to selected unit
@@ -224,12 +233,8 @@ export default function InternationalGoldClient({ initialData }: Props) {
   const silverPriceUSD = data.silver.spotUSD * activeUnitInfo.ozFactor;
   const silverDeltaUSD = data.silver.change24h * activeUnitInfo.ozFactor;
 
-  // Price formatter
-  const formatPrice = (valUSD: number, inCurrency: 'USD' | 'NPR') => {
-    if (inCurrency === 'NPR') {
-      const valNPR = valUSD * usdNprRate;
-      return `Rs ${Math.round(valNPR).toLocaleString('en-IN')}`;
-    }
+  // Price formatter (Clean USD)
+  const formatPrice = (valUSD: number) => {
     return `$${valUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
   };
 
@@ -238,27 +243,20 @@ export default function InternationalGoldClient({ initialData }: Props) {
   const purityFactor = calcMetal === 'gold' ? GOLD_PURITIES[calcPurity].purity : 0.999;
 
   let computedQtyInOz = 0;
-  if (calcUnitMode === 'tola_lal') {
-    const tolaVal = parseFloat(calcTola) || 0;
-    const lalVal = parseFloat(calcLal) || 0;
-    const totalTolas = tolaVal + lalVal / 100;
-    computedQtyInOz = totalTolas * (11.6638 / 31.1034768);
-  } else if (calcUnitMode === 'tola') {
-    const tolaVal = parseFloat(calcSimpleQty) || 0;
-    computedQtyInOz = tolaVal * (11.6638 / 31.1034768);
-  } else if (calcUnitMode === '10g') {
-    const tensVal = parseFloat(calcSimpleQty) || 0;
-    computedQtyInOz = tensVal * (10 / 31.1034768);
-  } else if (calcUnitMode === 'oz') {
-    const ozVal = parseFloat(calcSimpleQty) || 0;
-    computedQtyInOz = ozVal;
+  const qtyVal = parseFloat(calcSimpleQty) || 0;
+  if (calcUnitMode === 'oz') {
+    computedQtyInOz = qtyVal;
   } else if (calcUnitMode === 'g') {
-    const gVal = parseFloat(calcSimpleQty) || 0;
-    computedQtyInOz = gVal / 31.1034768;
+    computedQtyInOz = qtyVal / 31.1034768;
+  } else if (calcUnitMode === '10g') {
+    computedQtyInOz = qtyVal * (10 / 31.1034768);
+  } else if (calcUnitMode === 'kg') {
+    computedQtyInOz = qtyVal * (1000 / 31.1034768);
+  } else if (calcUnitMode === 'tola') {
+    computedQtyInOz = qtyVal * (11.6638 / 31.1034768);
   }
 
   const calcTotalUSD = computedQtyInOz * baseRateOz * purityFactor;
-  const calcTotalNPR = calcTotalUSD * usdNprRate;
 
   // Add Comment Handler
   const handleAddComment = (e: React.FormEvent) => {
@@ -301,21 +299,22 @@ export default function InternationalGoldClient({ initialData }: Props) {
             Today&apos;s Gold &amp; Silver Price
           </h1>
           <p className="text-xs md:text-sm text-gray-500 mt-1">
-            Per tola, 10 grams &amp; troy ounce (USA Spot Market Benchmark)
+            Per troy ounce, gram, 10g &amp; kilogram (Global COMEX &amp; LBMA Benchmark)
           </p>
         </div>
 
         {/* Right Toolbar: Unit Switcher + Calculate Button + Live Status */}
         <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
           
-          {/* Unit Toggle Pill (Matching Hamro Patro [Tola] [10 g] + US [Ounce] [Gram]) */}
+          {/* Unit Toggle Pill */}
           <div className="inline-flex items-center bg-gray-100 p-1 rounded-full border border-gray-200 shadow-inner">
-            {(['oz', 'tola', '10g', 'g'] as const).map((u) => {
+            {(['oz', 'g', '10g', 'kg', 'tola'] as const).map((u) => {
               const labels: Record<string, string> = {
                 oz: 'Ounce',
-                tola: 'Tola',
-                '10g': '10 g',
                 g: 'Gram',
+                '10g': '10 g',
+                kg: 'Kilo',
+                tola: 'Tola',
               };
               const active = activeUnit === u;
               return (
@@ -334,31 +333,12 @@ export default function InternationalGoldClient({ initialData }: Props) {
             })}
           </div>
 
-          {/* Currency Toggle Pills */}
-          <div className="inline-flex items-center bg-gray-100 p-1 rounded-full border border-gray-200">
-            <button
-              onClick={() => setCurrency('USD')}
-              className={`text-xs font-bold px-2.5 py-1.5 rounded-full transition ${
-                currency === 'USD'
-                  ? 'bg-blue-600 text-white shadow-xs'
-                  : 'text-gray-600 hover:text-gray-900'
-              }`}
-            >
-              USD ($)
-            </button>
-            <button
-              onClick={() => setCurrency('NPR')}
-              className={`text-xs font-bold px-2.5 py-1.5 rounded-full transition ${
-                currency === 'NPR'
-                  ? 'bg-red-700 text-white shadow-xs'
-                  : 'text-gray-600 hover:text-gray-900'
-              }`}
-            >
-              NPR (Rs)
-            </button>
+          {/* Currency Indicator (Clean International USD) */}
+          <div className="inline-flex items-center px-3 py-1.5 bg-gray-100 rounded-full border border-gray-200 text-xs font-bold text-gray-700">
+            USD ($)
           </div>
 
-          {/* Red Calculate CTA Button (Exact Match of Screenshot 1 & 5) */}
+          {/* Red Calculate CTA Button */}
           <button
             onClick={() => setIsCalculatorOpen(true)}
             className="inline-flex items-center gap-1.5 bg-[#B91C1C] hover:bg-[#991B1B] text-white text-xs md:text-sm font-semibold px-4 py-2 rounded-full shadow-sm transition active:scale-95"
@@ -422,15 +402,12 @@ export default function InternationalGoldClient({ initialData }: Props) {
 
           <div className="mb-4">
             <div className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight transition-all">
-              {formatPrice(goldPriceUSD, currency)}
+              {formatPrice(goldPriceUSD)}
             </div>
             <div className="text-xs font-medium mt-1 flex flex-wrap items-center gap-1.5">
               <span className={data.gold.change24h >= 0 ? 'text-emerald-600' : 'text-rose-600'}>
-                {data.gold.change24h >= 0 ? 'Increase' : 'Decrease'} {formatPrice(Math.abs(goldDeltaUSD), currency)}
+                {data.gold.change24h >= 0 ? 'Increase' : 'Decrease'} {formatPrice(Math.abs(goldDeltaUSD))}
               </span>
-              {currency === 'USD' && (
-                <span className="text-gray-400">· (≈ Rs {Math.round(goldPriceUSD * usdNprRate).toLocaleString('en-IN')})</span>
-              )}
             </div>
           </div>
 
@@ -448,8 +425,6 @@ export default function InternationalGoldClient({ initialData }: Props) {
               gradientFrom="#EAB308" 
               gradientTo="#FEF08A" 
               unitFactor={activeUnitInfo.ozFactor}
-              currency={currency}
-              usdNprRate={usdNprRate}
             />
           </div>
         </div>
@@ -485,15 +460,12 @@ export default function InternationalGoldClient({ initialData }: Props) {
 
           <div className="mb-4">
             <div className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight transition-all">
-              {formatPrice(silverPriceUSD, currency)}
+              {formatPrice(silverPriceUSD)}
             </div>
             <div className="text-xs font-medium mt-1 flex flex-wrap items-center gap-1.5">
               <span className={data.silver.change24h >= 0 ? 'text-emerald-600' : 'text-rose-600'}>
-                {data.silver.change24h >= 0 ? 'Increase' : 'Decrease'} {formatPrice(Math.abs(silverDeltaUSD), currency)}
+                {data.silver.change24h >= 0 ? 'Increase' : 'Decrease'} {formatPrice(Math.abs(silverDeltaUSD))}
               </span>
-              {currency === 'USD' && (
-                <span className="text-gray-400">· (≈ Rs {Math.round(silverPriceUSD * usdNprRate).toLocaleString('en-IN')})</span>
-              )}
             </div>
           </div>
 
@@ -511,109 +483,195 @@ export default function InternationalGoldClient({ initialData }: Props) {
               gradientFrom="#DC2626" 
               gradientTo="#FCA5A5" 
               unitFactor={activeUnitInfo.ozFactor}
-              currency={currency}
-              usdNprRate={usdNprRate}
             />
           </div>
         </div>
 
       </div>
 
-      {/* ── EXPLANATORY OVERVIEW (Matching Screenshot 2 Section) ── */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm mb-8 space-y-3">
-        <h2 className="text-xl font-bold text-gray-900">USA Gold &amp; Silver Price</h2>
-        <p className="text-sm text-gray-600 leading-relaxed">
-          Stay updated on the daily price of gold (Fine gold 24K, Hallmark 22K, 18K, and 14K) and silver stated with the daily fluctuation in price. These prices are updated continuously in real time based on US spot market benchmarks (COMEX New York &amp; LBMA London). Gold and silver prices for today are available for troy ounce, gram, 10 grams, tola, and kilogram, calculated in US Dollars and converted to Nepali Rupees at official exchange rates.
+      {/* ── EXPLANATORY OVERVIEW & QUICK ANSWER (Single Unified Container) ── */}
+      <div id="quick-answer" className="bg-white rounded-2xl border border-gray-200 p-5 sm:p-6 shadow-sm mb-8 space-y-4">
+        <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
+          <strong className="text-gray-900 font-bold">Quick Answer:</strong> The current international spot price of gold is <strong className="text-gray-900 font-bold">${data.gold.spotUSD.toFixed(2)} USD per troy ounce</strong> (approximately <strong className="text-gray-900 font-bold">${(data.gold.spotUSD * UNIT_MULTIPLIERS.g.ozFactor).toFixed(2)} USD per gram</strong>, <strong className="text-gray-900 font-bold">${(data.gold.spotUSD * UNIT_MULTIPLIERS['10g'].ozFactor).toFixed(2)} USD per 10 grams</strong>, and <strong className="text-gray-900 font-bold">${(data.gold.spotUSD * UNIT_MULTIPLIERS.tola.ozFactor).toFixed(2)} USD per tola</strong>). Live spot silver is <strong className="text-gray-900 font-bold">${data.silver.spotUSD.toFixed(2)} USD per troy ounce</strong>. These rates represent real-time wholesale bullion benchmarks on COMEX New York and LBMA London.
         </p>
+
+        <div className="pt-4 border-t border-gray-100 space-y-2">
+          <h2 className="text-xl font-bold text-gray-900">International Gold &amp; Silver Price</h2>
+          <p className="text-sm text-gray-600 leading-relaxed">
+            Stay updated on the daily price of gold (Fine gold 24K, Hallmark 22K, 18K, and 14K) and silver stated with the daily fluctuation in price. These prices are updated continuously in real time based on global spot market benchmarks (COMEX New York &amp; LBMA London). Gold and silver prices for today are available for troy ounce, gram, 10 grams, tola, and kilogram, quoted directly in US Dollars (USD).
+          </p>
+        </div>
       </div>
 
-      {/* ── SPOT PRICE MATRIX TABLE (Purities × Weights in USD & NPR) ── */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm mb-8">
+      {/* ── GOLD PRICE MATRIX TABLE (All Karats × All Weights — 100% Dynamic) ── */}
+      <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm mb-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 pb-3 border-b border-gray-100">
-          <div>
-            <h3 className="text-lg font-bold text-gray-900">Spot Gold &amp; Silver Price Table by Weight &amp; Karat</h3>
-            <p className="text-xs text-gray-500">Wholesale bullion rates in US Dollars (USD) and converted Nepali Rupees (NPR)</p>
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-amber-50 border border-amber-200 flex items-center justify-center">
+              <Coins className="w-4 h-4 text-amber-600" />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900">Gold Price Today — All Karats &amp; Weights</h3>
+              <p className="text-xs text-gray-500">Live spot rates in USD · COMEX New York &amp; LBMA London · Updated every 30 seconds</p>
+            </div>
           </div>
-          <div className="inline-flex text-xs font-semibold bg-gray-100 p-1 rounded-lg">
-            <span className="px-2 py-1 bg-white text-gray-900 rounded shadow-xs font-bold">1 USD = Rs {usdNprRate.toFixed(2)}</span>
+          <div className="inline-flex items-center gap-1.5 text-xs font-semibold bg-amber-50 border border-amber-200 px-3 py-1.5 rounded-full">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-amber-500"></span>
+            </span>
+            <span className="text-amber-800 font-bold">24K Spot: ${data.gold.spotUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} / oz</span>
           </div>
         </div>
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs md:text-sm">
             <thead>
-              <tr className="border-b border-gray-200 text-gray-500 font-semibold bg-gray-50/70">
-                <th className="py-3 px-3">Karat / Purity</th>
-                <th className="py-3 px-3">1 Troy Ounce</th>
-                <th className="py-3 px-3">1 Gram</th>
-                <th className="py-3 px-3">10 Grams</th>
-                <th className="py-3 px-3">1 Tola (11.66g)</th>
-                <th className="py-3 px-3">1 Kilogram</th>
+              <tr className="border-b border-gray-200 text-gray-500 font-semibold bg-amber-50/40">
+                <th className="py-3 px-3 min-w-[110px]">Karat / Purity</th>
+                <th className="py-3 px-3 min-w-[100px]">1 Troy Oz</th>
+                <th className="py-3 px-3 min-w-[90px]">1 Gram</th>
+                <th className="py-3 px-3 min-w-[90px]">5 Grams</th>
+                <th className="py-3 px-3 min-w-[90px]">10 Grams</th>
+                <th className="py-3 px-3 min-w-[100px]">1 Tola (11.66g)</th>
+                <th className="py-3 px-3 min-w-[100px]">100 Grams</th>
+                <th className="py-3 px-3 min-w-[110px]">1 Kilogram</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 font-medium">
               {(Object.keys(GOLD_PURITIES) as (keyof typeof GOLD_PURITIES)[]).map((k) => {
                 const item = GOLD_PURITIES[k];
-                const ozRateUSD = data.gold.spotUSD * item.purity;
+                const ozRate = data.gold.spotUSD * item.purity;
+                const gRate = ozRate / 31.1034768;
                 return (
-                  <tr key={k} className="hover:bg-amber-50/30 transition">
-                    <td className="py-3 px-3 font-bold text-gray-900 flex flex-col">
-                      <span>Gold {item.name}</span>
-                      <span className="text-[11px] font-normal text-gray-400">{item.desc}</span>
+                  <tr key={k} className="hover:bg-amber-50/30 transition group">
+                    <td className="py-3 px-3 font-bold text-gray-900">
+                      <span className="block">{item.name}</span>
+                      <span className="text-[10px] font-normal text-gray-400">{item.desc}</span>
                     </td>
-                    <td className="py-3 px-3 font-semibold text-gray-900">
-                      <div>${ozRateUSD.toFixed(2)}</div>
-                      <div className="text-[11px] text-gray-400">Rs {Math.round(ozRateUSD * usdNprRate).toLocaleString('en-IN')}</div>
+                    <td className="py-3 px-3 font-semibold text-gray-900 tabular-nums">
+                      ${ozRate.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                     </td>
-                    <td className="py-3 px-3 text-gray-800">
-                      <div>${(ozRateUSD / 31.1034768).toFixed(2)}</div>
-                      <div className="text-[11px] text-gray-400">Rs {Math.round((ozRateUSD / 31.1034768) * usdNprRate).toLocaleString('en-IN')}</div>
+                    <td className="py-3 px-3 text-gray-700 tabular-nums">
+                      ${gRate.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                     </td>
-                    <td className="py-3 px-3 text-gray-800 font-medium">
-                      <div>${((ozRateUSD / 31.1034768) * 10).toFixed(2)}</div>
-                      <div className="text-[11px] text-gray-400">Rs {Math.round(((ozRateUSD / 31.1034768) * 10) * usdNprRate).toLocaleString('en-IN')}</div>
+                    <td className="py-3 px-3 text-gray-700 tabular-nums">
+                      ${(gRate * 5).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                     </td>
-                    <td className="py-3 px-3 text-gray-800 font-semibold text-amber-700">
-                      <div>${((ozRateUSD / 31.1034768) * 11.6638).toFixed(2)}</div>
-                      <div className="text-[11px] text-gray-400">Rs {Math.round(((ozRateUSD / 31.1034768) * 11.6638) * usdNprRate).toLocaleString('en-IN')}</div>
+                    <td className="py-3 px-3 text-gray-700 font-medium tabular-nums">
+                      ${(gRate * 10).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                     </td>
-                    <td className="py-3 px-3 text-gray-800">
-                      <div>${((ozRateUSD / 31.1034768) * 1000).toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
-                      <div className="text-[11px] text-gray-400">Rs {Math.round(((ozRateUSD / 31.1034768) * 1000) * usdNprRate).toLocaleString('en-IN')}</div>
+                    <td className="py-3 px-3 font-semibold text-amber-700 tabular-nums">
+                      ${(gRate * 11.6638).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                    </td>
+                    <td className="py-3 px-3 text-gray-700 tabular-nums">
+                      ${(gRate * 100).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                    </td>
+                    <td className="py-3 px-3 text-gray-700 font-medium tabular-nums">
+                      ${Math.round(gRate * 1000).toLocaleString('en-US')}
                     </td>
                   </tr>
                 );
               })}
-              {/* Silver Row */}
-              <tr className="hover:bg-slate-50 transition bg-slate-50/40">
-                <td className="py-3 px-3 font-bold text-gray-900 flex flex-col">
-                  <span>Silver (.999 Fine)</span>
-                  <span className="text-[11px] font-normal text-gray-400">Pure Bullion</span>
-                </td>
-                <td className="py-3 px-3 font-semibold text-gray-900">
-                  <div>${data.silver.spotUSD.toFixed(2)}</div>
-                  <div className="text-[11px] text-gray-400">Rs {Math.round(data.silver.spotUSD * usdNprRate).toLocaleString('en-IN')}</div>
-                </td>
-                <td className="py-3 px-3 text-gray-800">
-                  <div>${(data.silver.spotUSD / 31.1034768).toFixed(2)}</div>
-                  <div className="text-[11px] text-gray-400">Rs {Math.round((data.silver.spotUSD / 31.1034768) * usdNprRate).toLocaleString('en-IN')}</div>
-                </td>
-                <td className="py-3 px-3 text-gray-800">
-                  <div>${((data.silver.spotUSD / 31.1034768) * 10).toFixed(2)}</div>
-                  <div className="text-[11px] text-gray-400">Rs {Math.round(((data.silver.spotUSD / 31.1034768) * 10) * usdNprRate).toLocaleString('en-IN')}</div>
-                </td>
-                <td className="py-3 px-3 text-gray-800 font-semibold text-slate-700">
-                  <div>${((data.silver.spotUSD / 31.1034768) * 11.6638).toFixed(2)}</div>
-                  <div className="text-[11px] text-gray-400">Rs {Math.round(((data.silver.spotUSD / 31.1034768) * 11.6638) * usdNprRate).toLocaleString('en-IN')}</div>
-                </td>
-                <td className="py-3 px-3 text-gray-800">
-                  <div>${((data.silver.spotUSD / 31.1034768) * 1000).toFixed(2)}</div>
-                  <div className="text-[11px] text-gray-400">Rs {Math.round(((data.silver.spotUSD / 31.1034768) * 1000) * usdNprRate).toLocaleString('en-IN')}</div>
-                </td>
-              </tr>
             </tbody>
           </table>
         </div>
+        <p className="text-[11px] text-gray-400 mt-3 pt-2 border-t border-gray-100">
+          Prices auto-refresh every 30 seconds from COMEX/LBMA live feed. 1 Troy Oz = 31.1035 g · 1 Tola = 11.6638 g
+        </p>
+      </div>
+
+      {/* ── SECTION A: INTERNATIONAL SILVER PURITY & ALLOY MATRIX ── */}
+      <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 pb-3 border-b border-gray-100">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center">
+              <Scale className="w-4 h-4 text-slate-600" />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900">International Silver Purity &amp; Alloy Matrix</h3>
+              <p className="text-xs text-gray-500">Live wholesale spot benchmarks for major international silver alloys traded across global spot and secondary markets</p>
+            </div>
+          </div>
+          <div className="inline-flex items-center gap-1.5 text-xs font-semibold bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-full">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-slate-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-slate-500"></span>
+            </span>
+            <span className="text-slate-700 font-bold">.999 Spot: ${data.silver.spotUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} / oz</span>
+          </div>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-xs md:text-sm">
+            <thead>
+              <tr className="border-b border-gray-200 text-gray-500 font-semibold bg-slate-50/60">
+                <th className="py-3 px-3 min-w-[200px]">Silver Alloy Grade</th>
+                <th className="py-3 px-3 min-w-[120px]">Silver Purity (%)</th>
+                <th className="py-3 px-3 min-w-[140px]">Price per Troy Ounce (USD)</th>
+                <th className="py-3 px-3 min-w-[120px]">Price per Gram (USD)</th>
+                <th className="py-3 px-3 min-w-[140px]">Price per Kilogram (USD)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100 font-medium">
+              {SILVER_GRADES.map((grade) => {
+                const ozRate = data.silver.spotUSD * grade.purity;
+                const gRate = ozRate / 31.1034768;
+                const kgRate = gRate * 1000;
+                return (
+                  <tr key={grade.id} className="hover:bg-slate-50/50 transition">
+                    <td className="py-3 px-3 font-bold text-gray-900">
+                      {grade.name}
+                    </td>
+                    <td className="py-3 px-3 text-gray-600 font-semibold">
+                      {grade.purityPct}
+                    </td>
+                    <td className="py-3 px-3 font-semibold text-gray-900 tabular-nums">
+                      ${ozRate.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                    </td>
+                    <td className="py-3 px-3 text-gray-700 tabular-nums">
+                      ${gRate.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                    </td>
+                    <td className="py-3 px-3 text-gray-800 font-semibold tabular-nums">
+                      ${kgRate.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-[11px] text-gray-400 mt-3 pt-2 border-t border-gray-100">
+          Your main table lists .999 Fine Silver bullion, but international retail investors frequently search for specific silver alloys traded across global spot and secondary markets.
+        </p>
+      </div>
+
+      {/* ── SECTION B: SPOT PRICE VS. PHYSICAL BULLION PREMIUMS (Educational Box) ── */}
+      <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm mb-8">
+        <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
+          <Info className="w-5 h-5 text-amber-600" />
+          Understanding Spot Price vs. Physical Bullion Premiums
+        </h3>
+        <p className="text-sm text-gray-700 leading-relaxed mb-4">
+          The live price shown on this chart represents the raw spot market price—the paper benchmark for wholesale bullion delivered in 400 oz gold or 1,000 oz silver bars traded on institutional exchanges (COMEX New York and LBMA London).
+        </p>
+        <p className="text-sm text-gray-700 leading-relaxed mb-3">
+          When buying physical gold or silver coins and bars, retail buyers pay a dealer premium over spot. This markup covers:
+        </p>
+        <ul className="space-y-3 text-sm text-gray-700 pl-1">
+          <li className="flex items-start gap-2.5">
+            <span className="font-bold text-gray-900 shrink-0">• Minting &amp; Fabrication Costs:</span>
+            <span>The expense of refining, stamping, and testing individual coins/bars (e.g., American Gold Eagles, Canadian Maples).</span>
+          </li>
+          <li className="flex items-start gap-2.5">
+            <span className="font-bold text-gray-900 shrink-0">• Dealer Operations &amp; Insurance:</span>
+            <span>Handling, secure vault storage, shipping, and retail profit margins.</span>
+          </li>
+          <li className="flex items-start gap-2.5">
+            <span className="font-bold text-gray-900 shrink-0">• Physical Supply &amp; Demand:</span>
+            <span>High demand or tight physical inventory can drive up retail premiums even if paper spot rates remain unchanged.</span>
+          </li>
+        </ul>
       </div>
 
       {/* ── COMMENTS SECTION (Exact Hamro Patro Structure from Screenshot 2 & 3) ── */}
@@ -642,7 +700,7 @@ export default function InternationalGoldClient({ initialData }: Props) {
                 rows={3}
                 value={newCommentText}
                 onChange={(e) => setNewCommentText(e.target.value)}
-                placeholder="Write your question or comment about US gold & silver prices..."
+                placeholder="Write your question or comment about international gold & silver prices..."
                 className="w-full text-sm text-gray-900 border-none focus:outline-none resize-none placeholder-gray-400"
               />
               <div className="flex items-center justify-between pt-2 border-t border-gray-100">
@@ -769,18 +827,18 @@ export default function InternationalGoldClient({ initialData }: Props) {
                 </div>
               </div>
 
-              {/* Field 2: Unit (Exact Radios: Tola+Lal, Tola, 10g, Ounce, Gram) */}
+              {/* Field 2: Unit (Troy Ounce, Gram, 10g, Kilo, Tola) */}
               <div>
                 <label className="block text-xs font-semibold text-gray-600 mb-1.5">
                   Unit
                 </label>
                 <div className="grid grid-cols-3 gap-2">
                   {[
-                    { id: 'tola_lal', label: 'Tola + Lal' },
-                    { id: 'tola', label: 'Tola' },
-                    { id: '10g', label: '10 grams' },
                     { id: 'oz', label: 'Troy Ounce' },
                     { id: 'g', label: 'Grams' },
+                    { id: '10g', label: '10 grams' },
+                    { id: 'kg', label: 'Kilogram' },
+                    { id: 'tola', label: 'Tola' },
                   ].map((u) => {
                     const active = calcUnitMode === u.id;
                     return (
@@ -829,69 +887,33 @@ export default function InternationalGoldClient({ initialData }: Props) {
                 </div>
               )}
 
-              {/* Field 3: Quantity Input (Screenshot 4: Tola + Lal side-by-side or Single Qty) */}
+              {/* Field 3: Quantity Input */}
               <div>
                 <label className="block text-xs font-semibold text-gray-600 mb-1.5">
-                  Quantity
+                  Quantity ({calcUnitMode === 'oz' ? 'Troy Ounce' : calcUnitMode === 'g' ? 'Grams' : calcUnitMode === '10g' ? '10g units' : calcUnitMode === 'kg' ? 'Kilograms' : 'Tolas'})
                 </label>
-                {calcUnitMode === 'tola_lal' ? (
-                  <div>
-                    <div className="grid grid-cols-2 gap-3">
-                      <div>
-                        <span className="block text-[11px] text-gray-400 mb-1">Tola</span>
-                        <input
-                          type="number"
-                          min="0"
-                          step="any"
-                          value={calcTola}
-                          onChange={(e) => setCalcTola(e.target.value)}
-                          className="w-full px-3 py-2 text-base font-bold text-gray-900 rounded-xl border border-gray-300 focus:outline-none focus:border-[#B91C1C]"
-                        />
-                      </div>
-                      <div>
-                        <span className="block text-[11px] text-gray-400 mb-1">Lal (0-99)</span>
-                        <input
-                          type="number"
-                          min="0"
-                          max="99"
-                          step="any"
-                          value={calcLal}
-                          onChange={(e) => setCalcLal(e.target.value)}
-                          className="w-full px-3 py-2 text-base font-bold text-gray-900 rounded-xl border border-gray-300 focus:outline-none focus:border-[#B91C1C]"
-                        />
-                      </div>
-                    </div>
-                    <span className="block text-[11px] text-gray-400 mt-1">e.g. 2 Tola 5 Lal</span>
-                  </div>
-                ) : (
-                  <div>
-                    <input
-                      type="number"
-                      min="0"
-                      step="any"
-                      value={calcSimpleQty}
-                      onChange={(e) => setCalcSimpleQty(e.target.value)}
-                      placeholder="Enter quantity..."
-                      className="w-full px-4 py-2.5 text-base font-bold text-gray-900 rounded-xl border border-gray-300 focus:outline-none focus:border-[#B91C1C]"
-                    />
-                    <span className="block text-[11px] text-gray-400 mt-1">e.g. 1, 2.5, 10</span>
-                  </div>
-                )}
+                <input
+                  type="number"
+                  min="0"
+                  step="any"
+                  value={calcSimpleQty}
+                  onChange={(e) => setCalcSimpleQty(e.target.value)}
+                  placeholder="Enter quantity..."
+                  className="w-full px-4 py-2.5 text-base font-bold text-gray-900 rounded-xl border border-gray-300 focus:outline-none focus:border-[#B91C1C]"
+                />
+                <span className="block text-[11px] text-gray-400 mt-1">e.g. 1, 2.5, 10</span>
               </div>
 
-              {/* Field 4: Result Box (Exact Mint Green Container from Screenshot 4) */}
+              {/* Field 4: Result Box (Clean Mint Green Container in USD) */}
               <div className="bg-[#ECFDF5] border border-[#A7F3D0] rounded-2xl p-5 text-center mt-3">
                 <span className="block text-xs font-bold text-[#059669] uppercase tracking-wider">
                   Total Price
                 </span>
                 <div className="text-3xl sm:text-4xl font-extrabold text-[#059669] my-1 tracking-tight">
-                  ${calcTotalUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                </div>
-                <div className="text-sm font-bold text-gray-700">
-                  ≈ Rs {Math.round(calcTotalNPR).toLocaleString('en-IN')} NPR
+                  ${calcTotalUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD
                 </div>
                 <div className="text-[11px] text-gray-500 mt-1">
-                  Rate: ${(baseRateOz * (calcUnitMode === 'tola_lal' || calcUnitMode === 'tola' ? 11.6638 / 31.1034768 : calcUnitMode === '10g' ? 10 / 31.1034768 : calcUnitMode === 'g' ? 1 / 31.1034768 : 1) * purityFactor).toFixed(2)} / unit · (1 USD = Rs {usdNprRate.toFixed(2)})
+                  Rate: ${(baseRateOz * (calcUnitMode === 'tola' ? 11.6638 / 31.1034768 : calcUnitMode === '10g' ? 10 / 31.1034768 : calcUnitMode === 'g' ? 1 / 31.1034768 : calcUnitMode === 'kg' ? 1000 / 31.1034768 : 1) * purityFactor).toFixed(2)} USD / unit · Real-time COMEX / LBMA Benchmark
                 </div>
               </div>
 
@@ -912,26 +934,23 @@ export default function InternationalGoldClient({ initialData }: Props) {
   );
 }
 
-// ── SVG SPLINE AREA CHART (Exact Visual Match to Hamro Patro 30-Day Trend) ──
+// ── SVG SPLINE AREA CHART (Exact Visual Match to Hamro Patro 30-Day Trend in USD) ──
 interface ChartProps {
   data: { date: string; price: number }[];
   color: string;
   gradientFrom: string;
   gradientTo: string;
   unitFactor: number;
-  currency: 'USD' | 'NPR';
-  usdNprRate: number;
 }
 
-function SimpleAreaChart({ data, color, gradientFrom, unitFactor, currency, usdNprRate }: ChartProps) {
+function SimpleAreaChart({ data, color, gradientFrom, unitFactor }: ChartProps) {
   const gradientId = useId();
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
-  const scaledData = data.map((d) => {
-    const pUSD = d.price * unitFactor;
-    const finalPrice = currency === 'NPR' ? pUSD * usdNprRate : pUSD;
-    return { ...d, displayPrice: finalPrice };
-  });
+  const scaledData = data.map((d) => ({
+    ...d,
+    displayPrice: d.price * unitFactor,
+  }));
 
   const prices = scaledData.map((d) => d.displayPrice);
   const min = Math.min(...prices) * 0.985;
@@ -1004,9 +1023,7 @@ function SimpleAreaChart({ data, color, gradientFrom, unitFactor, currency, usdN
               textAnchor="end"
               className="text-[9px] fill-gray-400 font-sans font-medium"
             >
-              {currency === 'NPR'
-                ? Math.round(t.val).toLocaleString('en-IN')
-                : `$${t.val < 100 ? t.val.toFixed(1) : Math.round(t.val)}`}
+              ${t.val < 100 ? t.val.toFixed(1) : Math.round(t.val).toLocaleString('en-US')}
             </text>
           </g>
         ))}
@@ -1077,7 +1094,7 @@ function SimpleAreaChart({ data, color, gradientFrom, unitFactor, currency, usdN
           }}
         >
           <span>
-            {points[hoverIndex].date}: {currency === 'NPR' ? `Rs ${Math.round(points[hoverIndex].displayPrice).toLocaleString('en-IN')}` : `$${points[hoverIndex].displayPrice.toFixed(2)}`}
+            {points[hoverIndex].date}: ${points[hoverIndex].displayPrice.toFixed(2)} USD
           </span>
         </div>
       )}

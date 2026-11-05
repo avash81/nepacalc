@@ -59,64 +59,48 @@ function getInitialRates(): InternationalRatesData {
     // Return fallback
   }
 
-  try {
-    const forexPath = path.join(process.cwd(), 'public', 'data', 'forex-rates.json');
-    if (fs.existsSync(forexPath)) {
-      const data = JSON.parse(fs.readFileSync(forexPath, 'utf8'));
-      if (data.nrb_rates) {
-        const usd = data.nrb_rates.find((r: any) => r.iso3 === 'USD');
-        if (usd?.mid) {
-          FALLBACK_RATES.usdNprRate = usd.mid;
-        } else if (usd?.buy) {
-          FALLBACK_RATES.usdNprRate = usd.buy;
-        }
-      }
-    }
-  } catch {
-    // Keep fallback
-  }
-
   return FALLBACK_RATES;
 }
 
 export const metadata: Metadata = {
-  title: "Gold Price in USA Today | Live Spot Gold & Silver Price (USD)",
-  description: "Current spot gold and silver prices in the USA in USD. Live 24-hour spot charts, real-time prices for 24K, 22K, 18K, 14K, and 10K gold per troy ounce, gram, 10 grams, and tola.",
+  title: "International Gold & Silver Price Today | Live Spot Rates (USD)",
+  description: "Track live international gold ($4,128.50/oz) and silver ($52.90/oz) spot prices. Features 24K, 22K, 18K, and 14K purity rates, Gram/Kilo breakdowns, and global market insights.",
   keywords: [
-    'gold price in usa',
-    'gold price usa today',
+    'international gold price',
+    'live spot gold price',
     'gold spot price',
     'price of gold per ounce',
-    'current gold price in usa',
+    'current international gold price',
     'live gold price usd',
-    '24k gold price usa',
-    '22k gold price usa',
-    '10 grams gold price in usa',
-    'gold price per tola usa',
-    'silver price today usa',
+    '24k international gold price',
+    '22k gold price',
+    '10 grams international gold price',
+    'international gold price per tola',
+    'international silver price today',
     'gold spot price charts',
-    'gold rate in usa in nepali rupees'
+    'international gold rate today',
+    'spot bullion rates usd'
   ],
   alternates: {
     canonical: 'https://nepacalc.com/market-rates/international-gold-silver/',
   },
   openGraph: {
-    title: "Gold Price in USA Today | Live Spot Gold & Silver Price (USD)",
-    description: "Current spot gold and silver prices in the USA in USD. Live 24-hour spot charts, real-time prices for 24K, 22K, 18K, 14K, and 10K gold per troy ounce, gram, 10 grams, and tola.",
+    title: "International Gold & Silver Spot Price Today | Live Market Benchmark",
+    description: "Live international gold and silver spot prices updated continuously in USD. Instant weight conversion per troy ounce, gram, 10 grams, and kilogram.",
     url: 'https://nepacalc.com/market-rates/international-gold-silver/',
     type: 'website',
     images: [{
-      url: 'https://nepacalc.com/images/og/gold-price-nepal.jpg',
+      url: 'https://nepacalc.com/images/og/international-gold-silver.jpg',
       width: 1200,
       height: 630,
-      alt: 'Live Gold and Silver Spot Price in USA'
+      alt: 'Live International Gold and Silver Spot Price'
     }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Gold Price in USA Today | Live Spot Gold & Silver Price (USD)",
-    description: "Current spot gold and silver prices in the USA in USD. Live 24-hour spot charts and real-time prices for 24K, 22K, 18K, 14K, and 10K gold.",
-    images: ['https://nepacalc.com/images/og/gold-price-nepal.jpg'],
+    title: "International Gold & Silver Price Today (USD Spot Rates)",
+    description: "Real-time global spot gold and silver rates per ounce, gram, and kilogram with multi-karat purity calculations (COMEX & LBMA).",
+    images: ['https://nepacalc.com/images/og/international-gold-silver.jpg'],
   },
 };
 
@@ -128,7 +112,7 @@ export default function InternationalGoldSilverPage() {
   const gold10g = goldGram * 10;
   const goldTola = goldGram * 11.6638;
   const goldKg = goldGram * 1000;
-  const rateUSDNPR = initialData.usdNprRate;
+  void silverOz; // kept in data model for schema reference
 
   // Single Authoritative Schemas
   const breadcrumbSchema = {
@@ -151,7 +135,7 @@ export default function InternationalGoldSilverPage() {
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "Gold Price in USA",
+        "name": "International Gold & Silver",
         "item": "https://nepacalc.com/market-rates/international-gold-silver/"
       }
     ]
@@ -162,8 +146,8 @@ export default function InternationalGoldSilverPage() {
     "@type": "WebPage",
     "@id": "https://nepacalc.com/market-rates/international-gold-silver/#webpage",
     "url": "https://nepacalc.com/market-rates/international-gold-silver/",
-    "name": "Gold Price in USA Today | Live Spot Gold & Silver Price (USD)",
-    "description": "Current spot gold and silver prices in the USA in USD. Real-time rates for 24K, 22K, 18K, 14K, and 10K gold per troy ounce, gram, 10 grams, and tola.",
+    "name": "International Gold & Silver Price Today | Live Spot Rates (USD)",
+    "description": "Track live international gold ($4,128.50/oz) and silver ($52.90/oz) spot prices. Features 24K, 22K, 18K, and 14K purity rates, Gram/Kilo breakdowns, and global market insights.",
     "isPartOf": {
       "@type": "WebSite",
       "@id": "https://nepacalc.com/#website",
@@ -175,12 +159,17 @@ export default function InternationalGoldSilverPage() {
     "@context": "https://schema.org",
     "@type": "Dataset",
     "@id": "https://nepacalc.com/market-rates/international-gold-silver/#dataset",
-    "name": "USA & International Spot Gold & Silver Live Rates",
-    "description": "Continuous wholesale spot gold and silver price data from COMEX New York and LBMA London electronic exchanges in US Dollars (USD) and converted Nepali Rupees (NPR).",
+    "name": "International Spot Gold & Silver Live Rates",
+    "description": "Continuous wholesale spot gold and silver price data from COMEX New York and LBMA London electronic exchanges in US Dollars (USD).",
     "url": "https://nepacalc.com/market-rates/international-gold-silver/",
     "isAccessibleForFree": true,
     "inLanguage": "en-US",
     "license": "https://creativecommons.org/licenses/by/4.0/",
+    "creator": {
+      "@type": "Organization",
+      "name": "NepaCalc",
+      "url": "https://nepacalc.com"
+    },
     "variableMeasured": [
       "Gold Spot Price 24K USD per Troy Ounce",
       "Gold Spot Price 22K USD per Troy Ounce",
@@ -201,50 +190,74 @@ export default function InternationalGoldSilverPage() {
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "What is the current gold price in the USA per troy ounce?",
+        "name": "What is the current international gold price per troy ounce?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": `The current spot price of 24K gold in the USA is $${goldOz.toFixed(2)} USD per troy ounce. This is equivalent to approximately $${goldGram.toFixed(2)} USD per gram or $${goldTola.toFixed(2)} USD per tola.`
+          "text": `The current international spot price of 24K gold is $${goldOz.toFixed(2)} USD per troy ounce. This is equivalent to approximately $${goldGram.toFixed(2)} USD per gram or $${goldTola.toFixed(2)} USD per tola.`
         }
       },
       {
         "@type": "Question",
-        "name": "How much is 10 grams of gold in the USA?",
+        "name": "How much is 10 grams of gold in the international spot market?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": `10 grams of pure 24K gold in the USA costs $${gold10g.toFixed(2)} USD at current market spot rates (equivalent to approximately Rs ${Math.round(gold10g * rateUSDNPR).toLocaleString('en-IN')} NPR at live exchange rates).`
+          "text": `10 grams of pure 24K gold in the international spot market costs $${gold10g.toFixed(2)} USD at current benchmark rates.`
         }
       },
       {
         "@type": "Question",
-        "name": "What is the gold price today in the USA per tola?",
+        "name": "What is the international gold price today per tola?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": `One tola equals 11.6638 grams (approx. 0.375 troy ounces). In the USA spot market, 1 tola of 24K pure gold is worth $${goldTola.toFixed(2)} USD (approx. Rs ${Math.round(goldTola * rateUSDNPR).toLocaleString('en-IN')} NPR).`
+          "text": `One tola equals 11.6638 grams (approx. 0.375 troy ounces). In the international spot market, 1 tola of 24K pure gold is worth $${goldTola.toFixed(2)} USD at current benchmark rates.`
         }
       },
       {
         "@type": "Question",
-        "name": "How much is 24 carat gold in the USA?",
+        "name": "How much is 24 carat gold internationally?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": `24 Carat (99.9% pure) gold in the USA is traded at the spot benchmark rate of $${goldOz.toFixed(2)} USD per troy ounce ($${goldGram.toFixed(2)} per gram). 1 kilogram of 24K gold bullion is worth approximately $${Math.round(goldKg).toLocaleString('en-US')} USD.`
+          "text": `24 Carat (99.9% pure) gold is traded at the international spot benchmark rate of $${goldOz.toFixed(2)} USD per troy ounce ($${goldGram.toFixed(2)} per gram). 1 kilogram of 24K gold bullion is worth approximately $${Math.round(goldKg).toLocaleString('en-US')} USD.`
         }
       },
       {
         "@type": "Question",
-        "name": "What is the difference between 24K, 22K, 18K, and 14K gold in the USA?",
+        "name": "What is the difference between 24K, 22K, 18K, and 14K gold in the international market?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "24 Karat gold is 99.9% pure bullion. 22 Karat contains 91.6% pure gold (standard in South Asian jewelry). 18 Karat contains 75.0% pure gold, and 14 Karat contains 58.3% pure gold, which represents the most popular jewelry standard sold in retail stores across the United States."
+          "text": "24 Karat gold is 99.9% pure bullion. 22 Karat contains 91.6% pure gold (standard in South Asian jewelry). 18 Karat contains 75.0% pure gold, and 14 Karat contains 58.3% pure gold, which represents the most popular jewelry standard sold in retail stores across international markets."
         }
       },
       {
         "@type": "Question",
-        "name": "How is international spot gold converted to Nepali Rupees (NPR)?",
+        "name": "How is international spot gold priced and traded?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "International gold is quoted in USD per troy ounce (31.1035 grams). To convert to Nepali Rupees per tola (11.6638 grams), calculate: (Spot USD / 31.1035) × 11.6638 × USD/NPR Exchange Rate. Domestic Nepal retail rates set by FENEGOSIDA also include customs duty (20%) and local bank handling fees."
+          "text": "International spot gold is quoted globally in US Dollars (USD) per troy ounce (31.1035 grams). It trades 24 hours a day across major electronic exchanges including the COMEX division of the New York Mercantile Exchange (NYMEX) and the London Bullion Market Association (LBMA), which establishes the twice-daily international bullion benchmark fixings."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the institutional bid-ask spread in the international gold market?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In global over-the-counter (OTC) spot trading (COMEX/LBMA), the bid-ask spread for gold typically ranges between $0.30 and $0.80 per troy ounce during regular trading hours. The bid price is what buyers offer, while the ask price is what sellers accept."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is silver more volatile than gold in global trading?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Silver carries dual demand drivers—it functions as a monetary store of value and an essential industrial commodity (used extensively in solar panels, electronics, and medical equipment). Because the total market capitalization of silver is significantly smaller than gold, institutional volume flows cause higher percentage swings."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the weight difference between a Troy Ounce and a standard Ounce?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Precious metals are measured strictly in Troy Ounces (oz t), which equal 31.1035 grams. A standard (Avoirdupois) ounce used for grocery weight equals only 28.3495 grams. Always ensure precious metal weight calculations use the 31.1035g standard."
         }
       }
     ]
@@ -291,18 +304,9 @@ export default function InternationalGoldSilverPage() {
           <span className="text-gray-300">/</span>
           <Link href="/market-rates/" className="hover:text-blue-600 hover:underline">Market Rates</Link>
           <span className="text-gray-300">/</span>
-          <span className="text-gray-900 font-bold">Gold Price in USA</span>
+          <span className="text-gray-900 font-bold">International Gold &amp; Silver</span>
         </nav>
       </div>
-
-      {/* ── Server-Rendered Quick Answer / Direct Answer (AIO & Snippet Extraction) ── */}
-      <section id="quick-answer" className="max-w-6xl mx-auto px-4 mb-4">
-        <div className="bg-white border border-gray-200 rounded-2xl p-4 sm:p-5 text-xs sm:text-sm text-gray-700 leading-relaxed shadow-xs">
-          <p>
-            <strong>Quick Answer:</strong> The current spot price of gold in the USA is <strong>${goldOz.toFixed(2)} USD per troy ounce</strong> (approximately <strong>${goldGram.toFixed(2)} USD per gram</strong>, <strong>${gold10g.toFixed(2)} USD per 10 grams</strong>, and <strong>${goldTola.toFixed(2)} USD per tola</strong>). Live spot silver is <strong>${silverOz.toFixed(2)} USD per troy ounce</strong>. These rates represent real-time wholesale bullion benchmarks on COMEX New York and LBMA London.
-          </p>
-        </div>
-      </section>
 
       {/* ── Main Interactive Client Dashboard (Hamro Patro UI + Live Polling) ── */}
       <div id="todays-gold-price">
@@ -313,7 +317,7 @@ export default function InternationalGoldSilverPage() {
       <section id="faq-section" className="max-w-6xl mx-auto px-4 pb-12">
         <div className="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 shadow-sm">
           <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-6">
-            Frequently Asked Questions About Gold &amp; Silver Prices in the USA
+            Frequently Asked Questions About International Gold &amp; Silver Prices
           </h2>
 
           <div className="space-y-5 divide-y divide-gray-100">
@@ -331,30 +335,30 @@ export default function InternationalGoldSilverPage() {
 
           {/* ── Internal Topical Navigation Links ── */}
           <div className="mt-8 pt-6 border-t border-gray-100 flex flex-wrap items-center gap-3 text-xs font-semibold">
-            <span className="text-gray-400">Related Market Rates:</span>
+            <span className="text-gray-400">Related Tools:</span>
             <Link
-              href="/market-rates/live-gold-price/"
-              className="text-blue-600 hover:text-blue-800 hover:underline bg-blue-50 px-3 py-1.5 rounded-full"
+              href="/calculator/gold-converter/"
+              className="text-amber-800 hover:text-amber-950 hover:underline bg-amber-50 px-3 py-1.5 rounded-full"
             >
-              Gold Price in Nepal (FENEGOSIDA) →
+              Gold Unit Converter (Ounce to Gram) →
             </Link>
             <Link
-              href="/market-rates/silver-price-nepal/"
-              className="text-slate-600 hover:text-slate-800 hover:underline bg-slate-100 px-3 py-1.5 rounded-full"
+              href="/calculator/silver-converter/"
+              className="text-slate-700 hover:text-slate-900 hover:underline bg-slate-100 px-3 py-1.5 rounded-full"
             >
-              Silver Price in Nepal →
+              Silver Weight Converter →
             </Link>
             <Link
-              href="/market-rates/exchange-rate-nepal/"
+              href="/calculator/currency-converter/"
               className="text-emerald-700 hover:text-emerald-900 hover:underline bg-emerald-50 px-3 py-1.5 rounded-full"
             >
-              NRB Foreign Exchange Rates →
+              Live Currency Converter →
             </Link>
             <Link
-              href="/how-much-gold-can-you-bring-to-nepal/"
-              className="text-amber-700 hover:text-amber-900 hover:underline bg-amber-50 px-3 py-1.5 rounded-full"
+              href="/market-rates/"
+              className="text-blue-600 hover:text-blue-800 hover:underline bg-blue-50 px-3 py-1.5 rounded-full"
             >
-              How Much Gold Can You Bring to Nepal? →
+              Global Market Rates Board →
             </Link>
           </div>
         </div>
