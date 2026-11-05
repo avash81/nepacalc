@@ -1,0 +1,158 @@
+{
+  "gold": {
+    "spotUSD": 4128.5,
+    "change24h": 34.8,
+    "changePercent24h": 0.85,
+    "prevClose": 4093.7,
+    "high24h": 4145,
+    "low24h": 4110.3,
+    "updatedAt": "2026-11-05T16:45:20.933Z"
+  },
+  "silver": {
+    "spotUSD": 52.9,
+    "change24h": 0.68,
+    "changePercent24h": 1.3,
+    "prevClose": 52.22,
+    "high24h": 53.45,
+    "low24h": 52.15,
+    "updatedAt": "2026-11-05T16:45:20.964Z"
+  },
+  "history30d": {
+    "gold": [
+      {
+        "date": "10-07",
+        "price": 3985.2
+      },
+      {
+        "date": "10-09",
+        "price": 4010.5
+      },
+      {
+        "date": "10-11",
+        "price": 4035.1
+      },
+      {
+        "date": "10-13",
+        "price": 4060.8
+      },
+      {
+        "date": "10-15",
+        "price": 4050.2
+      },
+      {
+        "date": "10-17",
+        "price": 4075.4
+      },
+      {
+        "date": "10-19",
+        "price": 4040.6
+      },
+      {
+        "date": "10-21",
+        "price": 4020.1
+      },
+      {
+        "date": "10-23",
+        "price": 4045.8
+      },
+      {
+        "date": "10-25",
+        "price": 4030.5
+      },
+      {
+        "date": "10-27",
+        "price": 4015.2
+      },
+      {
+        "date": "10-29",
+        "price": 4055.9
+      },
+      {
+        "date": "10-31",
+        "price": 4092.6
+      },
+      {
+        "date": "11-02",
+        "price": 4078.4
+      },
+      {
+        "date": "11-04",
+        "price": 4105.1
+      },
+      {
+        "date": "11-05",
+        "price": 4128.5
+      }
+    ],
+    "silver": [
+      {
+        "date": "10-07",
+        "price": 49.5
+      },
+      {
+        "date": "10-09",
+        "price": 49.1
+      },
+      {
+        "date": "10-11",
+        "price": 48.8
+      },
+      {
+        "date": "10-13",
+        "price": 48.4
+      },
+      {
+        "date": "10-15",
+        "price": 47.9
+      },
+      {
+        "date": "10-17",
+        "price": 47.2
+      },
+      {
+        "date": "10-19",
+        "price": 46.8
+      },
+      {
+        "date": "10-21",
+        "price": 47.1
+      },
+      {
+        "date": "10-23",
+        "price": 46.5
+      },
+      {
+        "date": "10-25",
+        "price": 46.2
+      },
+      {
+        "date": "10-27",
+        "price": 45.9
+      },
+      {
+        "date": "10-29",
+        "price": 46.4
+      },
+      {
+        "date": "10-31",
+        "price": 47.1
+      },
+      {
+        "date": "11-02",
+        "price": 46.8
+      },
+      {
+        "date": "11-04",
+        "price": 50.6
+      },
+      {
+        "date": "11-05",
+        "price": 52.9
+      }
+    ]
+  },
+  "usdNprRate": 151.93,
+  "source": "COMEX / LBMA Spot Benchmark",
+  "published_at": "2026-11-05T16:45:20.965Z",
+  "status": "verified"
+}
