@@ -48,7 +48,7 @@ jobs:
       - name: Direct Upload Rate JSON Files
         continue-on-error: true
         run: |
-          for FILE in market-rates.json live-rates.json forex-rates.json daily-history.json; do
+          for FILE in market-rates.json live-rates.json forex-rates.json daily-history.json international-rates.json; do
             SRC="out/data/${FILE}"
             if [ -f "$SRC" ]; then
               curl -k -s \
@@ -77,6 +77,12 @@ jobs:
       - name: Trigger cPanel to deploy
         continue-on-error: true
         run: |
+          echo "🔄 Pulling latest commits on cPanel repository..."
+          curl -k -s \
+            -H "Authorization: cpanel nepacalc:${{ secrets.CPANEL_API_TOKEN }}" \
+            "https://194.233.72.227:2083/execute/VersionControl/update?repository_root=%2Fhome%2Fnepacalc%2Frepositories%2Fnepacalc"
+          sleep 5
+          echo "🚀 Triggering cPanel VersionControlDeployment/create..."
           curl -k -s \
             -H "Authorization: cpanel nepacalc:${{ secrets.CPANEL_API_TOKEN }}" \
             "https://194.233.72.227:2083/execute/VersionControlDeployment/create?repository_root=%2Fhome%2Fnepacalc%2Frepositories%2Fnepacalc"
