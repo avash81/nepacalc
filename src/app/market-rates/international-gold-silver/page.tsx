@@ -317,7 +317,7 @@ export default function InternationalGoldSilverPage() {
       <section id="faq-section" className="max-w-6xl mx-auto px-4 pb-12">
         <div className="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 shadow-sm">
           <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-6">
-            Frequently Asked Questions About International Gold &amp; Silver Prices
+            Frequently Asked Questions About International Precious Metals
           </h2>
 
           <div className="space-y-5 divide-y divide-gray-100">

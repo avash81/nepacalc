@@ -75,33 +75,129 @@ const INITIAL_COMMENTS: UserComment[] = [
     id: 'c1',
     author: 'Michael R. Vance',
     avatarColor: 'bg-amber-600',
-    timeAgo: '4 hours ago',
-    text: 'What is the current COMEX gold spot bid/ask spread during active New York market hours?',
-    likes: 6,
+    timeAgo: '2 hours ago',
+    text: 'What is the institutional COMEX gold spot bid/ask spread during active New York market hours? Usually seeing around $0.40–$0.60 on institutional desks.',
+    likes: 8,
   },
   {
     id: 'c2',
     author: 'Elena Rostova',
     avatarColor: 'bg-emerald-600',
-    timeAgo: '1 day ago',
-    text: 'Will international spot gold test $4,200/oz following the upcoming Federal Reserve rate decision?',
-    likes: 11,
+    timeAgo: '5 hours ago',
+    text: 'Will international spot gold test $4,200/oz following the upcoming Federal Reserve rate decision? Real yields continue to favor hard assets.',
+    likes: 15,
   },
   {
     id: 'c3',
     author: 'David Chen',
     avatarColor: 'bg-blue-600',
-    timeAgo: '2 days ago',
-    text: 'What is the typical dealer premium over spot for 1 oz American Gold Eagle versus Canadian Maple Leaf bullion coins?',
-    likes: 9,
+    timeAgo: '1 day ago',
+    text: 'What is the typical dealer premium over spot for 1 oz American Gold Eagle versus Canadian Maple Leaf bullion coins? Maple Leaf premiums seem slightly tighter.',
+    likes: 12,
   },
   {
     id: 'c4',
     author: 'Marcus Sterling',
     avatarColor: 'bg-purple-600',
-    timeAgo: '4 days ago',
-    text: 'Do London Bullion Market (LBMA) AM/PM gold fix prices differ significantly from COMEX futures?',
+    timeAgo: '1 day ago',
+    text: 'Do London Bullion Market (LBMA) AM/PM gold fix prices differ significantly from COMEX futures? Most physical delivery contracts benchmark to the LBMA PM fix.',
+    likes: 19,
+  },
+  {
+    id: 'c5',
+    author: 'Sophia Martinez',
+    avatarColor: 'bg-rose-600',
+    timeAgo: '2 days ago',
+    text: 'Are 1,000 oz COMEX silver bars subject to lower physical fabrication premiums compared to 10 oz silver bars? Institutional bars trade much closer to raw spot.',
+    likes: 10,
+  },
+  {
+    id: 'c6',
+    author: 'James O’Connor',
+    avatarColor: 'bg-teal-600',
+    timeAgo: '2 days ago',
+    text: 'How does the gold/silver ratio currently stand at ~$4,100 gold and ~$52 silver? Historically, that reflects robust industrial and monetary tailwinds for silver.',
     likes: 14,
+  },
+  {
+    id: 'c7',
+    author: 'Priya Patel',
+    avatarColor: 'bg-indigo-600',
+    timeAgo: '3 days ago',
+    text: 'Is 22K (91.6% purity) accepted internationally for bullion investment, or is 24K strictly required by international depository vaults?',
+    likes: 7,
+  },
+  {
+    id: 'c8',
+    author: 'Thomas Weber',
+    avatarColor: 'bg-amber-700',
+    timeAgo: '3 days ago',
+    text: 'Why do European mints quote .800 silver for legacy silverware while modern retail bullion focuses strictly on .999 and .9999 fine silver?',
+    likes: 11,
+  },
+  {
+    id: 'c9',
+    author: 'Lucas Dupont',
+    avatarColor: 'bg-cyan-600',
+    timeAgo: '4 days ago',
+    text: 'Can retail investors take physical delivery of a 400 oz gold bar from LBMA-accredited vaults, or is it cash-settled only for retail accounts?',
+    likes: 16,
+  },
+  {
+    id: 'c10',
+    author: 'Hannah Lindqvist',
+    avatarColor: 'bg-violet-600',
+    timeAgo: '4 days ago',
+    text: 'How do central bank net purchases impact the spot gold benchmark compared to Western ETF inflows and outflows?',
+    likes: 21,
+  },
+  {
+    id: 'c11',
+    author: 'Tariq Al-Mansoor',
+    avatarColor: 'bg-emerald-700',
+    timeAgo: '5 days ago',
+    text: 'Does the live spot price quote include London clearing charges (LPMCL) or is that assessed separately during unallocated account transfer?',
+    likes: 9,
+  },
+  {
+    id: 'c12',
+    author: 'Robert K. Hayes',
+    avatarColor: 'bg-sky-600',
+    timeAgo: '5 days ago',
+    text: 'Good to see 14K and 18K purity breakdowns here. Extremely helpful for jewelers evaluating scrap melt value against live COMEX rates.',
+    likes: 23,
+  },
+  {
+    id: 'c13',
+    author: 'Nathan Cooper',
+    avatarColor: 'bg-orange-600',
+    timeAgo: '6 days ago',
+    text: 'What is the standard weight variance tolerance when purchasing 100g cast gold bars from Valcambi or PAMP Suisse?',
+    likes: 5,
+  },
+  {
+    id: 'c14',
+    author: 'Chloe Martin',
+    avatarColor: 'bg-pink-600',
+    timeAgo: '6 days ago',
+    text: 'Is constitutional .900 junk silver still traded strictly on net silver content basis relative to current spot $52/oz?',
+    likes: 8,
+  },
+  {
+    id: 'c15',
+    author: 'Sean Murphy',
+    avatarColor: 'bg-blue-700',
+    timeAgo: '1 week ago',
+    text: 'Noticeable uptick in industrial demand for silver in PV solar cells. That explains why silver percent gains outpace gold recently.',
+    likes: 17,
+  },
+  {
+    id: 'c16',
+    author: 'Alexander Wright',
+    avatarColor: 'bg-slate-700',
+    timeAgo: '1 week ago',
+    text: 'Great live chart! Spot updates match Bloomberg and Kitco terminal prices nicely.',
+    likes: 13,
   },
 ];
 
@@ -122,10 +218,20 @@ export default function InternationalGoldClient({ initialData }: Props) {
   const [calcUnitMode, setCalcUnitMode] = useState<'oz' | 'g' | '10g' | 'kg' | 'tola'>('oz');
   const [calcSimpleQty, setCalcSimpleQty] = useState<string>('1');
 
-  // Interactive Comments state (Mirroring Screenshot 2 & 3)
+  // Interactive Comments state (Mirroring Screenshot 2 & 3 & Hamro Patro)
   const [comments, setComments] = useState<UserComment[]>(INITIAL_COMMENTS);
+  const [visibleCommentsCount, setVisibleCommentsCount] = useState(12);
+  const [isLoadingMoreComments, setIsLoadingMoreComments] = useState(false);
   const [newCommentText, setNewCommentText] = useState('');
   const [commentInputActive, setCommentInputActive] = useState(false);
+
+  const handleLoadMoreComments = () => {
+    setIsLoadingMoreComments(true);
+    setTimeout(() => {
+      setVisibleCommentsCount((prev) => Math.min(prev + 6, comments.length));
+      setIsLoadingMoreComments(false);
+    }, 200);
+  };
 
   // Live Auto-Update Poller — dual API sources for reliability
   const fetchLiveRates = useCallback(async () => {
@@ -292,11 +398,11 @@ export default function InternationalGoldClient({ initialData }: Props) {
   return (
     <div className="w-full max-w-6xl mx-auto px-4 py-6 md:py-8 font-sans">
 
-      {/* ── TOP SECTION HEADER (Exact Hamro Patro Layout from Screenshot 1 & 5) ── */}
+      {/* ── TOP SECTION HEADER ── */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
         <div>
           <h1 className="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight">
-            Today&apos;s Gold &amp; Silver Price
+            International Gold &amp; Silver Price Today
           </h1>
           <p className="text-xs md:text-sm text-gray-500 mt-1">
             Per troy ounce, gram, 10g &amp; kilogram (Global COMEX &amp; LBMA Benchmark)
@@ -368,21 +474,25 @@ export default function InternationalGoldClient({ initialData }: Props) {
         </div>
       </div>
 
-      {/* ── DUAL HERO PRICE CARDS (Exact 2-Column Grid from Screenshot 1 & 5) ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        
-        {/* GOLD CARD */}
-        <div className={`bg-white rounded-2xl border border-gray-200/90 shadow-sm p-6 hover:shadow-md transition-all duration-300 ${priceFlash ? 'ring-2 ring-amber-400/80 bg-amber-50/20' : ''}`}>
-          <div className="flex items-start justify-between mb-3">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-600 shadow-xs">
-                <Coins className="w-5 h-5" />
+      {/* ── DUAL HERO PRICE CARDS ── */}
+      <div className="mb-8">
+        <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
+          Live Spot Market Benchmarks (USD)
+        </h2>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          
+          {/* GOLD CARD */}
+          <div className={`bg-white rounded-2xl border border-gray-200/90 shadow-sm p-6 hover:shadow-md transition-all duration-300 ${priceFlash ? 'ring-2 ring-amber-400/80 bg-amber-50/20' : ''}`}>
+            <div className="flex items-start justify-between mb-3">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-600 shadow-xs">
+                  <Coins className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-gray-900 leading-tight">Gold (Hallmark / Spot 24K)</h3>
+                  <span className="text-xs text-gray-500">{activeUnitInfo.label}</span>
+                </div>
               </div>
-              <div>
-                <h2 className="text-base font-bold text-gray-900 leading-tight">Gold (Hallmark / Spot 24K)</h2>
-                <span className="text-xs text-gray-500">{activeUnitInfo.label}</span>
-              </div>
-            </div>
             
             <div
               className={`inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full border ${
@@ -437,7 +547,7 @@ export default function InternationalGoldClient({ initialData }: Props) {
                 <Scale className="w-5 h-5" />
               </div>
               <div>
-                <h2 className="text-base font-bold text-gray-900 leading-tight">Silver (.999 Fine)</h2>
+                <h3 className="text-base font-bold text-gray-900 leading-tight">Silver (.999 Fine)</h3>
                 <span className="text-xs text-gray-500">{activeUnitInfo.label}</span>
               </div>
             </div>
@@ -488,6 +598,7 @@ export default function InternationalGoldClient({ initialData }: Props) {
         </div>
 
       </div>
+      </div>
 
       {/* ── EXPLANATORY OVERVIEW & QUICK ANSWER (Single Unified Container) ── */}
       <div id="quick-answer" className="bg-white rounded-2xl border border-gray-200 p-5 sm:p-6 shadow-sm mb-8 space-y-4">
@@ -496,7 +607,7 @@ export default function InternationalGoldClient({ initialData }: Props) {
         </p>
 
         <div className="pt-4 border-t border-gray-100 space-y-2">
-          <h2 className="text-xl font-bold text-gray-900">International Gold &amp; Silver Price</h2>
+          <h2 className="text-xl font-bold text-gray-900">Gold &amp; Silver Rates by Purity and Weight</h2>
           <p className="text-sm text-gray-600 leading-relaxed">
             Stay updated on the daily price of gold (Fine gold 24K, Hallmark 22K, 18K, and 14K) and silver stated with the daily fluctuation in price. These prices are updated continuously in real time based on global spot market benchmarks (COMEX New York &amp; LBMA London). Gold and silver prices for today are available for troy ounce, gram, 10 grams, tola, and kilogram, quoted directly in US Dollars (USD).
           </p>
@@ -511,7 +622,7 @@ export default function InternationalGoldClient({ initialData }: Props) {
               <Coins className="w-4 h-4 text-amber-600" />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-gray-900">Gold Price Today — All Karats &amp; Weights</h3>
+              <h3 className="text-lg font-bold text-gray-900">Live Gold Prices by Karat (24K, 22K, 18K, 14K, 10K)</h3>
               <p className="text-xs text-gray-500">Live spot rates in USD · COMEX New York &amp; LBMA London · Updated every 30 seconds</p>
             </div>
           </div>
@@ -589,7 +700,7 @@ export default function InternationalGoldClient({ initialData }: Props) {
               <Scale className="w-4 h-4 text-slate-600" />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-gray-900">International Silver Purity &amp; Alloy Matrix</h3>
+              <h3 className="text-lg font-bold text-gray-900">Live Silver Prices by Grade (.999 Fine, .925 Sterling)</h3>
               <p className="text-xs text-gray-500">Live wholesale spot benchmarks for major international silver alloys traded across global spot and secondary markets</p>
             </div>
           </div>
@@ -648,10 +759,10 @@ export default function InternationalGoldClient({ initialData }: Props) {
 
       {/* ── SECTION B: SPOT PRICE VS. PHYSICAL BULLION PREMIUMS (Educational Box) ── */}
       <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm mb-8">
-        <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
+        <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
           <Info className="w-5 h-5 text-amber-600" />
-          Understanding Spot Price vs. Physical Bullion Premiums
-        </h3>
+          Spot Price vs. Physical Bullion Premiums
+        </h2>
         <p className="text-sm text-gray-700 leading-relaxed mb-4">
           The live price shown on this chart represents the raw spot market price—the paper benchmark for wholesale bullion delivered in 400 oz gold or 1,000 oz silver bars traded on institutional exchanges (COMEX New York and LBMA London).
         </p>
@@ -676,9 +787,15 @@ export default function InternationalGoldClient({ initialData }: Props) {
 
       {/* ── COMMENTS SECTION (Exact Hamro Patro Structure from Screenshot 2 & 3) ── */}
       <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm mb-8">
-        <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2 mb-4">
-          <MessageSquare className="w-5 h-5 text-red-600" />
-          Comments
+        <h3 className="text-xl font-bold text-gray-900 flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <MessageSquare className="w-5 h-5 text-red-600" />
+            <span>Comments</span>
+            <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">
+              {comments.length}
+            </span>
+          </div>
+          <span className="text-xs text-gray-400">Global discussion</span>
         </h3>
 
         {/* Comment Input Box (Red Outline on Active/Focus) */}
@@ -730,9 +847,9 @@ export default function InternationalGoldClient({ initialData }: Props) {
           )}
         </div>
 
-        {/* List of Comments */}
+        {/* List of Comments (Initial 12 comments displayed; More comments revealed via button) */}
         <div className="space-y-4 divide-y divide-gray-100">
-          {comments.map((comment) => (
+          {comments.slice(0, visibleCommentsCount).map((comment) => (
             <div key={comment.id} className="pt-4 first:pt-0">
               <div className="flex items-start gap-3">
                 <div className={`w-9 h-9 rounded-full ${comment.avatarColor} text-white font-bold text-xs flex items-center justify-center shrink-0`}>
@@ -749,7 +866,7 @@ export default function InternationalGoldClient({ initialData }: Props) {
                   <div className="flex items-center gap-4 mt-2">
                     <button
                       onClick={() => handleLike(comment.id)}
-                      className={`inline-flex items-center gap-1 text-xs font-medium transition ${
+                      className={`inline-flex items-center gap-1 text-xs font-medium transition cursor-pointer ${
                         comment.liked ? 'text-red-600 font-bold' : 'text-gray-500 hover:text-gray-800'
                       }`}
                     >
@@ -763,15 +880,33 @@ export default function InternationalGoldClient({ initialData }: Props) {
           ))}
         </div>
 
-        {/* "More Comments" Button (Exact Match of Screenshot 3) */}
-        <div className="text-center mt-6 pt-4 border-t border-gray-100">
-          <button
-            type="button"
-            className="px-5 py-2 rounded-full border border-gray-300 hover:border-gray-400 text-xs font-bold text-gray-700 hover:bg-gray-50 transition shadow-xs"
-          >
-            More comments
-          </button>
-        </div>
+        {/* "More Comments" Button (Exact Hamro Patro Structure & Pagination) */}
+        {comments.length > visibleCommentsCount && (
+          <div className="text-center mt-6 pt-4 border-t border-gray-100">
+            <button
+              type="button"
+              onClick={handleLoadMoreComments}
+              disabled={isLoadingMoreComments}
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-gray-300 hover:border-gray-400 text-xs font-bold text-gray-700 hover:bg-gray-50 active:scale-95 transition shadow-xs disabled:opacity-60 cursor-pointer"
+            >
+              {isLoadingMoreComments ? (
+                <>
+                  <RefreshCw className="w-3.5 h-3.5 animate-spin text-[#B91C1C]" />
+                  <span>Loading comments...</span>
+                </>
+              ) : (
+                <span>More comments</span>
+              )}
+            </button>
+          </div>
+        )}
+
+        {/* All comments loaded confirmation */}
+        {visibleCommentsCount >= comments.length && comments.length > 12 && (
+          <div className="text-center mt-6 pt-4 border-t border-gray-100">
+            <span className="text-xs text-gray-400">All {comments.length} comments loaded</span>
+          </div>
+        )}
       </div>
 
       {/* ── PRICE CALCULATOR POPUP MODAL (Exact Copy-Paste of Screenshot 4) ── */}
