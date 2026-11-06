@@ -1017,7 +1017,7 @@ export default function InternationalGoldClient({ initialData }: Props) {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-md bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-gray-100 p-4 sm:p-6 max-h-[92vh] overflow-y-auto"
+            className="relative w-full max-w-md bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-gray-100 p-4 sm:p-5 max-h-[95vh] overflow-y-auto"
           >
             
             {/* Modal Header */}
@@ -1034,7 +1034,7 @@ export default function InternationalGoldClient({ initialData }: Props) {
               </button>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-2.5">
               {/* Field 1: Metal Toggle */}
               <div>
                 <label className="block text-xs font-semibold text-gray-600 mb-1">
@@ -1237,6 +1237,7 @@ function SimpleAreaChart({ data, color, gradientFrom, unitFactor }: ChartProps) 
         viewBox={`0 0 ${width} ${height}`}
         className="w-full h-auto overflow-visible"
         onMouseLeave={() => setHoverIndex(null)}
+        onTouchEnd={() => setHoverIndex(null)}
       >
         <defs>
           <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
@@ -1298,6 +1299,7 @@ function SimpleAreaChart({ data, color, gradientFrom, unitFactor }: ChartProps) 
             fill="transparent"
             className="cursor-pointer"
             onMouseEnter={() => setHoverIndex(idx)}
+            onTouchStart={() => setHoverIndex(idx)}
           />
         ))}
 
@@ -1327,23 +1329,26 @@ function SimpleAreaChart({ data, color, gradientFrom, unitFactor }: ChartProps) 
       {/* Hover Tooltip */}
       {hoverIndex !== null && (() => {
         const pt = points[hoverIndex];
-        const isNearTop = pt.y < 52;
-        const isNearRight = hoverIndex >= points.length - 2;
-        const isNearLeft = hoverIndex <= 1;
+        const isNearTop = pt.y < 56;
+        const isNearRight = hoverIndex >= points.length - 4;
+        const isNearLeft = hoverIndex <= 2;
 
-        let xTransform = '-translate-x-1/2';
-        if (isNearRight) xTransform = '-translate-x-[92%]';
-        else if (isNearLeft) xTransform = '-translate-x-[8%]';
+        let xOffset = '-50%';
+        if (isNearRight) {
+          xOffset = '-95%';
+        } else if (isNearLeft) {
+          xOffset = '-5%';
+        }
 
-        // Flip below data point if close to the top of the SVG
-        const yTransform = isNearTop ? 'translate-y-3' : '-translate-y-full -translate-y-2';
+        const yOffset = isNearTop ? '12px' : 'calc(-100% - 10px)';
 
         return (
           <div
-            className={`absolute pointer-events-none z-30 bg-neutral-900/95 backdrop-blur-xs text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg shadow-xl transform ${xTransform} ${yTransform} transition-transform duration-75 whitespace-nowrap flex items-center gap-1.5`}
+            className="absolute pointer-events-none z-30 bg-neutral-900/95 backdrop-blur-xs text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg shadow-xl whitespace-nowrap flex items-center gap-1.5 transition-transform duration-75"
             style={{
               left: `${(pt.x / width) * 100}%`,
               top: `${(pt.y / height) * 100}%`,
+              transform: `translate(${xOffset}, ${yOffset})`,
             }}
           >
             <span className="text-gray-300 font-normal">{pt.date}:</span>
