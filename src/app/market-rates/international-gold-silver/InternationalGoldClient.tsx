@@ -389,8 +389,8 @@ export default function InternationalGoldClient({ initialData }: Props) {
       const gGram = (data.gold.spotUSD / 31.1034768).toFixed(2);
       const g10g = (data.gold.spotUSD * (10 / 31.1034768)).toFixed(2);
 
-      // 1. Dynamic browser tab title with live rates
-      document.title = `International Gold ($${gFmt}) & Silver ($${sFmt}) Price Today | Live Spot Rates (USD)`;
+      // 1. Dynamic browser tab title (SEO clean without price numbers)
+      document.title = 'International Gold & Silver Price Today | Live Spot Rates (USD)';
 
       // 2. Dynamic meta description
       const metaDesc = document.querySelector('meta[name="description"]');
