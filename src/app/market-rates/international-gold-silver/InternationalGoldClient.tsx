@@ -590,7 +590,7 @@ export default function InternationalGoldClient({ initialData }: Props) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
           
           {/* GOLD CARD */}
-          <div className={`bg-white rounded-2xl border border-gray-200/90 shadow-sm p-4 sm:p-6 hover:shadow-md transition-all duration-300 ${priceFlash ? 'ring-2 ring-amber-400/80 bg-amber-50/20' : ''}`}>
+          <div className={`bg-white rounded-2xl border border-gray-200/90 shadow-sm p-4 sm:p-6 hover:shadow-md transition-all duration-300 ${priceFlash ? (priceFlashDirection === 'up' ? 'ring-2 ring-emerald-400/80 bg-emerald-50/20' : 'ring-2 ring-rose-400/80 bg-rose-50/20') : ''}`}>
             <div className="flex items-start justify-between mb-3.5 gap-2">
               <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
                 <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-600 shadow-xs shrink-0">
@@ -648,7 +648,7 @@ export default function InternationalGoldClient({ initialData }: Props) {
         </div>
 
         {/* SILVER CARD */}
-        <div className={`bg-white rounded-2xl border border-gray-200/90 shadow-sm p-4 sm:p-6 hover:shadow-md transition-all duration-300 ${priceFlash ? 'ring-2 ring-red-400/80 bg-red-50/20' : ''}`}>
+        <div className={`bg-white rounded-2xl border border-gray-200/90 shadow-sm p-4 sm:p-6 hover:shadow-md transition-all duration-300 ${priceFlash ? (priceFlashDirection === 'up' ? 'ring-2 ring-emerald-400/80 bg-emerald-50/20' : 'ring-2 ring-rose-400/80 bg-rose-50/20') : ''}`}>
           <div className="flex items-start justify-between mb-3.5 gap-2">
             <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
               <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-600 shadow-xs shrink-0">
@@ -711,7 +711,7 @@ export default function InternationalGoldClient({ initialData }: Props) {
       {/* ── EXPLANATORY OVERVIEW & QUICK ANSWER (Single Unified Container) ── */}
       <div id="quick-answer" className="bg-white rounded-2xl border border-gray-200 p-5 sm:p-6 shadow-sm mb-8 space-y-4">
         <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
-          <strong className="text-gray-900 font-bold">Quick Answer:</strong> The current international spot price of gold is <strong className="text-gray-900 font-bold">${data.gold.spotUSD.toFixed(2)} USD per troy ounce</strong> (approximately <strong className="text-gray-900 font-bold">${(data.gold.spotUSD * UNIT_MULTIPLIERS.g.ozFactor).toFixed(2)} USD per gram</strong>, <strong className="text-gray-900 font-bold">${(data.gold.spotUSD * UNIT_MULTIPLIERS['10g'].ozFactor).toFixed(2)} USD per 10 grams</strong>, <strong className="text-gray-900 font-bold">${(data.gold.spotUSD * UNIT_MULTIPLIERS.tola.ozFactor).toFixed(2)} USD per tola</strong>, and <strong className="text-gray-900 font-bold">${(data.gold.spotUSD * UNIT_MULTIPLIERS.kg.ozFactor).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD per kilogram</strong>). Live spot silver is <strong className="text-gray-900 font-bold">${data.silver.spotUSD.toFixed(2)} USD per troy ounce</strong> (${(data.silver.spotUSD * UNIT_MULTIPLIERS.g.ozFactor).toFixed(2)} USD per gram, ${(data.silver.spotUSD * UNIT_MULTIPLIERS.kg.ozFactor).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD per kilogram). These rates represent real-time wholesale bullion benchmarks quoted in US Dollars (USD).
+          <strong className="text-gray-900 font-bold">Quick Answer:</strong> The current international spot price of gold is <strong className="text-gray-900 font-bold">${data.gold.spotUSD.toFixed(2)} USD per troy ounce</strong> (approximately <strong className="text-gray-900 font-bold">${(data.gold.spotUSD * UNIT_MULTIPLIERS.g.ozFactor).toFixed(2)} USD per gram</strong>, <strong className="text-gray-900 font-bold">${(data.gold.spotUSD * UNIT_MULTIPLIERS['10g'].ozFactor).toFixed(2)} USD per 10 grams</strong>, <strong className="text-gray-900 font-bold">${(data.gold.spotUSD * UNIT_MULTIPLIERS.tola.ozFactor).toFixed(2)} USD per tola</strong>, and <strong className="text-gray-900 font-bold">${(data.gold.spotUSD * UNIT_MULTIPLIERS.kg.ozFactor).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD per kilogram</strong>). Live spot silver is <strong className="text-gray-900 font-bold">${data.silver.spotUSD.toFixed(2)} USD per troy ounce</strong> (approximately <strong className="text-gray-900 font-bold">${(data.silver.spotUSD * UNIT_MULTIPLIERS.g.ozFactor).toFixed(2)} USD per gram</strong>, <strong className="text-gray-900 font-bold">${(data.silver.spotUSD * UNIT_MULTIPLIERS['10g'].ozFactor).toFixed(2)} USD per 10 grams</strong>, <strong className="text-gray-900 font-bold">${(data.silver.spotUSD * UNIT_MULTIPLIERS.tola.ozFactor).toFixed(2)} USD per tola</strong>, and <strong className="text-gray-900 font-bold">${(data.silver.spotUSD * UNIT_MULTIPLIERS.kg.ozFactor).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD per kilogram</strong>). These rates represent real-time wholesale bullion benchmarks quoted in US Dollars (USD).
         </p>
 
         <div className="pt-4 border-t border-gray-100 space-y-2">
@@ -1009,38 +1009,44 @@ export default function InternationalGoldClient({ initialData }: Props) {
         )}
       </div>
 
-      {/* ── PRICE CALCULATOR POPUP MODAL (Exact Copy-Paste of Screenshot 4) ── */}
+      {/* ── PRICE CALCULATOR POPUP MODAL ── */}
       {isCalculatorOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs animate-in fade-in duration-150">
-          <div className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl border border-gray-100 p-6 sm:p-7 max-h-[90vh] overflow-y-auto">
+        <div
+          onClick={() => setIsCalculatorOpen(false)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-150"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-md bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-gray-100 p-4 sm:p-6 max-h-[92vh] overflow-y-auto"
+          >
             
             {/* Modal Header */}
-            <div className="flex items-center justify-between pb-3 border-b border-gray-100 mb-4">
-              <h3 className="text-lg font-bold text-gray-900">
+            <div className="flex items-center justify-between pb-2.5 border-b border-gray-100 mb-3">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900">
                 Price Calculator
               </h3>
               <button
                 onClick={() => setIsCalculatorOpen(false)}
-                className="p-1 rounded-full text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition"
+                className="p-1 rounded-full text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition cursor-pointer"
                 aria-label="Close"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            <div className="space-y-4">
-              {/* Field 1: Metal (Exact Red-Outlined Toggle from Screenshot 4) */}
+            <div className="space-y-3">
+              {/* Field 1: Metal Toggle */}
               <div>
-                <label className="block text-xs font-semibold text-gray-600 mb-1.5">
+                <label className="block text-xs font-semibold text-gray-600 mb-1">
                   Metal
                 </label>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-2 gap-2 sm:gap-3">
                   <button
                     type="button"
                     onClick={() => setCalcMetal('gold')}
-                    className={`flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-sm transition font-bold ${
+                    className={`flex items-center justify-center gap-2 py-2 px-3 rounded-xl text-xs sm:text-sm transition font-bold cursor-pointer ${
                       calcMetal === 'gold'
-                        ? 'border-2 border-[#B91C1C] text-[#B91C1C] bg-white shadow-xs'
+                        ? 'border-2 border-[#B91C1C] text-[#B91C1C] bg-red-50/20 shadow-xs'
                         : 'border border-gray-300 text-gray-600 hover:bg-gray-50'
                     }`}
                   >
@@ -1050,9 +1056,9 @@ export default function InternationalGoldClient({ initialData }: Props) {
                   <button
                     type="button"
                     onClick={() => setCalcMetal('silver')}
-                    className={`flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-sm transition font-bold ${
+                    className={`flex items-center justify-center gap-2 py-2 px-3 rounded-xl text-xs sm:text-sm transition font-bold cursor-pointer ${
                       calcMetal === 'silver'
-                        ? 'border-2 border-[#B91C1C] text-[#B91C1C] bg-white shadow-xs'
+                        ? 'border-2 border-[#B91C1C] text-[#B91C1C] bg-red-50/20 shadow-xs'
                         : 'border border-gray-300 text-gray-600 hover:bg-gray-50'
                     }`}
                   >
@@ -1062,17 +1068,17 @@ export default function InternationalGoldClient({ initialData }: Props) {
                 </div>
               </div>
 
-              {/* Field 2: Unit (Troy Ounce, Gram, 10g, Kilo, Tola) */}
+              {/* Field 2: Unit (Single 5-column balanced row matching Purity row) */}
               <div>
-                <label className="block text-xs font-semibold text-gray-600 mb-1.5">
+                <label className="block text-xs font-semibold text-gray-600 mb-1">
                   Unit
                 </label>
-                <div className="grid grid-cols-3 gap-2">
+                <div className="grid grid-cols-5 gap-1.5">
                   {[
-                    { id: 'oz', label: 'Troy Ounce' },
-                    { id: 'g', label: 'Grams' },
-                    { id: '10g', label: '10 grams' },
-                    { id: 'kg', label: 'Kilogram' },
+                    { id: 'oz', label: 'Ounce' },
+                    { id: 'g', label: 'Gram' },
+                    { id: '10g', label: '10 g' },
+                    { id: 'kg', label: 'Kilo' },
                     { id: 'tola', label: 'Tola' },
                   ].map((u) => {
                     const active = calcUnitMode === u.id;
@@ -1081,9 +1087,9 @@ export default function InternationalGoldClient({ initialData }: Props) {
                         key={u.id}
                         type="button"
                         onClick={() => setCalcUnitMode(u.id as any)}
-                        className={`py-2 px-2 rounded-xl text-xs font-bold transition text-center ${
+                        className={`py-1.5 px-1 rounded-xl text-[11px] sm:text-xs font-bold transition text-center cursor-pointer ${
                           active
-                            ? 'border-2 border-[#B91C1C] text-[#B91C1C] bg-white shadow-xs'
+                            ? 'border-2 border-[#B91C1C] text-[#B91C1C] bg-red-50/40 shadow-xs'
                             : 'border border-gray-300 text-gray-600 hover:bg-gray-50'
                         }`}
                       >
@@ -1097,7 +1103,7 @@ export default function InternationalGoldClient({ initialData }: Props) {
               {/* Field 2b: Purity (When Gold is Selected) */}
               {calcMetal === 'gold' && (
                 <div>
-                  <label className="block text-xs font-semibold text-gray-600 mb-1.5">
+                  <label className="block text-xs font-semibold text-gray-600 mb-1">
                     Purity / Karat
                   </label>
                   <div className="grid grid-cols-5 gap-1.5">
@@ -1108,9 +1114,9 @@ export default function InternationalGoldClient({ initialData }: Props) {
                           key={k}
                           type="button"
                           onClick={() => setCalcPurity(k as any)}
-                          className={`py-1.5 px-1 rounded-lg text-xs font-bold transition text-center ${
+                          className={`py-1.5 px-1 rounded-xl text-[11px] sm:text-xs font-bold transition text-center cursor-pointer ${
                             active
-                              ? 'border-2 border-[#B91C1C] text-[#B91C1C] bg-red-50/40'
+                              ? 'border-2 border-[#B91C1C] text-[#B91C1C] bg-red-50/40 shadow-xs'
                               : 'border border-gray-300 text-gray-600 hover:bg-gray-50'
                           }`}
                         >
@@ -1124,7 +1130,7 @@ export default function InternationalGoldClient({ initialData }: Props) {
 
               {/* Field 3: Quantity Input */}
               <div>
-                <label className="block text-xs font-semibold text-gray-600 mb-1.5">
+                <label className="block text-xs font-semibold text-gray-600 mb-1">
                   Quantity ({calcUnitMode === 'oz' ? 'Troy Ounce' : calcUnitMode === 'g' ? 'Grams' : calcUnitMode === '10g' ? '10g units' : calcUnitMode === 'kg' ? 'Kilograms' : 'Tolas'})
                 </label>
                 <input
@@ -1134,28 +1140,27 @@ export default function InternationalGoldClient({ initialData }: Props) {
                   value={calcSimpleQty}
                   onChange={(e) => setCalcSimpleQty(e.target.value)}
                   placeholder="Enter quantity..."
-                  className="w-full px-4 py-2.5 text-base font-bold text-gray-900 rounded-xl border border-gray-300 focus:outline-none focus:border-[#B91C1C]"
+                  className="w-full px-3.5 py-2 text-sm sm:text-base font-bold text-gray-900 rounded-xl border border-gray-300 focus:outline-none focus:border-[#B91C1C]"
                 />
-                <span className="block text-[11px] text-gray-400 mt-1">e.g. 1, 2.5, 10</span>
               </div>
 
-              {/* Field 4: Result Box (Clean Mint Green Container in USD) */}
-              <div className="bg-[#ECFDF5] border border-[#A7F3D0] rounded-2xl p-5 text-center mt-3">
-                <span className="block text-xs font-bold text-[#059669] uppercase tracking-wider">
+              {/* Field 4: Result Box */}
+              <div className="bg-[#ECFDF5] border border-[#A7F3D0] rounded-2xl p-3.5 sm:p-4 text-center mt-2">
+                <span className="block text-[11px] font-bold text-[#059669] uppercase tracking-wider">
                   Total Price
                 </span>
-                <div className="text-3xl sm:text-4xl font-extrabold text-[#059669] my-1 tracking-tight">
+                <div className="text-2xl sm:text-3xl font-extrabold text-[#059669] my-0.5 tracking-tight">
                   ${calcTotalUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD
                 </div>
-                <div className="text-[11px] text-gray-500 mt-1">
-                  Rate: ${(baseRateOz * (calcUnitMode === 'tola' ? 11.6638 / 31.1034768 : calcUnitMode === '10g' ? 10 / 31.1034768 : calcUnitMode === 'g' ? 1 / 31.1034768 : calcUnitMode === 'kg' ? 1000 / 31.1034768 : 1) * purityFactor).toFixed(2)} USD / unit · Real-time International Spot Benchmark
+                <div className="text-[11px] text-gray-500 mt-0.5">
+                  Rate: ${(baseRateOz * (calcUnitMode === 'tola' ? 11.6638 / 31.1034768 : calcUnitMode === '10g' ? 10 / 31.1034768 : calcUnitMode === 'g' ? 1 / 31.1034768 : calcUnitMode === 'kg' ? 1000 / 31.1034768 : 1) * purityFactor).toFixed(2)} USD / unit · Real-time Benchmark
                 </div>
               </div>
 
               <button
                 type="button"
                 onClick={() => setIsCalculatorOpen(false)}
-                className="w-full py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold text-xs rounded-xl transition"
+                className="w-full py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold text-xs rounded-xl transition cursor-pointer"
               >
                 Close
               </button>
@@ -1195,8 +1200,8 @@ function SimpleAreaChart({ data, color, gradientFrom, unitFactor }: ChartProps) 
   const height = 150;
   const paddingLeft = 45;
   const paddingRight = 10;
-  const paddingTop = 15;
-  const paddingBottom = 25;
+  const paddingTop = 22;
+  const paddingBottom = 22;
 
   const chartWidth = width - paddingLeft - paddingRight;
   const chartHeight = height - paddingTop - paddingBottom;
@@ -1227,7 +1232,7 @@ function SimpleAreaChart({ data, color, gradientFrom, unitFactor }: ChartProps) 
   });
 
   return (
-    <div className="relative w-full overflow-hidden select-none">
+    <div className="relative w-full select-none pt-2">
       <svg
         viewBox={`0 0 ${width} ${height}`}
         className="w-full h-auto overflow-visible"
@@ -1320,19 +1325,32 @@ function SimpleAreaChart({ data, color, gradientFrom, unitFactor }: ChartProps) 
       </svg>
 
       {/* Hover Tooltip */}
-      {hoverIndex !== null && (
-        <div
-          className="absolute pointer-events-none bg-neutral-900 text-white text-[11px] font-bold px-2 py-1 rounded-md shadow-lg transform -translate-x-1/2 -translate-y-full transition-all"
-          style={{
-            left: `${(points[hoverIndex].x / width) * 100}%`,
-            top: `${(points[hoverIndex].y / height) * 100 - 8}%`,
-          }}
-        >
-          <span>
-            {points[hoverIndex].date}: ${points[hoverIndex].displayPrice.toFixed(2)} USD
-          </span>
-        </div>
-      )}
+      {hoverIndex !== null && (() => {
+        const pt = points[hoverIndex];
+        const isNearTop = pt.y < 52;
+        const isNearRight = hoverIndex >= points.length - 2;
+        const isNearLeft = hoverIndex <= 1;
+
+        let xTransform = '-translate-x-1/2';
+        if (isNearRight) xTransform = '-translate-x-[92%]';
+        else if (isNearLeft) xTransform = '-translate-x-[8%]';
+
+        // Flip below data point if close to the top of the SVG
+        const yTransform = isNearTop ? 'translate-y-3' : '-translate-y-full -translate-y-2';
+
+        return (
+          <div
+            className={`absolute pointer-events-none z-30 bg-neutral-900/95 backdrop-blur-xs text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg shadow-xl transform ${xTransform} ${yTransform} transition-transform duration-75 whitespace-nowrap flex items-center gap-1.5`}
+            style={{
+              left: `${(pt.x / width) * 100}%`,
+              top: `${(pt.y / height) * 100}%`,
+            }}
+          >
+            <span className="text-gray-300 font-normal">{pt.date}:</span>
+            <span className="font-bold text-white">${pt.displayPrice.toFixed(2)} USD</span>
+          </div>
+        );
+      })()}
     </div>
   );
 }

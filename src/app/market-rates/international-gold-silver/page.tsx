@@ -119,13 +119,6 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function InternationalGoldSilverPage() {
   const initialData = getInitialRates();
-  const goldOz = initialData.gold.spotUSD;
-  const silverOz = initialData.silver.spotUSD;
-  const goldGram = goldOz / 31.1034768;
-  const gold10g = goldGram * 10;
-  const goldTola = goldGram * 11.6638;
-  const goldKg = goldGram * 1000;
-  void silverOz; // kept in data model for schema reference
 
   // Timeless Authoritative FAQ Entities (Zero price drift)
   const faqItems = [
