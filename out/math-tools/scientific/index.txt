@@ -1,4 +1,4 @@
-2:I[36679,["1264","static/chunks/1264-53c9c75e1e2cf481.js","1429","static/chunks/1429-aa0705768119c6c6.js","703","static/chunks/app/math-tools/scientific/page-41336b9297137e2d.js"],"ScientificApp"]
+2:I[36679,["1264","static/chunks/1264-53c9c75e1e2cf481.js","8198","static/chunks/8198-76246ae014564023.js","703","static/chunks/app/math-tools/scientific/page-4254ec130c52490a.js"],"ScientificApp"]
 3:I[39275,[],""]
 4:I[61343,[],""]
 5:I[36211,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-78e9b39bd7614c90.js","4467","static/chunks/4467-2b159442a02a9721.js","3185","static/chunks/app/layout-d97518a87464e2ef.js"],"default"]

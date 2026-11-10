@@ -1,4 +1,4 @@
-2:I[12899,["231","static/chunks/231-4d5411c705f5b8da.js","9979","static/chunks/app/pricing/page-e637612c44e46c56.js"],"default"]
+2:I[12899,["231","static/chunks/231-4d5411c705f5b8da.js","9979","static/chunks/app/pricing/page-8c48dae192b70bff.js"],"default"]
 3:I[39275,[],""]
 4:I[61343,[],""]
 5:I[36211,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-78e9b39bd7614c90.js","4467","static/chunks/4467-2b159442a02a9721.js","3185","static/chunks/app/layout-d97518a87464e2ef.js"],"default"]
