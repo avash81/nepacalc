@@ -390,7 +390,7 @@ export default function InternationalGoldClient({ initialData }: Props) {
       const g10g = (data.gold.spotUSD * (10 / 31.1034768)).toFixed(2);
 
       // 1. Dynamic browser tab title (SEO clean without price numbers)
-      document.title = 'International Gold & Silver Price Today | Live Spot Rates (USD)';
+      document.title = 'Gold & Silver Price Today USA | Live Spot Rates (USD)';
 
       // 2. Dynamic meta description
       const metaDesc = document.querySelector('meta[name="description"]');
@@ -494,16 +494,16 @@ export default function InternationalGoldClient({ initialData }: Props) {
         <div>
           <div className="flex items-center gap-2 flex-wrap">
             <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 tracking-tight">
-              International Gold &amp; Silver Price Today
+              Gold &amp; Silver Price Today (USA)
             </h1>
             <span className="hidden sm:inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-gray-100 text-gray-700 border border-gray-200">
-              USD ($)
+              USD Spot
             </span>
           </div>
 
           {/* Subtitle & Streamlined Live Meta Status Strip */}
           <div className="flex items-center gap-2 text-xs text-gray-500 mt-1 flex-wrap">
-            <span className="text-[11px] sm:text-xs">Real-time global gold and silver spot prices in USD</span>
+            <span className="text-[11px] sm:text-xs">Real-time US &amp; international spot prices quoted in USD</span>
             <span className="text-gray-300">•</span>
             <div className="inline-flex items-center gap-1.5">
               <span className="relative flex h-2 w-2">
@@ -585,7 +585,7 @@ export default function InternationalGoldClient({ initialData }: Props) {
       {/* ── DUAL HERO PRICE CARDS ── */}
       <div className="mb-8">
         <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
-          Live Gold &amp; Silver Spot Prices (USD)
+          Live US Gold &amp; Silver Spot Prices (USD)
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
           
@@ -711,13 +711,13 @@ export default function InternationalGoldClient({ initialData }: Props) {
       {/* ── EXPLANATORY OVERVIEW & QUICK ANSWER (Single Unified Container) ── */}
       <div id="quick-answer" className="bg-white rounded-2xl border border-gray-200 p-5 sm:p-6 shadow-sm mb-8 space-y-4">
         <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
-          <strong className="text-gray-900 font-bold">Quick Answer:</strong> The current international spot price of gold is <strong className="text-gray-900 font-bold">${data.gold.spotUSD.toFixed(2)} USD per troy ounce</strong> (approximately <strong className="text-gray-900 font-bold">${(data.gold.spotUSD * UNIT_MULTIPLIERS.g.ozFactor).toFixed(2)} USD per gram</strong>, <strong className="text-gray-900 font-bold">${(data.gold.spotUSD * UNIT_MULTIPLIERS['10g'].ozFactor).toFixed(2)} USD per 10 grams</strong>, <strong className="text-gray-900 font-bold">${(data.gold.spotUSD * UNIT_MULTIPLIERS.tola.ozFactor).toFixed(2)} USD per tola</strong>, and <strong className="text-gray-900 font-bold">${(data.gold.spotUSD * UNIT_MULTIPLIERS.kg.ozFactor).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD per kilogram</strong>). Live spot silver is <strong className="text-gray-900 font-bold">${data.silver.spotUSD.toFixed(2)} USD per troy ounce</strong> (approximately <strong className="text-gray-900 font-bold">${(data.silver.spotUSD * UNIT_MULTIPLIERS.g.ozFactor).toFixed(2)} USD per gram</strong>, <strong className="text-gray-900 font-bold">${(data.silver.spotUSD * UNIT_MULTIPLIERS['10g'].ozFactor).toFixed(2)} USD per 10 grams</strong>, <strong className="text-gray-900 font-bold">${(data.silver.spotUSD * UNIT_MULTIPLIERS.tola.ozFactor).toFixed(2)} USD per tola</strong>, and <strong className="text-gray-900 font-bold">${(data.silver.spotUSD * UNIT_MULTIPLIERS.kg.ozFactor).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD per kilogram</strong>). These rates represent real-time wholesale bullion benchmarks quoted in US Dollars (USD).
+          <strong className="text-gray-900 font-bold">Quick Answer:</strong> The current spot price of gold in the United States is <strong className="text-gray-900 font-bold">${data.gold.spotUSD.toFixed(2)} USD per troy ounce</strong> (approximately <strong className="text-gray-900 font-bold">${(data.gold.spotUSD * UNIT_MULTIPLIERS.g.ozFactor).toFixed(2)} USD per gram</strong>, <strong className="text-gray-900 font-bold">${(data.gold.spotUSD * UNIT_MULTIPLIERS['10g'].ozFactor).toFixed(2)} USD per 10 grams</strong>, and <strong className="text-gray-900 font-bold">${(data.gold.spotUSD * UNIT_MULTIPLIERS.kg.ozFactor).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD per kilogram</strong>). Live US spot silver is <strong className="text-gray-900 font-bold">${data.silver.spotUSD.toFixed(2)} USD per troy ounce</strong> (approximately <strong className="text-gray-900 font-bold">${(data.silver.spotUSD * UNIT_MULTIPLIERS.g.ozFactor).toFixed(2)} USD per gram</strong> and <strong className="text-gray-900 font-bold">${(data.silver.spotUSD * UNIT_MULTIPLIERS.kg.ozFactor).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD per kilogram</strong>). These rates represent real-time wholesale bullion benchmarks traded on US spot and COMEX markets quoted directly in US Dollars (USD).
         </p>
 
         <div className="pt-4 border-t border-gray-100 space-y-2">
           <h2 className="text-xl font-bold text-gray-900">Gold &amp; Silver Prices by Weight</h2>
           <p className="text-sm text-gray-600 leading-relaxed">
-            Stay updated on the daily price of gold (Fine gold 24K, Hallmark 22K, 18K, and 14K) and silver stated with the daily fluctuation in price. These prices are updated continuously in real time based on global spot market benchmarks. Gold and silver prices for today are available for troy ounce, gram, 10 grams, tola, and kilogram, quoted directly in US Dollars (USD).
+            Stay updated on the daily price of gold in the United States (Pure Bullion 24K, 22K, 18K, and popular US jewelry standards 14K and 10K) alongside live spot silver prices. Rates are updated continuously in real time based on institutional US spot market benchmarks. Gold and silver prices for today are available for troy ounce, gram, 10 grams, and kilogram, quoted directly in US Dollars (USD).
           </p>
         </div>
       </div>
@@ -881,7 +881,7 @@ export default function InternationalGoldClient({ initialData }: Props) {
       <div className="bg-amber-50/70 border border-amber-200/80 rounded-2xl p-4 sm:p-5 mb-8 flex items-start gap-3">
         <Info className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
         <p className="text-xs sm:text-sm text-amber-900 leading-relaxed font-medium">
-          International spot prices represent market benchmarks. Actual physical gold and silver buying prices may vary due to dealer premiums, taxes, and handling charges.
+          US spot prices represent wholesale market benchmarks. Actual physical gold and silver buying prices at US coin shops and online bullion dealers may vary due to dealer premiums, state sales tax, and minting fees.
         </p>
       </div>
 

@@ -72,33 +72,31 @@ export async function generateMetadata(): Promise<Metadata> {
   const formattedGold = goldOz.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   const formattedSilver = silverOz.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-  const description = `Live international spot prices: Gold $${formattedGold}/oz ($${goldGram}/g, $${gold10g}/10g) and Silver $${formattedSilver}/oz in USD. Compare purity rates and market benchmarks.`;
+  const description = `Check live gold and silver spot prices in the USA in USD per troy ounce, gram, 10g, and kilogram. Compare 24K, 22K, 18K, 14K, and 10K purity rates and charts.`;
 
   return {
-    title: "International Gold & Silver Price Today | Live Spot Rates (USD)",
+    title: "Gold & Silver Price Today USA | Live Spot Rates (USD)",
     description,
     keywords: [
-      'international gold price',
-      'live spot gold price',
-      'gold spot price',
-      'price of gold per ounce',
-      'current international gold price',
-      'live gold price usd',
-      '24k international gold price',
-      '22k gold price',
-      '10 grams international gold price',
-      'international gold price per tola',
-      'international silver price today',
-      'gold spot price charts',
-      'international gold rate today',
-      'spot bullion rates usd'
+      'gold price usa',
+      'gold price today usa',
+      'live spot gold price usa',
+      'us gold spot price',
+      'gold price per ounce usd',
+      'current gold price in us',
+      'silver price usa',
+      'comex gold spot price',
+      '14k gold price usa',
+      '24k gold price per gram usd',
+      'gold price charts usd',
+      'us spot bullion rates'
     ],
     alternates: {
       canonical: 'https://nepacalc.com/market-rates/international-gold-silver/',
     },
     openGraph: {
-      title: "International Gold & Silver Prices | Live Spot Rates",
-      description: `View live international spot prices: Gold $${formattedGold}/oz and Silver $${formattedSilver}/oz in USD. Compare prices per ounce, gram, 10g, and kg.`,
+      title: "Gold & Silver Prices Today USA | Live Spot Rates (USD)",
+      description: `View live US spot prices: Gold $${formattedGold}/oz and Silver $${formattedSilver}/oz in USD. Compare prices per troy ounce, gram, 10g, and kg.`,
       url: 'https://nepacalc.com/market-rates/international-gold-silver/',
       type: 'website',
       images: [{
@@ -110,8 +108,8 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title: "International Gold & Silver Price Today (USD Spot Rates)",
-      description: `Live international gold ($${formattedGold}/oz) and silver ($${formattedSilver}/oz) prices per ounce, gram and kg with real-time purity conversions.`,
+      title: "Gold & Silver Price Today USA (USD Spot Rates)",
+      description: `Live US gold ($${formattedGold}/oz) and silver ($${formattedSilver}/oz) prices per troy ounce, gram, and kg with real-time purity conversions.`,
       images: ['https://nepacalc.com/images/og/international-gold-silver.jpg'],
     },
   };
@@ -147,9 +145,15 @@ export default function InternationalGoldSilverPage() {
       }
     },
     {
-      name: "What is the difference between 24K, 22K, 18K, and 14K gold in the international market?",
+      name: "What are the most common gold karats bought in the United States?",
       acceptedAnswer: {
-        text: "24 Karat gold is 99.9% pure bullion. 22 Karat contains 91.6% pure gold (standard in South Asian jewelry). 18 Karat contains 75.0% pure gold, and 14 Karat contains 58.3% pure gold, which represents the most popular jewelry standard sold in retail stores across international markets."
+        text: "In the United States, 14 Karat (58.3% pure gold) is the most popular standard for fine jewelry due to its balance of durability and lustrous color. 10 Karat (41.7% pure) is the legal minimum purity to be marketed as real gold in the US under Federal Trade Commission (FTC) guidelines. For investment bullion, 24 Karat (99.9% pure, such as American Gold Buffalo coins) and 22 Karat (91.67% pure, such as American Gold Eagle coins) are the standard."
+      }
+    },
+    {
+      name: "How is physical gold and silver priced in the United States?",
+      acceptedAnswer: {
+        text: "Gold and silver in the United States are benchmarked against continuous New York COMEX spot prices quoted in US Dollars per troy ounce. When purchasing physical bullion (such as 1 oz American Eagles or 10 oz silver bars) from US coin shops or online dealers, buyers pay a dealer premium above the spot benchmark to cover refining, minting, and operational logistics."
       }
     }
   ];
@@ -162,8 +166,8 @@ export default function InternationalGoldSilverPage() {
         "@type": "WebPage",
         "@id": "https://nepacalc.com/market-rates/international-gold-silver/",
         "url": "https://nepacalc.com/market-rates/international-gold-silver/",
-        "name": "International Gold & Silver Price Today | Live Spot Rates (USD)",
-        "description": "Check live international gold and silver spot prices in USD per ounce, gram, 10 grams, and kilogram. Compare gold purity rates and daily market changes.",
+        "name": "Gold & Silver Price Today USA | Live Spot Rates (USD)",
+        "description": "Check live gold and silver spot prices in the USA in USD per troy ounce, gram, 10 grams, and kilogram. Compare gold purity rates and daily market changes.",
         "isPartOf": {
           "@type": "WebSite",
           "@id": "https://nepacalc.com/#website",
@@ -194,13 +198,7 @@ export default function InternationalGoldSilverPage() {
           {
             "@type": "ListItem",
             "position": 2,
-            "name": "Market Rates",
-            "item": "https://nepacalc.com/market-rates/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
-            "name": "International Gold & Silver",
+            "name": "Gold & Silver Price Today (USA)",
             "item": "https://nepacalc.com/market-rates/international-gold-silver/"
           }
         ]
@@ -208,8 +206,8 @@ export default function InternationalGoldSilverPage() {
       {
         "@type": "Dataset",
         "@id": "https://nepacalc.com/market-rates/international-gold-silver/#dataset",
-        "name": "International Spot Gold & Silver Live Rates",
-        "description": "Continuous wholesale international spot gold and silver price data quoted in US Dollars (USD).",
+        "name": "US Spot Gold & Silver Live Rates",
+        "description": "Continuous wholesale spot gold and silver price data in the United States quoted in US Dollars (USD).",
         "url": "https://nepacalc.com/market-rates/international-gold-silver/",
         "isAccessibleForFree": true,
         "inLanguage": "en-US",
@@ -247,19 +245,17 @@ export default function InternationalGoldSilverPage() {
         <nav aria-label="Breadcrumb" className="mb-1">
           {/* Mobile view: clean compact link */}
           <Link
-            href="/market-rates/"
+            href="/"
             className="sm:hidden inline-flex items-center gap-1 text-[11px] font-semibold text-gray-500 hover:text-blue-600 transition"
           >
-            ← Market Rates
+            ← Home
           </Link>
 
           {/* Desktop view: full hierarchy */}
           <div className="hidden sm:flex items-center flex-wrap gap-2 text-xs font-medium text-gray-500">
             <Link href="/" className="hover:text-blue-600 hover:underline">Home</Link>
             <span className="text-gray-300">/</span>
-            <Link href="/market-rates/" className="hover:text-blue-600 hover:underline">Market Rates</Link>
-            <span className="text-gray-300">/</span>
-            <span className="text-gray-900 font-bold">International Gold &amp; Silver</span>
+            <span className="text-gray-900 font-bold">Gold &amp; Silver Price Today (USA)</span>
           </div>
         </nav>
       </div>
@@ -311,10 +307,10 @@ export default function InternationalGoldSilverPage() {
               Live Currency Converter →
             </Link>
             <Link
-              href="/market-rates/"
+              href="/calculator/unit-converter/"
               className="text-blue-600 hover:text-blue-800 hover:underline bg-blue-50 px-3 py-1.5 rounded-full"
             >
-              Global Market Rates Board →
+              Weight &amp; Unit Converter →
             </Link>
           </div>
         </div>

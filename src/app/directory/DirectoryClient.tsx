@@ -24,6 +24,8 @@ export default function DirectoryClient() {
                 <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-900/10 flex items-center justify-center text-2xl font-black">
                   {cat.id === 'nepal' ? (
                     <span className="text-[12px] font-black text-blue-600 dark:text-[#1a0dab] tracking-tighter">NP</span>
+                  ) : cat.id === 'international' ? (
+                    <span className="text-xl">🌐</span>
                   ) : (
                     cat.icon
                   )}

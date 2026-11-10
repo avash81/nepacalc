@@ -70,7 +70,7 @@ export const CALCULATORS: Calculator[] = [
   { id: 'exchange-rate-nepal', slug: 'market-rates/exchange-rate-nepal', name: 'Exchange Rate Nepal',  description: 'Live foreign exchange rates for 20+ currencies including USD and INR.', category: 'market', isNepal: true },
   { id: 'currency-converter', slug: 'currency-converter', name: 'Currency Converter',  description: 'Convert international currencies into Nepalese Rupees using live exchange rates.', category: 'market', isNepal: true },
   { id: 'remittance-calculator', slug: 'market-rates/remittance', name: 'Remittance Board',  description: 'Compare real-time exchange rates for sending money to Nepal.', category: 'market', isNepal: true },
-  { id: 'international-gold-silver', slug: 'market-rates/international-gold-silver', name: 'International Gold & Silver Price', description: 'Live COMEX/LBMA spot gold and silver prices in USD with 30-day charts and instant weight calculator.', category: 'market', isNepal: false, keywords: ['gold price usa', 'silver price usa', 'comex spot price', 'gold price today', 'spot gold price'] },
+    { id: 'international-gold-silver', slug: 'market-rates/international-gold-silver', name: 'Gold & Silver Price Today (USA)', description: 'Live US spot gold and silver prices in USD with 30-day interactive charts, purity rates (24K–10K), and weight calculator.', category: 'international', isNepal: false, keywords: ['gold price usa', 'silver price usa', 'gold price today usa', 'us gold spot price', 'gold price per ounce usd', 'comex gold spot'] },
 
 
   // ==========================================
@@ -178,6 +178,7 @@ export const CALCULATORS: Calculator[] = [
 export const CATEGORIES: Category[] = [
   // Order by traffic dominance from Search Console data
   { id: 'nepal', name: 'Nepal Specific',  calculators: CALCULATORS.filter(c => c.category === 'nepal') },
+  { id: 'international', name: 'International & Global Rates',  icon: '🌐', calculators: CALCULATORS.filter(c => c.category === 'international') },
   { id: 'market', name: 'Market Rates',  calculators: CALCULATORS.filter(c => c.category === 'market') },
   { id: 'engineering', name: 'Engineering',  calculators: CALCULATORS.filter(c => c.category === 'engineering') },
   { id: 'health', name: 'Health & Fitness',  calculators: CALCULATORS.filter(c => c.category === 'health') },

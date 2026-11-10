@@ -19,11 +19,10 @@ const TAGS: Record<string, string> = {
   'market-rates/exchange-rate-nepal': 'FOREX',
   'currency-converter': 'FOREX',
   'market-rates/remittance': 'REMITTANCE',
-  'market-rates/international-gold-silver': 'PRECIOUS METALS',
-};
+  };
 
 export default function MarketRatesPillarPage() {
-  const marketTools = CALCULATORS.filter(c => c.category === 'market');
+  const marketTools = CALCULATORS.filter(c => c.category === 'market' && c.id !== 'international-gold-silver');
 
   return (
     <>
