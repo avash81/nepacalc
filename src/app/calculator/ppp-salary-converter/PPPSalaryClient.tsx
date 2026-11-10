@@ -13,9 +13,6 @@ import {
   DollarSign,
   Briefcase,
   HelpCircle,
-  MessageSquare,
-  ThumbsUp,
-  Send,
   Calculator,
   ArrowRight
 } from 'lucide-react';
@@ -68,50 +65,6 @@ export const COUNTRIES: CountryData[] = [
   { code: 'ZA', name: 'South Africa', flag: '🇿🇦', currency: 'ZAR', currencySymbol: 'R', pppFactor: 7.2, exchangeRate: 18.2, colIndex: 35, rentIndex: 25, taxRate: 0.26 },
 ];
 
-interface UserComment {
-  id: string;
-  author: string;
-  avatarColor: string;
-  timeAgo: string;
-  text: string;
-  likes: number;
-}
-
-const INITIAL_COMMENTS: UserComment[] = [
-  {
-    id: 'c1',
-    author: 'Daniel Vance',
-    avatarColor: 'bg-indigo-600',
-    timeAgo: '2 hours ago',
-    text: 'Moved from Seattle to Lisbon on an asynchronous US tech contract. The PPP calculation here is strikingly accurate - daily expenses and healthcare cost roughly 50% less, allowing a 60%+ savings rate.',
-    likes: 29
-  },
-  {
-    id: 'c2',
-    author: 'Kavita Sundaram',
-    avatarColor: 'bg-emerald-600',
-    timeAgo: '5 hours ago',
-    text: 'The zero income tax in Dubai makes a huge difference. Even though living costs in Dubai are ~66% of New York, retaining 100% of your gross salary results in dramatically higher net wealth than in London or Berlin.',
-    likes: 34
-  },
-  {
-    id: 'c3',
-    author: 'Aarav Patel',
-    avatarColor: 'bg-blue-600',
-    timeAgo: '1 day ago',
-    text: 'A $50,000 USD salary in India converts to over ₹4.3 Million INR at market rates, which buys what $180,000 USD buys in the US. Domestic support and housing give you an extraordinary standard of living.',
-    likes: 41
-  },
-  {
-    id: 'c4',
-    author: 'Suman Shrestha',
-    avatarColor: 'bg-rose-600',
-    timeAgo: '2 days ago',
-    text: 'Remote US software engineers living in Kathmandu can easily save 75% of their paycheck. The PPP factor of ~36.5 NPR/$ perfectly illustrates why local tech jobs feel underpaid compared to US remote contracts.',
-    likes: 19
-  }
-];
-
 export default function PPPSalaryClient() {
   const [fromCode, setFromCode] = useState<string>('US');
   const [toCode, setToCode] = useState<string>('IN');
@@ -119,11 +72,6 @@ export default function PPPSalaryClient() {
   const [period, setPeriod] = useState<'year' | 'month'>('year');
   const [savingsCushion, setSavingsCushion] = useState<number>(20000);
   const [showAllCountries, setShowAllCountries] = useState<boolean>(false);
-
-  // Community discussion
-  const [comments, setComments] = useState<UserComment[]>(INITIAL_COMMENTS);
-  const [newCommentText, setNewCommentText] = useState('');
-  const [isCommentBoxOpen, setIsCommentBoxOpen] = useState(false);
 
   const fromCountry = useMemo(() => COUNTRIES.find(c => c.code === fromCode) || COUNTRIES[0], [fromCode]);
   const toCountry = useMemo(() => COUNTRIES.find(c => c.code === toCode) || COUNTRIES[1], [toCode]);
@@ -210,26 +158,6 @@ export default function PPPSalaryClient() {
   }, [annualBaseSalary, fromCountry]);
 
   const displayedRows = showAllCountries ? comparisonRows : comparisonRows.slice(0, 10);
-
-  const handleLike = (id: string) => {
-    setComments(prev => prev.map(c => c.id === id ? { ...c, likes: c.likes + 1 } : c));
-  };
-
-  const handleAddComment = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newCommentText.trim()) return;
-    const newC: UserComment = {
-      id: `comment-${Date.now()}`,
-      author: 'Global Expat',
-      avatarColor: 'bg-emerald-600',
-      timeAgo: 'Just now',
-      text: newCommentText.trim(),
-      likes: 0
-    };
-    setComments([newC, ...comments]);
-    setNewCommentText('');
-    setIsCommentBoxOpen(false);
-  };
 
   return (
     <div className="w-full px-3 sm:px-6 lg:px-8 py-2 sm:py-3 space-y-4">
@@ -321,24 +249,27 @@ export default function PPPSalaryClient() {
             YOUR SALARY
           </label>
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-            {/* INPUT FIELD WITH CURRENCY SYMBOL & BADGE */}
-            <div className="relative flex-1">
-              <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-base sm:text-lg select-none">
+            {/* INPUT FIELD WITH CURRENCY SYMBOL PREFIX & CURRENCY BADGE */}
+            <div className="flex-1 flex rounded-xl border border-gray-300 focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 shadow-2xs overflow-hidden bg-white transition">
+              <div className="px-3.5 sm:px-4 py-2.5 sm:py-3 bg-gray-50 border-r border-gray-200 text-gray-700 font-bold text-base sm:text-lg flex items-center select-none shrink-0 min-w-[48px] justify-center">
                 {fromCountry.currencySymbol}
-              </span>
+              </div>
               <input
                 type="text"
                 inputMode="numeric"
-                value={inputSalary.toLocaleString()}
+                value={inputSalary === 0 ? '' : inputSalary.toLocaleString()}
+                placeholder="0"
                 onChange={(e) => {
                   const val = Number(e.target.value.replace(/[^0-9]/g, ''));
                   setInputSalary(isNaN(val) ? 0 : val);
                 }}
-                className="w-full pl-9 pr-16 py-2.5 sm:py-3 rounded-xl border border-gray-300 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 font-bold text-gray-900 text-lg sm:text-xl tracking-tight shadow-2xs outline-none transition"
+                className="w-full px-3.5 py-2.5 sm:py-3 font-bold text-gray-900 text-lg sm:text-xl tracking-tight outline-none bg-transparent"
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 px-2 py-0.5 rounded text-xs font-bold bg-gray-100 text-gray-600 border border-gray-200 select-none">
-                {fromCountry.currency}
-              </span>
+              <div className="pr-3 flex items-center shrink-0">
+                <span className="px-2 py-0.5 rounded text-xs font-bold bg-gray-100 text-gray-600 border border-gray-200 select-none">
+                  {fromCountry.currency}
+                </span>
+              </div>
             </div>
 
             {/* PERIOD TOGGLE: Per year | Per month */}
@@ -640,100 +571,6 @@ export default function PPPSalaryClient() {
               </div>
             );
           })}
-        </div>
-      </div>
-
-      {/* ── COMMUNITY DISCUSSION SECTION ── */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-4 sm:p-5 shadow-xs">
-        <div className="flex items-center justify-between mb-3">
-          <div className="flex items-center gap-2">
-            <MessageSquare className="w-4 h-4 text-red-600" />
-            <h3 className="text-sm sm:text-base font-bold text-gray-900">
-              Community Discussion &amp; Expat Salaries
-            </h3>
-            <span className="text-[11px] font-bold px-2 py-0.2 rounded-full bg-gray-100 text-gray-600">
-              {comments.length}
-            </span>
-          </div>
-        </div>
-
-        {/* Comment Input */}
-        <div className="mb-4">
-          {!isCommentBoxOpen ? (
-            <div
-              onClick={() => setIsCommentBoxOpen(true)}
-              className="cursor-pointer flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl border border-gray-300 hover:border-red-500 text-gray-500 text-xs transition"
-            >
-              <div className="w-5 h-5 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-[10px] font-bold">
-                ?
-              </div>
-              <span>Share your international salary experience, tax note, or negotiation tips...</span>
-            </div>
-          ) : (
-            <form onSubmit={handleAddComment} className="border-2 border-red-500 rounded-xl p-3 shadow-xs">
-              <textarea
-                autoFocus
-                rows={3}
-                value={newCommentText}
-                onChange={(e) => setNewCommentText(e.target.value)}
-                placeholder="What salary ratio did your remote employer offer? Or questions regarding tax & relocation?"
-                className="w-full text-xs text-gray-900 border-none focus:outline-none resize-none placeholder-gray-400"
-              />
-              <div className="flex items-center justify-between pt-2 border-t border-gray-100 text-xs">
-                <span className="text-[11px] text-gray-400">Posting as Guest</span>
-                <div className="flex gap-2">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setIsCommentBoxOpen(false);
-                      setNewCommentText('');
-                    }}
-                    className="px-2.5 py-1 text-gray-500 hover:text-gray-800"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    disabled={!newCommentText.trim()}
-                    className="inline-flex items-center gap-1 px-3 py-1 font-bold text-white bg-red-600 hover:bg-red-700 rounded-lg disabled:opacity-50 transition"
-                  >
-                    <Send className="w-3 h-3" />
-                    <span>Post</span>
-                  </button>
-                </div>
-              </div>
-            </form>
-          )}
-        </div>
-
-        {/* Comments Feed */}
-        <div className="space-y-3">
-          {comments.map((comment) => (
-            <div key={comment.id} className="p-3 rounded-xl border border-gray-100 bg-gray-50/50">
-              <div className="flex items-center justify-between mb-1.5">
-                <div className="flex items-center gap-2">
-                  <div className={`w-6 h-6 rounded-full ${comment.avatarColor} text-white flex items-center justify-center text-[11px] font-bold`}>
-                    {comment.author.charAt(0)}
-                  </div>
-                  <div>
-                    <span className="text-xs font-bold text-gray-900">{comment.author}</span>
-                    <span className="text-[10px] text-gray-400 ml-2">{comment.timeAgo}</span>
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => handleLike(comment.id)}
-                  className="flex items-center gap-1 text-xs text-gray-400 hover:text-red-600 transition"
-                >
-                  <ThumbsUp className="w-3 h-3" />
-                  <span>{comment.likes}</span>
-                </button>
-              </div>
-              <p className="text-xs text-gray-700 leading-relaxed pl-8">
-                {comment.text}
-              </p>
-            </div>
-          ))}
         </div>
       </div>
     </div>

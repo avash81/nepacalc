@@ -11,9 +11,6 @@ import {
   ArrowUpRight,
   ArrowDownRight,
   RefreshCw,
-  MessageSquare,
-  ThumbsUp,
-  Send,
   Info,
   ShieldCheck,
   CheckCircle2,
@@ -123,50 +120,6 @@ const SILVER_30D_HISTORY = [
   { date: '11-10', price: 6.23 },
 ];
 
-interface UserComment {
-  id: string;
-  author: string;
-  avatarColor: string;
-  timeAgo: string;
-  text: string;
-  likes: number;
-}
-
-const INITIAL_COMMENTS: UserComment[] = [
-  {
-    id: 'c1',
-    author: 'Ravi Sharma',
-    avatarColor: 'bg-amber-600',
-    timeAgo: '1 hour ago',
-    text: 'Bought 50g of 22K gold at the Dubai Gold Souq in Deira. The retail rate matched this board exactly, and making charges were negotiated down to AED 18 per gram.',
-    likes: 18,
-  },
-  {
-    id: 'c2',
-    author: 'Fatima Al-Nuaimi',
-    avatarColor: 'bg-emerald-600',
-    timeAgo: '3 hours ago',
-    text: 'Note for visitors: 24K 999 investment bars and cast coins are 0% zero-rated for VAT under FTA guidelines. Only retail jewellery incurs the 5% VAT.',
-    likes: 31,
-  },
-  {
-    id: 'c3',
-    author: 'Muhammad Asif',
-    avatarColor: 'bg-blue-600',
-    timeAgo: '5 hours ago',
-    text: 'The INR and PKR remittance tables are super useful for calculating gold value before traveling home from DXB terminal 1.',
-    likes: 14,
-  },
-  {
-    id: 'c4',
-    author: 'Sarah Jenkins',
-    avatarColor: 'bg-purple-600',
-    timeAgo: '1 day ago',
-    text: 'Planet Tax Free terminal at Dubai airport was quick. Handed in the digital QR invoice and received the 85% VAT refund right onto my credit card in minutes.',
-    likes: 22,
-  },
-];
-
 export default function DubaiGoldClient({ initialData }: Props) {
   // ─── Live data via useInternationalRates hook ───
   const { rates: liveRates, lastFetchedAt } = useInternationalRates();
@@ -252,11 +205,6 @@ export default function DubaiGoldClient({ initialData }: Props) {
 
   // Calculator 4: Tourist VAT Refund State
   const [vatPurchaseAmount, setVatPurchaseAmount] = useState<number>(5000);
-
-  // Community Comments State
-  const [comments, setComments] = useState<UserComment[]>(INITIAL_COMMENTS);
-  const [newCommentText, setNewCommentText] = useState('');
-  const [isCommentBoxOpen, setIsCommentBoxOpen] = useState(false);
 
   // Unit Gram Multipliers
   const unitMultipliers: Record<string, { label: string; grams: number }> = {
@@ -373,26 +321,6 @@ export default function DubaiGoldClient({ initialData }: Props) {
   const planetAdminFee = 4.80;
   const netVatRefund = Math.max(0, planetRefundEligible - planetAdminFee);
 
-  const handleLike = (id: string) => {
-    setComments((prev) => prev.map((c) => (c.id === id ? { ...c, likes: c.likes + 1 } : c)));
-  };
-
-  const handleAddComment = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newCommentText.trim()) return;
-    const newC: UserComment = {
-      id: `c_${Date.now()}`,
-      author: 'Gold Souq Buyer',
-      avatarColor: 'bg-amber-700',
-      timeAgo: 'Just now',
-      text: newCommentText.trim(),
-      likes: 0,
-    };
-    setComments([newC, ...comments]);
-    setNewCommentText('');
-    setIsCommentBoxOpen(false);
-  };
-
   return (
     <div className="w-full max-w-6xl mx-auto px-3 sm:px-4 py-2 sm:py-4 font-sans text-gray-900 space-y-4">
 
@@ -402,7 +330,7 @@ export default function DubaiGoldClient({ initialData }: Props) {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-2.5">
           <div>
             <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight">
-              Today&apos;s Gold &amp; Silver Price
+              Today&apos;s Gold &amp; Silver Price in Dubai
             </h1>
             <p className="text-xs sm:text-sm text-gray-500 mt-0.5">
               Per tola and per 10 grams in Dubai (AED)
@@ -1585,100 +1513,6 @@ export default function DubaiGoldClient({ initialData }: Props) {
               Investment-grade gold and silver bars and coins with a purity of 99% or higher qualify for 0% Zero-Rated VAT under UAE FTA rules. All retail jewellery (22K, 21K, 18K, and 925 sterling silver) is subject to 5% VAT on the final sales value. Tourists can claim a VAT refund at departure under the Planet Tax Free scheme.
             </p>
           </div>
-        </div>
-      </div>
-
-      {/* ── COMMUNITY DISCUSSION FEED ── */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-4 sm:p-5 shadow-xs space-y-3">
-        <div className="flex items-center justify-between border-b border-gray-100 pb-2">
-          <div className="flex items-center gap-2">
-            <MessageSquare className="w-4 h-4 text-amber-600" />
-            <h3 className="text-sm sm:text-base font-bold text-gray-900">
-              Community Discussion &amp; Gold Souq Experiences
-            </h3>
-            <span className="text-[11px] font-bold px-2 py-0.2 rounded-full bg-gray-100 text-gray-600">
-              {comments.length}
-            </span>
-          </div>
-        </div>
-
-        {/* Comment Box */}
-        <div>
-          {!isCommentBoxOpen ? (
-            <div
-              onClick={() => setIsCommentBoxOpen(true)}
-              className="cursor-pointer flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl border border-gray-300 hover:border-amber-500 text-gray-500 text-xs transition"
-            >
-              <div className="w-5 h-5 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center text-[10px] font-bold">
-                ?
-              </div>
-              <span>Share your Dubai Gold Souq negotiating tips, making charges, or airport customs experience...</span>
-            </div>
-          ) : (
-            <form onSubmit={handleAddComment} className="border-2 border-amber-500 rounded-xl p-3 shadow-xs">
-              <textarea
-                autoFocus
-                rows={3}
-                value={newCommentText}
-                onChange={(e) => setNewCommentText(e.target.value)}
-                placeholder="Share your making charge discounts, shop recommendations, or bullion experiences in Dubai..."
-                className="w-full text-xs text-gray-900 border-none focus:outline-none resize-none placeholder-gray-400"
-              />
-              <div className="flex items-center justify-between pt-2 border-t border-gray-100 text-xs">
-                <span className="text-[11px] text-gray-400">Posting as Guest</span>
-                <div className="flex gap-2">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setIsCommentBoxOpen(false);
-                      setNewCommentText('');
-                    }}
-                    className="px-2.5 py-1 text-gray-500 hover:text-gray-800"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    disabled={!newCommentText.trim()}
-                    className="inline-flex items-center gap-1 px-3 py-1 font-bold text-white bg-amber-600 hover:bg-amber-700 rounded-lg disabled:opacity-50 transition"
-                  >
-                    <Send className="w-3 h-3" />
-                    <span>Post</span>
-                  </button>
-                </div>
-              </div>
-            </form>
-          )}
-        </div>
-
-        {/* Comments List */}
-        <div className="space-y-2.5 pt-1">
-          {comments.map((comment) => (
-            <div key={comment.id} className="p-3 rounded-xl border border-gray-100 bg-gray-50/50">
-              <div className="flex items-center justify-between mb-1.5">
-                <div className="flex items-center gap-2">
-                  <div className={`w-6 h-6 rounded-full ${comment.avatarColor} text-white flex items-center justify-center text-[11px] font-bold`}>
-                    {comment.author.charAt(0)}
-                  </div>
-                  <div>
-                    <span className="text-xs font-bold text-gray-900">{comment.author}</span>
-                    <span className="text-[10px] text-gray-400 ml-2">{comment.timeAgo}</span>
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => handleLike(comment.id)}
-                  className="flex items-center gap-1 text-xs text-gray-400 hover:text-amber-600 transition"
-                >
-                  <ThumbsUp className="w-3 h-3" />
-                  <span>{comment.likes}</span>
-                </button>
-              </div>
-              <p className="text-xs text-gray-700 leading-relaxed pl-8">
-                {comment.text}
-              </p>
-            </div>
-          ))}
         </div>
       </div>
     </div>

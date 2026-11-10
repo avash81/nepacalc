@@ -13,9 +13,6 @@ import {
   DollarSign,
   ArrowRightLeft,
   ChevronDown,
-  MessageSquare,
-  ThumbsUp,
-  Send,
   ShieldCheck,
   CheckCircle2,
   Sliders,
@@ -238,50 +235,6 @@ function generateSeries(assetId: AssetType, timeframe: Timeframe, baseVal: numbe
   return points;
 }
 
-interface UserComment {
-  id: string;
-  author: string;
-  avatarColor: string;
-  timeAgo: string;
-  text: string;
-  likes: number;
-}
-
-const INITIAL_COMMENTS: UserComment[] = [
-  {
-    id: 'c1',
-    author: 'Marcus Sterling',
-    avatarColor: 'bg-amber-600',
-    timeAgo: '1 hour ago',
-    text: 'GSR sitting near 78:1 is close to the 80 threshold. Historically, trading gold into physical silver above 80 and swapping back when the ratio compresses toward 60 has generated steady ounce accumulation without putting up fresh capital.',
-    likes: 38,
-  },
-  {
-    id: 'c2',
-    author: 'Elena Rostova',
-    avatarColor: 'bg-emerald-600',
-    timeAgo: '3 hours ago',
-    text: 'The solar photovoltaic sector is taking down record amounts of silver every quarter. If industrial demand keeps accelerating while mine output remains capped, the ratio could realistically break below 60 in the medium term.',
-    likes: 27,
-  },
-  {
-    id: 'c3',
-    author: 'David Chen',
-    avatarColor: 'bg-blue-600',
-    timeAgo: '6 hours ago',
-    text: 'During the March 2020 liquidity crunch, the ratio spiked to an all-time record of 125:1. Anyone who rotated their gold holdings into silver at that peak doubled their gold stack once silver caught up in 2021.',
-    likes: 45,
-  },
-  {
-    id: 'c4',
-    author: 'Sarah Jenkins',
-    avatarColor: 'bg-purple-600',
-    timeAgo: '1 day ago',
-    text: 'Great to see live multi-asset tracking with Platinum and Copper alongside the ratio. Platinum trading at roughly a 60% discount to gold remains another historic anomaly worth watching.',
-    likes: 19,
-  },
-];
-
 export default function InternationalGSRClient() {
   // ─── Live data from hook ───────────────────────────────────────────────────
   const { rates: liveRates, lastFetchedAt } = useInternationalRates();
@@ -382,11 +335,6 @@ export default function InternationalGSRClient() {
   const [quickWeight, setQuickWeight] = useState<WeightUnit>('oz');
   const [quickCurrency, setQuickCurrency] = useState<CurrencyCode>('GBP');
   const [quickPeriod, setQuickPeriod] = useState<string>('Week');
-
-  // Discussion state
-  const [comments, setComments] = useState<UserComment[]>(INITIAL_COMMENTS);
-  const [newCommentText, setNewCommentText] = useState('');
-  const [isCommentBoxOpen, setIsCommentBoxOpen] = useState(false);
 
   // Use live assets instead of static
   const asset = liveAssets[activeAsset];
@@ -532,26 +480,6 @@ export default function InternationalGSRClient() {
   const equivalentGoldOzAtLive = swapSilverAmount / gsrValue;
   const equivalentSilverAtTargetRatio = equivalentGoldOzAtLive * swapTargetRatio;
   const netSilverGained = equivalentSilverAtTargetRatio - swapSilverAmount;
-
-  const handleLike = (id: string) => {
-    setComments((prev) => prev.map((c) => (c.id === id ? { ...c, likes: c.likes + 1 } : c)));
-  };
-
-  const handleAddComment = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newCommentText.trim()) return;
-    const newC: UserComment = {
-      id: `c_${Date.now()}`,
-      author: 'Precious Metals Trader',
-      avatarColor: 'bg-amber-700',
-      timeAgo: 'Just now',
-      text: newCommentText.trim(),
-      likes: 0,
-    };
-    setComments([newC, ...comments]);
-    setNewCommentText('');
-    setIsCommentBoxOpen(false);
-  };
 
   return (
     <div className="w-full px-3 sm:px-6 lg:px-8 py-2 sm:py-4 space-y-4 font-sans text-gray-900">
@@ -1247,100 +1175,6 @@ export default function InternationalGSRClient() {
               </tr>
             </tbody>
           </table>
-        </div>
-      </div>
-
-      {/* ── COMMUNITY DISCUSSION SECTION ── */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-4 sm:p-5 shadow-xs">
-        <div className="flex items-center justify-between mb-3">
-          <div className="flex items-center gap-2">
-            <MessageSquare className="w-4 h-4 text-amber-600" />
-            <h3 className="text-sm sm:text-base font-bold text-gray-900">
-              Community Discussion &amp; Ratio Traders
-            </h3>
-            <span className="text-[11px] font-bold px-2 py-0.2 rounded-full bg-gray-100 text-gray-600">
-              {comments.length}
-            </span>
-          </div>
-        </div>
-
-        {/* Comment Input */}
-        <div className="mb-4">
-          {!isCommentBoxOpen ? (
-            <div
-              onClick={() => setIsCommentBoxOpen(true)}
-              className="cursor-pointer flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl border border-gray-300 hover:border-amber-500 text-gray-500 text-xs transition"
-            >
-              <div className="w-5 h-5 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center text-[10px] font-bold">
-                ?
-              </div>
-              <span>Share your ratio trading observations, dealer spreads, or bullion allocations...</span>
-            </div>
-          ) : (
-            <form onSubmit={handleAddComment} className="border-2 border-amber-500 rounded-xl p-3 shadow-xs">
-              <textarea
-                autoFocus
-                rows={3}
-                value={newCommentText}
-                onChange={(e) => setNewCommentText(e.target.value)}
-                placeholder="What ratio triggers your gold/silver swaps? Share your strategy..."
-                className="w-full text-xs text-gray-900 border-none focus:outline-none resize-none placeholder-gray-400"
-              />
-              <div className="flex items-center justify-between pt-2 border-t border-gray-100 text-xs">
-                <span className="text-[11px] text-gray-400">Posting as Guest</span>
-                <div className="flex gap-2">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setIsCommentBoxOpen(false);
-                      setNewCommentText('');
-                    }}
-                    className="px-2.5 py-1 text-gray-500 hover:text-gray-800"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    disabled={!newCommentText.trim()}
-                    className="inline-flex items-center gap-1 px-3 py-1 font-bold text-white bg-amber-600 hover:bg-amber-700 rounded-lg disabled:opacity-50 transition"
-                  >
-                    <Send className="w-3 h-3" />
-                    <span>Post</span>
-                  </button>
-                </div>
-              </div>
-            </form>
-          )}
-        </div>
-
-        {/* Comments Feed */}
-        <div className="space-y-3">
-          {comments.map((comment) => (
-            <div key={comment.id} className="p-3 rounded-xl border border-gray-100 bg-gray-50/50">
-              <div className="flex items-center justify-between mb-1.5">
-                <div className="flex items-center gap-2">
-                  <div className={`w-6 h-6 rounded-full ${comment.avatarColor} text-white flex items-center justify-center text-[11px] font-bold`}>
-                    {comment.author.charAt(0)}
-                  </div>
-                  <div>
-                    <span className="text-xs font-bold text-gray-900">{comment.author}</span>
-                    <span className="text-[10px] text-gray-400 ml-2">{comment.timeAgo}</span>
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => handleLike(comment.id)}
-                  className="flex items-center gap-1 text-xs text-gray-400 hover:text-amber-600 transition"
-                >
-                  <ThumbsUp className="w-3 h-3" />
-                  <span>{comment.likes}</span>
-                </button>
-              </div>
-              <p className="text-xs text-gray-700 leading-relaxed pl-8">
-                {comment.text}
-              </p>
-            </div>
-          ))}
         </div>
       </div>
     </div>
