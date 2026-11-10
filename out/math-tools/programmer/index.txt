@@ -1,4 +1,4 @@
-3:I[42692,["4730","static/chunks/app/math-tools/programmer/page-eb3d4b8f2bec5f97.js"],"ProgrammerApp"]
+3:I[42692,["4730","static/chunks/app/math-tools/programmer/page-85f481f1a103a5ce.js"],"ProgrammerApp"]
 4:I[39275,[],""]
 5:I[61343,[],""]
 6:I[36211,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-78e9b39bd7614c90.js","4467","static/chunks/4467-2b159442a02a9721.js","3185","static/chunks/app/layout-d97518a87464e2ef.js"],"default"]
