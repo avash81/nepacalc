@@ -283,6 +283,26 @@ const nextConfig = {
         destination: '/math-tools/programmer/',
         permanent: true,
       },
+      {
+        source: '/market-rates/gold-silver-ratio',
+        destination: '/international/gold-silver-ratio/',
+        permanent: true,
+      },
+      {
+        source: '/market-rates/gold-silver-ratio/',
+        destination: '/international/gold-silver-ratio/',
+        permanent: true,
+      },
+      {
+        source: '/market-rates/dubai-gold-rate',
+        destination: '/international/dubai-gold-rate/',
+        permanent: true,
+      },
+      {
+        source: '/market-rates/dubai-gold-rate/',
+        destination: '/international/dubai-gold-rate/',
+        permanent: true,
+      },
     ];
   },
   // Webpack: tree shaking only

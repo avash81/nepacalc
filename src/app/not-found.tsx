@@ -114,7 +114,7 @@ export default function NotFound() {
         </div>
 
         <div className="pt-8 text-[9px] font-black text-gray-300 dark:text-gray-700 uppercase tracking-[0.4em]">
-          &copy; NepaCalc — Nepal&apos;s Precision Suite
+          &copy; NepaCalc - Nepal&apos;s Precision Suite
         </div>
 
       </div>

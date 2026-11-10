@@ -70,7 +70,10 @@ export const CALCULATORS: Calculator[] = [
   { id: 'exchange-rate-nepal', slug: 'market-rates/exchange-rate-nepal', name: 'Exchange Rate Nepal',  description: 'Live foreign exchange rates for 20+ currencies including USD and INR.', category: 'market', isNepal: true },
   { id: 'currency-converter', slug: 'currency-converter', name: 'Currency Converter',  description: 'Convert international currencies into Nepalese Rupees using live exchange rates.', category: 'market', isNepal: true },
   { id: 'remittance-calculator', slug: 'market-rates/remittance', name: 'Remittance Board',  description: 'Compare real-time exchange rates for sending money to Nepal.', category: 'market', isNepal: true },
-    { id: 'international-gold-silver', slug: 'market-rates/international-gold-silver', name: 'Gold & Silver Price Today (USA)', description: 'Live US spot gold and silver prices in USD with 30-day interactive charts, purity rates (24K–10K), and weight calculator.', category: 'international', isNepal: false, keywords: ['gold price usa', 'silver price usa', 'gold price today usa', 'us gold spot price', 'gold price per ounce usd', 'comex gold spot'] },
+    { id: 'international-gold-silver', slug: 'market-rates/international-gold-silver', name: 'Gold & Silver Price Today (USA)', description: 'Live US spot gold and silver prices in USD with 30-day interactive charts, purity rates (24K-10K), and weight calculator.', category: 'international', isNepal: false, keywords: ['gold price usa', 'silver price usa', 'gold price today usa', 'us gold spot price', 'gold price per ounce usd', 'comex gold spot'] },
+    { id: 'gold-silver-ratio', slug: 'international/gold-silver-ratio', name: 'Gold to Silver Ratio (Live GSR)', description: 'Live gold-to-silver ratio with 30-day chart, historical benchmarks, and silver/gold swap calculator.', category: 'international', isNepal: false, keywords: ['gold to silver ratio', 'gold silver ratio live', 'gsr chart', 'is silver undervalued', 'gold silver ratio history'] },
+    { id: 'dubai-gold-rate', slug: 'international/dubai-gold-rate', name: 'Dubai Gold Rate Today (AED & USD)', description: 'Live Dubai gold price today for 24K, 22K, 21K and 18K in AED and USD with VAT refund calculator and customs guide.', category: 'international', isNepal: false, keywords: ['dubai gold rate today', 'gold price in dubai', 'dubai gold rate 24k 22k', 'today gold rate uae', 'dubai gold price in aed'] },
+    { id: 'ppp-salary-converter', slug: 'calculator/ppp-salary-converter', name: 'PPP Salary & Cost of Living Calculator', description: 'Convert your salary to real purchasing power across 19 global cities using World Bank PPP factors and Numbeo cost of living indices.', category: 'international', isNepal: false, keywords: ['ppp salary calculator', 'cost of living salary converter', 'purchasing power parity calculator', 'remote work salary calculator', 'digital nomad salary calculator'] },
 
 
   // ==========================================
@@ -178,7 +181,7 @@ export const CALCULATORS: Calculator[] = [
 export const CATEGORIES: Category[] = [
   // Order by traffic dominance from Search Console data
   { id: 'nepal', name: 'Nepal Specific',  calculators: CALCULATORS.filter(c => c.category === 'nepal') },
-  { id: 'international', name: 'International & Global Rates',  icon: '🌐', calculators: CALCULATORS.filter(c => c.category === 'international') },
+  { id: 'international', name: 'International',  icon: '🌐', calculators: CALCULATORS.filter(c => c.category === 'international') },
   { id: 'market', name: 'Market Rates',  calculators: CALCULATORS.filter(c => c.category === 'market') },
   { id: 'engineering', name: 'Engineering',  calculators: CALCULATORS.filter(c => c.category === 'engineering') },
   { id: 'health', name: 'Health & Fitness',  calculators: CALCULATORS.filter(c => c.category === 'health') },
