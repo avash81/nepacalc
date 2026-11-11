@@ -91,6 +91,30 @@ export default function InternationalGSRPage() {
         text: 'Yes. Ratio trading involves swapping physical metal holdings between gold and silver without deploying new cash. An investor trades gold for silver when the ratio is high (e.g., >80:1) to accumulate maximum silver ounces, and then swaps back into gold when the ratio compresses (e.g., toward 60:1), steadily increasing total gold ounces held over multi-year cycles.',
       },
     },
+    {
+      name: 'How do investors buy precious metals with Bitcoin?',
+      acceptedAnswer: {
+        text: 'Leading international bullion dealers and mints accept Bitcoin directly as payment for physical gold, silver, platinum, and palladium bars and coins. Paying with Bitcoin provides immediate 24/7 transaction settlement and typically qualifies buyers for a 3% to 4% cash-equivalent discount over credit cards by eliminating merchant processing surcharges and chargeback liabilities.',
+      },
+    },
+    {
+      name: 'Why did pre-1982 US pennies contain 95% copper?',
+      acceptedAnswer: {
+        text: 'From 1864 until 1982, US one-cent pennies (including classic wheat cents minted from 1909 to 1958) were minted with 95% copper and 5% zinc/tin. In 1982, rising copper market prices caused the raw metal melt value of a penny to exceed its one-cent face value, leading the US Mint to switch composition to 97.5% zinc with a thin 2.5% copper plating.',
+      },
+    },
+    {
+      name: 'What is the difference between Platinum and Palladium, and why did Palladium spike above Gold?',
+      acceptedAnswer: {
+        text: 'Both Platinum and Palladium belong to the Platinum Group Metals (PGMs) and function as premier industrial catalysts. Platinum is primarily utilized in diesel vehicle emissions systems and hydrogen PEM fuel cells, while Palladium is specialized for gasoline engines. Between 2019 and 2022, strict automotive emissions standards and Russian export sanction risks drove Palladium spot prices above $3,400/oz, briefly eclipsing gold before automakers engineered thrifting and platinum substitution.',
+      },
+    },
+    {
+      name: 'Does the gold-to-silver ratio predict macroeconomic recessions?',
+      acceptedAnswer: {
+        text: 'Historical data demonstrates that rapid expansions in the gold-to-silver ratio (surpassing 80:1 to 100:1) reliably correlate with global recessions, liquidity crises, and geopolitical turmoil (such as the 1991 Gulf War, the 2008 Great Financial Crisis, and the 2020 COVID shock), as capital flees into defensive gold reserves while industrial manufacturing demand for silver temporarily contracts.',
+      },
+    },
   ];
 
   const graphSchema = {
@@ -253,6 +277,30 @@ export default function InternationalGSRPage() {
               <strong>Economic Cycle Confirmation:</strong> Expanding ratios often correlate with global recessions or geopolitical shocks as investors flee to gold. Contracting ratios generally reflect industrial expansion and surging manufacturing consumption.
             </li>
           </ul>
+
+          {/* Cross-Asset Intelligence Modules */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 pt-2 border-t border-gray-100">
+            <div className="p-3 bg-gray-50 rounded-lg border border-gray-200">
+              <h4 className="font-bold text-gray-900 text-xs mb-1">Platinum vs. Palladium (PGMs)</h4>
+              <p className="text-[11px] text-gray-600 leading-relaxed">
+                Discovered in 1803 by William Wollaston, Platinum and Palladium are the two premier autocatalytic metals. While Palladium peaked above $3,400/oz in 2022 on Russian supply risks, Platinum has reclaimed its historical premium due to heavy-duty diesel demand and emerging hydrogen PEM electrolyzers.
+              </p>
+            </div>
+
+            <div className="p-3 bg-gray-50 rounded-lg border border-gray-200">
+              <h4 className="font-bold text-gray-900 text-xs mb-1">Copper: The Electrification Gauge</h4>
+              <p className="text-[11px] text-gray-600 leading-relaxed">
+                Quoted per pound on COMEX and metric ton on LME, copper demand is surging due to AI data center transformers and electric vehicles (EVs require ~80kg vs 20kg for gas cars). Pre-1982 US pennies contain 95% pure copper, making their melt value roughly double their 1-cent face value.
+              </p>
+            </div>
+
+            <div className="p-3 bg-gray-50 rounded-lg border border-gray-200">
+              <h4 className="font-bold text-gray-900 text-xs mb-1">Bitcoin as &quot;Digital Gold&quot;</h4>
+              <p className="text-[11px] text-gray-600 leading-relaxed">
+                Launched by Satoshi Nakamoto in 2009 with a fixed 21M hard cap (divided into 100M satoshis each), Bitcoin offers programmable scarcity. Top precious metals dealers accept Bitcoin for gold and silver bullion purchases at a 3% to 4% cash discount over credit card payments.
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* ── FAQ Section (AEO & People Also Ask Target) ── */}

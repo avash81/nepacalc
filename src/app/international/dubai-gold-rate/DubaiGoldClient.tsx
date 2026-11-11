@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import React, { useState, useEffect, useCallback, useId } from 'react';
+import React, { useState, useEffect, useCallback, useId, useRef } from 'react';
 import Link from 'next/link';
 import {
   Coins,
@@ -15,9 +15,6 @@ import {
   ShieldCheck,
   CheckCircle2,
   ExternalLink,
-  Sparkles,
-  DollarSign,
-  Plane,
   AlertTriangle,
 } from 'lucide-react';
 import { useInternationalRates } from '@/hooks/useInternationalRates';
@@ -185,27 +182,6 @@ export default function DubaiGoldClient({ initialData }: Props) {
   const [modalLalQty, setModalLalQty] = useState<string>('0');
   const [modalSimpleQty, setModalSimpleQty] = useState<string>('1');
 
-  // Supplementary Calculator Tab in Section D
-  const [calcTab, setCalcTab] = useState<'jewellery' | 'melt' | 'silver' | 'vat'>('jewellery');
-
-  // Calculator 1: Retail Jewellery Cost Estimator State
-  const [jewelWeight, setJewelWeight] = useState<number>(15);
-  const [jewelKarat, setJewelKarat] = useState<string>('22K Gold');
-  const [jewelMakingPerGram, setJewelMakingPerGram] = useState<number>(25);
-  const [jewelApplyVat, setJewelApplyVat] = useState<boolean>(true);
-
-  // Calculator 2: Melt Value State
-  const [meltWeight, setMeltWeight] = useState<number>(10);
-  const [meltUnit, setMeltUnit] = useState<'gram' | 'tola' | 'oz' | 'kg'>('gram');
-  const [meltKarat, setMeltKarat] = useState<string>('22K Gold');
-
-  // Calculator 3: Silver Converter State
-  const [silverWeight, setSilverWeight] = useState<number>(50);
-  const [silverType, setSilverType] = useState<'999' | '925'>('999');
-
-  // Calculator 4: Tourist VAT Refund State
-  const [vatPurchaseAmount, setVatPurchaseAmount] = useState<number>(5000);
-
   // Unit Gram Multipliers
   const unitMultipliers: Record<string, { label: string; grams: number }> = {
     gram: { label: 'Per Gram', grams: 1 },
@@ -294,33 +270,6 @@ export default function DubaiGoldClient({ initialData }: Props) {
   const modalTotalPriceAED = modalTotalGrams * modalBaseGramRate;
   const modalRatePerTolaAED = modalBaseGramRate * 11.6638;
 
-  // ─── Supplementary Section D Calculations ───
-  const selectedJewelBenchmark = GOLD_BENCHMARKS_LIVE.find((b) => b.karat === jewelKarat) || GOLD_BENCHMARKS_LIVE[1];
-  const jewelRawMetalAED = jewelWeight * selectedJewelBenchmark.gramAED;
-  const jewelTotalMakingAED = jewelWeight * jewelMakingPerGram;
-  const jewelSubtotalAED = jewelRawMetalAED + jewelTotalMakingAED;
-  const jewelVatAED = jewelApplyVat ? jewelSubtotalAED * 0.05 : 0;
-  const jewelTotalAED = jewelSubtotalAED + jewelVatAED;
-
-  const selectedMeltBenchmark = GOLD_BENCHMARKS_LIVE.find((b) => b.karat === meltKarat) || GOLD_BENCHMARKS_LIVE[1];
-  const meltTotalGrams = meltWeight * (meltUnit === 'gram' ? 1 : meltUnit === 'tola' ? 11.6638 : meltUnit === 'oz' ? 31.1035 : 1000);
-  const meltValueAED = meltTotalGrams * selectedMeltBenchmark.gramAED;
-  const meltValueUSD = meltValueAED / AED_PER_USD;
-  const meltValueINR = meltValueAED * FX_RATES.INR;
-  const meltValuePKR = meltValueAED * FX_RATES.PKR;
-  const meltValueBDT = meltValueAED * FX_RATES.BDT;
-  const meltValuePHP = meltValueAED * FX_RATES.PHP;
-
-  const silverRate = silverType === '999' ? 6.23 : 5.77;
-  const silverValueAED = silverWeight * silverRate;
-  const silverValueUSD = silverValueAED / AED_PER_USD;
-  const silverValueINR = silverValueAED * FX_RATES.INR;
-
-  const grossVatPaid = vatPurchaseAmount * 0.05;
-  const planetRefundEligible = grossVatPaid * 0.85;
-  const planetAdminFee = 4.80;
-  const netVatRefund = Math.max(0, planetRefundEligible - planetAdminFee);
-
   return (
     <div className="w-full max-w-6xl mx-auto px-3 sm:px-4 py-2 sm:py-4 font-sans text-gray-900 space-y-4">
 
@@ -330,7 +279,7 @@ export default function DubaiGoldClient({ initialData }: Props) {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-2.5">
           <div>
             <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight">
-              Today&apos;s Gold &amp; Silver Price in Dubai
+              Today&apos;s Gold &amp; Silver Price in Dubai (AED)
             </h1>
             <p className="text-xs sm:text-sm text-gray-500 mt-0.5">
               Per tola and per 10 grams in Dubai (AED)
@@ -944,364 +893,6 @@ export default function DubaiGoldClient({ initialData }: Props) {
         </div>
       </div>
 
-      {/* ── SECTION D: DETAILED JEWELLERY & VAT ESTIMATOR SUITE ── */}
-      <div className="bg-white rounded-2xl border border-gray-200 shadow-xs overflow-hidden">
-        <div className="flex items-center overflow-x-auto border-b border-gray-200 bg-gray-50/80 px-2 sm:px-4">
-          <button
-            type="button"
-            onClick={() => setCalcTab('jewellery')}
-            className={`px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm whitespace-nowrap transition border-b-2 -mb-px flex items-center gap-1.5 font-bold ${
-              calcTab === 'jewellery'
-                ? 'border-amber-600 text-amber-800 bg-white'
-                : 'border-transparent text-gray-600 hover:text-gray-900 hover:bg-gray-100/60'
-            }`}
-          >
-            <Sparkles className="w-3.5 h-3.5 text-amber-600" />
-            <span>Retail Jewellery Cost Estimator</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => setCalcTab('melt')}
-            className={`px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm whitespace-nowrap transition border-b-2 -mb-px flex items-center gap-1.5 font-bold ${
-              calcTab === 'melt'
-                ? 'border-amber-600 text-amber-800 bg-white'
-                : 'border-transparent text-gray-600 hover:text-gray-900 hover:bg-gray-100/60'
-            }`}
-          >
-            <Calculator className="w-3.5 h-3.5 text-amber-600" />
-            <span>Gold Melt Value Calculator</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => setCalcTab('silver')}
-            className={`px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm whitespace-nowrap transition border-b-2 -mb-px flex items-center gap-1.5 font-bold ${
-              calcTab === 'silver'
-                ? 'border-amber-600 text-amber-800 bg-white'
-                : 'border-transparent text-gray-600 hover:text-gray-900 hover:bg-gray-100/60'
-            }`}
-          >
-            <Coins className="w-3.5 h-3.5 text-slate-600" />
-            <span>Silver &amp; Sterling Value</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => setCalcTab('vat')}
-            className={`px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm whitespace-nowrap transition border-b-2 -mb-px flex items-center gap-1.5 font-bold ${
-              calcTab === 'vat'
-                ? 'border-amber-600 text-amber-800 bg-white'
-                : 'border-transparent text-gray-600 hover:text-gray-900 hover:bg-gray-100/60'
-            }`}
-          >
-            <Plane className="w-3.5 h-3.5 text-emerald-600" />
-            <span>Airport VAT Refund Calculator</span>
-          </button>
-        </div>
-
-        <div className="p-4 sm:p-6">
-          {/* TAB 1: RETAIL JEWELLERY COST ESTIMATOR */}
-          {calcTab === 'jewellery' && (
-            <div className="space-y-4">
-              <div className="flex items-center justify-between border-b border-gray-100 pb-2">
-                <div>
-                  <h3 className="text-sm sm:text-base font-bold text-gray-900">
-                    Dubai Retail Jewellery Cost Estimator
-                  </h3>
-                  <p className="text-xs text-gray-500">
-                    Formula: Total = (Weight × Karat Rate) + (Weight × Making Charge) + 5% UAE VAT
-                  </p>
-                </div>
-                <span className="text-xs font-bold text-amber-800 bg-amber-50 px-2 py-0.5 rounded">
-                  Gold Souq &amp; Mall Pricing
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-                <div>
-                  <label className="block text-gray-600 font-semibold mb-1">Weight in Grams:</label>
-                  <input
-                    type="number"
-                    min="0.1"
-                    step="0.5"
-                    value={jewelWeight}
-                    onChange={(e) => setJewelWeight(Math.max(0.1, Number(e.target.value)))}
-                    className="w-full px-3 py-2 rounded-xl border border-gray-300 font-bold text-sm text-gray-900 focus:border-amber-500 outline-none"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-gray-600 font-semibold mb-1">Gold Karat:</label>
-                  <select
-                    value={jewelKarat}
-                    onChange={(e) => setJewelKarat(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl border border-gray-300 font-bold text-xs text-gray-900 focus:border-amber-500 outline-none cursor-pointer"
-                  >
-                    {GOLD_BENCHMARKS_LIVE.map((b) => (
-                      <option key={b.karat} value={b.karat}>
-                        {b.karat} (AED {b.gramAED}/g)
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-gray-600 font-semibold mb-1">
-                    Making Charge per Gram (AED):
-                  </label>
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="number"
-                      min="5"
-                      max="150"
-                      step="1"
-                      value={jewelMakingPerGram}
-                      onChange={(e) => setJewelMakingPerGram(Math.max(0, Number(e.target.value)))}
-                      className="w-full px-3 py-2 rounded-xl border border-gray-300 font-bold text-sm text-gray-900 focus:border-amber-500 outline-none"
-                    />
-                  </div>
-                  <span className="text-[10px] text-gray-400 mt-1 block">Typical Souq: AED 15 - 35/g</span>
-                </div>
-              </div>
-
-              {/* VAT Checkbox */}
-              <div className="flex items-center gap-2 pt-1 text-xs">
-                <input
-                  type="checkbox"
-                  id="applyVat"
-                  checked={jewelApplyVat}
-                  onChange={(e) => setJewelApplyVat(e.target.checked)}
-                  className="rounded border-gray-300 text-amber-600 focus:ring-amber-500 h-4 w-4 cursor-pointer"
-                />
-                <label htmlFor="applyVat" className="text-gray-700 font-medium cursor-pointer">
-                  Include 5% UAE VAT (Standard rate on finished jewellery)
-                </label>
-              </div>
-
-              {/* Itemized Price Breakdown Result Card */}
-              <div className="p-4 bg-amber-50/70 border border-amber-200 rounded-xl space-y-2 text-xs">
-                <div className="font-bold text-gray-800 text-xs sm:text-sm border-b border-amber-200/60 pb-1.5 flex items-center justify-between">
-                  <span>Itemized Bill Breakdown ({jewelWeight}g of {jewelKarat})</span>
-                  <span className="text-amber-900 font-black text-sm sm:text-base">
-                    AED {jewelTotalAED.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                  </span>
-                </div>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
-                  <div>
-                    <span className="text-gray-500 block text-[11px]">Raw Gold Metal Value:</span>
-                    <span className="font-bold text-gray-900 text-xs">AED {jewelRawMetalAED.toFixed(2)}</span>
-                  </div>
-                  <div>
-                    <span className="text-gray-500 block text-[11px]">Total Craftsmanship/Making:</span>
-                    <span className="font-bold text-gray-900 text-xs">AED {jewelTotalMakingAED.toFixed(2)}</span>
-                  </div>
-                  <div>
-                    <span className="text-gray-500 block text-[11px]">UAE 5% VAT:</span>
-                    <span className="font-bold text-gray-900 text-xs">AED {jewelVatAED.toFixed(2)}</span>
-                  </div>
-                  <div>
-                    <span className="text-gray-500 block text-[11px]">Est. in USD ($):</span>
-                    <span className="font-bold text-blue-900 text-xs">${(jewelTotalAED / AED_PER_USD).toFixed(2)}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* TAB 2: GOLD MELT VALUE CALCULATOR */}
-          {calcTab === 'melt' && (
-            <div className="space-y-4">
-              <div className="flex items-center justify-between border-b border-gray-100 pb-2">
-                <div>
-                  <h3 className="text-sm sm:text-base font-bold text-gray-900">
-                    Gold Melt Value &amp; Remittance Converter
-                  </h3>
-                  <p className="text-xs text-gray-500">
-                    Formula: Baseline Price = Weight (grams) × Live Karat Rate (AED/g)
-                  </p>
-                </div>
-                <span className="text-xs font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded">
-                  Raw Bullion Value
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-                <div>
-                  <label className="block text-gray-600 font-semibold mb-1">Weight:</label>
-                  <input
-                    type="number"
-                    min="0.1"
-                    step="1"
-                    value={meltWeight}
-                    onChange={(e) => setMeltWeight(Math.max(0.1, Number(e.target.value)))}
-                    className="w-full px-3 py-2 rounded-xl border border-gray-300 font-bold text-sm text-gray-900 focus:border-amber-500 outline-none"
-                  />
-                </div>
-                <div>
-                  <label className="block text-gray-600 font-semibold mb-1">Unit:</label>
-                  <select
-                    value={meltUnit}
-                    onChange={(e) => setMeltUnit(e.target.value as 'gram' | 'tola' | 'oz' | 'kg')}
-                    className="w-full px-3 py-2 rounded-xl border border-gray-300 font-bold text-xs text-gray-900 focus:border-amber-500 outline-none cursor-pointer"
-                  >
-                    <option value="gram">Grams (g)</option>
-                    <option value="tola">Tola (11.66g)</option>
-                    <option value="oz">Troy Ounces (31.10g)</option>
-                    <option value="kg">Kilograms (kg)</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-gray-600 font-semibold mb-1">Gold Karat:</label>
-                  <select
-                    value={meltKarat}
-                    onChange={(e) => setMeltKarat(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl border border-gray-300 font-bold text-xs text-gray-900 focus:border-amber-500 outline-none cursor-pointer"
-                  >
-                    {GOLD_BENCHMARKS_LIVE.map((b) => (
-                      <option key={b.karat} value={b.karat}>
-                        {b.karat} ({b.purity})
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              <div className="p-4 bg-emerald-50/70 border border-emerald-200 rounded-xl space-y-2 text-xs">
-                <div className="flex items-center justify-between border-b border-emerald-200/60 pb-2">
-                  <span className="font-bold text-emerald-950 text-sm">
-                    Total Raw Gold Melt Value ({meltTotalGrams.toFixed(2)}g of {meltKarat}):
-                  </span>
-                  <span className="text-emerald-900 font-black text-lg">
-                    AED {meltValueAED.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                  </span>
-                </div>
-                <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 pt-1 font-semibold">
-                  <div>
-                    <span className="text-gray-500 block text-[11px]">US Dollar (USD):</span>
-                    <span className="text-blue-900 font-bold text-xs">${meltValueUSD.toFixed(2)}</span>
-                  </div>
-                  <div>
-                    <span className="text-gray-500 block text-[11px]">Indian Rupee (INR):</span>
-                    <span className="text-emerald-800 font-bold text-xs">₹{meltValueINR.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
-                  </div>
-                  <div>
-                    <span className="text-gray-500 block text-[11px]">Pakistani Rupee (PKR):</span>
-                    <span className="text-gray-800 font-bold text-xs">₨{meltValuePKR.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
-                  </div>
-                  <div>
-                    <span className="text-gray-500 block text-[11px]">Bangladeshi Taka (BDT):</span>
-                    <span className="text-gray-800 font-bold text-xs">৳{meltValueBDT.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
-                  </div>
-                  <div>
-                    <span className="text-gray-500 block text-[11px]">Philippine Peso (PHP):</span>
-                    <span className="text-gray-800 font-bold text-xs">₱{meltValuePHP.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* TAB 3: SILVER & STERLING VALUE CONVERTER */}
-          {calcTab === 'silver' && (
-            <div className="space-y-4">
-              <div className="border-b border-gray-100 pb-2">
-                <h3 className="text-sm sm:text-base font-bold text-gray-900">
-                  Silver Melt Value &amp; Sterling Jewellery Converter
-                </h3>
-                <p className="text-xs text-gray-500">
-                  Inputs: Weight (grams) and Silver Type (999 Fine Bullion vs 925 Sterling Jewellery)
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                <div>
-                  <label className="block text-gray-600 font-semibold mb-1">Weight in Grams:</label>
-                  <input
-                    type="number"
-                    min="1"
-                    step="10"
-                    value={silverWeight}
-                    onChange={(e) => setSilverWeight(Math.max(1, Number(e.target.value)))}
-                    className="w-full px-3 py-2 rounded-xl border border-gray-300 font-bold text-sm text-gray-900 focus:border-amber-500 outline-none"
-                  />
-                </div>
-                <div>
-                  <label className="block text-gray-600 font-semibold mb-1">Silver Standard:</label>
-                  <select
-                    value={silverType}
-                    onChange={(e) => setSilverType(e.target.value as '999' | '925')}
-                    className="w-full px-3 py-2 rounded-xl border border-gray-300 font-bold text-xs text-gray-900 focus:border-amber-500 outline-none cursor-pointer"
-                  >
-                    <option value="999">999 Fine Silver (AED 6.23/g) - Investment Bullion</option>
-                    <option value="925">925 Sterling Silver (AED 5.77/g) - Jewellery Standard</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2 text-xs">
-                <div className="flex items-center justify-between border-b border-slate-200 pb-2">
-                  <span className="font-bold text-slate-800 text-sm">
-                    Estimated Melt Content Value ({silverWeight}g of {silverType === '999' ? '999 Fine' : '925 Sterling'}):
-                  </span>
-                  <span className="text-slate-900 font-black text-lg">
-                    AED {silverValueAED.toFixed(2)}
-                  </span>
-                </div>
-                <div className="flex gap-6 font-semibold pt-1">
-                  <div>
-                    <span className="text-gray-500 block text-[11px]">US Dollar (USD):</span>
-                    <span className="text-blue-900 font-bold text-xs">${silverValueUSD.toFixed(2)}</span>
-                  </div>
-                  <div>
-                    <span className="text-gray-500 block text-[11px]">Indian Rupee (INR):</span>
-                    <span className="text-emerald-800 font-bold text-xs">₹{silverValueINR.toFixed(2)}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* TAB 4: TOURIST VAT REFUND CALCULATOR */}
-          {calcTab === 'vat' && (
-            <div className="space-y-4">
-              <div className="border-b border-gray-100 pb-2">
-                <h3 className="text-sm sm:text-base font-bold text-gray-900">
-                  UAE Tourist VAT Refund Calculator (Planet Tax Free Scheme)
-                </h3>
-                <p className="text-xs text-gray-500">
-                  Tourists leaving the UAE can claim an 85% refund of VAT paid on retail jewellery, minus a 4.80 AED admin tag fee.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                <div>
-                  <label className="block text-gray-600 font-semibold mb-1">
-                    Total Store Purchase Invoice (AED):
-                  </label>
-                  <input
-                    type="number"
-                    min="250"
-                    step="100"
-                    value={vatPurchaseAmount}
-                    onChange={(e) => setVatPurchaseAmount(Math.max(0, Number(e.target.value)))}
-                    className="w-full px-3 py-2 rounded-xl border border-gray-300 font-bold text-sm text-gray-900 focus:border-amber-500 outline-none"
-                  />
-                  <span className="text-[10px] text-gray-400 mt-1 block">Minimum purchase: AED 250</span>
-                </div>
-
-                <div className="p-3 bg-emerald-50 rounded-xl border border-emerald-200 space-y-1">
-                  <span className="text-[11px] font-bold text-emerald-900 block">Net Cash/Card Refund at Airport:</span>
-                  <span className="text-2xl font-black text-emerald-800 block">
-                    AED {netVatRefund.toFixed(2)}
-                  </span>
-                  <span className="text-[10px] text-gray-500 block">
-                    Gross VAT: AED {grossVatPaid.toFixed(2)} · Planet 85%: AED {planetRefundEligible.toFixed(2)} · Tag Fee: AED 4.80
-                  </span>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-
       {/* ── SECTION E: DUBAI MARKET PRICE METHODOLOGY & COMPETITOR GAP ANALYSIS ── */}
       <div className="bg-white rounded-2xl border border-gray-200 p-4 sm:p-6 shadow-xs space-y-4 text-xs sm:text-sm text-gray-700 leading-relaxed">
         <h2 className="text-base sm:text-lg font-bold text-gray-900">
@@ -1519,7 +1110,7 @@ export default function DubaiGoldClient({ initialData }: Props) {
   );
 }
 
-// ─── Simple Area Chart Component (Matching Image 1 & NepaCalc Flagship) ───
+// ─── Simple Area Chart Component (Interactive Hover Crosshair & Tooltip) ───
 interface ChartProps {
   data: { date: string; price: number }[];
   color: string;
@@ -1530,6 +1121,8 @@ interface ChartProps {
 
 function SimpleAreaChart({ data, color, gradientFrom, unitMultiplier, currency }: ChartProps) {
   const gradientId = useId();
+  const svgRef = useRef<SVGSVGElement | null>(null);
+  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
   const scaledData = data.map((d) => {
     let p = d.price * unitMultiplier;
@@ -1581,9 +1174,41 @@ function SimpleAreaChart({ data, color, gradientFrom, unitMultiplier, currency }
     return { val, y };
   });
 
+  const handlePointer = (clientX: number) => {
+    if (!svgRef.current || points.length === 0) return;
+    const rect = svgRef.current.getBoundingClientRect();
+    const mouseX = clientX - rect.left;
+    const svgX = (mouseX / rect.width) * width;
+
+    let closestIdx = 0;
+    let minDiff = Infinity;
+    points.forEach((pt, i) => {
+      const diff = Math.abs(pt.x - svgX);
+      if (diff < minDiff) {
+        minDiff = diff;
+        closestIdx = i;
+      }
+    });
+    setHoverIndex(closestIdx);
+  };
+
+  const activePt = hoverIndex !== null && hoverIndex >= 0 && hoverIndex < points.length ? points[hoverIndex] : null;
+
   return (
     <div className="relative w-full select-none pt-1">
-      <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-auto overflow-visible">
+      <svg
+        ref={svgRef}
+        viewBox={`0 0 ${width} ${height}`}
+        className="w-full h-auto overflow-visible cursor-crosshair"
+        onMouseMove={(e) => handlePointer(e.clientX)}
+        onMouseLeave={() => setHoverIndex(null)}
+        onTouchMove={(e) => {
+          if (e.touches.length > 0) {
+            handlePointer(e.touches[0].clientX);
+          }
+        }}
+        onTouchEnd={() => setHoverIndex(null)}
+      >
         <defs>
           <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor={gradientFrom} stopOpacity={0.28} />
@@ -1627,6 +1252,85 @@ function SimpleAreaChart({ data, color, gradientFrom, unitMultiplier, currency }
           strokeLinejoin="round"
         />
 
+        {/* Active Line Hover Elements */}
+        {activePt && (
+          <g className="transition-opacity duration-150">
+            {/* Vertical crosshair line */}
+            <line
+              x1={activePt.x}
+              y1={paddingTop - 4}
+              x2={activePt.x}
+              y2={paddingTop + chartHeight}
+              stroke={color}
+              strokeDasharray="3 3"
+              strokeWidth="1.2"
+              opacity="0.8"
+            />
+
+            {/* Glowing outer aura */}
+            <circle
+              cx={activePt.x}
+              cy={activePt.y}
+              r="7"
+              fill={color}
+              opacity="0.25"
+            />
+
+            {/* Point dot on the exact curve */}
+            <circle
+              cx={activePt.x}
+              cy={activePt.y}
+              r="3.5"
+              fill={color}
+              stroke="#ffffff"
+              strokeWidth="2"
+            />
+
+            {/* Floating Info Tooltip */}
+            {(() => {
+              const tooltipWidth = 108;
+              const tooltipHeight = 32;
+              const tooltipY = activePt.y - tooltipHeight - 8 < 2 ? activePt.y + 10 : activePt.y - tooltipHeight - 8;
+              const tooltipX = Math.max(
+                paddingLeft,
+                Math.min(width - paddingRight - tooltipWidth, activePt.x - tooltipWidth / 2)
+              );
+
+              return (
+                <g transform={`translate(${tooltipX}, ${tooltipY})`} className="pointer-events-none">
+                  <rect
+                    width={tooltipWidth}
+                    height={tooltipHeight}
+                    rx="6"
+                    fill="#111827"
+                    opacity="0.95"
+                  />
+                  <text
+                    x={tooltipWidth / 2}
+                    y="12"
+                    textAnchor="middle"
+                    className="text-[9px] fill-gray-300 font-sans font-medium"
+                  >
+                    {activePt.date}
+                  </text>
+                  <text
+                    x={tooltipWidth / 2}
+                    y="25"
+                    textAnchor="middle"
+                    className="text-[11px] fill-white font-sans font-bold"
+                  >
+                    {currency === 'AED' ? 'AED ' : '$'}
+                    {activePt.displayPrice.toLocaleString('en-US', {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}
+                  </text>
+                </g>
+              );
+            })()}
+          </g>
+        )}
+
         {/* X Axis Date Labels */}
         {points.map((pt, idx) => (
           <text
@@ -1634,7 +1338,11 @@ function SimpleAreaChart({ data, color, gradientFrom, unitMultiplier, currency }
             x={pt.x}
             y={height - 4}
             textAnchor="middle"
-            className="text-[9px] fill-gray-400 font-sans font-medium"
+            className={`text-[9px] font-sans transition-colors ${
+              activePt && activePt.date === pt.date
+                ? 'fill-gray-900 font-bold'
+                : 'fill-gray-400 font-medium'
+            }`}
           >
             {pt.date}
           </text>

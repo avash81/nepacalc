@@ -137,13 +137,13 @@ export const ASSETS_METADATA: Record<AssetType, AssetConfig> = {
     label: 'Platinum',
     unitLabel: '/ oz',
     symbol: '$',
-    basePriceUSD: 1559.90,
-    bidUSD: 1556.00,
-    askUSD: 1563.80,
-    change24hUSD: -25.05,
-    changePercent24h: -1.58,
-    high24hUSD: 1592.00,
-    low24hUSD: 1548.50,
+    basePriceUSD: 1565.60,
+    bidUSD: 1550.60,
+    askUSD: 1565.60,
+    change24hUSD: 17.55,
+    changePercent24h: 1.13,
+    high24hUSD: 1585.00,
+    low24hUSD: 1548.00,
     high52wUSD: 1620.00,
     low52wUSD: 880.00,
     athUSD: 2276.00,
@@ -152,7 +152,7 @@ export const ASSETS_METADATA: Record<AssetType, AssetConfig> = {
     gradientFrom: '#38BDF8',
     gradientTo: '#F0F9FF',
     category: 'precious',
-    summary: 'Rare catalytic metal essential for heavy-duty diesel emission systems and future hydrogen PEM fuel cells.',
+    summary: 'Rare catalytic metal essential for heavy-duty diesel emission systems, hydrogen PEM fuel cells, and fine jewellery.',
     keyDrivers: [
       'Hydrogen PEM fuel cell and electrolyzer industrial adoption',
       'Heavy-duty diesel vehicle emissions after-treatment',
@@ -160,7 +160,7 @@ export const ASSETS_METADATA: Record<AssetType, AssetConfig> = {
       'Industrial substitution for historically expensive palladium'
     ],
     macroRatios: [
-      { label: 'Gold/Platinum Ratio', value: '2.62:1', note: 'Gold premium remains near historic wide spread' },
+      { label: 'Gold/Platinum Ratio', value: '2.61:1', note: 'Gold premium remains near historic wide spread' },
       { label: 'Platinum/Palladium', value: '1.48:1', note: 'Platinum has reclaimed premium over palladium' },
       { label: 'Global Supply Share', value: '72% SA', note: 'High geographic mining concentration risk' }
     ]
@@ -170,13 +170,13 @@ export const ASSETS_METADATA: Record<AssetType, AssetConfig> = {
     label: 'Palladium',
     unitLabel: '/ oz',
     symbol: '$',
-    basePriceUSD: 1054.35,
-    bidUSD: 1049.00,
-    askUSD: 1059.50,
-    change24hUSD: -5.74,
-    changePercent24h: -0.54,
-    high24hUSD: 1072.00,
-    low24hUSD: 1045.10,
+    basePriceUSD: 1060.67,
+    bidUSD: 1020.67,
+    askUSD: 1060.67,
+    change24hUSD: 11.22,
+    changePercent24h: 1.07,
+    high24hUSD: 1075.00,
+    low24hUSD: 1045.00,
     high52wUSD: 1280.00,
     low52wUSD: 840.00,
     athUSD: 3440.00,
@@ -185,7 +185,7 @@ export const ASSETS_METADATA: Record<AssetType, AssetConfig> = {
     gradientFrom: '#A78BFA',
     gradientTo: '#F5F3FF',
     category: 'precious',
-    summary: 'Essential autocatalytic metal primarily dedicated to neutralizing emissions in gasoline-powered internal combustion engines.',
+    summary: 'Essential autocatalytic metal discovered in 1803 (symbol Pd, atomic 46), dedicated to neutralizing emissions in gasoline engines.',
     keyDrivers: [
       'Global gasoline and hybrid automobile production quotas',
       'Sanction uncertainties surrounding Russian output (Norilsk ~40%)',
@@ -194,7 +194,7 @@ export const ASSETS_METADATA: Record<AssetType, AssetConfig> = {
     ],
     macroRatios: [
       { label: 'Palladium/Platinum', value: '0.68:1', note: 'Down from 3.1x peak in 2021' },
-      { label: 'Gold/Palladium Ratio', value: '3.88:1', note: 'Gold trades at substantial premium' },
+      { label: 'Gold/Palladium Ratio', value: '3.86:1', note: 'Gold trades at substantial premium' },
       { label: 'Auto Catalyst Share', value: '85%', note: 'Heavily tied to combustion engine health' }
     ]
   },
@@ -203,32 +203,32 @@ export const ASSETS_METADATA: Record<AssetType, AssetConfig> = {
     label: 'Copper',
     unitLabel: '/ lb',
     symbol: '$',
-    basePriceUSD: 4.85,
-    bidUSD: 4.84,
-    askUSD: 4.86,
-    change24hUSD: 0.06,
-    changePercent24h: 1.25,
-    high24hUSD: 4.92,
-    low24hUSD: 4.78,
-    high52wUSD: 5.20,
+    basePriceUSD: 6.28,
+    bidUSD: 6.28,
+    askUSD: 6.28,
+    change24hUSD: 0.03,
+    changePercent24h: 0.51,
+    high24hUSD: 6.35,
+    low24hUSD: 6.21,
+    high52wUSD: 6.50,
     low52wUSD: 3.70,
-    athUSD: 5.20,
-    athDate: 'May 2024 ($11,460 / Metric Ton)',
+    athUSD: 6.50,
+    athDate: '2026 ($13,850 / Metric Ton)',
     themeColor: '#EA580C',
     gradientFrom: '#FB923C',
     gradientTo: '#FFF7ED',
     category: 'industrial',
-    summary: '"Dr. Copper" serves as a premier economic barometer due to its ubiquitous role across building, power grids, and AI data centers.',
+    summary: '"Dr. Copper" serves as a premier economic barometer due to its ubiquitous role across power grids, AI data centers, and EV electrification.',
     keyDrivers: [
       'AI Data Center power distribution and transformer demand',
       'Electric vehicle manufacturing (EVs require ~80kg vs 20kg for gas)',
       'Renewable energy transmission line buildouts worldwide',
-      'Mine production bottlenecks in Chile and Peru'
+      'Pre-1982 95% copper pennies vs modern 2.5% zinc coin composition'
     ],
     macroRatios: [
-      { label: 'Gold/Copper Ratio', value: '843:1', note: 'Classic macroeconomic indicator of risk appetite' },
-      { label: 'Metric Ton Price', value: '$10,690', note: 'London Metal Exchange (LME) metric ton quote' },
-      { label: 'Copper / Kilo', value: '$10.69', note: 'Standard industrial fabrication benchmark' }
+      { label: 'Gold/Copper Ratio', value: '651:1', note: 'Classic macroeconomic indicator of risk appetite' },
+      { label: 'Metric Ton Price', value: '$13,845', note: 'London Metal Exchange (LME) metric ton quote' },
+      { label: 'Copper / Kilo', value: '$13.85', note: 'Standard industrial fabrication benchmark' }
     ]
   },
   goldsilver: {
@@ -236,13 +236,13 @@ export const ASSETS_METADATA: Record<AssetType, AssetConfig> = {
     label: 'Gold/Silver',
     unitLabel: ': 1',
     symbol: '',
-    basePriceUSD: 77.23,
+    basePriceUSD: 77.32,
     bidUSD: 77.10,
-    askUSD: 77.36,
-    change24hUSD: -0.92,
-    changePercent24h: -1.17,
-    high24hUSD: 78.42,
-    low24hUSD: 77.15,
+    askUSD: 77.45,
+    change24hUSD: -0.83,
+    changePercent24h: -1.06,
+    high24hUSD: 78.45,
+    low24hUSD: 77.20,
     high52wUSD: 91.80,
     low52wUSD: 73.10,
     athUSD: 125.00,
@@ -251,7 +251,7 @@ export const ASSETS_METADATA: Record<AssetType, AssetConfig> = {
     gradientFrom: '#F59E0B',
     gradientTo: '#FEF3C7',
     category: 'ratio',
-    summary: 'The benchmark ratio tracking how many ounces of silver equal one ounce of gold. Key gauge for precious metal rotation strategies.',
+    summary: 'The benchmark ratio tracking how many ounces of silver equal one ounce of gold. Key gauge for 80/50 rule precious metal rotation strategies.',
     keyDrivers: [
       '80/50 Rule: Mean-reversion signals between gold and silver',
       'Central bank gold purchases outpacing silver monetary reserves',
@@ -269,13 +269,13 @@ export const ASSETS_METADATA: Record<AssetType, AssetConfig> = {
     label: 'BTC/USD',
     unitLabel: '',
     symbol: '$',
-    basePriceUSD: 91450.0,
-    bidUSD: 91440.0,
-    askUSD: 91460.0,
-    change24hUSD: 1280.0,
-    changePercent24h: 1.42,
-    high24hUSD: 92100.0,
-    low24hUSD: 89800.0,
+    basePriceUSD: 73346.60,
+    bidUSD: 73330.00,
+    askUSD: 73360.00,
+    change24hUSD: -352.85,
+    changePercent24h: -0.48,
+    high24hUSD: 74200.00,
+    low24hUSD: 72800.00,
     high52wUSD: 93480.0,
     low52wUSD: 38500.0,
     athUSD: 93480.0,
@@ -284,16 +284,16 @@ export const ASSETS_METADATA: Record<AssetType, AssetConfig> = {
     gradientFrom: '#F7931A',
     gradientTo: '#FFFBEB',
     category: 'crypto',
-    summary: '"Digital Gold" - decentralized programmatic money with an unalterable 21M coin limit and predictable issuance halvings.',
+    summary: '"Digital Gold" - decentralized programmatic money with an unalterable 21M coin limit (subdivided into 100M satoshis each) launched by Satoshi Nakamoto.',
     keyDrivers: [
       'Institutional Spot ETF net inflows (BlackRock, Fidelity)',
       'Post-halving block subsidy scarcity (3.125 BTC per block)',
-      'Corporate treasury allocations & sovereign reserve bills',
-      'Global M2 fiat money supply growth correlation'
+      'Bullion dealer adoption: 4% cash discount when paying with Bitcoin',
+      'Corporate treasury allocations & sovereign reserve bills'
     ],
     macroRatios: [
-      { label: 'BTC/Gold Ratio', value: '22.35 oz', note: 'Troy ounces of gold required to buy 1 Bitcoin' },
-      { label: 'Total Market Cap', value: '$1.80T', note: '~10% of physical gold aggregate market value' },
+      { label: 'BTC/Gold Ratio', value: '18.06 oz', note: 'Troy ounces of gold required to buy 1 Bitcoin' },
+      { label: 'Total Market Cap', value: '$1.45T', note: '~9% of physical gold aggregate market value' },
       { label: 'Stock-to-Flow', value: '112', note: 'Surpassed physical gold stock-to-flow post-halving' }
     ]
   }
@@ -312,6 +312,113 @@ const WEIGHT_MULTIPLIERS: Record<WeightUnit, number> = {
   g: 1 / 31.1034768,
   kg: 32.1507466,
 };
+
+export interface HistoricalReturn {
+  asset: string;
+  symbol: string;
+  color: string;
+  change1Y: { val: string; pct: string; positive: boolean };
+  change5Y: { val: string; pct: string; positive: boolean };
+  change10Y: { val: string; pct: string; positive: boolean };
+  change20Y: { val: string; pct: string; positive: boolean };
+  change30Y: { val: string; pct: string; positive: boolean };
+}
+
+export const HISTORICAL_RETURNS_DATA: HistoricalReturn[] = [
+  {
+    asset: 'Gold',
+    symbol: 'AU',
+    color: '#B45309',
+    change1Y: { val: '+$1,220.00', pct: '+42.50%', positive: true },
+    change5Y: { val: '+$2,190.00', pct: '+115.80%', positive: true },
+    change10Y: { val: '+$2,905.00', pct: '+245.20%', positive: true },
+    change20Y: { val: '+$3,665.00', pct: '+860.50%', positive: true },
+    change30Y: { val: '+$3,700.00', pct: '+955.00%', positive: true },
+  },
+  {
+    asset: 'Silver',
+    symbol: 'AG',
+    color: '#475569',
+    change1Y: { val: '+$21.50', pct: '+68.40%', positive: true },
+    change5Y: { val: '+$34.50', pct: '+185.20%', positive: true },
+    change10Y: { val: '+$36.00', pct: '+210.50%', positive: true },
+    change20Y: { val: '+$46.00', pct: '+640.20%', positive: true },
+    change30Y: { val: '+$47.70', pct: '+880.00%', positive: true },
+  },
+  {
+    asset: 'Platinum',
+    symbol: 'PT',
+    color: '#0284C7',
+    change1Y: { val: '-$30.25', pct: '-1.91%', positive: false },
+    change5Y: { val: '+$464.96', pct: '+42.61%', positive: true },
+    change10Y: { val: '+$614.68', pct: '+65.29%', positive: true },
+    change20Y: { val: '+$336.10', pct: '+27.55%', positive: true },
+    change30Y: { val: '+$1,170.10', pct: '+303.13%', positive: true },
+  },
+  {
+    asset: 'Palladium',
+    symbol: 'PD',
+    color: '#7C3AED',
+    change1Y: { val: '-$408.20', pct: '-28.19%', positive: false },
+    change5Y: { val: '-$1,022.97', pct: '-49.59%', positive: false },
+    change10Y: { val: '+$363.80', pct: '+53.80%', positive: true },
+    change20Y: { val: '+$706.55', pct: '+211.86%', positive: true },
+    change30Y: { val: '+$923.05', pct: '+788.93%', positive: true },
+  },
+  {
+    asset: 'Copper',
+    symbol: 'CU',
+    color: '#EA580C',
+    change1Y: { val: '+$0.95/lb', pct: '+18.50%', positive: true },
+    change5Y: { val: '+$2.45/lb', pct: '+64.20%', positive: true },
+    change10Y: { val: '+$3.32/lb', pct: '+112.00%', positive: true },
+    change20Y: { val: '+$4.65/lb', pct: '+285.40%', positive: true },
+    change30Y: { val: '+$5.05/lb', pct: '+410.20%', positive: true },
+  },
+  {
+    asset: 'Bitcoin (BTC)',
+    symbol: 'BTC',
+    color: '#F7931A',
+    change1Y: { val: '+$38,800', pct: '+112.50%', positive: true },
+    change5Y: { val: '+$64,200', pct: '+820.00%', positive: true },
+    change10Y: { val: '+$73,000', pct: '+24,500%', positive: true },
+    change20Y: { val: 'Inception 2009', pct: 'N/A', positive: true },
+    change30Y: { val: 'Inception 2009', pct: 'N/A', positive: true },
+  },
+];
+
+export const BTC_VS_METALS_COMPARISON = [
+  {
+    feature: 'Profit Potential & Upside',
+    bitcoin: 'Asymmetric exponential upside driven by viral network adoption and fixed 21M limit.',
+    metals: 'Steady, defensive capital preservation with lower drawdowns matching long-term inflation.',
+  },
+  {
+    feature: 'Reliability & Track Record',
+    bitcoin: '15+ years of algorithmic uptime and programmatic consensus (since Jan 2009).',
+    metals: '5,000+ years of universal civilization trust as unassailable money and global central bank reserve.',
+  },
+  {
+    feature: 'Self-Custody & Counterparty Risk',
+    bitcoin: 'Cryptographic private key storage; eliminates institutional intermediaries and confiscation risk.',
+    metals: 'Zero counterparty risk; physical bars and coins can be stored completely off-grid.',
+  },
+  {
+    feature: 'Physical Tangibility',
+    bitcoin: 'Intangible digital ledger; completely dependent on internet connection and electrical power grids.',
+    metals: 'Physical commodity you can hold in your hand; unaffected by EMP, server outages, or grid downtime.',
+  },
+  {
+    feature: 'Universal Borderless Portability',
+    bitcoin: 'Transferable across international borders in minutes with a smartphone and minimal network fee.',
+    metals: 'Heavy and conspicuous to transport internationally; subject to customs declarations and flight weight limits.',
+  },
+  {
+    feature: 'Bullion Purchase Synergy',
+    bitcoin: 'Top bullion dealers accept Bitcoin directly and offer a 3% to 4% cash discount over credit cards.',
+    metals: 'Hard assets often acquired as a natural profit-taking hedge following major cryptocurrency bull runs.',
+  },
+];
 
 // Generates high-density, realistic intraday time-series data matching JM Bullion charts
 function generateSeries(assetId: AssetType, timeframe: Timeframe, baseVal: number, change24h: number) {
@@ -1177,6 +1284,308 @@ export default function InternationalGSRClient() {
                   </tr>
                 );
               })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* ── MULTI-UNIT VALUATION BREAKDOWN (Per Oz, Gram, Kilo, Pound) ── */}
+      <div className="bg-white rounded-xl border border-gray-200 p-3.5 sm:p-4 shadow-2xs space-y-2.5">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 pb-1.5 border-b border-gray-100">
+          <div>
+            <h3 className="text-xs sm:text-sm font-bold text-gray-900 flex items-center gap-1.5">
+              <Scale className="w-4 h-4 text-amber-600" />
+              {asset.label} Multi-Unit Weight Valuation Matrix ({currency})
+            </h3>
+            <p className="text-[11px] text-gray-500">
+              Live standard unit conversions based on official COMEX, LBMA, and LME specifications.
+            </p>
+          </div>
+          <span className="text-[10px] font-semibold text-gray-400">
+            Selected Currency: {currency}
+          </span>
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          {activeAsset === 'goldsilver' ? (
+            <>
+              <div className="p-2.5 rounded-lg border border-gray-200 bg-amber-50/50">
+                <span className="text-[10px] text-gray-500 font-semibold block uppercase">Ratio per Troy Ounce</span>
+                <span className="text-sm sm:text-base font-extrabold text-amber-800 block mt-0.5 tabular-nums">
+                  {gsrValue.toFixed(2)} : 1
+                </span>
+                <span className="text-[10px] text-gray-500">1 oz Gold = {gsrValue.toFixed(2)} oz Silver</span>
+              </div>
+              <div className="p-2.5 rounded-lg border border-gray-200 bg-gray-50/80">
+                <span className="text-[10px] text-gray-500 font-semibold block uppercase">Per 100 Grams</span>
+                <span className="text-sm sm:text-base font-extrabold text-gray-900 block mt-0.5 tabular-nums">
+                  {(gsrValue * 100).toLocaleString(undefined, { maximumFractionDigits: 0 })} g
+                </span>
+                <span className="text-[10px] text-gray-400">100g Gold equivalent in Silver</span>
+              </div>
+              <div className="p-2.5 rounded-lg border border-gray-200 bg-gray-50/80">
+                <span className="text-[10px] text-gray-500 font-semibold block uppercase">Per Kilogram (1,000g)</span>
+                <span className="text-sm sm:text-base font-extrabold text-gray-900 block mt-0.5 tabular-nums">
+                  {gsrValue.toFixed(2)} kg
+                </span>
+                <span className="text-[10px] text-gray-400">1 kg Gold equivalent in Silver</span>
+              </div>
+              <div className="p-2.5 rounded-lg border border-gray-200 bg-gray-50/80">
+                <span className="text-[10px] text-gray-500 font-semibold block uppercase">Per Tola (11.66g)</span>
+                <span className="text-sm sm:text-base font-extrabold text-gray-900 block mt-0.5 tabular-nums">
+                  {gsrValue.toFixed(2)} tolas
+                </span>
+                <span className="text-[10px] text-gray-400">South Asian bullion unit parity</span>
+              </div>
+            </>
+          ) : activeAsset === 'btcusd' ? (
+            <>
+              <div className="p-2.5 rounded-lg border border-gray-200 bg-amber-50/50">
+                <span className="text-[10px] text-gray-500 font-semibold block uppercase">1 Bitcoin (BTC)</span>
+                <span className="text-sm sm:text-base font-extrabold text-gray-900 block mt-0.5 tabular-nums">
+                  {formatPrice(asset.basePriceUSD)}
+                </span>
+                <span className="text-[10px] text-gray-500">Whole coin price</span>
+              </div>
+              <div className="p-2.5 rounded-lg border border-gray-200 bg-gray-50/80">
+                <span className="text-[10px] text-gray-500 font-semibold block uppercase">1 Satoshi (1/100M)</span>
+                <span className="text-sm sm:text-base font-extrabold text-gray-900 block mt-0.5 tabular-nums">
+                  {currConfig.symbol}{( (asset.basePriceUSD * currConfig.rateFromUSD) / 100000000 ).toFixed(6)}
+                </span>
+                <span className="text-[10px] text-gray-400">Smallest BTC unit</span>
+              </div>
+              <div className="p-2.5 rounded-lg border border-gray-200 bg-gray-50/80">
+                <span className="text-[10px] text-gray-500 font-semibold block uppercase">Gold Equivalent</span>
+                <span className="text-sm sm:text-base font-extrabold text-amber-800 block mt-0.5 tabular-nums">
+                  {(asset.basePriceUSD / liveAssets.gold.basePriceUSD).toFixed(2)} oz Gold
+                </span>
+                <span className="text-[10px] text-gray-400">Gold ounces per 1 BTC</span>
+              </div>
+              <div className="p-2.5 rounded-lg border border-gray-200 bg-gray-50/80">
+                <span className="text-[10px] text-gray-500 font-semibold block uppercase">Silver Equivalent</span>
+                <span className="text-sm sm:text-base font-extrabold text-slate-800 block mt-0.5 tabular-nums">
+                  {(asset.basePriceUSD / liveAssets.silver.basePriceUSD).toFixed(0)} oz Silver
+                </span>
+                <span className="text-[10px] text-gray-400">Silver ounces per 1 BTC</span>
+              </div>
+            </>
+          ) : activeAsset === 'copper' ? (
+            <>
+              <div className="p-2.5 rounded-lg border border-gray-200 bg-amber-50/50">
+                <span className="text-[10px] text-gray-500 font-semibold block uppercase">Price per Pound (lb)</span>
+                <span className="text-sm sm:text-base font-extrabold text-gray-900 block mt-0.5 tabular-nums">
+                  {formatPrice(asset.basePriceUSD)}
+                </span>
+                <span className="text-[10px] text-gray-500">COMEX spot standard</span>
+              </div>
+              <div className="p-2.5 rounded-lg border border-gray-200 bg-gray-50/80">
+                <span className="text-[10px] text-gray-500 font-semibold block uppercase">Price per Ounce (oz)</span>
+                <span className="text-sm sm:text-base font-extrabold text-gray-900 block mt-0.5 tabular-nums">
+                  {formatPrice(asset.basePriceUSD / 16)}
+                </span>
+                <span className="text-[10px] text-gray-400">1 oz copper round benchmark</span>
+              </div>
+              <div className="p-2.5 rounded-lg border border-gray-200 bg-gray-50/80">
+                <span className="text-[10px] text-gray-500 font-semibold block uppercase">Price per Kilogram</span>
+                <span className="text-sm sm:text-base font-extrabold text-gray-900 block mt-0.5 tabular-nums">
+                  {formatPrice(asset.basePriceUSD * 2.20462)}
+                </span>
+                <span className="text-[10px] text-gray-400">Metric fabrication benchmark</span>
+              </div>
+              <div className="p-2.5 rounded-lg border border-gray-200 bg-gray-50/80">
+                <span className="text-[10px] text-gray-500 font-semibold block uppercase">Metric Ton (MT)</span>
+                <span className="text-sm sm:text-base font-extrabold text-gray-900 block mt-0.5 tabular-nums">
+                  {formatPrice(asset.basePriceUSD * 2204.62)}
+                </span>
+                <span className="text-[10px] text-gray-400">LME commercial lot size</span>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="p-2.5 rounded-lg border border-gray-200 bg-amber-50/50">
+                <span className="text-[10px] text-gray-500 font-semibold block uppercase">Price per Troy Ounce</span>
+                <span className="text-sm sm:text-base font-extrabold text-gray-900 block mt-0.5 tabular-nums">
+                  {formatPrice(asset.basePriceUSD)}
+                </span>
+                <span className="text-[10px] text-gray-500">31.1035 grams standard</span>
+              </div>
+              <div className="p-2.5 rounded-lg border border-gray-200 bg-gray-50/80">
+                <span className="text-[10px] text-gray-500 font-semibold block uppercase">Price per Gram</span>
+                <span className="text-sm sm:text-base font-extrabold text-gray-900 block mt-0.5 tabular-nums">
+                  {formatPrice(asset.basePriceUSD / 31.1034768)}
+                </span>
+                <span className="text-[10px] text-gray-400">Retail jewellery metric unit</span>
+              </div>
+              <div className="p-2.5 rounded-lg border border-gray-200 bg-gray-50/80">
+                <span className="text-[10px] text-gray-500 font-semibold block uppercase">Price per 10 Grams</span>
+                <span className="text-sm sm:text-base font-extrabold text-gray-900 block mt-0.5 tabular-nums">
+                  {formatPrice((asset.basePriceUSD / 31.1034768) * 10)}
+                </span>
+                <span className="text-[10px] text-gray-400">Standard Asian investment bar</span>
+              </div>
+              <div className="p-2.5 rounded-lg border border-gray-200 bg-gray-50/80">
+                <span className="text-[10px] text-gray-500 font-semibold block uppercase">Price per Kilogram</span>
+                <span className="text-sm sm:text-base font-extrabold text-gray-900 block mt-0.5 tabular-nums">
+                  {formatPrice(asset.basePriceUSD * 32.1507466)}
+                </span>
+                <span className="text-[10px] text-gray-400">1,000 grams cast bar</span>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+
+      {/* ── HISTORICAL MULTI-YEAR PERFORMANCE MATRIX (1Y, 5Y, 10Y, 20Y, 30Y from JM Bullion) ── */}
+      <div className="bg-white rounded-xl border border-gray-200 p-3.5 sm:p-4 shadow-2xs space-y-2.5">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 pb-2 border-b border-gray-100">
+          <div>
+            <h3 className="text-xs sm:text-sm font-bold text-gray-900 flex items-center gap-1.5">
+              <Calendar className="w-4 h-4 text-blue-600" />
+              Historical Precious Metals &amp; Asset Performance Matrix
+            </h3>
+            <p className="text-[11px] text-gray-500">
+              Long-term multi-decade price changes and compound capital growth benchmarks (1 Year to 30 Years).
+            </p>
+          </div>
+          <span className="text-[10px] font-semibold text-gray-400">USD Baseline Returns</span>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-xs">
+            <thead>
+              <tr className="border-b border-gray-200 text-gray-500 font-semibold bg-gray-50/60">
+                <th className="py-2 px-2.5">Commodity / Asset</th>
+                <th className="py-2 px-2.5">1 Year Return</th>
+                <th className="py-2 px-2.5">5 Years Return</th>
+                <th className="py-2 px-2.5">10 Years Return</th>
+                <th className="py-2 px-2.5">20 Years Return</th>
+                <th className="py-2 px-2.5">30 Years Return</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100 font-medium">
+              {HISTORICAL_RETURNS_DATA.map((row) => (
+                <tr key={row.asset} className="hover:bg-gray-50 transition">
+                  <td className="py-2.5 px-2.5 font-bold text-gray-900 flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full" style={{ backgroundColor: row.color }}></span>
+                    <span>{row.asset}</span>
+                    <span className="text-[10px] text-gray-400 font-normal">({row.symbol})</span>
+                  </td>
+                  <td className="py-2.5 px-2.5 tabular-nums">
+                    <span className={`font-bold block ${row.change1Y.positive ? 'text-emerald-700' : 'text-rose-600'}`}>
+                      {row.change1Y.pct}
+                    </span>
+                    <span className="text-[10px] text-gray-400 block">{row.change1Y.val}</span>
+                  </td>
+                  <td className="py-2.5 px-2.5 tabular-nums">
+                    <span className={`font-bold block ${row.change5Y.positive ? 'text-emerald-700' : 'text-rose-600'}`}>
+                      {row.change5Y.pct}
+                    </span>
+                    <span className="text-[10px] text-gray-400 block">{row.change5Y.val}</span>
+                  </td>
+                  <td className="py-2.5 px-2.5 tabular-nums">
+                    <span className={`font-bold block ${row.change10Y.positive ? 'text-emerald-700' : 'text-rose-600'}`}>
+                      {row.change10Y.pct}
+                    </span>
+                    <span className="text-[10px] text-gray-400 block">{row.change10Y.val}</span>
+                  </td>
+                  <td className="py-2.5 px-2.5 tabular-nums">
+                    <span className={`font-bold block ${row.change20Y.positive ? 'text-emerald-700' : 'text-rose-600'}`}>
+                      {row.change20Y.pct}
+                    </span>
+                    <span className="text-[10px] text-gray-400 block">{row.change20Y.val}</span>
+                  </td>
+                  <td className="py-2.5 px-2.5 tabular-nums">
+                    <span className={`font-bold block ${row.change30Y.positive ? 'text-emerald-700' : 'text-rose-600'}`}>
+                      {row.change30Y.pct}
+                    </span>
+                    <span className="text-[10px] text-gray-400 block">{row.change30Y.val}</span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* ── BITCOIN VS PHYSICAL PRECIOUS METALS HEAD-TO-HEAD COMPARISON ── */}
+      <div className="bg-white rounded-xl border border-gray-200 p-3.5 sm:p-4 shadow-2xs space-y-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 pb-2 border-b border-gray-100">
+          <div>
+            <h3 className="text-xs sm:text-sm font-bold text-gray-900 flex items-center gap-1.5">
+              <ShieldCheck className="w-4 h-4 text-amber-600" />
+              Comparing Investments: Bitcoin (&quot;Digital Gold&quot;) vs. Physical Precious Metals
+            </h3>
+            <p className="text-[11px] text-gray-500">
+              Understanding why modern investors allocate across both cryptographic digital money and tangible bullion.
+            </p>
+          </div>
+          <span className="text-xs font-bold text-amber-800 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200 self-start sm:self-auto">
+            Bullion Cash Discount: 3% - 4%
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div className="p-3 bg-amber-50/60 rounded-xl border border-amber-200 space-y-2">
+            <div className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-amber-500"></span>
+              <h4 className="font-bold text-gray-900 text-xs sm:text-sm">Benefits of Physical Precious Metals</h4>
+            </div>
+            <ul className="space-y-1.5 text-xs text-gray-700">
+              <li className="flex items-start gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                <span><strong>5,000-Year Track Record:</strong> Proven store of value across every monetary collapse and regime change in human history.</span>
+              </li>
+              <li className="flex items-start gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                <span><strong>Absolute Off-Grid Tangibility:</strong> Can be held physically in private possession with zero electricity or internet required.</span>
+              </li>
+              <li className="flex items-start gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                <span><strong>Industrial Floor Demand:</strong> Unmatched electrical conductivity and solar PV demand guarantee persistent real-world consumption.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div className="p-3 bg-orange-50/60 rounded-xl border border-orange-200 space-y-2">
+            <div className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-[#F7931A]"></span>
+              <h4 className="font-bold text-gray-900 text-xs sm:text-sm">Benefits of Bitcoin (&quot;Digital Gold&quot;)</h4>
+            </div>
+            <ul className="space-y-1.5 text-xs text-gray-700">
+              <li className="flex items-start gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                <span><strong>Strict 21M Hard Cap:</strong> Programmatically enforced mathematical scarcity divided into 100M satoshis with zero dilution.</span>
+              </li>
+              <li className="flex items-start gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                <span><strong>Frictionless Global Portability:</strong> Billions of dollars can be transferred across international borders in minutes with minimal network fees.</span>
+              </li>
+              <li className="flex items-start gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                <span><strong>Bullion Dealer Discounts:</strong> Leading international precious metals mints offer 3% to 4% invoice discounts for Bitcoin payments.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Comparison Feature Table */}
+        <div className="overflow-x-auto pt-1">
+          <table className="w-full text-left text-xs border border-gray-200 rounded-lg overflow-hidden">
+            <thead>
+              <tr className="bg-gray-50 border-b border-gray-200 text-gray-600 font-bold">
+                <th className="py-2 px-3 w-1/4">Key Dimension</th>
+                <th className="py-2 px-3 w-3/8 text-orange-950 bg-orange-50/40">Bitcoin (BTC)</th>
+                <th className="py-2 px-3 w-3/8 text-amber-950 bg-amber-50/40">Physical Precious Metals</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {BTC_VS_METALS_COMPARISON.map((comp, idx) => (
+                <tr key={idx} className="hover:bg-gray-50">
+                  <td className="py-2 px-3 font-semibold text-gray-900">{comp.feature}</td>
+                  <td className="py-2 px-3 text-gray-700 bg-orange-50/20">{comp.bitcoin}</td>
+                  <td className="py-2 px-3 text-gray-700 bg-amber-50/20">{comp.metals}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

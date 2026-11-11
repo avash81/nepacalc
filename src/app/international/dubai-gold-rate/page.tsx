@@ -64,9 +64,9 @@ function getInitialRates(): DubaiRatesData {
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'Live Dubai Gold & Silver Price Today (24K, 22K, 18K) | AED Rates',
+    title: 'Live Dubai Gold & Silver Price Today | 24K, 22K AED Rates',
     description:
-      'Track live gold and silver rates in Dubai (AED). Updated prices per gram, 10g, tola, oz for 24K, 22K, 21K, 18K gold and 999/925 silver with calculators, making charge guides, and UAE tax rules.',
+      'Track live gold and silver prices in Dubai per gram (AED). View 24K, 22K, 21K rates, historical charts, making charges, and UAE tax refund rules.',
     keywords: [
       'Dubai gold rate today',
       'gold price in Dubai 22k',
@@ -85,9 +85,9 @@ export async function generateMetadata(): Promise<Metadata> {
       canonical: 'https://nepacalc.com/international/dubai-gold-rate/',
     },
     openGraph: {
-      title: 'Live Dubai Gold & Silver Price Today (24K, 22K, 18K) | AED Rates',
+      title: 'Live Dubai Gold & Silver Price Today | 24K, 22K AED Rates',
       description:
-        'Live Dubai gold and silver rates: 24K (AED 495.75/g), 22K (AED 459.00/g), 21K, 18K, and 999/925 silver. Live making charge estimator, VAT refund guide, and diaspora FX matrix.',
+        'Track live gold and silver prices in Dubai per gram (AED). View 24K, 22K, 21K rates, historical charts, making charges, and UAE tax refund rules.',
       url: 'https://nepacalc.com/international/dubai-gold-rate/',
       type: 'website',
       images: [
@@ -101,9 +101,9 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Live Dubai Gold & Silver Price Today (24K, 22K, 18K) | AED Rates',
+      title: 'Live Dubai Gold & Silver Price Today | 24K, 22K AED Rates',
       description:
-        'Live Dubai gold and silver rates: 24K (AED 495.75/g), 22K (AED 459.00/g), 21K, 18K, and 999/925 silver with calculators and UAE tax rules.',
+        'Track live gold and silver prices in Dubai per gram (AED). View 24K, 22K, 21K rates, historical charts, making charges, and UAE tax refund rules.',
       images: ['https://nepacalc.com/images/og/dubai-gold-rate.jpg'],
     },
   };
