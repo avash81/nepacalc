@@ -777,7 +777,7 @@ export default function InternationalGSRClient({ initialAsset = 'goldsilver' }: 
   const netSilverGained = equivalentSilverAtTargetRatio - swapSilverAmount;
 
   return (
-    <div className="w-full px-3 sm:px-6 lg:px-8 py-2 sm:py-3 space-y-4 font-sans text-gray-900">
+    <div className="w-full px-3 sm:px-6 lg:px-8 py-2 sm:py-3 space-y-4 font-sans text-gray-900 font-modern-ui">
       {/* ── HEADER (Clean, Compact, No Dead Space) ── */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-200 pb-2">
         <div>
@@ -1330,8 +1330,8 @@ export default function InternationalGSRClient({ initialAsset = 'goldsilver' }: 
                     onClick={() => setActiveAsset(mKey)}
                     className={`py-2 px-2 text-xs font-bold rounded-md transition text-center ${
                       isActive
-                        ? 'bg-[#0f172a] text-amber-400 shadow-xs ring-1 ring-amber-400/40'
-                        : 'bg-[#1e293b] text-white hover:bg-slate-700'
+                        ? 'bg-[#0f2942] text-white shadow-xs'
+                        : 'bg-white text-slate-700 border border-slate-300 hover:bg-slate-50'
                     }`}
                   >
                     {liveAssets[mKey].label}
@@ -1410,31 +1410,31 @@ export default function InternationalGSRClient({ initialAsset = 'goldsilver' }: 
             return (
               <div className="space-y-2.5">
                 {/* Active Metal Price Box */}
-                <div className="border border-slate-300 rounded-lg overflow-hidden">
-                  <div className="bg-slate-100 px-3 py-1 text-center font-bold text-xs text-slate-800 border-b border-slate-300">
+                <div className="border border-slate-200 rounded-lg overflow-hidden">
+                  <div className="bg-slate-50 px-3 py-1.5 text-center font-bold text-xs text-slate-800 border-b border-slate-200">
                     Live {mAsset.label} Price ({currConfig.symbol}/{weight})
                   </div>
-                  <div className="grid grid-cols-4 text-center divide-x divide-slate-200 text-xs py-2 bg-white">
+                  <div className="grid grid-cols-4 text-center divide-x divide-slate-100 text-xs py-2 bg-white">
                     <div>
-                      <span className="text-[10px] text-gray-500 uppercase block font-semibold">Current</span>
-                      <span className="font-extrabold text-gray-900 tabular-nums text-sm">
+                      <span className="text-[10px] text-slate-500 uppercase block font-semibold">Current</span>
+                      <span className="font-extrabold text-slate-900 tabular-nums text-sm">
                         {currConfig.symbol}{convertedCurrent.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                       </span>
                     </div>
                     <div>
-                      <span className="text-[10px] text-gray-500 uppercase block font-semibold">High</span>
-                      <span className="font-semibold text-gray-700 tabular-nums">
+                      <span className="text-[10px] text-slate-500 uppercase block font-semibold">High</span>
+                      <span className="font-semibold text-slate-700 tabular-nums">
                         {currConfig.symbol}{convertedHigh.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                       </span>
                     </div>
                     <div>
-                      <span className="text-[10px] text-gray-500 uppercase block font-semibold">Low</span>
-                      <span className="font-semibold text-gray-700 tabular-nums">
+                      <span className="text-[10px] text-slate-500 uppercase block font-semibold">Low</span>
+                      <span className="font-semibold text-slate-700 tabular-nums">
                         {currConfig.symbol}{convertedLow.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                       </span>
                     </div>
                     <div>
-                      <span className="text-[10px] text-gray-500 uppercase block font-semibold">Change</span>
+                      <span className="text-[10px] text-slate-500 uppercase block font-semibold">Change</span>
                       <span className={`font-bold tabular-nums ${mAsset.changePercent24h >= 0 ? 'text-emerald-700' : 'text-rose-600'}`}>
                         {convertedChange >= 0 ? '+' : ''}{currConfig.symbol}{convertedChange.toFixed(2)} ({mAsset.changePercent24h >= 0 ? '+' : ''}{mAsset.changePercent24h.toFixed(2)}%)
                       </span>
@@ -1443,32 +1443,32 @@ export default function InternationalGSRClient({ initialAsset = 'goldsilver' }: 
                 </div>
 
                 {/* Intrinsic Bullion Coin Values */}
-                <div className="border border-slate-300 rounded-lg overflow-hidden">
-                  <div className="bg-slate-100 px-3 py-1 text-center font-bold text-xs text-slate-800 border-b border-slate-300">
+                <div className="border border-slate-200 rounded-lg overflow-hidden">
+                  <div className="bg-slate-50 px-3 py-1.5 text-center font-bold text-xs text-slate-800 border-b border-slate-200">
                     Intrinsic Values (£ GBP Melt Standard)
                   </div>
-                  <div className="grid grid-cols-4 text-center divide-x divide-slate-200 text-xs py-2 bg-white">
+                  <div className="grid grid-cols-4 text-center divide-x divide-slate-100 text-xs py-2 bg-white">
                     <div>
-                      <span className="text-[10px] text-gray-500 uppercase block font-semibold">Sovereign</span>
-                      <span className="font-bold text-gray-900 tabular-nums text-xs sm:text-sm">
+                      <span className="text-[10px] text-slate-500 uppercase block font-semibold">Sovereign</span>
+                      <span className="font-bold text-slate-900 tabular-nums text-xs sm:text-sm">
                         £{sovereignIntrinsic.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                       </span>
                     </div>
                     <div>
-                      <span className="text-[10px] text-gray-500 uppercase block font-semibold">Half Sovereign</span>
-                      <span className="font-bold text-gray-900 tabular-nums text-xs sm:text-sm">
+                      <span className="text-[10px] text-slate-500 uppercase block font-semibold">Half Sovereign</span>
+                      <span className="font-bold text-slate-900 tabular-nums text-xs sm:text-sm">
                         £{halfSovereignIntrinsic.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                       </span>
                     </div>
                     <div>
-                      <span className="text-[10px] text-gray-500 uppercase block font-semibold">1oz Gold</span>
-                      <span className="font-bold text-gray-900 tabular-nums text-xs sm:text-sm">
+                      <span className="text-[10px] text-slate-500 uppercase block font-semibold">1oz Gold</span>
+                      <span className="font-bold text-slate-900 tabular-nums text-xs sm:text-sm">
                         £{oneOzGoldIntrinsic.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                       </span>
                     </div>
                     <div>
-                      <span className="text-[10px] text-gray-500 uppercase block font-semibold">1oz Silver</span>
-                      <span className="font-bold text-gray-900 tabular-nums text-xs sm:text-sm">
+                      <span className="text-[10px] text-slate-500 uppercase block font-semibold">1oz Silver</span>
+                      <span className="font-bold text-slate-900 tabular-nums text-xs sm:text-sm">
                         £{oneOzSilverIntrinsic.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                       </span>
                     </div>
@@ -1479,22 +1479,22 @@ export default function InternationalGSRClient({ initialAsset = 'goldsilver' }: 
                 <div className="flex flex-wrap items-center justify-between gap-2 pt-1 text-xs">
                   <div className="flex items-center gap-1.5">
                     <span className="font-bold text-slate-700">Gold:Silver Ratio:</span>
-                    <span className="font-extrabold text-amber-900 bg-amber-100 px-2 py-0.5 rounded text-xs border border-amber-300">
+                    <span className="font-extrabold text-slate-900 bg-slate-100 px-2 py-0.5 rounded text-xs border border-slate-200">
                       {liveAssets.goldsilver.basePriceUSD.toFixed(3)}
                     </span>
                     <Link
                       href="/international/gold-silver-ratio/"
-                      className="text-[11px] text-blue-600 hover:underline font-semibold ml-1"
+                      className="text-[11px] text-[#0c3960] hover:underline font-semibold ml-1"
                     >
                       &gt; View Metal Ratio Graphs
                     </Link>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <span className="font-semibold text-gray-500">Foreign Exchange:</span>
-                    <span className="font-mono text-[11px] font-bold bg-slate-900 text-white px-1.5 py-0.5 rounded">
+                    <span className="font-semibold text-slate-500">Foreign Exchange:</span>
+                    <span className="font-mono text-[11px] font-bold bg-slate-800 text-white px-2 py-0.5 rounded">
                       USD: {(1 / (liveRates.forex.GBP || 0.79)).toFixed(4)}
                     </span>
-                    <span className="font-mono text-[11px] font-bold bg-slate-900 text-white px-1.5 py-0.5 rounded">
+                    <span className="font-mono text-[11px] font-bold bg-slate-800 text-white px-2 py-0.5 rounded">
                       EUR: {((1 / (liveRates.forex.GBP || 0.79)) * (liveRates.forex.EUR || 0.92)).toFixed(4)}
                     </span>
                   </div>

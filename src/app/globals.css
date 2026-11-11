@@ -87,3 +87,22 @@ html, body {
   overflow-x: hidden;
   max-width: 100vw;
 }
+
+/* Modern corporate UI font family for precision financial & market tools */
+.font-modern-ui,
+.font-modern-ui h1,
+.font-modern-ui h2,
+.font-modern-ui h3,
+.font-modern-ui h4,
+.font-modern-ui h5,
+.font-modern-ui h6,
+.font-modern-ui p,
+.font-modern-ui span,
+.font-modern-ui table,
+.font-modern-ui td,
+.font-modern-ui th,
+.font-modern-ui input,
+.font-modern-ui select,
+.font-modern-ui button {
+  font-family: 'Inter', 'Roboto', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+}

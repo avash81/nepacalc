@@ -160,7 +160,7 @@ export default function PPPSalaryClient() {
   const displayedRows = showAllCountries ? comparisonRows : comparisonRows.slice(0, 10);
 
   return (
-    <div className="w-full px-3 sm:px-6 lg:px-8 py-2 sm:py-3 space-y-4">
+    <div className="w-full px-3 sm:px-6 lg:px-8 py-2 sm:py-3 space-y-4 font-modern-ui">
       {/* ── COMPACT HEADER (No empty gaps) ── */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-200 pb-2.5">
         <div>

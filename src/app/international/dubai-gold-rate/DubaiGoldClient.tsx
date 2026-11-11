@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useEffect, useCallback, useId, useRef } from 'react';
 import Link from 'next/link';
@@ -271,7 +271,7 @@ export default function DubaiGoldClient({ initialData }: Props) {
   const modalRatePerTolaAED = modalBaseGramRate * 11.6638;
 
   return (
-    <div className="w-full max-w-6xl mx-auto px-3 sm:px-4 py-2 sm:py-4 font-sans text-gray-900 space-y-4">
+    <div className="w-full max-w-6xl mx-auto px-3 sm:px-4 py-2 sm:py-4 font-sans text-gray-900 space-y-4 font-modern-ui">
 
       {/* ── FLAGSHIP HERO: TODAY'S GOLD & SILVER PRICE (Matched with Image 1) ── */}
       <div className="space-y-3">

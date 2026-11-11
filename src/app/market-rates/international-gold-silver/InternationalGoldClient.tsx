@@ -487,7 +487,7 @@ export default function InternationalGoldClient({ initialData }: Props) {
   };
 
   return (
-    <div className="w-full max-w-6xl mx-auto px-4 py-3 sm:py-6 md:py-8 font-sans">
+    <div className="w-full max-w-6xl mx-auto px-4 py-3 sm:py-6 md:py-8 font-sans font-modern-ui">
 
       {/* ── TOP SECTION HEADER (Compact Status Strip & Clean Desktop CTAs) ── */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-4 sm:mb-6">
