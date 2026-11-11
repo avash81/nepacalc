@@ -783,14 +783,20 @@ export default function InternationalGSRClient({ initialAsset = 'goldsilver' }: 
         <div>
           <div className="flex items-center gap-2 flex-wrap">
             <h1 className="text-xl sm:text-2xl font-extrabold text-gray-900 tracking-tight">
-              Precious Metals &amp; Gold-to-Silver Ratio Live Hub
+              {activeAsset === 'goldsilver'
+                ? 'Precious Metals & Gold-to-Silver Ratio Live Hub'
+                : activeAsset === 'btcusd'
+                ? 'Live Bitcoin Spot Price & Real-Time Chart (BTC/USD)'
+                : `Live ${asset.label} Price & Real-Time Spot Chart`}
             </h1>
             <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-200">
-              COMEX / LBMA Live
+              {activeAsset === 'btcusd' ? 'Coinbase / Binance Live' : activeAsset === 'copper' ? 'COMEX / LME Live' : 'COMEX / LBMA Live'}
             </span>
           </div>
           <p className="text-xs text-gray-500 mt-0.5">
-            Real-time interactive spot charts, cross-commodity valuation ratios, and macroeconomic benchmarks.
+            {activeAsset === 'goldsilver'
+              ? 'Real-time interactive spot charts, cross-commodity valuation ratios, and macroeconomic benchmarks.'
+              : `Real-time interactive spot charts, bid/ask spreads, and technical market analytics for ${asset.label}.`}
           </p>
         </div>
 
