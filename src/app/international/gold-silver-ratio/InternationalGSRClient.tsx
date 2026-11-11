@@ -528,8 +528,8 @@ function generateSeries(assetId: AssetType, timeframe: Timeframe, baseVal: numbe
 
 // Route: /international/gold-silver-ratio/ (and asset-specific routes)
 export const ASSET_SLUG_MAP: Record<AssetType, string> = {
-  gold: '/international/gold/',
-  silver: '/international/silver/',
+  gold: '/market-rates/international-gold-silver/',
+  silver: '/market-rates/international-gold-silver/',
   platinum: '/international/platinum/',
   palladium: '/international/palladium/',
   copper: '/international/copper/',
@@ -1238,6 +1238,264 @@ export default function InternationalGSRClient({ initialAsset = 'goldsilver' }: 
               }}
             ></div>
           </div>
+        </div>
+      </div>
+
+      {/* ── LIVE PRECIOUS METALS SPOT BOARD & INTRINSIC VALUES DUAL WIDGET ── */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-3.5">
+        {/* LEFT COLUMN: LIVE PRECIOUS METALS SPOT BOARD (USD) */}
+        <div className="lg:col-span-5 bg-white rounded-xl border border-gray-200 p-3.5 sm:p-4 shadow-2xs flex flex-col justify-between">
+          <div>
+            <div className="flex items-center justify-between pb-2 border-b border-gray-100 mb-2">
+              <h3 className="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-slate-700">
+                Live Precious Metals Spot Board (USD)
+              </h3>
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
+                COMEX Live
+              </span>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs">
+                <thead>
+                  <tr className="border-b border-gray-200 text-gray-500 font-semibold bg-gray-50/70">
+                    <th className="py-2 px-2.5">Metal</th>
+                    <th className="py-2 px-2.5 text-right">Current</th>
+                    <th className="py-2 px-2.5 text-right">High (24h)</th>
+                    <th className="py-2 px-2.5 text-right">Low (24h)</th>
+                    <th className="py-2 px-2.5 text-right">Change</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100 font-medium">
+                  {(['gold', 'silver', 'platinum', 'palladium'] as AssetType[]).map((mKey) => {
+                    const item = liveAssets[mKey];
+                    const isSelected = activeAsset === mKey;
+                    return (
+                      <tr
+                        key={mKey}
+                        onClick={() => setActiveAsset(mKey)}
+                        className={`cursor-pointer transition hover:bg-slate-50 ${isSelected ? 'bg-amber-50/60 font-bold' : ''}`}
+                      >
+                        <td className="py-2.5 px-2.5 font-bold text-gray-900 flex items-center gap-1.5">
+                          <span className="w-2 h-2 rounded-full" style={{ backgroundColor: item.themeColor }}></span>
+                          <span>{item.label}</span>
+                        </td>
+                        <td className="py-2.5 px-2.5 tabular-nums text-right font-extrabold text-gray-900">
+                          ${item.basePriceUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                        </td>
+                        <td className="py-2.5 px-2.5 tabular-nums text-right text-gray-500 text-[11px]">
+                          ${item.high24hUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                        </td>
+                        <td className="py-2.5 px-2.5 tabular-nums text-right text-gray-500 text-[11px]">
+                          ${item.low24hUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                        </td>
+                        <td className={`py-2.5 px-2.5 tabular-nums text-right font-bold ${item.changePercent24h >= 0 ? 'text-emerald-700' : 'text-rose-600'}`}>
+                          {item.changePercent24h >= 0 ? '+' : ''}{item.changePercent24h.toFixed(2)}%
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <p className="text-[10px] text-gray-400 mt-3 pt-2 border-t border-gray-100 flex items-center justify-between">
+            <span>Prices quoted per troy ounce in USD</span>
+            <span className="font-semibold text-slate-600">Click any row to switch chart</span>
+          </p>
+        </div>
+
+        {/* RIGHT COLUMN: INTERACTIVE BULLION INTRINSIC VALUES CALCULATOR */}
+        <div className="lg:col-span-7 bg-white rounded-xl border border-gray-200 p-3.5 sm:p-4 shadow-2xs space-y-3">
+          {/* Metal Selection Tabs */}
+          <div>
+            <div className="flex items-center justify-between mb-1.5">
+              <span className="text-xs font-bold text-gray-700 uppercase tracking-wide">Metal</span>
+              <span className="text-[11px] text-gray-400">Select active metal</span>
+            </div>
+            <div className="grid grid-cols-4 gap-1.5">
+              {(['gold', 'silver', 'platinum', 'palladium'] as AssetType[]).map((mKey) => {
+                const isActive = activeAsset === mKey;
+                return (
+                  <button
+                    key={mKey}
+                    type="button"
+                    onClick={() => setActiveAsset(mKey)}
+                    className={`py-2 px-2 text-xs font-bold rounded-md transition text-center ${
+                      isActive
+                        ? 'bg-[#0f172a] text-amber-400 shadow-xs ring-1 ring-amber-400/40'
+                        : 'bg-[#1e293b] text-white hover:bg-slate-700'
+                    }`}
+                  >
+                    {liveAssets[mKey].label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Unit, Currency & Timeframe Selector Bar */}
+          <div className="grid grid-cols-3 gap-2">
+            <div>
+              <label className="text-[10px] font-bold text-gray-600 uppercase block mb-1">Weight Unit</label>
+              <select
+                value={weight}
+                onChange={(e) => setWeight(e.target.value as WeightUnit)}
+                className="w-full text-xs font-medium bg-gray-50 border border-gray-200 rounded-md py-1.5 px-2 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+              >
+                <option value="oz">Troy Ounces (oz)</option>
+                <option value="g">Grams (g)</option>
+                <option value="kg">Kilograms (kg)</option>
+              </select>
+            </div>
+            <div>
+              <label className="text-[10px] font-bold text-gray-600 uppercase block mb-1">Currency</label>
+              <select
+                value={currency}
+                onChange={(e) => setCurrency(e.target.value as CurrencyCode)}
+                className="w-full text-xs font-medium bg-gray-50 border border-gray-200 rounded-md py-1.5 px-2 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+              >
+                <option value="GBP">GBP (£)</option>
+                <option value="USD">USD ($)</option>
+                <option value="EUR">EUR (€)</option>
+                <option value="CAD">CAD (CA$)</option>
+                <option value="AUD">AUD (A$)</option>
+              </select>
+            </div>
+            <div>
+              <label className="text-[10px] font-bold text-gray-600 uppercase block mb-1">Period</label>
+              <select
+                value={timeframe}
+                onChange={(e) => setTimeframe(e.target.value as Timeframe)}
+                className="w-full text-xs font-medium bg-gray-50 border border-gray-200 rounded-md py-1.5 px-2 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+              >
+                <option value="1D">Day (1D)</option>
+                <option value="1W">Week (1W)</option>
+                <option value="1M">Month (1M)</option>
+                <option value="1Y">Year (1Y)</option>
+                <option value="ALL">All Time</option>
+              </select>
+            </div>
+          </div>
+
+          {/* Live Metal Summary Table */}
+          {(() => {
+            const mAsset = ['gold', 'silver', 'platinum', 'palladium'].includes(activeAsset)
+              ? liveAssets[activeAsset]
+              : liveAssets.gold;
+            const unitMultiplier = weight === 'g' ? 1 / 31.1034768 : weight === 'kg' ? 32.1507466 : 1;
+            const convertedCurrent = mAsset.basePriceUSD * currConfig.rateFromUSD * unitMultiplier;
+            const convertedHigh = mAsset.high24hUSD * currConfig.rateFromUSD * unitMultiplier;
+            const convertedLow = mAsset.low24hUSD * currConfig.rateFromUSD * unitMultiplier;
+            const convertedChange = mAsset.change24hUSD * currConfig.rateFromUSD * unitMultiplier;
+
+            // Intrinsic coin/bar values:
+            // Sovereign: 7.322g gold fine (0.2354 oz)
+            // Half Sovereign: 3.661g gold fine (0.1177 oz)
+            // 1oz Gold
+            // 1oz Silver
+            const gbpRate = liveCurrencies.GBP.rateFromUSD;
+            const sovereignIntrinsic = (liveAssets.gold.basePriceUSD * 0.2354) * gbpRate;
+            const halfSovereignIntrinsic = (liveAssets.gold.basePriceUSD * 0.1177) * gbpRate;
+            const oneOzGoldIntrinsic = liveAssets.gold.basePriceUSD * gbpRate;
+            const oneOzSilverIntrinsic = liveAssets.silver.basePriceUSD * gbpRate;
+
+            return (
+              <div className="space-y-2.5">
+                {/* Active Metal Price Box */}
+                <div className="border border-slate-300 rounded-lg overflow-hidden">
+                  <div className="bg-slate-100 px-3 py-1 text-center font-bold text-xs text-slate-800 border-b border-slate-300">
+                    Live {mAsset.label} Price ({currConfig.symbol}/{weight})
+                  </div>
+                  <div className="grid grid-cols-4 text-center divide-x divide-slate-200 text-xs py-2 bg-white">
+                    <div>
+                      <span className="text-[10px] text-gray-500 uppercase block font-semibold">Current</span>
+                      <span className="font-extrabold text-gray-900 tabular-nums text-sm">
+                        {currConfig.symbol}{convertedCurrent.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-gray-500 uppercase block font-semibold">High</span>
+                      <span className="font-semibold text-gray-700 tabular-nums">
+                        {currConfig.symbol}{convertedHigh.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-gray-500 uppercase block font-semibold">Low</span>
+                      <span className="font-semibold text-gray-700 tabular-nums">
+                        {currConfig.symbol}{convertedLow.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-gray-500 uppercase block font-semibold">Change</span>
+                      <span className={`font-bold tabular-nums ${mAsset.changePercent24h >= 0 ? 'text-emerald-700' : 'text-rose-600'}`}>
+                        {convertedChange >= 0 ? '+' : ''}{currConfig.symbol}{convertedChange.toFixed(2)} ({mAsset.changePercent24h >= 0 ? '+' : ''}{mAsset.changePercent24h.toFixed(2)}%)
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Intrinsic Bullion Coin Values */}
+                <div className="border border-slate-300 rounded-lg overflow-hidden">
+                  <div className="bg-slate-100 px-3 py-1 text-center font-bold text-xs text-slate-800 border-b border-slate-300">
+                    Intrinsic Values (£ GBP Melt Standard)
+                  </div>
+                  <div className="grid grid-cols-4 text-center divide-x divide-slate-200 text-xs py-2 bg-white">
+                    <div>
+                      <span className="text-[10px] text-gray-500 uppercase block font-semibold">Sovereign</span>
+                      <span className="font-bold text-gray-900 tabular-nums text-xs sm:text-sm">
+                        £{sovereignIntrinsic.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-gray-500 uppercase block font-semibold">Half Sovereign</span>
+                      <span className="font-bold text-gray-900 tabular-nums text-xs sm:text-sm">
+                        £{halfSovereignIntrinsic.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-gray-500 uppercase block font-semibold">1oz Gold</span>
+                      <span className="font-bold text-gray-900 tabular-nums text-xs sm:text-sm">
+                        £{oneOzGoldIntrinsic.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-gray-500 uppercase block font-semibold">1oz Silver</span>
+                      <span className="font-bold text-gray-900 tabular-nums text-xs sm:text-sm">
+                        £{oneOzSilverIntrinsic.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Macro Ratio & FX Quick Ticker */}
+                <div className="flex flex-wrap items-center justify-between gap-2 pt-1 text-xs">
+                  <div className="flex items-center gap-1.5">
+                    <span className="font-bold text-slate-700">Gold:Silver Ratio:</span>
+                    <span className="font-extrabold text-amber-900 bg-amber-100 px-2 py-0.5 rounded text-xs border border-amber-300">
+                      {liveAssets.goldsilver.basePriceUSD.toFixed(3)}
+                    </span>
+                    <Link
+                      href="/international/gold-silver-ratio/"
+                      className="text-[11px] text-blue-600 hover:underline font-semibold ml-1"
+                    >
+                      &gt; View Metal Ratio Graphs
+                    </Link>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <span className="font-semibold text-gray-500">Foreign Exchange:</span>
+                    <span className="font-mono text-[11px] font-bold bg-slate-900 text-white px-1.5 py-0.5 rounded">
+                      USD: {(1 / (liveRates.forex.GBP || 0.79)).toFixed(4)}
+                    </span>
+                    <span className="font-mono text-[11px] font-bold bg-slate-900 text-white px-1.5 py-0.5 rounded">
+                      EUR: {((1 / (liveRates.forex.GBP || 0.79)) * (liveRates.forex.EUR || 0.92)).toFixed(4)}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            );
+          })()}
         </div>
       </div>
 

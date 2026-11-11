@@ -149,8 +149,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       'palladium-price',
       'copper-price',
       'bitcoin-price',
-      'gold-price-int',
-      'silver-price-int',
     ].includes(calc.id);
 
     return {
