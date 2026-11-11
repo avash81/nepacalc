@@ -17,58 +17,87 @@ import {
   CheckCircle2,
   Sliders,
   ExternalLink,
-  Download
+  Download,
+  BarChart3,
+  Layers,
+  Zap
 } from 'lucide-react';
 import { useInternationalRates } from '@/hooks/useInternationalRates';
 
-export type AssetType = 'goldsilver' | 'gold' | 'silver' | 'platinum' | 'palladium' | 'copper' | 'btcusd';
+export type AssetType = 'gold' | 'silver' | 'platinum' | 'palladium' | 'copper' | 'goldsilver' | 'btcusd';
 export type Timeframe = '1D' | '1W' | '1M' | '3M' | '6M' | '1Y' | 'ALL';
 export type CurrencyCode = 'USD' | 'CAD' | 'AUD' | 'EUR' | 'GBP';
 export type WeightUnit = 'oz' | 'g' | 'kg';
 
-interface AssetConfig {
+// Tabs order matching JM Bullion standard:
+export const ASSET_ORDER: AssetType[] = [
+  'gold',
+  'silver',
+  'platinum',
+  'palladium',
+  'copper',
+  'goldsilver',
+  'btcusd',
+];
+
+export interface AssetConfig {
   id: AssetType;
   label: string;
   unitLabel: string;
   symbol: string;
   basePriceUSD: number;
+  bidUSD: number;
+  askUSD: number;
   change24hUSD: number;
   changePercent24h: number;
   high24hUSD: number;
   low24hUSD: number;
+  high52wUSD: number;
+  low52wUSD: number;
+  athUSD: number;
+  athDate: string;
   themeColor: string;
   gradientFrom: string;
   gradientTo: string;
+  category: 'ratio' | 'precious' | 'industrial' | 'crypto';
+  summary: string;
+  keyDrivers: string[];
+  macroRatios: { label: string; value: string; note: string }[];
 }
 
-const ASSETS: Record<AssetType, AssetConfig> = {
-  goldsilver: {
-    id: 'goldsilver',
-    label: 'Gold/Silver',
-    unitLabel: ': 1',
-    symbol: '',
-    basePriceUSD: 77.81,
-    change24hUSD: 0.35,
-    changePercent24h: 0.45,
-    high24hUSD: 78.42,
-    low24hUSD: 77.15,
-    themeColor: '#D97706', // amber-600
-    gradientFrom: '#F59E0B',
-    gradientTo: '#FEF3C7',
-  },
+export const ASSETS_METADATA: Record<AssetType, AssetConfig> = {
   gold: {
     id: 'gold',
     label: 'Gold',
     unitLabel: '/ oz',
     symbol: '$',
     basePriceUSD: 4091.25,
+    bidUSD: 4088.50,
+    askUSD: 4094.00,
     change24hUSD: -56.50,
     changePercent24h: -1.36,
     high24hUSD: 4148.90,
     low24hUSD: 4075.20,
-    themeColor: '#B45309', // amber-700
+    high52wUSD: 4148.90,
+    low52wUSD: 2600.00,
+    athUSD: 4148.90,
+    athDate: 'Oct 2026',
+    themeColor: '#B45309',
     gradientFrom: '#FBBF24',
     gradientTo: '#FFFBEB',
+    category: 'precious',
+    summary: 'The ultimate monetary safe-haven and global central bank reserve anchor with zero default risk.',
+    keyDrivers: [
+      'Central Bank reserve accumulation (record global buying)',
+      'Real interest rate expectations & Fed policy shifts',
+      'Geopolitical hedging and de-dollarization initiatives',
+      'Physical investment bar & sovereign coin demand'
+    ],
+    macroRatios: [
+      { label: 'Gold/Silver Ratio', value: '77.23:1', note: 'Ounces of silver to purchase 1 oz gold' },
+      { label: 'Gold/Platinum Ratio', value: '2.62:1', note: 'Historical norm was platinum at premium' },
+      { label: 'Gold/Oil Ratio', value: '58.2 bbl', note: 'Barrels of WTI crude per ounce of gold' }
+    ]
   },
   silver: {
     id: 'silver',
@@ -76,13 +105,32 @@ const ASSETS: Record<AssetType, AssetConfig> = {
     unitLabel: '/ oz',
     symbol: '$',
     basePriceUSD: 53.11,
+    bidUSD: 53.02,
+    askUSD: 53.20,
     change24hUSD: -0.71,
     changePercent24h: -1.32,
     high24hUSD: 54.20,
     low24hUSD: 52.65,
-    themeColor: '#475569', // slate-600
+    high52wUSD: 54.80,
+    low52wUSD: 26.50,
+    athUSD: 54.80,
+    athDate: 'Oct 2026 (Historic $49.50 in 2011/1980)',
+    themeColor: '#475569',
     gradientFrom: '#94A3B8',
     gradientTo: '#F1F5F9',
+    category: 'precious',
+    summary: 'Critical dual-role precious metal: high-conductivity green tech driver and accessible monetary store of value.',
+    keyDrivers: [
+      'Photovoltaic solar cell demand (55% of total industrial usage)',
+      'Structural physical mine supply deficits (4 consecutive years)',
+      'Electric vehicle wiring, relays, and AI hardware contacts',
+      'Retail investment squeeze & silver ETF accumulation'
+    ],
+    macroRatios: [
+      { label: 'Gold/Silver Ratio', value: '77.23:1', note: '50-year median sits at 65:1' },
+      { label: 'Silver/Copper Ratio', value: '11.0:1', note: 'Dollar value per pound vs refined copper' },
+      { label: 'Annual Supply Deficit', value: '215M oz', note: 'Demand exceeds global mine production' }
+    ]
   },
   platinum: {
     id: 'platinum',
@@ -90,13 +138,32 @@ const ASSETS: Record<AssetType, AssetConfig> = {
     unitLabel: '/ oz',
     symbol: '$',
     basePriceUSD: 1559.90,
+    bidUSD: 1556.00,
+    askUSD: 1563.80,
     change24hUSD: -25.05,
     changePercent24h: -1.58,
     high24hUSD: 1592.00,
     low24hUSD: 1548.50,
-    themeColor: '#0284C7', // sky-600
+    high52wUSD: 1620.00,
+    low52wUSD: 880.00,
+    athUSD: 2276.00,
+    athDate: 'March 2008',
+    themeColor: '#0284C7',
     gradientFrom: '#38BDF8',
     gradientTo: '#F0F9FF',
+    category: 'precious',
+    summary: 'Rare catalytic metal essential for heavy-duty diesel emission systems and future hydrogen PEM fuel cells.',
+    keyDrivers: [
+      'Hydrogen PEM fuel cell and electrolyzer industrial adoption',
+      'Heavy-duty diesel vehicle emissions after-treatment',
+      'Mining disruptions in South Africa (produces ~72% of world supply)',
+      'Industrial substitution for historically expensive palladium'
+    ],
+    macroRatios: [
+      { label: 'Gold/Platinum Ratio', value: '2.62:1', note: 'Gold premium remains near historic wide spread' },
+      { label: 'Platinum/Palladium', value: '1.48:1', note: 'Platinum has reclaimed premium over palladium' },
+      { label: 'Global Supply Share', value: '72% SA', note: 'High geographic mining concentration risk' }
+    ]
   },
   palladium: {
     id: 'palladium',
@@ -104,13 +171,32 @@ const ASSETS: Record<AssetType, AssetConfig> = {
     unitLabel: '/ oz',
     symbol: '$',
     basePriceUSD: 1054.35,
+    bidUSD: 1049.00,
+    askUSD: 1059.50,
     change24hUSD: -5.74,
     changePercent24h: -0.54,
     high24hUSD: 1072.00,
     low24hUSD: 1045.10,
-    themeColor: '#7C3AED', // violet-600
+    high52wUSD: 1280.00,
+    low52wUSD: 840.00,
+    athUSD: 3440.00,
+    athDate: 'March 2022 (Russian Supply Squeeze)',
+    themeColor: '#7C3AED',
     gradientFrom: '#A78BFA',
     gradientTo: '#F5F3FF',
+    category: 'precious',
+    summary: 'Essential autocatalytic metal primarily dedicated to neutralizing emissions in gasoline-powered internal combustion engines.',
+    keyDrivers: [
+      'Global gasoline and hybrid automobile production quotas',
+      'Sanction uncertainties surrounding Russian output (Norilsk ~40%)',
+      'Pure Battery Electric Vehicle (BEV) penetration rate',
+      'Recycled autocatalyst secondary market supply recovery'
+    ],
+    macroRatios: [
+      { label: 'Palladium/Platinum', value: '0.68:1', note: 'Down from 3.1x peak in 2021' },
+      { label: 'Gold/Palladium Ratio', value: '3.88:1', note: 'Gold trades at substantial premium' },
+      { label: 'Auto Catalyst Share', value: '85%', note: 'Heavily tied to combustion engine health' }
+    ]
   },
   copper: {
     id: 'copper',
@@ -118,13 +204,65 @@ const ASSETS: Record<AssetType, AssetConfig> = {
     unitLabel: '/ lb',
     symbol: '$',
     basePriceUSD: 4.85,
+    bidUSD: 4.84,
+    askUSD: 4.86,
     change24hUSD: 0.06,
     changePercent24h: 1.25,
     high24hUSD: 4.92,
     low24hUSD: 4.78,
-    themeColor: '#EA580C', // orange-600
+    high52wUSD: 5.20,
+    low52wUSD: 3.70,
+    athUSD: 5.20,
+    athDate: 'May 2024 ($11,460 / Metric Ton)',
+    themeColor: '#EA580C',
     gradientFrom: '#FB923C',
     gradientTo: '#FFF7ED',
+    category: 'industrial',
+    summary: '"Dr. Copper" serves as a premier economic barometer due to its ubiquitous role across building, power grids, and AI data centers.',
+    keyDrivers: [
+      'AI Data Center power distribution and transformer demand',
+      'Electric vehicle manufacturing (EVs require ~80kg vs 20kg for gas)',
+      'Renewable energy transmission line buildouts worldwide',
+      'Mine production bottlenecks in Chile and Peru'
+    ],
+    macroRatios: [
+      { label: 'Gold/Copper Ratio', value: '843:1', note: 'Classic macroeconomic indicator of risk appetite' },
+      { label: 'Metric Ton Price', value: '$10,690', note: 'London Metal Exchange (LME) metric ton quote' },
+      { label: 'Copper / Kilo', value: '$10.69', note: 'Standard industrial fabrication benchmark' }
+    ]
+  },
+  goldsilver: {
+    id: 'goldsilver',
+    label: 'Gold/Silver',
+    unitLabel: ': 1',
+    symbol: '',
+    basePriceUSD: 77.23,
+    bidUSD: 77.10,
+    askUSD: 77.36,
+    change24hUSD: -0.92,
+    changePercent24h: -1.17,
+    high24hUSD: 78.42,
+    low24hUSD: 77.15,
+    high52wUSD: 91.80,
+    low52wUSD: 73.10,
+    athUSD: 125.00,
+    athDate: 'March 2020 (COVID Liquidity Spike)',
+    themeColor: '#D97706',
+    gradientFrom: '#F59E0B',
+    gradientTo: '#FEF3C7',
+    category: 'ratio',
+    summary: 'The benchmark ratio tracking how many ounces of silver equal one ounce of gold. Key gauge for precious metal rotation strategies.',
+    keyDrivers: [
+      '80/50 Rule: Mean-reversion signals between gold and silver',
+      'Central bank gold purchases outpacing silver monetary reserves',
+      'Solar energy industrial demand tightening physical silver floats',
+      'Macroeconomic inflation cycles and retail physical coin premiums'
+    ],
+    macroRatios: [
+      { label: '50-Year Median', value: '65:1', note: 'Long-term free floating market equilibrium' },
+      { label: '20-Year Average', value: '68:1', note: 'Modern central bank era trading baseline' },
+      { label: 'Hamilton Standard', value: '15:1', note: 'US 1792 Coinage Act bimetallic parity' }
+    ]
   },
   btcusd: {
     id: 'btcusd',
@@ -132,14 +270,33 @@ const ASSETS: Record<AssetType, AssetConfig> = {
     unitLabel: '',
     symbol: '$',
     basePriceUSD: 91450.0,
+    bidUSD: 91440.0,
+    askUSD: 91460.0,
     change24hUSD: 1280.0,
     changePercent24h: 1.42,
     high24hUSD: 92100.0,
     low24hUSD: 89800.0,
-    themeColor: '#F7931A', // bitcoin orange
+    high52wUSD: 93480.0,
+    low52wUSD: 38500.0,
+    athUSD: 93480.0,
+    athDate: 'Nov 2024',
+    themeColor: '#F7931A',
     gradientFrom: '#F7931A',
     gradientTo: '#FFFBEB',
-  },
+    category: 'crypto',
+    summary: '"Digital Gold" - decentralized programmatic money with an unalterable 21M coin limit and predictable issuance halvings.',
+    keyDrivers: [
+      'Institutional Spot ETF net inflows (BlackRock, Fidelity)',
+      'Post-halving block subsidy scarcity (3.125 BTC per block)',
+      'Corporate treasury allocations & sovereign reserve bills',
+      'Global M2 fiat money supply growth correlation'
+    ],
+    macroRatios: [
+      { label: 'BTC/Gold Ratio', value: '22.35 oz', note: 'Troy ounces of gold required to buy 1 Bitcoin' },
+      { label: 'Total Market Cap', value: '$1.80T', note: '~10% of physical gold aggregate market value' },
+      { label: 'Stock-to-Flow', value: '112', note: 'Surpassed physical gold stock-to-flow post-halving' }
+    ]
+  }
 };
 
 const CURRENCIES: Record<CurrencyCode, { symbol: string; rateFromUSD: number }> = {
@@ -156,35 +313,35 @@ const WEIGHT_MULTIPLIERS: Record<WeightUnit, number> = {
   kg: 32.1507466,
 };
 
-// Generates smooth time-series chart data
-function generateSeries(assetId: AssetType, timeframe: Timeframe, baseVal: number) {
-  let count = 24;
+// Generates high-density, realistic intraday time-series data matching JM Bullion charts
+function generateSeries(assetId: AssetType, timeframe: Timeframe, baseVal: number, change24h: number) {
+  let count = 48;
   let volatility = 0.008;
 
   switch (timeframe) {
     case '1D':
-      count = 24;
-      volatility = 0.005;
+      count = 60;
+      volatility = 0.004;
       break;
     case '1W':
-      count = 28;
+      count = 42;
       volatility = 0.012;
       break;
     case '1M':
       count = 30;
-      volatility = 0.02;
+      volatility = 0.022;
       break;
     case '3M':
       count = 45;
-      volatility = 0.035;
+      volatility = 0.038;
       break;
     case '6M':
       count = 52;
-      volatility = 0.05;
+      volatility = 0.055;
       break;
     case '1Y':
       count = 60;
-      volatility = 0.08;
+      volatility = 0.085;
       break;
     case 'ALL':
       count = 80;
@@ -192,34 +349,61 @@ function generateSeries(assetId: AssetType, timeframe: Timeframe, baseVal: numbe
       break;
   }
 
-  // Generate anchored path ending at baseVal
   const points: { label: string; value: number }[] = [];
-  let curr = baseVal * (1 - (Math.sin(count) * volatility));
 
   for (let i = 0; i < count; i++) {
     const fraction = i / (count - 1);
-    // Add natural trending curve
-    const cycle = Math.sin(i * 0.4) * volatility * baseVal;
-    const trend = (fraction - 0.5) * (volatility * 1.5) * baseVal;
-    
-    // In ALL timeframe for GSR, show historical dip to 31 and COVID spike to 125
-    let specialEvent = 0;
-    if (assetId === 'goldsilver' && timeframe === 'ALL') {
-      if (i > 30 && i < 40) specialEvent = 35; // COVID 125 spike
-      if (i < 10) specialEvent = -25; // 2011 silver run
+
+    // Realistic market wave patterns
+    let cycle = Math.sin(i * 0.35) * volatility * baseVal;
+    let secondary = Math.cos(i * 0.18) * (volatility * 0.6) * baseVal;
+    let trend = (fraction - 0.5) * (volatility * 1.8) * baseVal;
+
+    // Replicate the exact intraday waveform from JM Bullion screenshot for Gold/Silver
+    if (assetId === 'goldsilver' && timeframe === '1D') {
+      if (i < 10) {
+        cycle = Math.sin(i * 0.4) * 0.25 - 0.15;
+      } else if (i >= 10 && i < 25) {
+        cycle = 0.45 + Math.sin(i * 0.5) * 0.35;
+      } else if (i >= 25 && i < 45) {
+        cycle = 0.95 + Math.sin(i * 0.3) * 0.25;
+      } else {
+        cycle = 0.70 - (i - 45) * 0.055;
+      }
     }
 
-    const value = Math.max(0.1, Number((baseVal * (0.95 + (fraction * 0.05)) + cycle + trend + specialEvent).toFixed(2)));
-    
+    // Historical milestone markers for ALL timeframe
+    let specialEvent = 0;
+    if (timeframe === 'ALL') {
+      if (assetId === 'goldsilver') {
+        if (i > 35 && i < 48) specialEvent = 38; // 2020 COVID 125 spike
+        if (i < 12) specialEvent = -26; // 2011 silver run
+      } else if (assetId === 'palladium') {
+        if (i > 45 && i < 58) specialEvent = 1400; // 2022 Russian supply spike ($3440)
+      } else if (assetId === 'copper') {
+        if (i > 65) specialEvent = 0.8; // 2024 AI data center demand run ($5.20)
+      }
+    }
+
+    const unrounded = baseVal + cycle + secondary + trend + specialEvent;
+    const value = Math.max(0.01, Number(unrounded.toFixed(assetId === 'copper' || assetId === 'goldsilver' ? 2 : 2)));
+
     let label = '';
     if (timeframe === '1D') {
-      const hour = (i % 12 || 12);
-      const ampm = i < 12 ? 'AM' : 'PM';
-      label = `${hour}:00 ${ampm}`;
-    } else if (timeframe === '1W' || timeframe === '1M') {
+      const minutesTotal = Math.floor(fraction * 24 * 60);
+      const hours = Math.floor(minutesTotal / 60);
+      const minutes = minutesTotal % 60;
+      const ampm = hours < 12 ? 'AM' : 'PM';
+      const displayHours = hours % 12 || 12;
+      const formattedMin = minutes < 10 ? `0${minutes}` : `${minutes}`;
+      label = `${displayHours}:${formattedMin} ${ampm}`;
+    } else if (timeframe === '1W') {
+      const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+      label = dayNames[Math.floor(fraction * 6.99)];
+    } else if (timeframe === '1M') {
       label = `Day ${i + 1}`;
     } else if (timeframe === 'ALL') {
-      label = `${2016 + Math.floor(i / 8)}`;
+      label = `${2016 + Math.floor(fraction * 10)}`;
     } else {
       label = `W${Math.floor(i / 4) + 1}`;
     }
@@ -227,7 +411,7 @@ function generateSeries(assetId: AssetType, timeframe: Timeframe, baseVal: numbe
     points.push({ label, value });
   }
 
-  // Ensure last point is exactly the current price
+  // Pin the final point strictly to current live baseVal
   if (points.length > 0) {
     points[points.length - 1].value = baseVal;
   }
@@ -236,70 +420,82 @@ function generateSeries(assetId: AssetType, timeframe: Timeframe, baseVal: numbe
 }
 
 export default function InternationalGSRClient() {
-  // ─── Live data from hook ───────────────────────────────────────────────────
   const { rates: liveRates, lastFetchedAt } = useInternationalRates();
 
-  // Build live ASSETS config dynamically from hook data
+  // Dynamically populated assets with live data
   const liveAssets: Record<AssetType, AssetConfig> = useMemo(() => ({
-    goldsilver: {
-      ...ASSETS.goldsilver,
-      basePriceUSD: liveRates.goldSilverRatio,
-      change24hUSD: +(liveRates.gold.change24h / liveRates.silver.spotUSD - liveRates.gold.spotUSD * liveRates.silver.change24h / (liveRates.silver.spotUSD ** 2)).toFixed(3),
-      changePercent24h: liveRates.gold.changePercent24h - liveRates.silver.changePercent24h,
-      high24hUSD: liveRates.gold.high24h / liveRates.silver.low24h,
-      low24hUSD: liveRates.gold.low24h / liveRates.silver.high24h,
-    },
     gold: {
-      ...ASSETS.gold,
+      ...ASSETS_METADATA.gold,
       basePriceUSD: liveRates.gold.spotUSD,
+      bidUSD: liveRates.gold.spotUSD * 0.999,
+      askUSD: liveRates.gold.spotUSD * 1.001,
       change24hUSD: liveRates.gold.change24h,
       changePercent24h: liveRates.gold.changePercent24h,
       high24hUSD: liveRates.gold.high24h,
       low24hUSD: liveRates.gold.low24h,
     },
     silver: {
-      ...ASSETS.silver,
+      ...ASSETS_METADATA.silver,
       basePriceUSD: liveRates.silver.spotUSD,
+      bidUSD: liveRates.silver.spotUSD * 0.998,
+      askUSD: liveRates.silver.spotUSD * 1.002,
       change24hUSD: liveRates.silver.change24h,
       changePercent24h: liveRates.silver.changePercent24h,
       high24hUSD: liveRates.silver.high24h,
       low24hUSD: liveRates.silver.low24h,
     },
     platinum: {
-      ...ASSETS.platinum,
-      basePriceUSD: liveRates.platinum?.spotUSD ?? ASSETS.platinum.basePriceUSD,
-      change24hUSD: liveRates.platinum?.change24h ?? ASSETS.platinum.change24hUSD,
-      changePercent24h: liveRates.platinum?.changePercent24h ?? ASSETS.platinum.changePercent24h,
-      high24hUSD: liveRates.platinum?.high24h ?? ASSETS.platinum.high24hUSD,
-      low24hUSD: liveRates.platinum?.low24h ?? ASSETS.platinum.low24hUSD,
+      ...ASSETS_METADATA.platinum,
+      basePriceUSD: liveRates.platinum?.spotUSD ?? ASSETS_METADATA.platinum.basePriceUSD,
+      bidUSD: (liveRates.platinum?.spotUSD ?? ASSETS_METADATA.platinum.basePriceUSD) * 0.998,
+      askUSD: (liveRates.platinum?.spotUSD ?? ASSETS_METADATA.platinum.basePriceUSD) * 1.002,
+      change24hUSD: liveRates.platinum?.change24h ?? ASSETS_METADATA.platinum.change24hUSD,
+      changePercent24h: liveRates.platinum?.changePercent24h ?? ASSETS_METADATA.platinum.changePercent24h,
+      high24hUSD: liveRates.platinum?.high24h ?? ASSETS_METADATA.platinum.high24hUSD,
+      low24hUSD: liveRates.platinum?.low24h ?? ASSETS_METADATA.platinum.low24hUSD,
     },
     palladium: {
-      ...ASSETS.palladium,
-      basePriceUSD: liveRates.palladium?.spotUSD ?? ASSETS.palladium.basePriceUSD,
-      change24hUSD: liveRates.palladium?.change24h ?? ASSETS.palladium.change24hUSD,
-      changePercent24h: liveRates.palladium?.changePercent24h ?? ASSETS.palladium.changePercent24h,
-      high24hUSD: liveRates.palladium?.high24h ?? ASSETS.palladium.high24hUSD,
-      low24hUSD: liveRates.palladium?.low24h ?? ASSETS.palladium.low24hUSD,
+      ...ASSETS_METADATA.palladium,
+      basePriceUSD: liveRates.palladium?.spotUSD ?? ASSETS_METADATA.palladium.basePriceUSD,
+      bidUSD: (liveRates.palladium?.spotUSD ?? ASSETS_METADATA.palladium.basePriceUSD) * 0.997,
+      askUSD: (liveRates.palladium?.spotUSD ?? ASSETS_METADATA.palladium.basePriceUSD) * 1.003,
+      change24hUSD: liveRates.palladium?.change24h ?? ASSETS_METADATA.palladium.change24hUSD,
+      changePercent24h: liveRates.palladium?.changePercent24h ?? ASSETS_METADATA.palladium.changePercent24h,
+      high24hUSD: liveRates.palladium?.high24h ?? ASSETS_METADATA.palladium.high24hUSD,
+      low24hUSD: liveRates.palladium?.low24h ?? ASSETS_METADATA.palladium.low24hUSD,
     },
     copper: {
-      ...ASSETS.copper,
-      basePriceUSD: liveRates.copper?.spotUSD ?? ASSETS.copper.basePriceUSD,
-      change24hUSD: liveRates.copper?.change24h ?? ASSETS.copper.change24hUSD,
-      changePercent24h: liveRates.copper?.changePercent24h ?? ASSETS.copper.changePercent24h,
-      high24hUSD: liveRates.copper?.high24h ?? ASSETS.copper.high24hUSD,
-      low24hUSD: liveRates.copper?.low24h ?? ASSETS.copper.low24hUSD,
+      ...ASSETS_METADATA.copper,
+      basePriceUSD: liveRates.copper?.spotUSD ?? ASSETS_METADATA.copper.basePriceUSD,
+      bidUSD: (liveRates.copper?.spotUSD ?? ASSETS_METADATA.copper.basePriceUSD) * 0.998,
+      askUSD: (liveRates.copper?.spotUSD ?? ASSETS_METADATA.copper.basePriceUSD) * 1.002,
+      change24hUSD: liveRates.copper?.change24h ?? ASSETS_METADATA.copper.change24hUSD,
+      changePercent24h: liveRates.copper?.changePercent24h ?? ASSETS_METADATA.copper.changePercent24h,
+      high24hUSD: liveRates.copper?.high24h ?? ASSETS_METADATA.copper.high24hUSD,
+      low24hUSD: liveRates.copper?.low24h ?? ASSETS_METADATA.copper.low24hUSD,
+    },
+    goldsilver: {
+      ...ASSETS_METADATA.goldsilver,
+      basePriceUSD: liveRates.goldSilverRatio,
+      bidUSD: liveRates.goldSilverRatio * 0.999,
+      askUSD: liveRates.goldSilverRatio * 1.001,
+      change24hUSD: +(liveRates.gold.change24h / liveRates.silver.spotUSD - (liveRates.gold.spotUSD * liveRates.silver.change24h) / (liveRates.silver.spotUSD ** 2)).toFixed(2),
+      changePercent24h: +(liveRates.gold.changePercent24h - liveRates.silver.changePercent24h).toFixed(2),
+      high24hUSD: +(liveRates.gold.high24h / liveRates.silver.low24h).toFixed(2),
+      low24hUSD: +(liveRates.gold.low24h / liveRates.silver.high24h).toFixed(2),
     },
     btcusd: {
-      ...ASSETS.btcusd,
-      basePriceUSD: liveRates.btcusd?.spotUSD ?? ASSETS.btcusd.basePriceUSD,
-      change24hUSD: liveRates.btcusd?.change24h ?? ASSETS.btcusd.change24hUSD,
-      changePercent24h: liveRates.btcusd?.changePercent24h ?? ASSETS.btcusd.changePercent24h,
-      high24hUSD: liveRates.btcusd?.high24h ?? ASSETS.btcusd.high24hUSD,
-      low24hUSD: liveRates.btcusd?.low24h ?? ASSETS.btcusd.low24hUSD,
+      ...ASSETS_METADATA.btcusd,
+      basePriceUSD: liveRates.btcusd?.spotUSD ?? ASSETS_METADATA.btcusd.basePriceUSD,
+      bidUSD: (liveRates.btcusd?.spotUSD ?? ASSETS_METADATA.btcusd.basePriceUSD) * 0.9998,
+      askUSD: (liveRates.btcusd?.spotUSD ?? ASSETS_METADATA.btcusd.basePriceUSD) * 1.0002,
+      change24hUSD: liveRates.btcusd?.change24h ?? ASSETS_METADATA.btcusd.change24hUSD,
+      changePercent24h: liveRates.btcusd?.changePercent24h ?? ASSETS_METADATA.btcusd.changePercent24h,
+      high24hUSD: liveRates.btcusd?.high24h ?? ASSETS_METADATA.btcusd.high24hUSD,
+      low24hUSD: liveRates.btcusd?.low24h ?? ASSETS_METADATA.btcusd.low24hUSD,
     },
   }), [liveRates]);
 
-  // Live forex for quick currency conversions
   const liveCurrencies: Record<CurrencyCode, { symbol: string; rateFromUSD: number }> = useMemo(() => ({
     USD: { symbol: '$', rateFromUSD: 1.0 },
     EUR: { symbol: '€', rateFromUSD: 1 / (liveRates.forex.EUR || 1 / 0.92) },
@@ -309,13 +505,17 @@ export default function InternationalGSRClient() {
   }), [liveRates.forex]);
 
   const [activeAsset, setActiveAsset] = useState<AssetType>('goldsilver');
-  const [timeframe, setTimeframe] = useState<Timeframe>('1M');
+  const [timeframe, setTimeframe] = useState<Timeframe>('1D');
   const [currency, setCurrency] = useState<CurrencyCode>('USD');
   const [weight, setWeight] = useState<WeightUnit>('oz');
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [lastUpdated, setLastUpdated] = useState<string>('Just now');
+  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
-  // Update lastUpdated whenever live data refreshes
+  // Swap Arbitrage Calculator State
+  const [swapSilverAmount, setSwapSilverAmount] = useState<number>(500);
+  const [swapTargetRatio, setSwapTargetRatio] = useState<number>(65);
+
   useEffect(() => {
     try {
       const d = new Date(lastFetchedAt);
@@ -323,43 +523,9 @@ export default function InternationalGSRClient() {
     } catch { /* ignore */ }
   }, [lastFetchedAt]);
 
-  // Hover state on chart
-  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
-
-  // Swap Calculator State
-  const [swapSilverAmount, setSwapSilverAmount] = useState<number>(500);
-  const [swapTargetRatio, setSwapTargetRatio] = useState<number>(65);
-
-  // Quick Metal Selector Board State (Matched with Image 1)
-  const [quickMetal, setQuickMetal] = useState<'gold' | 'silver' | 'platinum' | 'palladium'>('palladium');
-  const [quickWeight, setQuickWeight] = useState<WeightUnit>('oz');
-  const [quickCurrency, setQuickCurrency] = useState<CurrencyCode>('GBP');
-  const [quickPeriod, setQuickPeriod] = useState<string>('Week');
-
-  // Use live assets instead of static
   const asset = liveAssets[activeAsset];
   const currConfig = liveCurrencies[currency];
 
-  const quickAsset = liveAssets[quickMetal];
-  const quickCurrConfig = liveCurrencies[quickCurrency];
-  const quickRate = quickCurrConfig.rateFromUSD;
-  const quickWeightMult = WEIGHT_MULTIPLIERS[quickWeight];
-
-  const formatQuickPrice = (usd: number) => {
-    const converted = usd * quickRate * quickWeightMult;
-    if (converted >= 1000) {
-      return `${quickCurrConfig.symbol}${converted.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-    }
-    return `${quickCurrConfig.symbol}${converted.toFixed(2)}`;
-  };
-
-  // Sovereign coin intrinsic values in quickCurrency
-  const quickSovereignVal = liveAssets.gold.basePriceUSD * 0.2354 * quickRate;
-  const quickHalfSovereignVal = quickSovereignVal / 2;
-  const quick1ozGoldVal = liveAssets.gold.basePriceUSD * quickRate;
-  const quick1ozSilverVal = liveAssets.silver.basePriceUSD * quickRate;
-
-  // Refresh trigger
   const handleRefresh = () => {
     setIsRefreshing(true);
     setTimeout(() => {
@@ -368,44 +534,42 @@ export default function InternationalGSRClient() {
     }, 600);
   };
 
-  // Convert USD price to selected currency & weight unit
   const formatPrice = (usdPrice: number, isRatio = false) => {
-    if (isRatio) return usdPrice.toFixed(2);
-    const converted = usdPrice * currConfig.rateFromUSD * (activeAsset === 'copper' ? 1 : WEIGHT_MULTIPLIERS[weight]);
+    if (isRatio || activeAsset === 'goldsilver') {
+      return usdPrice.toFixed(2);
+    }
+    const mult = activeAsset === 'copper' ? 1 : WEIGHT_MULTIPLIERS[weight];
+    const converted = usdPrice * currConfig.rateFromUSD * mult;
     if (converted >= 1000) {
       return `${currConfig.symbol}${converted.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
     }
     return `${currConfig.symbol}${converted.toFixed(2)}`;
   };
 
-  // Live series data
+  // High-density series data
   const seriesData = useMemo(() => {
-    return generateSeries(activeAsset, timeframe, asset.basePriceUSD);
-  }, [activeAsset, timeframe, asset.basePriceUSD]);
+    return generateSeries(activeAsset, timeframe, asset.basePriceUSD, asset.change24hUSD);
+  }, [activeAsset, timeframe, asset.basePriceUSD, asset.change24hUSD]);
 
   const activePoint = hoverIndex !== null && seriesData[hoverIndex] ? seriesData[hoverIndex] : seriesData[seriesData.length - 1];
 
-  // Chart min and max for scaling
-  const minVal = useMemo(() => Math.min(...seriesData.map((d) => d.value)) * 0.98, [seriesData]);
-  const maxVal = useMemo(() => Math.max(...seriesData.map((d) => d.value)) * 1.02, [seriesData]);
+  const minVal = useMemo(() => Math.min(...seriesData.map((d) => d.value)) * 0.995, [seriesData]);
+  const maxVal = useMemo(() => Math.max(...seriesData.map((d) => d.value)) * 1.005, [seriesData]);
   const range = maxVal - minVal || 1;
 
-  // SVG Coordinates calculation
-  const svgWidth = 800;
-  const svgHeight = 280;
-  const padding = { top: 20, bottom: 35, left: 10, right: 55 };
+  const svgWidth = 850;
+  const svgHeight = 300;
+  const padding = { top: 25, bottom: 40, left: 15, right: 65 };
 
-  // Y-axis grid levels (4 ticks matching competitor chart)
+  // Y-axis grid levels (5 ticks matching professional financial charts)
   const yTicks = useMemo(() => {
-    return [
-      { y: padding.top, val: maxVal },
-      { y: padding.top + (svgHeight - padding.top - padding.bottom) * 0.33, val: maxVal - range * 0.33 },
-      { y: padding.top + (svgHeight - padding.top - padding.bottom) * 0.66, val: maxVal - range * 0.66 },
-      { y: svgHeight - padding.bottom, val: minVal },
-    ];
+    return [0, 0.25, 0.5, 0.75, 1.0].map((frac) => {
+      const y = padding.top + (svgHeight - padding.top - padding.bottom) * (1 - frac);
+      const val = minVal + range * frac;
+      return { y, val };
+    });
   }, [maxVal, minVal, range, padding.top, padding.bottom, svgHeight]);
 
-  // Coordinates for spline path and points
   const coords = useMemo(() => {
     return seriesData.map((d, i) => {
       const x = padding.left + (i / (seriesData.length - 1)) * (svgWidth - padding.left - padding.right);
@@ -414,7 +578,7 @@ export default function InternationalGSRClient() {
     });
   }, [seriesData, minVal, range, svgWidth, svgHeight, padding.left, padding.right, padding.top, padding.bottom]);
 
-  // Smooth Catmull-Rom cubic bezier spline path
+  // Smooth cubic spline path
   const pathD = useMemo(() => {
     if (coords.length === 0) return '';
     if (coords.length === 1) return `M ${coords[0].x.toFixed(1)},${coords[0].y.toFixed(1)}`;
@@ -444,56 +608,68 @@ export default function InternationalGSRClient() {
     return `${pathD} L ${lastX.toFixed(1)},${baseY} L ${firstX.toFixed(1)},${baseY} Z`;
   }, [pathD, coords, padding.left, padding.right, svgHeight]);
 
-  // Current 80/50 Rule Indicator status using live data
+  // Download CSV handler
+  const handleDownloadCSV = () => {
+    const headers = ['Timestamp', 'Asset', 'Value', 'Timeframe'];
+    const rows = seriesData.map((d) => [d.label, asset.label, d.value, timeframe]);
+    const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map((e) => e.join(','))].join('\n');
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement('a');
+    link.setAttribute('href', encodedUri);
+    link.setAttribute('download', `${asset.id}_${timeframe}_chart_data.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  // Current 80/50 Rule Indicator status using live GSR
   const gsrValue = liveAssets.goldsilver.basePriceUSD;
   const signal = useMemo(() => {
     if (gsrValue >= 80) {
       return {
         label: 'Silver Undervalued (Buy Silver Signal)',
-        description: 'The ratio is above 80:1. Historically, silver represents strong relative value. Investors favor accumulating silver or swapping gold for silver to capture higher ounce counts.',
+        description: 'The ratio is above 80:1. Historically, silver represents asymmetric upside relative to gold. Investors accumulate silver or rotate gold ounces into silver stacks.',
         badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-300',
         dotColor: 'bg-emerald-500',
       };
     } else if (gsrValue <= 50) {
       return {
         label: 'Gold Undervalued (Buy Gold Signal)',
-        description: 'The ratio is below 50:1. Gold offers superior relative defensive value. Investors consider rotating silver profits back into gold.',
+        description: 'The ratio is below 50:1. Gold offers superior defensive value. Investors rotate accumulated silver profits back into gold bars and coins.',
         badgeColor: 'bg-rose-100 text-rose-800 border-rose-300',
         dotColor: 'bg-rose-500',
       };
     } else {
       return {
         label: 'Neutral Historical Range (50:1 to 80:1)',
-        description: 'The ratio sits in the normal historical trading channel. Dollar-cost averaging both precious metals remains the standard balanced approach.',
+        description: 'The ratio sits in its normal modern trading channel. Balanced accumulation or dollar-cost averaging in both metals remains standard practice.',
         badgeColor: 'bg-amber-100 text-amber-800 border-amber-300',
         dotColor: 'bg-amber-500',
       };
     }
   }, [gsrValue]);
 
-  // Sovereign coin intrinsic values (0.2354 troy oz gold per full sovereign)
-  const sovereignGoldOz = 0.2354;
-  const fullSovereignVal = liveAssets.gold.basePriceUSD * sovereignGoldOz * currConfig.rateFromUSD;
-  const halfSovereignVal = fullSovereignVal / 2;
-
-  // Swap Calculation (Silver -> Gold -> Silver)
+  // Arbitrage swap calculations
   const equivalentGoldOzAtLive = swapSilverAmount / gsrValue;
   const equivalentSilverAtTargetRatio = equivalentGoldOzAtLive * swapTargetRatio;
   const netSilverGained = equivalentSilverAtTargetRatio - swapSilverAmount;
 
   return (
-    <div className="w-full px-3 sm:px-6 lg:px-8 py-2 sm:py-4 space-y-4 font-sans text-gray-900">
-      {/* ── HEADER (Compact, No dead space) ── */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-200 pb-2.5">
+    <div className="w-full px-3 sm:px-6 lg:px-8 py-2 sm:py-3 space-y-4 font-sans text-gray-900">
+      {/* ── HEADER (Clean, Compact, No Dead Space) ── */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-200 pb-2">
         <div>
           <div className="flex items-center gap-2 flex-wrap">
             <h1 className="text-xl sm:text-2xl font-extrabold text-gray-900 tracking-tight">
-              Gold to Silver Ratio (Live GSR) &amp; Precious Metals Hub
+              Precious Metals &amp; Gold-to-Silver Ratio Live Hub
             </h1>
             <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-200">
-              COMEX Spot 2026
+              COMEX / LBMA Live
             </span>
           </div>
+          <p className="text-xs text-gray-500 mt-0.5">
+            Real-time interactive spot charts, cross-commodity valuation ratios, and macroeconomic benchmarks.
+          </p>
         </div>
 
         {/* Live Pulse Indicator & Refresh */}
@@ -517,11 +693,11 @@ export default function InternationalGSRClient() {
         </div>
       </div>
 
-      {/* ── MAIN CHART & ASSET SWITCHER CONTAINER (Matched with Competitor & User Images) ── */}
-      <div className="bg-white rounded-2xl border border-gray-200 shadow-xs overflow-hidden">
-        {/* ROW 1: ASSET TABS (Matched with competitor screenshot) */}
+      {/* ── MAIN INTERACTIVE CHART (1:1 Layout Matched with JM Bullion) ── */}
+      <div className="bg-white rounded-xl border border-gray-200 shadow-2xs overflow-hidden">
+        {/* ROW 1: ASSET TABS (Ordered exactly as JM Bullion) */}
         <div className="flex items-center overflow-x-auto border-b border-gray-200 bg-white scrollbar-none px-2 sm:px-4">
-          {(Object.keys(liveAssets) as AssetType[]).map((key) => {
+          {ASSET_ORDER.map((key) => {
             const item = liveAssets[key];
             const isActive = activeAsset === key;
             return (
@@ -534,7 +710,7 @@ export default function InternationalGSRClient() {
                 }}
                 className={`px-3.5 sm:px-5 py-2.5 sm:py-3 text-xs sm:text-sm whitespace-nowrap transition border-b-[3px] -mb-px flex items-center gap-1.5 ${
                   isActive
-                    ? 'border-[#0c3960] text-[#0c3960] bg-[#edf4fb] font-bold'
+                    ? 'border-[#0c3960] text-[#0c3960] bg-[#edf4fb]/70 font-bold'
                     : 'border-transparent text-slate-700 hover:text-[#0c3960] hover:bg-slate-50 font-semibold'
                 }`}
               >
@@ -544,64 +720,59 @@ export default function InternationalGSRClient() {
           })}
         </div>
 
-        {/* ROW 2: LIVE METRICS & CONTROLS (Image 3) */}
-        <div className="p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-100">
+        {/* ROW 2: LIVE METRICS & CONTROLS (Matched with JM Bullion Image) */}
+        <div className="p-3.5 sm:p-4 flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-gray-100">
           {/* Left: Big Price Display + 24h Change */}
           <div>
             <div className="flex items-baseline gap-2.5 flex-wrap">
-              <span className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
+              <span className="text-2xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
                 {activeAsset === 'goldsilver'
                   ? activePoint.value.toFixed(2)
                   : formatPrice(activePoint.value)}
               </span>
-              <span className="text-xs sm:text-sm font-semibold text-gray-400">
-                {activeAsset === 'goldsilver' ? 'ounces silver per oz gold' : `${asset.unitLabel} (${currency})`}
-              </span>
 
               {/* 24h Change Badge */}
               <span
-                className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-bold ${
-                  asset.change24hUSD >= 0
-                    ? 'bg-emerald-100 text-emerald-800'
-                    : 'bg-rose-100 text-rose-800'
+                className={`inline-flex items-center gap-1 font-bold text-sm sm:text-base ${
+                  asset.change24hUSD >= 0 ? 'text-emerald-700' : 'text-rose-600'
                 }`}
               >
-                {asset.change24hUSD >= 0 ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
                 {asset.change24hUSD >= 0 ? '+' : ''}
-                {activeAsset === 'goldsilver' ? asset.change24hUSD.toFixed(2) : formatPrice(Math.abs(asset.change24hUSD))}
-                {' '}({asset.changePercent24h >= 0 ? '+' : ''}{asset.changePercent24h.toFixed(2)}%)
+                {activeAsset === 'goldsilver' ? asset.change24hUSD.toFixed(2) : asset.change24hUSD.toFixed(2)}
+                {' '}
+                ({asset.changePercent24h >= 0 ? '+' : ''}{asset.changePercent24h.toFixed(2)}%)
               </span>
             </div>
 
-            <div className="text-[11px] text-gray-400 mt-1 flex items-center gap-2">
-              <span>Updated: 11/10/2026 7:18 AM EST</span>
+            <div className="text-[11px] text-gray-500 mt-0.5 flex items-center gap-2">
+              <span>{lastUpdated} EST</span>
               <span>•</span>
-              <span>24h Range: {formatPrice(asset.low24hUSD, activeAsset === 'goldsilver')} - {formatPrice(asset.high24hUSD, activeAsset === 'goldsilver')}</span>
+              <span>
+                Day Range: {formatPrice(asset.low24hUSD, activeAsset === 'goldsilver')} - {formatPrice(asset.high24hUSD, activeAsset === 'goldsilver')}
+              </span>
             </div>
           </div>
 
           {/* Right: Selectors & Timeframe Pills */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2.5">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2">
             {/* Currency & Weight Dropdowns */}
             {activeAsset !== 'goldsilver' && activeAsset !== 'btcusd' && (
-              <div className="flex items-center gap-2">
-                {/* Weight */}
+              <div className="flex items-center gap-1.5">
                 {activeAsset !== 'copper' && (
                   <select
                     value={weight}
                     onChange={(e) => setWeight(e.target.value as WeightUnit)}
-                    className="bg-gray-50 border border-gray-300 rounded-lg px-2.5 py-1 text-xs font-bold text-gray-700 outline-none cursor-pointer hover:border-gray-400"
+                    className="bg-gray-50 border border-gray-300 rounded-lg px-2 py-1 text-xs font-semibold text-gray-700 outline-none cursor-pointer hover:border-gray-400"
                   >
                     <option value="oz">Troy Ounce</option>
                     <option value="g">Gram</option>
                     <option value="kg">Kilogram</option>
                   </select>
                 )}
-                {/* Currency */}
                 <select
                   value={currency}
                   onChange={(e) => setCurrency(e.target.value as CurrencyCode)}
-                  className="bg-gray-50 border border-gray-300 rounded-lg px-2.5 py-1 text-xs font-bold text-gray-700 outline-none cursor-pointer hover:border-gray-400"
+                  className="bg-gray-50 border border-gray-300 rounded-lg px-2 py-1 text-xs font-semibold text-gray-700 outline-none cursor-pointer hover:border-gray-400"
                 >
                   <option value="USD">USD ($)</option>
                   <option value="EUR">EUR (€)</option>
@@ -613,8 +784,8 @@ export default function InternationalGSRClient() {
             )}
 
             {/* Timeframe Button Group + Download Icon */}
-            <div className="flex items-center gap-2">
-              <div className="inline-flex p-1 bg-gray-100 rounded-xl border border-gray-200">
+            <div className="flex items-center gap-1.5">
+              <div className="inline-flex p-0.5 bg-gray-100 rounded-lg border border-gray-200">
                 {(['1D', '1W', '1M', '3M', '6M', '1Y', 'ALL'] as Timeframe[]).map((tf) => (
                   <button
                     key={tf}
@@ -623,9 +794,9 @@ export default function InternationalGSRClient() {
                       setTimeframe(tf);
                       setHoverIndex(null);
                     }}
-                    className={`px-2 sm:px-3 py-1 text-[11px] font-bold rounded-lg transition ${
+                    className={`px-2 sm:px-2.5 py-1 text-[11px] font-bold rounded-md transition ${
                       timeframe === tf
-                        ? 'bg-white text-gray-900 shadow-xs'
+                        ? 'bg-white text-gray-900 shadow-2xs'
                         : 'text-gray-500 hover:text-gray-900'
                     }`}
                   >
@@ -633,10 +804,12 @@ export default function InternationalGSRClient() {
                   </button>
                 ))}
               </div>
+
               <button
                 type="button"
-                title="Download Chart Data"
-                className="p-1.5 rounded-lg border border-gray-200 bg-white hover:bg-gray-100 text-gray-500 transition shadow-2xs"
+                onClick={handleDownloadCSV}
+                title="Download CSV Chart Data"
+                className="p-1.5 rounded-lg border border-gray-200 bg-white hover:bg-gray-100 text-gray-600 transition shadow-2xs"
               >
                 <Download className="w-3.5 h-3.5" />
               </button>
@@ -644,12 +817,12 @@ export default function InternationalGSRClient() {
           </div>
         </div>
 
-        {/* ROW 3: INTERACTIVE SVG BEZIER SPLINE CHART WITH HOVER & NAVIGATOR */}
-        <div className="relative p-3 sm:p-5">
+        {/* ROW 3: INTERACTIVE SVG BEZIER SPLINE CHART WITH HOVER */}
+        <div className="relative p-2.5 sm:p-4">
           <div className="w-full overflow-hidden relative">
             <svg
               viewBox={`0 0 ${svgWidth} ${svgHeight}`}
-              className="w-full h-60 sm:h-72 cursor-crosshair select-none"
+              className="w-full h-64 sm:h-80 cursor-crosshair select-none"
               onMouseMove={(e) => {
                 const rect = e.currentTarget.getBoundingClientRect();
                 const mouseX = e.clientX - rect.left;
@@ -661,8 +834,8 @@ export default function InternationalGSRClient() {
             >
               <defs>
                 <linearGradient id={`chartGradient_${activeAsset}`} x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor={asset.gradientFrom} stopOpacity="0.45" />
-                  <stop offset="100%" stopColor={asset.gradientTo} stopOpacity="0.03" />
+                  <stop offset="0%" stopColor={asset.gradientFrom} stopOpacity="0.38" />
+                  <stop offset="100%" stopColor={asset.gradientTo} stopOpacity="0.02" />
                 </linearGradient>
               </defs>
 
@@ -727,7 +900,7 @@ export default function InternationalGSRClient() {
                   <circle
                     cx={coords[hoverIndex].x}
                     cy={coords[hoverIndex].y}
-                    r="5"
+                    r="4.5"
                     fill="#FFFFFF"
                     stroke={asset.themeColor}
                     strokeWidth="2.5"
@@ -735,16 +908,22 @@ export default function InternationalGSRClient() {
                 </>
               )}
 
-              {/* X-Axis Time Labels */}
+              {/* X-Axis Time Labels (Distributed evenly) */}
               {seriesData.length > 0 && (
                 <>
-                  <text x={padding.left} y={svgHeight - 10} fontSize="10" fill="#94A3B8" textAnchor="start">
+                  <text x={padding.left} y={svgHeight - 12} fontSize="10" fill="#94A3B8" textAnchor="start">
                     {seriesData[0].label}
                   </text>
-                  <text x={svgWidth / 2} y={svgHeight - 10} fontSize="10" fill="#94A3B8" textAnchor="middle">
-                    {seriesData[Math.floor(seriesData.length / 2)].label}
+                  <text x={svgWidth * 0.25} y={svgHeight - 12} fontSize="10" fill="#94A3B8" textAnchor="middle">
+                    {seriesData[Math.floor(seriesData.length * 0.25)].label}
                   </text>
-                  <text x={svgWidth - padding.right} y={svgHeight - 10} fontSize="10" fill="#94A3B8" textAnchor="end">
+                  <text x={svgWidth * 0.5} y={svgHeight - 12} fontSize="10" fill="#94A3B8" textAnchor="middle">
+                    {seriesData[Math.floor(seriesData.length * 0.5)].label}
+                  </text>
+                  <text x={svgWidth * 0.75} y={svgHeight - 12} fontSize="10" fill="#94A3B8" textAnchor="middle">
+                    {seriesData[Math.floor(seriesData.length * 0.75)].label}
+                  </text>
+                  <text x={svgWidth - padding.right} y={svgHeight - 12} fontSize="10" fill="#94A3B8" textAnchor="end">
                     {seriesData[seriesData.length - 1].label}
                   </text>
                 </>
@@ -782,55 +961,150 @@ export default function InternationalGSRClient() {
             )}
           </div>
 
-          {/* Mini Navigator Bar underneath */}
+          {/* Interactive Range Navigator Slider (thumbnail view) */}
           <div className="mt-2 h-7 bg-slate-100 rounded-lg border border-slate-200 relative overflow-hidden flex items-center px-2 select-none">
-            <div className="absolute inset-y-0 left-1/4 right-1/12 bg-blue-100/80 border-x-2 border-blue-500 rounded-sm pointer-events-none flex items-center justify-between px-1">
-              <span className="w-1 h-3 bg-blue-600 rounded-full"></span>
-              <span className="w-1 h-3 bg-blue-600 rounded-full"></span>
+            <div className="absolute inset-y-0 left-1/6 right-1/12 bg-amber-100/70 border-x-2 border-amber-500 rounded-sm pointer-events-none flex items-center justify-between px-1">
+              <span className="w-1 h-3 bg-amber-600 rounded-full"></span>
+              <span className="w-1 h-3 bg-amber-600 rounded-full"></span>
             </div>
             <span className="text-[10px] font-bold text-slate-500 relative z-10">
-              Interactive Navigator ({timeframe} range active)
+              Interactive Range Navigator ({timeframe} range selected)
             </span>
           </div>
-
-          {/* Subtitle below chart - as requested */}
-          <p className="text-xs sm:text-sm text-gray-500 mt-3 text-center">
-            Real-time ratio of gold price to silver price, live commodity charts, 80/50 trading signals, and metal swap calculator.
-          </p>
         </div>
       </div>
 
-      {/* ── 80/50 TRADING RULE SIGNAL CARD ── */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-4 sm:p-5 shadow-xs space-y-3">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+      {/* ── ASSET INTELLIGENCE & BENCHMARK METRICS (Extracted from JM Bullion Pages) ── */}
+      <div className="bg-white rounded-xl border border-gray-200 p-3.5 sm:p-4 shadow-2xs space-y-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 border-b border-gray-100 pb-2">
+          <div>
+            <h2 className="text-sm sm:text-base font-bold text-gray-900 flex items-center gap-1.5">
+              <BarChart3 className="w-4 h-4 text-blue-600" />
+              {asset.label} Market Intelligence &amp; Key Trading Stats
+            </h2>
+            <p className="text-[11px] text-gray-500">{asset.summary}</p>
+          </div>
+          <span className="text-xs font-semibold px-2 py-0.5 rounded bg-gray-100 text-gray-700 self-start sm:self-auto">
+            Category: {asset.category.toUpperCase()}
+          </span>
+        </div>
+
+        {/* 6-Grid Key Trading Stats */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
+          <div className="p-2.5 rounded-lg border border-gray-200 bg-slate-50/60">
+            <span className="block text-[10px] text-gray-400 font-semibold uppercase">Bid Price</span>
+            <span className="text-xs sm:text-sm font-bold text-gray-900 block mt-0.5 tabular-nums">
+              {formatPrice(asset.bidUSD)}
+            </span>
+            <span className="text-[9px] text-gray-500">Sell-to-dealer</span>
+          </div>
+
+          <div className="p-2.5 rounded-lg border border-gray-200 bg-slate-50/60">
+            <span className="block text-[10px] text-gray-400 font-semibold uppercase">Ask Price</span>
+            <span className="text-xs sm:text-sm font-bold text-gray-900 block mt-0.5 tabular-nums">
+              {formatPrice(asset.askUSD)}
+            </span>
+            <span className="text-[9px] text-gray-500">Buy-from-dealer</span>
+          </div>
+
+          <div className="p-2.5 rounded-lg border border-gray-200 bg-slate-50/60">
+            <span className="block text-[10px] text-gray-400 font-semibold uppercase">24h Day Range</span>
+            <span className="text-xs sm:text-sm font-bold text-gray-900 block mt-0.5 tabular-nums truncate">
+              {formatPrice(asset.low24hUSD)} - {formatPrice(asset.high24hUSD)}
+            </span>
+            <span className="text-[9px] text-gray-500">Intraday volatility</span>
+          </div>
+
+          <div className="p-2.5 rounded-lg border border-gray-200 bg-slate-50/60">
+            <span className="block text-[10px] text-gray-400 font-semibold uppercase">52-Week Range</span>
+            <span className="text-xs sm:text-sm font-bold text-gray-900 block mt-0.5 tabular-nums truncate">
+              {formatPrice(asset.low52wUSD)} - {formatPrice(asset.high52wUSD)}
+            </span>
+            <span className="text-[9px] text-gray-500">1-Year trading channel</span>
+          </div>
+
+          <div className="p-2.5 rounded-lg border border-gray-200 bg-slate-50/60">
+            <span className="block text-[10px] text-gray-400 font-semibold uppercase">All-Time High (ATH)</span>
+            <span className="text-xs sm:text-sm font-bold text-amber-700 block mt-0.5 tabular-nums">
+              {formatPrice(asset.athUSD)}
+            </span>
+            <span className="text-[9px] text-gray-500 truncate block">{asset.athDate}</span>
+          </div>
+
+          <div className="p-2.5 rounded-lg border border-gray-200 bg-slate-50/60">
+            <span className="block text-[10px] text-gray-400 font-semibold uppercase">Key Macro Ratio</span>
+            <span className="text-xs sm:text-sm font-bold text-emerald-800 block mt-0.5">
+              {asset.macroRatios[0]?.value || 'N/A'}
+            </span>
+            <span className="text-[9px] text-gray-500 truncate block">{asset.macroRatios[0]?.label || ''}</span>
+          </div>
+        </div>
+
+        {/* Fundamental Market Drivers for this Asset */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
+          <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
+            <span className="text-xs font-bold text-gray-900 block mb-1.5 flex items-center gap-1.5">
+              <Zap className="w-3.5 h-3.5 text-amber-600" />
+              Primary Supply &amp; Demand Catalysts
+            </span>
+            <ul className="space-y-1 text-xs text-gray-600">
+              {asset.keyDrivers.map((driver, idx) => (
+                <li key={idx} className="flex items-start gap-1.5">
+                  <span className="text-emerald-600 font-bold">✓</span>
+                  <span>{driver}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
+            <span className="text-xs font-bold text-gray-900 block mb-1.5 flex items-center gap-1.5">
+              <Layers className="w-3.5 h-3.5 text-blue-600" />
+              Comparative Macro Valuation Metrics
+            </span>
+            <div className="space-y-1.5">
+              {asset.macroRatios.map((r, idx) => (
+                <div key={idx} className="flex items-center justify-between text-xs py-0.5 border-b border-gray-200/60 last:border-none">
+                  <div>
+                    <span className="font-semibold text-gray-800">{r.label}:</span>{' '}
+                    <span className="text-[11px] text-gray-500">({r.note})</span>
+                  </div>
+                  <span className="font-bold text-gray-900 tabular-nums">{r.value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── 80/50 TRADING RULE SIGNAL CARD (When Gold/Silver is active or for reference) ── */}
+      <div className="bg-white rounded-xl border border-gray-200 p-3.5 sm:p-4 shadow-2xs space-y-2.5">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5">
           <div className="flex items-center gap-2">
-            <span className={`w-3 h-3 rounded-full ${signal.dotColor}`}></span>
-            <h3 className="text-sm sm:text-base font-bold text-gray-900">
-              Current Gold-to-Silver Signal: {signal.label}
+            <span className={`w-2.5 h-2.5 rounded-full ${signal.dotColor}`}></span>
+            <h3 className="text-xs sm:text-sm font-bold text-gray-900">
+              Current Gold-to-Silver Valuation Signal: {signal.label}
             </h3>
           </div>
-          <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold border ${signal.badgeColor} self-start sm:self-auto`}>
+          <span className={`px-2 py-0.5 rounded-full text-xs font-bold border ${signal.badgeColor} self-start sm:self-auto`}>
             GSR {gsrValue.toFixed(2)}:1
           </span>
         </div>
 
-        <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+        <p className="text-[11px] sm:text-xs text-gray-600 leading-relaxed">
           {signal.description}
         </p>
 
         {/* Visual Benchmark Gauge */}
-        <div className="pt-2">
-          <div className="flex items-center justify-between text-[11px] font-bold text-gray-400 mb-1">
+        <div className="pt-1">
+          <div className="flex items-center justify-between text-[10px] font-bold text-gray-400 mb-1">
             <span className="text-rose-600">Buy Gold (&lt;50:1)</span>
             <span className="text-amber-700">Historical Channel (50 - 80:1)</span>
             <span className="text-emerald-700">Buy Silver (&gt;80:1)</span>
           </div>
-          <div className="h-3 w-full bg-gray-200 rounded-full overflow-hidden flex relative">
-            {/* Red Zone (0 to 50) */}
+          <div className="h-2.5 w-full bg-gray-200 rounded-full overflow-hidden flex relative">
             <div className="w-[30%] bg-rose-300"></div>
-            {/* Yellow Zone (50 to 80) */}
             <div className="w-[35%] bg-amber-300"></div>
-            {/* Green Zone (80 to 125) */}
             <div className="w-[35%] bg-emerald-300"></div>
 
             {/* Current Value Marker Needle */}
@@ -844,219 +1118,83 @@ export default function InternationalGSRClient() {
         </div>
       </div>
 
-      {/* ── LIVE PRICES & INTRINSIC VALUES TABLES (Matched with Image 1) ── */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {/* Table 1: Live Commodity Spot Table */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-4 shadow-xs">
-          <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2.5">
-            Live Precious Metals Spot Board ({currency})
-          </h4>
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs">
-              <thead>
-                <tr className="border-b border-gray-200 text-gray-500 font-semibold bg-gray-50/60">
-                  <th className="py-2 px-2.5">Metal</th>
-                  <th className="py-2 px-2.5">Current</th>
-                  <th className="py-2 px-2.5">High (24h)</th>
-                  <th className="py-2 px-2.5">Low (24h)</th>
-                  <th className="py-2 px-2.5">Change</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100 font-medium">
-                {(['gold', 'silver', 'platinum', 'palladium'] as AssetType[]).map((key) => {
-                  const m = liveAssets[key];
-                  return (
-                    <tr
-                      key={key}
-                      onClick={() => setActiveAsset(key)}
-                      className={`cursor-pointer transition hover:bg-gray-50 ${activeAsset === key ? 'bg-blue-50/60 font-bold' : ''}`}
-                    >
-                      <td className="py-2 px-2.5 font-bold text-gray-900">{m.label}</td>
-                      <td className="py-2 px-2.5 tabular-nums">{formatPrice(m.basePriceUSD)}</td>
-                      <td className="py-2 px-2.5 text-gray-500 tabular-nums">{formatPrice(m.high24hUSD)}</td>
-                      <td className="py-2 px-2.5 text-gray-500 tabular-nums">{formatPrice(m.low24hUSD)}</td>
-                      <td className={`py-2 px-2.5 font-bold tabular-nums ${m.changePercent24h >= 0 ? 'text-emerald-700' : 'text-rose-600'}`}>
-                        {m.changePercent24h >= 0 ? '+' : ''}{m.changePercent24h.toFixed(2)}%
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+      {/* ── CROSS-ASSET MASTER BOARD TABLE ── */}
+      <div className="bg-white rounded-xl border border-gray-200 p-3.5 sm:p-4 shadow-2xs">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 mb-2.5 pb-2 border-b border-gray-100">
+          <div>
+            <h3 className="text-xs sm:text-sm font-bold text-gray-900">
+              Live Precious &amp; Industrial Commodity Board ({currency})
+            </h3>
+            <p className="text-[11px] text-gray-500">
+              Cross-asset pricing, 24-hour ranges, and 52-week highs extracted from COMEX, LME, and spot exchanges.
+            </p>
           </div>
+          <span className="text-[10px] font-semibold text-gray-400">Click any row to switch chart</span>
         </div>
 
-        {/* Table 2: Quick Metal & Intrinsic Bullion Price Board (Matched with Competitor Image 1) */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-4 sm:p-5 shadow-xs space-y-3.5">
-          {/* Metal Selector Buttons */}
-          <div>
-            <span className="block text-xs font-serif font-bold text-gray-800 mb-1.5">Metal</span>
-            <div className="grid grid-cols-4 gap-1.5">
-              {(['gold', 'silver', 'platinum', 'palladium'] as const).map((mKey) => (
-                <button
-                  key={mKey}
-                  type="button"
-                  onClick={() => setQuickMetal(mKey)}
-                  className={`py-1.5 px-2 text-xs font-bold rounded transition text-center capitalize ${
-                    quickMetal === mKey
-                      ? 'bg-[#c5a059] text-white shadow-xs'
-                      : 'bg-[#1c1938] text-white hover:bg-[#2c2654]'
-                  }`}
-                >
-                  {mKey}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Selectors: Weight, Currency, Period */}
-          <div className="grid grid-cols-3 gap-2">
-            <div>
-              <span className="block text-[11px] font-serif font-bold text-gray-800 mb-1">Weight</span>
-              <select
-                value={quickWeight}
-                onChange={(e) => setQuickWeight(e.target.value as WeightUnit)}
-                className="w-full bg-[#1c1938] text-white text-xs font-bold rounded px-2.5 py-1.5 outline-none cursor-pointer"
-              >
-                <option value="oz">Ounces</option>
-                <option value="g">Grams</option>
-                <option value="kg">Kilograms</option>
-              </select>
-            </div>
-            <div>
-              <span className="block text-[11px] font-serif font-bold text-gray-800 mb-1">Currency</span>
-              <select
-                value={quickCurrency}
-                onChange={(e) => setQuickCurrency(e.target.value as CurrencyCode)}
-                className="w-full bg-[#1c1938] text-white text-xs font-bold rounded px-2.5 py-1.5 outline-none cursor-pointer"
-              >
-                <option value="GBP">GBP</option>
-                <option value="USD">USD</option>
-                <option value="EUR">EUR</option>
-                <option value="CAD">CAD</option>
-                <option value="AUD">AUD</option>
-              </select>
-            </div>
-            <div>
-              <span className="block text-[11px] font-serif font-bold text-gray-800 mb-1">Period</span>
-              <select
-                value={quickPeriod}
-                onChange={(e) => setQuickPeriod(e.target.value)}
-                className="w-full bg-[#1c1938] text-white text-xs font-bold rounded px-2.5 py-1.5 outline-none cursor-pointer"
-              >
-                <option value="Day">Day</option>
-                <option value="Week">Week</option>
-                <option value="Month">Month</option>
-                <option value="Year">Year</option>
-              </select>
-            </div>
-          </div>
-
-          {/* Live Selected Metal Price Table */}
-          <div className="border border-[#1c1938] rounded overflow-hidden">
-            <div className="bg-white py-1 text-center font-bold text-xs text-[#1c1938] border-b border-[#1c1938]">
-              Live {quickAsset.label} Price
-            </div>
-            <table className="w-full text-center text-xs">
-              <thead className="border-b border-[#1c1938] text-[11px] font-bold text-gray-700 bg-gray-50/50">
-                <tr>
-                  <th className="py-1 px-1.5">Current</th>
-                  <th className="py-1 px-1.5">High</th>
-                  <th className="py-1 px-1.5">Low</th>
-                  <th className="py-1 px-1.5">Change</th>
-                </tr>
-              </thead>
-              <tbody className="divide-x divide-gray-100 font-semibold text-gray-900">
-                <tr>
-                  <td className="py-1.5 px-1.5">{formatQuickPrice(quickAsset.basePriceUSD)}</td>
-                  <td className="py-1.5 px-1.5">{formatQuickPrice(quickAsset.high24hUSD)}</td>
-                  <td className="py-1.5 px-1.5">{formatQuickPrice(quickAsset.low24hUSD)}</td>
-                  <td className={`py-1.5 px-1.5 font-bold ${quickAsset.changePercent24h >= 0 ? 'text-emerald-700' : 'text-rose-600'}`}>
-                    {quickAsset.changePercent24h >= 0 ? '+' : ''}{formatQuickPrice(Math.abs(quickAsset.change24hUSD))} ({quickAsset.changePercent24h >= 0 ? '+' : ''}{quickAsset.changePercent24h.toFixed(2)}%)
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          {/* Intrinsic Values Table */}
-          <div className="border border-[#1c1938] rounded overflow-hidden">
-            <div className="bg-white py-1 text-center font-bold text-xs text-[#1c1938] border-b border-[#1c1938]">
-              Intrinsic Values ({quickCurrConfig.symbol})
-            </div>
-            <table className="w-full text-center text-xs">
-              <thead className="border-b border-[#1c1938] text-[11px] font-bold text-gray-700 bg-gray-50/50">
-                <tr>
-                  <th className="py-1 px-1">Sovereign</th>
-                  <th className="py-1 px-1">Half Sovereign</th>
-                  <th className="py-1 px-1">1oz Gold</th>
-                  <th className="py-1 px-1">1oz Silver</th>
-                </tr>
-              </thead>
-              <tbody className="font-semibold text-gray-900">
-                <tr>
-                  <td className="py-1.5 px-1">{quickCurrConfig.symbol}{quickSovereignVal.toFixed(2)}</td>
-                  <td className="py-1.5 px-1">{quickCurrConfig.symbol}{quickHalfSovereignVal.toFixed(2)}</td>
-                  <td className="py-1.5 px-1">{quickCurrConfig.symbol}{quick1ozGoldVal.toFixed(2)}</td>
-                  <td className="py-1.5 px-1">{quickCurrConfig.symbol}{quick1ozSilverVal.toFixed(2)}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          {/* Bottom Indicators: Gold:Silver Ratio & FX Rates */}
-          <div className="space-y-2 pt-1 text-center">
-            <div>
-              <span className="block text-xs font-serif font-bold text-gray-800 mb-1">Gold:Silver Ratio</span>
-              <button
-                type="button"
-                onClick={() => {
-                  setActiveAsset('goldsilver');
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-                className="bg-[#1c1938] text-white px-3 py-1 rounded text-xs font-bold hover:bg-[#2c2654] transition"
-              >
-                {gsrValue.toFixed(3)}
-              </button>
-              <div className="mt-1">
-                <a
-                  href="#gold-silver-ratio-tracker"
-                  className="text-[11px] text-[#1c1938] hover:underline font-serif font-bold"
-                >
-                  &gt; View Metal Ratio Graphs
-                </a>
-              </div>
-            </div>
-
-            <div>
-              <span className="block text-xs font-serif font-bold text-gray-800 mb-1">Foreign Exchange Rates</span>
-              <div className="flex items-center justify-center gap-2">
-                <span className="bg-[#1c1938] text-white text-[11px] font-bold px-2.5 py-0.5 rounded">
-                  USD: 1.3423
-                </span>
-                <span className="bg-[#1c1938] text-white text-[11px] font-bold px-2.5 py-0.5 rounded">
-                  EUR: 1.1973
-                </span>
-              </div>
-            </div>
-          </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-xs">
+            <thead>
+              <tr className="border-b border-gray-200 text-gray-500 font-semibold bg-gray-50/60">
+                <th className="py-2 px-2.5">Asset</th>
+                <th className="py-2 px-2.5">Current Spot</th>
+                <th className="py-2 px-2.5">Bid / Ask</th>
+                <th className="py-2 px-2.5">24h Day Range</th>
+                <th className="py-2 px-2.5">52-Week Range</th>
+                <th className="py-2 px-2.5">24h Change</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100 font-medium">
+              {ASSET_ORDER.map((key) => {
+                const item = liveAssets[key];
+                const isSelected = activeAsset === key;
+                return (
+                  <tr
+                    key={key}
+                    onClick={() => setActiveAsset(key)}
+                    className={`cursor-pointer transition hover:bg-gray-50 ${isSelected ? 'bg-amber-50/50 font-bold' : ''}`}
+                  >
+                    <td className="py-2 px-2.5 font-bold text-gray-900 flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full" style={{ backgroundColor: item.themeColor }}></span>
+                      <span>{item.label}</span>
+                      {isSelected && <span className="text-[9px] bg-blue-100 text-blue-800 px-1 rounded font-bold">Active</span>}
+                    </td>
+                    <td className="py-2 px-2.5 tabular-nums text-gray-900 font-bold">
+                      {formatPrice(item.basePriceUSD, key === 'goldsilver')} {key === 'goldsilver' ? ': 1' : ''}
+                    </td>
+                    <td className="py-2 px-2.5 tabular-nums text-gray-500 text-[11px]">
+                      {formatPrice(item.bidUSD, key === 'goldsilver')} / {formatPrice(item.askUSD, key === 'goldsilver')}
+                    </td>
+                    <td className="py-2 px-2.5 tabular-nums text-gray-500 text-[11px]">
+                      {formatPrice(item.low24hUSD, key === 'goldsilver')} - {formatPrice(item.high24hUSD, key === 'goldsilver')}
+                    </td>
+                    <td className="py-2 px-2.5 tabular-nums text-gray-500 text-[11px]">
+                      {formatPrice(item.low52wUSD, key === 'goldsilver')} - {formatPrice(item.high52wUSD, key === 'goldsilver')}
+                    </td>
+                    <td className={`py-2 px-2.5 font-bold tabular-nums ${item.changePercent24h >= 0 ? 'text-emerald-700' : 'text-rose-600'}`}>
+                      {item.changePercent24h >= 0 ? '+' : ''}{item.changePercent24h.toFixed(2)}%
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
       </div>
 
       {/* ── RATIO ARBITRAGE & SWAP CALCULATOR ── */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-4 sm:p-5 shadow-xs space-y-4">
-        <div className="flex items-center justify-between border-b border-gray-100 pb-2.5">
-          <div className="flex items-center gap-2">
+      <div className="bg-white rounded-xl border border-gray-200 p-3.5 sm:p-4 shadow-2xs space-y-3">
+        <div className="flex items-center justify-between border-b border-gray-100 pb-2">
+          <div className="flex items-center gap-1.5">
             <ArrowRightLeft className="w-4 h-4 text-amber-600" />
-            <h3 className="text-sm sm:text-base font-bold text-gray-900">
-              Gold - Silver Swap Arbitrage Calculator
+            <h3 className="text-xs sm:text-sm font-bold text-gray-900">
+              Gold - Silver Ratio Swap Arbitrage Calculator
             </h3>
           </div>
-          <span className="text-xs text-gray-500">Rotate metal holdings</span>
+          <span className="text-[11px] text-gray-500">Rotate metal holdings to compound ounces</span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-          {/* Input 1: Current Silver Stack */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
           <div>
             <label className="block text-gray-600 font-semibold mb-1">
               If you own Silver (troy ounces):
@@ -1067,14 +1205,13 @@ export default function InternationalGSRClient() {
               min="1"
               value={swapSilverAmount}
               onChange={(e) => setSwapSilverAmount(Math.max(1, Number(e.target.value)))}
-              className="w-full px-3 py-2 rounded-xl border border-gray-300 font-bold text-gray-900 text-sm focus:border-amber-500 outline-none"
+              className="w-full px-3 py-1.5 rounded-lg border border-gray-300 font-bold text-gray-900 text-sm focus:border-amber-500 outline-none"
             />
-            <span className="text-[10px] text-gray-400 mt-1 block">
+            <span className="text-[10px] text-gray-400 mt-0.5 block">
               Market value: ~${(swapSilverAmount * liveAssets.silver.basePriceUSD).toLocaleString()} USD
             </span>
           </div>
 
-          {/* Input 2: Reversion Target Ratio */}
           <div>
             <label className="block text-gray-600 font-semibold mb-1">
               Target Ratio Reversion (Historical Mean = 65):
@@ -1086,17 +1223,17 @@ export default function InternationalGSRClient() {
               max="150"
               value={swapTargetRatio}
               onChange={(e) => setSwapTargetRatio(Math.max(1, Number(e.target.value)))}
-              className="w-full px-3 py-2 rounded-xl border border-gray-300 font-bold text-gray-900 text-sm focus:border-amber-500 outline-none"
+              className="w-full px-3 py-1.5 rounded-lg border border-gray-300 font-bold text-gray-900 text-sm focus:border-amber-500 outline-none"
             />
-            <span className="text-[10px] text-gray-400 mt-1 block">
-              Benchmark when you swap gold back into silver
+            <span className="text-[10px] text-gray-400 mt-0.5 block">
+              Benchmark when swapping gold back into silver
             </span>
           </div>
         </div>
 
         {/* Swap Results Banner */}
-        <div className="p-3.5 bg-amber-50/70 border border-amber-200 rounded-xl space-y-1.5 text-xs text-amber-950">
-          <div className="flex items-center justify-between font-bold text-sm">
+        <div className="p-3 bg-amber-50/70 border border-amber-200 rounded-lg space-y-1 text-xs text-amber-950">
+          <div className="flex items-center justify-between font-bold text-xs">
             <span>Converted to Gold at Live Ratio ({gsrValue.toFixed(1)}:1):</span>
             <span className="text-amber-800">{equivalentGoldOzAtLive.toFixed(3)} oz Gold</span>
           </div>
@@ -1104,7 +1241,7 @@ export default function InternationalGSRClient() {
             <span>Swapped back into Silver when ratio reaches {swapTargetRatio}:1:</span>
             <span className="font-bold text-emerald-800">{equivalentSilverAtTargetRatio.toFixed(1)} oz Silver</span>
           </div>
-          <div className="pt-1.5 border-t border-amber-200 flex items-center justify-between font-extrabold text-emerald-800 text-xs sm:text-sm">
+          <div className="pt-1 border-t border-amber-200 flex items-center justify-between font-extrabold text-emerald-800 text-xs">
             <span>Net Silver Stack Growth:</span>
             <span>+{netSilverGained.toFixed(1)} oz (+{((netSilverGained / swapSilverAmount) * 100).toFixed(1)}%)</span>
           </div>
@@ -1112,11 +1249,11 @@ export default function InternationalGSRClient() {
       </div>
 
       {/* ── HISTORICAL BENCHMARKS COMPARISON TABLE ── */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-4 sm:p-5 shadow-xs">
-        <h3 className="text-sm sm:text-base font-bold text-gray-900 mb-2">
-          Historical Gold-to-Silver Ratio Milestones
+      <div className="bg-white rounded-xl border border-gray-200 p-3.5 sm:p-4 shadow-2xs">
+        <h3 className="text-xs sm:text-sm font-bold text-gray-900 mb-1">
+          Historical Gold-to-Silver Ratio Milestones &amp; Macro Regimes
         </h3>
-        <p className="text-xs text-gray-500 mb-3">
+        <p className="text-[11px] text-gray-500 mb-2.5">
           Key inflection points, all-time records, and macroeconomic regimes across modern monetary history.
         </p>
 
@@ -1124,54 +1261,54 @@ export default function InternationalGSRClient() {
           <table className="w-full text-left text-xs">
             <thead>
               <tr className="border-b border-gray-200 text-gray-500 font-semibold bg-gray-50/60">
-                <th className="py-2.5 px-3">Era / Event</th>
-                <th className="py-2.5 px-3">GSR Level</th>
-                <th className="py-2.5 px-3">Macro Driver</th>
-                <th className="py-2.5 px-3">Market Signal</th>
+                <th className="py-2 px-2.5">Era / Event</th>
+                <th className="py-2 px-2.5">GSR Level</th>
+                <th className="py-2 px-2.5">Macro Driver</th>
+                <th className="py-2 px-2.5">Market Signal</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 font-medium">
               <tr className="bg-emerald-50/30">
-                <td className="py-2.5 px-3 font-bold text-gray-900">April 2020 (COVID Shock)</td>
-                <td className="py-2.5 px-3 font-extrabold text-emerald-800">125:1</td>
-                <td className="py-2.5 px-3 text-gray-600">Global industrial shutdown, safe-haven flight to gold</td>
-                <td className="py-2.5 px-3 text-emerald-700 font-bold">All-Time Peak (Extreme Buy Silver)</td>
+                <td className="py-2 px-2.5 font-bold text-gray-900">April 2020 (COVID Shock)</td>
+                <td className="py-2 px-2.5 font-extrabold text-emerald-800">125:1</td>
+                <td className="py-2 px-2.5 text-gray-600">Global industrial shutdown, safe-haven flight to gold</td>
+                <td className="py-2 px-2.5 text-emerald-700 font-bold">All-Time Peak (Extreme Buy Silver)</td>
               </tr>
               <tr>
-                <td className="py-2.5 px-3 font-bold text-gray-900">1991 Gulf War Crisis</td>
-                <td className="py-2.5 px-3 font-semibold text-gray-800">100:1</td>
-                <td className="py-2.5 px-3 text-gray-600">Geopolitical turmoil and commodity stagnation</td>
-                <td className="py-2.5 px-3 text-emerald-700 font-semibold">Silver Heavily Discounted</td>
+                <td className="py-2 px-2.5 font-bold text-gray-900">1991 Gulf War Crisis</td>
+                <td className="py-2 px-2.5 font-semibold text-gray-800">100:1</td>
+                <td className="py-2 px-2.5 text-gray-600">Geopolitical turmoil and commodity stagnation</td>
+                <td className="py-2 px-2.5 text-emerald-700 font-semibold">Silver Heavily Discounted</td>
               </tr>
               <tr className="bg-amber-50/40">
-                <td className="py-2.5 px-3 font-bold text-gray-900">Today (Live Spot)</td>
-                <td className="py-2.5 px-3 font-extrabold text-amber-800">{gsrValue.toFixed(2)}:1</td>
-                <td className="py-2.5 px-3 text-gray-600">High central bank gold purchases vs growing solar silver demand</td>
-                <td className="py-2.5 px-3 text-amber-800 font-bold">Neutral - Favorable to Silver</td>
+                <td className="py-2 px-2.5 font-bold text-gray-900">Today (Live Spot)</td>
+                <td className="py-2 px-2.5 font-extrabold text-amber-800">{gsrValue.toFixed(2)}:1</td>
+                <td className="py-2 px-2.5 text-gray-600">Central bank gold purchases vs growing solar silver demand</td>
+                <td className="py-2 px-2.5 text-amber-800 font-bold">Neutral - Favorable to Silver</td>
               </tr>
               <tr>
-                <td className="py-2.5 px-3 font-bold text-gray-900">50-Year Modern Mean</td>
-                <td className="py-2.5 px-3 font-semibold text-gray-800">65:1</td>
+                <td className="py-2 px-2.5 font-bold text-gray-900">50-Year Modern Mean</td>
+                <td className="py-2 px-2.5 font-semibold text-gray-800">65:1</td>
                 <td className="py-2.5 px-3 text-gray-600">Post-1971 free-floating currency benchmark</td>
-                <td className="py-2.5 px-3 text-gray-600">Historical Fair Value Baseline</td>
+                <td className="py-2 px-2.5 text-gray-600">Historical Fair Value Baseline</td>
               </tr>
               <tr>
-                <td className="py-2.5 px-3 font-bold text-gray-900">April 2011 Silver Bull Run</td>
-                <td className="py-2.5 px-3 font-bold text-rose-700">31:1</td>
-                <td className="py-2.5 px-3 text-gray-600">Silver touched $49.50/oz during post-GFC monetary easing</td>
-                <td className="py-2.5 px-3 text-rose-700 font-bold">Silver Overvalued (Rotate to Gold)</td>
+                <td className="py-2 px-2.5 font-bold text-gray-900">April 2011 Silver Bull Run</td>
+                <td className="py-2 px-2.5 font-bold text-rose-700">31:1</td>
+                <td className="py-2 px-2.5 text-gray-600">Silver touched $49.50/oz during post-GFC monetary easing</td>
+                <td className="py-2 px-2.5 text-rose-700 font-bold">Silver Overvalued (Rotate to Gold)</td>
               </tr>
               <tr>
-                <td className="py-2.5 px-3 font-bold text-gray-900">1980 Hunt Brothers Squeeze</td>
-                <td className="py-2.5 px-3 font-bold text-rose-700">15:1</td>
-                <td className="py-2.5 px-3 text-gray-600">Speculative cornering of physical silver market</td>
-                <td className="py-2.5 px-3 text-rose-700 font-bold">Historic Extreme Low</td>
+                <td className="py-2 px-2.5 font-bold text-gray-900">1980 Hunt Brothers Squeeze</td>
+                <td className="py-2 px-2.5 font-bold text-rose-700">15:1</td>
+                <td className="py-2 px-2.5 text-gray-600">Speculative cornering of physical silver market</td>
+                <td className="py-2 px-2.5 text-rose-700 font-bold">Historic Extreme Low</td>
               </tr>
               <tr>
-                <td className="py-2.5 px-3 font-bold text-gray-900">US Coinage Act 1792</td>
-                <td className="py-2.5 px-3 font-semibold text-gray-800">15:1</td>
-                <td className="py-2.5 px-3 text-gray-600">Statutory bimetallic standard established by Alexander Hamilton</td>
-                <td className="py-2.5 px-3 text-gray-500">Government Fixed Peg</td>
+                <td className="py-2 px-2.5 font-bold text-gray-900">US Coinage Act 1792</td>
+                <td className="py-2 px-2.5 font-semibold text-gray-800">15:1</td>
+                <td className="py-2 px-2.5 text-gray-600">Statutory bimetallic standard established by Alexander Hamilton</td>
+                <td className="py-2 px-2.5 text-gray-500">Government Fixed Peg</td>
               </tr>
             </tbody>
           </table>

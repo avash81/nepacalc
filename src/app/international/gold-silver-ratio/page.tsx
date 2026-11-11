@@ -209,10 +209,10 @@ export default function InternationalGSRPage() {
       </div>
 
       {/* ── COMPREHENSIVE EDUCATIONAL & COMPETITOR ANALYSIS CONTENT (No unnecessary spaces) ── */}
-      <section className="w-full px-3 sm:px-6 lg:px-8 pb-10 space-y-4">
+      <section className="w-full px-3 sm:px-6 lg:px-8 pb-10 space-y-3">
         {/* Deep Dive Guide Container */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-4 sm:p-6 shadow-xs space-y-4 text-xs sm:text-sm text-gray-700 leading-relaxed">
-          <h2 className="text-lg sm:text-xl font-bold text-gray-900">
+        <div className="bg-white rounded-xl border border-gray-200 p-3.5 sm:p-5 shadow-2xs space-y-3 text-xs sm:text-sm text-gray-700 leading-relaxed">
+          <h2 className="text-base sm:text-lg font-bold text-gray-900">
             Understanding the Gold to Silver Ratio &amp; Trading Strategy
           </h2>
 
@@ -220,29 +220,29 @@ export default function InternationalGSRPage() {
             The gold-to-silver ratio is a proportional relationship comparing the price of gold against the price of silver. Effectively, it measures the exact number of silver ounces required to purchase a single ounce of gold at current spot prices. As one of the oldest macro valuation metrics in financial history, traders and commodity stackers track the ratio to gauge relative mispricing between precious metals.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
-            <div className="p-3.5 bg-gray-50 rounded-xl border border-gray-200">
-              <h3 className="font-bold text-gray-900 mb-1">The 80/50 Rule for Bullion Investors</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 pt-0.5">
+            <div className="p-3 bg-gray-50 rounded-lg border border-gray-200">
+              <h3 className="font-bold text-gray-900 mb-0.5">The 80/50 Rule for Bullion Investors</h3>
               <p className="text-gray-600 text-xs">
                 In modern free-floating markets, the ratio predominantly cycles between 50:1 and 80:1. When the ratio rises above 80:1, silver is statistically undervalued compared to gold, pointing to favorable conditions for accumulating silver. When the ratio falls below 50:1, gold represents the more attractive defensive value.
               </p>
             </div>
 
-            <div className="p-3.5 bg-gray-50 rounded-xl border border-gray-200">
-              <h3 className="font-bold text-gray-900 mb-1">Industrial Utility vs. Monetary Safe-Haven</h3>
+            <div className="p-3 bg-gray-50 rounded-lg border border-gray-200">
+              <h3 className="font-bold text-gray-900 mb-0.5">Industrial Utility vs. Monetary Safe-Haven</h3>
               <p className="text-gray-600 text-xs">
                 While gold derives virtually all of its demand from central bank reserves, investment bars, and jewelry, silver is both an investment metal and an indispensable industrial input. With unparalleled electrical conductivity and thermal reflectivity, silver demand is driven by solar panels, electric vehicles, and semiconductors.
               </p>
             </div>
           </div>
 
-          <h3 className="text-base font-bold text-gray-900 pt-2">
+          <h3 className="text-sm sm:text-base font-bold text-gray-900 pt-1">
             How to Use the Ratio for Portfolio Balancing and Spread Trading
           </h3>
           <p>
             Investors leverage the ratio to grow their total ounce holdings without adding new capital:
           </p>
-          <ul className="list-disc pl-5 space-y-1 text-xs sm:text-sm text-gray-600">
+          <ul className="list-disc pl-5 space-y-1 text-xs text-gray-600">
             <li>
               <strong>Relative Value Indicator:</strong> When the ratio reaches historical extremes (&gt;80:1 or &lt;50:1), it signals that one metal is trading at a notable discount relative to historical cost relationships.
             </li>
@@ -256,8 +256,8 @@ export default function InternationalGSRPage() {
         </div>
 
         {/* ── FAQ Section (AEO & People Also Ask Target) ── */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-4 sm:p-6 shadow-xs">
-          <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4">
+        <div className="bg-white rounded-xl border border-gray-200 p-3.5 sm:p-5 shadow-2xs">
+          <h2 className="text-base sm:text-lg font-bold text-gray-900 mb-3">
             Frequently Asked Questions: Gold to Silver Ratio
           </h2>
 
