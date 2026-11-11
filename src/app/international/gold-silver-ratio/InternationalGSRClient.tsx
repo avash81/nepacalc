@@ -526,7 +526,22 @@ function generateSeries(assetId: AssetType, timeframe: Timeframe, baseVal: numbe
   return points;
 }
 
-export default function InternationalGSRClient() {
+// Route: /international/gold-silver-ratio/ (and asset-specific routes)
+export const ASSET_SLUG_MAP: Record<AssetType, string> = {
+  gold: '/international/gold/',
+  silver: '/international/silver/',
+  platinum: '/international/platinum/',
+  palladium: '/international/palladium/',
+  copper: '/international/copper/',
+  goldsilver: '/international/gold-silver-ratio/',
+  btcusd: '/international/bitcoin/',
+};
+
+interface InternationalGSRClientProps {
+  initialAsset?: AssetType;
+}
+
+export default function InternationalGSRClient({ initialAsset = 'goldsilver' }: InternationalGSRClientProps) {
   const { rates: liveRates, lastFetchedAt } = useInternationalRates();
 
   // Dynamically populated assets with live data
@@ -611,7 +626,7 @@ export default function InternationalGSRClient() {
     AUD: { symbol: 'A$', rateFromUSD: liveRates.forex.AUD || 1.55 },
   }), [liveRates.forex]);
 
-  const [activeAsset, setActiveAsset] = useState<AssetType>('goldsilver');
+  const [activeAsset, setActiveAsset] = useState<AssetType>(initialAsset);
   const [timeframe, setTimeframe] = useState<Timeframe>('1D');
   const [currency, setCurrency] = useState<CurrencyCode>('USD');
   const [weight, setWeight] = useState<WeightUnit>('oz');
@@ -807,10 +822,11 @@ export default function InternationalGSRClient() {
           {ASSET_ORDER.map((key) => {
             const item = liveAssets[key];
             const isActive = activeAsset === key;
+            const targetHref = ASSET_SLUG_MAP[key];
             return (
-              <button
+              <Link
                 key={key}
-                type="button"
+                href={targetHref}
                 onClick={() => {
                   setActiveAsset(key);
                   setHoverIndex(null);
@@ -822,7 +838,7 @@ export default function InternationalGSRClient() {
                 }`}
               >
                 <span>{item.label}</span>
-              </button>
+              </Link>
             );
           })}
         </div>

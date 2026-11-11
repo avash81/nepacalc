@@ -145,6 +145,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       'ppp-salary-converter',
       'dubai-gold-rate',
       'gold-silver-ratio',
+      'platinum-price',
+      'palladium-price',
+      'copper-price',
+      'bitcoin-price',
+      'gold-price-int',
+      'silver-price-int',
     ].includes(calc.id);
 
     return {
