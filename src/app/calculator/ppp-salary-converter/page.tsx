@@ -198,8 +198,8 @@ export default function PPPSalaryConverterPage() {
 
       {/* ── SEO FAQ Section (AEO / GEO Engine Optimized) ── */}
       <section id="faq-section" className="w-full px-3 sm:px-6 lg:px-8 pb-10">
-        <div className="bg-white rounded-2xl border border-gray-200 p-4 sm:p-6 shadow-xs">
-          <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4">
+        <div className="bg-white rounded-xl border border-gray-200 p-3.5 sm:p-5 shadow-2xs">
+          <h2 className="text-base sm:text-lg font-bold text-gray-900 mb-3">
             Frequently Asked Questions on PPP &amp; International Salaries
           </h2>
 

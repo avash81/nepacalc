@@ -67,7 +67,7 @@ export const COUNTRIES: CountryData[] = [
 
 export default function PPPSalaryClient() {
   const [fromCode, setFromCode] = useState<string>('US');
-  const [toCode, setToCode] = useState<string>('IN');
+  const [toCode, setToCode] = useState<string>('NP');
   const [inputSalary, setInputSalary] = useState<number>(50000);
   const [period, setPeriod] = useState<'year' | 'month'>('year');
   const [savingsCushion, setSavingsCushion] = useState<number>(20000);
@@ -178,229 +178,236 @@ export default function PPPSalaryClient() {
         </div>
       </div>
 
-      {/* ── CARD LAYOUT (Matched 1:1 with User Image) ── */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-4 sm:p-5 shadow-xs space-y-4">
-        {/* ROW 1: FROM COUNTRY & TO COUNTRY WITH SWAP */}
-        <div className="grid grid-cols-1 sm:grid-cols-[1fr,auto,1fr] items-end gap-3">
-          {/* FROM COUNTRY */}
-          <div>
-            <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-1.5">
-              FROM COUNTRY
-            </label>
-            <div className="relative">
-              <select
-                aria-label="From Country"
-                value={fromCode}
-                onChange={(e) => setFromCode(e.target.value)}
-                className="w-full appearance-none bg-white border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 rounded-xl px-3.5 py-2.5 pr-8 text-sm font-semibold text-gray-900 cursor-pointer shadow-2xs transition"
-              >
-                {COUNTRIES.map((c) => (
-                  <option key={c.code} value={c.code}>
-                    {c.flag} {c.name} ({c.currency})
-                  </option>
-                ))}
-              </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
-                <span className="text-xs">▾</span>
+      {/* ── SIDE-BY-SIDE EQUAL HEIGHT ROW (100% WIDE) ── */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-stretch w-full">
+        {/* LEFT COLUMN: COMPACT & CLEAN DEFAULT INPUT CARD */}
+        <div className="bg-white rounded-xl border border-gray-200 p-3.5 sm:p-4 shadow-2xs flex flex-col justify-between">
+          <div className="space-y-3">
+            {/* FROM & TO COUNTRIES WITH SWAP */}
+            <div className="grid grid-cols-[1fr,auto,1fr] items-end gap-2">
+              {/* FROM COUNTRY */}
+              <div>
+                <label className="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">
+                  FROM COUNTRY
+                </label>
+                <div className="relative">
+                  <select
+                    aria-label="From Country"
+                    value={fromCode}
+                    onChange={(e) => setFromCode(e.target.value)}
+                    className="w-full appearance-none bg-white border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 rounded-lg px-2.5 py-2 pr-7 text-xs sm:text-sm font-semibold text-gray-900 cursor-pointer transition"
+                  >
+                    {COUNTRIES.map((c) => (
+                      <option key={c.code} value={c.code}>
+                        {c.flag} {c.name} ({c.currency})
+                      </option>
+                    ))}
+                  </select>
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
+                    <span className="text-xs">▾</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* SWAP BUTTON */}
+              <div className="flex justify-center pb-0.5">
+                <button
+                  type="button"
+                  onClick={handleSwap}
+                  title="Swap Countries"
+                  className="p-2 rounded-full border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-600 hover:text-gray-900 transition active:scale-95"
+                >
+                  <ArrowUpDown className="w-3.5 h-3.5" />
+                </button>
+              </div>
+
+              {/* TO COUNTRY */}
+              <div>
+                <label className="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">
+                  TO COUNTRY
+                </label>
+                <div className="relative">
+                  <select
+                    aria-label="To Country"
+                    value={toCode}
+                    onChange={(e) => setToCode(e.target.value)}
+                    className="w-full appearance-none bg-white border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 rounded-lg px-2.5 py-2 pr-7 text-xs sm:text-sm font-semibold text-gray-900 cursor-pointer transition"
+                  >
+                    {COUNTRIES.map((c) => (
+                      <option key={c.code} value={c.code}>
+                        {c.flag} {c.name} ({c.currency})
+                      </option>
+                    ))}
+                  </select>
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
+                    <span className="text-xs">▾</span>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* SWAP BUTTON */}
-          <div className="flex justify-center pb-0.5">
-            <button
-              type="button"
-              onClick={handleSwap}
-              title="Swap Countries"
-              className="p-2 sm:p-2.5 rounded-full border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-600 hover:text-gray-900 transition shadow-2xs active:scale-95"
-            >
-              <ArrowUpDown className="w-4 h-4 sm:w-4 sm:h-4 rotate-90 sm:rotate-0" />
-            </button>
-          </div>
-
-          {/* TO COUNTRY */}
-          <div>
-            <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-1.5">
-              TO COUNTRY
-            </label>
-            <div className="relative">
-              <select
-                aria-label="To Country"
-                value={toCode}
-                onChange={(e) => setToCode(e.target.value)}
-                className="w-full appearance-none bg-white border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 rounded-xl px-3.5 py-2.5 pr-8 text-sm font-semibold text-gray-900 cursor-pointer shadow-2xs transition"
-              >
-                {COUNTRIES.map((c) => (
-                  <option key={c.code} value={c.code}>
-                    {c.flag} {c.name} ({c.currency})
-                  </option>
-                ))}
-              </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
-                <span className="text-xs">▾</span>
+            {/* YOUR SALARY & PERIOD TOGGLE */}
+            <div>
+              <div className="flex items-center justify-between mb-1">
+                <label className="block text-[11px] font-bold text-gray-500 uppercase tracking-wider">
+                  YOUR SALARY
+                </label>
+                <div className="inline-flex p-0.5 bg-gray-100 rounded-lg border border-gray-200">
+                  <button
+                    type="button"
+                    onClick={() => setPeriod('year')}
+                    className={`px-2.5 py-1 text-[11px] rounded-md transition ${
+                      period === 'year'
+                        ? 'bg-white text-gray-900 shadow-2xs font-bold'
+                        : 'text-gray-500 hover:text-gray-900 font-medium'
+                    }`}
+                  >
+                    Per year
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setPeriod('month')}
+                    className={`px-2.5 py-1 text-[11px] rounded-md transition ${
+                      period === 'month'
+                        ? 'bg-white text-gray-900 shadow-2xs font-bold'
+                        : 'text-gray-500 hover:text-gray-900 font-medium'
+                    }`}
+                  >
+                    Per month
+                  </button>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
 
-        {/* ROW 2: YOUR SALARY & PERIOD TOGGLE */}
-        <div>
-          <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-1.5">
-            YOUR SALARY
-          </label>
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-            {/* INPUT FIELD WITH CURRENCY SYMBOL PREFIX & CURRENCY BADGE */}
-            <div className="flex-1 flex rounded-xl border border-gray-300 focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 shadow-2xs overflow-hidden bg-white transition">
-              <div className="px-3.5 sm:px-4 py-2.5 sm:py-3 bg-gray-50 border-r border-gray-200 text-gray-700 font-bold text-base sm:text-lg flex items-center select-none shrink-0 min-w-[48px] justify-center">
-                {fromCountry.currencySymbol}
-              </div>
-              <input
-                type="text"
-                inputMode="numeric"
-                value={inputSalary === 0 ? '' : inputSalary.toLocaleString()}
-                placeholder="0"
-                onChange={(e) => {
-                  const val = Number(e.target.value.replace(/[^0-9]/g, ''));
-                  setInputSalary(isNaN(val) ? 0 : val);
-                }}
-                className="w-full px-3.5 py-2.5 sm:py-3 font-bold text-gray-900 text-lg sm:text-xl tracking-tight outline-none bg-transparent"
-              />
-              <div className="pr-3 flex items-center shrink-0">
-                <span className="px-2 py-0.5 rounded text-xs font-bold bg-gray-100 text-gray-600 border border-gray-200 select-none">
+              {/* DEFAULT CLEAN INPUT FIELD (Clean, standard input with proper spacing) */}
+              <div className="relative flex items-center">
+                <span className="absolute left-3 text-gray-500 font-bold text-sm select-none pointer-events-none">
+                  {fromCountry.currencySymbol}
+                </span>
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  value={inputSalary === 0 ? '' : inputSalary.toLocaleString()}
+                  placeholder="Enter amount"
+                  onChange={(e) => {
+                    const val = Number(e.target.value.replace(/[^0-9]/g, ''));
+                    setInputSalary(isNaN(val) ? 0 : val);
+                  }}
+                  className="w-full h-10 pl-9 pr-14 font-bold text-gray-900 text-sm sm:text-base border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 rounded-lg outline-none bg-white transition"
+                />
+                <span className="absolute right-3 px-1.5 py-0.5 rounded text-[11px] font-bold bg-gray-100 text-gray-600 border border-gray-200 select-none pointer-events-none">
                   {fromCountry.currency}
                 </span>
               </div>
-            </div>
 
-            {/* PERIOD TOGGLE: Per year | Per month */}
-            <div className="inline-flex self-start sm:self-auto p-1 bg-gray-100 rounded-xl border border-gray-200">
-              <button
-                type="button"
-                onClick={() => setPeriod('year')}
-                className={`px-4 py-2 text-xs font-semibold rounded-lg transition ${
-                  period === 'year'
-                    ? 'bg-white text-gray-900 shadow-xs font-bold'
-                    : 'text-gray-500 hover:text-gray-900'
-                }`}
-              >
-                Per year
-              </button>
-              <button
-                type="button"
-                onClick={() => setPeriod('month')}
-                className={`px-4 py-2 text-xs font-semibold rounded-lg transition ${
-                  period === 'month'
-                    ? 'bg-white text-gray-900 shadow-xs font-bold'
-                    : 'text-gray-500 hover:text-gray-900'
-                }`}
-              >
-                Per month
-              </button>
+              {/* QUICK PILLS */}
+              <div className="flex items-center flex-wrap gap-1.5 text-xs text-gray-400 font-medium mt-2">
+                <span className="text-[11px]">Quick:</span>
+                {[25000, 50000, 100000, 200000].map((amt) => (
+                  <button
+                    key={amt}
+                    type="button"
+                    onClick={() => setInputSalary(period === 'year' ? amt : Math.round(amt / 12))}
+                    className="px-2 py-0.5 rounded bg-gray-100 hover:bg-gray-200 text-gray-700 text-[11px] font-semibold transition active:scale-95"
+                  >
+                    ${(amt / 1000).toFixed(0)}K
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* ROW 3: TRY QUICK PILLS */}
-          <div className="flex items-center flex-wrap gap-2 text-xs text-gray-400 font-medium mt-2.5">
-            <span>Try:</span>
-            {[25000, 50000, 100000, 200000].map((amt) => (
-              <button
-                key={amt}
-                type="button"
-                onClick={() => setInputSalary(period === 'year' ? amt : Math.round(amt / 12))}
-                className="px-2.5 py-0.5 rounded-md bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold transition active:scale-95"
-              >
-                ${(amt / 1000).toFixed(0)}K
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* ── INSTANT RESULT ANSWER CARD (NO UNNECESSARY SPACES) ── */}
-      <div className="bg-gradient-to-br from-emerald-50/90 via-white to-slate-50 rounded-2xl border border-emerald-200/80 p-4 sm:p-5 shadow-xs space-y-4">
-        {/* BIG HEADLINE EQUIVALENT RESULT */}
-        <div>
-          <span className="text-xs font-bold text-emerald-800 uppercase tracking-wider block">
-            Purchasing Power Equivalent in {toCountry.flag} {toCountry.name}
-          </span>
-          <div className="mt-1 flex items-baseline gap-2 flex-wrap">
-            <span className="text-2xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
-              {toCountry.currencySymbol}
-              {Math.round(results.displayTargetLocal).toLocaleString()} {toCountry.currency}
-            </span>
-            <span className="text-sm sm:text-base font-semibold text-gray-500">
-              (~${Math.round(results.displayTargetUSD).toLocaleString()} USD / {period})
-            </span>
-          </div>
-
-          <p className="text-xs sm:text-sm text-gray-600 mt-2 leading-relaxed">
-            To maintain the exact same standard of living as earning{' '}
-            <strong className="text-gray-900 font-bold">
-              {fromCountry.currencySymbol}{Math.round(results.displayBaseSalary).toLocaleString()} {fromCountry.currency}/{period}
-            </strong>{' '}
-            in <strong className="text-gray-900 font-bold">{fromCountry.name}</strong>, you need an income of{' '}
-            <strong className="text-emerald-800 font-bold">
-              {toCountry.currencySymbol}{Math.round(results.displayTargetLocal).toLocaleString()} {toCountry.currency}/{period}
-            </strong>{' '}
-            in <strong className="text-gray-900 font-bold">{toCountry.name}</strong>.
-          </p>
-        </div>
-
-        {/* 4-GRID KEY METRICS */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
-          {/* Cost of Living */}
-          <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-2xs">
-            <span className="block text-[11px] text-gray-400 font-medium">Cost of Living</span>
-            <span className={`text-base sm:text-lg font-bold block ${results.colDiffPercent <= 0 ? 'text-emerald-700' : 'text-rose-600'}`}>
-              {results.colDiffPercent <= 0 ? '' : '+'}
-              {Math.round(results.colDiffPercent)}%
-            </span>
-            <span className="text-[10px] text-gray-500">
-              {results.colDiffPercent <= 0 ? 'Cheaper living cost' : 'More expensive'}
-            </span>
-          </div>
-
-          {/* Purchasing Power Multiplier */}
-          <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-2xs">
-            <span className="block text-[11px] text-gray-400 font-medium">Purchasing Power</span>
-            <span className={`text-base sm:text-lg font-bold block ${results.multiplier >= 1 ? 'text-emerald-700' : 'text-amber-600'}`}>
-              {results.multiplier.toFixed(2)}×
-            </span>
-            <span className="text-[10px] text-gray-500">
-              {results.multiplier >= 1 ? 'Greater buying power' : 'Reduced buying power'}
-            </span>
-          </div>
-
-          {/* Rent Disparity */}
-          <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-2xs">
-            <span className="block text-[11px] text-gray-400 font-medium">Rent Index</span>
-            <span className={`text-base sm:text-lg font-bold block ${results.rentDiffPercent <= 0 ? 'text-emerald-700' : 'text-rose-600'}`}>
-              {results.rentDiffPercent <= 0 ? '' : '+'}
-              {Math.round(results.rentDiffPercent)}%
-            </span>
-            <span className="text-[10px] text-gray-500">Housing benchmark</span>
-          </div>
-
-          {/* Local Tax Rate */}
-          <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-2xs">
-            <span className="block text-[11px] text-gray-400 font-medium">Est. Income Tax</span>
-            <span className="text-base sm:text-lg font-bold text-gray-900 block">
-              {toCountry.taxRate === 0 ? (
-                <span className="text-emerald-700">0% (Tax-Free)</span>
-              ) : (
-                `~${Math.round(toCountry.taxRate * 100)}%`
-              )}
-            </span>
-            <span className="text-[10px] text-gray-500">Effective marginal</span>
+          {/* BALANCING HELPER FOOTER */}
+          <div className="mt-3 pt-2.5 border-t border-gray-100 flex items-center gap-1.5 text-[11px] text-gray-500">
+            <Info className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+            <span>Calculated using official World Bank ICP benchmark exchange factors.</span>
           </div>
         </div>
 
-        {/* REMOTE WORKER / NOMAD CALLOUT BANNER */}
-        <div className="bg-white/80 border border-emerald-300 rounded-xl p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
-          <div>
-            <span className="font-bold text-gray-900 block">
-              💡 Remote Expat Insight: If paid your full US salary in {toCountry.name}
-            </span>
+        {/* RIGHT COLUMN: COMPACT & CLEAN OUTPUT CARD */}
+        <div className="bg-gradient-to-br from-emerald-50/70 via-white to-slate-50 rounded-xl border border-emerald-200/90 p-3.5 sm:p-4 shadow-2xs flex flex-col justify-between">
+          <div className="space-y-2.5">
+            <div>
+              <span className="text-[11px] font-bold text-emerald-800 uppercase tracking-wider block">
+                Purchasing Power Equivalent in {toCountry.flag} {toCountry.name}
+              </span>
+              <div className="mt-1 flex items-baseline gap-2 flex-wrap">
+                <span className="text-xl sm:text-2xl font-extrabold text-gray-900 tracking-tight">
+                  {toCountry.currencySymbol}
+                  {Math.round(results.displayTargetLocal).toLocaleString()} {toCountry.currency}
+                </span>
+                <span className="text-xs sm:text-sm font-semibold text-gray-500">
+                  (~${Math.round(results.displayTargetUSD).toLocaleString()} USD / {period})
+                </span>
+              </div>
+
+              <p className="text-[11px] sm:text-xs text-gray-600 mt-1.5 leading-relaxed">
+                To maintain the same living standard as earning{' '}
+                <strong className="text-gray-900 font-bold">
+                  {fromCountry.currencySymbol}{Math.round(results.displayBaseSalary).toLocaleString()} {fromCountry.currency}/{period}
+                </strong>{' '}
+                in <strong className="text-gray-900 font-bold">{fromCountry.name}</strong>, you need{' '}
+                <strong className="text-emerald-800 font-bold">
+                  {toCountry.currencySymbol}{Math.round(results.displayTargetLocal).toLocaleString()} {toCountry.currency}/{period}
+                </strong>{' '}
+                in <strong className="text-gray-900 font-bold">{toCountry.name}</strong>.
+              </p>
+            </div>
+
+            {/* COMPACT 4-GRID KEY METRICS */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-0.5">
+              {/* Cost of Living */}
+              <div className="bg-white p-2 sm:p-2.5 rounded-lg border border-gray-200 shadow-2xs">
+                <span className="block text-[10px] text-gray-400 font-medium">Cost of Living</span>
+                <span className={`text-sm sm:text-base font-bold block ${results.colDiffPercent <= 0 ? 'text-emerald-700' : 'text-rose-600'}`}>
+                  {results.colDiffPercent <= 0 ? '' : '+'}
+                  {Math.round(results.colDiffPercent)}%
+                </span>
+                <span className="text-[9px] text-gray-500 block truncate">
+                  {results.colDiffPercent <= 0 ? 'Cheaper living cost' : 'More expensive'}
+                </span>
+              </div>
+
+              {/* Purchasing Power */}
+              <div className="bg-white p-2 sm:p-2.5 rounded-lg border border-gray-200 shadow-2xs">
+                <span className="block text-[10px] text-gray-400 font-medium">Purchasing Power</span>
+                <span className={`text-sm sm:text-base font-bold block ${results.multiplier >= 1 ? 'text-emerald-700' : 'text-amber-600'}`}>
+                  {results.multiplier.toFixed(2)}×
+                </span>
+                <span className="text-[9px] text-gray-500 block truncate">
+                  {results.multiplier >= 1 ? 'Greater buying power' : 'Lower buying power'}
+                </span>
+              </div>
+
+              {/* Rent Index */}
+              <div className="bg-white p-2 sm:p-2.5 rounded-lg border border-gray-200 shadow-2xs">
+                <span className="block text-[10px] text-gray-400 font-medium">Rent Index</span>
+                <span className={`text-sm sm:text-base font-bold block ${results.rentDiffPercent <= 0 ? 'text-emerald-700' : 'text-rose-600'}`}>
+                  {results.rentDiffPercent <= 0 ? '' : '+'}
+                  {Math.round(results.rentDiffPercent)}%
+                </span>
+                <span className="text-[9px] text-gray-500 block truncate">Housing benchmark</span>
+              </div>
+
+              {/* Est. Income Tax */}
+              <div className="bg-white p-2 sm:p-2.5 rounded-lg border border-gray-200 shadow-2xs">
+                <span className="block text-[10px] text-gray-400 font-medium">Est. Income Tax</span>
+                <span className="text-sm sm:text-base font-bold text-gray-900 block truncate">
+                  {toCountry.taxRate === 0 ? (
+                    <span className="text-emerald-700">0% Tax-Free</span>
+                  ) : (
+                    `~${Math.round(toCountry.taxRate * 100)}%`
+                  )}
+                </span>
+                <span className="text-[9px] text-gray-500 block truncate">Effective marginal</span>
+              </div>
+            </div>
+          </div>
+
+          {/* COMPACT REMOTE EXPAT INSIGHT */}
+          <div className="mt-2.5 bg-white/90 border border-emerald-300/80 rounded-lg p-2 sm:p-2.5 text-[11px] leading-snug">
+            <span className="font-bold text-gray-900">
+              💡 Remote Expat Insight:
+            </span>{' '}
             <span className="text-gray-600">
               Your ${Math.round(results.baseSalaryUSD / (period === 'year' ? 1 : 12)).toLocaleString()} USD buys the equivalent of{' '}
               <strong className="text-emerald-800 font-bold">
@@ -414,36 +421,36 @@ export default function PPPSalaryClient() {
       </div>
 
       {/* ── METHODOLOGY & FORMULA SNIPPET (SEO / AEO TARGETED) ── */}
-      <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5">
-        <h2 className="text-sm font-bold text-gray-900 flex items-center gap-1.5 mb-2">
-          <Calculator className="w-4 h-4 text-blue-600" />
+      <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 sm:p-4">
+        <h2 className="text-xs sm:text-sm font-bold text-gray-900 flex items-center gap-1.5 mb-1.5">
+          <Calculator className="w-3.5 h-3.5 text-blue-600" />
           How Purchasing Power Parity (PPP) Is Calculated
         </h2>
-        <p className="text-xs text-gray-600 leading-relaxed">
+        <p className="text-[11px] sm:text-xs text-gray-600 leading-relaxed">
           Purchasing Power Parity calculates how many currency units are required to buy the exact same representative basket of goods and services (food, housing, healthcare, transportation) across borders.
         </p>
 
-        <div className="bg-white border border-slate-200 rounded-xl p-3 my-3 font-mono text-xs text-slate-800">
-          <div className="font-bold text-blue-700 mb-1">World Bank ICP Conversion Formula:</div>
+        <div className="bg-white border border-slate-200 rounded-lg p-2.5 my-2.5 font-mono text-[11px] sm:text-xs text-slate-800">
+          <div className="font-bold text-blue-700 mb-0.5">World Bank ICP Conversion Formula:</div>
           <div>Equivalent Salary ({toCountry.code}) = Base Salary ({fromCountry.code}) × [ PPP Factor ({toCountry.code}) ÷ PPP Factor ({fromCountry.code}) ]</div>
-          <div className="text-[11px] text-gray-500 mt-1.5 pt-1.5 border-t border-gray-100">
+          <div className="text-[10px] text-gray-500 mt-1.5 pt-1 border-t border-gray-100">
             Current calculation: {fromCountry.currencySymbol}{annualBaseSalary.toLocaleString()} × [{toCountry.pppFactor} ÷ {fromCountry.pppFactor}] = {toCountry.currencySymbol}{Math.round(results.pppEquivalentTargetLocal).toLocaleString()} {toCountry.currency}
           </div>
         </div>
 
-        <p className="text-[11px] text-gray-500">
+        <p className="text-[10px] text-gray-500">
           Sources: World Bank International Comparison Program (ICP 2026), International Monetary Fund (IMF), and Numbeo Cost of Living Index.
         </p>
       </div>
 
       {/* ── GLOBAL BENCHMARK COMPARISON TABLE ── */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-4 sm:p-5 shadow-xs">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3 pb-2 border-b border-gray-100">
+      <div className="bg-white rounded-xl border border-gray-200 p-3.5 sm:p-4 shadow-2xs">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 mb-2.5 pb-2 border-b border-gray-100">
           <div>
-            <h3 className="text-sm sm:text-base font-bold text-gray-900">
+            <h3 className="text-xs sm:text-sm font-bold text-gray-900">
               Equivalent Salary Across Global Destinations
             </h3>
-            <p className="text-xs text-gray-500">
+            <p className="text-[11px] text-gray-500">
               Based on {fromCountry.flag} {fromCountry.name} baseline of {fromCountry.currencySymbol}{inputSalary.toLocaleString()} / {period}
             </p>
           </div>
@@ -460,12 +467,12 @@ export default function PPPSalaryClient() {
           <table className="w-full text-left text-xs">
             <thead>
               <tr className="border-b border-gray-200 text-gray-500 font-semibold bg-gray-50/60">
-                <th className="py-2.5 px-3">Country</th>
-                <th className="py-2.5 px-3">Equivalent (Local)</th>
-                <th className="py-2.5 px-3">Equivalent (USD)</th>
-                <th className="py-2.5 px-3">CoL Index</th>
-                <th className="py-2.5 px-3">Income Tax</th>
-                <th className="py-2.5 px-3">Cost vs. Origin</th>
+                <th className="py-2 px-2.5">Country</th>
+                <th className="py-2 px-2.5">Equivalent (Local)</th>
+                <th className="py-2 px-2.5">Equivalent (USD)</th>
+                <th className="py-2 px-2.5">CoL Index</th>
+                <th className="py-2 px-2.5">Income Tax</th>
+                <th className="py-2 px-2.5">Cost vs. Origin</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 font-medium">
@@ -482,28 +489,28 @@ export default function PPPSalaryClient() {
                       isSelected ? 'bg-emerald-50/50 font-bold' : isOrigin ? 'bg-blue-50/40' : ''
                     }`}
                   >
-                    <td className="py-2.5 px-3 flex items-center gap-2">
-                      <span className="text-base">{row.flag}</span>
+                    <td className="py-2 px-2.5 flex items-center gap-1.5">
+                      <span className="text-sm">{row.flag}</span>
                       <span className="text-gray-900">{row.name}</span>
                       {isOrigin && <span className="text-[9px] bg-blue-100 text-blue-800 px-1 py-0.2 rounded font-bold">Origin</span>}
                       {isSelected && <span className="text-[9px] bg-emerald-100 text-emerald-800 px-1 py-0.2 rounded font-bold">Target</span>}
                     </td>
-                    <td className="py-2.5 px-3 text-gray-900 font-semibold tabular-nums">
+                    <td className="py-2 px-2.5 text-gray-900 font-semibold tabular-nums">
                       {row.currencySymbol}{Math.round(row.equivLocal / divisor).toLocaleString()} {row.currency}
                     </td>
-                    <td className="py-2.5 px-3 text-gray-600 tabular-nums">
+                    <td className="py-2 px-2.5 text-gray-600 tabular-nums">
                       ${Math.round(row.equivUSD / divisor).toLocaleString()}
                     </td>
-                    <td className="py-2.5 px-3 text-gray-600">{row.colIndex}</td>
-                    <td className="py-2.5 px-3">
+                    <td className="py-2 px-2.5 text-gray-600">{row.colIndex}</td>
+                    <td className="py-2 px-2.5">
                       {row.taxRate === 0 ? (
                         <span className="text-emerald-700 font-bold">0% Tax-Free</span>
                       ) : (
                         `~${Math.round(row.taxRate * 100)}%`
                       )}
                     </td>
-                    <td className="py-2.5 px-3">
-                      <span className={`px-1.5 py-0.5 rounded text-[11px] font-bold ${
+                    <td className="py-2 px-2.5">
+                      <span className={`px-1.5 py-0.5 rounded text-[10px] font-bold ${
                         row.colDiff <= 0 ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'
                       }`}>
                         {row.colDiff > 0 ? '+' : ''}{Math.round(row.colDiff)}%
@@ -518,18 +525,18 @@ export default function PPPSalaryClient() {
       </div>
 
       {/* ── DIGITAL NOMAD RUNWAY ESTIMATOR ── */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-4 sm:p-5 shadow-xs">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3 pb-2 border-b border-gray-100">
+      <div className="bg-white rounded-xl border border-gray-200 p-3.5 sm:p-4 shadow-2xs">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2.5 pb-2 border-b border-gray-100">
           <div>
-            <h3 className="text-sm sm:text-base font-bold text-gray-900 flex items-center gap-1.5">
-              <Sparkles className="w-4 h-4 text-amber-500" />
+            <h3 className="text-xs sm:text-sm font-bold text-gray-900 flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-amber-500" />
               Digital Nomad Financial Runway Calculator
             </h3>
-            <p className="text-xs text-gray-500">
+            <p className="text-[11px] text-gray-500">
               How many months of runway does your savings cushion provide in each country?
             </p>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
             <span className="text-xs font-semibold text-gray-600">Savings:</span>
             <div className="relative">
               <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs font-bold text-gray-400">$</span>
@@ -539,7 +546,7 @@ export default function PPPSalaryClient() {
                 min="1000"
                 value={savingsCushion}
                 onChange={(e) => setSavingsCushion(Math.max(1000, Number(e.target.value)))}
-                className="w-28 pl-6 pr-2 py-1 text-xs font-bold border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-24 pl-5 pr-1.5 py-1 text-xs font-bold border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500"
               />
             </div>
           </div>
@@ -556,7 +563,7 @@ export default function PPPSalaryClient() {
               <div
                 key={c.code}
                 onClick={() => setToCode(c.code)}
-                className="p-2.5 rounded-xl border border-gray-200 bg-slate-50/70 hover:border-gray-300 cursor-pointer transition"
+                className="p-2 rounded-lg border border-gray-200 bg-slate-50/70 hover:border-gray-300 cursor-pointer transition"
               >
                 <div className="flex items-center justify-between text-xs">
                   <span>{c.flag}</span>
