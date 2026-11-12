@@ -3,20 +3,6 @@
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import {
-  DollarSign,
-  TrendingDown,
-  Scale,
-  PieChart,
-  ShieldCheck,
-  ChevronDown,
-  ArrowRightLeft,
-  CheckCircle2,
-  Info,
-  Calendar,
-  Building2,
-  HelpCircle
-} from 'lucide-react';
-import {
   FilingStatus,
   PayFrequency,
   FICA_RULES,
@@ -28,255 +14,309 @@ import {
 
 export default function USPaycheckClient() {
   const [payType, setPayType] = useState<'salary' | 'hourly'>('salary');
-  const [grossAnnual, setGrossAnnual] = useState<number>(85000);
-  const [hourlyRate, setHourlyRate] = useState<number>(40);
-  const [hoursPerWeek, setHoursPerWeek] = useState<number>(40);
-  const [overtimeHours, setOvertimeHours] = useState<number>(0);
+  
+  // Default to $75,000 so the calculator shows meaningful figures on first load:
+  const [salaryInput, setSalaryInput] = useState<string>('75,000');
+  const [hourlyInput, setHourlyInput] = useState<string>('');
+  const [hoursPerWeekInput, setHoursPerWeekInput] = useState<string>('40');
 
   const [stateCode, setStateCode] = useState<string>('TX');
   const [filingStatus, setFilingStatus] = useState<FilingStatus>('single');
   const [payFrequency, setPayFrequency] = useState<PayFrequency>('biweekly');
 
-  const [k401Contribution, setK401Contribution] = useState<number>(0);
-  const [healthInsuranceAnnual, setHealthInsuranceAnnual] = useState<number>(0);
-  const [hsaAnnual, setHsaAnnual] = useState<number>(0);
+  // Advanced W-4 & Deduction Options Toggle
+  const [showAdvanced, setShowAdvanced] = useState<boolean>(false);
+  const [dependentsCredits, setDependentsCredits] = useState<string>(''); // W-4 Step 3
+  const [k401Input, setK401Input] = useState<string>('');
+  const [healthInsInput, setHealthInsInput] = useState<string>('');
+  const [hsaInput, setHsaInput] = useState<string>('');
 
-  const [compareStateCode, setCompareStateCode] = useState<string>('CA');
-
-  const annualGross = useMemo(() => {
+  // Parse raw numbers safely
+  const grossAnnual = useMemo(() => {
     if (payType === 'salary') {
-      return Math.max(0, grossAnnual);
+      const parsed = parseFloat(salaryInput.replace(/,/g, ''));
+      return isNaN(parsed) || parsed < 0 ? 0 : parsed;
     } else {
-      const regularPay = hourlyRate * hoursPerWeek * 52;
-      const overtimePay = hourlyRate * 1.5 * overtimeHours * 52;
-      return Math.max(0, regularPay + overtimePay);
+      const parsedHourly = parseFloat(hourlyInput.replace(/,/g, ''));
+      const parsedHours = parseFloat(hoursPerWeekInput.replace(/,/g, ''));
+      const hr = isNaN(parsedHourly) || parsedHourly < 0 ? 0 : parsedHourly;
+      const hpw = isNaN(parsedHours) || parsedHours < 0 ? 0 : parsedHours;
+      return hr * hpw * 52;
     }
-  }, [payType, grossAnnual, hourlyRate, hoursPerWeek, overtimeHours]);
+  }, [payType, salaryInput, hourlyInput, hoursPerWeekInput]);
 
-  const calculateTaxesForState = (targetGross: number, sCode: string, fStatus: FilingStatus) => {
-    const stateRule = US_STATES[sCode] || US_STATES.TX;
+  const k401Annual = useMemo(() => {
+    const val = parseFloat(k401Input.replace(/,/g, ''));
+    return isNaN(val) || val < 0 ? 0 : val;
+  }, [k401Input]);
 
-    const ficaWageBase = Math.max(0, targetGross - healthInsuranceAnnual - hsaAnnual);
-    const fitWageBase = Math.max(0, ficaWageBase - k401Contribution);
-    const sitWageBase = sCode === 'CA' || sCode === 'NJ'
-      ? Math.max(0, targetGross - healthInsuranceAnnual - k401Contribution)
-      : fitWageBase;
+  const healthInsAnnual = useMemo(() => {
+    const val = parseFloat(healthInsInput.replace(/,/g, ''));
+    return isNaN(val) || val < 0 ? 0 : val;
+  }, [healthInsInput]);
 
-    const socialSecurityTax = Math.min(ficaWageBase, FICA_RULES.socialSecurityWageCap) * FICA_RULES.socialSecurityRate;
-    const baseMedicareTax = ficaWageBase * FICA_RULES.medicareRate;
-    const additionalMedicareTax = ficaWageBase > FICA_RULES.additionalMedicareWithholdingThreshold
-      ? (ficaWageBase - FICA_RULES.additionalMedicareWithholdingThreshold) * FICA_RULES.additionalMedicareRate
-      : 0;
-    const totalMedicareTax = baseMedicareTax + additionalMedicareTax;
-    const totalFica = socialSecurityTax + totalMedicareTax;
+  const hsaAnnual = useMemo(() => {
+    const val = parseFloat(hsaInput.replace(/,/g, ''));
+    return isNaN(val) || val < 0 ? 0 : val;
+  }, [hsaInput]);
 
-    const standardDeduction = FEDERAL_STANDARD_DEDUCTION[fStatus];
-    const federalTaxableIncome = Math.max(0, fitWageBase - standardDeduction);
-    let federalTax = 0;
-    let prevLimit = 0;
-    const brackets = FEDERAL_BRACKETS[fStatus];
+  const dependentCreditsAnnual = useMemo(() => {
+    const val = parseFloat(dependentsCredits.replace(/,/g, ''));
+    return isNaN(val) || val < 0 ? 0 : val;
+  }, [dependentsCredits]);
 
-    for (const b of brackets) {
-      if (federalTaxableIncome > prevLimit) {
-        const taxableInBracket = Math.min(federalTaxableIncome, b.upTo) - prevLimit;
-        federalTax += taxableInBracket * b.rate;
-        prevLimit = b.upTo;
+  // Tax calculations
+  const stateRule = US_STATES[stateCode] || US_STATES.TX;
+  const standardDeduction = FEDERAL_STANDARD_DEDUCTION[filingStatus];
+
+  // 1. Wage Bases with Proper Pre-Tax Segregation
+  // Section 125 health insurance & qualifying payroll HSA reduce FICA + FIT + SIT
+  const ficaWageBase = Math.max(0, grossAnnual - healthInsAnnual - hsaAnnual);
+  // Traditional 401(k) reduces FIT + SIT, but NOT FICA
+  const fitWageBase = Math.max(0, ficaWageBase - k401Annual);
+  // In CA and NJ, HSA is taxable at state level
+  const sitWageBase = stateCode === 'CA' || stateCode === 'NJ'
+    ? Math.max(0, grossAnnual - healthInsAnnual - k401Annual)
+    : fitWageBase;
+
+  // 2. FICA Taxes (Social Security & Medicare)
+  const socialSecurityTax = Math.min(ficaWageBase, FICA_RULES.socialSecurityWageCap) * FICA_RULES.socialSecurityRate;
+  const baseMedicareTax = ficaWageBase * FICA_RULES.medicareRate;
+  // Additional Medicare tax (employer withholding threshold at $200k)
+  const additionalMedicareTax = ficaWageBase > FICA_RULES.additionalMedicareWithholdingThreshold
+    ? (ficaWageBase - FICA_RULES.additionalMedicareWithholdingThreshold) * FICA_RULES.additionalMedicareRate
+    : 0;
+  const totalMedicareTax = baseMedicareTax + additionalMedicareTax;
+  const totalFica = socialSecurityTax + totalMedicareTax;
+
+  // 3. Federal Income Tax Calculation (with W-4 credits)
+  const federalTaxable = Math.max(0, fitWageBase - standardDeduction);
+  let tentativeFederalTax = 0;
+  let prevLimit = 0;
+  let marginalBracket = 0;
+  const brackets = FEDERAL_BRACKETS[filingStatus];
+
+  for (const b of brackets) {
+    if (federalTaxable > prevLimit) {
+      const taxableChunk = Math.min(federalTaxable, b.upTo) - prevLimit;
+      tentativeFederalTax += taxableChunk * b.rate;
+      marginalBracket = b.rate * 100;
+      prevLimit = b.upTo;
+    } else {
+      break;
+    }
+  }
+
+  // Subtract W-4 Step 3 Dependent Credits
+  const federalTax = Math.max(0, tentativeFederalTax - dependentCreditsAnnual);
+
+  // 4. State Income Tax
+  let stateTax = 0;
+  if (stateRule.type === 'flat' && stateRule.flatRate) {
+    stateTax = sitWageBase * stateRule.flatRate;
+  } else if (stateRule.type === 'graduated' && stateRule.brackets) {
+    let stPrev = 0;
+    for (const sb of stateRule.brackets) {
+      const threshold = filingStatus === 'married_joint' ? sb.thresholdMarried : sb.thresholdSingle;
+      if (sitWageBase > stPrev) {
+        const taxableInTier = Math.min(sitWageBase, threshold) - stPrev;
+        stateTax += taxableInTier * sb.rate;
+        stPrev = threshold;
       } else {
         break;
       }
     }
+  }
 
-    let stateTax = 0;
-    if (stateRule.type === 'flat' && stateRule.flatRate) {
-      stateTax = sitWageBase * stateRule.flatRate;
-    } else if (stateRule.type === 'graduated' && stateRule.brackets) {
-      let stPrev = 0;
-      for (const sb of stateRule.brackets) {
-        const threshold = fStatus === 'married_joint' ? sb.thresholdMarried : sb.thresholdSingle;
-        if (sitWageBase > stPrev) {
-          const taxableInTier = Math.min(sitWageBase, threshold) - stPrev;
-          stateTax += taxableInTier * sb.rate;
-          stPrev = threshold;
-        } else {
-          break;
-        }
-      }
-    }
-
-    let sdiTax = 0;
-    if (stateRule.sdiRate) {
-      sdiTax = targetGross * stateRule.sdiRate;
-    }
-
-    const totalDeductions = k401Contribution + healthInsuranceAnnual + hsaAnnual;
-    const totalTaxes = federalTax + totalFica + stateTax + sdiTax;
-    const netAnnual = Math.max(0, targetGross - totalTaxes - totalDeductions);
-
-    return {
-      gross: targetGross,
-      federalTax,
-      socialSecurityTax,
-      medicareTax: totalMedicareTax,
-      totalFica,
-      stateTax,
-      sdiTax,
-      totalTaxes,
-      totalDeductions,
-      netAnnual,
-      effectiveTaxRate: targetGross > 0 ? (totalTaxes / targetGross) * 100 : 0,
-      stateName: stateRule.name,
-    };
-  };
-
-  const primaryResult = useMemo(() => {
-    return calculateTaxesForState(annualGross, stateCode, filingStatus);
-  }, [annualGross, stateCode, filingStatus, k401Contribution, healthInsuranceAnnual, hsaAnnual]);
-
-  const compareResult = useMemo(() => {
-    return calculateTaxesForState(annualGross, compareStateCode, filingStatus);
-  }, [annualGross, compareStateCode, filingStatus, k401Contribution, healthInsuranceAnnual, hsaAnnual]);
+  // California SDI (1.3% with no wage ceiling in 2026)
+  const sdiTax = stateRule.sdiRate ? grossAnnual * stateRule.sdiRate : 0;
+  const totalDeductions = k401Annual + healthInsAnnual + hsaAnnual;
+  const totalTaxes = federalTax + totalFica + stateTax + sdiTax;
+  const netAnnual = Math.max(0, grossAnnual - totalTaxes - totalDeductions);
+  const effectiveRate = grossAnnual > 0 ? (totalTaxes / grossAnnual) * 100 : 0;
 
   const periods = PAY_PERIODS[payFrequency];
-  const perPaycheckNet = primaryResult.netAnnual / periods;
-  const perPaycheckGross = primaryResult.gross / periods;
-  const perPaycheckFed = primaryResult.federalTax / periods;
-  const perPaycheckFica = primaryResult.totalFica / periods;
-  const perPaycheckState = (primaryResult.stateTax + primaryResult.sdiTax) / periods;
+  const netPerCheck = periods > 0 ? netAnnual / periods : 0;
+  const grossPerCheck = periods > 0 ? grossAnnual / periods : 0;
+  const fedPerCheck = periods > 0 ? federalTax / periods : 0;
+  const ficaPerCheck = periods > 0 ? totalFica / periods : 0;
+  const statePerCheck = periods > 0 ? (stateTax + sdiTax) / periods : 0;
+  const deductionsPerCheck = periods > 0 ? totalDeductions / periods : 0;
 
-  const fmt = (num: number) => {
-    return '$' + Math.round(num).toLocaleString('en-US');
+  const fmt = (val: number) => {
+    return '$' + Math.round(val).toLocaleString('en-US');
   };
 
-  const fmtExact = (num: number) => {
-    return '$' + num.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const fmtExact = (val: number) => {
+    // Prevent -$0.00 by snapping tiny negatives to 0
+    const safe = Math.abs(val) < 0.005 ? 0 : val;
+    return '$' + safe.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   };
+
+  // Show empty state when no salary entered
+  const hasInput = grossAnnual > 0;
 
   return (
-    <div className="w-full px-3 sm:px-6 lg:px-8 py-3 space-y-4 font-sans text-gray-900 font-modern-ui">
-      {/* ── TOP HEADER ── */}
-      <div className="border-b border-gray-200 pb-2 flex flex-col sm:flex-row sm:items-center justify-between gap-1.5">
+    <div className="w-full max-w-5xl mx-auto px-4 py-4 space-y-4 font-sans text-slate-800 font-modern-ui">
+      {/* ── HEADER ── */}
+      <div className="border-b border-slate-200 pb-2 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
         <div>
-          <div className="flex items-center gap-2 flex-wrap">
-            <h1 className="text-xl sm:text-2xl font-extrabold text-gray-900 tracking-tight">
-              US Paycheck &amp; Take-Home Salary Calculator
-            </h1>
-            <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">
-              IRS 2026 Updated
-            </span>
-          </div>
-          <p className="text-xs text-gray-500 mt-0.5">
-            Instant net take-home pay estimate after Federal Income Tax, FICA (Social Security &amp; Medicare), and State taxes.
+          <h1 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+            Paycheck Calculator
+          </h1>
+          <p className="text-xs text-slate-500">
+            Estimated take-home pay after federal, FICA, and state taxes. Results are estimates only.
           </p>
+        </div>
+        <div className="flex items-center gap-2 self-start sm:self-auto">
+          <button
+            type="button"
+            onClick={() => {
+              setSalaryInput('75,000');
+              setHourlyInput('');
+              setHoursPerWeekInput('40');
+              setStateCode('TX');
+              setFilingStatus('single');
+              setPayFrequency('biweekly');
+              setShowAdvanced(false);
+              setDependentsCredits('');
+              setK401Input('');
+              setHealthInsInput('');
+              setHsaInput('');
+            }}
+            className="text-xs font-semibold px-2 py-0.5 rounded bg-slate-200 text-slate-700 hover:bg-slate-300 transition"
+          >
+            Reset
+          </button>
+          <span className="text-xs font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-600">
+            Tax Year 2026
+          </span>
         </div>
       </div>
 
-      {/* ── MAIN INTERACTIVE CALCULATOR (Prominently Placed at the Top) ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-3.5">
-        {/* LEFT COLUMN: SIMPLE & CLEAR INPUTS */}
-        <div className="lg:col-span-5 bg-white rounded-xl border border-gray-200 p-4 shadow-2xs space-y-3">
-          <div className="flex items-center justify-between border-b border-gray-100 pb-2">
-            <h2 className="text-sm font-bold text-gray-900 flex items-center gap-1.5">
-              <DollarSign className="w-4 h-4 text-emerald-600" />
-              Your Earnings &amp; Location
-            </h2>
-            <div className="inline-flex p-0.5 bg-gray-100 rounded-lg border border-gray-200 text-xs">
+      {/* ── MAIN TWO-COLUMN CALCULATOR CARD ── */}
+      <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden grid grid-cols-1 md:grid-cols-12 divide-y md:divide-y-0 md:divide-x divide-slate-200">
+        
+        {/* LEFT COLUMN: SIMPLE INPUTS */}
+        <div className="md:col-span-6 p-5 space-y-4">
+          <div className="flex items-center justify-between pb-1 border-b border-slate-100">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-600">
+              Salary Details
+            </span>
+            {/* Toggle */}
+            <div className="inline-flex rounded-lg bg-slate-100 p-0.5 text-xs font-medium">
               <button
                 type="button"
                 onClick={() => setPayType('salary')}
-                className={`px-3 py-1 font-bold rounded-md transition ${
-                  payType === 'salary' ? 'bg-white text-gray-900 shadow-2xs' : 'text-gray-500 hover:text-gray-900'
+                className={`px-3 py-1 rounded-md transition ${
+                  payType === 'salary' ? 'bg-white text-slate-900 shadow-xs font-bold' : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
-                Salary
+                Annual Salary
               </button>
               <button
                 type="button"
                 onClick={() => setPayType('hourly')}
-                className={`px-3 py-1 font-bold rounded-md transition ${
-                  payType === 'hourly' ? 'bg-white text-gray-900 shadow-2xs' : 'text-gray-500 hover:text-gray-900'
+                className={`px-3 py-1 rounded-md transition ${
+                  payType === 'hourly' ? 'bg-white text-slate-900 shadow-xs font-bold' : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
-                Hourly
+                Hourly Rate
               </button>
             </div>
           </div>
 
+          {/* Gross Input - Addon Prefix (Zero overlapping) */}
           {payType === 'salary' ? (
             <div>
-              <label className="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">
-                Annual Gross Salary ($/Year)
+              <label className="block text-xs font-semibold text-slate-700 mb-1">
+                Annual Gross Salary
               </label>
-              <div className="relative">
-                <span className="absolute left-3 top-2.5 text-gray-400 font-bold text-sm">$</span>
+              <div className="flex rounded-lg border border-slate-300 focus-within:border-slate-800 focus-within:ring-1 focus-within:ring-slate-800 overflow-hidden bg-white">
+                <span className="inline-flex items-center px-3.5 bg-slate-50 border-r border-slate-300 text-slate-500 font-bold text-sm select-none">
+                  $
+                </span>
                 <input
-                  type="number"
-                  min="0"
-                  step="1000"
-                  value={grossAnnual}
-                  onChange={(e) => setGrossAnnual(Math.max(0, Number(e.target.value)))}
-                  className="w-full pl-7 pr-3 py-2 border border-gray-300 rounded-lg text-base font-extrabold text-gray-900 focus:ring-1 focus:ring-emerald-500 outline-none"
+                  type="text"
+                  inputMode="numeric"
+                  value={salaryInput}
+                  onChange={(e) => {
+                    const raw = e.target.value.replace(/[^0-9]/g, '');
+                    if (raw === '') {
+                      setSalaryInput('');
+                    } else {
+                      setSalaryInput(Number(raw).toLocaleString('en-US'));
+                    }
+                  }}
+                  className="w-full px-3 py-2 text-base font-bold text-slate-900 outline-none"
+                  placeholder="0"
                 />
               </div>
             </div>
           ) : (
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">
-                  Hourly Rate ($/hr)
+                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  Hourly Rate
                 </label>
-                <div className="relative">
-                  <span className="absolute left-2.5 top-2 text-gray-400 font-bold text-xs">$</span>
+                <div className="flex rounded-lg border border-slate-300 focus-within:border-slate-800 focus-within:ring-1 focus-within:ring-slate-800 overflow-hidden bg-white">
+                  <span className="inline-flex items-center px-3 bg-slate-50 border-r border-slate-300 text-slate-500 font-bold text-sm select-none">
+                    $
+                  </span>
                   <input
                     type="number"
                     min="0"
                     step="0.5"
-                    value={hourlyRate}
-                    onChange={(e) => setHourlyRate(Math.max(0, Number(e.target.value)))}
-                    className="w-full pl-6 pr-2 py-1.5 border border-gray-300 rounded-lg text-sm font-bold text-gray-900 outline-none"
+                    value={hourlyInput}
+                    onChange={(e) => setHourlyInput(e.target.value)}
+                    className="w-full px-2.5 py-2 text-sm font-bold text-slate-900 outline-none"
+                    placeholder="0"
                   />
                 </div>
               </div>
               <div>
-                <label className="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">
+                <label className="block text-xs font-semibold text-slate-700 mb-1">
                   Hours / Week
                 </label>
                 <input
                   type="number"
-                  min="1"
+                  min="0"
                   max="80"
-                  value={hoursPerWeek}
-                  onChange={(e) => setHoursPerWeek(Math.max(1, Number(e.target.value)))}
-                  className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm font-bold text-gray-900 outline-none"
+                  value={hoursPerWeekInput}
+                  onChange={(e) => setHoursPerWeekInput(e.target.value)}
+                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm font-bold text-slate-900 outline-none focus:border-slate-800"
+                  placeholder="40"
                 />
               </div>
             </div>
           )}
 
-          <div className="grid grid-cols-2 gap-2">
+          {/* State and Filing Status */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">
-                State (Work Location)
+              <label className="block text-xs font-semibold text-slate-700 mb-1">
+                State
               </label>
               <select
                 value={stateCode}
                 onChange={(e) => setStateCode(e.target.value)}
-                className="w-full px-2.5 py-1.5 border border-gray-300 rounded-lg text-xs font-semibold text-gray-800 bg-gray-50 outline-none cursor-pointer"
+                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs font-medium text-slate-800 bg-white outline-none focus:border-slate-800 cursor-pointer"
               >
                 {Object.keys(US_STATES).map((sc) => (
                   <option key={sc} value={sc}>
-                    {US_STATES[sc].name} ({sc}) {US_STATES[sc].type === 'none' ? '- 0% Tax' : ''}
+                    {US_STATES[sc].name} {US_STATES[sc].type === 'none' ? '(0% tax)' : ''}
                   </option>
                 ))}
               </select>
             </div>
             <div>
-              <label className="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">
+              <label className="block text-xs font-semibold text-slate-700 mb-1">
                 Filing Status
               </label>
               <select
                 value={filingStatus}
                 onChange={(e) => setFilingStatus(e.target.value as FilingStatus)}
-                className="w-full px-2.5 py-1.5 border border-gray-300 rounded-lg text-xs font-semibold text-gray-800 bg-gray-50 outline-none cursor-pointer"
+                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs font-medium text-slate-800 bg-white outline-none focus:border-slate-800 cursor-pointer"
               >
                 <option value="single">Single</option>
                 <option value="married_joint">Married Filing Jointly</option>
@@ -286,20 +326,21 @@ export default function USPaycheckClient() {
             </div>
           </div>
 
+          {/* Pay Frequency Tabs */}
           <div>
-            <label className="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">
-              Your Pay Frequency
+            <label className="block text-xs font-semibold text-slate-700 mb-1">
+              Pay Frequency
             </label>
-            <div className="grid grid-cols-4 gap-1 text-center">
+            <div className="grid grid-cols-4 gap-1.5">
               {(['weekly', 'biweekly', 'semimonthly', 'monthly'] as PayFrequency[]).map((pf) => (
                 <button
                   key={pf}
                   type="button"
                   onClick={() => setPayFrequency(pf)}
-                  className={`py-1.5 text-[11px] font-bold rounded-md border transition capitalize ${
+                  className={`py-1.5 px-2 text-xs font-semibold rounded-md border text-center transition capitalize ${
                     payFrequency === pf
-                      ? 'bg-[#0f2942] text-white border-[#0f2942]'
-                      : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
+                      ? 'bg-slate-900 text-white border-slate-900'
+                      : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
                   }`}
                 >
                   {pf === 'semimonthly' ? 'Semi-Mo' : pf}
@@ -308,369 +349,217 @@ export default function USPaycheckClient() {
             </div>
           </div>
 
-          <div className="pt-2 border-t border-gray-100 space-y-2">
-            <span className="text-[11px] font-bold text-gray-600 uppercase tracking-wide flex items-center justify-between">
-              <span>Pre-Tax Benefit Deductions (Annual)</span>
-              <span className="text-[10px] text-gray-400 font-normal">Optional</span>
-            </span>
+          {/* Optional Advanced W-4 & Pre-Tax Toggle */}
+          <div className="pt-1">
+            <button
+              type="button"
+              onClick={() => setShowAdvanced(!showAdvanced)}
+              className="text-xs font-semibold text-blue-600 hover:text-blue-800 flex items-center gap-1"
+            >
+              <span>{showAdvanced ? '− Hide' : '+ Show'} Advanced W-4 &amp; Pre-Tax Deductions</span>
+            </button>
 
-            <div className="grid grid-cols-3 gap-1.5">
-              <div>
-                <label className="text-[10px] text-gray-500 font-semibold block mb-0.5">401(k) / Year</label>
-                <input
-                  type="number"
-                  min="0"
-                  step="500"
-                  placeholder="$0"
-                  value={k401Contribution || ''}
-                  onChange={(e) => setK401Contribution(Math.max(0, Number(e.target.value)))}
-                  className="w-full px-2 py-1 text-xs font-medium border border-gray-200 rounded-md outline-none"
-                />
+            {showAdvanced && (
+              <div className="mt-3 p-3 bg-slate-50 rounded-lg border border-slate-200 space-y-2.5">
+                <div className="grid grid-cols-2 gap-2">
+                  <div>
+                    <label className="text-[11px] font-medium text-slate-600 block mb-0.5">
+                      401(k) Contribution ($/yr)
+                    </label>
+                    <input
+                      type="number"
+                      min="0"
+                      step="500"
+                      placeholder="0"
+                      value={k401Input}
+                      onChange={(e) => setK401Input(e.target.value)}
+                      className="w-full px-2.5 py-1.5 text-xs border border-slate-300 rounded-md bg-white outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-[11px] font-medium text-slate-600 block mb-0.5">
+                      Health Insurance ($/yr)
+                    </label>
+                    <input
+                      type="number"
+                      min="0"
+                      step="200"
+                      placeholder="0"
+                      value={healthInsInput}
+                      onChange={(e) => setHealthInsInput(e.target.value)}
+                      className="w-full px-2.5 py-1.5 text-xs border border-slate-300 rounded-md bg-white outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-[11px] font-medium text-slate-600 block mb-0.5">
+                      HSA Contribution ($/yr)
+                    </label>
+                    <input
+                      type="number"
+                      min="0"
+                      step="200"
+                      placeholder="0"
+                      value={hsaInput}
+                      onChange={(e) => setHsaInput(e.target.value)}
+                      className="w-full px-2.5 py-1.5 text-xs border border-slate-300 rounded-md bg-white outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-[11px] font-medium text-slate-600 block mb-0.5">
+                      W-4 Dependent Credits ($)
+                    </label>
+                    <input
+                      type="number"
+                      min="0"
+                      step="500"
+                      placeholder="0"
+                      value={dependentsCredits}
+                      onChange={(e) => setDependentsCredits(e.target.value)}
+                      className="w-full px-2.5 py-1.5 text-xs border border-slate-300 rounded-md bg-white outline-none"
+                    />
+                  </div>
+                </div>
               </div>
-              <div>
-                <label className="text-[10px] text-gray-500 font-semibold block mb-0.5">Health Ins / Yr</label>
-                <input
-                  type="number"
-                  min="0"
-                  step="200"
-                  placeholder="$0"
-                  value={healthInsuranceAnnual || ''}
-                  onChange={(e) => setHealthInsuranceAnnual(Math.max(0, Number(e.target.value)))}
-                  className="w-full px-2 py-1 text-xs font-medium border border-gray-200 rounded-md outline-none"
-                />
-              </div>
-              <div>
-                <label className="text-[10px] text-gray-500 font-semibold block mb-0.5">HSA / Year</label>
-                <input
-                  type="number"
-                  min="0"
-                  step="200"
-                  placeholder="$0"
-                  value={hsaAnnual || ''}
-                  onChange={(e) => setHsaAnnual(Math.max(0, Number(e.target.value)))}
-                  className="w-full px-2 py-1 text-xs font-medium border border-gray-200 rounded-md outline-none"
-                />
-              </div>
-            </div>
+            )}
           </div>
         </div>
 
-        {/* RIGHT COLUMN: HERO RESULTS (THE MAIN EVENT) */}
-        <div className="lg:col-span-7 bg-white rounded-xl border border-gray-200 p-4 shadow-2xs space-y-3 flex flex-col justify-between">
+        {/* RIGHT COLUMN: CLEAR TAKE-HOME RESULTS */}
+        <div className="md:col-span-6 p-5 bg-slate-50/50 flex flex-col justify-between space-y-4">
           <div>
-            <div className="flex items-center justify-between border-b border-gray-100 pb-2">
-              <span className="text-xs font-bold text-gray-500 uppercase tracking-wide">
-                Net Pay Summary ({payFrequency.toUpperCase()} &bull; {primaryResult.stateName})
+            <div className="flex items-center justify-between pb-1 border-b border-slate-200 text-xs">
+              <span className="font-bold uppercase tracking-wider text-slate-600">
+                Take-Home Pay
               </span>
-              <span className="text-xs font-extrabold text-slate-700">
-                Effective Tax Rate: {primaryResult.effectiveTaxRate.toFixed(1)}%
+              <div className="text-right space-x-2">
+                <span className="text-slate-500 font-medium">
+                  Effective tax rate: <strong className="text-slate-800">{effectiveRate.toFixed(1)}%</strong>
+                </span>
+                {marginalBracket > 0 && (
+                  <span className="text-slate-500 font-medium">
+                    Marginal: <strong className="text-slate-800">{marginalBracket}%</strong>
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {/* Hero Net Display */}
+            <div className="my-3 p-4 bg-white border border-slate-200 rounded-xl shadow-xs">
+              <span className="text-xs text-slate-500 block font-medium">
+                Estimated Net Pay ({payFrequency})
               </span>
-            </div>
-
-            <div className="my-3 p-3.5 bg-emerald-50/70 border border-emerald-200 rounded-xl flex items-center justify-between">
-              <div>
-                <span className="text-xs font-bold text-emerald-900 block uppercase tracking-wide">
-                  Your Net Take-Home Pay
-                </span>
-                <span className="text-2xl sm:text-3xl font-black text-emerald-800 tracking-tight">
-                  {fmtExact(perPaycheckNet)}
-                </span>
-                <span className="text-[11px] text-emerald-700 block mt-0.5">
-                  per {payFrequency} paycheck ({periods} paychecks per year)
-                </span>
+              <div className="text-3xl font-extrabold text-emerald-700 tracking-tight mt-0.5">
+                {fmtExact(netPerCheck)}
               </div>
-              <div className="text-right">
-                <span className="text-xs text-gray-500 block font-medium">Annual Net Total</span>
-                <span className="text-lg sm:text-xl font-extrabold text-gray-900 block">
-                  {fmt(primaryResult.netAnnual)}
-                </span>
-                <span className="text-[11px] text-gray-400">
-                  from {fmt(primaryResult.gross)} gross
-                </span>
+              <div className="text-xs text-slate-500 mt-1 flex items-center justify-between border-t border-slate-100 pt-1.5">
+                <span>Annual Net: <strong className="text-slate-800">{fmt(netAnnual)}</strong></span>
+                <span>Gross: <strong className="text-slate-800">{fmt(grossAnnual)}</strong></span>
               </div>
             </div>
 
-            <div className="space-y-1 mb-3">
-              <div className="flex items-center justify-between text-[11px] font-semibold text-gray-500">
-                <span>Income Distribution</span>
-                <span>Taxes: {fmt(primaryResult.totalTaxes)} ({primaryResult.effectiveTaxRate.toFixed(1)}%)</span>
+            {/* Simple Breakdown Table */}
+            <div className="bg-white border border-slate-200 rounded-lg overflow-hidden text-xs">
+              <div className="bg-slate-50 px-3 py-1.5 font-bold text-slate-700 border-b border-slate-200 flex justify-between">
+                <span>Deduction</span>
+                <span>Per Check</span>
               </div>
-              <div className="h-3 w-full bg-gray-100 rounded-full overflow-hidden flex shadow-inner">
-                <div
-                  style={{ width: `${(primaryResult.netAnnual / primaryResult.gross) * 100}%` }}
-                  className="bg-emerald-500 transition-all duration-300"
-                  title={`Take-Home Pay: ${fmt(primaryResult.netAnnual)}`}
-                />
-                <div
-                  style={{ width: `${(primaryResult.federalTax / primaryResult.gross) * 100}%` }}
-                  className="bg-blue-600 transition-all duration-300"
-                  title={`Federal Tax: ${fmt(primaryResult.federalTax)}`}
-                />
-                <div
-                  style={{ width: `${(primaryResult.totalFica / primaryResult.gross) * 100}%` }}
-                  className="bg-amber-500 transition-all duration-300"
-                  title={`FICA: ${fmt(primaryResult.totalFica)}`}
-                />
-                <div
-                  style={{ width: `${((primaryResult.stateTax + primaryResult.sdiTax) / primaryResult.gross) * 100}%` }}
-                  className="bg-purple-600 transition-all duration-300"
-                  title={`State & Disability Tax: ${fmt(primaryResult.stateTax + primaryResult.sdiTax)}`}
-                />
+              <div className="divide-y divide-slate-100 font-medium">
+                <div className="px-3 py-2 flex justify-between">
+                  <span className="text-slate-600">Federal Income Tax</span>
+                  <span className="font-semibold text-rose-600">{fedPerCheck > 0 ? `-${fmtExact(fedPerCheck)}` : fmtExact(0)}</span>
+                </div>
+                <div className="px-3 py-2 flex justify-between">
+                  <span className="text-slate-600">Social Security (6.2%)</span>
+                  <span className="font-semibold text-rose-600">{socialSecurityTax > 0 ? `-${fmtExact(socialSecurityTax / periods)}` : fmtExact(0)}</span>
+                </div>
+                <div className="px-3 py-2 flex justify-between">
+                  <span className="text-slate-600">Medicare (1.45%)</span>
+                  <span className="font-semibold text-rose-600">{totalMedicareTax > 0 ? `-${fmtExact(totalMedicareTax / periods)}` : fmtExact(0)}</span>
+                </div>
+                <div className="px-3 py-2 flex justify-between">
+                  <span className="text-slate-600">{stateRule.name} Tax</span>
+                  <span className="font-semibold text-slate-700">
+                    {stateTax > 0 ? `-${fmtExact(statePerCheck)}` : '$0.00 (0%)'}
+                  </span>
+                </div>
+                {sdiTax > 0 && (
+                  <div className="px-3 py-2 flex justify-between">
+                    <span className="text-slate-600">State Disability (SDI)</span>
+                    <span className="font-semibold text-rose-600">-{fmtExact(sdiTax / periods)}</span>
+                  </div>
+                )}                {totalDeductions > 0 && (
+                  <div className="px-3 py-2 flex justify-between bg-slate-50/50">
+                    <span className="text-slate-600">Pre-Tax Deductions (401k/Ins)</span>
+                    <span className="font-semibold text-slate-700">-{fmtExact(deductionsPerCheck)}</span>
+                  </div>
+                )}
+                <div className="px-3 py-2.5 flex justify-between bg-emerald-50/60 font-bold border-t border-slate-200">
+                  <span className="text-emerald-950 font-bold">Net Check</span>
+                  <span className="text-emerald-800 font-extrabold">{fmtExact(netPerCheck)}</span>
+                </div>
               </div>
-
-              <div className="flex flex-wrap items-center gap-3 text-[10px] text-gray-600 pt-1">
-                <span className="flex items-center gap-1">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-                  Take-Home ({((primaryResult.netAnnual / primaryResult.gross) * 100).toFixed(1)}%)
-                </span>
-                <span className="flex items-center gap-1">
-                  <span className="w-2 h-2 rounded-full bg-blue-600"></span>
-                  Federal ({((primaryResult.federalTax / primaryResult.gross) * 100).toFixed(1)}%)
-                </span>
-                <span className="flex items-center gap-1">
-                  <span className="w-2 h-2 rounded-full bg-amber-500"></span>
-                  FICA ({((primaryResult.totalFica / primaryResult.gross) * 100).toFixed(1)}%)
-                </span>
-                <span className="flex items-center gap-1">
-                  <span className="w-2 h-2 rounded-full bg-purple-600"></span>
-                  State ({(((primaryResult.stateTax + primaryResult.sdiTax) / primaryResult.gross) * 100).toFixed(1)}%)
-                </span>
-              </div>
-            </div>
-
-            <div className="border border-gray-200 rounded-lg overflow-hidden">
-              <table className="w-full text-left text-xs">
-                <thead>
-                  <tr className="bg-gray-50 border-b border-gray-200 text-gray-500 font-bold">
-                    <th className="py-2 px-3">Tax Component</th>
-                    <th className="py-2 px-3 text-right">Per {payFrequency.slice(0, 1).toUpperCase() + payFrequency.slice(1)}</th>
-                    <th className="py-2 px-3 text-right">Annual Total</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100 font-medium text-slate-800">
-                  <tr>
-                    <td className="py-2 px-3 font-semibold text-gray-900">Gross Salary</td>
-                    <td className="py-2 px-3 text-right font-bold tabular-nums">{fmtExact(perPaycheckGross)}</td>
-                    <td className="py-2 px-3 text-right font-bold tabular-nums">{fmt(primaryResult.gross)}</td>
-                  </tr>
-                  <tr>
-                    <td className="py-2 px-3 text-gray-600 flex items-center gap-1">
-                      <span className="w-2 h-2 rounded-full bg-blue-600"></span>
-                      Federal Income Tax
-                    </td>
-                    <td className="py-2 px-3 text-right text-rose-600 font-semibold tabular-nums">-{fmtExact(perPaycheckFed)}</td>
-                    <td className="py-2 px-3 text-right text-rose-600 font-semibold tabular-nums">-{fmt(primaryResult.federalTax)}</td>
-                  </tr>
-                  <tr>
-                    <td className="py-2 px-3 text-gray-600 flex items-center gap-1">
-                      <span className="w-2 h-2 rounded-full bg-amber-500"></span>
-                      Social Security (6.2%)
-                    </td>
-                    <td className="py-2 px-3 text-right text-rose-600 font-semibold tabular-nums">
-                      -{fmtExact(primaryResult.socialSecurityTax / periods)}
-                    </td>
-                    <td className="py-2 px-3 text-right text-rose-600 font-semibold tabular-nums">
-                      -{fmt(primaryResult.socialSecurityTax)}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="py-2 px-3 text-gray-600 flex items-center gap-1">
-                      <span className="w-2 h-2 rounded-full bg-amber-500"></span>
-                      Medicare (1.45%)
-                    </td>
-                    <td className="py-2 px-3 text-right text-rose-600 font-semibold tabular-nums">
-                      -{fmtExact(primaryResult.medicareTax / periods)}
-                    </td>
-                    <td className="py-2 px-3 text-right text-rose-600 font-semibold tabular-nums">
-                      -{fmt(primaryResult.medicareTax)}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="py-2 px-3 text-gray-600 flex items-center gap-1">
-                      <span className="w-2 h-2 rounded-full bg-purple-600"></span>
-                      {primaryResult.stateName} Income Tax
-                    </td>
-                    <td className="py-2 px-3 text-right text-rose-600 font-semibold tabular-nums">
-                      {primaryResult.stateTax > 0 ? `-${fmtExact(primaryResult.stateTax / periods)}` : '$0.00 (0%)'}
-                    </td>
-                    <td className="py-2 px-3 text-right text-rose-600 font-semibold tabular-nums">
-                      {primaryResult.stateTax > 0 ? `-${fmt(primaryResult.stateTax)}` : '$0 (No State Tax)'}
-                    </td>
-                  </tr>
-                  {primaryResult.sdiTax > 0 && (
-                    <tr>
-                      <td className="py-2 px-3 text-gray-600 flex items-center gap-1">
-                        <span className="w-2 h-2 rounded-full bg-purple-400"></span>
-                        State Disability Insurance (SDI)
-                      </td>
-                      <td className="py-2 px-3 text-right text-rose-600 font-semibold tabular-nums">
-                        -{fmtExact(primaryResult.sdiTax / periods)}
-                      </td>
-                      <td className="py-2 px-3 text-right text-rose-600 font-semibold tabular-nums">
-                        -{fmt(primaryResult.sdiTax)}
-                      </td>
-                    </tr>
-                  )}
-                  {primaryResult.totalDeductions > 0 && (
-                    <tr className="bg-slate-50/60">
-                      <td className="py-2 px-3 text-gray-600">Pre-Tax Benefits (401k/HSA/Health)</td>
-                      <td className="py-2 px-3 text-right text-gray-600 font-semibold tabular-nums">
-                        -{fmtExact(primaryResult.totalDeductions / periods)}
-                      </td>
-                      <td className="py-2 px-3 text-right text-gray-600 font-semibold tabular-nums">
-                        -{fmt(primaryResult.totalDeductions)}
-                      </td>
-                    </tr>
-                  )}
-                  <tr className="bg-emerald-50 font-bold border-t-2 border-emerald-300">
-                    <td className="py-2.5 px-3 text-emerald-950 font-extrabold text-sm">Net Take-Home Pay</td>
-                    <td className="py-2.5 px-3 text-right text-emerald-800 font-black text-sm tabular-nums">
-                      {fmtExact(perPaycheckNet)}
-                    </td>
-                    <td className="py-2.5 px-3 text-right text-emerald-800 font-black text-sm tabular-nums">
-                      {fmt(primaryResult.netAnnual)}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
             </div>
           </div>
+
+          <p className="text-[11px] text-slate-400 text-center">
+            Estimated take-home pay under IRS Publication 15-T. Results are estimates only - actual paycheck amounts may vary based on W-4 elections, employer-specific payroll treatment, and local taxes not reflected here. 2026 Social Security cap: $184,500.
+          </p>
         </div>
       </div>
 
-      {/* ── ALL PAY FREQUENCIES SUMMARY TABLE ── */}
-      <div className="bg-white rounded-xl border border-gray-200 p-3.5 sm:p-4 shadow-2xs space-y-2">
-        <h3 className="text-xs sm:text-sm font-bold text-gray-900 flex items-center gap-1.5">
-          <Calendar className="w-4 h-4 text-blue-600" />
-          Complete Take-Home Pay Breakdown Across All Pay Frequencies
+      {/* ── ALL-FREQUENCIES TABLE ── */}
+      <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-sm space-y-2">
+        <h3 className="text-sm font-bold text-slate-900">
+          Take-Home Pay by Pay Frequency
         </h3>
-        <p className="text-[11px] text-gray-500">
-          Compare your net paycheck amount whether you are paid weekly, bi-weekly, semi-monthly, or monthly.
-        </p>
-
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs border border-gray-200 rounded-lg overflow-hidden">
+          <table className="w-full text-left text-xs">
             <thead>
-              <tr className="bg-gray-50 border-b border-gray-200 text-gray-600 font-bold">
+              <tr className="bg-slate-50 border-b border-slate-200 text-slate-600 font-semibold">
                 <th className="py-2 px-3">Frequency</th>
-                <th className="py-2 px-3">Paychecks / Year</th>
                 <th className="py-2 px-3 text-right">Gross Pay</th>
                 <th className="py-2 px-3 text-right">Federal Tax</th>
-                <th className="py-2 px-3 text-right">FICA (SS+Med)</th>
+                <th className="py-2 px-3 text-right">FICA</th>
                 <th className="py-2 px-3 text-right">State Tax</th>
-                <th className="py-2 px-3 text-right text-emerald-900 font-extrabold bg-emerald-50/50">Net Pay</th>
+                <th className="py-2 px-3 text-right font-bold text-emerald-800 bg-emerald-50/50">Take-Home</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100 font-medium">
+            <tbody className="divide-y divide-slate-100 font-medium">
               {[
-                { name: 'Annually', count: 1 },
+                { name: 'Annual Total', count: 1 },
                 { name: 'Monthly', count: 12 },
                 { name: 'Semi-Monthly (2x/mo)', count: 24 },
                 { name: 'Bi-Weekly (Every 2 wks)', count: 26 },
                 { name: 'Weekly', count: 52 },
-                { name: 'Hourly (2,080 hrs)', count: 2080 },
               ].map((row) => (
-                <tr key={row.name} className="hover:bg-slate-50 transition">
-                  <td className="py-2 px-3 font-bold text-gray-900">{row.name}</td>
-                  <td className="py-2 px-3 text-gray-500">{row.count}</td>
-                  <td className="py-2 px-3 text-right tabular-nums">{fmtExact(primaryResult.gross / row.count)}</td>
-                  <td className="py-2 px-3 text-right text-rose-600 tabular-nums">-{fmtExact(primaryResult.federalTax / row.count)}</td>
-                  <td className="py-2 px-3 text-right text-rose-600 tabular-nums">-{fmtExact(primaryResult.totalFica / row.count)}</td>
-                  <td className="py-2 px-3 text-right text-rose-600 tabular-nums">
-                    -{fmtExact((primaryResult.stateTax + primaryResult.sdiTax) / row.count)}
+                <tr key={row.name} className="hover:bg-slate-50">
+                  <td className="py-2 px-3 font-semibold text-slate-900">{row.name}</td>
+                  <td className="py-2 px-3 text-right tabular-nums">{fmtExact(grossAnnual / row.count)}</td>
+                  <td className="py-2 px-3 text-right text-rose-600 tabular-nums">-{fmtExact(federalTax / row.count)}</td>
+                  <td className="py-2 px-3 text-right text-rose-600 tabular-nums">-{fmtExact(totalFica / row.count)}</td>
+                  <td className="py-2 px-3 text-right text-slate-600 tabular-nums">
+                    {(stateTax + sdiTax) > 0 ? `-${fmtExact((stateTax + sdiTax) / row.count)}` : fmtExact(0)}
                   </td>
-                  <td className="py-2 px-3 text-right font-black text-emerald-700 bg-emerald-50/40 tabular-nums">
-                    {fmtExact(primaryResult.netAnnual / row.count)}
+                  <td className="py-2 px-3 text-right font-bold text-emerald-700 bg-emerald-50/30 tabular-nums">
+                    {fmtExact(netAnnual / row.count)}
                   </td>
                 </tr>
               ))}
+              {/* Hourly equivalent — shown as a separate reference row, not a pay frequency */}
+              <tr className="bg-slate-50/80 border-t-2 border-slate-200 hover:bg-slate-100">
+                <td className="py-2 px-3 font-semibold text-slate-500 italic text-[11px]">Hourly Equiv. (2,080 hrs/yr)</td>
+                <td className="py-2 px-3 text-right tabular-nums text-slate-500 text-[11px]">{fmtExact(grossAnnual / 2080)}</td>
+                <td className="py-2 px-3 text-right text-rose-400 tabular-nums text-[11px]">-{fmtExact(federalTax / 2080)}</td>
+                <td className="py-2 px-3 text-right text-rose-400 tabular-nums text-[11px]">-{fmtExact(totalFica / 2080)}</td>
+                <td className="py-2 px-3 text-right text-slate-400 tabular-nums text-[11px]">
+                  {(stateTax + sdiTax) > 0 ? `-${fmtExact((stateTax + sdiTax) / 2080)}` : fmtExact(0)}
+                </td>
+                <td className="py-2 px-3 text-right font-bold text-emerald-600 bg-emerald-50/20 tabular-nums text-[11px]">
+                  {fmtExact(netAnnual / 2080)}
+                </td>
+              </tr>
             </tbody>
           </table>
-        </div>
-      </div>
-
-      {/* ── STATE-TO-STATE RELOCATION COMPARISON MODULE ── */}
-      <div className="bg-white rounded-xl border border-gray-200 p-3.5 sm:p-4 shadow-2xs space-y-3">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 border-b border-gray-100 pb-2">
-          <div>
-            <h3 className="text-xs sm:text-sm font-bold text-gray-900 flex items-center gap-1.5">
-              <ArrowRightLeft className="w-4 h-4 text-purple-600" />
-              State-to-State Relocation Tax Comparison
-            </h3>
-            <p className="text-[11px] text-gray-500">
-              See exactly how much your take-home pay changes if you move between states on the exact same salary.
-            </p>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-gray-500 font-semibold">Compare with:</span>
-            <select
-              value={compareStateCode}
-              onChange={(e) => setCompareStateCode(e.target.value)}
-              className="text-xs font-bold border border-gray-300 rounded-md py-1 px-2 bg-gray-50"
-            >
-              {Object.keys(US_STATES).map((sc) => (
-                <option key={sc} value={sc}>
-                  {US_STATES[sc].name} ({sc})
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5">
-            <div className="flex items-center justify-between">
-              <span className="font-extrabold text-xs text-slate-800">{primaryResult.stateName} ({stateCode})</span>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800">Current</span>
-            </div>
-            <div className="flex items-baseline justify-between pt-1">
-              <span className="text-xs text-gray-500">Annual Net Take-Home:</span>
-              <span className="text-lg font-black text-emerald-800 tabular-nums">{fmt(primaryResult.netAnnual)}</span>
-            </div>
-            <div className="text-[11px] text-gray-500 space-y-0.5 pt-1 border-t border-slate-200">
-              <div className="flex justify-between">
-                <span>State Income Tax:</span>
-                <span className="font-semibold text-gray-700">{fmt(primaryResult.stateTax + primaryResult.sdiTax)}</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Effective Total Tax Rate:</span>
-                <span className="font-semibold text-gray-700">{primaryResult.effectiveTaxRate.toFixed(1)}%</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="p-3 bg-purple-50/60 rounded-xl border border-purple-200 space-y-1.5">
-            <div className="flex items-center justify-between">
-              <span className="font-extrabold text-xs text-purple-950">{compareResult.stateName} ({compareStateCode})</span>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-purple-200 text-purple-900">Comparison</span>
-            </div>
-            <div className="flex items-baseline justify-between pt-1">
-              <span className="text-xs text-gray-500">Annual Net Take-Home:</span>
-              <span className="text-lg font-black text-purple-900 tabular-nums">{fmt(compareResult.netAnnual)}</span>
-            </div>
-            <div className="text-[11px] text-gray-500 space-y-0.5 pt-1 border-t border-purple-200">
-              <div className="flex justify-between">
-                <span>State Income Tax:</span>
-                <span className="font-semibold text-gray-700">{fmt(compareResult.stateTax + compareResult.sdiTax)}</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Effective Total Tax Rate:</span>
-                <span className="font-semibold text-gray-700">{compareResult.effectiveTaxRate.toFixed(1)}%</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="p-2.5 rounded-lg border border-gray-200 bg-amber-50/60 flex items-center justify-between text-xs">
-          <span className="font-bold text-gray-800">
-            Net Difference between {primaryResult.stateName} and {compareResult.stateName}:
-          </span>
-          <span className="font-black text-sm text-slate-900 tabular-nums">
-            {fmt(Math.abs(primaryResult.netAnnual - compareResult.netAnnual))} / year{' '}
-            <span className="text-xs font-normal text-gray-500">
-              ({fmt(Math.abs(primaryResult.netAnnual - compareResult.netAnnual) / 12)}/mo)
-            </span>
-          </span>
         </div>
       </div>
     </div>

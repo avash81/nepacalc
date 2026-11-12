@@ -1,5 +1,5 @@
 // US Tax & Payroll Rules Data Engine
-// Based on IRS Publication 15-T, SSA Wage Caps, and 50-State Revenue Guidelines
+// Based on IRS Publication 15-T, SSA Statutory Wage Caps, and 50-State Revenue Guidelines
 
 export type FilingStatus = 'single' | 'married_joint' | 'head_of_household' | 'married_separate';
 export type PayFrequency = 'weekly' | 'biweekly' | 'semimonthly' | 'monthly' | 'annually';
@@ -11,15 +11,16 @@ export interface StateTaxRule {
   flatRate?: number;
   brackets?: { thresholdSingle: number; thresholdMarried: number; rate: number }[];
   standardDeduction?: { single: number; married: number };
-  sdiRate?: number; // State Disability Insurance or family leave
+  sdiRate?: number; // State Disability Insurance or family leave (e.g. CA 1.3%)
+  localTaxEstimate?: number; // Optional local/city payroll tax estimate
 }
 
 export const FICA_RULES = {
   // Social Security (OASDI)
   socialSecurityRate: 0.062,
-  socialSecurityWageCap: 176100, // 2026 official SSA limit (max $10,918.20 employee tax)
+  socialSecurityWageCap: 184500, // 2026 official statutory SSA limit ($184,500 = max $11,439.00 employee tax)
   
-  // Medicare (HI)
+  // Medicare (Hospital Insurance)
   medicareRate: 0.0145,
   additionalMedicareRate: 0.009,
   // Employer payroll withholding mandate triggers at $200k regardless of filing status:
@@ -85,7 +86,7 @@ export const US_STATES: Record<string, StateTaxRule> = {
   AK: { name: 'Alaska', code: 'AK', type: 'none' },
   AZ: { name: 'Arizona', code: 'AZ', type: 'flat', flatRate: 0.025 },
   AR: { name: 'Arkansas', code: 'AR', type: 'graduated', brackets: [{ thresholdSingle: 5000, thresholdMarried: 10000, rate: 0.02 }, { thresholdSingle: 10000, thresholdMarried: 20000, rate: 0.03 }, { thresholdSingle: Infinity, thresholdMarried: Infinity, rate: 0.039 }] },
-  CA: { name: 'California', code: 'CA', type: 'graduated', sdiRate: 0.012, brackets: [
+  CA: { name: 'California', code: 'CA', type: 'graduated', sdiRate: 0.013, brackets: [
     { thresholdSingle: 10756, thresholdMarried: 21512, rate: 0.01 },
     { thresholdSingle: 25499, thresholdMarried: 50998, rate: 0.02 },
     { thresholdSingle: 40245, thresholdMarried: 80490, rate: 0.04 },

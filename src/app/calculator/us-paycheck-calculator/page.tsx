@@ -4,9 +4,10 @@ import USPaycheckClient from './USPaycheckClient';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'US Paycheck Calculator | Free Take-Home Salary & Tax Calculator',
+  title: 'US Paycheck Calculator (2026) | Take-Home Pay',
   description:
-    'Calculate your net take-home pay after Federal income taxes, FICA (Social Security & Medicare), and State taxes across all 50 US states. Compare salary vs. hourly pay with 2026 tax brackets.',
+    'Estimate your 2026 take-home pay by salary or hourly rate. Calculate federal income tax, Social Security, Medicare, and state taxes across all 50 states + DC.',
+  robots: { index: true, follow: true },
   keywords: [
     'paycheck calculator',
     'take home pay calculator',
@@ -57,7 +58,7 @@ export default function USPaycheckPage() {
     {
       name: 'How do FICA payroll taxes work in 2026?',
       acceptedAnswer: {
-        text: 'The Federal Insurance Contributions Act (FICA) funds Social Security and Medicare. In 2026, employees pay 6.2% in Social Security tax on earnings up to the official statutory wage base cap of $176,100 (maximum $10,918.20 per employee). Medicare tax is 1.45% on all earnings with no cap. An additional 0.9% Medicare surtax applies to wages exceeding $200,000 for single individuals ($250,000 for married couples filing jointly).',
+        text: 'The Federal Insurance Contributions Act (FICA) funds Social Security and Medicare. In 2026, employees pay 6.2% in Social Security tax on earnings up to the official statutory wage base cap of $184,500 (maximum $11,439.00 per employee). Medicare tax is 1.45% on all earnings with no cap. An additional 0.9% Medicare surtax applies to wages exceeding $200,000 for single filers (employer withholding threshold), with final liability thresholds varying by filing status: $250,000 for Married Filing Jointly, $125,000 for Married Filing Separately.',
       },
     },
     {
@@ -75,7 +76,7 @@ export default function USPaycheckPage() {
     {
       name: 'What is the difference between a paycheck calculator and an annual tax calculator?',
       acceptedAnswer: {
-        text: 'A paycheck calculator estimates the exact cash you receive per pay period based on employer payroll withholding rules (IRS Publication 15-T) and your Form W-4 elections. An annual tax calculator computes your total end-of-year tax liability on IRS Form 1040, determining whether you owe additional tax or receive a refund.',
+        text: 'A paycheck calculator estimates the approximate cash you receive per pay period based on employer payroll withholding rules (IRS Publication 15-T) and your Form W-4 elections. Actual deposits may differ due to other deductions, employer-specific payroll treatment, and local taxes. An annual tax calculator computes your total end-of-year tax liability on IRS Form 1040, determining whether you owe additional tax or receive a refund.',
       },
     },
   ];
@@ -139,7 +140,7 @@ export default function USPaycheckPage() {
         featureList: [
           'Dual Salary ($/year) and Hourly ($/hr) wage calculation modes',
           'Updated 2026 Federal tax brackets and standard deductions',
-          'Official 2026 Social Security cap ($176,100) and Additional Medicare rules',
+          'Official 2026 Social Security cap ($184,500) and Additional Medicare rules',
           'Complete 50-state tax rules engine including 0% tax states',
           'Multi-frequency paycheck breakdown: Annual, Monthly, Bi-weekly, Weekly, Hourly',
           'State-to-state relocation tax comparison tool',
@@ -222,7 +223,7 @@ export default function USPaycheckPage() {
               <span className="text-[10px] font-bold text-amber-800 uppercase tracking-wide block">FICA Payroll Taxes</span>
               <h3 className="font-bold text-gray-900 text-xs">Social Security &amp; Medicare</h3>
               <p className="text-[11px] text-gray-600 leading-relaxed">
-                Social Security tax is 6.2% on covered earnings up to the official statutory cap of $176,100 (max $10,918.20 per employee). Medicare tax is 1.45% on all earnings with no ceiling, plus an additional 0.9% withholding surtax triggered when wages exceed $200,000.
+                Social Security tax is 6.2% on covered earnings up to the official statutory cap of $184,500 (max $11,439.00 per employee). Medicare tax is 1.45% on all earnings with no ceiling, plus an additional 0.9% withholding surtax triggered when wages exceed $200,000.
               </p>
             </div>
 
@@ -230,7 +231,7 @@ export default function USPaycheckPage() {
               <span className="text-[10px] font-bold text-purple-800 uppercase tracking-wide block">State &amp; Local Tax</span>
               <h3 className="font-bold text-gray-900 text-xs">50-State Revenue Withholding</h3>
               <p className="text-[11px] text-gray-600 leading-relaxed">
-                Nine states levy 0% income tax on wages (including Texas, Florida, and Washington). Other states levy flat taxes (like Pennsylvania at 3.07% or North Carolina at 3.99%) or graduated brackets (such as California up to 12.3% plus 1.2% SDI, or New York up to 10.9%).
+                Nine states levy 0% income tax on wages (including Texas, Florida, and Washington). Other states levy flat taxes (like Pennsylvania at 3.07% or North Carolina at 3.99%) or graduated brackets (such as California up to 12.3% plus 1.3% SDI (2026 rate, no wage ceiling), or New York up to 10.9%).
               </p>
             </div>
           </div>
@@ -238,8 +239,11 @@ export default function USPaycheckPage() {
           {/* Salary Example Table */}
           <div className="pt-2 border-t border-gray-100">
             <h3 className="text-xs sm:text-sm font-bold text-gray-900 mb-1.5">
-              Typical Take-Home Pay Benchmarks for Common US Salaries (Single Filer, Texas 0% State Tax)
+              Typical Take-Home Pay Benchmarks for Common US Salaries (Single Filer, Texas - 0% State Tax, 2026)
             </h3>
+            <p className="text-[11px] text-gray-500 mb-2">
+              Estimates based on 2026 IRS brackets, standard deduction ($16,100), and no pre-tax deductions. Results are generated from the same calculation engine as the calculator above.
+            </p>
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs border border-gray-200 rounded-lg overflow-hidden">
                 <thead>
@@ -254,10 +258,11 @@ export default function USPaycheckPage() {
                 </thead>
                 <tbody className="divide-y divide-gray-100 font-medium">
                   {[
-                    { gross: 50000, bi: 1618, mo: 3506, fed: 3752, fica: 3825, net: 42423 },
-                    { gross: 75000, bi: 2305, mo: 4995, fed: 7926, fica: 5738, net: 61336 },
-                    { gross: 100000, bi: 2959, mo: 6411, fed: 13410, fica: 7650, net: 78940 },
-                    { gross: 150000, bi: 4220, mo: 9143, fed: 24866, fica: 11475, net: 113659 },
+                    { gross: 40000, bi: 1286, mo: 2788, fed: 2820, fica: 3060, net: 34120 },
+                    { gross: 50000, bi: 1601, mo: 3469, fed: 3820, fica: 3825, net: 42355 },
+                    { gross: 75000, bi: 2334, mo: 5058, fed: 7670, fica: 5738, net: 61592 },
+                    { gross: 100000, bi: 3022, mo: 6548, fed: 13170, fica: 7650, net: 79180 },
+                    { gross: 150000, bi: 4409, mo: 9552, fed: 24734, fica: 11439, net: 113827 },
                   ].map((row) => (
                     <tr key={row.gross} className="hover:bg-slate-50">
                       <td className="py-2 px-3 font-bold text-gray-900">${row.gross.toLocaleString()}</td>
@@ -272,6 +277,47 @@ export default function USPaycheckPage() {
                   ))}
                 </tbody>
               </table>
+            </div>
+
+            {/* Common salary Q&A - SEO targeted */}
+            <div className="mt-4 space-y-3 text-xs text-gray-700">
+              <h3 className="text-xs sm:text-sm font-bold text-gray-900">Common Salary After-Tax Questions (Single Filer, Texas, 2026)</h3>
+              {[
+                {
+                  q: 'How much is $40 per hour after taxes?',
+                  a: '$40/hour x 2,080 hrs/yr = $83,200 gross. After federal income tax (~$12,006), Social Security ($5,158), and Medicare ($1,206), estimated annual take-home is roughly $64,830 - about $2,493 bi-weekly.',
+                },
+                {
+                  q: 'How much is $50,000 a year after taxes?',
+                  a: 'At $50,000 gross (Single, Texas), estimated 2026 take-home is approximately $42,355/year. Federal tax: ~$3,820. Social Security: ~$3,100. Medicare: ~$725. Bi-weekly paycheck: ~$1,601.',
+                },
+                {
+                  q: 'How much is $75,000 a year after taxes?',
+                  a: 'At $75,000 gross (Single, Texas), estimated 2026 take-home is approximately $61,592/year. Federal tax: ~$7,670. FICA: ~$5,738. Effective tax rate: approximately 18.2%. Bi-weekly paycheck: ~$2,334.',
+                },
+                {
+                  q: 'How much is $100,000 a year after taxes?',
+                  a: 'At $100,000 gross (Single, Texas), estimated 2026 take-home is approximately $79,180/year. Federal tax: ~$13,170. FICA: ~$7,650. Effective tax rate: approximately 20.8%. Bi-weekly paycheck: ~$3,022.',
+                },
+                {
+                  q: 'How much is $100,000 after taxes in California vs Texas?',
+                  a: 'In Texas (no state income tax): ~$79,180 annual take-home. In California: California income tax on $100,000 adds roughly $4,100-$5,200 in state tax plus $1,300 SDI (1.3%). Estimated CA take-home: ~$72,700-$73,800. Texas saves approximately $5,400-$6,500 annually vs California.',
+                },
+                {
+                  q: 'Why does my actual paycheck differ from the estimated take-home pay?',
+                  a: 'This calculator estimates take-home pay using standard withholding assumptions. Actual paychecks may differ due to: W-4 extra withholding elections, employer-sponsored benefit deductions (dental, vision, life insurance), local city or county income taxes, year-to-date wage caps, and supplemental wage treatment for bonuses.',
+                },
+              ].map((item) => (
+                <div key={item.q} className="bg-gray-50 rounded-lg p-3 border border-gray-100">
+                  <p className="font-semibold text-gray-900 mb-1">{item.q}</p>
+                  <p className="text-gray-600 leading-relaxed">{item.a}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Assumptions & Coverage Note */}
+            <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg text-[11px] text-amber-900 leading-relaxed">
+              <strong>Calculator Assumptions & Coverage:</strong> This calculator covers all 50 US states + Washington, DC. It assumes standard W-4 withholding (no extra withholding or adjustments), standard deductions only, single-employer wages, and excludes local/city income taxes (such as New York City, Yonkers, or Pennsylvania local EIT). Self-employed workers should use a separate self-employment tax calculator. Results are estimates - consult a tax professional for precise withholding advice.
             </div>
           </div>
         </div>
