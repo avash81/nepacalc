@@ -15,11 +15,11 @@ import {
 export default function USPaycheckClient() {
   const [payType, setPayType] = useState<'salary' | 'hourly'>('salary');
   
-  // Default input in 0
-  const [salaryInput, setSalaryInput] = useState<string>('0');
+  // Default inputs empty
+  const [salaryInput, setSalaryInput] = useState<string>('');
   
   // Hourly Mode Inputs
-  const [hourlyInput, setHourlyInput] = useState<string>('0');
+  const [hourlyInput, setHourlyInput] = useState<string>('');
   const [regularHoursInput, setRegularHoursInput] = useState<string>('40');
   const [overtimeHoursInput, setOvertimeHoursInput] = useState<string>('0');
   const [overtimeMultiplier, setOvertimeMultiplier] = useState<string>('1.5');
@@ -242,8 +242,8 @@ export default function USPaycheckClient() {
   // Reset to default
   const handleReset = () => {
     setPayType('salary');
-    setSalaryInput('0');
-    setHourlyInput('0');
+    setSalaryInput('');
+    setHourlyInput('');
     setRegularHoursInput('40');
     setOvertimeHoursInput('0');
     setOvertimeMultiplier('1.5');
