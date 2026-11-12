@@ -152,7 +152,7 @@ export const ASSETS_METADATA: Record<AssetType, AssetConfig> = {
     gradientFrom: '#38BDF8',
     gradientTo: '#F0F9FF',
     category: 'precious',
-    summary: 'Rare catalytic metal essential for heavy-duty diesel emission systems, hydrogen PEM fuel cells, and fine jewellery.',
+    summary: 'Rare catalytic metal essential for heavy-duty diesel emission systems, hydrogen PEM fuel cells, and fine jewelry.',
     keyDrivers: [
       'Hydrogen PEM fuel cell and electrolyzer industrial adoption',
       'Heavy-duty diesel vehicle emissions after-treatment',
@@ -1696,7 +1696,7 @@ export default function InternationalGSRClient({ initialAsset = 'goldsilver' }: 
                 <span className="text-sm sm:text-base font-extrabold text-gray-900 block mt-0.5 tabular-nums">
                   {formatPrice(asset.basePriceUSD / 31.1034768)}
                 </span>
-                <span className="text-[10px] text-gray-400">Retail jewellery metric unit</span>
+                <span className="text-[10px] text-gray-400">Retail jewelry metric unit</span>
               </div>
               <div className="p-2.5 rounded-lg border border-gray-200 bg-gray-50/80">
                 <span className="text-[10px] text-gray-500 font-semibold block uppercase">Price per 10 Grams</span>

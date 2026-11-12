@@ -143,6 +143,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       'sip-calculator',
       'nepal-land',
       'ppp-salary-converter',
+    'us-paycheck-calculator',
       'dubai-gold-rate',
       'gold-silver-ratio',
       'platinum-price',
