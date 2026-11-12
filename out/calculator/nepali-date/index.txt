@@ -1,4 +1,4 @@
-2:I[25387,["231","static/chunks/231-4d5411c705f5b8da.js","2428","static/chunks/2428-78ffd6aa46ca89e8.js","4467","static/chunks/4467-cbc4e099fa58da29.js","843","static/chunks/843-bfaa5bf37ac9329e.js","3485","static/chunks/app/calculator/nepali-date/page-426b69ffdabf0e32.js"],"default"]
+2:I[25387,["231","static/chunks/231-4d5411c705f5b8da.js","2428","static/chunks/2428-78ffd6aa46ca89e8.js","4467","static/chunks/4467-cbc4e099fa58da29.js","843","static/chunks/843-bfaa5bf37ac9329e.js","3485","static/chunks/app/calculator/nepali-date/page-1e9d2be830f5b30c.js"],"default"]
 3:I[39275,[],""]
 4:I[61343,[],""]
 5:I[36211,["231","static/chunks/231-4d5411c705f5b8da.js","7048","static/chunks/7048-78e9b39bd7614c90.js","4467","static/chunks/4467-cbc4e099fa58da29.js","3185","static/chunks/app/layout-d97518a87464e2ef.js"],"default"]
