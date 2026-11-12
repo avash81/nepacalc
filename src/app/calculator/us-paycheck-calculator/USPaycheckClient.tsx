@@ -15,11 +15,11 @@ import {
 export default function USPaycheckClient() {
   const [payType, setPayType] = useState<'salary' | 'hourly'>('salary');
   
-  // Default to $75,000 baseline so initial load displays realistic figures:
-  const [salaryInput, setSalaryInput] = useState<string>('75,000');
+  // Default input in 0
+  const [salaryInput, setSalaryInput] = useState<string>('0');
   
   // Hourly Mode Inputs
-  const [hourlyInput, setHourlyInput] = useState<string>('30');
+  const [hourlyInput, setHourlyInput] = useState<string>('0');
   const [regularHoursInput, setRegularHoursInput] = useState<string>('40');
   const [overtimeHoursInput, setOvertimeHoursInput] = useState<string>('0');
   const [overtimeMultiplier, setOvertimeMultiplier] = useState<string>('1.5');
@@ -242,8 +242,8 @@ export default function USPaycheckClient() {
   // Reset to default
   const handleReset = () => {
     setPayType('salary');
-    setSalaryInput('75,000');
-    setHourlyInput('30');
+    setSalaryInput('0');
+    setHourlyInput('0');
     setRegularHoursInput('40');
     setOvertimeHoursInput('0');
     setOvertimeMultiplier('1.5');
@@ -371,7 +371,7 @@ Calculated at https://nepacalc.com/calculator/us-paycheck-calculator/`;
                     }
                   }}
                   className="w-full px-3 py-2 text-base font-bold text-slate-900 outline-none"
-                  placeholder="75,000"
+                  placeholder="0"
                 />
               </div>
             </div>
@@ -391,9 +391,10 @@ Calculated at https://nepacalc.com/calculator/us-paycheck-calculator/`;
                       min="0"
                       step="0.5"
                       value={hourlyInput}
+                      onFocus={(e) => e.target.select()}
                       onChange={(e) => setHourlyInput(e.target.value)}
                       className="w-full px-2.5 py-2 text-sm font-bold text-slate-900 outline-none"
-                      placeholder="30"
+                      placeholder="0"
                     />
                   </div>
                 </div>

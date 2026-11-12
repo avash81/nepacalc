@@ -22,6 +22,7 @@ export const metadata: Metadata = {
     canonical: 'https://nepacalc.com/calculator/us-paycheck-calculator/',
   },
   openGraph: {
+    siteName: 'NepaCalc',
     title: 'US Paycheck Calculator: Estimate Take-Home Pay',
     description:
       'Calculate your net take-home pay by salary or hourly rate. Estimate federal income tax, Social Security, Medicare, and state taxes across all 50 US states.',
@@ -154,10 +155,11 @@ export default function USPaycheckPage() {
       {
         '@type': 'WebApplication',
         '@id': 'https://nepacalc.com/calculator/us-paycheck-calculator/#app',
-        name: 'US Paycheck & Take-Home Salary Calculator',
+        name: 'US Paycheck Calculator',
         applicationCategory: 'FinanceApplication',
         url: 'https://nepacalc.com/calculator/us-paycheck-calculator/',
-        operatingSystem: 'Web',
+        operatingSystem: 'All',
+        browserRequirements: 'Requires JavaScript and HTML5 support',
         isAccessibleForFree: true,
         offers: {
           '@type': 'Offer',
@@ -170,7 +172,7 @@ export default function USPaycheckPage() {
           url: 'https://nepacalc.com',
         },
         description:
-          'Free online paycheck calculator calculating net take-home pay after federal taxes, FICA (Social Security and Medicare), and state tax across all 50 US states + DC.',
+          'Calculate net take-home pay after federal income taxes, FICA, and state taxes across all 50 US states by salary or hourly rate.',
         featureList: [
           'Dual Salary ($/year) and Hourly ($/hr) wage calculation modes',
           'Overtime (1.5x) and weeks-worked custom inputs',
