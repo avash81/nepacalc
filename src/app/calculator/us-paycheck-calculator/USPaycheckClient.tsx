@@ -32,6 +32,7 @@ export default function USPaycheckClient() {
 
   // Advanced W-4 & Deduction Options
   const [showAdvanced, setShowAdvanced] = useState<boolean>(false);
+  const [ficaExempt, setFicaExempt] = useState<boolean>(false); // F-1/J-1 or exempt public employee
   const [w4MultipleJobs, setW4MultipleJobs] = useState<boolean>(false); // W-4 Step 2(c)
   const [dependentsCredits, setDependentsCredits] = useState<string>(''); // W-4 Step 3
   const [otherIncomeInput, setOtherIncomeInput] = useState<string>(''); // W-4 Step 4(a)
@@ -133,10 +134,12 @@ export default function USPaycheckClient() {
       : Math.max(0, ficaWageBase - k401Annual);
 
     // 2. FICA Taxes (Social Security & Medicare)
-    const ssTax = Math.min(ficaWageBase, FICA_RULES.socialSecurityWageCap) * FICA_RULES.socialSecurityRate;
-    const baseMedTax = ficaWageBase * FICA_RULES.medicareRate;
-    const addMedTax = ficaWageBase > FICA_RULES.additionalMedicareWithholdingThreshold
-      ? (ficaWageBase - FICA_RULES.additionalMedicareWithholdingThreshold) * FICA_RULES.additionalMedicareRate
+    const ssTax = ficaExempt ? 0 : Math.min(ficaWageBase, FICA_RULES.socialSecurityWageCap) * FICA_RULES.socialSecurityRate;
+    const baseMedTax = ficaExempt ? 0 : ficaWageBase * FICA_RULES.medicareRate;
+    // Additional Medicare Surtax (0.9% on wages exceeding filing status threshold: Single/HoH $200k, MFJ $250k, MFS $125k)
+    const addMedThreshold = FICA_RULES.additionalMedicareLiabilityThresholds[filingStatus] || 200000;
+    const addMedTax = (!ficaExempt && ficaWageBase > addMedThreshold)
+      ? (ficaWageBase - addMedThreshold) * FICA_RULES.additionalMedicareRate
       : 0;
     const totalMedTax = baseMedTax + addMedTax;
     const ficaTotal = ssTax + totalMedTax;
@@ -230,6 +233,36 @@ export default function USPaycheckClient() {
     const safe = Math.abs(val) < 0.005 ? 0 : val;
     return '$' + safe.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   };
+  const fmtDeduction = (val: number) => {
+    if (Math.abs(val) < 0.005) return '$0.00';
+    return `-${fmtExact(val)}`;
+  };
+
+  // Reset to default
+  const handleReset = () => {
+    setPayType('salary');
+    setSalaryInput('75,000');
+    setHourlyInput('30');
+    setRegularHoursInput('40');
+    setOvertimeHoursInput('0');
+    setOvertimeMultiplier('1.5');
+    setWeeksPerYearInput('52');
+    setStateCode('TX');
+    setComparisonStateCode('CA');
+    setFilingStatus('single');
+    setPayFrequency('biweekly');
+    setShowAdvanced(false);
+    setFicaExempt(false);
+    setW4MultipleJobs(false);
+    setDependentsCredits('');
+    setOtherIncomeInput('');
+    setExtraDeductionsInput('');
+    setExtraWithholdingInput('');
+    setK401Input('');
+    setHealthInsInput('');
+    setHsaInput('');
+    setPostTaxInput('');
+  };
 
   // Percentages for visual distribution bar
   const pctTakeHome = grossAnnual > 0 ? Math.max(0, (primary.netAnnual / grossAnnual) * 100) : 0;
@@ -252,29 +285,6 @@ Calculated at https://nepacalc.com/calculator/us-paycheck-calculator/`;
       setCopied(true);
       setTimeout(() => setCopied(false), 2500);
     }
-  };
-
-  const handleReset = () => {
-    setSalaryInput('75,000');
-    setHourlyInput('30');
-    setRegularHoursInput('40');
-    setOvertimeHoursInput('0');
-    setOvertimeMultiplier('1.5');
-    setWeeksPerYearInput('52');
-    setStateCode('TX');
-    setComparisonStateCode('CA');
-    setFilingStatus('single');
-    setPayFrequency('biweekly');
-    setShowAdvanced(false);
-    setW4MultipleJobs(false);
-    setDependentsCredits('');
-    setOtherIncomeInput('');
-    setExtraDeductionsInput('');
-    setExtraWithholdingInput('');
-    setK401Input('');
-    setHealthInsInput('');
-    setHsaInput('');
-    setPostTaxInput('');
   };
 
   return (
@@ -581,16 +591,27 @@ Calculated at https://nepacalc.com/calculator/us-paycheck-calculator/`;
                   <span className="text-[10px] text-slate-500">IRS Pub 15-T</span>
                 </div>
                 
-                {/* W-4 Step 2(c) Multiple Jobs */}
-                <label className="flex items-center gap-2 cursor-pointer text-xs text-slate-700">
-                  <input
-                    type="checkbox"
-                    checked={w4MultipleJobs}
-                    onChange={(e) => setW4MultipleJobs(e.target.checked)}
-                    className="rounded border-slate-300 text-slate-900 focus:ring-slate-900 h-3.5 w-3.5"
-                  />
-                  <span>Step 2(c): Multiple Jobs or Spouse Works</span>
-                </label>
+                {/* W-4 Step 2(c) Multiple Jobs & FICA Exemption */}
+                <div className="space-y-1.5">
+                  <label className="flex items-center gap-2 cursor-pointer text-xs text-slate-700">
+                    <input
+                      type="checkbox"
+                      checked={w4MultipleJobs}
+                      onChange={(e) => setW4MultipleJobs(e.target.checked)}
+                      className="rounded border-slate-300 text-slate-900 focus:ring-slate-900 h-3.5 w-3.5"
+                    />
+                    <span>Step 2(c): Multiple Jobs or Spouse Works</span>
+                  </label>
+                  <label className="flex items-center gap-2 cursor-pointer text-xs text-slate-700">
+                    <input
+                      type="checkbox"
+                      checked={ficaExempt}
+                      onChange={(e) => setFicaExempt(e.target.checked)}
+                      className="rounded border-slate-300 text-slate-900 focus:ring-slate-900 h-3.5 w-3.5"
+                    />
+                    <span>FICA Exempt (e.g., F-1/J-1 student visa or exempt state/local position)</span>
+                  </label>
+                </div>
 
                 <div className="grid grid-cols-2 gap-2">
                   <div>
@@ -770,38 +791,38 @@ Calculated at https://nepacalc.com/calculator/us-paycheck-calculator/`;
               <div className="divide-y divide-slate-100 font-medium">
                 <div className="px-3 py-1.5 flex justify-between">
                   <span className="text-slate-600">Federal Income Tax</span>
-                  <span className="font-semibold text-rose-600">{fedPerCheck > 0 ? `-${fmtExact(fedPerCheck)}` : fmtExact(0)}</span>
+                  <span className="font-semibold text-rose-600">{fmtDeduction(fedPerCheck)}</span>
                 </div>
                 <div className="px-3 py-1.5 flex justify-between">
                   <span className="text-slate-600">Social Security (6.2%)</span>
-                  <span className="font-semibold text-rose-600">{ssPerCheck > 0 ? `-${fmtExact(ssPerCheck)}` : fmtExact(0)}</span>
+                  <span className="font-semibold text-rose-600">{fmtDeduction(ssPerCheck)}</span>
                 </div>
                 <div className="px-3 py-1.5 flex justify-between">
                   <span className="text-slate-600">Medicare (1.45%)</span>
-                  <span className="font-semibold text-rose-600">{medPerCheck > 0 ? `-${fmtExact(medPerCheck)}` : fmtExact(0)}</span>
+                  <span className="font-semibold text-rose-600">{fmtDeduction(medPerCheck)}</span>
                 </div>
                 <div className="px-3 py-1.5 flex justify-between">
                   <span className="text-slate-600">{primary.stateRule.name} State Tax</span>
                   <span className="font-semibold text-slate-700">
-                    {primary.stateTax > 0 ? `-${fmtExact(primary.stateTax / periods)}` : '$0.00 (0%)'}
+                    {primary.stateTax > 0 ? fmtDeduction(primary.stateTax / periods) : '$0.00 (0%)'}
                   </span>
                 </div>
                 {primary.sdiTax > 0 && (
                   <div className="px-3 py-1.5 flex justify-between">
                     <span className="text-slate-600">State Disability (SDI 1.3%)</span>
-                    <span className="font-semibold text-rose-600">-{fmtExact(primary.sdiTax / periods)}</span>
+                    <span className="font-semibold text-rose-600">{fmtDeduction(primary.sdiTax / periods)}</span>
                   </div>
                 )}
                 {primary.totalPreTax > 0 && (
                   <div className="px-3 py-1.5 flex justify-between bg-slate-50/50">
                     <span className="text-slate-600">Pre-Tax Benefits (401k/HSA/Health)</span>
-                    <span className="font-semibold text-slate-700">-{fmtExact(preTaxPerCheck)}</span>
+                    <span className="font-semibold text-slate-700">{fmtDeduction(preTaxPerCheck)}</span>
                   </div>
                 )}
                 {primary.totalPostTax > 0 && (
                   <div className="px-3 py-1.5 flex justify-between bg-slate-50/50">
                     <span className="text-slate-600">Post-Tax Deductions</span>
-                    <span className="font-semibold text-slate-700">-{fmtExact(postTaxPerCheck)}</span>
+                    <span className="font-semibold text-slate-700">{fmtDeduction(postTaxPerCheck)}</span>
                   </div>
                 )}
                 <div className="px-3 py-2 flex justify-between bg-emerald-50/60 font-bold border-t border-slate-200">
@@ -846,10 +867,10 @@ Calculated at https://nepacalc.com/calculator/us-paycheck-calculator/`;
                 <tr key={row.name} className="hover:bg-slate-50">
                   <td className="py-2 px-3 font-semibold text-slate-900">{row.name}</td>
                   <td className="py-2 px-3 text-right tabular-nums">{fmtExact(grossAnnual / row.count)}</td>
-                  <td className="py-2 px-3 text-right text-rose-600 tabular-nums">-{fmtExact(primary.federalTax / row.count)}</td>
-                  <td className="py-2 px-3 text-right text-rose-600 tabular-nums">-{fmtExact(primary.totalFica / row.count)}</td>
+                  <td className="py-2 px-3 text-right text-rose-600 tabular-nums">{fmtDeduction(primary.federalTax / row.count)}</td>
+                  <td className="py-2 px-3 text-right text-rose-600 tabular-nums">{fmtDeduction(primary.totalFica / row.count)}</td>
                   <td className="py-2 px-3 text-right text-slate-600 tabular-nums">
-                    {(primary.stateTax + primary.sdiTax) > 0 ? `-${fmtExact((primary.stateTax + primary.sdiTax) / row.count)}` : fmtExact(0)}
+                    {(primary.stateTax + primary.sdiTax) > 0 ? fmtDeduction((primary.stateTax + primary.sdiTax) / row.count) : '$0.00'}
                   </td>
                   <td className="py-2 px-3 text-right font-bold text-emerald-700 bg-emerald-50/30 tabular-nums">
                     {fmtExact(primary.netAnnual / row.count)}
@@ -860,10 +881,10 @@ Calculated at https://nepacalc.com/calculator/us-paycheck-calculator/`;
               <tr className="bg-slate-50/80 border-t-2 border-slate-200 hover:bg-slate-100">
                 <td className="py-2 px-3 font-semibold text-slate-500 italic text-[11px]">Hourly Equiv. (2,080 hrs/yr)</td>
                 <td className="py-2 px-3 text-right tabular-nums text-slate-500 text-[11px]">{fmtExact(grossAnnual / 2080)}</td>
-                <td className="py-2 px-3 text-right text-rose-400 tabular-nums text-[11px]">-{fmtExact(primary.federalTax / 2080)}</td>
-                <td className="py-2 px-3 text-right text-rose-400 tabular-nums text-[11px]">-{fmtExact(primary.totalFica / 2080)}</td>
+                <td className="py-2 px-3 text-right text-rose-400 tabular-nums text-[11px]">{fmtDeduction(primary.federalTax / 2080)}</td>
+                <td className="py-2 px-3 text-right text-rose-400 tabular-nums text-[11px]">{fmtDeduction(primary.totalFica / 2080)}</td>
                 <td className="py-2 px-3 text-right text-slate-400 tabular-nums text-[11px]">
-                  {(primary.stateTax + primary.sdiTax) > 0 ? `-${fmtExact((primary.stateTax + primary.sdiTax) / 2080)}` : fmtExact(0)}
+                  {(primary.stateTax + primary.sdiTax) > 0 ? fmtDeduction((primary.stateTax + primary.sdiTax) / 2080) : '$0.00'}
                 </td>
                 <td className="py-2 px-3 text-right font-bold text-emerald-600 bg-emerald-50/20 tabular-nums text-[11px]">
                   {fmtExact(primary.netAnnual / 2080)}

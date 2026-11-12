@@ -4,20 +4,27 @@ import USPaycheckClient from './USPaycheckClient';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'US Paycheck Calculator | Free Take-Home Pay Calculator',
+  title: 'US Paycheck Calculator: Estimate Take-Home Pay',
   description:
-    'Calculate your net take-home pay by salary or hourly rate. Estimate federal income tax, Social Security, Medicare, and state taxes across all 50 US states + DC.',
+    'Calculate your net take-home pay by salary or hourly rate. Estimate federal income tax, Social Security, Medicare, and state taxes across all 50 US states.',
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
   alternates: {
     canonical: 'https://nepacalc.com/calculator/us-paycheck-calculator/',
   },
   openGraph: {
-    title: 'US Paycheck Calculator | Free Take-Home Pay Calculator',
+    title: 'US Paycheck Calculator: Estimate Take-Home Pay',
     description:
-      'Estimate your take-home pay after federal income tax, Social Security, Medicare, and state taxes. Dual salary and hourly wage calculator across all 50 states + DC.',
+      'Calculate your net take-home pay by salary or hourly rate. Estimate federal income tax, Social Security, Medicare, and state taxes across all 50 US states.',
     url: 'https://nepacalc.com/calculator/us-paycheck-calculator/',
     type: 'website',
     images: [
@@ -25,15 +32,15 @@ export const metadata: Metadata = {
         url: 'https://nepacalc.com/images/og/us-paycheck-calculator.jpg',
         width: 1200,
         height: 630,
-        alt: 'US Paycheck and Take-Home Pay Calculator',
+        alt: 'US Paycheck Calculator - Estimate Take-Home Pay',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'US Paycheck Calculator | Free Take-Home Pay Calculator',
+    title: 'US Paycheck Calculator: Estimate Take-Home Pay',
     description:
-      'Calculate estimated take-home pay after taxes and payroll deductions across the United States. 2026 tax brackets and FICA wage caps.',
+      'Calculate your net take-home pay by salary or hourly rate. Estimate federal income tax, Social Security, Medicare, and state taxes across all 50 US states.',
     images: ['https://nepacalc.com/images/og/us-paycheck-calculator.jpg'],
   },
 };
@@ -109,9 +116,9 @@ export default function USPaycheckPage() {
         '@type': 'WebPage',
         '@id': 'https://nepacalc.com/calculator/us-paycheck-calculator/',
         url: 'https://nepacalc.com/calculator/us-paycheck-calculator/',
-        name: 'US Paycheck Calculator | Free Take-Home Pay Calculator',
+        name: 'US Paycheck Calculator: Estimate Take-Home Pay',
         description:
-          'Calculate your net take-home pay after Federal income taxes, FICA (Social Security & Medicare), and State taxes across all 50 US states + DC.',
+          'Calculate your net take-home pay by salary or hourly rate. Estimate federal income tax, Social Security, Medicare, and state taxes across all 50 US states.',
         inLanguage: 'en-US',
       },
       {
@@ -410,10 +417,36 @@ export default function USPaycheckPage() {
             </table>
           </div>
 
-          {/* Common salary Q&A */}
-          <div className="mt-3 space-y-2 text-xs text-gray-700">
-            <h3 className="text-xs sm:text-sm font-bold text-gray-900">Common Salary Questions Answered</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+          {/* Common salary Q&A and Worked Examples */}
+          <div className="mt-4 space-y-2 text-xs text-gray-700">
+            <h3 className="text-xs sm:text-sm font-bold text-gray-900">Targeted Worked Examples (People Also Ask Queries)</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+              <div className="p-3 bg-gray-50 rounded-lg border border-gray-100 space-y-1">
+                <span className="text-[10px] font-bold text-blue-800 uppercase tracking-wide block">Hourly &amp; Overtime</span>
+                <p className="font-bold text-gray-900 text-xs">$25/hr + 5 Hours Overtime</p>
+                <p className="text-gray-600 leading-relaxed text-[11px]">
+                  40 regular hours ($1,000) + 5 overtime hours at 1.5× ($187.50) = <strong>$1,187.50 gross weekly</strong> ($61,750/yr). After FICA ($90.84) and federal tax (~$96.00), estimated net weekly take-home is roughly <strong>$950 to $1,000</strong>.
+                </p>
+              </div>
+
+              <div className="p-3 bg-gray-50 rounded-lg border border-gray-100 space-y-1">
+                <span className="text-[10px] font-bold text-purple-800 uppercase tracking-wide block">Pay Frequency</span>
+                <p className="font-bold text-gray-900 text-xs">Bi-Weekly vs. Semi-Monthly</p>
+                <p className="text-gray-600 leading-relaxed text-[11px]">
+                  On a $60,000 salary: <strong>Bi-Weekly</strong> (26 pay periods) = $2,307.69 gross per check. <strong>Semi-Monthly</strong> (24 pay periods) = $2,500.00 gross per check. Annual take-home is identical, but check amounts differ by $192.31.
+                </p>
+              </div>
+
+              <div className="p-3 bg-gray-50 rounded-lg border border-gray-100 space-y-1">
+                <span className="text-[10px] font-bold text-emerald-800 uppercase tracking-wide block">Weekly Benchmark</span>
+                <p className="font-bold text-gray-900 text-xs">Taxes on $1,000 / Week</p>
+                <p className="text-gray-600 leading-relaxed text-[11px]">
+                  On a $1,000 weekly gross paycheck ($52,000/yr), mandatory deductions are Social Security ($62.00 at 6.2%), Medicare ($14.50 at 1.45%), and Federal tax (~$75-$95), leaving <strong>~$760 to $820 net cash</strong>.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 pt-1">
               <div className="bg-gray-50 rounded-lg p-3 border border-gray-100">
                 <p className="font-semibold text-gray-900 mb-0.5">How much is $40/hr after taxes?</p>
                 <p className="text-gray-600 leading-relaxed text-[11px]">$40/hr x 2,080 hrs = $83,200 gross. After federal tax (~$12,006) and FICA ($6,364), estimated take-home is roughly $64,830/yr ($2,493 bi-weekly).</p>
