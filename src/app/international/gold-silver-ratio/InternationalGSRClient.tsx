@@ -1206,7 +1206,8 @@ export default function InternationalGSRClient({ initialAsset = 'goldsilver' }: 
         </div>
       </div>
 
-      {/* ── 80/50 TRADING RULE SIGNAL CARD (When Gold/Silver is active or for reference) ── */}
+      {/* ── 80/50 TRADING RULE SIGNAL CARD (When Gold/Silver is active) ── */}
+      {(activeAsset === 'goldsilver' || activeAsset === 'gold' || activeAsset === 'silver') && (
       <div className="bg-white rounded-xl border border-gray-200 p-3.5 sm:p-4 shadow-2xs space-y-2.5">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5">
           <div className="flex items-center gap-2">
@@ -1246,6 +1247,7 @@ export default function InternationalGSRClient({ initialAsset = 'goldsilver' }: 
           </div>
         </div>
       </div>
+      )}
 
       {/* ── LIVE PRECIOUS METALS SPOT BOARD & INTRINSIC VALUES DUAL WIDGET ── */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-3.5">
@@ -1788,6 +1790,7 @@ export default function InternationalGSRClient({ initialAsset = 'goldsilver' }: 
       </div>
 
       {/* ── BITCOIN VS PHYSICAL PRECIOUS METALS HEAD-TO-HEAD COMPARISON ── */}
+      {(activeAsset === 'btcusd' || activeAsset === 'goldsilver') && (
       <div className="bg-white rounded-xl border border-gray-200 p-3.5 sm:p-4 shadow-2xs space-y-3">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 pb-2 border-b border-gray-100">
           <div>
@@ -1870,8 +1873,10 @@ export default function InternationalGSRClient({ initialAsset = 'goldsilver' }: 
           </table>
         </div>
       </div>
+      )}
 
       {/* ── RATIO ARBITRAGE & SWAP CALCULATOR ── */}
+      {(activeAsset === 'goldsilver' || activeAsset === 'gold' || activeAsset === 'silver') && (
       <div className="bg-white rounded-xl border border-gray-200 p-3.5 sm:p-4 shadow-2xs space-y-3">
         <div className="flex items-center justify-between border-b border-gray-100 pb-2">
           <div className="flex items-center gap-1.5">
@@ -1936,8 +1941,10 @@ export default function InternationalGSRClient({ initialAsset = 'goldsilver' }: 
           </div>
         </div>
       </div>
+      )}
 
       {/* ── HISTORICAL BENCHMARKS COMPARISON TABLE ── */}
+      {(activeAsset === 'goldsilver' || activeAsset === 'gold' || activeAsset === 'silver') && (
       <div className="bg-white rounded-xl border border-gray-200 p-3.5 sm:p-4 shadow-2xs">
         <h3 className="text-xs sm:text-sm font-bold text-gray-900 mb-1">
           Historical Gold-to-Silver Ratio Milestones &amp; Macro Regimes
@@ -2003,6 +2010,7 @@ export default function InternationalGSRClient({ initialAsset = 'goldsilver' }: 
           </table>
         </div>
       </div>
+      )}
     </div>
   );
 }
