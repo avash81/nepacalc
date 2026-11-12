@@ -164,7 +164,8 @@ export default function USPaycheckClient() {
 
     const periodsCount = PAY_PERIODS[payFrequency];
     const extraWithholdingAnnual = extraWithholdingPerCheck * periodsCount;
-    const fedTax = Math.max(0, tentativeFedTax - dependentCreditsAnnual + extraWithholdingAnnual);
+    // Puerto Rico (PR) residents pay PR Hacienda taxes and FICA, but are exempt from US federal income tax on PR-sourced income (IRC Sec 933)
+    const fedTax = targetStateCode === 'PR' ? 0 : Math.max(0, tentativeFedTax - dependentCreditsAnnual + extraWithholdingAnnual);
 
     // 4. State Income Tax
     let sTax = 0;
@@ -360,6 +361,7 @@ Calculated at https://nepacalc.com/calculator/us-paycheck-calculator/`;
                   type="text"
                   inputMode="numeric"
                   value={salaryInput}
+                  onFocus={(e) => e.target.select()}
                   onChange={(e) => {
                     const raw = e.target.value.replace(/[^0-9]/g, '');
                     if (raw === '') {
@@ -369,7 +371,7 @@ Calculated at https://nepacalc.com/calculator/us-paycheck-calculator/`;
                     }
                   }}
                   className="w-full px-3 py-2 text-base font-bold text-slate-900 outline-none"
-                  placeholder="0"
+                  placeholder="75,000"
                 />
               </div>
             </div>
@@ -480,7 +482,7 @@ Calculated at https://nepacalc.com/calculator/us-paycheck-calculator/`;
               >
                 {Object.keys(US_STATES).map((sc) => (
                   <option key={sc} value={sc}>
-                    {US_STATES[sc].name} {US_STATES[sc].type === 'none' ? '(0% tax)' : ''}
+                    {US_STATES[sc].label || US_STATES[sc].name}
                   </option>
                 ))}
               </select>
@@ -915,7 +917,7 @@ Calculated at https://nepacalc.com/calculator/us-paycheck-calculator/`;
             >
               {Object.keys(US_STATES).map((sc) => (
                 <option key={sc} value={sc}>
-                  {US_STATES[sc].name} {US_STATES[sc].type === 'none' ? '(0%)' : ''}
+                  {US_STATES[sc].label || US_STATES[sc].name}
                 </option>
               ))}
             </select>

@@ -107,6 +107,12 @@ export default function USPaycheckPage() {
         text: 'Traditional 401(k) contributions reduce your gross taxable income for Federal and State income taxes, lowering your immediate tax bill. Section 125 health insurance premiums and HSA contributions are triple-tax-advantaged, reducing Federal income tax, State income tax, and FICA payroll taxes simultaneously in most states.',
       },
     },
+    {
+      name: 'Why does my actual paycheck differ from my estimated take-home pay?',
+      acceptedAnswer: {
+        text: 'Discrepancies usually stem from local city or county income taxes (e.g. NYC, Philadelphia, or Ohio municipalities), company-specific pre-tax benefit elections (such as FSA, dental, vision, life insurance, or commuter transit), post-tax payroll deductions (union dues, wage garnishments, Roth 401k), or personal Form W-4 elections such as extra per-period withholding (Step 4c) or multiple-job status (Step 2).',
+      },
+    },
   ];
 
   const graphSchema = {
@@ -446,14 +452,26 @@ export default function USPaycheckPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 pt-1">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 pt-1">
               <div className="bg-gray-50 rounded-lg p-3 border border-gray-100">
                 <p className="font-semibold text-gray-900 mb-0.5">How much is $40/hr after taxes?</p>
                 <p className="text-gray-600 leading-relaxed text-[11px]">$40/hr x 2,080 hrs = $83,200 gross. After federal tax (~$12,006) and FICA ($6,364), estimated take-home is roughly $64,830/yr ($2,493 bi-weekly).</p>
               </div>
               <div className="bg-gray-50 rounded-lg p-3 border border-gray-100">
+                <p className="font-semibold text-gray-900 mb-0.5">How much is $50,000 a year after taxes?</p>
+                <p className="text-gray-600 leading-relaxed text-[11px]">On a $50,000 salary in Texas (0% tax), federal tax is $3,820 and FICA is $3,825, yielding an estimated net take-home of $42,355/yr ($1,601 bi-weekly or $3,469/mo).</p>
+              </div>
+              <div className="bg-gray-50 rounded-lg p-3 border border-gray-100">
+                <p className="font-semibold text-gray-900 mb-0.5">How much is $75,000 a year after taxes?</p>
+                <p className="text-gray-600 leading-relaxed text-[11px]">On a $75,000 salary in Texas (0% tax), federal tax is $7,670 and FICA is $5,738, yielding an estimated net take-home of $61,592/yr ($2,334 bi-weekly or $5,058/mo).</p>
+              </div>
+              <div className="bg-gray-50 rounded-lg p-3 border border-gray-100">
+                <p className="font-semibold text-gray-900 mb-0.5">How much is $100,000 a year after taxes?</p>
+                <p className="text-gray-600 leading-relaxed text-[11px]">On a $100,000 salary in Texas (0% tax), federal tax is $13,170 and FICA is $7,650, leaving $79,180 net take-home ($3,022 bi-weekly or $6,548/mo).</p>
+              </div>
+              <div className="bg-gray-50 rounded-lg p-3 border border-gray-100 sm:col-span-2">
                 <p className="font-semibold text-gray-900 mb-0.5">How much is $100k in California vs Texas?</p>
-                <p className="text-gray-600 leading-relaxed text-[11px]">Texas has 0% state income tax (~$79,180 take-home). California income tax and 1.3% SDI add ~$6,400 in state deductions, leaving ~$72,780 net in CA.</p>
+                <p className="text-gray-600 leading-relaxed text-[11px]">Texas has 0% state income tax (~$79,180 take-home). California income tax and 1.3% SDI add ~$6,400 in state deductions, leaving ~$72,780 net in CA (a $6,400/yr difference).</p>
               </div>
             </div>
           </div>
