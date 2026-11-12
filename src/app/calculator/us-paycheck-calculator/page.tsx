@@ -4,29 +4,20 @@ import USPaycheckClient from './USPaycheckClient';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'US Paycheck Calculator (2026) | Take-Home Pay',
+  title: 'US Paycheck Calculator | Free Take-Home Pay Calculator',
   description:
-    'Estimate your 2026 take-home pay by salary or hourly rate. Calculate federal income tax, Social Security, Medicare, and state taxes across all 50 states + DC.',
-  robots: { index: true, follow: true },
-  keywords: [
-    'paycheck calculator',
-    'take home pay calculator',
-    'salary paycheck calculator',
-    'hourly paycheck calculator',
-    'salary after taxes calculator',
-    'net pay calculator us',
-    'texas paycheck calculator',
-    'california paycheck calculator',
-    'biweekly paycheck calculator',
-    'fica tax calculator 2026',
-  ],
+    'Calculate your net take-home pay by salary or hourly rate. Estimate federal income tax, Social Security, Medicare, and state taxes across all 50 US states + DC.',
+  robots: {
+    index: true,
+    follow: true,
+  },
   alternates: {
     canonical: 'https://nepacalc.com/calculator/us-paycheck-calculator/',
   },
   openGraph: {
-    title: 'US Paycheck & Take-Home Pay Calculator (2026 Tax Brackets)',
+    title: 'US Paycheck Calculator | Free Take-Home Pay Calculator',
     description:
-      'Instant net take-home salary calculator across all 50 US states with Federal, FICA, State tax breakdown and relocation comparisons.',
+      'Estimate your take-home pay after federal income tax, Social Security, Medicare, and state taxes. Dual salary and hourly wage calculator across all 50 states + DC.',
     url: 'https://nepacalc.com/calculator/us-paycheck-calculator/',
     type: 'website',
     images: [
@@ -40,9 +31,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'US Paycheck & Take-Home Pay Calculator (2026 Tax Brackets)',
+    title: 'US Paycheck Calculator | Free Take-Home Pay Calculator',
     description:
-      'Instant net take-home salary calculator across all 50 US states with Federal, FICA, State tax breakdown and relocation comparisons.',
+      'Calculate estimated take-home pay after taxes and payroll deductions across the United States. 2026 tax brackets and FICA wage caps.',
     images: ['https://nepacalc.com/images/og/us-paycheck-calculator.jpg'],
   },
 };
@@ -50,33 +41,63 @@ export const metadata: Metadata = {
 export default function USPaycheckPage() {
   const faqItems = [
     {
-      name: 'What is the difference between gross pay and net take-home pay?',
+      name: 'How is net take-home pay calculated from gross salary?',
       acceptedAnswer: {
-        text: 'Gross pay is the total amount of money earned before any taxes, payroll withholdings, or benefit deductions are subtracted. Net take-home pay is the actual cash deposited into your bank account on payday after Federal income tax, FICA (Social Security and Medicare), State income tax, local taxes, and pre-tax deductions (like 401k or health insurance) have been deducted.',
+        text: 'Take-home pay starts with your gross pay (salary or hourly earnings). You subtract pre-tax deductions (like 401k or health insurance), federal income tax withholding (calculated via IRS Publication 15-T based on your W-4), FICA taxes (6.2% Social Security up to $184,500 and 1.45% Medicare), state/local income taxes, and any post-tax deductions (such as Roth 401k or garnishments). The remaining cash is your net paycheck.',
+      },
+    },
+    {
+      name: 'What is the difference between bi-weekly and semi-monthly paychecks?',
+      acceptedAnswer: {
+        text: 'Bi-weekly employees are paid every two weeks, resulting in 26 paychecks per year (with two months having 3 paychecks). Semi-monthly employees are paid twice per month (typically on the 15th and last business day), resulting in 24 paychecks per year. Because of this, a semi-monthly paycheck is slightly larger than a bi-weekly paycheck for the exact same annual salary ($60,000 / 26 = $2,307.69 vs $60,000 / 24 = $2,500.00).',
       },
     },
     {
       name: 'How do FICA payroll taxes work in 2026?',
       acceptedAnswer: {
-        text: 'The Federal Insurance Contributions Act (FICA) funds Social Security and Medicare. In 2026, employees pay 6.2% in Social Security tax on earnings up to the official statutory wage base cap of $184,500 (maximum $11,439.00 per employee). Medicare tax is 1.45% on all earnings with no cap. An additional 0.9% Medicare surtax applies to wages exceeding $200,000 for single filers (employer withholding threshold), with final liability thresholds varying by filing status: $250,000 for Married Filing Jointly, $125,000 for Married Filing Separately.',
+        text: 'The Federal Insurance Contributions Act (FICA) funds Social Security and Medicare. In 2026, employees pay 6.2% in Social Security tax on earnings up to the official statutory wage base cap of $184,500 (maximum $11,439.00 per employee). Medicare tax is 1.45% on all earnings with no ceiling. An additional 0.9% Medicare surtax is withheld by employers when wages exceed $200,000, regardless of marital status.',
       },
     },
     {
       name: 'Which US states have zero state income tax on paychecks?',
       acceptedAnswer: {
-        text: 'There are nine states without a traditional state income tax on earned wages: Alaska, Florida, Nevada, New Hampshire, South Dakota, Tennessee, Texas, Washington, and Wyoming. Living and working in these states means your state income tax withholding is $0.00, leaving only Federal income tax and FICA deductions.',
+        text: 'There are nine states without a general individual state income tax on earned wages: Alaska, Florida, Nevada, New Hampshire, South Dakota, Tennessee, Texas, Washington, and Wyoming. Living and working in these states means your state income tax withholding is $0.00, leaving only Federal income tax and FICA deductions.',
+      },
+    },
+    {
+      name: 'How much is $17.50 an hour weekly and annually?',
+      acceptedAnswer: {
+        text: 'At $17.50 per hour working standard full-time hours (40 hours per week), gross earnings are $700.00 per week. Over a standard 52-week work year (2,080 hours), gross annual pay is $36,400. After federal taxes and FICA, estimated take-home pay is approximately $585 to $620 per week depending on state taxes and filing status.',
+      },
+    },
+    {
+      name: 'What is $33.00 an hour annually?',
+      acceptedAnswer: {
+        text: 'At $33.00 per hour working 40 hours per week for 52 weeks (2,080 standard annual work hours), your gross annual salary is $68,640. In a state with no income tax like Texas (Single filer, standard deduction), estimated annual take-home pay is roughly $56,800, or about $2,185 bi-weekly.',
+      },
+    },
+    {
+      name: 'What annual salary is $1,400 every two weeks?',
+      acceptedAnswer: {
+        text: 'If you receive $1,400 gross every two weeks, your gross annual salary is $36,400 ($1,400 x 26 pay periods). If $1,400 is your net take-home pay after taxes, your gross annual salary is approximately $43,000 to $48,000, depending on your state and tax elections.',
+      },
+    },
+    {
+      name: 'If I make $1,000 a week, how much tax is taken out of my paycheck?',
+      acceptedAnswer: {
+        text: 'On a $1,000 weekly gross paycheck ($52,000/year), mandatory taxes typically take 18% to 25% ($180 to $250 per check). This includes Social Security ($62.00 at 6.2%), Medicare ($14.50 at 1.45%), federal income tax withholding (~$75 to $95), and state income tax ($0 in 0% states up to $45 in progressive tax states), leaving an estimated net check of $750 to $820.',
+      },
+    },
+    {
+      name: 'What is the difference between paycheck withholding and my actual tax liability?',
+      acceptedAnswer: {
+        text: 'Paycheck withholding is an estimate withheld each pay period by your employer under IRS Publication 15-T rules. Your actual tax liability is calculated once a year when filing IRS Form 1040 in April. If your total withholding exceeds your actual tax liability, you receive a tax refund; if withholding was insufficient, you owe taxes.',
       },
     },
     {
       name: 'How does contributing to a 401(k) or HSA increase take-home value?',
       acceptedAnswer: {
         text: 'Traditional 401(k) contributions reduce your gross taxable income for Federal and State income taxes, lowering your immediate tax bill. Section 125 health insurance premiums and HSA contributions are triple-tax-advantaged, reducing Federal income tax, State income tax, and FICA payroll taxes simultaneously in most states.',
-      },
-    },
-    {
-      name: 'What is the difference between a paycheck calculator and an annual tax calculator?',
-      acceptedAnswer: {
-        text: 'A paycheck calculator estimates the approximate cash you receive per pay period based on employer payroll withholding rules (IRS Publication 15-T) and your Form W-4 elections. Actual deposits may differ due to other deductions, employer-specific payroll treatment, and local taxes. An annual tax calculator computes your total end-of-year tax liability on IRS Form 1040, determining whether you owe additional tax or receive a refund.',
       },
     },
   ];
@@ -88,9 +109,9 @@ export default function USPaycheckPage() {
         '@type': 'WebPage',
         '@id': 'https://nepacalc.com/calculator/us-paycheck-calculator/',
         url: 'https://nepacalc.com/calculator/us-paycheck-calculator/',
-        name: 'US Paycheck Calculator & Take-Home Pay Estimator',
+        name: 'US Paycheck Calculator | Free Take-Home Pay Calculator',
         description:
-          'Calculate your net take-home pay after Federal income taxes, FICA (Social Security & Medicare), and State taxes across all 50 US states.',
+          'Calculate your net take-home pay after Federal income taxes, FICA (Social Security & Medicare), and State taxes across all 50 US states + DC.',
         inLanguage: 'en-US',
       },
       {
@@ -136,12 +157,13 @@ export default function USPaycheckPage() {
           url: 'https://nepacalc.com',
         },
         description:
-          'Free online paycheck calculator calculating net take-home pay after federal taxes, FICA (Social Security and Medicare), and state tax across all 50 US states.',
+          'Free online paycheck calculator calculating net take-home pay after federal taxes, FICA (Social Security and Medicare), and state tax across all 50 US states + DC.',
         featureList: [
           'Dual Salary ($/year) and Hourly ($/hr) wage calculation modes',
+          'Overtime (1.5x) and weeks-worked custom inputs',
           'Updated 2026 Federal tax brackets and standard deductions',
           'Official 2026 Social Security cap ($184,500) and Additional Medicare rules',
-          'Complete 50-state tax rules engine including 0% tax states',
+          'Complete 50-state + DC tax rules engine including 0% tax states',
           'Multi-frequency paycheck breakdown: Annual, Monthly, Bi-weekly, Weekly, Hourly',
           'State-to-state relocation tax comparison tool',
         ],
@@ -194,144 +216,307 @@ export default function USPaycheckPage() {
       </div>
 
       {/* ── HIGH-DENSITY EDITORIAL & TAX KNOWLEDGE SECTION ── */}
-      <section className="w-full px-3 sm:px-6 lg:px-8 pb-10 space-y-3">
-        <div className="bg-white rounded-xl border border-gray-200 p-3.5 sm:p-5 shadow-2xs space-y-3 text-xs sm:text-sm text-gray-700 leading-relaxed">
+      <section className="w-full px-3 sm:px-6 lg:px-8 pb-10 space-y-4">
+        
+        {/* Module 1: How Paychecks Are Calculated (Gross-to-Net) */}
+        <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-5 shadow-2xs space-y-3 text-xs sm:text-sm text-gray-700 leading-relaxed">
           <div className="border-b border-gray-100 pb-2">
             <h2 className="text-base sm:text-lg font-bold text-gray-900">
-              Understanding Your Paycheck: Federal Withholding, FICA, &amp; State Taxes Explained
+              How Is Your Paycheck Calculated? The Gross-to-Net Formula
             </h2>
-            <p className="text-xs text-gray-500 mt-0.5">
-              How gross salary converts to net take-home pay under IRS Publication 15-T and state revenue codes.
+            <p className="text-xs text-gray-500">
+              A transparent breakdown of how gross salary converts to net take-home cash under IRS Publication 15-T and state revenue codes.
             </p>
           </div>
 
-          <p>
-            When you receive an employment job offer or review your paystub, the gross salary is never the exact amount deposited into your checking account. Every US payroll cycle is subject to mandatory federal, statutory social insurance, and state-level tax withholdings. Understanding how these calculations work allows you to optimize your Form W-4 elections and plan household budgets with total precision.
-          </p>
-
-          {/* 3-Pillar Payroll Breakdown */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 pt-1">
-            <div className="p-3 bg-slate-50 rounded-lg border border-slate-200 space-y-1">
-              <span className="text-[10px] font-bold text-blue-800 uppercase tracking-wide block">Federal Tax</span>
-              <h3 className="font-bold text-gray-900 text-xs">Progressive Income Tax (FIT)</h3>
-              <p className="text-[11px] text-gray-600 leading-relaxed">
-                The federal income tax uses seven progressive tax brackets (10%, 12%, 22%, 24%, 32%, 35%, and 37%). Taxes are calculated against taxable income after applying standard deductions ($16,100 Single / $32,200 Married Filing Jointly) and qualifying pre-tax benefit deductions.
-              </p>
-            </div>
-
-            <div className="p-3 bg-slate-50 rounded-lg border border-slate-200 space-y-1">
-              <span className="text-[10px] font-bold text-amber-800 uppercase tracking-wide block">FICA Payroll Taxes</span>
-              <h3 className="font-bold text-gray-900 text-xs">Social Security &amp; Medicare</h3>
-              <p className="text-[11px] text-gray-600 leading-relaxed">
-                Social Security tax is 6.2% on covered earnings up to the official statutory cap of $184,500 (max $11,439.00 per employee). Medicare tax is 1.45% on all earnings with no ceiling, plus an additional 0.9% withholding surtax triggered when wages exceed $200,000.
-              </p>
-            </div>
-
-            <div className="p-3 bg-slate-50 rounded-lg border border-slate-200 space-y-1">
-              <span className="text-[10px] font-bold text-purple-800 uppercase tracking-wide block">State &amp; Local Tax</span>
-              <h3 className="font-bold text-gray-900 text-xs">50-State Revenue Withholding</h3>
-              <p className="text-[11px] text-gray-600 leading-relaxed">
-                Nine states levy 0% income tax on wages (including Texas, Florida, and Washington). Other states levy flat taxes (like Pennsylvania at 3.07% or North Carolina at 3.99%) or graduated brackets (such as California up to 12.3% plus 1.3% SDI (2026 rate, no wage ceiling), or New York up to 10.9%).
-              </p>
-            </div>
+          <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg font-mono text-xs text-slate-800">
+            <strong>Take-Home Pay Formula:</strong> Gross Earnings - Pre-Tax Benefits - Federal Income Tax Withholding - FICA Taxes - State/Local Income Taxes - Post-Tax Deductions = <strong>Net Pay</strong>
           </div>
 
-          {/* Salary Example Table */}
-          <div className="pt-2 border-t border-gray-100">
-            <h3 className="text-xs sm:text-sm font-bold text-gray-900 mb-1.5">
-              Typical Take-Home Pay Benchmarks for Common US Salaries (Single Filer, Texas - 0% State Tax, 2026)
-            </h3>
-            <p className="text-[11px] text-gray-500 mb-2">
-              Estimates based on 2026 IRS brackets, standard deduction ($16,100), and no pre-tax deductions. Results are generated from the same calculation engine as the calculator above.
-            </p>
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs border border-gray-200 rounded-lg overflow-hidden">
-                <thead>
-                  <tr className="bg-gray-50 border-b border-gray-200 text-gray-600 font-bold">
-                    <th className="py-2 px-3">Annual Gross Salary</th>
-                    <th className="py-2 px-3 text-right">Bi-Weekly Paycheck</th>
-                    <th className="py-2 px-3 text-right">Monthly Net</th>
-                    <th className="py-2 px-3 text-right">Annual Federal Tax</th>
-                    <th className="py-2 px-3 text-right">Annual FICA</th>
-                    <th className="py-2 px-3 text-right font-bold text-emerald-800 bg-emerald-50/50">Annual Take-Home</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100 font-medium">
-                  {[
-                    { gross: 40000, bi: 1286, mo: 2788, fed: 2820, fica: 3060, net: 34120 },
-                    { gross: 50000, bi: 1601, mo: 3469, fed: 3820, fica: 3825, net: 42355 },
-                    { gross: 75000, bi: 2334, mo: 5058, fed: 7670, fica: 5738, net: 61592 },
-                    { gross: 100000, bi: 3022, mo: 6548, fed: 13170, fica: 7650, net: 79180 },
-                    { gross: 150000, bi: 4409, mo: 9552, fed: 24734, fica: 11439, net: 113827 },
-                  ].map((row) => (
-                    <tr key={row.gross} className="hover:bg-slate-50">
-                      <td className="py-2 px-3 font-bold text-gray-900">${row.gross.toLocaleString()}</td>
-                      <td className="py-2 px-3 text-right tabular-nums">${row.bi.toLocaleString()}</td>
-                      <td className="py-2 px-3 text-right tabular-nums">${row.mo.toLocaleString()}</td>
-                      <td className="py-2 px-3 text-right text-rose-600 tabular-nums">-${row.fed.toLocaleString()}</td>
-                      <td className="py-2 px-3 text-right text-rose-600 tabular-nums">-${row.fica.toLocaleString()}</td>
-                      <td className="py-2 px-3 text-right font-black text-emerald-700 bg-emerald-50/30 tabular-nums">
-                        ${row.net.toLocaleString()}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1">
+            <div className="p-3 bg-gray-50 rounded-lg border border-gray-200 space-y-1">
+              <span className="text-[10px] font-bold text-blue-800 uppercase tracking-wide block">Step 1: Gross Pay</span>
+              <h3 className="font-bold text-gray-900 text-xs">Salary or Hourly Wages</h3>
+              <p className="text-[11px] text-gray-600 leading-relaxed">
+                Your base pay before any withholdings. For hourly employees, this includes regular hours plus overtime hours (FLSA 1.5x rate).
+              </p>
             </div>
 
-            {/* Common salary Q&A - SEO targeted */}
-            <div className="mt-4 space-y-3 text-xs text-gray-700">
-              <h3 className="text-xs sm:text-sm font-bold text-gray-900">Common Salary After-Tax Questions (Single Filer, Texas, 2026)</h3>
-              {[
-                {
-                  q: 'How much is $40 per hour after taxes?',
-                  a: '$40/hour x 2,080 hrs/yr = $83,200 gross. After federal income tax (~$12,006), Social Security ($5,158), and Medicare ($1,206), estimated annual take-home is roughly $64,830 - about $2,493 bi-weekly.',
-                },
-                {
-                  q: 'How much is $50,000 a year after taxes?',
-                  a: 'At $50,000 gross (Single, Texas), estimated 2026 take-home is approximately $42,355/year. Federal tax: ~$3,820. Social Security: ~$3,100. Medicare: ~$725. Bi-weekly paycheck: ~$1,601.',
-                },
-                {
-                  q: 'How much is $75,000 a year after taxes?',
-                  a: 'At $75,000 gross (Single, Texas), estimated 2026 take-home is approximately $61,592/year. Federal tax: ~$7,670. FICA: ~$5,738. Effective tax rate: approximately 18.2%. Bi-weekly paycheck: ~$2,334.',
-                },
-                {
-                  q: 'How much is $100,000 a year after taxes?',
-                  a: 'At $100,000 gross (Single, Texas), estimated 2026 take-home is approximately $79,180/year. Federal tax: ~$13,170. FICA: ~$7,650. Effective tax rate: approximately 20.8%. Bi-weekly paycheck: ~$3,022.',
-                },
-                {
-                  q: 'How much is $100,000 after taxes in California vs Texas?',
-                  a: 'In Texas (no state income tax): ~$79,180 annual take-home. In California: California income tax on $100,000 adds roughly $4,100-$5,200 in state tax plus $1,300 SDI (1.3%). Estimated CA take-home: ~$72,700-$73,800. Texas saves approximately $5,400-$6,500 annually vs California.',
-                },
-                {
-                  q: 'Why does my actual paycheck differ from the estimated take-home pay?',
-                  a: 'This calculator estimates take-home pay using standard withholding assumptions. Actual paychecks may differ due to: W-4 extra withholding elections, employer-sponsored benefit deductions (dental, vision, life insurance), local city or county income taxes, year-to-date wage caps, and supplemental wage treatment for bonuses.',
-                },
-              ].map((item) => (
-                <div key={item.q} className="bg-gray-50 rounded-lg p-3 border border-gray-100">
-                  <p className="font-semibold text-gray-900 mb-1">{item.q}</p>
-                  <p className="text-gray-600 leading-relaxed">{item.a}</p>
-                </div>
-              ))}
+            <div className="p-3 bg-gray-50 rounded-lg border border-gray-200 space-y-1">
+              <span className="text-[10px] font-bold text-amber-800 uppercase tracking-wide block">Step 2: Mandatory Taxes</span>
+              <h3 className="font-bold text-gray-900 text-xs">Federal, FICA &amp; State Taxes</h3>
+              <p className="text-[11px] text-gray-600 leading-relaxed">
+                Federal income tax (progressive 10% to 37%), FICA (6.2% Social Security up to $184,500 and 1.45% Medicare), and applicable state/local withholding.
+              </p>
             </div>
 
-            {/* Assumptions & Coverage Note */}
-            <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg text-[11px] text-amber-900 leading-relaxed">
-              <strong>Calculator Assumptions & Coverage:</strong> This calculator covers all 50 US states + Washington, DC. It assumes standard W-4 withholding (no extra withholding or adjustments), standard deductions only, single-employer wages, and excludes local/city income taxes (such as New York City, Yonkers, or Pennsylvania local EIT). Self-employed workers should use a separate self-employment tax calculator. Results are estimates - consult a tax professional for precise withholding advice.
+            <div className="p-3 bg-gray-50 rounded-lg border border-gray-200 space-y-1">
+              <span className="text-[10px] font-bold text-emerald-800 uppercase tracking-wide block">Step 3: Net Cash</span>
+              <h3 className="font-bold text-gray-900 text-xs">Take-Home Deposit</h3>
+              <p className="text-[11px] text-gray-600 leading-relaxed">
+                The actual net cash deposited into your checking account on payday after pre-tax benefits (401k, health) and voluntary deductions are subtracted.
+              </p>
             </div>
           </div>
         </div>
 
+        {/* Module 2: Federal Withholding vs. Actual Tax Liability */}
+        <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-5 shadow-2xs space-y-2 text-xs sm:text-sm text-gray-700 leading-relaxed">
+          <h2 className="text-base sm:text-lg font-bold text-gray-900">
+            Federal Income Tax Withholding vs. Actual Annual Tax Liability
+          </h2>
+          <p className="text-gray-600 leading-relaxed">
+            One of the most common points of confusion for employees is the difference between <strong>paycheck withholding</strong> and <strong>annual tax liability</strong>.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 text-xs">
+            <div className="p-3 bg-blue-50/50 border border-blue-200 rounded-lg space-y-1">
+              <h3 className="font-bold text-blue-950">Paycheck Withholding (IRS Publication 15-T)</h3>
+              <p className="text-blue-900 leading-relaxed text-[11px]">
+                The estimated amount an employer deducts from each paycheck based on your pay period frequency, wage brackets, and elections made on Form W-4. It is sent directly to the IRS throughout the tax year.
+              </p>
+            </div>
+            <div className="p-3 bg-purple-50/50 border border-purple-200 rounded-lg space-y-1">
+              <h3 className="font-bold text-purple-950">Actual Tax Liability (IRS Form 1040)</h3>
+              <p className="text-purple-900 leading-relaxed text-[11px]">
+                Your total final tax calculated when filing your federal tax return in April. It reconciles total income, outside investments, deductions, and tax credits. If withholding exceeded liability, you receive a refund; if insufficient, you owe a payment.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Module 3: Pre-Tax vs. Post-Tax Deductions */}
+        <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-5 shadow-2xs space-y-2 text-xs sm:text-sm text-gray-700 leading-relaxed">
+          <h2 className="text-base sm:text-lg font-bold text-gray-900">
+            Pre-Tax vs. Post-Tax Payroll Deductions
+          </h2>
+          <p className="text-gray-600 leading-relaxed">
+            Not all paycheck deductions receive identical tax treatment. Knowing how each deduction impacts your wage bases can save thousands of dollars annually:
+          </p>
+          
+          <div className="overflow-x-auto pt-1">
+            <table className="w-full text-left text-xs border border-gray-200 rounded-lg overflow-hidden">
+              <thead>
+                <tr className="bg-gray-50 border-b border-gray-200 text-gray-700 font-bold">
+                  <th className="py-2 px-3">Deduction Type</th>
+                  <th className="py-2 px-3">Reduces Federal Income Tax?</th>
+                  <th className="py-2 px-3">Reduces FICA (SS &amp; Med)?</th>
+                  <th className="py-2 px-3">Reduces State Income Tax?</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100 font-medium">
+                <tr className="hover:bg-slate-50">
+                  <td className="py-2 px-3 font-semibold text-gray-900">Traditional 401(k) / 403(b)</td>
+                  <td className="py-2 px-3 text-emerald-700 font-semibold">Yes</td>
+                  <td className="py-2 px-3 text-rose-600 font-semibold">No</td>
+                  <td className="py-2 px-3 text-emerald-700 font-semibold">Yes (most states)</td>
+                </tr>
+                <tr className="hover:bg-slate-50">
+                  <td className="py-2 px-3 font-semibold text-gray-900">Section 125 Health Insurance</td>
+                  <td className="py-2 px-3 text-emerald-700 font-semibold">Yes</td>
+                  <td className="py-2 px-3 text-emerald-700 font-semibold">Yes</td>
+                  <td className="py-2 px-3 text-emerald-700 font-semibold">Yes</td>
+                </tr>
+                <tr className="hover:bg-slate-50">
+                  <td className="py-2 px-3 font-semibold text-gray-900">HSA / FSA Contributions</td>
+                  <td className="py-2 px-3 text-emerald-700 font-semibold">Yes</td>
+                  <td className="py-2 px-3 text-emerald-700 font-semibold">Yes</td>
+                  <td className="py-2 px-3 text-emerald-700 font-semibold">Yes (except CA &amp; NJ)</td>
+                </tr>
+                <tr className="hover:bg-slate-50">
+                  <td className="py-2 px-3 font-semibold text-gray-900">Roth 401(k) Contribution</td>
+                  <td className="py-2 px-3 text-rose-600 font-semibold">No (Post-Tax)</td>
+                  <td className="py-2 px-3 text-rose-600 font-semibold">No</td>
+                  <td className="py-2 px-3 text-rose-600 font-semibold">No</td>
+                </tr>
+                <tr className="hover:bg-slate-50">
+                  <td className="py-2 px-3 font-semibold text-gray-900">Garnishments / Life Insurance</td>
+                  <td className="py-2 px-3 text-rose-600 font-semibold">No (Post-Tax)</td>
+                  <td className="py-2 px-3 text-rose-600 font-semibold">No</td>
+                  <td className="py-2 px-3 text-rose-600 font-semibold">No</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Module 4: How to Read Your Paystub */}
+        <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-5 shadow-2xs space-y-2 text-xs sm:text-sm text-gray-700 leading-relaxed">
+          <h2 className="text-base sm:text-lg font-bold text-gray-900">
+            How to Read Your Paystub: Key Payroll Terms Glossary
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 pt-1">
+            <div className="p-2.5 bg-gray-50 rounded border border-gray-200">
+              <strong className="text-gray-900 block text-xs">Gross Pay</strong>
+              <span className="text-[11px] text-gray-600">Total earnings before any tax withholding or deductions.</span>
+            </div>
+            <div className="p-2.5 bg-gray-50 rounded border border-gray-200">
+              <strong className="text-gray-900 block text-xs">Federal Taxable Wages</strong>
+              <span className="text-[11px] text-gray-600">Gross pay minus pre-tax deductions like 401(k) and health insurance.</span>
+            </div>
+            <div className="p-2.5 bg-gray-50 rounded border border-gray-200">
+              <strong className="text-gray-900 block text-xs">FICA Wages</strong>
+              <span className="text-[11px] text-gray-600">Earnings subject to Social Security (capped at $184,500) and Medicare.</span>
+            </div>
+            <div className="p-2.5 bg-gray-50 rounded border border-gray-200">
+              <strong className="text-gray-900 block text-xs">Net Pay</strong>
+              <span className="text-[11px] text-gray-600">Actual cash deposited into your bank account after all deductions.</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Module 5: Benchmark Table for Common US Salaries */}
+        <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-5 shadow-2xs space-y-3 text-xs sm:text-sm text-gray-700 leading-relaxed">
+          <div className="border-b border-gray-100 pb-2">
+            <h2 className="text-base sm:text-lg font-bold text-gray-900">
+              2026 Take-Home Pay Benchmarks for Common Salaries (Single, Texas - 0% State Tax)
+            </h2>
+            <p className="text-xs text-gray-500">
+              Calculated using the 2026 IRS Publication 15-T percentage brackets, standard deduction ($16,100), and statutory FICA caps.
+            </p>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-xs border border-gray-200 rounded-lg overflow-hidden">
+              <thead>
+                <tr className="bg-gray-50 border-b border-gray-200 text-gray-600 font-bold">
+                  <th className="py-2 px-3">Annual Gross Salary</th>
+                  <th className="py-2 px-3 text-right">Bi-Weekly Paycheck</th>
+                  <th className="py-2 px-3 text-right">Monthly Net</th>
+                  <th className="py-2 px-3 text-right">Annual Federal Tax</th>
+                  <th className="py-2 px-3 text-right">Annual FICA</th>
+                  <th className="py-2 px-3 text-right font-bold text-emerald-800 bg-emerald-50/50">Annual Take-Home</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100 font-medium">
+                {[
+                  { gross: 40000, bi: 1286, mo: 2788, fed: 2820, fica: 3060, net: 34120 },
+                  { gross: 50000, bi: 1601, mo: 3469, fed: 3820, fica: 3825, net: 42355 },
+                  { gross: 75000, bi: 2334, mo: 5058, fed: 7670, fica: 5738, net: 61592 },
+                  { gross: 100000, bi: 3022, mo: 6548, fed: 13170, fica: 7650, net: 79180 },
+                  { gross: 150000, bi: 4409, mo: 9552, fed: 24734, fica: 11439, net: 113827 },
+                ].map((row) => (
+                  <tr key={row.gross} className="hover:bg-slate-50">
+                    <td className="py-2 px-3 font-bold text-gray-900">${row.gross.toLocaleString()}</td>
+                    <td className="py-2 px-3 text-right tabular-nums">${row.bi.toLocaleString()}</td>
+                    <td className="py-2 px-3 text-right tabular-nums">${row.mo.toLocaleString()}</td>
+                    <td className="py-2 px-3 text-right text-rose-600 tabular-nums">-${row.fed.toLocaleString()}</td>
+                    <td className="py-2 px-3 text-right text-rose-600 tabular-nums">-${row.fica.toLocaleString()}</td>
+                    <td className="py-2 px-3 text-right font-black text-emerald-700 bg-emerald-50/30 tabular-nums">
+                      ${row.net.toLocaleString()}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Common salary Q&A */}
+          <div className="mt-3 space-y-2 text-xs text-gray-700">
+            <h3 className="text-xs sm:text-sm font-bold text-gray-900">Common Salary Questions Answered</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+              <div className="bg-gray-50 rounded-lg p-3 border border-gray-100">
+                <p className="font-semibold text-gray-900 mb-0.5">How much is $40/hr after taxes?</p>
+                <p className="text-gray-600 leading-relaxed text-[11px]">$40/hr x 2,080 hrs = $83,200 gross. After federal tax (~$12,006) and FICA ($6,364), estimated take-home is roughly $64,830/yr ($2,493 bi-weekly).</p>
+              </div>
+              <div className="bg-gray-50 rounded-lg p-3 border border-gray-100">
+                <p className="font-semibold text-gray-900 mb-0.5">How much is $100k in California vs Texas?</p>
+                <p className="text-gray-600 leading-relaxed text-[11px]">Texas has 0% state income tax (~$79,180 take-home). California income tax and 1.3% SDI add ~$6,400 in state deductions, leaving ~$72,780 net in CA.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Module 6: Official Government References & Methodology */}
+        <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-5 shadow-2xs space-y-2 text-xs sm:text-sm text-gray-700 leading-relaxed">
+          <h2 className="text-base sm:text-lg font-bold text-gray-900">
+            Calculation Methodology &amp; Official References
+          </h2>
+          <p className="text-gray-600 leading-relaxed">
+            NepaCalc computes employee payroll estimates strictly in accordance with published statutory federal and state tax guidelines:
+          </p>
+          <ul className="list-disc list-inside space-y-1 text-xs text-gray-600 pt-1">
+            <li>
+              Federal income tax withholding percentages and bracket steps follow the official percentage method outlined in{' '}
+              <a
+                href="https://www.irs.gov/publications/p15t"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline font-semibold"
+              >
+                IRS Publication 15-T (Federal Income Tax Withholding Methods)
+              </a>.
+            </li>
+            <li>
+              To adjust allowances and credits on your tax return, refer to the{' '}
+              <a
+                href="https://www.irs.gov/forms-pubs/about-form-w-4"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline font-semibold"
+              >
+                Official IRS Form W-4
+              </a>{' '}
+              or test your year-end balance with the{' '}
+              <a
+                href="https://www.irs.gov/individuals/tax-withholding-estimator"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline font-semibold"
+              >
+                IRS Tax Withholding Estimator
+              </a>.
+            </li>
+            <li>
+              Social Security wage base limits are verified via the{' '}
+              <a
+                href="https://www.ssa.gov/oact/cola/cbb.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline font-semibold"
+              >
+                Social Security Administration (SSA) Contribution &amp; Benefit Base
+              </a>{' '}
+              ($184,500 for tax year 2026).
+            </li>
+            <li>
+              Overtime hours and minimum wage rules are grounded in the{' '}
+              <a
+                href="https://www.dol.gov/agencies/whd/overtime"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline font-semibold"
+              >
+                US Department of Labor Overtime Pay Requirements (FLSA 1.5×)
+              </a>.
+            </li>
+            <li>
+              State disability contributions and state payroll withholding rates are derived from respective revenue authorities, such as the{' '}
+              <a
+                href="https://edd.ca.gov/en/payroll_taxes/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline font-semibold"
+              >
+                California Employment Development Department (EDD)
+              </a>.
+            </li>
+          </ul>
+
+          <div className="mt-3 p-3 bg-amber-50 border border-amber-200 rounded-lg text-[11px] text-amber-900 leading-relaxed">
+            <strong>Disclaimer:</strong> This calculator provides mathematical estimates based on standard withholding models across all 50 US states + Washington, DC. It excludes local municipal/city taxes (e.g. NYC, Yonkers, Pennsylvania local EIT) and employer-specific benefit fees. Consult a certified payroll accountant or tax advisor for individualized tax advice.
+          </div>
+        </div>
+
         {/* ── FAQ Section (AEO & People Also Ask Target) ── */}
-        <div className="bg-white rounded-xl border border-gray-200 p-3.5 sm:p-5 shadow-2xs">
+        <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-5 shadow-2xs">
           <h2 className="text-base sm:text-lg font-bold text-gray-900 mb-3">
             Frequently Asked Questions: US Paycheck &amp; Take-Home Pay
           </h2>
 
-          <div className="space-y-4 divide-y divide-gray-100 text-xs sm:text-sm">
+          <div className="space-y-3 divide-y divide-gray-100 text-xs sm:text-sm">
             {faqItems.map((item, idx) => (
-              <div key={idx} className="pt-3 first:pt-0">
-                <h3 className="font-bold text-gray-900 mb-1">{item.name}</h3>
+              <div key={idx} className="pt-2.5 first:pt-0">
+                <h3 className="font-bold text-gray-900 mb-0.5">{item.name}</h3>
                 <p className="text-gray-600 leading-relaxed">{item.acceptedAnswer.text}</p>
               </div>
             ))}
