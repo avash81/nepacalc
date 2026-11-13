@@ -739,7 +739,7 @@ Calculated at https://nepacalc.com/calculator/ppp-salary-converter/`;
           <table className="w-full text-left text-xs min-w-[580px]">
             <thead>
               <tr className="border-b border-slate-200 text-slate-600 font-semibold bg-slate-50">
-                <th className="py-2.5 px-3">Country</th>
+                <th className="py-2.5 px-3 sticky left-0 bg-slate-50 z-10">Country</th>
                 <th className="py-2.5 px-3 text-right">PPP Target (Local)</th>
                 <th className="py-2.5 px-3 text-right">Forex Value (USD)</th>
                 <th className="py-2.5 px-3 text-center">Cost Index</th>
@@ -761,7 +761,9 @@ Calculated at https://nepacalc.com/calculator/ppp-salary-converter/`;
                       isSelected ? 'bg-emerald-50/70 font-semibold' : isOrigin ? 'bg-slate-100/60' : ''
                     }`}
                   >
-                    <td className="py-2.5 px-3 flex items-center gap-1.5">
+                    <td className={`py-2.5 px-3 sticky left-0 z-10 flex items-center gap-1.5 ${
+                      isSelected ? 'bg-emerald-50' : isOrigin ? 'bg-slate-100' : 'bg-white'
+                    }`}>
                       <span className="text-sm">{row.flag}</span>
                       <span className="text-slate-900 truncate max-w-[140px] sm:max-w-none">{row.name}</span>
                       {isOrigin && <span className="text-[10px] bg-slate-200 text-slate-800 px-1.5 py-0.2 rounded font-bold">Origin</span>}
@@ -808,7 +810,7 @@ Calculated at https://nepacalc.com/calculator/ppp-salary-converter/`;
             </p>
           </div>
           
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs font-semibold text-slate-600">Savings (USD):</span>
             <div className="flex rounded-lg border border-slate-300 focus-within:border-slate-800 overflow-hidden bg-white">
               <span className="px-2.5 py-1 bg-slate-50 text-slate-500 font-bold text-xs select-none border-r border-slate-300">
@@ -830,6 +832,18 @@ Calculated at https://nepacalc.com/calculator/ppp-salary-converter/`;
                 }}
                 className="w-28 px-2 py-1 text-xs font-bold text-slate-900 outline-none"
               />
+            </div>
+            <div className="inline-flex gap-1 text-xs">
+              {[10000, 25000, 50000].map((s) => (
+                <button
+                  key={s}
+                  type="button"
+                  onClick={() => setSavingsInput(s.toLocaleString('en-US'))}
+                  className="px-2 py-0.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-semibold transition cursor-pointer"
+                >
+                  ${s / 1000}k
+                </button>
+              ))}
             </div>
           </div>
         </div>
