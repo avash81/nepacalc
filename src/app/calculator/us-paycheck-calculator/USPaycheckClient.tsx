@@ -289,7 +289,7 @@ Calculated at https://nepacalc.com/calculator/us-paycheck-calculator/`;
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto px-4 py-4 space-y-4 font-sans text-slate-800 font-modern-ui">
+    <div className="w-full max-w-5xl mx-auto px-4 py-4 pb-28 sm:pb-16 space-y-4 font-sans text-slate-800 font-modern-ui">
       {/* ── HEADER ── */}
       <div className="border-b border-slate-200 pb-2 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
         <div>
@@ -371,8 +371,21 @@ Calculated at https://nepacalc.com/calculator/us-paycheck-calculator/`;
                     }
                   }}
                   className="w-full px-3 py-2 text-base font-bold text-slate-900 outline-none"
-                  placeholder="0"
+                  placeholder="e.g. 75,000"
                 />
+              </div>
+              <div className="flex items-center gap-1.5 mt-2">
+                <span className="text-[11px] text-slate-500 font-medium">Quick:</span>
+                {[50000, 75000, 100000, 150000].map((val) => (
+                  <button
+                    key={val}
+                    type="button"
+                    onClick={() => setSalaryInput(val.toLocaleString('en-US'))}
+                    className="text-xs px-2 py-0.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium transition cursor-pointer"
+                  >
+                    ${val >= 1000 ? `${val / 1000}k` : val}
+                  </button>
+                ))}
               </div>
             </div>
           ) : (
@@ -394,7 +407,7 @@ Calculated at https://nepacalc.com/calculator/us-paycheck-calculator/`;
                       onFocus={(e) => e.target.select()}
                       onChange={(e) => setHourlyInput(e.target.value)}
                       className="w-full px-2.5 py-2 text-sm font-bold text-slate-900 outline-none"
-                      placeholder="0"
+                      placeholder="e.g. 35"
                     />
                   </div>
                 </div>
@@ -689,18 +702,29 @@ Calculated at https://nepacalc.com/calculator/us-paycheck-calculator/`;
               <span className="font-bold uppercase tracking-wider text-slate-600">
                 Take-Home Pay
               </span>
-              <div className="text-right space-x-2">
-                <span className="text-slate-500 font-medium">
-                  Effective tax rate: <strong className="text-slate-800">{primary.effectiveRate.toFixed(1)}%</strong>
-                </span>
-                {primary.marginalBracket > 0 && (
+              {grossAnnual > 0 && (
+                <div className="text-right space-x-2">
                   <span className="text-slate-500 font-medium">
-                    Marginal: <strong className="text-slate-800">{primary.marginalBracket}%</strong>
+                    Effective: <strong className="text-slate-800">{primary.effectiveRate.toFixed(1)}%</strong>
                   </span>
-                )}
-              </div>
+                  {primary.marginalBracket > 0 && (
+                    <span className="text-slate-500 font-medium">
+                      Marginal: <strong className="text-slate-800">{primary.marginalBracket}%</strong>
+                    </span>
+                  )}
+                </div>
+              )}
             </div>
 
+            {/* Empty State Prompt */}
+            {grossAnnual === 0 ? (
+              <div className="my-3 p-6 bg-white border border-dashed border-slate-300 rounded-xl flex flex-col items-center justify-center text-center gap-2">
+                <span className="text-2xl">💵</span>
+                <p className="text-sm font-semibold text-slate-700">Enter your salary to see results</p>
+                <p className="text-xs text-slate-400">Type an amount on the left or tap a quick-select pill to calculate your take-home pay instantly.</p>
+              </div>
+            ) : (
+              <>
             {/* Hero Net Display */}
             <div className="my-3 p-4 bg-white border border-slate-200 rounded-xl shadow-xs">
               <div className="flex items-start justify-between">
@@ -834,6 +858,8 @@ Calculated at https://nepacalc.com/calculator/us-paycheck-calculator/`;
                 </div>
               </div>
             </div>
+              </>
+            )}
           </div>
 
           <p className="text-[11px] text-slate-400 text-center">
