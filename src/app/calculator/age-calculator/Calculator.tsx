@@ -1,6 +1,5 @@
 'use client';
 import React, { useMemo, useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
 import {
   Calendar, Clock, RotateCcw, ArrowRightLeft, Share2, Printer, Copy,
@@ -259,20 +258,21 @@ export default function AgeCalculator() {
   const [showRetirementCard, setShowRetirementCard] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
 
-  const searchParams = useSearchParams();
   const [hasCalculated, setHasCalculated] = useState(false);
   const [now, setNow] = useState(Date.now());
 
   useEffect(() => {
-    const urlDob = searchParams.get('dob');
-    const urlTarget = searchParams.get('ref');
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    const urlDob = params.get('dob');
+    const urlTarget = params.get('ref');
     if (urlDob) {
       setState(s => ({ ...s, dob: urlDob, targetDate: urlTarget || new Date().toISOString().split('T')[0] }));
       setHasCalculated(true);
     } else if (!targetDate) {
       setState(s => ({ ...s, targetDate: new Date().toISOString().split('T')[0] }));
     }
-  }, [searchParams]);
+  }, []);
 
   const update = (u: Partial<typeof DEFAULT_STATE>) => setState({ ...state, ...u });
 

@@ -1,6 +1,5 @@
 'use client';
-import React, { useMemo, useState, useEffect, Suspense } from 'react';
-import { useSearchParams, useRouter, usePathname } from 'next/navigation';
+import React, { useMemo, useState, useEffect } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
 import { useSyncState } from '@/hooks/useSyncState';
 import { calculateKUKLBill, KUKLPipeSize } from '@/utils/math/country-rules/nepal';
@@ -15,11 +14,7 @@ function formatNPR(n: number) { return 'Rs. ' + Math.round(n).toLocaleString('en
 
 type CalcMode = 'official' | 'custom';
 
-function KUKLCalculatorInner() {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const pathname = usePathname();
-
+export default function KUKLCalculator() {
   const [state, setState] = useSyncState('kukl_v14', {
     mode: 'official' as CalcMode,
     units: 0,
@@ -35,8 +30,10 @@ function KUKLCalculatorInner() {
   };
 
   useEffect(() => {
-    const u = searchParams.get('units');
-    const p = searchParams.get('pipe');
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    const u = params.get('units');
+    const p = params.get('pipe');
     if (u !== null || p !== null) {
       setState((prev: any) => ({
         ...prev,
@@ -45,7 +42,7 @@ function KUKLCalculatorInner() {
         mode: 'official'
       }));
     }
-  }, [searchParams]);
+  }, []);
 
   /* ── OFFICIAL CALC ─────────────────────────────────────────── */
   const officialResult = useMemo(() => calculateKUKLBill(state.units, state.pipeSize), [state.units, state.pipeSize]);
@@ -187,7 +184,7 @@ function KUKLCalculatorInner() {
           <div className="flex flex-col gap-2 pt-4 border-t border-[#F1F3F4]">
             <div className="grid grid-cols-4 gap-2">
               <button onClick={() => { 
-                const url = `${window.location.origin}${pathname}?units=${state.units}&pipe=${state.pipeSize}`;
+                const url = `${window.location.origin}${window.location.pathname}?units=${state.units}&pipe=${state.pipeSize}`;
                 navigator.clipboard.writeText(url); 
                 alert('URL copied!'); 
               }} className="h-10 flex flex-col items-center justify-center bg-[#F8F9FA] hover:bg-[#E8EAED] text-[#5F6368] border border-[#DADCE0] rounded-md transition-colors">
@@ -197,7 +194,7 @@ function KUKLCalculatorInner() {
                 <Printer className="w-3.5 h-3.5 mb-0.5" /><span className="text-[8px] font-bold uppercase">Print</span>
               </button>
               <button onClick={() => {
-                const url = `${window.location.origin}${pathname}?units=${state.units}&pipe=${state.pipeSize}`;
+                const url = `${window.location.origin}${window.location.pathname}?units=${state.units}&pipe=${state.pipeSize}`;
                 navigator.clipboard.writeText(url); 
                 alert('URL copied to clipboard for sharing!'); 
               }} className="h-10 flex flex-col items-center justify-center bg-[#F8F9FA] hover:bg-[#E8EAED] text-[#5F6368] border border-[#DADCE0] rounded-md transition-colors">
@@ -496,13 +493,5 @@ function KUKLCalculatorInner() {
         { label: 'Income Tax Calculator', href: '/calculator/nepal-income-tax/' }
       ]}
     />
-  );
-}
-
-export default function KUKLCalculator() {
-  return (
-    <Suspense fallback={<div className="p-8 text-center text-gray-500">Loading calculator...</div>}>
-      <KUKLCalculatorInner />
-    </Suspense>
   );
 }

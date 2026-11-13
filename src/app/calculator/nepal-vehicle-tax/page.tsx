@@ -154,8 +154,6 @@ export default function Page() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-      <h1 className="sr-only">Vehicle Tax Calculator Nepal (2083/84)</h1>
-
       <Calculator details={
 
       <div className="lg:grid lg:grid-cols-[1fr_280px] lg:gap-12 items-start">

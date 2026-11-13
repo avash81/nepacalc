@@ -178,7 +178,7 @@ export default function GeometryCanvasClient() {
         {/* Toolbar */}
         <div className="w-full lg:w-[240px] flex-shrink-0 bg-white border border-slate-200 rounded-t-2xl lg:rounded-l-2xl lg:rounded-tr-none flex flex-col">
           <div className="p-4 border-b border-slate-100">
-            <h1 className="text-[15px] font-bold text-[#202124]">📐 Geometry Canvas</h1>
+            <span className="text-[15px] font-bold text-[#202124]">📐 Geometry Canvas</span>
           </div>
           <div className="p-3 space-y-1">
             <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Tools</div>

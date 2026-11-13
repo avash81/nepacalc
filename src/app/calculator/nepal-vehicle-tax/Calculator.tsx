@@ -379,7 +379,7 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
     <ModernCalcLayout
       slug="nepal-vehicle-tax"
       crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'Vehicle Tax' }]}
-      title="Nepal Vehicle Tax 2083/84"
+      title="Vehicle Tax Calculator Nepal (2083/84)"
       description="Calculate annual road tax for all vehicle types across all 7 provinces of Nepal — bikes, cars, buses, trucks, and EVs — plus EV import duties using the 2083/84 CIF model."
       fullWidth={true}
       icon={Car}

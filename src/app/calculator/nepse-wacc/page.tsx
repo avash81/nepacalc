@@ -153,9 +153,9 @@ export default function Page() {
           </div>
 
           <section>
-            <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight mb-6">
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight mb-6">
               NEPSE WACC Calculator (Updated 2026) – Free Share Average Calculator Nepal
-            </h1>
+            </h2>
             <p className="text-slate-700 leading-relaxed mb-4">
               Track your exact share average price, weighted average cost (WACC), and actual acquisition cost for shares listed on the Nepal Stock Exchange (NEPSE). Whether you purchased shares through an IPO, FPO, secondary market, rights offering, auction, or received bonus shares, this calculator helps you determine the correct average cost price used in MeroShare and capital gain calculations.
             </p>

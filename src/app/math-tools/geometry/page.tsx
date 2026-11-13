@@ -11,6 +11,7 @@ export const metadata = calcMeta({
 export default function GeometryToolPage() {
   return (
     <>
+      <h1 className="sr-only">Geometry Calculator &amp; Canvas</h1>
       <GeometryApp />
     </>
   );
