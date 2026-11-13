@@ -27,12 +27,17 @@ export interface CountryData {
 
 export const COUNTRIES: CountryData[] = [
   { code: 'US', name: 'United States', flag: '🇺🇸', currency: 'USD', currencySymbol: '$', pppFactor: 1.0, exchangeRate: 1.0, colIndex: 100, rentIndex: 100, taxRate: 0.28 },
-  { code: 'IN', name: 'India', flag: '🇮🇳', currency: 'INR', currencySymbol: '₹', pppFactor: 24.1, exchangeRate: 86.8, colIndex: 24, rentIndex: 18, taxRate: 0.22 },
+  { code: 'IN', name: 'India', flag: '🇮🇳', currency: 'INR', currencySymbol: '₹', pppFactor: 23.0, exchangeRate: 86.8, colIndex: 24, rentIndex: 18, taxRate: 0.22 },
   { code: 'GB', name: 'United Kingdom', flag: '🇬🇧', currency: 'GBP', currencySymbol: '£', pppFactor: 0.72, exchangeRate: 0.79, colIndex: 76, rentIndex: 78, taxRate: 0.35 },
   { code: 'DE', name: 'Germany', flag: '🇩🇪', currency: 'EUR', currencySymbol: '€', pppFactor: 0.76, exchangeRate: 0.92, colIndex: 71, rentIndex: 58, taxRate: 0.40 },
   { code: 'CA', name: 'Canada', flag: '🇨🇦', currency: 'CAD', currencySymbol: 'CA$', pppFactor: 1.25, exchangeRate: 1.38, colIndex: 73, rentIndex: 68, taxRate: 0.32 },
   { code: 'AU', name: 'Australia', flag: '🇦🇺', currency: 'AUD', currencySymbol: 'A$', pppFactor: 1.45, exchangeRate: 1.55, colIndex: 78, rentIndex: 72, taxRate: 0.33 },
   { code: 'AE', name: 'United Arab Emirates', flag: '🇦🇪', currency: 'AED', currencySymbol: 'AED', pppFactor: 2.22, exchangeRate: 3.67, colIndex: 66, rentIndex: 72, taxRate: 0.00 },
+  { code: 'QA', name: 'Qatar', flag: '🇶🇦', currency: 'QAR', currencySymbol: 'QR', pppFactor: 2.15, exchangeRate: 3.64, colIndex: 56, rentIndex: 54, taxRate: 0.00 },
+  { code: 'SA', name: 'Saudi Arabia', flag: '🇸🇦', currency: 'SAR', currencySymbol: 'SAR', pppFactor: 2.45, exchangeRate: 3.75, colIndex: 55, rentIndex: 42, taxRate: 0.00 },
+  { code: 'KW', name: 'Kuwait', flag: '🇰🇼', currency: 'KWD', currencySymbol: 'KD', pppFactor: 0.17, exchangeRate: 0.31, colIndex: 48, rentIndex: 38, taxRate: 0.00 },
+  { code: 'BH', name: 'Bahrain', flag: '🇧🇭', currency: 'BHD', currencySymbol: 'BD', pppFactor: 0.19, exchangeRate: 0.38, colIndex: 52, rentIndex: 40, taxRate: 0.00 },
+  { code: 'OM', name: 'Oman', flag: '🇴🇲', currency: 'OMR', currencySymbol: 'OMR', pppFactor: 0.21, exchangeRate: 0.38, colIndex: 46, rentIndex: 32, taxRate: 0.00 },
   { code: 'SG', name: 'Singapore', flag: '🇸🇬', currency: 'SGD', currencySymbol: 'S$', pppFactor: 0.88, exchangeRate: 1.32, colIndex: 84, rentIndex: 90, taxRate: 0.16 },
   { code: 'NP', name: 'Nepal', flag: '🇳🇵', currency: 'NPR', currencySymbol: 'Rs.', pppFactor: 36.5, exchangeRate: 139.0, colIndex: 22, rentIndex: 12, taxRate: 0.20 },
   { code: 'TH', name: 'Thailand', flag: '🇹🇭', currency: 'THB', currencySymbol: '฿', pppFactor: 13.8, exchangeRate: 34.5, colIndex: 38, rentIndex: 32, taxRate: 0.20 },
@@ -42,9 +47,12 @@ export const COUNTRIES: CountryData[] = [
   { code: 'VN', name: 'Vietnam', flag: '🇻🇳', currency: 'VND', currencySymbol: '₫', pppFactor: 7800, exchangeRate: 25400, colIndex: 28, rentIndex: 23, taxRate: 0.20 },
   { code: 'PK', name: 'Pakistan', flag: '🇵🇰', currency: 'PKR', currencySymbol: 'Rs', pppFactor: 72.0, exchangeRate: 278.0, colIndex: 19, rentIndex: 11, taxRate: 0.18 },
   { code: 'BD', name: 'Bangladesh', flag: '🇧🇩', currency: 'BDT', currencySymbol: '৳', pppFactor: 35.0, exchangeRate: 120.0, colIndex: 22, rentIndex: 13, taxRate: 0.18 },
+  { code: 'LK', name: 'Sri Lanka', flag: '🇱🇰', currency: 'LKR', currencySymbol: 'Rs', pppFactor: 95.0, exchangeRate: 295.0, colIndex: 26, rentIndex: 14, taxRate: 0.18 },
+  { code: 'CN', name: 'China', flag: '🇨🇳', currency: 'CNY', currencySymbol: '¥', pppFactor: 4.18, exchangeRate: 7.24, colIndex: 36, rentIndex: 22, taxRate: 0.20 },
   { code: 'JP', name: 'Japan', flag: '🇯🇵', currency: 'JPY', currencySymbol: '¥', pppFactor: 110.0, exchangeRate: 152.0, colIndex: 64, rentIndex: 52, taxRate: 0.28 },
   { code: 'KR', name: 'South Korea', flag: '🇰🇷', currency: 'KRW', currencySymbol: '₩', pppFactor: 890.0, exchangeRate: 1390.0, colIndex: 68, rentIndex: 48, taxRate: 0.25 },
   { code: 'FR', name: 'France', flag: '🇫🇷', currency: 'EUR', currencySymbol: '€', pppFactor: 0.77, exchangeRate: 0.92, colIndex: 72, rentIndex: 59, taxRate: 0.38 },
+  { code: 'IT', name: 'Italy', flag: '🇮🇹', currency: 'EUR', currencySymbol: '€', pppFactor: 0.69, exchangeRate: 0.92, colIndex: 62, rentIndex: 44, taxRate: 0.35 },
   { code: 'ES', name: 'Spain', flag: '🇪🇸', currency: 'EUR', currencySymbol: '€', pppFactor: 0.65, exchangeRate: 0.92, colIndex: 53, rentIndex: 46, taxRate: 0.30 },
   { code: 'PT', name: 'Portugal', flag: '🇵🇹', currency: 'EUR', currencySymbol: '€', pppFactor: 0.60, exchangeRate: 0.92, colIndex: 49, rentIndex: 48, taxRate: 0.28 },
   { code: 'NL', name: 'Netherlands', flag: '🇳🇱', currency: 'EUR', currencySymbol: '€', pppFactor: 0.79, exchangeRate: 0.92, colIndex: 74, rentIndex: 70, taxRate: 0.42 },
@@ -52,11 +60,13 @@ export const COUNTRIES: CountryData[] = [
   { code: 'IE', name: 'Ireland', flag: '🇮🇪', currency: 'EUR', currencySymbol: '€', pppFactor: 0.84, exchangeRate: 0.92, colIndex: 79, rentIndex: 82, taxRate: 0.36 },
   { code: 'PL', name: 'Poland', flag: '🇵🇱', currency: 'PLN', currencySymbol: 'zł', pppFactor: 2.05, exchangeRate: 4.02, colIndex: 43, rentIndex: 38, taxRate: 0.24 },
   { code: 'SE', name: 'Sweden', flag: '🇸🇪', currency: 'SEK', currencySymbol: 'kr', pppFactor: 9.2, exchangeRate: 10.6, colIndex: 67, rentIndex: 50, taxRate: 0.38 },
+  { code: 'NO', name: 'Norway', flag: '🇳🇴', currency: 'NOK', currencySymbol: 'kr', pppFactor: 10.8, exchangeRate: 10.9, colIndex: 88, rentIndex: 62, taxRate: 0.36 },
+  { code: 'DK', name: 'Denmark', flag: '🇩🇰', currency: 'DKK', currencySymbol: 'kr.', pppFactor: 7.45, exchangeRate: 6.88, colIndex: 79, rentIndex: 58, taxRate: 0.38 },
+  { code: 'NZ', name: 'New Zealand', flag: '🇳🇿', currency: 'NZD', currencySymbol: 'NZ$', pppFactor: 1.48, exchangeRate: 1.68, colIndex: 72, rentIndex: 65, taxRate: 0.30 },
   { code: 'BR', name: 'Brazil', flag: '🇧🇷', currency: 'BRL', currencySymbol: 'R$', pppFactor: 2.85, exchangeRate: 5.75, colIndex: 34, rentIndex: 25, taxRate: 0.22 },
   { code: 'MX', name: 'Mexico', flag: '🇲🇽', currency: 'MXN', currencySymbol: 'MX$', pppFactor: 10.4, exchangeRate: 18.5, colIndex: 36, rentIndex: 34, taxRate: 0.24 },
   { code: 'CO', name: 'Colombia', flag: '🇨🇴', currency: 'COP', currencySymbol: 'COL$', pppFactor: 1450, exchangeRate: 4150, colIndex: 26, rentIndex: 22, taxRate: 0.20 },
   { code: 'TR', name: 'Turkey', flag: '🇹🇷', currency: 'TRY', currencySymbol: '₺', pppFactor: 12.5, exchangeRate: 36.2, colIndex: 33, rentIndex: 28, taxRate: 0.22 },
-  { code: 'SA', name: 'Saudi Arabia', flag: '🇸🇦', currency: 'SAR', currencySymbol: 'SAR', pppFactor: 2.45, exchangeRate: 3.75, colIndex: 55, rentIndex: 42, taxRate: 0.00 },
   { code: 'ZA', name: 'South Africa', flag: '🇿🇦', currency: 'ZAR', currencySymbol: 'R', pppFactor: 7.2, exchangeRate: 18.2, colIndex: 35, rentIndex: 25, taxRate: 0.26 },
 ];
 
@@ -68,8 +78,8 @@ export default function PPPSalaryClient() {
   const [fromCode, setFromCode] = useState<string>('US');
   const [toCode, setToCode] = useState<string>('NP');
   
-  // Empty default inputs
-  const [salaryInput, setSalaryInput] = useState<string>('');
+  // Pre-populated default salary for instant rendering
+  const [salaryInput, setSalaryInput] = useState<string>('50,000');
   const [frequency, setFrequency] = useState<SalaryFrequency>('year');
   const [taxMode, setTaxMode] = useState<TaxMode>('gross');
   const [payModel, setPayModel] = useState<RemotePayModel>('ppp');
@@ -249,17 +259,25 @@ Calculated at https://nepacalc.com/calculator/ppp-salary-converter/`;
 
   // Dynamic quick pills tailored to fromCountry currency scale
   const quickAmounts = useMemo(() => {
-    if (fromCountry.currency === 'USD' || fromCountry.currency === 'EUR' || fromCountry.currency === 'GBP' || fromCountry.currency === 'CAD' || fromCountry.currency === 'AUD' || fromCountry.currency === 'CHF') {
+    if (['USD', 'EUR', 'GBP', 'CAD', 'AUD', 'CHF', 'NZD'].includes(fromCountry.currency)) {
       return frequency === 'hour'
         ? [25, 40, 60, 100]
         : frequency === 'month'
         ? [3000, 5000, 8000, 12000]
         : [35000, 50000, 75000, 100000];
-    } else if (fromCountry.currency === 'NPR' || fromCountry.currency === 'INR' || fromCountry.currency === 'PKR') {
+    } else if (['NPR', 'INR', 'PKR', 'BDT', 'LKR'].includes(fromCountry.currency)) {
       return frequency === 'month'
         ? [30000, 50000, 100000, 200000]
         : [400000, 800000, 1500000, 2500000];
-    } else if (fromCountry.currency === 'JPY' || fromCountry.currency === 'KRW') {
+    } else if (['KWD', 'BHD', 'OMR'].includes(fromCountry.currency)) {
+      return frequency === 'month'
+        ? [300, 600, 1000, 1800]
+        : [4000, 7500, 12000, 20000];
+    } else if (['QAR', 'AED', 'SAR'].includes(fromCountry.currency)) {
+      return frequency === 'month'
+        ? [4000, 8000, 15000, 25000]
+        : [50000, 100000, 180000, 300000];
+    } else if (['JPY', 'KRW'].includes(fromCountry.currency)) {
       return frequency === 'month'
         ? [300000, 500000, 800000, 1200000]
         : [4000000, 6000000, 9000000, 15000000];
@@ -544,8 +562,8 @@ Calculated at https://nepacalc.com/calculator/ppp-salary-converter/`;
           {!hasSalary ? (
             /* EMPTY STATE: PROMPT USER CLEANLY (NO Rs.0 OR MISLEADING 1.00x) */
             <div className="my-auto py-8 text-center space-y-2">
-              <div className="w-10 h-10 rounded-full bg-slate-100 text-slate-500 mx-auto flex items-center justify-center font-bold text-lg">
-                $
+              <div className="w-10 h-10 rounded-full bg-slate-100 text-slate-600 mx-auto flex items-center justify-center">
+                <Calculator className="w-5 h-5 text-slate-600" />
               </div>
               <h3 className="text-sm font-bold text-slate-800">
                 Enter your salary to calculate purchasing power
@@ -598,31 +616,49 @@ Calculated at https://nepacalc.com/calculator/ppp-salary-converter/`;
                   </strong>{' '}
                   in {toCountry.name}.
                 </p>
+
+                {taxMode === 'net' && (
+                  <div className="mt-2.5 pt-2 border-t border-emerald-200/60 text-[11px] text-emerald-900 leading-snug">
+                    <span className="font-semibold">After-Tax (Net) Parity Note:</span> Reflects an estimated effective tax rate of ~{Math.round(fromCountry.taxRate * 100)}% in {fromCountry.name} vs. ~{Math.round(toCountry.taxRate * 100)}% in {toCountry.name} for an unmarried single professional baseline.
+                  </div>
+                )}
               </div>
 
               {/* 2. TRANSPARENT DISTINCTION: PPP VS BANK MARKET FOREX */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                <div className="p-2.5 bg-slate-50 border border-slate-200 rounded-lg">
-                  <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">
-                    1. Local PPP Target
-                  </span>
-                  <div className="font-extrabold text-slate-900 text-sm mt-0.5">
-                    {toCountry.currencySymbol}{Math.round(results.displayTargetLocal).toLocaleString()} {toCountry.currency}
+                <div className="p-2.5 bg-emerald-50/50 border border-emerald-200 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-bold text-emerald-800 uppercase tracking-wider block">
+                      Local Lifestyle Equivalent (PPP)
+                    </span>
+                    <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-900">
+                      WHAT YOU NEED
+                    </span>
                   </div>
-                  <p className="text-[11px] text-slate-500 mt-0.5">
-                    Equal purchasing power based on local basket of goods and services.
+                  <div className="font-extrabold text-emerald-950 text-base mt-1">
+                    {toCountry.currencySymbol}{Math.round(results.displayTargetLocal).toLocaleString()} {toCountry.currency}
+                    <span className="text-xs font-normal text-emerald-800 ml-1">/ {frequencyLabel}</span>
+                  </div>
+                  <p className="text-[11px] text-slate-600 mt-0.5">
+                    Amount needed locally to maintain the same standard of living.
                   </p>
                 </div>
 
                 <div className="p-2.5 bg-slate-50 border border-slate-200 rounded-lg">
-                  <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">
-                    2. Nominal Market Forex Value
-                  </span>
-                  <div className="font-extrabold text-slate-900 text-sm mt-0.5">
-                    {toCountry.currencySymbol}{Math.round(results.displayMarketLocal).toLocaleString()} {toCountry.currency}
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-bold text-slate-600 uppercase tracking-wider block">
+                      Actual Bank / Forex Value (Market Rate)
+                    </span>
+                    <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-slate-200 text-slate-800">
+                      NOMINAL CASH
+                    </span>
                   </div>
-                  <p className="text-[11px] text-slate-500 mt-0.5">
-                    If converted at bank exchange rate (~{toCountry.exchangeRate} {toCountry.currency}/USD).
+                  <div className="font-extrabold text-slate-900 text-base mt-1">
+                    {toCountry.currencySymbol}{Math.round(results.displayMarketLocal).toLocaleString()} {toCountry.currency}
+                    <span className="text-xs font-normal text-slate-500 ml-1">/ {frequencyLabel}</span>
+                  </div>
+                  <p className="text-[11px] text-slate-600 mt-0.5">
+                    Direct conversion at bank forex rate (~{toCountry.exchangeRate} {toCountry.currency}/USD).
                   </p>
                 </div>
               </div>
@@ -708,9 +744,26 @@ Calculated at https://nepacalc.com/calculator/ppp-salary-converter/`;
           </div>
         </div>
 
-        <p className="text-[11px] text-slate-500">
-          Source: World Bank World Development Indicators (WDI) private consumption PPP conversion factors (Series PA.NUS.PRVT.PP) and International Comparison Program (ICP).
-        </p>
+        <div className="pt-2 border-t border-slate-100 flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-600">
+          <span className="text-slate-400">Authoritative References:</span>
+          <a
+            href="https://www.worldbank.org/en/programs/icp"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-emerald-700 hover:text-emerald-900 underline"
+          >
+            World Bank International Comparison Program (ICP)
+          </a>
+          <span className="text-slate-300">|</span>
+          <a
+            href="https://data.worldbank.org/indicator/PA.NUS.PRVT.PP"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-emerald-700 hover:text-emerald-900 underline"
+          >
+            World Bank WDI Private Consumption PPP (PA.NUS.PRVT.PP)
+          </a>
+        </div>
       </div>
 
       {/* ── GLOBAL BENCHMARK COMPARISON TABLE (SCROLLABLE WITH OVERFLOW-X-AUTO) ── */}
@@ -723,7 +776,7 @@ Calculated at https://nepacalc.com/calculator/ppp-salary-converter/`;
             <p className="text-xs text-slate-500">
               {hasSalary
                 ? `Based on ${fromCountry.flag} ${fromCountry.name} baseline of ${fromCountry.currencySymbol}${Math.round(results.displayBaseSalary).toLocaleString()} / ${frequencyLabel} (${taxMode.toUpperCase()})`
-                : `Illustrative benchmarks based on standard $50,000 USD/year (${fromCountry.currencySymbol}${Math.round(50000 * fromCountry.exchangeRate).toLocaleString()} ${fromCountry.currency}) baseline`}
+                : 'Illustrative benchmarks based on a $50,000 USD/year baseline.'}
             </p>
           </div>
           <button
@@ -849,7 +902,7 @@ Calculated at https://nepacalc.com/calculator/ppp-salary-converter/`;
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-2">
-          {COUNTRIES.slice(0, 12).map((c) => {
+          {COUNTRIES.slice(0, 18).map((c) => {
             const monthlyCost = 3800 * (c.colIndex / 100);
             const activeSavings = parsedSavings > 0 ? parsedSavings : 15000;
             const months = (activeSavings / monthlyCost).toFixed(1);

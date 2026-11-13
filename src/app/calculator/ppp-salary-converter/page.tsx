@@ -6,7 +6,7 @@ import Link from 'next/link';
 export const metadata: Metadata = {
   title: 'PPP Salary Converter: Compare Cost of Living & Buying Power',
   description:
-    'Convert salaries between 32+ countries using World Bank Purchasing Power Parity (PPP) data. Compare true buying power, cost of living, and remote work pay.',
+    'Convert salaries between 40+ countries using World Bank Purchasing Power Parity (PPP) data. Compare true buying power, cost of living, and remote work pay.',
   keywords: [
     'Purchasing Power Parity calculator',
     'Purchasing Power Parity salary converter',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     url: 'https://nepacalc.com/calculator/ppp-salary-converter/',
     title: 'PPP Salary Converter: Compare Cost of Living & Buying Power',
     description:
-      'Convert salaries between 32+ countries using World Bank Purchasing Power Parity (PPP) data. Compare true buying power, cost of living, and remote work pay.',
+      'Convert salaries between 40+ countries using World Bank Purchasing Power Parity (PPP) data. Compare true buying power, cost of living, and remote work pay.',
     siteName: 'NepaCalc',
     images: [
       {
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'PPP Salary Converter: Compare Cost of Living & Buying Power',
     description:
-      'Convert salaries between 32+ countries using World Bank Purchasing Power Parity (PPP) data. Compare true buying power, cost of living, and remote work pay.',
+      'Convert salaries between 40+ countries using World Bank Purchasing Power Parity (PPP) data. Compare true buying power, cost of living, and remote work pay.',
     images: ['https://nepacalc.com/images/ppp-salary-converter-og.png'],
   },
 };
@@ -81,7 +81,7 @@ export default function PPPSalaryConverterPage() {
     {
       name: 'What is the Purchasing Power Parity between India and the United States?',
       acceptedAnswer: {
-        text: 'Under World Bank private consumption PPP estimates, the PPP factor for India is approximately 24.1 INR per 1 USD, whereas the market exchange rate is approximately 86.8 INR per 1 USD. This means a salary of $50,000 in the US provides the equivalent purchasing power of roughly 1,205,000 INR ($13,882 USD) in India. If a remote worker in India earns a full US salary of $50,000 (~4,340,000 INR), their local purchasing power is equivalent to earning over $180,000 in the United States (a 3.6x multiplier).',
+        text: 'Under World Bank private consumption PPP estimates (Series PA.NUS.PRVT.PP), the PPP factor for India is approximately 23.0 INR per 1 USD, whereas the market exchange rate is approximately 86.8 INR per 1 USD. This means a salary of $50,000 in the US provides the equivalent purchasing power of roughly 1,150,000 INR (~$13,248 USD) in India. If a remote worker in India earns a full US salary of $50,000 (~4,340,000 INR), their local purchasing power is equivalent to earning over $188,000 in the United States (a ~3.77x multiplier).',
       },
     },
     {
@@ -120,7 +120,7 @@ export default function PPPSalaryConverterPage() {
         url: 'https://nepacalc.com/calculator/ppp-salary-converter/',
         name: 'PPP Salary Converter: Compare Cost of Living & Buying Power',
         description:
-          'Convert salaries between 32+ countries using World Bank Purchasing Power Parity (PPP) data. Compare true buying power, cost of living, and remote work pay.',
+          'Convert salaries between 40+ countries using World Bank Purchasing Power Parity (PPP) data. Compare true buying power, cost of living, and remote work pay.',
         isPartOf: {
           '@type': 'WebSite',
           '@id': 'https://nepacalc.com/#website',
