@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import Link from 'next/link';
 import NepaliDate from 'nepali-date-converter';
+import HistoryClientPagination from './HistoryClientPagination';
 
 export const metadata: Metadata = {
   title: 'Gold Rate History in Nepal – Historical Gold Prices',
@@ -71,7 +72,6 @@ export default function HistoryHubPage() {
 
   const tableData = Array.from(grouped.values()).sort((a, b) => new Date(b.date_ad).getTime() - new Date(a.date_ad).getTime());
   
-  const recentRecords = tableData.slice(0, 30);
   const years = Array.from(new Set(allRecords.map(r => r.date_ad?.substring(0, 4)).filter(Boolean))).sort((a, b) => Number(b) - Number(a));
 
   // Statistics Calculation
@@ -156,44 +156,50 @@ export default function HistoryHubPage() {
         {/* H1 & Intro */}
         <header className="max-w-4xl mb-6"><h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">Gold Rate History in Nepal</h1></header>
 
-        {/* The Dataset Table */}
+        {/* The Dataset Table with Pagination & Full Bot Indexing */}
         <section className="max-w-4xl">
           <h2 className="text-2xl font-black text-slate-900 mb-4">Gold and Silver Rate History</h2>
-          <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm text-left border-collapse min-w-[600px]">
-                <caption className="sr-only">Gold and Silver Rate History in Nepal</caption>
-                <thead className="bg-slate-50 border-b border-slate-200 text-xs font-black uppercase tracking-wider text-slate-600">
-                  <tr>
-                    <th scope="col" className="px-4 py-3 whitespace-nowrap">Date (A.D.)</th>
-                    <th scope="col" className="px-4 py-3 whitespace-nowrap">Date (B.S.)</th>
-                    <th scope="col" className="px-4 py-3 whitespace-nowrap text-right">Gold Rate / Tola</th>
-                    <th scope="col" className="px-4 py-3 whitespace-nowrap text-right">Silver Rate / Tola</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100">
-                  {recentRecords.map((row) => (
-                    <tr key={row.date_ad} className="hover:bg-amber-50/40 transition-colors">
-                      <td className="px-4 py-2.5 font-bold text-slate-900 whitespace-nowrap">{row.date_ad}</td>
-                      <td className="px-4 py-2.5 text-slate-600 whitespace-nowrap">{row.date_bs || '-'}</td>
-                      <td className="px-4 py-2.5 font-bold text-amber-700 text-right whitespace-nowrap">
-                        {row.fine_gold ? `NPR ${fmtNPR(row.fine_gold)}` : '-'}
-                      </td>
-                      <td className="px-4 py-2.5 font-bold text-slate-600 text-right whitespace-nowrap">
-                        {row.silver ? `NPR ${fmtNPR(row.silver)}` : '-'}
-                      </td>
-                    </tr>
-                  ))}
-                  {recentRecords.length === 0 && (
+          <HistoryClientPagination defaultRowsPerPage={30}>
+            <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm text-left border-collapse min-w-[600px]">
+                  <caption className="sr-only">Gold and Silver Rate History in Nepal</caption>
+                  <thead className="bg-slate-50 border-b border-slate-200 text-xs font-black uppercase tracking-wider text-slate-600">
                     <tr>
-                      <td colSpan={4} className="px-4 py-10 text-center text-slate-500">No historical records available.</td>
+                      <th scope="col" className="px-4 py-3 whitespace-nowrap">Date (A.D.)</th>
+                      <th scope="col" className="px-4 py-3 whitespace-nowrap">Date (B.S.)</th>
+                      <th scope="col" className="px-4 py-3 whitespace-nowrap text-right">Gold Rate / Tola</th>
+                      <th scope="col" className="px-4 py-3 whitespace-nowrap text-right">Silver Rate / Tola</th>
                     </tr>
-                  )}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {tableData.map((row) => (
+                      <tr
+                        key={row.date_ad}
+                        className="history-data-row hover:bg-amber-50/40 transition-colors"
+                        data-date-ad={row.date_ad}
+                        data-date-bs={row.date_bs || ''}
+                      >
+                        <td className="px-4 py-2.5 font-bold text-slate-900 whitespace-nowrap">{row.date_ad}</td>
+                        <td className="px-4 py-2.5 text-slate-600 whitespace-nowrap">{row.date_bs || '-'}</td>
+                        <td className="px-4 py-2.5 font-bold text-amber-700 text-right whitespace-nowrap">
+                          {row.fine_gold ? `NPR ${fmtNPR(row.fine_gold)}` : '-'}
+                        </td>
+                        <td className="px-4 py-2.5 font-bold text-slate-600 text-right whitespace-nowrap">
+                          {row.silver ? `NPR ${fmtNPR(row.silver)}` : '-'}
+                        </td>
+                      </tr>
+                    ))}
+                    {tableData.length === 0 && (
+                      <tr>
+                        <td colSpan={4} className="px-4 py-10 text-center text-slate-500">No historical records available.</td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
-          <p className="text-xs text-slate-500 mt-3">Showing the {recentRecords.length} most recent historical records.</p>
+          </HistoryClientPagination>
         </section>
 
         {/* Intro moved below dataset */}
