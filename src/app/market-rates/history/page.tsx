@@ -4,26 +4,26 @@ import fs from 'fs';
 import path from 'path';
 import Link from 'next/link';
 import NepaliDate from 'nepali-date-converter';
-import HistoryClientPagination from './HistoryClientPagination';
 import FenegosidaHistoryClient from './FenegosidaHistoryClient';
 
 export const metadata: Metadata = {
-  title: 'Gold Rate History in Nepal – Historical Gold Prices',
-  description: 'Historical gold and silver rates in Nepal by date, including gold and silver prices per tola and other available units.',
+  title: 'Gold and Silver Price History in Nepal – Historical Gold Prices',
+  description: 'Official gold and silver price history in Nepal from FENEGOSIDA. Daily, monthly, and yearly rates per Tola and 10 Grams from BS 2070 to 2083. Search by year and month in Nepali calendar.',
   alternates: {
     canonical: 'https://nepacalc.com/market-rates/history/',
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: { index: true, follow: true, 'max-snippet': -1, 'max-image-preview': 'large', 'max-video-preview': -1 },
   },
   openGraph: {
     type: 'website',
     siteName: 'NepaCalc',
-    title: 'Gold Rate History in Nepal – Historical Gold Prices',
-    description: 'Historical gold and silver rates in Nepal by date, including gold and silver prices per tola and other available units.',
+    title: 'Gold and Silver Price History in Nepal – Historical Gold Prices',
+    description: 'Official gold and silver price history in Nepal from FENEGOSIDA. Daily, monthly, and yearly rates per Tola and 10 Grams from BS 2070 to 2083.',
     url: 'https://nepacalc.com/market-rates/history/',
-    images: [{ url: 'https://nepacalc.com/images/og/history-gold-silver-nepal.jpg', width: 1200, height: 630, alt: 'Gold Rate History in Nepal' }]
+    images: [{ url: 'https://nepacalc.com/images/og/history-gold-silver-nepal.jpg', width: 1200, height: 630, alt: 'Gold and Silver Price History in Nepal' }]
   },
 };
 
@@ -198,7 +198,7 @@ export default function HistoryHubPage() {
   const datasetSchema = {
     '@context': 'https://schema.org',
     '@type': 'Dataset',
-    name: 'Gold Rate History in Nepal',
+    name: 'Gold and Silver Price History in Nepal',
     description: 'Historical gold and silver rates in Nepal by date, including rates per tola and other available units.',
     url: 'https://nepacalc.com/market-rates/history/',
     spatialCoverage: {
@@ -218,62 +218,34 @@ export default function HistoryHubPage() {
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10 text-slate-800">
         
         {/* H1 & Intro */}
-        <header className="max-w-4xl mb-6"><h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">Gold Rate History in Nepal</h1></header>
+        <header className="max-w-4xl mb-6"><h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">Gold and Silver Price History in Nepal</h1></header>
 
         {/* Official FENEGOSIDA History Explorer (By Day, By Month, Week Min/Max, Month Min/Max, Year Min/Max) */}
         <FenegosidaHistoryClient dailyHistory={dailyHistory.slice(0, 30)} encodedPayload={encodedPayload} />
 
-        {/* The Dataset Table with Pagination & Full Bot Indexing */}
-        <section className="max-w-4xl">
-          <h2 className="text-2xl font-black text-slate-900 mb-4">Gold and Silver Rate History</h2>
-          <HistoryClientPagination defaultRowsPerPage={30}>
-            <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm text-left border-collapse min-w-[600px]">
-                  <caption className="sr-only">Gold and Silver Rate History in Nepal</caption>
-                  <thead className="bg-slate-50 border-b border-slate-200 text-xs font-black uppercase tracking-wider text-slate-600">
-                    <tr>
-                      <th scope="col" className="px-4 py-3 whitespace-nowrap">Date (A.D.)</th>
-                      <th scope="col" className="px-4 py-3 whitespace-nowrap">Date (B.S.)</th>
-                      <th scope="col" className="px-4 py-3 whitespace-nowrap text-right">Gold Rate / Tola</th>
-                      <th scope="col" className="px-4 py-3 whitespace-nowrap text-right">Silver Rate / Tola</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-100">
-                    {displayTableData.map((row) => (
-                      <tr
-                        key={row.date_ad}
-                        className="history-data-row hover:bg-amber-50/40 transition-colors"
-                        data-date-ad={row.date_ad}
-                        data-date-bs={row.date_bs || ''}
-                      >
-                        <td className="px-4 py-2.5 font-bold text-slate-900 whitespace-nowrap">{row.date_ad}</td>
-                        <td className="px-4 py-2.5 text-slate-600 whitespace-nowrap">{row.date_bs || '-'}</td>
-                        <td className="px-4 py-2.5 font-bold text-amber-700 text-right whitespace-nowrap">
-                          {row.fine_gold ? `NPR ${fmtNPR(row.fine_gold)}` : '-'}
-                        </td>
-                        <td className="px-4 py-2.5 font-bold text-slate-600 text-right whitespace-nowrap">
-                          {row.silver ? `NPR ${fmtNPR(row.silver)}` : '-'}
-                        </td>
-                      </tr>
-                    ))}
-                    {displayTableData.length === 0 && (
-                      <tr>
-                        <td colSpan={4} className="px-4 py-10 text-center text-slate-500">No historical records available.</td>
-                      </tr>
-                    )}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </HistoryClientPagination>
-        </section>
-
-        {/* Intro moved below dataset */}
-        <section className="max-w-4xl">
-          <p className="text-lg leading-relaxed text-slate-700">
-            Historical gold and silver rates in Nepal by date, including gold and silver prices per tola and other available units.
-          </p>
+        {/* SEO-friendly hidden table for search engine crawling (not shown to users) */}
+        <section className="sr-only" aria-hidden="true">
+          <table>
+            <caption>Gold and Silver Rate History in Nepal</caption>
+            <thead>
+              <tr>
+                <th>Date (A.D.)</th>
+                <th>Date (B.S.)</th>
+                <th>Gold Rate per Tola</th>
+                <th>Silver Rate per Tola</th>
+              </tr>
+            </thead>
+            <tbody>
+              {displayTableData.map((row) => (
+                <tr key={row.date_ad}>
+                  <td>{row.date_ad}</td>
+                  <td>{row.date_bs || ''}</td>
+                  <td>{row.fine_gold ? `NPR ${fmtNPR(row.fine_gold)}` : ''}</td>
+                  <td>{row.silver ? `NPR ${fmtNPR(row.silver)}` : ''}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </section>
 
         {/* Year Navigation */}

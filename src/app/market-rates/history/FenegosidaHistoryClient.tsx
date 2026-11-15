@@ -315,7 +315,8 @@ export default function FenegosidaHistoryClient({
                 <table className="w-full text-sm text-left border-collapse">
                   <thead className="border-b border-slate-200 text-xs font-bold text-slate-700">
                     <tr>
-                      <th scope="col" className="py-3 px-4 text-left">Date</th>
+                      <th scope="col" className="py-3 px-4 text-left">Date (B.S.)</th>
+                      <th scope="col" className="py-3 px-4 text-left">Date (A.D.)</th>
                       <th scope="col" className="py-3 px-4 text-right">Fine Gold (9999)</th>
                       <th scope="col" className="py-3 px-4 text-right">Silver</th>
                     </tr>
@@ -329,6 +330,9 @@ export default function FenegosidaHistoryClient({
                           <td className="py-3.5 px-4 font-semibold text-slate-800 whitespace-nowrap">
                             {formatNepaliDateBS(row.date_ad)}
                           </td>
+                          <td className="py-3.5 px-4 text-slate-500 text-sm whitespace-nowrap">
+                            {row.date_ad}
+                          </td>
                           <td className="py-3.5 px-4 font-bold text-slate-900 text-right whitespace-nowrap">
                             {fmtNPR(goldVal)}
                           </td>
@@ -340,7 +344,7 @@ export default function FenegosidaHistoryClient({
                     })}
                     {(!monthResult.daily_records || monthResult.daily_records.length === 0) && (
                       <tr>
-                        <td colSpan={3} className="py-8 px-4 text-center text-slate-400">
+                        <td colSpan={4} className="py-8 px-4 text-center text-slate-400">
                           No verified trading records available for this month.
                         </td>
                       </tr>
