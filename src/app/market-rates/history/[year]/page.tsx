@@ -238,25 +238,7 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
           </YearClientFilter>
         </section>
 
-        {/* 5. Dataset Summary (Placed exactly below table data as requested) */}
-        <section className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm max-w-4xl">
-          <h2 className="text-xs font-black uppercase tracking-wider text-slate-500 mb-6">DATASET SUMMARY</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-5 gap-x-4 text-sm">
-            <div><span className="block text-slate-400 text-xs mb-1">Dataset</span><span className="font-bold text-slate-800">Nepal Gold History</span></div>
-            <div><span className="block text-slate-400 text-xs mb-1">Location</span><span className="font-bold text-slate-800">Nepal</span></div>
-            <div><span className="block text-slate-400 text-xs mb-1">Period</span><span className="font-bold text-slate-800">{year}</span></div>
-            <div><span className="block text-slate-400 text-xs mb-1">Currency</span><span className="font-bold text-slate-800">NPR</span></div>
-            <div><span className="block text-slate-400 text-xs mb-1">Primary unit</span><span className="font-bold text-slate-800">Tola (11.66g)</span></div>
-            <div><span className="block text-slate-400 text-xs mb-1">Number of dates</span><span className="font-bold text-slate-800">{tableData.length}</span></div>
-            <div><span className="block text-slate-400 text-xs mb-1">Number of records</span><span className="font-bold text-slate-800">{yearRecords.length}</span></div>
-            <div><span className="block text-slate-400 text-xs mb-1">First available date</span><span className="font-bold text-slate-800">{firstGold?.date_ad || 'N/A'}</span></div>
-            <div><span className="block text-slate-400 text-xs mb-1">Latest available date</span><span className="font-bold text-slate-800">{latestGold?.date_ad || 'N/A'}</span></div>
-            <div><span className="block text-slate-400 text-xs mb-1">Last verified</span><span className="font-bold text-slate-800">{dataset.meta?.last_updated_ad || '2026-11-15'}</span></div>
-            <div className="col-span-2"><span className="block text-slate-400 text-xs mb-1">Source</span><span className="font-bold text-slate-800">Official Sources</span></div>
-          </div>
-        </section>
-
-        {/* 6. Gold Rate Summary for {year} (Placed exactly below table & dataset summary) */}
+        {/* 5. Gold Rate Summary for {year} (Directly below table data) */}
         <section className="max-w-4xl space-y-4">
           <h2 className="text-xl sm:text-2xl font-bold text-slate-900">Gold Rate Summary for {year}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -295,7 +277,7 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
           </div>
         </section>
 
-        {/* 7. Silver Rate Summary for {year} */}
+        {/* 6. Silver Rate Summary for {year} */}
         <section className="max-w-4xl space-y-4">
           <h2 className="text-xl sm:text-2xl font-bold text-slate-900">Silver Rate Summary for {year}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -331,6 +313,24 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
               </span>
               <span className="block text-xs text-slate-400 mt-1">per tola</span>
             </div>
+          </div>
+        </section>
+
+        {/* 7. Dataset Summary (Placed above Source and Methodology as requested) */}
+        <section className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm max-w-4xl">
+          <h2 className="text-xs font-black uppercase tracking-wider text-slate-500 mb-6">DATASET SUMMARY</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-5 gap-x-4 text-sm">
+            <div><span className="block text-slate-400 text-xs mb-1">Dataset</span><span className="font-bold text-slate-800">Nepal Gold History</span></div>
+            <div><span className="block text-slate-400 text-xs mb-1">Location</span><span className="font-bold text-slate-800">Nepal</span></div>
+            <div><span className="block text-slate-400 text-xs mb-1">Period</span><span className="font-bold text-slate-800">{year}</span></div>
+            <div><span className="block text-slate-400 text-xs mb-1">Currency</span><span className="font-bold text-slate-800">NPR</span></div>
+            <div><span className="block text-slate-400 text-xs mb-1">Primary unit</span><span className="font-bold text-slate-800">Tola (11.66g)</span></div>
+            <div><span className="block text-slate-400 text-xs mb-1">Number of dates</span><span className="font-bold text-slate-800">{tableData.length}</span></div>
+            <div><span className="block text-slate-400 text-xs mb-1">Number of records</span><span className="font-bold text-slate-800">{yearRecords.length}</span></div>
+            <div><span className="block text-slate-400 text-xs mb-1">First available date</span><span className="font-bold text-slate-800">{firstGold?.date_ad || 'N/A'}</span></div>
+            <div><span className="block text-slate-400 text-xs mb-1">Latest available date</span><span className="font-bold text-slate-800">{latestGold?.date_ad || 'N/A'}</span></div>
+            <div><span className="block text-slate-400 text-xs mb-1">Last verified</span><span className="font-bold text-slate-800">{dataset.meta?.last_updated_ad || '2026-11-15'}</span></div>
+            <div className="col-span-2"><span className="block text-slate-400 text-xs mb-1">Source</span><span className="font-bold text-slate-800">Official Sources</span></div>
           </div>
         </section>
 
