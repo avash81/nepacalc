@@ -61,9 +61,20 @@ export default function SilverHistoricalData() {
   }, []);
 
   const yearlyData = [
-    { year: 2083, maxTola: 5000, minTola: 4000, source: 'FENEGOSIDA' },
-    { year: 2082, maxTola: 0, minTola: 0, source: 'FENEGOSIDA' },
-    { year: 2081, maxTola: 0, minTola: 0, source: 'FENEGOSIDA' },
+    { year: 2083, maxTola: 7505, minTola: 3600, source: 'FENEGOSIDA' },
+    { year: 2082, maxTola: 4895, minTola: 1765, source: 'FENEGOSIDA' },
+    { year: 2081, maxTola: 2135, minTola: 1365, source: 'FENEGOSIDA' },
+    { year: 2080, maxTola: 1545, minTola: 1220, source: 'FENEGOSIDA' },
+    { year: 2079, maxTola: 1450, minTola: 1100, source: 'FENEGOSIDA' },
+    { year: 2078, maxTola: 1400, minTola: 1120, source: 'FENEGOSIDA' },
+    { year: 2077, maxTola: 1435, minTola: 680, source: 'FENEGOSIDA' },
+    { year: 2076, maxTola: 940, minTola: 700, source: 'FENEGOSIDA' },
+    { year: 2075, maxTola: 800, minTola: 700, source: 'FENEGOSIDA' },
+    { year: 2074, maxTola: 835, minTola: 705, source: 'FENEGOSIDA' },
+    { year: 2073, maxTola: 920, minTola: 675, source: 'FENEGOSIDA' },
+    { year: 2072, maxTola: 760, minTola: 660, source: 'FENEGOSIDA' },
+    { year: 2071, maxTola: 900, minTola: 665, source: 'FENEGOSIDA' },
+    { year: 2070, maxTola: 1115, minTola: 790, source: 'FENEGOSIDA' },
   ];
 
   const fmt = (n: number) => n.toLocaleString('en-IN');

@@ -60,17 +60,20 @@ export default function HistoricalData() {
   }, []);
 
   const yearlyData = [
-    { year: 2083, maxTola: 316700, minTola: 285000, max10g: 271525, min10g: 244340, source: 'FENEGOSIDA' },
-    { year: 2082, maxTola: 286000, minTola: 250000, max10g: 245200, min10g: 214300, source: 'FENEGOSIDA' },
-    { year: 2081, maxTola: 250000, minTola: 180000, max10g: 214300, min10g: 154300, source: 'FENEGOSIDA' },
-    { year: 2080, maxTola: 180000, minTola: 150000, max10g: 154300, min10g: 128600, source: 'FENEGOSIDA' },
-    { year: 2079, maxTola: 150000, minTola: 120000, max10g: 128600, min10g: 102800, source: 'FENEGOSIDA' },
-    { year: 2078, maxTola: 120000, minTola: 100000, max10g: 102800, min10g: 85700, source: 'FENEGOSIDA' },
-    { year: 2077, maxTola: 99800, minTola: 100400, max10g: 85560, min10g: 86070, source: 'FENEGOSIDA', anomaly: true },
-    { year: 2076, maxTola: 85000, minTola: 70000, max10g: 72870, min10g: 60010, source: 'FENEGOSIDA' },
-    { year: 2075, maxTola: 70000, minTola: 58000, max10g: 60010, min10g: 49720, source: 'FENEGOSIDA' },
-    { year: 2074, maxTola: 58000, minTola: 53000, max10g: 49720, min10g: 45440, source: 'FENEGOSIDA' },
-    { year: 2073, maxTola: 53000, minTola: 48000, max10g: 45440, min10g: 41150, source: 'FENEGOSIDA' },
+    { year: 2083, maxTola: 339300, minTola: 259600, max10g: 290985, min10g: 222565, source: 'FENEGOSIDA' },
+    { year: 2082, maxTola: 270600, minTola: 151000, max10g: 231995, min10g: 129460, source: 'FENEGOSIDA' },
+    { year: 2081, maxTola: 171000, minTola: 116500, max10g: 146605, min10g: 99880, source: 'FENEGOSIDA' },
+    { year: 2080, maxTola: 122000, minTola: 101000, max10g: 104595, min10g: 86590, source: 'FENEGOSIDA' },
+    { year: 2079, maxTola: 105500, minTola: 91300, max10g: 90450, min10g: 78275, source: 'FENEGOSIDA' },
+    { year: 2078, maxTola: 96700, minTola: 85600, max10g: 82905, min10g: 73390, source: 'FENEGOSIDA' },
+    { year: 2077, maxTola: 103500, minTola: 73500, max10g: 88735, min10g: 63015, source: 'FENEGOSIDA' },
+    { year: 2076, maxTola: 73500, minTola: 59000, max10g: 63015, min10g: 50585, source: 'FENEGOSIDA' },
+    { year: 2075, maxTola: 60400, minTola: 55600, max10g: 51785, min10g: 47670, source: 'FENEGOSIDA' },
+    { year: 2074, maxTola: 57800, minTola: 52700, max10g: 49555, min10g: 45180, source: 'FENEGOSIDA' },
+    { year: 2073, maxTola: 59500, minTola: 47800, max10g: 51010, min10g: 40980, source: 'FENEGOSIDA' },
+    { year: 2072, maxTola: 54400, minTola: 42000, max10g: 46640, min10g: 40465, source: 'FENEGOSIDA' },
+    { year: 2071, maxTola: 57500, minTola: 42300, max10g: 49300, min10g: 42010, source: 'FENEGOSIDA' },
+    { year: 2070, maxTola: 63300, minTola: 48100, max10g: 54270, min10g: 41240, source: 'FENEGOSIDA' },
   ];
 
   const fmt = (n: number) => n.toLocaleString('en-IN');

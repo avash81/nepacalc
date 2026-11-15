@@ -5,6 +5,7 @@ import path from 'path';
 import Link from 'next/link';
 import NepaliDate from 'nepali-date-converter';
 import HistoryClientPagination from './HistoryClientPagination';
+import FenegosidaHistoryClient from './FenegosidaHistoryClient';
 
 export const metadata: Metadata = {
   title: 'Gold Rate History in Nepal – Historical Gold Prices',
@@ -29,6 +30,21 @@ export const metadata: Metadata = {
 export default function HistoryHubPage() {
   const dataPath = path.join(process.cwd(), 'public', 'data', 'historical-rates.json');
   let dataset: { data: any[]; meta: any } = { data: [], meta: {} };
+
+  // Load monthly data for FENEGOSIDA-style tabs
+  const monthlyPath = path.join(process.cwd(), 'public', 'data', 'historical-monthly-rates.json');
+  let monthlyData: Record<string, any> = {};
+  try {
+    const mRaw = fs.readFileSync(monthlyPath, 'utf8');
+    monthlyData = JSON.parse(mRaw).years || {};
+  } catch (e) {}
+
+  // Load daily history (last 365 days with both gram+tola)
+  const dailyHistPath = path.join(process.cwd(), 'public', 'data', 'daily-history.json');
+  let dailyHistory: any[] = [];
+  try {
+    dailyHistory = JSON.parse(fs.readFileSync(dailyHistPath, 'utf8'));
+  } catch (e) {}
 
   try {
     const fileContents = fs.readFileSync(dataPath, 'utf8');
@@ -155,6 +171,9 @@ export default function HistoryHubPage() {
         
         {/* H1 & Intro */}
         <header className="max-w-4xl mb-6"><h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">Gold Rate History in Nepal</h1></header>
+
+        {/* Official FENEGOSIDA History Explorer (By Day, By Month, Week Min/Max, Month Min/Max, Year Min/Max) */}
+        <FenegosidaHistoryClient dailyHistory={dailyHistory} monthlyData={monthlyData} />
 
         {/* The Dataset Table with Pagination & Full Bot Indexing */}
         <section className="max-w-4xl">

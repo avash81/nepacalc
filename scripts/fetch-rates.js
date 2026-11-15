@@ -45,6 +45,57 @@ const TYPES = {
   GOLD_TEJABI:  'तेजाबी सुन (१ तोला)',
 };
 
+// Bikram Sambat day matrix (2070-2090)
+const BU_MATRIX = {
+  2070:[31,31,31,32,31,31,29,30,30,29,30,30],
+  2071:[31,31,32,31,31,31,30,29,30,29,30,30],
+  2072:[31,32,31,32,31,30,30,29,30,29,30,30],
+  2073:[31,32,31,32,31,30,30,30,29,29,30,31],
+  2074:[31,31,31,32,31,31,30,29,30,29,30,30],
+  2075:[31,31,32,31,31,31,30,29,30,29,30,30],
+  2076:[31,32,31,32,31,30,30,30,29,29,30,30],
+  2077:[31,32,31,32,31,30,30,30,29,30,29,31],
+  2078:[31,31,31,32,31,31,30,29,30,29,30,30],
+  2079:[31,31,32,31,31,31,30,29,30,29,30,30],
+  2080:[31,32,31,32,31,30,30,30,29,29,30,30],
+  2081:[31,32,31,32,31,30,30,30,29,30,29,31],
+  2082:[31,31,32,31,31,31,30,29,30,29,30,30],
+  2083:[31,31,32,31,31,31,30,29,30,29,30,30]
+};
+
+function adToBs(adStr) {
+  const adDate = new Date(adStr + 'T00:00:00Z');
+  const W0 = Math.floor(Date.UTC(2013, 3, 14) / 864e5);
+  const adDay = Math.floor(adDate.getTime() / 864e5);
+  let diff = adDay - W0;
+
+  let bsYear = 2070;
+  for (const yr of Object.keys(BU_MATRIX).map(Number)) {
+    const daysInYear = BU_MATRIX[yr].reduce((a, b) => a + b, 0);
+    if (diff < daysInYear) {
+      bsYear = yr;
+      break;
+    }
+    diff -= daysInYear;
+    bsYear = yr + 1;
+  }
+
+  let bsMonth = 1;
+  for (let m = 0; m < 12; m++) {
+    const dim = BU_MATRIX[bsYear]?.[m] ?? 30;
+    if (diff < dim) {
+      bsMonth = m + 1;
+      break;
+    }
+    diff -= dim;
+  }
+
+  const bsDay = diff + 1;
+  const mm = String(bsMonth).padStart(2, '0');
+  const dd = String(bsDay).padStart(2, '0');
+  return { date_bs: `${bsYear}/${mm}/${dd}`, year: bsYear, month: bsMonth, day: bsDay };
+}
+
 function fetchJson(url, timeoutMs = 12000) {
   return new Promise((resolve, reject) => {
     const req = https.get(url, {
@@ -141,7 +192,8 @@ async function main() {
 
     writeRates(output);
 
-    // --- NEW: AUTOMATED DAILY HISTORY SYSTEM ---
+    // --- AUTOMATED DAILY HISTORY SYSTEM (Both Gram & Tola) ---
+    const bsInfo = adToBs(rateDate);
     const historyPath = path.join(__dirname, '../public/data/daily-history.json');
     let history = [];
     try {
@@ -156,8 +208,13 @@ async function main() {
     const existingIndex = history.findIndex(h => h.date === rateDate);
     const newEntry = {
       date: rateDate,
+      date_bs: bsInfo.date_bs,
       gold: goldTola,
-      silver: silverTola
+      silver: silverTola,
+      gold_tola: goldTola,
+      gold_10g: gold10g,
+      silver_tola: silverTola,
+      silver_10g: silver10g
     };
     
     if (existingIndex >= 0) {
@@ -170,7 +227,8 @@ async function main() {
     if (history.length > 365) history = history.slice(0, 365);
     
     fs.writeFileSync(historyPath, JSON.stringify(history, null, 2));
-    // -------------------------------------------
+    console.log(`   ✓ daily-history.json updated → gold tola ${goldTola}, gold 10g ${gold10g}, silver tola ${silverTola}, silver 10g ${silver10g}`);
+    // -------------------------------------------------------------
 
     // --- AUTO-APPEND TO historical-rates.json ---
     const historicalRatesPath = path.join(__dirname, '../public/data/historical-rates.json');
@@ -186,32 +244,31 @@ async function main() {
     const allRecords = Array.isArray(historicalDataset.data) ? historicalDataset.data : [];
 
     // Build the two new records for today (gold + silver)
-    const tolaToGrams = 11.664;
-    const goldPerGram = goldTola ? Number((goldTola / tolaToGrams).toFixed(2)) : null;
-    const silverPerGram = silverTola ? Number((silverTola / tolaToGrams).toFixed(2)) : null;
+    const goldPerGram = gold10g ? Math.round((gold10g / 10) * 100) / 100 : Math.round((goldTola / 11.6638) * 100) / 100;
+    const silverPerGram = silver10g ? Math.round((silver10g / 10) * 100) / 100 : Math.round((silverTola / 11.6638) * 100) / 100;
 
     const newGoldRecord = {
       date_ad:              rateDate,
-      date_bs:              null,
+      date_bs:              bsInfo.date_bs,
       metal:                'Gold',
       rate_type:            'Fine Gold (9999)',
       source_per_tola:      goldTola,
       source_per_10g:       gold10g,
       calculated_per_gram:  goldPerGram,
-      calculated_per_kg:    goldPerGram ? Number((goldPerGram * 1000).toFixed(2)) : null,
+      calculated_per_kg:    Math.round(goldPerGram * 1000),
       source:               'FENEGOSIDA',
       source_url:           'https://fenegosida.org',
       status:               'Verified'
     };
     const newSilverRecord = {
       date_ad:              rateDate,
-      date_bs:              null,
+      date_bs:              bsInfo.date_bs,
       metal:                'Silver',
       rate_type:            'Silver',
       source_per_tola:      silverTola,
       source_per_10g:       silver10g,
       calculated_per_gram:  silverPerGram,
-      calculated_per_kg:    silverPerGram ? Number((silverPerGram * 1000).toFixed(2)) : null,
+      calculated_per_kg:    Math.round(silverPerGram * 1000),
       source:               'FENEGOSIDA',
       source_url:           'https://fenegosida.org',
       status:               'Verified'
@@ -219,7 +276,7 @@ async function main() {
 
     // Upsert: remove any existing record for this date+metal, then prepend fresh ones
     const filtered = allRecords.filter(
-      r => !(r.date_ad === rateDate && (r.metal.toLowerCase() === 'gold' || r.metal.toLowerCase() === 'silver') && (r.source_name === 'FENEGOSIDA' || r.source === 'FENEGOSIDA'))
+      r => !(r.date_ad === rateDate && (r.metal.toLowerCase() === 'gold' || r.metal.toLowerCase() === 'silver'))
     );
     const updatedRecords = [newGoldRecord, newSilverRecord, ...filtered];
 
@@ -233,7 +290,55 @@ async function main() {
 
     fs.writeFileSync(historicalRatesPath, JSON.stringify(historicalDataset, null, 2));
     console.log(`   ✓ historical-rates.json updated → gold ${goldTola}, silver ${silverTola} for ${rateDate}`);
-    // -------------------------------------------------
+
+    // --- AUTO-UPDATE historical-monthly-rates.json ---
+    const monthlyRatesPath = path.join(__dirname, '../public/data/historical-monthly-rates.json');
+    try {
+      if (fs.existsSync(monthlyRatesPath)) {
+        const monthlyDataset = JSON.parse(fs.readFileSync(monthlyRatesPath, 'utf8'));
+        const yrKey = String(bsInfo.year);
+        const moKey = String(bsInfo.month);
+
+        if (monthlyDataset.years && monthlyDataset.years[yrKey] && monthlyDataset.years[yrKey].months[moKey]) {
+          const monthObj = monthlyDataset.years[yrKey].months[moKey];
+          if (!monthObj.daily_records) monthObj.daily_records = [];
+
+          // Upsert today's entry
+          const dayIdx = monthObj.daily_records.findIndex(d => d.date_ad === rateDate);
+          const dayEntry = {
+            date_ad: rateDate,
+            gold_tola: goldTola,
+            gold_10g: gold10g,
+            silver_tola: silverTola,
+            silver_10g: silver10g
+          };
+
+          if (dayIdx >= 0) {
+            monthObj.daily_records[dayIdx] = dayEntry;
+          } else {
+            monthObj.daily_records.push(dayEntry);
+            monthObj.daily_count = monthObj.daily_records.length;
+          }
+
+          // Update min/max if applicable
+          if (!monthObj.month_minmax) monthObj.month_minmax = {};
+          const allGolds = monthObj.daily_records.map(d => d.gold_tola).filter(Boolean);
+          const allGold10g = monthObj.daily_records.map(d => d.gold_10g).filter(Boolean);
+          const allSilvers = monthObj.daily_records.map(d => d.silver_tola).filter(Boolean);
+          const allSilver10g = monthObj.daily_records.map(d => d.silver_10g).filter(Boolean);
+
+          if (allGolds.length) monthObj.month_minmax.gold_tola = { min: Math.min(...allGolds), max: Math.max(...allGolds) };
+          if (allGold10g.length) monthObj.month_minmax.gold_10g = { min: Math.min(...allGold10g), max: Math.max(...allGold10g) };
+          if (allSilvers.length) monthObj.month_minmax.silver_tola = { min: Math.min(...allSilvers), max: Math.max(...allSilvers) };
+          if (allSilver10g.length) monthObj.month_minmax.silver_10g = { min: Math.min(...allSilver10g), max: Math.max(...allSilver10g) };
+
+          fs.writeFileSync(monthlyRatesPath, JSON.stringify(monthlyDataset, null, 2));
+          console.log(`   ✓ historical-monthly-rates.json updated for ${bsInfo.year}/${bsInfo.month}`);
+        }
+      }
+    } catch (e) {
+      console.warn('Could not update historical-monthly-rates.json', e);
+    }
 
     // ── Auto-patch FALLBACK constants in useLiveRates.ts ──────────────────────
     // This keeps the static fallback (shown when /data/live-rates.json is unreachable)
