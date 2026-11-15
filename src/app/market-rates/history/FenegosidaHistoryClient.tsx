@@ -429,25 +429,86 @@ export default function FenegosidaHistoryClient({
         ══════════════════════════════════════════════════════════════ */}
         {tab === 'weekminmax' && (
           <div>
-            <h3 className="text-lg font-bold text-slate-900 mb-5">Rate History by Week [Maximum to Minimum]</h3>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-5 gap-2">
+              <h3 className="text-lg font-bold text-slate-900">Rate History by Week [Maximum to Minimum]</h3>
+              {weekResult && weekResult.length > 0 && (
+                <span className="text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
+                  {weekResult[weekResult.length - 1].date} → {weekResult[0].date}
+                </span>
+              )}
+            </div>
             {weekResult && weekResult.length > 0 ? (() => {
-              const goldTolas = weekResult.map(r => r.gold_tola).filter(Boolean) as number[];
-              const gold10gs  = weekResult.map(r => r.gold_10g).filter(Boolean) as number[];
-              const silvTolas = weekResult.map(r => r.silver_tola).filter(Boolean) as number[];
-              const silv10gs  = weekResult.map(r => r.silver_10g).filter(Boolean) as number[];
+              let maxGoldTola: any = null;
+              let minGoldTola: any = null;
+              let maxGold10g: any = null;
+              let minGold10g: any = null;
+              let maxSilvTola: any = null;
+              let minSilvTola: any = null;
+              let maxSilv10g: any = null;
+              let minSilv10g: any = null;
+
+              weekResult.forEach(r => {
+                if (r.gold_tola != null) {
+                  if (!maxGoldTola || r.gold_tola > maxGoldTola.gold_tola) maxGoldTola = r;
+                  if (!minGoldTola || r.gold_tola < minGoldTola.gold_tola) minGoldTola = r;
+                }
+                if (r.gold_10g != null) {
+                  if (!maxGold10g || r.gold_10g > maxGold10g.gold_10g) maxGold10g = r;
+                  if (!minGold10g || r.gold_10g < minGold10g.gold_10g) minGold10g = r;
+                }
+                if (r.silver_tola != null) {
+                  if (!maxSilvTola || r.silver_tola > maxSilvTola.silver_tola) maxSilvTola = r;
+                  if (!minSilvTola || r.silver_tola < minSilvTola.silver_tola) minSilvTola = r;
+                }
+                if (r.silver_10g != null) {
+                  if (!maxSilv10g || r.silver_10g > maxSilv10g.silver_10g) maxSilv10g = r;
+                  if (!minSilv10g || r.silver_10g < minSilv10g.silver_10g) minSilv10g = r;
+                }
+              });
+
+              const fmtRecordDate = (r: any) => {
+                if (!r) return '';
+                const bsStr = r.date_bs || formatNepaliDateBS(r.date);
+                return `${bsStr} (${r.date})`;
+              };
+
               return (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Per 1 Tola */}
                   <div className="space-y-4">
                     <h4 className="text-xs font-black uppercase text-slate-500 tracking-wider">Per 1 Tola</h4>
-                    <MinMaxCard label="Fine Gold (9999)" min={Math.min(...goldTolas)} max={Math.max(...goldTolas)} />
-                    <MinMaxCard label="Silver" min={Math.min(...silvTolas)} max={Math.max(...silvTolas)} />
+                    <MinMaxCard
+                      label="Fine Gold (9999)"
+                      min={minGoldTola?.gold_tola}
+                      max={maxGoldTola?.gold_tola}
+                      minDate={fmtRecordDate(minGoldTola)}
+                      maxDate={fmtRecordDate(maxGoldTola)}
+                    />
+                    <MinMaxCard
+                      label="Silver"
+                      min={minSilvTola?.silver_tola}
+                      max={maxSilvTola?.silver_tola}
+                      minDate={fmtRecordDate(minSilvTola)}
+                      maxDate={fmtRecordDate(maxSilvTola)}
+                    />
                   </div>
                   {/* Per 10 Grams */}
                   <div className="space-y-4">
                     <h4 className="text-xs font-black uppercase text-slate-500 tracking-wider">Per 10 Grams</h4>
-                    <MinMaxCard label="Fine Gold (9999)" min={Math.min(...gold10gs)} max={Math.max(...gold10gs)} />
-                    <MinMaxCard label="Silver" min={Math.min(...silv10gs)} max={Math.max(...silv10gs)} />
+                    <MinMaxCard
+                      label="Fine Gold (9999)"
+                      min={minGold10g?.gold_10g}
+                      max={maxGold10g?.gold_10g}
+                      minDate={fmtRecordDate(minGold10g)}
+                      maxDate={fmtRecordDate(maxGold10g)}
+                    />
+                    <MinMaxCard
+                      label="Silver"
+                      min={minSilv10g?.silver_10g}
+                      max={maxSilv10g?.silver_10g}
+                      minDate={fmtRecordDate(minSilv10g)}
+                      maxDate={fmtRecordDate(maxSilv10g)}
+                    />
                   </div>
                 </div>
               );
@@ -496,20 +557,73 @@ export default function FenegosidaHistoryClient({
               </button>
             </div>
 
-            {mmResult ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-4">
-                  <h4 className="text-xs font-black uppercase text-slate-500 tracking-wider">Per 1 Tola</h4>
-                  <MinMaxCard label="Fine Gold (9999)" min={mmResult.month.month_minmax.gold_tola?.min} max={mmResult.month.month_minmax.gold_tola?.max} />
-                  <MinMaxCard label="Silver" min={mmResult.month.month_minmax.silver_tola?.min} max={mmResult.month.month_minmax.silver_tola?.max} />
+            {mmResult ? (() => {
+              const records = mmResult.month.daily_records || [];
+              let maxGT: any = null, minGT: any = null;
+              let maxG10: any = null, minG10: any = null;
+              let maxST: any = null, minST: any = null;
+              let maxS10: any = null, minS10: any = null;
+
+              records.forEach(r => {
+                if (r.gold_tola != null) {
+                  if (!maxGT || r.gold_tola > maxGT.gold_tola) maxGT = r;
+                  if (!minGT || r.gold_tola < minGT.gold_tola) minGT = r;
+                }
+                if (r.gold_10g != null) {
+                  if (!maxG10 || r.gold_10g > maxG10.gold_10g) maxG10 = r;
+                  if (!minG10 || r.gold_10g < minG10.gold_10g) minG10 = r;
+                }
+                if (r.silver_tola != null) {
+                  if (!maxST || r.silver_tola > maxST.silver_tola) maxST = r;
+                  if (!minST || r.silver_tola < minST.silver_tola) minST = r;
+                }
+                if (r.silver_10g != null) {
+                  if (!maxS10 || r.silver_10g > maxS10.silver_10g) maxS10 = r;
+                  if (!minS10 || r.silver_10g < minS10.silver_10g) minS10 = r;
+                }
+              });
+
+              const fmtMDate = (r: any) => r ? `${formatNepaliDateBS(r.date_ad)} (${r.date_ad})` : '';
+
+              return (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <h4 className="text-xs font-black uppercase text-slate-500 tracking-wider">Per 1 Tola</h4>
+                    <MinMaxCard
+                      label="Fine Gold (9999)"
+                      min={mmResult.month.month_minmax.gold_tola?.min}
+                      max={mmResult.month.month_minmax.gold_tola?.max}
+                      minDate={fmtMDate(minGT)}
+                      maxDate={fmtMDate(maxGT)}
+                    />
+                    <MinMaxCard
+                      label="Silver"
+                      min={mmResult.month.month_minmax.silver_tola?.min}
+                      max={mmResult.month.month_minmax.silver_tola?.max}
+                      minDate={fmtMDate(minST)}
+                      maxDate={fmtMDate(maxST)}
+                    />
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-xs font-black uppercase text-slate-500 tracking-wider">Per 10 Grams</h4>
+                    <MinMaxCard
+                      label="Fine Gold (9999)"
+                      min={mmResult.month.month_minmax.gold_10g?.min}
+                      max={mmResult.month.month_minmax.gold_10g?.max}
+                      minDate={fmtMDate(minG10)}
+                      maxDate={fmtMDate(maxG10)}
+                    />
+                    <MinMaxCard
+                      label="Silver"
+                      min={mmResult.month.month_minmax.silver_10g?.min}
+                      max={mmResult.month.month_minmax.silver_10g?.max}
+                      minDate={fmtMDate(minS10)}
+                      maxDate={fmtMDate(maxS10)}
+                    />
+                  </div>
                 </div>
-                <div className="space-y-4">
-                  <h4 className="text-xs font-black uppercase text-slate-500 tracking-wider">Per 10 Grams</h4>
-                  <MinMaxCard label="Fine Gold (9999)" min={mmResult.month.month_minmax.gold_10g?.min} max={mmResult.month.month_minmax.gold_10g?.max} />
-                  <MinMaxCard label="Silver" min={mmResult.month.month_minmax.silver_10g?.min} max={mmResult.month.month_minmax.silver_10g?.max} />
-                </div>
-              </div>
-            ) : (
+              );
+            })() : (
               <p className="text-slate-400 text-sm text-center py-8">Select year and month then click Search.</p>
             )}
           </div>
@@ -542,20 +656,76 @@ export default function FenegosidaHistoryClient({
               </button>
             </div>
 
-            {ymResult ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-4">
-                  <h4 className="text-xs font-black uppercase text-slate-500 tracking-wider">Per 1 Tola</h4>
-                  <MinMaxCard label="Fine Gold (9999)" min={ymResult.year_minmax.gold_tola?.min} max={ymResult.year_minmax.gold_tola?.max} />
-                  <MinMaxCard label="Silver" min={ymResult.year_minmax.silver_tola?.min} max={ymResult.year_minmax.silver_tola?.max} />
+            {ymResult ? (() => {
+              const allDays: any[] = [];
+              Object.values(ymResult.months || {}).forEach(m => {
+                if (m.daily_records) allDays.push(...m.daily_records);
+              });
+              let maxGT: any = null, minGT: any = null;
+              let maxG10: any = null, minG10: any = null;
+              let maxST: any = null, minST: any = null;
+              let maxS10: any = null, minS10: any = null;
+
+              allDays.forEach(r => {
+                if (r.gold_tola != null) {
+                  if (!maxGT || r.gold_tola > maxGT.gold_tola) maxGT = r;
+                  if (!minGT || r.gold_tola < minGT.gold_tola) minGT = r;
+                }
+                if (r.gold_10g != null) {
+                  if (!maxG10 || r.gold_10g > maxG10.gold_10g) maxG10 = r;
+                  if (!minG10 || r.gold_10g < minG10.gold_10g) minG10 = r;
+                }
+                if (r.silver_tola != null) {
+                  if (!maxST || r.silver_tola > maxST.silver_tola) maxST = r;
+                  if (!minST || r.silver_tola < minST.silver_tola) minST = r;
+                }
+                if (r.silver_10g != null) {
+                  if (!maxS10 || r.silver_10g > maxS10.silver_10g) maxS10 = r;
+                  if (!minS10 || r.silver_10g < minS10.silver_10g) minS10 = r;
+                }
+              });
+
+              const fmtYDate = (r: any) => r ? `${formatNepaliDateBS(r.date_ad)} (${r.date_ad})` : '';
+
+              return (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <h4 className="text-xs font-black uppercase text-slate-500 tracking-wider">Per 1 Tola</h4>
+                    <MinMaxCard
+                      label="Fine Gold (9999)"
+                      min={ymResult.year_minmax.gold_tola?.min}
+                      max={ymResult.year_minmax.gold_tola?.max}
+                      minDate={fmtYDate(minGT)}
+                      maxDate={fmtYDate(maxGT)}
+                    />
+                    <MinMaxCard
+                      label="Silver"
+                      min={ymResult.year_minmax.silver_tola?.min}
+                      max={ymResult.year_minmax.silver_tola?.max}
+                      minDate={fmtYDate(minST)}
+                      maxDate={fmtYDate(maxST)}
+                    />
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-xs font-black uppercase text-slate-500 tracking-wider">Per 10 Grams</h4>
+                    <MinMaxCard
+                      label="Fine Gold (9999)"
+                      min={ymResult.year_minmax.gold_10g?.min}
+                      max={ymResult.year_minmax.gold_10g?.max}
+                      minDate={fmtYDate(minG10)}
+                      maxDate={fmtYDate(maxG10)}
+                    />
+                    <MinMaxCard
+                      label="Silver"
+                      min={ymResult.year_minmax.silver_10g?.min}
+                      max={ymResult.year_minmax.silver_10g?.max}
+                      minDate={fmtYDate(minS10)}
+                      maxDate={fmtYDate(maxS10)}
+                    />
+                  </div>
                 </div>
-                <div className="space-y-4">
-                  <h4 className="text-xs font-black uppercase text-slate-500 tracking-wider">Per 10 Grams</h4>
-                  <MinMaxCard label="Fine Gold (9999)" min={ymResult.year_minmax.gold_10g?.min} max={ymResult.year_minmax.gold_10g?.max} />
-                  <MinMaxCard label="Silver" min={ymResult.year_minmax.silver_10g?.min} max={ymResult.year_minmax.silver_10g?.max} />
-                </div>
-              </div>
-            ) : (
+              );
+            })() : (
               <p className="text-slate-400 text-sm text-center py-8">Select a year then click Search.</p>
             )}
           </div>
@@ -582,17 +752,32 @@ export default function FenegosidaHistoryClient({
 }
 
 // ── Reusable Min/Max Card with Green Up and Red Down Arrows ─────────────────────
-function MinMaxCard({ label, min, max }: { label: string; min?: number | null; max?: number | null }) {
+function MinMaxCard({
+  label,
+  min,
+  max,
+  minDate,
+  maxDate,
+}: {
+  label: string;
+  min?: number | null;
+  max?: number | null;
+  minDate?: string;
+  maxDate?: string;
+}) {
   return (
     <div className="bg-white border border-slate-200/90 rounded-2xl p-4 sm:p-5 shadow-sm">
       <p className="text-sm font-bold text-slate-700 mb-4">{label}</p>
       
-      <div className="flex justify-between items-center py-1.5 border-b border-slate-100">
+      <div className="flex justify-between items-center py-2 border-b border-slate-100">
         <span className="flex items-center gap-1.5 text-xs text-emerald-600 font-bold">
           <span className="text-base leading-none font-black text-emerald-500">↑</span>
           <span>Max</span>
         </span>
-        <span className="font-extrabold text-slate-900 text-sm">{fmtNPR(max ?? null)}</span>
+        <div className="text-right">
+          <div className="font-extrabold text-slate-900 text-sm">{fmtNPR(max ?? null)}</div>
+          {maxDate && <div className="text-[11px] text-slate-400 font-medium mt-0.5">{maxDate}</div>}
+        </div>
       </div>
 
       <div className="flex justify-between items-center pt-2">
@@ -600,7 +785,10 @@ function MinMaxCard({ label, min, max }: { label: string; min?: number | null; m
           <span className="text-base leading-none font-black text-rose-500">↓</span>
           <span>Min</span>
         </span>
-        <span className="font-extrabold text-slate-900 text-sm">{fmtNPR(min ?? null)}</span>
+        <div className="text-right">
+          <div className="font-extrabold text-slate-900 text-sm">{fmtNPR(min ?? null)}</div>
+          {minDate && <div className="text-[11px] text-slate-400 font-medium mt-0.5">{minDate}</div>}
+        </div>
       </div>
     </div>
   );

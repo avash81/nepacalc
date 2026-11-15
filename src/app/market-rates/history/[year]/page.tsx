@@ -206,15 +206,13 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
           <YearClientFilter>
           <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
             <div className="overflow-x-auto">
-              <table className="w-full text-sm text-left border-collapse min-w-[800px]">
+              <table className="w-full text-sm text-left border-collapse min-w-[650px]">
                 <thead className="bg-slate-50 border-b border-slate-200 text-xs font-black uppercase tracking-wider text-slate-600">
                   <tr>
                     <th scope="col" className="px-4 py-3 whitespace-nowrap">Date (A.D.)</th>
                     <th scope="col" className="px-4 py-3 whitespace-nowrap">Date (B.S.)</th>
-                    <th scope="col" className="px-4 py-3 whitespace-nowrap text-right">Gold / Tola</th>
-                    <th scope="col" className="px-4 py-3 whitespace-nowrap text-right">Gold / 10g</th>
-                    <th scope="col" className="px-4 py-3 whitespace-nowrap text-right">Silver / Tola</th>
-                    <th scope="col" className="px-4 py-3 whitespace-nowrap text-right">Silver / 10g</th>
+                    <th scope="col" id="th-gold" className="px-4 py-3 whitespace-nowrap text-right">Fine Gold (per 10g)</th>
+                    <th scope="col" id="th-silver" className="px-4 py-3 whitespace-nowrap text-right">Silver (per 10g)</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
@@ -228,22 +226,18 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
                       <td className="px-4 py-2.5 font-bold text-slate-900 whitespace-nowrap">{row.date_ad}</td>
                       <td className="px-4 py-2.5 text-slate-600 whitespace-nowrap">{row.date_bs || '-'}</td>
                       <td className="px-4 py-2.5 font-bold text-amber-700 text-right whitespace-nowrap">
-                        {row.gold_tola ? `NPR ${fmtNPR(row.gold_tola)}` : '-'}
-                      </td>
-                      <td className="px-4 py-2.5 font-semibold text-amber-600 text-right whitespace-nowrap">
-                        {row.gold_10g ? `NPR ${fmtNPR(row.gold_10g)}` : '-'}
+                        <span className="unit-gram">{row.gold_10g ? `NPR ${fmtNPR(row.gold_10g)}` : '-'}</span>
+                        <span className="unit-tola" style={{ display: 'none' }}>{row.gold_tola ? `NPR ${fmtNPR(row.gold_tola)}` : '-'}</span>
                       </td>
                       <td className="px-4 py-2.5 font-bold text-slate-700 text-right whitespace-nowrap">
-                        {row.silver_tola ? `NPR ${fmtNPR(row.silver_tola)}` : '-'}
-                      </td>
-                      <td className="px-4 py-2.5 font-semibold text-slate-500 text-right whitespace-nowrap">
-                        {row.silver_10g ? `NPR ${fmtNPR(row.silver_10g)}` : '-'}
+                        <span className="unit-gram">{row.silver_10g ? `NPR ${fmtNPR(row.silver_10g)}` : '-'}</span>
+                        <span className="unit-tola" style={{ display: 'none' }}>{row.silver_tola ? `NPR ${fmtNPR(row.silver_tola)}` : '-'}</span>
                       </td>
                     </tr>
                   ))}
                   {tableData.length === 0 && (
                     <tr>
-                      <td colSpan={6} className="px-4 py-10 text-center text-slate-500">No historical records available for {year}.</td>
+                      <td colSpan={4} className="px-4 py-10 text-center text-slate-500">No historical records available for {year}.</td>
                     </tr>
                   )}
                 </tbody>

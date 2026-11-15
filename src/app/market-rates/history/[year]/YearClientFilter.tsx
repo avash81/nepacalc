@@ -5,7 +5,30 @@ export default function YearClientFilter({ children }: { children?: React.ReactN
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalEntries, setTotalEntries] = useState(0);
+  const [unit, setUnit] = useState<'gram' | 'tola'>('gram');
   const rowsPerPage = 20;
+
+  // Toggle Gram / Tola across headers and cell values
+  useEffect(() => {
+    const thGold = document.getElementById('th-gold');
+    const thSilver = document.getElementById('th-silver');
+    if (thGold) {
+      thGold.textContent = unit === 'tola' ? 'Fine Gold (per Tola)' : 'Fine Gold (per 10g)';
+    }
+    if (thSilver) {
+      thSilver.textContent = unit === 'tola' ? 'Silver (per Tola)' : 'Silver (per 10g)';
+    }
+
+    const tolaEls = document.querySelectorAll('.unit-tola');
+    const gramEls = document.querySelectorAll('.unit-gram');
+
+    tolaEls.forEach(el => {
+      (el as HTMLElement).style.display = unit === 'tola' ? 'inline' : 'none';
+    });
+    gramEls.forEach(el => {
+      (el as HTMLElement).style.display = unit === 'gram' ? 'inline' : 'none';
+    });
+  }, [unit]);
 
   useEffect(() => {
     const rows = document.querySelectorAll('tr.history-row');
@@ -61,25 +84,56 @@ export default function YearClientFilter({ children }: { children?: React.ReactN
 
   return (
     <div>
-      <div className="mb-6 p-4 bg-white border border-slate-200 rounded-xl max-w-lg">
-        <label htmlFor="history-search" className="block text-sm font-bold text-slate-700 mb-2">Search by Date</label>
-        <div className="flex gap-3">
-          <input
-            id="history-search"
-            type="text"
-            placeholder="e.g., 2026-10-04 or 2083"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="flex-1 border border-slate-300 rounded-lg px-3 py-2 text-sm font-medium text-slate-800 outline-none focus:ring-2 focus:ring-amber-500"
-          />
-          <input
-            type="date"
-            aria-label="Select date from calendar"
-            value={searchTerm.match(/^\d{4}-\d{2}-\d{2}$/) ? searchTerm : ''}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="border border-slate-300 rounded-lg px-3 py-2 text-sm font-medium text-slate-800 outline-none focus:ring-2 focus:ring-amber-500 cursor-pointer"
-            title="Choose a specific A.D. date"
-          />
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        {/* Search by date */}
+        <div className="p-3.5 bg-white border border-slate-200 rounded-xl flex-1 max-w-md shadow-sm">
+          <label htmlFor="history-search" className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">
+            Search by Date
+          </label>
+          <div className="flex gap-2">
+            <input
+              id="history-search"
+              type="text"
+              placeholder="e.g., 2026-10-04 or 2083"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="flex-1 border border-slate-300 rounded-lg px-3 py-1.5 text-sm font-medium text-slate-800 outline-none focus:ring-2 focus:ring-amber-500"
+            />
+            <input
+              type="date"
+              aria-label="Select date from calendar"
+              value={searchTerm.match(/^\d{4}-\d{2}-\d{2}$/) ? searchTerm : ''}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="border border-slate-300 rounded-lg px-3 py-1.5 text-sm font-medium text-slate-800 outline-none focus:ring-2 focus:ring-amber-500 cursor-pointer"
+              title="Choose a specific A.D. date"
+            />
+          </div>
+        </div>
+
+        {/* Grams / Tola Toggle matching main pillar page */}
+        <div className="inline-flex bg-slate-100 p-1 rounded-full border border-slate-200/60 shadow-inner self-start sm:self-center">
+          <button
+            type="button"
+            onClick={() => setUnit('gram')}
+            className={`px-7 py-2 rounded-full text-sm font-bold transition-all ${
+              unit === 'gram'
+                ? 'bg-white text-slate-900 shadow-sm'
+                : 'text-slate-500 hover:text-slate-900 font-semibold'
+            }`}
+          >
+            Grams
+          </button>
+          <button
+            type="button"
+            onClick={() => setUnit('tola')}
+            className={`px-7 py-2 rounded-full text-sm font-bold transition-all ${
+              unit === 'tola'
+                ? 'bg-white text-slate-900 shadow-sm'
+                : 'text-slate-500 hover:text-slate-900 font-semibold'
+            }`}
+          >
+            Tola
+          </button>
         </div>
       </div>
       
