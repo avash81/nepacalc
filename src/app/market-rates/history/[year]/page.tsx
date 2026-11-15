@@ -62,20 +62,24 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
         date_ad: r.date_ad,
         date_bs: r.date_bs,
         fine_gold: null,
-        tejabi_gold: null,
+        gold_tola: null,
+        gold_10g: null,
         silver: null,
+        silver_tola: null,
+        silver_10g: null,
         source: r.source,
       });
     }
     const g = grouped.get(r.date_ad);
     if (r.metal === 'Gold' && (r.rate_type.includes('Fine') || r.rate_type === '24K Hallmark Gold' || r.rate_type === 'Gold Rate Per Tola' || r.rate_type === 'Gold')) {
       g.fine_gold = r.source_per_tola;
-    }
-    if (r.metal === 'Gold' && r.rate_type.includes('Tejabi')) {
-      g.tejabi_gold = r.source_per_tola;
+      g.gold_tola = r.source_per_tola;
+      g.gold_10g = r.source_per_10g || (r.source_per_tola ? Math.round((r.source_per_tola / 11.6638) * 10) : null);
     }
     if (r.metal === 'Silver') {
       g.silver = r.source_per_tola;
+      g.silver_tola = r.source_per_tola;
+      g.silver_10g = r.source_per_10g || (r.source_per_tola ? Math.round((r.source_per_tola / 11.6638) * 10 * 10) / 10 : null);
     }
     if (!g.date_bs && r.date_bs) g.date_bs = r.date_bs;
   });
@@ -92,7 +96,7 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
   const tableData = Array.from(grouped.values()).sort((a, b) => new Date(b.date_ad).getTime() - new Date(a.date_ad).getTime());
 
   // Summary logic
-  const goldRecordsForSummary = tableData.filter(d => d.fine_gold !== null);
+  const goldRecordsForSummary = tableData.filter(d => d.gold_tola !== null);
   const latestGold = goldRecordsForSummary[0];
   const firstGold = goldRecordsForSummary[goldRecordsForSummary.length - 1];
   
@@ -103,17 +107,17 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
   let sumGold = 0;
 
   goldRecordsForSummary.forEach(d => {
-    const val = d.fine_gold as number;
+    const val = d.gold_tola as number;
     sumGold += val;
     if (maxGold === null || val > maxGold) { maxGold = val; maxGoldDate = d.date_ad; }
     if (minGold === null || val < minGold) { minGold = val; minGoldDate = d.date_ad; }
   });
 
   const avgGold = goldRecordsForSummary.length > 0 ? sumGold / goldRecordsForSummary.length : null;
-  const change = (firstGold && latestGold) ? (latestGold.fine_gold as number) - (firstGold.fine_gold as number) : null;
+  const change = (firstGold && latestGold) ? (latestGold.gold_tola as number) - (firstGold.gold_tola as number) : null;
 
   // Silver Summary logic
-  const silverRecordsForSummary = tableData.filter(d => d.silver !== null);
+  const silverRecordsForSummary = tableData.filter(d => d.silver_tola !== null);
   const latestSilver = silverRecordsForSummary[0];
   const firstSilver = silverRecordsForSummary[silverRecordsForSummary.length - 1];
   
@@ -124,14 +128,14 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
   let sumSilver = 0;
 
   silverRecordsForSummary.forEach(d => {
-    const val = d.silver;
+    const val = d.silver_tola;
     sumSilver += val;
     if (maxSilver === null || val > maxSilver) { maxSilver = val; maxSilverDate = d.date_ad; }
     if (minSilver === null || val < minSilver) { minSilver = val; minSilverDate = d.date_ad; }
   });
 
   const avgSilver = silverRecordsForSummary.length > 0 ? sumSilver / silverRecordsForSummary.length : null;
-  const changeSilver = (firstSilver && latestSilver) ? latestSilver.silver - firstSilver.silver : null;
+  const changeSilver = (firstSilver && latestSilver) ? latestSilver.silver_tola - firstSilver.silver_tola : null;
 
   const fmtNPR = (num: number | null) => num === null ? 'N/A' : new Intl.NumberFormat('en-IN', { maximumFractionDigits: 2 }).format(num);
 
@@ -159,8 +163,9 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
     temporalCoverage: year,
     variableMeasured: [
       '24K hallmark gold rate per tola',
-      '22K tejabi gold rate per tola',
-      'silver rate per tola'
+      '24K hallmark gold rate per 10 grams',
+      'silver rate per tola',
+      'silver rate per 10 grams'
     ],
   };
 
@@ -184,7 +189,7 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
             Gold Rate History {year}
           </h1>
           <p className="text-lg text-slate-700 leading-relaxed">
-            Historical gold rates in Nepal for {year}, with daily rates by date in A.D. and B.S. The archive includes gold rates per tola and other available units.
+            Historical gold and silver rates in Nepal for {year}, with daily official rates by date in A.D. and B.S. Includes both Tola (11.66g) and 10 Grams prices from official FENEGOSIDA records.
           </p>
         </header>
 
@@ -193,7 +198,7 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
           <YearClientChart data={tableData} />
         </div>
 
-        {/* 4. Historical table & Filter */}
+        {/* 4. Historical table & Filter with BOTH Gram and Tola prices */}
         <section className="max-w-4xl">
           <div className="flex items-end justify-between mb-4">
             <h2 className="text-2xl font-black text-slate-900">Historical Data Table</h2>
@@ -204,11 +209,12 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
               <table className="w-full text-sm text-left border-collapse min-w-[800px]">
                 <thead className="bg-slate-50 border-b border-slate-200 text-xs font-black uppercase tracking-wider text-slate-600">
                   <tr>
-                    <th className="px-4 py-3 whitespace-nowrap">Date (A.D.)</th>
-                    <th className="px-4 py-3 whitespace-nowrap">Date (B.S.)</th>
-                    <th className="px-4 py-3 whitespace-nowrap text-right">24K Hallmark Gold (NPR/tola)</th>
-                    <th className="px-4 py-3 whitespace-nowrap text-right">22K Tejabi Gold (NPR/tola)</th>
-                    <th className="px-4 py-3 whitespace-nowrap text-right">Silver (NPR/tola)</th>
+                    <th scope="col" className="px-4 py-3 whitespace-nowrap">Date (A.D.)</th>
+                    <th scope="col" className="px-4 py-3 whitespace-nowrap">Date (B.S.)</th>
+                    <th scope="col" className="px-4 py-3 whitespace-nowrap text-right">Gold / Tola</th>
+                    <th scope="col" className="px-4 py-3 whitespace-nowrap text-right">Gold / 10g</th>
+                    <th scope="col" className="px-4 py-3 whitespace-nowrap text-right">Silver / Tola</th>
+                    <th scope="col" className="px-4 py-3 whitespace-nowrap text-right">Silver / 10g</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
@@ -221,14 +227,23 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
                     >
                       <td className="px-4 py-2.5 font-bold text-slate-900 whitespace-nowrap">{row.date_ad}</td>
                       <td className="px-4 py-2.5 text-slate-600 whitespace-nowrap">{row.date_bs || '-'}</td>
-                      <td className="px-4 py-2.5 font-bold text-amber-700 text-right whitespace-nowrap">{fmtNPR(row.fine_gold)}</td>
-                      <td className="px-4 py-2.5 font-bold text-amber-600 text-right whitespace-nowrap">{fmtNPR(row.tejabi_gold)}</td>
-                      <td className="px-4 py-2.5 font-bold text-slate-500 text-right whitespace-nowrap">{fmtNPR(row.silver)}</td>
+                      <td className="px-4 py-2.5 font-bold text-amber-700 text-right whitespace-nowrap">
+                        {row.gold_tola ? `NPR ${fmtNPR(row.gold_tola)}` : '-'}
+                      </td>
+                      <td className="px-4 py-2.5 font-semibold text-amber-600 text-right whitespace-nowrap">
+                        {row.gold_10g ? `NPR ${fmtNPR(row.gold_10g)}` : '-'}
+                      </td>
+                      <td className="px-4 py-2.5 font-bold text-slate-700 text-right whitespace-nowrap">
+                        {row.silver_tola ? `NPR ${fmtNPR(row.silver_tola)}` : '-'}
+                      </td>
+                      <td className="px-4 py-2.5 font-semibold text-slate-500 text-right whitespace-nowrap">
+                        {row.silver_10g ? `NPR ${fmtNPR(row.silver_10g)}` : '-'}
+                      </td>
                     </tr>
                   ))}
                   {tableData.length === 0 && (
                     <tr>
-                      <td colSpan={5} className="px-4 py-10 text-center text-slate-500">No historical records available for {year}.</td>
+                      <td colSpan={6} className="px-4 py-10 text-center text-slate-500">No historical records available for {year}.</td>
                     </tr>
                   )}
                 </tbody>
@@ -238,33 +253,38 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
           </YearClientFilter>
         </section>
 
-        {/* 5. Gold Rate Summary for {year} (Directly below table data) */}
+        {/* 5. Gold Rate Summary for {year} (Both Gram and Tola) */}
         <section className="max-w-4xl space-y-4">
           <h2 className="text-xl sm:text-2xl font-bold text-slate-900">Gold Rate Summary for {year}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             <div className="p-5 bg-white border border-slate-200 rounded-xl shadow-sm">
               <span className="block text-xs font-bold text-slate-500 mb-1.5">Latest Recorded (24K)</span>
-              <span className="block text-2xl font-black text-amber-700">{fmtNPR(latestGold?.fine_gold ?? null)}</span>
+              <span className="block text-2xl font-black text-amber-700">{fmtNPR(latestGold?.gold_tola ?? null)}</span>
+              <span className="block text-xs font-bold text-amber-600/80 mt-0.5">10g: {fmtNPR(latestGold?.gold_10g ?? null)}</span>
               <span className="block text-xs text-slate-400 mt-1">{latestGold?.date_ad || 'N/A'}</span>
             </div>
             <div className="p-5 bg-white border border-slate-200 rounded-xl shadow-sm">
               <span className="block text-xs font-bold text-slate-500 mb-1.5">Highest Recorded (24K)</span>
               <span className="block text-2xl font-black text-amber-700">{fmtNPR(maxGold)}</span>
+              <span className="block text-xs font-bold text-amber-600/80 mt-0.5">10g: {fmtNPR(maxGold ? Math.round((maxGold / 11.6638) * 10) : null)}</span>
               <span className="block text-xs text-slate-400 mt-1">{maxGoldDate || 'N/A'}</span>
             </div>
             <div className="p-5 bg-white border border-slate-200 rounded-xl shadow-sm">
               <span className="block text-xs font-bold text-slate-500 mb-1.5">Lowest Recorded (24K)</span>
               <span className="block text-2xl font-black text-slate-900">{fmtNPR(minGold)}</span>
+              <span className="block text-xs font-bold text-slate-500 mt-0.5">10g: {fmtNPR(minGold ? Math.round((minGold / 11.6638) * 10) : null)}</span>
               <span className="block text-xs text-slate-400 mt-1">{minGoldDate || 'N/A'}</span>
             </div>
             <div className="p-5 bg-white border border-slate-200 rounded-xl shadow-sm">
               <span className="block text-xs font-bold text-slate-500 mb-1.5">Average Rate (24K)</span>
               <span className="block text-2xl font-black text-slate-900">{fmtNPR(avgGold)}</span>
+              <span className="block text-xs font-bold text-slate-500 mt-0.5">10g: {fmtNPR(avgGold ? Math.round((avgGold / 11.6638) * 10) : null)}</span>
               <span className="block text-xs text-slate-400 mt-1">per tola</span>
             </div>
             <div className="p-5 bg-white border border-slate-200 rounded-xl shadow-sm">
               <span className="block text-xs font-bold text-slate-500 mb-1.5">First Recorded (24K)</span>
-              <span className="block text-2xl font-black text-slate-900">{fmtNPR(firstGold?.fine_gold ?? null)}</span>
+              <span className="block text-2xl font-black text-slate-900">{fmtNPR(firstGold?.gold_tola ?? null)}</span>
+              <span className="block text-xs font-bold text-slate-500 mt-0.5">10g: {fmtNPR(firstGold?.gold_10g ?? null)}</span>
               <span className="block text-xs text-slate-400 mt-1">{firstGold?.date_ad || 'N/A'}</span>
             </div>
             <div className="p-5 bg-white border border-slate-200 rounded-xl shadow-sm">
@@ -272,38 +292,46 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
               <span className={`block text-2xl font-black ${change !== null && change >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
                 {change !== null ? (change >= 0 ? '+' : '') + fmtNPR(change) : 'N/A'}
               </span>
+              <span className={`block text-xs font-bold ${change !== null && change >= 0 ? 'text-emerald-600/80' : 'text-rose-600/80'} mt-0.5`}>
+                10g: {change !== null ? (change >= 0 ? '+' : '') + fmtNPR(Math.round((change / 11.6638) * 10)) : 'N/A'}
+              </span>
               <span className="block text-xs text-slate-400 mt-1">per tola</span>
             </div>
           </div>
         </section>
 
-        {/* 6. Silver Rate Summary for {year} */}
+        {/* 6. Silver Rate Summary for {year} (Both Gram and Tola) */}
         <section className="max-w-4xl space-y-4">
           <h2 className="text-xl sm:text-2xl font-bold text-slate-900">Silver Rate Summary for {year}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             <div className="p-5 bg-white border border-slate-200 rounded-xl shadow-sm">
               <span className="block text-xs font-bold text-slate-500 mb-1.5">Latest Recorded</span>
-              <span className="block text-2xl font-black text-slate-900">{fmtNPR(latestSilver?.silver ?? null)}</span>
+              <span className="block text-2xl font-black text-slate-900">{fmtNPR(latestSilver?.silver_tola ?? null)}</span>
+              <span className="block text-xs font-bold text-slate-500 mt-0.5">10g: {fmtNPR(latestSilver?.silver_10g ?? null)}</span>
               <span className="block text-xs text-slate-400 mt-1">{latestSilver?.date_ad || 'N/A'}</span>
             </div>
             <div className="p-5 bg-white border border-slate-200 rounded-xl shadow-sm">
               <span className="block text-xs font-bold text-slate-500 mb-1.5">Highest Recorded</span>
               <span className="block text-2xl font-black text-slate-900">{fmtNPR(maxSilver)}</span>
+              <span className="block text-xs font-bold text-slate-500 mt-0.5">10g: {fmtNPR(maxSilver ? Math.round((maxSilver / 11.6638) * 10 * 10) / 10 : null)}</span>
               <span className="block text-xs text-slate-400 mt-1">{maxSilverDate || 'N/A'}</span>
             </div>
             <div className="p-5 bg-white border border-slate-200 rounded-xl shadow-sm">
               <span className="block text-xs font-bold text-slate-500 mb-1.5">Lowest Recorded</span>
               <span className="block text-2xl font-black text-slate-900">{fmtNPR(minSilver)}</span>
+              <span className="block text-xs font-bold text-slate-500 mt-0.5">10g: {fmtNPR(minSilver ? Math.round((minSilver / 11.6638) * 10 * 10) / 10 : null)}</span>
               <span className="block text-xs text-slate-400 mt-1">{minSilverDate || 'N/A'}</span>
             </div>
             <div className="p-5 bg-white border border-slate-200 rounded-xl shadow-sm">
               <span className="block text-xs font-bold text-slate-500 mb-1.5">Average Rate</span>
               <span className="block text-2xl font-black text-slate-900">{fmtNPR(avgSilver)}</span>
+              <span className="block text-xs font-bold text-slate-500 mt-0.5">10g: {fmtNPR(avgSilver ? Math.round((avgSilver / 11.6638) * 10 * 10) / 10 : null)}</span>
               <span className="block text-xs text-slate-400 mt-1">per tola</span>
             </div>
             <div className="p-5 bg-white border border-slate-200 rounded-xl shadow-sm">
               <span className="block text-xs font-bold text-slate-500 mb-1.5">First Recorded</span>
-              <span className="block text-2xl font-black text-slate-900">{fmtNPR(firstSilver?.silver ?? null)}</span>
+              <span className="block text-2xl font-black text-slate-900">{fmtNPR(firstSilver?.silver_tola ?? null)}</span>
+              <span className="block text-xs font-bold text-slate-500 mt-0.5">10g: {fmtNPR(firstSilver?.silver_10g ?? null)}</span>
               <span className="block text-xs text-slate-400 mt-1">{firstSilver?.date_ad || 'N/A'}</span>
             </div>
             <div className="p-5 bg-white border border-slate-200 rounded-xl shadow-sm">
@@ -311,12 +339,15 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
               <span className={`block text-2xl font-black ${changeSilver !== null && changeSilver >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
                 {changeSilver !== null ? (changeSilver >= 0 ? '+' : '') + fmtNPR(changeSilver) : 'N/A'}
               </span>
+              <span className={`block text-xs font-bold ${changeSilver !== null && changeSilver >= 0 ? 'text-emerald-600/80' : 'text-rose-600/80'} mt-0.5`}>
+                10g: {changeSilver !== null ? (changeSilver >= 0 ? '+' : '') + fmtNPR(Math.round((changeSilver / 11.6638) * 10 * 10) / 10) : 'N/A'}
+              </span>
               <span className="block text-xs text-slate-400 mt-1">per tola</span>
             </div>
           </div>
         </section>
 
-        {/* 7. Dataset Summary (Placed above Source and Methodology as requested) */}
+        {/* 7. Dataset Summary (Placed above Source and Methodology) */}
         <section className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm max-w-4xl">
           <h2 className="text-xs font-black uppercase tracking-wider text-slate-500 mb-6">DATASET SUMMARY</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-y-5 gap-x-4 text-sm">
@@ -324,7 +355,7 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
             <div><span className="block text-slate-400 text-xs mb-1">Location</span><span className="font-bold text-slate-800">Nepal</span></div>
             <div><span className="block text-slate-400 text-xs mb-1">Period</span><span className="font-bold text-slate-800">{year}</span></div>
             <div><span className="block text-slate-400 text-xs mb-1">Currency</span><span className="font-bold text-slate-800">NPR</span></div>
-            <div><span className="block text-slate-400 text-xs mb-1">Primary unit</span><span className="font-bold text-slate-800">Tola (11.66g)</span></div>
+            <div><span className="block text-slate-400 text-xs mb-1">Primary units</span><span className="font-bold text-slate-800">Tola & 10 Grams</span></div>
             <div><span className="block text-slate-400 text-xs mb-1">Number of dates</span><span className="font-bold text-slate-800">{tableData.length}</span></div>
             <div><span className="block text-slate-400 text-xs mb-1">Number of records</span><span className="font-bold text-slate-800">{yearRecords.length}</span></div>
             <div><span className="block text-slate-400 text-xs mb-1">First available date</span><span className="font-bold text-slate-800">{firstGold?.date_ad || 'N/A'}</span></div>
