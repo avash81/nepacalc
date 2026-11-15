@@ -39,6 +39,52 @@ export default function HistoryHubPage() {
     monthlyData = JSON.parse(mRaw).years || {};
   } catch (e) {}
 
+  // Encode compact payload (obfuscated in client HTML to protect data from scrapers/devtools)
+  let encodedPayload = '';
+  try {
+    const compact: Record<string, any> = {};
+    for (const yr of Object.keys(monthlyData)) {
+      const yData = monthlyData[yr];
+      compact[yr] = {
+        ymm: [
+          yData.year_minmax?.gold_tola?.min || 0,
+          yData.year_minmax?.gold_tola?.max || 0,
+          yData.year_minmax?.gold_10g?.min || 0,
+          yData.year_minmax?.gold_10g?.max || 0,
+          yData.year_minmax?.silver_tola?.min || 0,
+          yData.year_minmax?.silver_tola?.max || 0,
+          yData.year_minmax?.silver_10g?.min || 0,
+          yData.year_minmax?.silver_10g?.max || 0,
+        ],
+        m: {}
+      };
+      for (const mo of Object.keys(yData.months || {})) {
+        const mData = yData.months[mo];
+        const days = (mData.daily_records || []).map((r: any) => [
+          r.date_ad,
+          r.gold_tola || 0,
+          r.gold_10g || 0,
+          r.silver_tola || 0,
+          r.silver_10g || 0
+        ]);
+        compact[yr].m[mo] = {
+          mmm: [
+            mData.month_minmax?.gold_tola?.min || 0,
+            mData.month_minmax?.gold_tola?.max || 0,
+            mData.month_minmax?.gold_10g?.min || 0,
+            mData.month_minmax?.gold_10g?.max || 0,
+            mData.month_minmax?.silver_tola?.min || 0,
+            mData.month_minmax?.silver_tola?.max || 0,
+            mData.month_minmax?.silver_10g?.min || 0,
+            mData.month_minmax?.silver_10g?.max || 0,
+          ],
+          d: days
+        };
+      }
+    }
+    encodedPayload = Buffer.from(JSON.stringify(compact)).toString('base64');
+  } catch (e) {}
+
   // Load daily history (last 365 days with both gram+tola)
   const dailyHistPath = path.join(process.cwd(), 'public', 'data', 'daily-history.json');
   let dailyHistory: any[] = [];
@@ -87,6 +133,8 @@ export default function HistoryHubPage() {
   });
 
   const tableData = Array.from(grouped.values()).sort((a, b) => new Date(b.date_ad).getTime() - new Date(a.date_ad).getTime());
+  // Show the latest 120 verified trading records on the main hub for fast crawlable indexing without 4.6MB HTML bloat
+  const displayTableData = tableData.slice(0, 120);
   
   const years = Array.from(new Set(allRecords.map(r => r.date_ad?.substring(0, 4)).filter(Boolean))).sort((a, b) => Number(b) - Number(a));
 
@@ -173,7 +221,7 @@ export default function HistoryHubPage() {
         <header className="max-w-4xl mb-6"><h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">Gold Rate History in Nepal</h1></header>
 
         {/* Official FENEGOSIDA History Explorer (By Day, By Month, Week Min/Max, Month Min/Max, Year Min/Max) */}
-        <FenegosidaHistoryClient dailyHistory={dailyHistory} monthlyData={monthlyData} />
+        <FenegosidaHistoryClient dailyHistory={dailyHistory.slice(0, 30)} encodedPayload={encodedPayload} />
 
         {/* The Dataset Table with Pagination & Full Bot Indexing */}
         <section className="max-w-4xl">
@@ -192,7 +240,7 @@ export default function HistoryHubPage() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100">
-                    {tableData.map((row) => (
+                    {displayTableData.map((row) => (
                       <tr
                         key={row.date_ad}
                         className="history-data-row hover:bg-amber-50/40 transition-colors"
@@ -209,7 +257,7 @@ export default function HistoryHubPage() {
                         </td>
                       </tr>
                     ))}
-                    {tableData.length === 0 && (
+                    {displayTableData.length === 0 && (
                       <tr>
                         <td colSpan={4} className="px-4 py-10 text-center text-slate-500">No historical records available.</td>
                       </tr>

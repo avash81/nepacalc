@@ -2,52 +2,88 @@
 # Allow search indexing but prohibit AI training
 Content-Signal: search=yes,ai-train=no
 
-# Default rules for all crawlers
+# Default rules for legitimate search crawlers
 User-agent: *
 Allow: /robots.txt
 Allow: /
-Disallow: /*/index.txt
-Disallow: /*.txt$
-
-# Protected areas
 Disallow: /api/
 Disallow: /admin/
-
-# Tracking parameters
+Disallow: /data/historical-*.json
+Disallow: /data/*.csv
+Disallow: /*/index.txt
+Disallow: /*.txt$
 Disallow: /*?utm_
 Disallow: /*?ref=
 Disallow: /*?source=
 
-# Bing
+# Google Search Bot (Allowed for organic search indexing)
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /data/historical-*.json
+Disallow: /data/*.csv
+
+# Bing Search Bot (Allowed for organic search indexing)
 User-agent: bingbot
 Allow: /
-Disallow: /*/index.txt
-Disallow: /*.txt$
+Disallow: /api/
+Disallow: /admin/
+Disallow: /data/historical-*.json
+Disallow: /data/*.csv
 Crawl-delay: 2
 
-# Yandex
+# Yandex Search Bot
 User-agent: YandexBot
 Allow: /
-Disallow: /*/index.txt
-Disallow: /*.txt$
+Disallow: /api/
+Disallow: /admin/
+Disallow: /data/historical-*.json
+Disallow: /data/*.csv
 Crawl-delay: 5
 
-# AI Crawlers
-# Allowed to access content subject to Content-Signal restrictions
+# ============================================================
+# AI Crawlers & Automated Training Scrapers (STRICTLY BLOCKED)
+# Protects proprietary data and calculations from AI model harvesting
+# ============================================================
 User-agent: GPTBot
-Allow: /
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
 
 User-agent: ClaudeBot
-Allow: /
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
 
 User-agent: PerplexityBot
-Allow: /
+Disallow: /
 
-User-agent: OAI-SearchBot
-Allow: /
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
 
 User-agent: Google-Extended
-Allow: /
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
+User-agent: OAI-SearchBot
+Disallow: /
 
 # Sitemap
 Sitemap: https://nepacalc.com/sitemap.xml

@@ -1,5 +1,13 @@
 ﻿RewriteEngine On
 
+# ============================================================
+# DATA SECURITY: Protect proprietary historical rates database
+# Block all direct scrapers and unauthorized downloads of raw datasets
+# ============================================================
+RewriteRule ^data/historical-.*\.json$ - [F,L]
+RewriteRule ^data/.*\.csv$ - [F,L]
+RewriteRule ^data/historical-.*\.csv$ - [F,L]
+
 # 0. Force mail subdomain to main domain (Google canonical fix)
 RewriteCond %{HTTP_HOST} ^mail\.nepacalc\.com$ [NC]
 RewriteRule ^(.*)$ https://nepacalc.com/$1 [R=301,L]
