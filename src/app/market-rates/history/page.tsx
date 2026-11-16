@@ -7,8 +7,8 @@ import NepaliDate from 'nepali-date-converter';
 import FenegosidaHistoryClient from './FenegosidaHistoryClient';
 
 export const metadata: Metadata = {
-  title: 'Gold and Silver Price History in Nepal – Historical Gold Prices',
-  description: 'Official gold and silver price history in Nepal from FENEGOSIDA. Daily, monthly, and yearly rates per Tola and 10 Grams from BS 2070 to 2083. Search by year and month in Nepali calendar.',
+  title: 'Gold and Silver Price History in Nepal: Historical Fenegosida Rates',
+  description: 'Explore the complete historical record of gold and silver prices in Nepal. View day-by-day hallmark gold rates with date filters, charts, and long-term market trends.',
   alternates: {
     canonical: 'https://nepacalc.com/market-rates/history/',
   },
@@ -20,10 +20,16 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     siteName: 'NepaCalc',
-    title: 'Gold and Silver Price History in Nepal – Historical Gold Prices',
-    description: 'Official gold and silver price history in Nepal from FENEGOSIDA. Daily, monthly, and yearly rates per Tola and 10 Grams from BS 2070 to 2083.',
+    title: 'Gold and Silver Price History in Nepal: Historical Fenegosida Rates',
+    description: 'Explore the complete historical record of gold and silver prices in Nepal. View day-by-day hallmark gold rates with date filters, charts, and long-term market trends.',
     url: 'https://nepacalc.com/market-rates/history/',
-    images: [{ url: 'https://nepacalc.com/images/og/history-gold-silver-nepal.jpg', width: 1200, height: 630, alt: 'Gold and Silver Price History in Nepal' }]
+    images: [{ url: 'https://nepacalc.com/images/og/history-gold-silver-nepal.jpg', width: 1200, height: 630, alt: 'Gold and Silver Price History in Nepal: Historical Fenegosida Rates' }]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Gold and Silver Price History in Nepal: Historical Fenegosida Rates',
+    description: 'Explore the complete historical record of gold and silver prices in Nepal. View day-by-day hallmark gold rates with date filters, charts, and long-term market trends.',
+    images: ['https://nepacalc.com/images/og/history-gold-silver-nepal.jpg'],
   },
 };
 
