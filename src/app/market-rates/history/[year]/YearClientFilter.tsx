@@ -37,10 +37,46 @@ function formatNepaliDateBS(dateAd: string): string {
 const fmtNPR = (v: number | null | undefined) =>
   v == null || isNaN(v) ? '—' : 'NPR ' + new Intl.NumberFormat('en-IN', { maximumFractionDigits: 2 }).format(v);
 
-export default function YearClientFilter({ year, data }: YearClientFilterProps) {
+export default function YearClientFilter({ year, data: initialData }: YearClientFilterProps) {
+  const [data, setData] = useState<YearRecord[]>(initialData);
   const [unit, setUnit] = useState<'gram' | 'tola'>('gram');
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 30;
+
+  // Real-time dynamic fetch: overlay today's newly published rate live in the browser
+  React.useEffect(() => {
+    if (year === '2026' || year === new Date().getFullYear().toString()) {
+      fetch('/data/daily-history.json')
+        .then((res) => res.json())
+        .then((liveHistory: any[]) => {
+          if (Array.isArray(liveHistory) && liveHistory.length > 0) {
+            const currentYearEntries = liveHistory.filter((r) => r.date && r.date.startsWith(year));
+            if (currentYearEntries.length > 0) {
+              setData((prev) => {
+                const map = new Map<string, YearRecord>();
+                prev.forEach((r) => map.set(r.date_ad, r));
+                const tolaInGrams = 11.6638;
+                currentYearEntries.forEach((r) => {
+                  const existing = map.get(r.date);
+                  const gTola = r.gold_tola ?? r.gold ?? existing?.gold_tola ?? null;
+                  const sTola = r.silver_tola ?? r.silver ?? existing?.silver_tola ?? null;
+                  map.set(r.date, {
+                    date_ad: r.date,
+                    date_bs: r.date_bs || existing?.date_bs || null,
+                    gold_tola: gTola,
+                    gold_10g: r.gold_10g || (gTola ? Math.round((gTola / tolaInGrams) * 10) : null),
+                    silver_tola: sTola,
+                    silver_10g: r.silver_10g || (sTola ? Math.round((sTola / tolaInGrams) * 10) : null),
+                  });
+                });
+                return Array.from(map.values()).sort((a, b) => b.date_ad.localeCompare(a.date_ad));
+              });
+            }
+          }
+        })
+        .catch(() => {});
+    }
+  }, [year]);
 
   const totalEntries = data.length;
   const totalPages = Math.max(1, Math.ceil(totalEntries / rowsPerPage));
