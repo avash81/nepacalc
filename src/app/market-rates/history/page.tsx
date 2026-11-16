@@ -221,7 +221,7 @@ export default function HistoryHubPage() {
         <header className="max-w-4xl mb-6"><h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">Gold and Silver Price History in Nepal</h1></header>
 
         {/* Official FENEGOSIDA History Explorer (By Day, By Month, Week Min/Max, Month Min/Max, Year Min/Max) */}
-        <FenegosidaHistoryClient dailyHistory={dailyHistory.slice(0, 30)} encodedPayload={encodedPayload} />
+        <FenegosidaHistoryClient dailyHistory={dailyHistory} encodedPayload={encodedPayload} />
 
         {/* SEO-friendly hidden table for search engine crawling (not shown to users) */}
         <section className="sr-only" aria-hidden="true">

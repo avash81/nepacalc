@@ -6,7 +6,7 @@ export default function YearClientFilter({ children }: { children?: React.ReactN
   const [currentPage, setCurrentPage] = useState(1);
   const [totalEntries, setTotalEntries] = useState(0);
   const [unit, setUnit] = useState<'gram' | 'tola'>('gram');
-  const rowsPerPage = 20;
+  const rowsPerPage = 30;
 
   // Toggle Gram / Tola across headers and cell values
   useEffect(() => {

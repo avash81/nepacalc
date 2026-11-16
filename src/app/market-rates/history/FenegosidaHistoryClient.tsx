@@ -85,6 +85,8 @@ export default function FenegosidaHistoryClient({
   const [tab, setTab] = useState<TabType>('bymonth');
   const [unit, setUnit] = useState<UnitType>('gram'); // Default to Grams matching user screenshot
   const [dailyHistory, setDailyHistory] = useState<DayRecord[]>(initialDailyHistory);
+  const [dailyPage, setDailyPage] = useState(1);
+  const rowsPerPage = 30;
 
   // Dynamic real-time fetch to keep prices updated dynamically
   useEffect(() => {
@@ -455,34 +457,117 @@ export default function FenegosidaHistoryClient({
               </div>
             </div>
 
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm text-left border-collapse">
-                <thead className="border-b border-slate-200 text-xs font-bold text-slate-700">
-                  <tr>
-                    <th scope="col" className="py-3 px-4 text-left">Date (B.S.)</th>
-                    <th scope="col" className="py-3 px-4 text-left">Date (A.D.)</th>
-                    <th scope="col" className="py-3 px-4 text-right">Fine Gold (9999)</th>
-                    <th scope="col" className="py-3 px-4 text-right">Silver</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100">
-                  {dailyHistory.map(row => (
-                    <tr key={row.date} className="hover:bg-slate-50/70 transition-colors">
-                      <td className="py-3.5 px-4 font-semibold text-slate-800 whitespace-nowrap">
-                        {row.date_bs || formatNepaliDateBS(row.date)}
-                      </td>
-                      <td className="py-3.5 px-4 text-slate-600 whitespace-nowrap">{row.date}</td>
-                      <td className="py-3.5 px-4 font-bold text-slate-900 text-right whitespace-nowrap">
-                        {fmtNPR(unit === 'tola' ? row.gold_tola : row.gold_10g)}
-                      </td>
-                      <td className="py-3.5 px-4 font-bold text-slate-900 text-right whitespace-nowrap">
-                        {fmtNPR(unit === 'tola' ? row.silver_tola : row.silver_10g)}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            {(() => {
+              const totalEntries = dailyHistory.length;
+              const totalPages = Math.max(1, Math.ceil(totalEntries / rowsPerPage));
+              const startEntry = totalEntries === 0 ? 0 : (dailyPage - 1) * rowsPerPage + 1;
+              const endEntry = Math.min(dailyPage * rowsPerPage, totalEntries);
+              const paginatedRows = dailyHistory.slice((dailyPage - 1) * rowsPerPage, dailyPage * rowsPerPage);
+
+              const getPageNumbers = () => {
+                const delta = 2;
+                const range: (number | string)[] = [];
+                for (let i = Math.max(2, dailyPage - delta); i <= Math.min(totalPages - 1, dailyPage + delta); i++) {
+                  range.push(i);
+                }
+                if (dailyPage - delta > 2) range.unshift('...');
+                if (dailyPage + delta < totalPages - 1) range.push('...');
+                range.unshift(1);
+                if (totalPages > 1) range.push(totalPages);
+                return range;
+              };
+
+              return (
+                <div>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm text-left border-collapse">
+                      <thead className="border-b border-slate-200 text-xs font-bold text-slate-700">
+                        <tr>
+                          <th scope="col" className="py-3 px-4 text-left">Date (B.S.)</th>
+                          <th scope="col" className="py-3 px-4 text-left">Date (A.D.)</th>
+                          <th scope="col" className="py-3 px-4 text-right">Fine Gold (9999)</th>
+                          <th scope="col" className="py-3 px-4 text-right">Silver</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-100">
+                        {paginatedRows.map(row => (
+                          <tr key={row.date} className="hover:bg-slate-50/70 transition-colors">
+                            <td className="py-3.5 px-4 font-semibold text-slate-800 whitespace-nowrap">
+                              {row.date_bs || formatNepaliDateBS(row.date)}
+                            </td>
+                            <td className="py-3.5 px-4 text-slate-600 whitespace-nowrap">{row.date}</td>
+                            <td className="py-3.5 px-4 font-bold text-slate-900 text-right whitespace-nowrap">
+                              {fmtNPR(unit === 'tola' ? row.gold_tola : row.gold_10g)}
+                            </td>
+                            <td className="py-3.5 px-4 font-bold text-slate-900 text-right whitespace-nowrap">
+                              {fmtNPR(unit === 'tola' ? row.silver_tola : row.silver_10g)}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  {/* Pagination footer matching exact user screenshot */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 mt-2 border-t border-slate-200 text-sm text-slate-600">
+                    <div>
+                      Showing {startEntry} to {endEntry} of {totalEntries} entries
+                    </div>
+
+                    {totalPages > 1 && (
+                      <div className="flex items-center gap-1 select-none flex-wrap">
+                        <button
+                          type="button"
+                          onClick={() => setDailyPage(p => Math.max(1, p - 1))}
+                          disabled={dailyPage === 1}
+                          className="px-2.5 py-1 text-sm text-slate-600 hover:text-slate-900 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                        >
+                          Previous
+                        </button>
+
+                        {getPageNumbers().map((p, idx) => {
+                          if (p === '...') {
+                            return (
+                              <span key={`ellipsis-${idx}`} className="px-2 py-1 text-slate-400">
+                                ...
+                              </span>
+                            );
+                          }
+
+                          const pageNum = Number(p);
+                          const isActive = pageNum === dailyPage;
+
+                          return (
+                            <button
+                              key={`page-${pageNum}`}
+                              type="button"
+                              onClick={() => setDailyPage(pageNum)}
+                              className={`min-w-[32px] h-8 px-2 text-sm rounded transition-all ${
+                                isActive
+                                  ? 'bg-gradient-to-b from-white to-slate-100 border border-slate-300 font-bold text-slate-900 shadow-sm'
+                                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                              }`}
+                              aria-current={isActive ? 'page' : undefined}
+                            >
+                              {pageNum}
+                            </button>
+                          );
+                        })}
+
+                        <button
+                          type="button"
+                          onClick={() => setDailyPage(p => Math.min(totalPages, p + 1))}
+                          disabled={dailyPage === totalPages}
+                          className="px-2.5 py-1 text-sm text-slate-600 hover:text-slate-900 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                        >
+                          Next
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              );
+            })()}
           </div>
         )}
 
