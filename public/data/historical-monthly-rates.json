@@ -33029,19 +33029,19 @@
           "fetch_ok": true,
           "month_minmax": {
             "gold_tola": {
-              "min": 270200,
+              "min": 269100,
               "max": 296500
             },
             "gold_10g": {
-              "min": 231655,
+              "min": 230710,
               "max": 254200
             },
             "silver_tola": {
-              "min": 3600,
+              "min": 3520,
               "max": 4450
             },
             "silver_10g": {
-              "min": 3086.5,
+              "min": 3018,
               "max": 3815
             }
           },
@@ -33272,10 +33272,10 @@
             },
             {
               "date_ad": "2026-11-16",
-              "gold_tola": 270200,
-              "gold_10g": 231655,
-              "silver_tola": 3600,
-              "silver_10g": 3086.5
+              "gold_tola": 269100,
+              "gold_10g": 230710,
+              "silver_tola": 3520,
+              "silver_10g": 3018
             }
           ],
           "daily_count": 33

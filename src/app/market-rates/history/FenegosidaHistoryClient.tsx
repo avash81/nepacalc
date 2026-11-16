@@ -493,59 +493,12 @@ export default function FenegosidaHistoryClient({
           <div>
             <h3 className="text-lg font-bold text-slate-900 mb-5">Rate History by Week [Maximum to Minimum]</h3>
 
-            {/* Filter Controls matching Month Min/Max shown in user image */}
-            <div className="flex flex-wrap items-center gap-3 mb-6">
-              <div className="relative">
-                <select
-                  value={wmYear}
-                  onChange={e => setWmYear(Number(e.target.value))}
-                  className="appearance-none bg-white border border-slate-300 rounded-xl px-4 py-2.5 pr-8 text-sm font-semibold text-slate-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 cursor-pointer min-w-[100px]"
-                >
-                  {BS_YEARS.map(y => <option key={y} value={y}>{y}</option>)}
-                </select>
-                <span className="absolute right-3 top-3 pointer-events-none text-xs text-slate-400">▼</span>
-              </div>
-              <div className="relative">
-                <select
-                  value={wmMonth}
-                  onChange={e => setWmMonth(Number(e.target.value))}
-                  className="appearance-none bg-white border border-slate-300 rounded-xl px-4 py-2.5 pr-8 text-sm font-semibold text-slate-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 cursor-pointer min-w-[120px]"
-                >
-                  {BS_MONTH_NAMES_NP.map((name, i) => (
-                    <option key={i + 1} value={i + 1}>{name}</option>
-                  ))}
-                </select>
-                <span className="absolute right-3 top-3 pointer-events-none text-xs text-slate-400">▼</span>
-              </div>
-              <div className="relative">
-                <select
-                  value={wmWeek}
-                  onChange={e => setWmWeek(e.target.value)}
-                  className="appearance-none bg-white border border-slate-300 rounded-xl px-4 py-2.5 pr-8 text-sm font-semibold text-slate-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 cursor-pointer min-w-[140px]"
-                >
-                  <option value="latest">Latest 7 Days</option>
-                  <option value="w1">हप्ता १ (१–७ गते)</option>
-                  <option value="w2">हप्ता २ (८–१४ गते)</option>
-                  <option value="w3">हप्ता ३ (१५–२१ गते)</option>
-                  <option value="w4">हप्ता ४ (२२–२८ गते)</option>
-                  <option value="w5">हप्ता ५ (२९–३२ गते)</option>
-                </select>
-                <span className="absolute right-3 top-3 pointer-events-none text-xs text-slate-400">▼</span>
-              </div>
-              <button
-                onClick={() => handleWeekSearch(wmYear, wmMonth, wmWeek)}
-                className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold px-6 py-2.5 rounded-xl text-sm shadow-sm transition-colors flex items-center gap-2"
-              >
-                <span>🔍</span>
-                <span>Search</span>
-              </button>
-            </div>
-
-            {weekResult && weekResult.length > 0 ? (() => {
-              const goldTolas = weekResult.map(r => r.gold_tola).filter((v): v is number => v != null);
-              const gold10gs  = weekResult.map(r => r.gold_10g).filter((v): v is number => v != null);
-              const silvTolas = weekResult.map(r => r.silver_tola).filter((v): v is number => v != null);
-              const silv10gs  = weekResult.map(r => r.silver_10g).filter((v): v is number => v != null);
+            {(() => {
+              const weekRecords = (weekResult && weekResult.length > 0) ? weekResult : dailyHistory.slice(0, 7);
+              const goldTolas = weekRecords.map(r => r.gold_tola).filter((v): v is number => v != null);
+              const gold10gs  = weekRecords.map(r => r.gold_10g).filter((v): v is number => v != null);
+              const silvTolas = weekRecords.map(r => r.silver_tola).filter((v): v is number => v != null);
+              const silv10gs  = weekRecords.map(r => r.silver_10g).filter((v): v is number => v != null);
 
               return (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -579,9 +532,7 @@ export default function FenegosidaHistoryClient({
                   </div>
                 </div>
               );
-            })() : (
-              <p className="p-8 text-slate-400 text-sm text-center">No trading records found for the selected week. Please select another week or month.</p>
-            )}
+            })()}
           </div>
         )}
 

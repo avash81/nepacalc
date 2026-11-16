@@ -67,9 +67,12 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/avash81/nepacalc.git
           
-          # 2. Stage and commit FIRST (solves the unstaged changes crash)
-          git add public/data/live-rates.json public/data/market-rates.json public/data/forex-rates.json public/data/daily-history.json public/data/historical-rates.json public/data/international-rates.json src/hooks/useLiveRates.ts
-          git commit -m "data: auto-update official rates [skip ci]"
+          # 2. Stage ALL updated data files and hooks
+          git add public/data/*.json src/hooks/useLiveRates.ts
+          git commit -m "data: auto-update official rates [skip ci]" || true
+          
+          # Ensure working tree is completely clean before rebase
+          git stash --include-untracked || true
           
           # 3. Pull latest with rebase and auto-resolve any data conflicts in our favor
           git pull --rebase -X theirs origin main

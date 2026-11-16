@@ -2,12 +2,12 @@
   {
     "date": "2026-11-16",
     "date_bs": "2083/07/30",
-    "gold": 270200,
-    "silver": 3600,
-    "gold_tola": 270200,
-    "gold_10g": 231655,
-    "silver_tola": 3600,
-    "silver_10g": 3086.5
+    "gold": 269100,
+    "silver": 3520,
+    "gold_tola": 269100,
+    "gold_10g": 230710,
+    "silver_tola": 3520,
+    "silver_10g": 3018
   },
   {
     "date": "2026-11-15",
@@ -2940,93 +2940,5 @@
     "gold_10g": 171980,
     "silver_tola": 2360,
     "silver_10g": 2023.5
-  },
-  {
-    "date": "2025-08-28",
-    "date_bs": "2082/05/12",
-    "gold_tola": 199400,
-    "gold_10g": 170955,
-    "silver_tola": 2355,
-    "silver_10g": 2019
-  },
-  {
-    "date": "2025-08-27",
-    "date_bs": "2082/05/11",
-    "gold_tola": 199000,
-    "gold_10g": 170610,
-    "silver_tola": 2345,
-    "silver_10g": 2010.5
-  },
-  {
-    "date": "2025-08-26",
-    "date_bs": "2082/05/10",
-    "gold_tola": 198700,
-    "gold_10g": 170355,
-    "silver_tola": 2360,
-    "silver_10g": 2023.5
-  },
-  {
-    "date": "2025-08-25",
-    "date_bs": "2082/05/09",
-    "gold_tola": 197200,
-    "gold_10g": 169070,
-    "silver_tola": 2355,
-    "silver_10g": 2019
-  },
-  {
-    "date": "2025-08-24",
-    "date_bs": "2082/05/08",
-    "gold_tola": 197500,
-    "gold_10g": 169325,
-    "silver_tola": 2350,
-    "silver_10g": 2015
-  },
-  {
-    "date": "2025-08-22",
-    "date_bs": "2082/05/06",
-    "gold_tola": 195200,
-    "gold_10g": 167355,
-    "silver_tola": 2310,
-    "silver_10g": 1980.5
-  },
-  {
-    "date": "2025-08-21",
-    "date_bs": "2082/05/05",
-    "gold_tola": 194800,
-    "gold_10g": 167010,
-    "silver_tola": 2290,
-    "silver_10g": 1963.5
-  },
-  {
-    "date": "2025-08-20",
-    "date_bs": "2082/05/04",
-    "gold_tola": 193500,
-    "gold_10g": 165895,
-    "silver_tola": 2255,
-    "silver_10g": 1933.5
-  },
-  {
-    "date": "2025-08-19",
-    "date_bs": "2082/05/03",
-    "gold_tola": 195100,
-    "gold_10g": 167265,
-    "silver_tola": 2300,
-    "silver_10g": 1972
-  },
-  {
-    "date": "2025-08-18",
-    "date_bs": "2082/05/02",
-    "gold_tola": 196300,
-    "gold_10g": 168295,
-    "silver_tola": 2315,
-    "silver_10g": 1985
-  },
-  {
-    "date": "2025-08-17",
-    "date_bs": "2082/05/01",
-    "gold_tola": 195500,
-    "gold_10g": 167610,
-    "silver_tola": 2310,
-    "silver_10g": 1980.5
   }
 ]
