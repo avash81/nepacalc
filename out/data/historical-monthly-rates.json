@@ -33025,24 +33025,24 @@
           "month_bs": 7,
           "month_name": "Kartik",
           "ad_start_date": "2026-10-18",
-          "days_in_month": 30,
+          "days_in_month": 33,
           "fetch_ok": true,
           "month_minmax": {
-            "silver_10g": {
-              "min": 3279.5,
-              "max": 3815
-            },
-            "silver_tola": {
-              "min": 3825,
-              "max": 4450
+            "gold_tola": {
+              "min": 270200,
+              "max": 296500
             },
             "gold_10g": {
-              "min": 238770,
+              "min": 231655,
               "max": 254200
             },
-            "gold_tola": {
-              "min": 278500,
-              "max": 296500
+            "silver_tola": {
+              "min": 3600,
+              "max": 4450
+            },
+            "silver_10g": {
+              "min": 3086.5,
+              "max": 3815
             }
           },
           "daily_records": [
@@ -33199,27 +33199,104 @@
               "gold_tola": 280300,
               "silver_10g": 3279.5,
               "silver_tola": 3825
+            },
+            {
+              "date_ad": "2026-11-01",
+              "gold_tola": 272000,
+              "gold_10g": 233195,
+              "silver_tola": 3650,
+              "silver_10g": 3129.5
+            },
+            {
+              "date_ad": "2026-11-02",
+              "gold_tola": 274300,
+              "gold_10g": 235170,
+              "silver_tola": 3720,
+              "silver_10g": 3189.5
+            },
+            {
+              "date_ad": "2026-11-03",
+              "gold_tola": 275000,
+              "gold_10g": 235770,
+              "silver_tola": 3675,
+              "silver_10g": 3151
+            },
+            {
+              "date_ad": "2026-11-04",
+              "gold_tola": 275600,
+              "gold_10g": 236285,
+              "silver_tola": 3655,
+              "silver_10g": 3133.5
+            },
+            {
+              "date_ad": "2026-11-05",
+              "gold_tola": 288900,
+              "gold_10g": 247685,
+              "silver_tola": 3920,
+              "silver_10g": 3361
+            },
+            {
+              "date_ad": "2026-11-06",
+              "gold_tola": 283000,
+              "gold_10g": 242625,
+              "silver_tola": 3810,
+              "silver_10g": 3266.5
+            },
+            {
+              "date_ad": "2026-11-08",
+              "gold_tola": 283000,
+              "gold_10g": 242625,
+              "silver_tola": 3810,
+              "silver_10g": 3266.5
+            },
+            {
+              "date_ad": "2026-11-09",
+              "gold_tola": 284300,
+              "gold_10g": 243740,
+              "silver_tola": 3855,
+              "silver_10g": 3305
+            },
+            {
+              "date_ad": "2026-11-13",
+              "gold_tola": 271700,
+              "gold_10g": 232940,
+              "silver_tola": 3700,
+              "silver_10g": 3172
+            },
+            {
+              "date_ad": "2026-11-15",
+              "gold_tola": 270200,
+              "gold_10g": 231655,
+              "silver_tola": 3600,
+              "silver_10g": 3086.5
+            },
+            {
+              "date_ad": "2026-11-16",
+              "gold_tola": 270200,
+              "gold_10g": 231655,
+              "silver_tola": 3600,
+              "silver_10g": 3086.5
             }
           ],
-          "daily_count": 22
+          "daily_count": 33
         }
       },
       "year_minmax": {
-        "silver_10g": {
-          "min": 3086.5,
-          "max": 6434.5
+        "gold_tola": {
+          "min": 270200,
+          "max": 322700
         },
         "gold_10g": {
-          "min": 222565,
-          "max": 290985
+          "min": 231655,
+          "max": 276665
         },
         "silver_tola": {
           "min": 3600,
-          "max": 7505
+          "max": 5745
         },
-        "gold_tola": {
-          "min": 259600,
-          "max": 339300
+        "silver_10g": {
+          "min": 3086.5,
+          "max": 4925.5
         }
       }
     }

@@ -1,5 +1,115 @@
 [
   {
+    "date": "2026-11-16",
+    "date_bs": "2083/07/30",
+    "gold": 270200,
+    "silver": 3600,
+    "gold_tola": 270200,
+    "gold_10g": 231655,
+    "silver_tola": 3600,
+    "silver_10g": 3086.5
+  },
+  {
+    "date": "2026-11-15",
+    "date_bs": "2083/07/29",
+    "gold": 270200,
+    "silver": 3600,
+    "gold_tola": 270200,
+    "gold_10g": 231655,
+    "silver_tola": 3600,
+    "silver_10g": 3086.5
+  },
+  {
+    "date": "2026-11-13",
+    "date_bs": "2083/07/27",
+    "gold": 271700,
+    "silver": 3700,
+    "gold_tola": 271700,
+    "gold_10g": 232940,
+    "silver_tola": 3700,
+    "silver_10g": 3172
+  },
+  {
+    "date": "2026-11-09",
+    "date_bs": "2083/07/23",
+    "gold": 284300,
+    "silver": 3855,
+    "gold_tola": 284300,
+    "gold_10g": 243740,
+    "silver_tola": 3855,
+    "silver_10g": 3305
+  },
+  {
+    "date": "2026-11-08",
+    "date_bs": "2083/07/22",
+    "gold": 283000,
+    "silver": 3810,
+    "gold_tola": 283000,
+    "gold_10g": 242625,
+    "silver_tola": 3810,
+    "silver_10g": 3266.5
+  },
+  {
+    "date": "2026-11-06",
+    "date_bs": "2083/07/20",
+    "gold": 283000,
+    "silver": 3810,
+    "gold_tola": 283000,
+    "gold_10g": 242625,
+    "silver_tola": 3810,
+    "silver_10g": 3266.5
+  },
+  {
+    "date": "2026-11-05",
+    "date_bs": "2083/07/19",
+    "gold": 288900,
+    "silver": 3920,
+    "gold_tola": 288900,
+    "gold_10g": 247685,
+    "silver_tola": 3920,
+    "silver_10g": 3361
+  },
+  {
+    "date": "2026-11-04",
+    "date_bs": "2083/07/18",
+    "gold": 275600,
+    "silver": 3655,
+    "gold_tola": 275600,
+    "gold_10g": 236285,
+    "silver_tola": 3655,
+    "silver_10g": 3133.5
+  },
+  {
+    "date": "2026-11-03",
+    "date_bs": "2083/07/17",
+    "gold": 275000,
+    "silver": 3675,
+    "gold_tola": 275000,
+    "gold_10g": 235770,
+    "silver_tola": 3675,
+    "silver_10g": 3151
+  },
+  {
+    "date": "2026-11-02",
+    "date_bs": "2083/07/16",
+    "gold": 274300,
+    "silver": 3720,
+    "gold_tola": 274300,
+    "gold_10g": 235170,
+    "silver_tola": 3720,
+    "silver_10g": 3189.5
+  },
+  {
+    "date": "2026-11-01",
+    "date_bs": "2083/07/15",
+    "gold": 272000,
+    "silver": 3650,
+    "gold_tola": 272000,
+    "gold_10g": 233195,
+    "silver_tola": 3650,
+    "silver_10g": 3129.5
+  },
+  {
     "date": "2026-10-30",
     "date_bs": "2083/07/13",
     "gold_tola": 280300,

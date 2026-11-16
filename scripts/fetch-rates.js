@@ -340,6 +340,92 @@ async function main() {
       console.warn('Could not update historical-monthly-rates.json', e);
     }
 
+    // ── SYNC FULL MONTHWISE HISTORY (Ensures no trading days are ever missed) ──
+    try {
+      console.log('   Syncing full monthwise history from FENEGOSIDA...');
+      const monthData = await fetchJson(`https://api.fenegosida.org/api/website/v1/Dashboard/monthwisehistory?date=${rateDate}`, 8000);
+      if (Array.isArray(monthData) && monthData.length > 0) {
+        const mByDate = {};
+        for (const item of monthData) {
+          if (!mByDate[item.todayDate]) mByDate[item.todayDate] = {};
+          if (item.rateType === TYPES.GOLD_10G) mByDate[item.todayDate].gold_10g = item.baseRatePerGram;
+          else if (item.rateType === TYPES.GOLD_TOLA) mByDate[item.todayDate].gold_tola = item.baseRatePerGram;
+          else if (item.rateType === TYPES.SILVER_10G) mByDate[item.todayDate].silver_10g = item.baseRatePerGram;
+          else if (item.rateType === TYPES.SILVER_TOLA) mByDate[item.todayDate].silver_tola = item.baseRatePerGram;
+        }
+
+        // Merge into daily-history.json and historical-rates.json
+        const dHist = JSON.parse(fs.readFileSync(historyPath, 'utf8'));
+        const hDataset = JSON.parse(fs.readFileSync(historicalRatesPath, 'utf8'));
+        let hRecords = hDataset.data || [];
+
+        for (const dStr of Object.keys(mByDate).sort()) {
+          const p = mByDate[dStr];
+          const bInfo = adToBs(dStr);
+          const dIdx = dHist.findIndex(h => h.date === dStr);
+          const dEntry = {
+            date: dStr,
+            date_bs: bInfo.date_bs,
+            gold: p.gold_tola,
+            silver: p.silver_tola,
+            gold_tola: p.gold_tola,
+            gold_10g: p.gold_10g,
+            silver_tola: p.silver_tola,
+            silver_10g: p.silver_10g,
+          };
+          if (dIdx >= 0) dHist[dIdx] = dEntry;
+          else dHist.push(dEntry);
+
+          const gPerGram = p.gold_10g ? Math.round((p.gold_10g / 10) * 100) / 100 : Math.round((p.gold_tola / 11.6638) * 100) / 100;
+          const sPerGram = p.silver_10g ? Math.round((p.silver_10g / 10) * 100) / 100 : Math.round((p.silver_tola / 11.6638) * 100) / 100;
+          
+          hRecords = hRecords.filter(r => r.date_ad !== dStr);
+          hRecords.push({
+            date_ad: dStr,
+            date_bs: bInfo.date_bs,
+            metal: 'Gold',
+            rate_type: 'Fine Gold (9999)',
+            source_per_tola: p.gold_tola,
+            source_per_10g: p.gold_10g,
+            calculated_per_gram: gPerGram,
+            calculated_per_kg: Math.round(gPerGram * 1000),
+            source: 'FENEGOSIDA',
+            source_url: 'https://fenegosida.org',
+            status: 'Verified'
+          });
+          hRecords.push({
+            date_ad: dStr,
+            date_bs: bInfo.date_bs,
+            metal: 'Silver',
+            rate_type: 'Silver',
+            source_per_tola: p.silver_tola,
+            source_per_10g: p.silver_10g,
+            calculated_per_gram: sPerGram,
+            calculated_per_kg: Math.round(sPerGram * 1000),
+            source: 'FENEGOSIDA',
+            source_url: 'https://fenegosida.org',
+            status: 'Verified'
+          });
+        }
+
+        dHist.sort((a, b) => b.date.localeCompare(a.date));
+        fs.writeFileSync(historyPath, JSON.stringify(dHist, null, 2));
+
+        hRecords.sort((a, b) => {
+          if (a.date_ad !== b.date_ad) return b.date_ad.localeCompare(a.date_ad);
+          return a.metal === 'Gold' ? -1 : 1;
+        });
+        hDataset.data = hRecords;
+        hDataset.meta.last_updated_ad = rateDate;
+        hDataset.meta.latest_verified_date = rateDate;
+        hDataset.meta.total_records = hRecords.length;
+        fs.writeFileSync(historicalRatesPath, JSON.stringify(hDataset, null, 2));
+        console.log(`   ✓ Monthwise history synced: ${Object.keys(mByDate).length} dates verified.`);
+      }
+    } catch (e) {
+      console.warn('   ⚠️ Monthwise auto-sync warning (non-fatal):', e.message);
+    }
+
     // ── Auto-patch FALLBACK constants in useLiveRates.ts ──────────────────────
     // This keeps the static fallback (shown when /data/live-rates.json is unreachable)
     // always in sync with the latest verified FENEGOSIDA rate.
