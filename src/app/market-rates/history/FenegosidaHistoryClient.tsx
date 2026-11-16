@@ -82,7 +82,7 @@ export default function FenegosidaHistoryClient({
   dailyHistory: DayRecord[];
   encodedPayload: string;
 }) {
-  const [tab, setTab] = useState<TabType>('bymonth');
+  const [tab, setTab] = useState<TabType>('byday');
   const [unit, setUnit] = useState<UnitType>('gram'); // Default to Grams matching user screenshot
   const [dailyHistory, setDailyHistory] = useState<DayRecord[]>(initialDailyHistory);
   const [dailyPage, setDailyPage] = useState(1);
@@ -94,7 +94,23 @@ export default function FenegosidaHistoryClient({
       .then(res => res.json())
       .then((liveHistory: DayRecord[]) => {
         if (Array.isArray(liveHistory) && liveHistory.length > 0) {
-          setDailyHistory(liveHistory);
+          setDailyHistory(prev => {
+            const map = new Map<string, DayRecord>();
+            // Keep all historical records (2013 to today)
+            prev.forEach(r => map.set(r.date, r));
+            // Overlay any newly published live rates
+            liveHistory.forEach(r => {
+              const existing = map.get(r.date);
+              map.set(r.date, {
+                ...existing,
+                ...r,
+                date: r.date,
+                gold_tola: r.gold_tola ?? (r as any).gold ?? existing?.gold_tola ?? null,
+                silver_tola: r.silver_tola ?? (r as any).silver ?? existing?.silver_tola ?? null,
+              });
+            });
+            return Array.from(map.values()).sort((a, b) => b.date.localeCompare(a.date));
+          });
         }
       })
       .catch(() => {});
@@ -260,7 +276,7 @@ export default function FenegosidaHistoryClient({
   ];
 
   return (
-    <div className="w-full max-w-5xl mx-auto px-2 sm:px-4 pb-12 relative">
+    <div className="w-full relative">
 
       {/* ── Official FENEGOSIDA Style Header ── */}
       <div className="text-center mb-8">
@@ -465,15 +481,29 @@ export default function FenegosidaHistoryClient({
               const paginatedRows = dailyHistory.slice((dailyPage - 1) * rowsPerPage, dailyPage * rowsPerPage);
 
               const getPageNumbers = () => {
-                const delta = 2;
                 const range: (number | string)[] = [];
-                for (let i = Math.max(2, dailyPage - delta); i <= Math.min(totalPages - 1, dailyPage + delta); i++) {
-                  range.push(i);
+                if (totalPages <= 7) {
+                  for (let i = 1; i <= totalPages; i++) range.push(i);
+                  return range;
                 }
-                if (dailyPage - delta > 2) range.unshift('...');
-                if (dailyPage + delta < totalPages - 1) range.push('...');
-                range.unshift(1);
-                if (totalPages > 1) range.push(totalPages);
+
+                if (dailyPage <= 4) {
+                  for (let i = 1; i <= 5; i++) range.push(i);
+                  range.push('...');
+                  range.push(totalPages);
+                } else if (dailyPage >= totalPages - 3) {
+                  range.push(1);
+                  range.push('...');
+                  for (let i = totalPages - 4; i <= totalPages; i++) range.push(i);
+                } else {
+                  range.push(1);
+                  range.push('...');
+                  range.push(dailyPage - 1);
+                  range.push(dailyPage);
+                  range.push(dailyPage + 1);
+                  range.push('...');
+                  range.push(totalPages);
+                }
                 return range;
               };
 

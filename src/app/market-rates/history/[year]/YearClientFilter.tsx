@@ -1,184 +1,208 @@
 'use client';
-import React, { useState, useEffect } from 'react';
 
-export default function YearClientFilter({ children }: { children?: React.ReactNode }) {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalEntries, setTotalEntries] = useState(0);
+import React, { useState } from 'react';
+import NepaliDate from 'nepali-date-converter';
+
+interface YearRecord {
+  date_ad: string;
+  date_bs?: string | null;
+  gold_tola: number | null;
+  gold_10g: number | null;
+  silver_tola: number | null;
+  silver_10g: number | null;
+}
+
+interface YearClientFilterProps {
+  year: string;
+  data: YearRecord[];
+}
+
+const BS_MONTH_NAMES_NP = [
+  'बैशाख','जेठ','असार','श्रावण','भाद्र','असोज','कार्तिक','मंसिर','पौष','माघ','फाल्गुन','चैत'
+];
+
+function formatNepaliDateBS(dateAd: string): string {
+  try {
+    const d = new Date(dateAd);
+    if (isNaN(d.getTime())) return dateAd;
+    const np = new NepaliDate(d);
+    const bs = np.getBS();
+    const mName = BS_MONTH_NAMES_NP[bs.month] || '';
+    return `${mName} ${bs.date}, ${bs.year}`;
+  } catch {
+    return dateAd;
+  }
+}
+
+const fmtNPR = (v: number | null | undefined) =>
+  v == null || isNaN(v) ? '—' : 'NPR ' + new Intl.NumberFormat('en-IN', { maximumFractionDigits: 2 }).format(v);
+
+export default function YearClientFilter({ year, data }: YearClientFilterProps) {
   const [unit, setUnit] = useState<'gram' | 'tola'>('gram');
+  const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 30;
 
-  // Toggle Gram / Tola across headers and cell values
-  useEffect(() => {
-    const thGold = document.getElementById('th-gold');
-    const thSilver = document.getElementById('th-silver');
-    if (thGold) {
-      thGold.textContent = unit === 'tola' ? 'Fine Gold (per Tola)' : 'Fine Gold (per 10g)';
-    }
-    if (thSilver) {
-      thSilver.textContent = unit === 'tola' ? 'Silver (per Tola)' : 'Silver (per 10g)';
-    }
-
-    const tolaEls = document.querySelectorAll('.unit-tola');
-    const gramEls = document.querySelectorAll('.unit-gram');
-
-    tolaEls.forEach(el => {
-      (el as HTMLElement).style.display = unit === 'tola' ? 'inline' : 'none';
-    });
-    gramEls.forEach(el => {
-      (el as HTMLElement).style.display = unit === 'gram' ? 'inline' : 'none';
-    });
-  }, [unit]);
-
-  useEffect(() => {
-    const rows = document.querySelectorAll('tr.history-row');
-    let matchingRows: HTMLElement[] = [];
-    
-    rows.forEach((row) => {
-      const htmlRow = row as HTMLElement;
-      const dateAd = htmlRow.getAttribute('data-date-ad') || '';
-      const dateBs = htmlRow.getAttribute('data-date-bs') || '';
-      
-      const match = dateAd.includes(searchTerm) || dateBs.includes(searchTerm);
-      if (match) {
-        matchingRows.push(htmlRow);
-      } else {
-        htmlRow.style.display = 'none';
-      }
-    });
-
-    setTotalEntries(matchingRows.length);
-    const maxPage = Math.max(1, Math.ceil(matchingRows.length / rowsPerPage));
-    if (currentPage > maxPage) {
-        setCurrentPage(1); // reset if filtering reduces pages
-        return; // the state update will re-run useEffect
-    }
-
-    matchingRows.forEach((row, idx) => {
-       if (idx >= (currentPage - 1) * rowsPerPage && idx < currentPage * rowsPerPage) {
-           row.style.display = '';
-       } else {
-           row.style.display = 'none';
-       }
-    });
-  }, [searchTerm, currentPage]);
-
+  const totalEntries = data.length;
   const totalPages = Math.max(1, Math.ceil(totalEntries / rowsPerPage));
   const startEntry = totalEntries === 0 ? 0 : (currentPage - 1) * rowsPerPage + 1;
   const endEntry = Math.min(currentPage * rowsPerPage, totalEntries);
+  const paginatedRows = data.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
 
-  // generate page numbers like [1, 2, '...', 5, 6, 7, '...', 24]
   const getPageNumbers = () => {
-    const delta = 2;
     const range: (number | string)[] = [];
-    for (let i = Math.max(2, currentPage - delta); i <= Math.min(totalPages - 1, currentPage + delta); i++) {
-        range.push(i);
+    if (totalPages <= 7) {
+      for (let i = 1; i <= totalPages; i++) range.push(i);
+      return range;
     }
-    if (currentPage - delta > 2) range.unshift('...');
-    if (currentPage + delta < totalPages - 1) range.push('...');
-    
-    range.unshift(1);
-    if (totalPages > 1) range.push(totalPages);
+
+    if (currentPage <= 4) {
+      for (let i = 1; i <= 5; i++) range.push(i);
+      range.push('...');
+      range.push(totalPages);
+    } else if (currentPage >= totalPages - 3) {
+      range.push(1);
+      range.push('...');
+      for (let i = totalPages - 4; i <= totalPages; i++) range.push(i);
+    } else {
+      range.push(1);
+      range.push('...');
+      range.push(currentPage - 1);
+      range.push(currentPage);
+      range.push(currentPage + 1);
+      range.push('...');
+      range.push(totalPages);
+    }
     return range;
   };
 
   return (
-    <div>
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-        {/* Search by date */}
-        <div className="p-3.5 bg-white border border-slate-200 rounded-xl flex-1 max-w-md shadow-sm">
-          <label htmlFor="history-search" className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">
-            Search by Date
-          </label>
-          <div className="flex gap-2">
-            <input
-              id="history-search"
-              type="text"
-              placeholder="e.g., 2026-10-04 or 2083"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="flex-1 border border-slate-300 rounded-lg px-3 py-1.5 text-sm font-medium text-slate-800 outline-none focus:ring-2 focus:ring-amber-500"
-            />
-            <input
-              type="date"
-              aria-label="Select date from calendar"
-              value={searchTerm.match(/^\d{4}-\d{2}-\d{2}$/) ? searchTerm : ''}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="border border-slate-300 rounded-lg px-3 py-1.5 text-sm font-medium text-slate-800 outline-none focus:ring-2 focus:ring-amber-500 cursor-pointer"
-              title="Choose a specific A.D. date"
-            />
+    <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-5 sm:p-8">
+      <div>
+        <h3 className="text-lg font-bold text-slate-900 mb-4">Rate History by Day ({year})</h3>
+
+        {/* Grams / Tola Toggle matching exact history page format */}
+        <div className="flex justify-center my-6">
+          <div className="inline-flex bg-slate-100 p-1 rounded-full border border-slate-200/60 shadow-inner">
+            <button
+              type="button"
+              onClick={() => setUnit('gram')}
+              className={`px-7 py-1.5 rounded-full text-sm font-bold transition-all ${
+                unit === 'gram'
+                  ? 'bg-white text-slate-900 shadow-sm'
+                  : 'text-slate-500 hover:text-slate-900 font-semibold'
+              }`}
+            >
+              Grams
+            </button>
+            <button
+              type="button"
+              onClick={() => setUnit('tola')}
+              className={`px-7 py-1.5 rounded-full text-sm font-bold transition-all ${
+                unit === 'tola'
+                  ? 'bg-white text-slate-900 shadow-sm'
+                  : 'text-slate-500 hover:text-slate-900 font-semibold'
+              }`}
+            >
+              Tola
+            </button>
           </div>
         </div>
 
-        {/* Grams / Tola Toggle matching main pillar page */}
-        <div className="inline-flex bg-slate-100 p-1 rounded-full border border-slate-200/60 shadow-inner self-start sm:self-center">
-          <button
-            type="button"
-            onClick={() => setUnit('gram')}
-            className={`px-7 py-2 rounded-full text-sm font-bold transition-all ${
-              unit === 'gram'
-                ? 'bg-white text-slate-900 shadow-sm'
-                : 'text-slate-500 hover:text-slate-900 font-semibold'
-            }`}
-          >
-            Grams
-          </button>
-          <button
-            type="button"
-            onClick={() => setUnit('tola')}
-            className={`px-7 py-2 rounded-full text-sm font-bold transition-all ${
-              unit === 'tola'
-                ? 'bg-white text-slate-900 shadow-sm'
-                : 'text-slate-500 hover:text-slate-900 font-semibold'
-            }`}
-          >
-            Tola
-          </button>
+        {/* Table matching exact history page columns & styling */}
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm text-left border-collapse">
+            <thead className="border-b border-slate-200 text-xs font-bold text-slate-700">
+              <tr>
+                <th scope="col" className="py-3 px-4 text-left">Date (B.S.)</th>
+                <th scope="col" className="py-3 px-4 text-left">Date (A.D.)</th>
+                <th scope="col" className="py-3 px-4 text-right">Fine Gold (9999)</th>
+                <th scope="col" className="py-3 px-4 text-right">Silver</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100">
+              {paginatedRows.map((row) => (
+                <tr key={row.date_ad} className="hover:bg-slate-50/70 transition-colors">
+                  <td className="py-3.5 px-4 font-semibold text-slate-800 whitespace-nowrap">
+                    {formatNepaliDateBS(row.date_ad)}
+                  </td>
+                  <td className="py-3.5 px-4 text-slate-600 whitespace-nowrap">{row.date_ad}</td>
+                  <td className="py-3.5 px-4 font-bold text-slate-900 text-right whitespace-nowrap">
+                    {fmtNPR(unit === 'tola' ? row.gold_tola : row.gold_10g)}
+                  </td>
+                  <td className="py-3.5 px-4 font-bold text-slate-900 text-right whitespace-nowrap">
+                    {fmtNPR(unit === 'tola' ? row.silver_tola : row.silver_10g)}
+                  </td>
+                </tr>
+              ))}
+              {paginatedRows.length === 0 && (
+                <tr>
+                  <td colSpan={4} className="py-8 text-center text-slate-500">
+                    No historical records available for {year}.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
         </div>
-      </div>
-      
-      {children}
 
-      {/* Pagination Controls */}
-      {totalEntries > rowsPerPage && (
-        <div className="flex flex-col sm:flex-row items-center justify-between mt-6 px-2 text-sm text-slate-600">
-          <div className="mb-4 sm:mb-0">
+        {/* Pagination footer matching exact history page format */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 mt-2 border-t border-slate-200 text-sm text-slate-600">
+          <div>
             Showing {startEntry} to {endEntry} of {totalEntries} entries
           </div>
-          <div className="flex items-center gap-1">
-            <button 
-              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-              disabled={currentPage === 1}
-              className="px-3 py-1.5 rounded text-slate-600 hover:bg-slate-100 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              Previous
-            </button>
-            {getPageNumbers().map((p, i) => (
+
+          {totalPages > 1 && (
+            <div className="flex items-center gap-1 select-none flex-wrap">
               <button
-                key={i}
-                onClick={() => typeof p === 'number' && setCurrentPage(p)}
-                disabled={p === '...'}
-                className={`px-3 py-1.5 rounded border transition-colors ${
-                  p === currentPage 
-                    ? 'bg-slate-100 border-slate-300 font-bold text-slate-900' 
-                    : p === '...' 
-                      ? 'border-transparent text-slate-400 cursor-default' 
-                      : 'border-transparent hover:bg-slate-50 hover:border-slate-200'
-                }`}
+                type="button"
+                onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                disabled={currentPage === 1}
+                className="px-2.5 py-1 text-sm text-slate-600 hover:text-slate-900 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               >
-                {p}
+                Previous
               </button>
-            ))}
-            <button 
-              onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
-              disabled={currentPage === totalPages}
-              className="px-3 py-1.5 rounded text-slate-600 hover:bg-slate-100 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              Next
-            </button>
-          </div>
+
+              {getPageNumbers().map((p, idx) => {
+                if (p === '...') {
+                  return (
+                    <span key={`ellipsis-${idx}`} className="px-2 py-1 text-slate-400">
+                      ...
+                    </span>
+                  );
+                }
+
+                const pageNum = Number(p);
+                const isActive = pageNum === currentPage;
+
+                return (
+                  <button
+                    key={`page-${pageNum}`}
+                    type="button"
+                    onClick={() => setCurrentPage(pageNum)}
+                    className={`min-w-[32px] h-8 px-2 text-sm rounded transition-all ${
+                      isActive
+                        ? 'bg-gradient-to-b from-white to-slate-100 border border-slate-300 font-bold text-slate-900 shadow-sm'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                    }`}
+                    aria-current={isActive ? 'page' : undefined}
+                  >
+                    {pageNum}
+                  </button>
+                );
+              })}
+
+              <button
+                type="button"
+                onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                disabled={currentPage === totalPages}
+                className="px-2.5 py-1 text-sm text-slate-600 hover:text-slate-900 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              >
+                Next
+              </button>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 }
