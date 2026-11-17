@@ -1,4 +1,4 @@
-// Route: /market-rates/international-gold-silver/
+﻿// Route: /market-rates/international-gold-silver/
 import { Metadata } from 'next';
 import InternationalGoldClient, { InternationalRatesData } from './InternationalGoldClient';
 import fs from 'fs';
@@ -75,7 +75,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const description = `Live gold price today in USA: $${formattedGold}/oz • 24K per gram $${goldGram} • 14K per gram $${gold14kGram}. Silver spot price: $${formattedSilver}/oz. COMEX rates updated in real time, USD.`;
 
   return {
-    title: `Gold Price Today USA — $${formattedGold}/oz | Silver Spot $${formattedSilver}/oz Live`,
+    title: `Gold Price Today USA - $${formattedGold}/oz | Silver Spot $${formattedSilver}/oz Live`,
     description,
     keywords: [
       // Primary USA gold & silver keywords
@@ -110,7 +110,7 @@ export async function generateMetadata(): Promise<Metadata> {
       canonical: 'https://nepacalc.com/market-rates/international-gold-silver/',
     },
     openGraph: {
-      title: `Gold Price Today USA — $${formattedGold}/oz | Silver $${formattedSilver}/oz Live`,
+      title: `Gold Price Today USA - $${formattedGold}/oz | Silver $${formattedSilver}/oz Live`,
       description: `Live COMEX spot prices: Gold $${formattedGold}/oz • Silver $${formattedSilver}/oz • 24K/gram $${goldGram} • 14K/gram $${gold14kGram}. All purities. Updated in real time.`,
       url: 'https://nepacalc.com/market-rates/international-gold-silver/',
       type: 'website',
@@ -118,12 +118,12 @@ export async function generateMetadata(): Promise<Metadata> {
         url: 'https://nepacalc.com/images/og/international-gold-silver.jpg',
         width: 1200,
         height: 630,
-        alt: `Gold Price Today USA $${formattedGold} per troy ounce | Silver $${formattedSilver} — Live COMEX Spot Rates`,
+        alt: `Gold Price Today USA $${formattedGold} per troy ounce | Silver $${formattedSilver} - Live COMEX Spot Rates`,
       }],
     },
     twitter: {
       card: 'summary_large_image',
-      title: `Gold $${formattedGold}/oz | Silver $${formattedSilver}/oz — Live USA Spot Price`,
+      title: `Gold $${formattedGold}/oz | Silver $${formattedSilver}/oz - Live USA Spot Price`,
       description: `Today's live COMEX gold spot: $${formattedGold}/oz ($${goldGram}/g 24K, $${gold14kGram}/g 14K). Silver: $${formattedSilver}/oz. Real-time precious metals in USD.`,
       images: ['https://nepacalc.com/images/og/international-gold-silver.jpg'],
     },
@@ -137,22 +137,22 @@ export default function InternationalGoldSilverPage() {
   const silverOz = initialData.silver.spotUSD;
   const goldGram = goldOz / 31.1034768;
   const silverGram = silverOz / 31.1034768;
-  const goldRatio = silverOz > 0 ? (goldOz / silverOz).toFixed(1) : '—';
+  const goldRatio = silverOz > 0 ? (goldOz / silverOz).toFixed(1) : '-';
 
   // Gold purity rows
   const purities = [
-    { label: '24K (999 — Pure Gold)', pct: 1.0000 },
-    { label: '22K (916 — American Gold Eagle)', pct: 0.9167 },
-    { label: '18K (750 — Fine Jewelry)', pct: 0.7500 },
-    { label: '14K (585 — Most Popular USA)', pct: 0.5833 },
-    { label: '10K (417 — Legal Minimum USA)', pct: 0.4167 },
+    { label: '24K (999 - Pure Gold)', pct: 1.0000 },
+    { label: '22K (916 - American Gold Eagle)', pct: 0.9167 },
+    { label: '18K (750 - Fine Jewelry)', pct: 0.7500 },
+    { label: '14K (585 - Most Popular USA)', pct: 0.5833 },
+    { label: '10K (417 - Legal Minimum USA)', pct: 0.4167 },
   ];
 
   function fmt2(n: number) {
     return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
 
-  // 12 PAA-matched FAQ Items — covers all major USA Google "People Also Ask" questions
+  // 12 PAA-matched FAQ Items - covers all major USA Google "People Also Ask" questions
   const faqItems = [
     {
       name: 'What is the gold price today in the USA?',
@@ -175,19 +175,19 @@ export default function InternationalGoldSilverPage() {
     {
       name: 'What is the gold-silver ratio today?',
       acceptedAnswer: {
-        text: `The gold-silver ratio today is approximately ${goldRatio}:1, meaning it takes about ${goldRatio} ounces of silver to equal the value of 1 ounce of gold. Historically the ratio has ranged from 15:1 to over 120:1. Investors use it as a relative valuation tool — a high ratio (above 80) generally suggests silver is undervalued relative to gold, while a low ratio (below 60) suggests the opposite.`,
+        text: `The gold-silver ratio today is approximately ${goldRatio}:1, meaning it takes about ${goldRatio} ounces of silver to equal the value of 1 ounce of gold. Historically the ratio has ranged from 15:1 to over 120:1. Investors use it as a relative valuation tool - a high ratio (above 80) generally suggests silver is undervalued relative to gold, while a low ratio (below 60) suggests the opposite.`,
       },
     },
     {
       name: 'What is COMEX and how does it set the gold spot price?',
       acceptedAnswer: {
-        text: "COMEX (Commodity Exchange) is a division of the CME Group based in New York and is the world's primary exchange for gold and silver futures and options. The global spot price for gold is largely derived from the most active front-month COMEX futures contract, combined with the London OTC market. This continuous price discovery is what all major online spot price trackers — including this page — stream in real time.",
+        text: "COMEX (Commodity Exchange) is a division of the CME Group based in New York and is the world's primary exchange for gold and silver futures and options. The global spot price for gold is largely derived from the most active front-month COMEX futures contract, combined with the London OTC market. This continuous price discovery is what all major online spot price trackers - including this page - stream in real time.",
       },
     },
     {
       name: 'What is the difference between spot price and what I pay at a coin shop?',
       acceptedAnswer: {
-        text: "The spot price is the wholesale benchmark for immediate delivery of institutional-grade bullion (typically 400 oz London Good Delivery bars). When buying physical products like American Gold Eagle coins or silver rounds at a US coin shop, you pay a 'dealer premium' above spot — typically $30–$80/oz for gold coins and $3–$8/oz for silver coins — to cover manufacturing, minting, distribution, and dealer margin.",
+        text: "The spot price is the wholesale benchmark for immediate delivery of institutional-grade bullion (typically 400 oz London Good Delivery bars). When buying physical products like American Gold Eagle coins or silver rounds at a US coin shop, you pay a 'dealer premium' above spot - typically $30–$80/oz for gold coins and $3–$8/oz for silver coins - to cover manufacturing, minting, distribution, and dealer margin.",
       },
     },
     {
@@ -211,13 +211,13 @@ export default function InternationalGoldSilverPage() {
     {
       name: 'What are the most common gold karats in the USA?',
       acceptedAnswer: {
-        text: 'In the United States, 14 Karat (58.3% pure) is the most popular karat for jewelry due to its durability and appearance. 10 Karat (41.7% pure) is the legal minimum to be sold as real gold under FTC guidelines. For investment bullion, 24 Karat (99.9% pure — American Gold Buffalo coins) and 22 Karat (91.67% pure — American Gold Eagle coins) are the standard. 18K is common in higher-end jewelry.',
+        text: 'In the United States, 14 Karat (58.3% pure) is the most popular karat for jewelry due to its durability and appearance. 10 Karat (41.7% pure) is the legal minimum to be sold as real gold under FTC guidelines. For investment bullion, 24 Karat (99.9% pure - American Gold Buffalo coins) and 22 Karat (91.67% pure - American Gold Eagle coins) are the standard. 18K is common in higher-end jewelry.',
       },
     },
     {
       name: 'What is the difference between COMEX and LBMA gold prices?',
       acceptedAnswer: {
-        text: 'COMEX (New York) provides continuous real-time price discovery from futures trading that powers most live spot price feeds. The LBMA (London Bullion Market Association) publishes official twice-daily benchmark fixings — the LBMA Gold Price AM and PM — used by central banks, miners, and long-term physical supply contracts. Most retail spot price tools display the continuous COMEX-derived rate, while institutional physical contracts are priced against LBMA daily fixings.',
+        text: 'COMEX (New York) provides continuous real-time price discovery from futures trading that powers most live spot price feeds. The LBMA (London Bullion Market Association) publishes official twice-daily benchmark fixings - the LBMA Gold Price AM and PM - used by central banks, miners, and long-term physical supply contracts. Most retail spot price tools display the continuous COMEX-derived rate, while institutional physical contracts are priced against LBMA daily fixings.',
       },
     },
     {
@@ -228,7 +228,7 @@ export default function InternationalGoldSilverPage() {
     },
   ];
 
-  // Full @graph schema — WebPage + FAQPage + BreadcrumbList (3 levels) + Dataset
+  // Full @graph schema - WebPage + FAQPage + BreadcrumbList (3 levels) + Dataset
   const graphSchema = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -236,7 +236,7 @@ export default function InternationalGoldSilverPage() {
         '@type': 'WebPage',
         '@id': 'https://nepacalc.com/market-rates/international-gold-silver/',
         url: 'https://nepacalc.com/market-rates/international-gold-silver/',
-        name: `Gold Price Today USA — $${fmt2(goldOz)}/oz | Silver Spot $${fmt2(silverOz)}/oz Live`,
+        name: `Gold Price Today USA - $${fmt2(goldOz)}/oz | Silver Spot $${fmt2(silverOz)}/oz Live`,
         description: `Live gold price in USA today: $${fmt2(goldOz)} per troy ounce. Silver spot: $${fmt2(silverOz)}/oz. COMEX rates for 24K, 22K, 18K, 14K, and 10K gold per gram. Updated in real time.`,
         inLanguage: 'en-US',
         dateModified: new Date().toISOString(),
@@ -294,7 +294,7 @@ export default function InternationalGoldSilverPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#F8F9FA] text-[#202124]">
+    <main className="min-h-screen bg-[#F8F9FA] text-[#202124] font-modern-ui">
       {/* ── JSON-LD Structured Data ── */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(graphSchema) }} />
 
@@ -323,7 +323,7 @@ export default function InternationalGoldSilverPage() {
       <section id="gold-price-by-karat" className="max-w-6xl mx-auto px-4 pb-6">
         <div className="bg-white rounded-2xl border border-amber-100 p-5 md:p-7 shadow-sm">
           <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-1">
-            Gold Price Per Gram by Karat — USA Today
+            Gold Price Per Gram by Karat - USA Today
           </h2>
           <p className="text-xs text-gray-500 mb-4">
             Based on live 24K spot price of <strong>${fmt2(goldOz)}/troy oz</strong>. All prices in USD. Updates in real time.
@@ -390,10 +390,10 @@ export default function InternationalGoldSilverPage() {
             <p className="text-xs text-gray-600 leading-relaxed">
               <strong>COMEX</strong> (Commodity Exchange, a CME Group division, New York) is the world&apos;s primary
               marketplace for gold and silver futures. The global <strong>spot price</strong> is derived from the
-              most active front-month COMEX futures contract in combination with the London OTC market — this is
+              most active front-month COMEX futures contract in combination with the London OTC market - this is
               what all online live price feeds stream in real time. Physical gold at US coin shops trades at
-              <strong> &ldquo;spot plus a dealer premium&rdquo;</strong> — roughly $30–$80/oz for gold coins and
-              $3–$8/oz for silver coins — to cover minting, distribution, and dealer margin.
+              <strong> &ldquo;spot plus a dealer premium&rdquo;</strong> - roughly $30–$80/oz for gold coins and
+              $3–$8/oz for silver coins - to cover minting, distribution, and dealer margin.
             </p>
           </div>
 
@@ -475,7 +475,7 @@ export default function InternationalGoldSilverPage() {
       <section id="faq-section" className="max-w-6xl mx-auto px-4 pb-12">
         <div className="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 shadow-sm">
           <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-6">
-            Frequently Asked Questions — Gold &amp; Silver Price USA
+            Frequently Asked Questions - Gold &amp; Silver Price USA
           </h2>
 
           <div className="space-y-5 divide-y divide-gray-100">

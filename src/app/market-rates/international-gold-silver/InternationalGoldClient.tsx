@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect, useCallback, useId } from 'react';
 import { Coins, Scale, Calculator, X, TrendingUp, ArrowUpRight, ArrowDownRight, RefreshCw, MessageSquare, Heart, Send, Info } from 'lucide-react';
@@ -234,7 +234,7 @@ export default function InternationalGoldClient({ initialData }: Props) {
     }, 200);
   };
 
-  // Live Auto-Update Poller — dual API sources (public gold-api.com + same-origin /data/international-rates.json)
+  // Live Auto-Update Poller - dual API sources (public gold-api.com + same-origin /data/international-rates.json)
   const fetchLiveRates = useCallback(async () => {
     setIsRefreshing(true);
     try {
@@ -729,7 +729,7 @@ export default function InternationalGoldClient({ initialData }: Props) {
         </h2>
       </div>
 
-      {/* ── GOLD PRICE MATRIX TABLE (All Karats × All Weights — 100% Dynamic) ── */}
+      {/* ── GOLD PRICE MATRIX TABLE (All Karats × All Weights - 100% Dynamic) ── */}
       <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm mb-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 pb-3 border-b border-gray-100">
           <div className="flex items-center gap-3">
@@ -883,130 +883,6 @@ export default function InternationalGoldClient({ initialData }: Props) {
         <p className="text-xs sm:text-sm text-amber-900 leading-relaxed font-medium">
           US spot prices represent wholesale market benchmarks. Actual physical gold and silver buying prices at US coin shops and online bullion dealers may vary due to dealer premiums, state sales tax, and minting fees.
         </p>
-      </div>
-
-      {/* ── COMMENTS SECTION (Exact Hamro Patro Structure from Screenshot 2 & 3) ── */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm mb-8">
-        <h3 className="text-xl font-bold text-gray-900 flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <MessageSquare className="w-5 h-5 text-red-600" />
-            <span>Comments</span>
-            <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">
-              {comments.length}
-            </span>
-          </div>
-          <span className="text-xs text-gray-400">Global discussion</span>
-        </h3>
-
-        {/* Comment Input Box (Red Outline on Active/Focus) */}
-        <div className="mb-6">
-          {!commentInputActive ? (
-            <div
-              onClick={() => setCommentInputActive(true)}
-              className="cursor-pointer flex items-center gap-3 px-4 py-3 rounded-full border border-gray-300 hover:border-red-500 text-gray-500 text-sm transition"
-            >
-              <div className="w-6 h-6 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-xs font-bold">
-                ?
-              </div>
-              <span>Sign in to write a comment...</span>
-            </div>
-          ) : (
-            <form onSubmit={handleAddComment} className="border-2 border-[#B91C1C] rounded-2xl p-4 transition shadow-xs">
-              <textarea
-                autoFocus
-                rows={3}
-                value={newCommentText}
-                onChange={(e) => setNewCommentText(e.target.value)}
-                placeholder="Write your question or comment about international gold & silver prices..."
-                className="w-full text-sm text-gray-900 border-none focus:outline-none resize-none placeholder-gray-400"
-              />
-              <div className="flex items-center justify-between pt-2 border-t border-gray-100">
-                <span className="text-xs text-gray-400">Posting as Guest</span>
-                <div className="flex gap-2">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setCommentInputActive(false);
-                      setNewCommentText('');
-                    }}
-                    className="px-3 py-1.5 text-xs text-gray-500 hover:text-gray-800"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    disabled={!newCommentText.trim()}
-                    className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-bold text-white bg-[#B91C1C] hover:bg-[#991B1B] rounded-full disabled:opacity-50 transition"
-                  >
-                    <Send className="w-3.5 h-3.5" />
-                    <span>Post</span>
-                  </button>
-                </div>
-              </div>
-            </form>
-          )}
-        </div>
-
-        {/* List of Comments (Initial 12 comments displayed; More comments revealed via button) */}
-        <div className="space-y-4 divide-y divide-gray-100">
-          {comments.slice(0, visibleCommentsCount).map((comment) => (
-            <div key={comment.id} className="pt-4 first:pt-0">
-              <div className="flex items-start gap-3">
-                <div className={`w-9 h-9 rounded-full ${comment.avatarColor} text-white font-bold text-xs flex items-center justify-center shrink-0`}>
-                  {comment.author.charAt(0)}
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-bold text-gray-900">{comment.author}</span>
-                    <span className="text-xs text-gray-400">{comment.timeAgo}</span>
-                  </div>
-                  <p className="text-sm text-gray-700 mt-1 leading-relaxed">
-                    {comment.text}
-                  </p>
-                  <div className="flex items-center gap-4 mt-2">
-                    <button
-                      onClick={() => handleLike(comment.id)}
-                      className={`inline-flex items-center gap-1 text-xs font-medium transition cursor-pointer ${
-                        comment.liked ? 'text-red-600 font-bold' : 'text-gray-500 hover:text-gray-800'
-                      }`}
-                    >
-                      <Heart className={`w-3.5 h-3.5 ${comment.liked ? 'fill-red-600 text-red-600' : ''}`} />
-                      <span>{comment.likes > 0 ? `${comment.likes} Like${comment.likes > 1 ? 's' : ''}` : 'Reply'}</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* "More Comments" Button (Exact Hamro Patro Structure & Pagination) */}
-        {comments.length > visibleCommentsCount && (
-          <div className="text-center mt-6 pt-4 border-t border-gray-100">
-            <button
-              type="button"
-              onClick={handleLoadMoreComments}
-              disabled={isLoadingMoreComments}
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-gray-300 hover:border-gray-400 text-xs font-bold text-gray-700 hover:bg-gray-50 active:scale-95 transition shadow-xs disabled:opacity-60 cursor-pointer"
-            >
-              {isLoadingMoreComments ? (
-                <>
-                  <RefreshCw className="w-3.5 h-3.5 animate-spin text-[#B91C1C]" />
-                  <span>Loading comments...</span>
-                </>
-              ) : (
-                <span>More comments</span>
-              )}
-            </button>
-          </div>
-        )}
-
-        {/* All comments loaded confirmation */}
-        {visibleCommentsCount >= comments.length && comments.length > 12 && (
-          <div className="text-center mt-6 pt-4 border-t border-gray-100">
-            <span className="text-xs text-gray-400">All {comments.length} comments loaded</span>
-          </div>
-        )}
       </div>
 
       {/* ── PRICE CALCULATOR POPUP MODAL ── */}
