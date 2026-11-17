@@ -1,10 +1,10 @@
 {
   "meta": {
     "version": "2026.11.15",
-    "last_updated_ad": "2026-11-16",
+    "last_updated_ad": "2026-11-17",
     "earliest_verified_date": "2013-04-15",
-    "latest_verified_date": "2026-11-16",
-    "total_records": 8062,
+    "latest_verified_date": "2026-11-17",
+    "total_records": 8064,
     "total_gold_records": 4020,
     "total_silver_records": 4020,
     "total_unique_dates": 4020,
@@ -14,6 +14,32 @@
     "note": "2077 Baishakh & Jestha have no data due to COVID-19 lockdown (no FENEGOSIDA trading)"
   },
   "data": [
+    {
+      "date_ad": "2026-11-17",
+      "date_bs": "2083/08/01",
+      "metal": "Gold",
+      "rate_type": "Fine Gold (9999)",
+      "source_per_tola": 267200,
+      "source_per_10g": 229080,
+      "calculated_per_gram": 22908,
+      "calculated_per_kg": 22908000,
+      "source": "FENEGOSIDA",
+      "source_url": "https://fenegosida.org",
+      "status": "Verified"
+    },
+    {
+      "date_ad": "2026-11-17",
+      "date_bs": "2083/08/01",
+      "metal": "Silver",
+      "rate_type": "Silver",
+      "source_per_tola": 3490,
+      "source_per_10g": 2992,
+      "calculated_per_gram": 299.2,
+      "calculated_per_kg": 299200,
+      "source": "FENEGOSIDA",
+      "source_url": "https://fenegosida.org",
+      "status": "Verified"
+    },
     {
       "date_ad": "2026-11-16",
       "date_bs": "2083/07/30",
