@@ -400,6 +400,77 @@ export default function InternationalGoldSilverPage() {
         </div>
       </section>
 
+      {/* ── Key Market Drivers & US Bullion Buying Guide (SEO Long-Tail Ranking Section) ── */}
+      <section id="gold-market-drivers-usa" className="max-w-6xl mx-auto px-4 pb-6">
+        <div className="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 shadow-sm space-y-6">
+          <div>
+            <h2 className="text-xl md:text-2xl font-bold text-gray-900 tracking-tight mb-2">
+              Key Factors Driving US Gold and Silver Prices Today
+            </h2>
+            <p className="text-sm text-gray-600 leading-relaxed">
+              Spot gold and silver prices in the United States fluctuate continuously during market hours. The primary economic and geopolitical catalysts governing daily rate fluctuations in USD include:
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs md:text-sm">
+            <div className="bg-slate-50 border border-slate-100 p-4 rounded-xl space-y-1.5">
+              <h3 className="font-bold text-slate-900 flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-amber-500"></span>
+                US Federal Reserve &amp; Interest Rates
+              </h3>
+              <p className="text-slate-600 leading-relaxed">
+                Gold pays no yield or dividend. When the Federal Reserve cuts interest rates or bond yields soften, the opportunity cost of holding physical precious metals drops, typically boosting spot gold prices.
+              </p>
+            </div>
+
+            <div className="bg-slate-50 border border-slate-100 p-4 rounded-xl space-y-1.5">
+              <h3 className="font-bold text-slate-900 flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                US Dollar Index (DXY) Correlation
+              </h3>
+              <p className="text-slate-600 leading-relaxed">
+                Global bullion is universally priced in US Dollars. When the US Dollar strengthens against foreign currencies, gold becomes costlier for foreign buyers. Conversely, dollar weakness fuels strong upward momentum.
+              </p>
+            </div>
+
+            <div className="bg-slate-50 border border-slate-100 p-4 rounded-xl space-y-1.5">
+              <h3 className="font-bold text-slate-900 flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-blue-500"></span>
+                Central Bank Bullion Accumulation
+              </h3>
+              <p className="text-slate-600 leading-relaxed">
+                Sovereign central banks (including PBOC, RBI, and European central banks) have accumulated historic quantities of physical gold reserves, establishing durable multi-year price floors across global spot exchanges.
+              </p>
+            </div>
+          </div>
+
+          {/* Educational Quick Reference Checklist */}
+          <div className="border-t border-gray-100 pt-5">
+            <h3 className="text-sm md:text-base font-bold text-gray-900 mb-2">
+              Buyer&apos;s Checklist: Purchasing Physical Gold &amp; Silver in the United States
+            </h3>
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs md:text-sm text-gray-600">
+              <li className="flex items-start gap-2">
+                <span className="text-emerald-600 font-bold">✓</span>
+                <span><strong>Know the Spot Benchmark:</strong> Check live COMEX spot before visiting coin shops or ordering online to verify fair dealer markups.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-emerald-600 font-bold">✓</span>
+                <span><strong>Compare Premiums:</strong> American Gold Eagles (22K) carry slightly higher minting premiums than 24K Canadian Maple Leafs or 10 oz silver bars.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-emerald-600 font-bold">✓</span>
+                <span><strong>Verify Karat Hallmarks:</strong> Ensure fine jewelry is stamped with legitimate hallmarks (e.g., 585 for 14K, 750 for 18K, 999 for 24K).</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-emerald-600 font-bold">✓</span>
+                <span><strong>Scrap Melt Valuation:</strong> Selling old scrap jewelry to pawnshops typically pays 70% to 90% of intrinsic spot melt value.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
       {/* ── FAQ Section (12 PAA-matched questions) ── */}
       <section id="faq-section" className="max-w-6xl mx-auto px-4 pb-12">
         <div className="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 shadow-sm">
