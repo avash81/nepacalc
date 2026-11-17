@@ -177,6 +177,19 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
   const minDateAd = minGoldRecord?.date_ad || `${year}`;
   const minDateBs = minGoldRecord?.date_bs || '';
 
+  // Silver High / Low Unit Calculations for this Year
+  const peakSilverTola = maxSilver || 0;
+  const peakSilver10g = Math.round((peakSilverTola / tolaInGrams) * 10);
+  const peakSilverGram = Math.round((peakSilverTola / tolaInGrams) * 100) / 100;
+  const peakSilverDateAd = maxSilverRecord?.date_ad || `${year}`;
+  const peakSilverDateBs = maxSilverRecord?.date_bs || '';
+
+  const minSilverTola = minSilver || 0;
+  const minSilver10g = Math.round((minSilverTola / tolaInGrams) * 10);
+  const minSilverGram = Math.round((minSilverTola / tolaInGrams) * 100) / 100;
+  const minSilverDateAd = minSilverRecord?.date_ad || `${year}`;
+  const minSilverDateBs = minSilverRecord?.date_bs || '';
+
   // Current / Latest Year check
   const isCurrentYear = year === '2026';
 
@@ -328,74 +341,84 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
         {/* 5. Official Highest & Lowest Record Snapshot Cards for {year} */}
         <section className="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Highest Card */}
-          <div className="bg-gradient-to-br from-amber-500/10 via-amber-500/5 to-transparent border border-amber-300/80 rounded-2xl p-5 sm:p-6 shadow-sm flex flex-col justify-between">
+          <div className="bg-gradient-to-br from-amber-500/10 via-amber-500/5 to-transparent border border-amber-300/80 rounded-2xl p-4 sm:p-5 shadow-sm flex flex-col justify-between">
             <div>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-amber-200/80 pb-3 mb-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-amber-200/80 pb-2.5 mb-3">
                 <div>
-                  <span className="text-[11px] font-black uppercase tracking-wider text-amber-800 bg-amber-200/70 px-2 py-0.5 rounded-md">
+                  <span className="text-[10px] font-black uppercase tracking-wider text-amber-800 bg-amber-200/70 px-2 py-0.5 rounded">
                     Official {year} Record High
                   </span>
-                  <h2 className="text-lg sm:text-xl font-black text-slate-900 mt-1">
-                    Highest Gold Price in {year}
+                  <h2 className="text-base sm:text-lg font-black text-slate-900 mt-1">
+                    Highest Rates in {year}
                   </h2>
                 </div>
-                <div className="text-xs text-slate-600 sm:text-right">
-                  <span className="font-bold text-slate-800">Recorded:</span> {peakDateAd} {peakDateBs ? `(${peakDateBs} B.S.)` : ''}
+                <div className="text-[11px] text-slate-600 sm:text-right">
+                  <span className="font-bold text-slate-800">Peak:</span> {peakDateAd} {peakDateBs ? `(${peakDateBs} B.S.)` : ''}
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 gap-2.5 sm:gap-3">
-                <div className="bg-white/95 p-3 rounded-xl border border-amber-100 shadow-xs">
-                  <p className="text-[11px] font-semibold text-slate-500">24K (1 Tola)</p>
-                  <p className="text-base sm:text-lg font-black text-slate-900 mt-0.5">NPR {fmtNPR(peakGoldTola)}</p>
-                  <p className="text-[10px] text-slate-400 mt-0.5">11.664g standard</p>
+              <div className="grid grid-cols-2 gap-2 sm:gap-2.5">
+                <div className="bg-white/95 p-2.5 sm:p-3 rounded-xl border border-amber-100 shadow-xs">
+                  <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide truncate">24K Gold (1 Tola)</p>
+                  <p className="text-sm sm:text-base font-extrabold text-slate-900 mt-0.5 whitespace-nowrap">NPR {fmtNPR(peakGoldTola)}</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5 truncate">NPR {fmtNPR(peakGoldGram)} / gram</p>
                 </div>
-                <div className="bg-white/95 p-3 rounded-xl border border-amber-100 shadow-xs">
-                  <p className="text-[11px] font-semibold text-slate-500">24K (Per Gram)</p>
-                  <p className="text-base sm:text-lg font-black text-slate-900 mt-0.5">NPR {fmtNPR(peakGoldGram)}</p>
-                  <p className="text-[10px] text-slate-400 mt-0.5">NPR {fmtNPR(peakGold10g)} / 10g</p>
+                <div className="bg-white/95 p-2.5 sm:p-3 rounded-xl border border-amber-100 shadow-xs">
+                  <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide truncate">22K Tejabi (1 Tola)</p>
+                  <p className="text-sm sm:text-base font-extrabold text-slate-900 mt-0.5 whitespace-nowrap">NPR {fmtNPR(peakGold22kTola)}</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5 truncate">NPR {fmtNPR(peakGold22kGram)} / gram</p>
                 </div>
-                <div className="bg-white/95 p-3 rounded-xl border border-amber-100 shadow-xs">
-                  <p className="text-[11px] font-semibold text-slate-500">22K / Tejabi</p>
-                  <p className="text-base sm:text-lg font-black text-slate-900 mt-0.5">NPR {fmtNPR(peakGold22kTola)}</p>
-                  <p className="text-[10px] text-slate-400 mt-0.5">per tola</p>
+                <div className="bg-white/95 p-2.5 sm:p-3 rounded-xl border border-amber-100 shadow-xs">
+                  <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide truncate">Silver (1 Tola)</p>
+                  <p className="text-sm sm:text-base font-extrabold text-slate-900 mt-0.5 whitespace-nowrap">NPR {fmtNPR(peakSilverTola)}</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5 truncate">11.664g standard</p>
+                </div>
+                <div className="bg-white/95 p-2.5 sm:p-3 rounded-xl border border-amber-100 shadow-xs">
+                  <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide truncate">Silver (10 Grams)</p>
+                  <p className="text-sm sm:text-base font-extrabold text-slate-900 mt-0.5 whitespace-nowrap">NPR {fmtNPR(peakSilver10g)}</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5 truncate">NPR {fmtNPR(peakSilverGram)} / gram</p>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Lowest Card */}
-          <div className="bg-gradient-to-br from-slate-500/10 via-slate-500/5 to-transparent border border-slate-300/80 rounded-2xl p-5 sm:p-6 shadow-sm flex flex-col justify-between">
+          <div className="bg-gradient-to-br from-slate-500/10 via-slate-500/5 to-transparent border border-slate-300/80 rounded-2xl p-4 sm:p-5 shadow-sm flex flex-col justify-between">
             <div>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-slate-200 pb-3 mb-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-slate-200 pb-2.5 mb-3">
                 <div>
-                  <span className="text-[11px] font-black uppercase tracking-wider text-slate-700 bg-slate-200/80 px-2 py-0.5 rounded-md">
+                  <span className="text-[10px] font-black uppercase tracking-wider text-slate-700 bg-slate-200/80 px-2 py-0.5 rounded">
                     Official {year} Record Low
                   </span>
-                  <h2 className="text-lg sm:text-xl font-black text-slate-900 mt-1">
-                    Lowest Gold Price in {year}
+                  <h2 className="text-base sm:text-lg font-black text-slate-900 mt-1">
+                    Lowest Rates in {year}
                   </h2>
                 </div>
-                <div className="text-xs text-slate-600 sm:text-right">
-                  <span className="font-bold text-slate-800">Recorded:</span> {minDateAd} {minDateBs ? `(${minDateBs} B.S.)` : ''}
+                <div className="text-[11px] text-slate-600 sm:text-right">
+                  <span className="font-bold text-slate-800">Low:</span> {minDateAd} {minDateBs ? `(${minDateBs} B.S.)` : ''}
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 gap-2.5 sm:gap-3">
-                <div className="bg-white/95 p-3 rounded-xl border border-slate-200 shadow-xs">
-                  <p className="text-[11px] font-semibold text-slate-500">24K (1 Tola)</p>
-                  <p className="text-base sm:text-lg font-black text-slate-900 mt-0.5">NPR {fmtNPR(minGoldTola)}</p>
-                  <p className="text-[10px] text-slate-400 mt-0.5">11.664g standard</p>
+              <div className="grid grid-cols-2 gap-2 sm:gap-2.5">
+                <div className="bg-white/95 p-2.5 sm:p-3 rounded-xl border border-slate-200 shadow-xs">
+                  <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide truncate">24K Gold (1 Tola)</p>
+                  <p className="text-sm sm:text-base font-extrabold text-slate-900 mt-0.5 whitespace-nowrap">NPR {fmtNPR(minGoldTola)}</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5 truncate">NPR {fmtNPR(minGoldGram)} / gram</p>
                 </div>
-                <div className="bg-white/95 p-3 rounded-xl border border-slate-200 shadow-xs">
-                  <p className="text-[11px] font-semibold text-slate-500">24K (Per Gram)</p>
-                  <p className="text-base sm:text-lg font-black text-slate-900 mt-0.5">NPR {fmtNPR(minGoldGram)}</p>
-                  <p className="text-[10px] text-slate-400 mt-0.5">NPR {fmtNPR(minGold10g)} / 10g</p>
+                <div className="bg-white/95 p-2.5 sm:p-3 rounded-xl border border-slate-200 shadow-xs">
+                  <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide truncate">22K Tejabi (1 Tola)</p>
+                  <p className="text-sm sm:text-base font-extrabold text-slate-900 mt-0.5 whitespace-nowrap">NPR {fmtNPR(minGold22kTola)}</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5 truncate">NPR {fmtNPR(minGold22kGram)} / gram</p>
                 </div>
-                <div className="bg-white/95 p-3 rounded-xl border border-slate-200 shadow-xs">
-                  <p className="text-[11px] font-semibold text-slate-500">22K / Tejabi</p>
-                  <p className="text-base sm:text-lg font-black text-slate-900 mt-0.5">NPR {fmtNPR(minGold22kTola)}</p>
-                  <p className="text-[10px] text-slate-400 mt-0.5">per tola</p>
+                <div className="bg-white/95 p-2.5 sm:p-3 rounded-xl border border-slate-200 shadow-xs">
+                  <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide truncate">Silver (1 Tola)</p>
+                  <p className="text-sm sm:text-base font-extrabold text-slate-900 mt-0.5 whitespace-nowrap">NPR {fmtNPR(minSilverTola)}</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5 truncate">11.664g standard</p>
+                </div>
+                <div className="bg-white/95 p-2.5 sm:p-3 rounded-xl border border-slate-200 shadow-xs">
+                  <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide truncate">Silver (10 Grams)</p>
+                  <p className="text-sm sm:text-base font-extrabold text-slate-900 mt-0.5 whitespace-nowrap">NPR {fmtNPR(minSilver10g)}</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5 truncate">NPR {fmtNPR(minSilverGram)} / gram</p>
                 </div>
               </div>
             </div>
