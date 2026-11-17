@@ -158,8 +158,6 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
   const peakGoldGram = Math.round((peakGoldTola / tolaInGrams) * 100) / 100;
   const peakGold22kTola = Math.round(peakGoldTola * (22 / 24));
   const peakGold22kGram = Math.round((peakGold22kTola / tolaInGrams) * 100) / 100;
-  const peakGoldInrTola = Math.round(peakGoldTola / 1.6);
-  const peakGoldInrGram = Math.round((peakGoldInrTola / tolaInGrams) * 100) / 100;
   const peakDateAd = maxGoldRecord?.date_ad || `${year}`;
   const peakDateBs = maxGoldRecord?.date_bs || '';
 
@@ -169,13 +167,15 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
   const avgGoldGram = Math.round((annualAvgGold / tolaInGrams) * 100) / 100;
   const avgGold22kTola = Math.round(annualAvgGold * (22 / 24));
   const avgGold22kGram = Math.round((avgGold22kTola / tolaInGrams) * 100) / 100;
-  const avgGoldInrTola = Math.round(annualAvgGold / 1.6);
-  const avgGoldInrGram = Math.round((avgGoldInrTola / tolaInGrams) * 100) / 100;
 
   // Minimum Unit Calculations for this Year
   const minGoldTola = minGold || 0;
+  const minGold10g = Math.round((minGoldTola / tolaInGrams) * 10);
   const minGoldGram = Math.round((minGoldTola / tolaInGrams) * 100) / 100;
   const minGold22kTola = Math.round(minGoldTola * (22 / 24));
+  const minGold22kGram = Math.round((minGold22kTola / tolaInGrams) * 100) / 100;
+  const minDateAd = minGoldRecord?.date_ad || `${year}`;
+  const minDateBs = minGoldRecord?.date_bs || '';
 
   // Current / Latest Year check
   const isCurrentYear = year === '2026';
@@ -188,7 +188,6 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
     { unit: '1 Anna (~0.729g)', avgNPR: Math.round(annualAvgGold / 16), peakNPR: Math.round(peakGoldTola / 16) },
     { unit: '1 Lal (~0.1166g)', avgNPR: Math.round(annualAvgGold / 100), peakNPR: Math.round(peakGoldTola / 100) },
     { unit: '22K / 22 Carat (Tejabi) per tola', avgNPR: avgGold22kTola, peakNPR: peakGold22kTola },
-    { unit: 'Indian Rupee (INR) per tola (at 1.6 peg)', avgNPR: avgGoldInrTola, peakNPR: peakGoldInrTola },
   ];
 
   // Year-Specific FAQ Items
@@ -198,12 +197,12 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
       a: `In ${year}, the highest gold price recorded in Nepal for 24K hallmark gold was NPR ${fmtNPR(peakGoldTola)} per tola (NPR ${fmtNPR(peakGoldGram)} per gram, or NPR ${fmtNPR(peakGold10g)} per 10 grams) on ${peakDateAd}${peakDateBs ? ` (${peakDateBs} B.S.)` : ''}. For 22K (22 carat / Tejabi gold), the peak reached approximately NPR ${fmtNPR(peakGold22kTola)} per tola.`
     },
     {
-      q: `What was the average gold price in Nepal in ${year} per tola and per gram?`,
-      a: `Throughout ${year}, 24K fine gold in Nepal averaged NPR ${fmtNPR(annualAvgGold)} per tola (approximately NPR ${fmtNPR(avgGoldGram)} per gram, or NPR ${fmtNPR(avgGold10g)} per 10 grams). 22K Tejabi gold averaged approximately NPR ${fmtNPR(avgGold22kTola)} per tola (~NPR ${fmtNPR(avgGold22kGram)} per gram).`
+      q: `What was the lowest gold rate in Nepal in ${year}?`,
+      a: `The lowest recorded gold price in Nepal during ${year} for 24K hallmark gold was NPR ${fmtNPR(minGoldTola)} per tola (NPR ${fmtNPR(minGoldGram)} per gram, or NPR ${fmtNPR(minGold10g)} per 10 grams) on ${minDateAd}${minDateBs ? ` (${minDateBs} B.S.)` : ''}. For 22K (22 carat / Tejabi gold), the lowest rate reached approximately NPR ${fmtNPR(minGold22kTola)} per tola.`
     },
     {
-      q: `What was the lowest gold rate in Nepal in ${year}?`,
-      a: `The lowest recorded gold price in Nepal during ${year} was NPR ${fmtNPR(minGoldTola)} per tola (NPR ${fmtNPR(minGoldGram)} per gram) on ${minGoldRecord?.date_ad || year}${minGoldRecord?.date_bs ? ` (${minGoldRecord.date_bs} B.S.)` : ''}.`
+      q: `What was the average gold price in Nepal in ${year} per tola and per gram?`,
+      a: `Throughout ${year}, 24K fine gold in Nepal averaged NPR ${fmtNPR(annualAvgGold)} per tola (approximately NPR ${fmtNPR(avgGoldGram)} per gram, or NPR ${fmtNPR(avgGold10g)} per 10 grams). 22K Tejabi gold averaged approximately NPR ${fmtNPR(avgGold22kTola)} per tola (~NPR ${fmtNPR(avgGold22kGram)} per gram).`
     },
     {
       q: `What was the 22K (22 carat) gold price in Nepal in ${year}?`,
@@ -212,10 +211,6 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
     {
       q: `How much was 1 Lal of gold in Nepal in ${year}?`,
       a: `In Nepal, 1 Lal represents 1/100th of a tola (~0.1166 grams). In ${year}, 1 Lal of hallmark gold averaged NPR ${fmtNPR(Math.round(annualAvgGold / 100))}, with an annual peak rate of NPR ${fmtNPR(Math.round(peakGoldTola / 100))} per Lal on ${peakDateAd}.`
-    },
-    {
-      q: `What was the gold price in Nepal in ${year} in Indian Rupees (INR)?`,
-      a: `Based on the official Nepal-India currency exchange peg (100 INR = 160 NPR), the ${year} average gold price of NPR ${fmtNPR(annualAvgGold)} per tola equaled approximately ₹${fmtNPR(avgGoldInrTola)} INR per tola (₹${fmtNPR(avgGoldInrGram)} INR per gram). The peak rate in ${year} was equivalent to ₹${fmtNPR(peakGoldInrTola)} INR per tola.`
     },
     {
       q: `What was the silver price in Nepal in ${year}?`,
@@ -330,42 +325,79 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
           ) : null}
         </div>
 
-        {/* 5. Year Record / Snapshot Card (Placed below table) */}
-        <section className="w-full bg-gradient-to-br from-amber-500/10 via-amber-500/5 to-transparent border border-amber-300/80 rounded-2xl p-5 sm:p-6 shadow-sm">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-amber-200/80 pb-3 mb-4">
+        {/* 5. Official Highest & Lowest Record Snapshot Cards for {year} */}
+        <section className="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Highest Card */}
+          <div className="bg-gradient-to-br from-amber-500/10 via-amber-500/5 to-transparent border border-amber-300/80 rounded-2xl p-5 sm:p-6 shadow-sm flex flex-col justify-between">
             <div>
-              <span className="text-[11px] font-black uppercase tracking-wider text-amber-800 bg-amber-200/70 px-2 py-0.5 rounded-md">
-                Official {year} Record
-              </span>
-              <h2 className="text-xl sm:text-2xl font-black text-slate-900 mt-1">
-                Highest Gold Price in Nepal in {year}
-              </h2>
-            </div>
-            <div className="text-xs text-slate-600 sm:text-right">
-              <span className="font-bold text-slate-800">Recorded On:</span> {peakDateAd} {peakDateBs ? `(${peakDateBs} B.S.)` : ''}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-amber-200/80 pb-3 mb-4">
+                <div>
+                  <span className="text-[11px] font-black uppercase tracking-wider text-amber-800 bg-amber-200/70 px-2 py-0.5 rounded-md">
+                    Official {year} Record High
+                  </span>
+                  <h2 className="text-lg sm:text-xl font-black text-slate-900 mt-1">
+                    Highest Gold Price in {year}
+                  </h2>
+                </div>
+                <div className="text-xs text-slate-600 sm:text-right">
+                  <span className="font-bold text-slate-800">Recorded:</span> {peakDateAd} {peakDateBs ? `(${peakDateBs} B.S.)` : ''}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-3 gap-2.5 sm:gap-3">
+                <div className="bg-white/95 p-3 rounded-xl border border-amber-100 shadow-xs">
+                  <p className="text-[11px] font-semibold text-slate-500">24K (1 Tola)</p>
+                  <p className="text-base sm:text-lg font-black text-slate-900 mt-0.5">NPR {fmtNPR(peakGoldTola)}</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5">11.664g standard</p>
+                </div>
+                <div className="bg-white/95 p-3 rounded-xl border border-amber-100 shadow-xs">
+                  <p className="text-[11px] font-semibold text-slate-500">24K (Per Gram)</p>
+                  <p className="text-base sm:text-lg font-black text-slate-900 mt-0.5">NPR {fmtNPR(peakGoldGram)}</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5">NPR {fmtNPR(peakGold10g)} / 10g</p>
+                </div>
+                <div className="bg-white/95 p-3 rounded-xl border border-amber-100 shadow-xs">
+                  <p className="text-[11px] font-semibold text-slate-500">22K / Tejabi</p>
+                  <p className="text-base sm:text-lg font-black text-slate-900 mt-0.5">NPR {fmtNPR(peakGold22kTola)}</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5">per tola</p>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-            <div className="bg-white/90 p-3 sm:p-4 rounded-xl border border-amber-100 shadow-xs">
-              <p className="text-xs font-semibold text-slate-500">24K Gold (Per 1 Tola)</p>
-              <p className="text-lg sm:text-xl font-black text-slate-900 mt-0.5">NPR {fmtNPR(peakGoldTola)}</p>
-              <p className="text-[11px] text-slate-400 mt-0.5">11.664 grams standard</p>
-            </div>
-            <div className="bg-white/90 p-3 sm:p-4 rounded-xl border border-amber-100 shadow-xs">
-              <p className="text-xs font-semibold text-slate-500">24K Gold (Per Gram)</p>
-              <p className="text-lg sm:text-xl font-black text-slate-900 mt-0.5">NPR {fmtNPR(peakGoldGram)}</p>
-              <p className="text-[11px] text-slate-400 mt-0.5">NPR {fmtNPR(peakGold10g)} / 10g</p>
-            </div>
-            <div className="bg-white/90 p-3 sm:p-4 rounded-xl border border-amber-100 shadow-xs">
-              <p className="text-xs font-semibold text-slate-500">22K / 22 Carat (Tejabi)</p>
-              <p className="text-lg sm:text-xl font-black text-slate-900 mt-0.5">NPR {fmtNPR(peakGold22kTola)}</p>
-              <p className="text-[11px] text-slate-400 mt-0.5">NPR {fmtNPR(peakGold22kGram)} / gram</p>
-            </div>
-            <div className="bg-white/90 p-3 sm:p-4 rounded-xl border border-amber-100 shadow-xs">
-              <p className="text-xs font-semibold text-slate-500">Equivalent in Indian (INR)</p>
-              <p className="text-lg sm:text-xl font-black text-slate-900 mt-0.5">₹{fmtNPR(peakGoldInrTola)}</p>
-              <p className="text-[11px] text-slate-400 mt-0.5">₹{fmtNPR(peakGoldInrGram)} / gram (at 1.6 peg)</p>
+          {/* Lowest Card */}
+          <div className="bg-gradient-to-br from-slate-500/10 via-slate-500/5 to-transparent border border-slate-300/80 rounded-2xl p-5 sm:p-6 shadow-sm flex flex-col justify-between">
+            <div>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-slate-200 pb-3 mb-4">
+                <div>
+                  <span className="text-[11px] font-black uppercase tracking-wider text-slate-700 bg-slate-200/80 px-2 py-0.5 rounded-md">
+                    Official {year} Record Low
+                  </span>
+                  <h2 className="text-lg sm:text-xl font-black text-slate-900 mt-1">
+                    Lowest Gold Price in {year}
+                  </h2>
+                </div>
+                <div className="text-xs text-slate-600 sm:text-right">
+                  <span className="font-bold text-slate-800">Recorded:</span> {minDateAd} {minDateBs ? `(${minDateBs} B.S.)` : ''}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-3 gap-2.5 sm:gap-3">
+                <div className="bg-white/95 p-3 rounded-xl border border-slate-200 shadow-xs">
+                  <p className="text-[11px] font-semibold text-slate-500">24K (1 Tola)</p>
+                  <p className="text-base sm:text-lg font-black text-slate-900 mt-0.5">NPR {fmtNPR(minGoldTola)}</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5">11.664g standard</p>
+                </div>
+                <div className="bg-white/95 p-3 rounded-xl border border-slate-200 shadow-xs">
+                  <p className="text-[11px] font-semibold text-slate-500">24K (Per Gram)</p>
+                  <p className="text-base sm:text-lg font-black text-slate-900 mt-0.5">NPR {fmtNPR(minGoldGram)}</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5">NPR {fmtNPR(minGold10g)} / 10g</p>
+                </div>
+                <div className="bg-white/95 p-3 rounded-xl border border-slate-200 shadow-xs">
+                  <p className="text-[11px] font-semibold text-slate-500">22K / Tejabi</p>
+                  <p className="text-base sm:text-lg font-black text-slate-900 mt-0.5">NPR {fmtNPR(minGold22kTola)}</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5">per tola</p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -414,10 +446,10 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
                     <tr key={i} className="hover:bg-slate-50 transition-colors">
                       <td className="px-4 py-3 font-semibold text-slate-900">{d.unit}</td>
                       <td className="px-4 py-3 text-right font-medium text-slate-700">
-                        {d.unit.includes('Indian Rupee') ? `₹${fmtNPR(d.avgNPR)}` : `NPR ${fmtNPR(d.avgNPR)}`}
+                        NPR {fmtNPR(d.avgNPR)}
                       </td>
                       <td className="px-4 py-3 text-right font-bold text-amber-700">
-                        {d.unit.includes('Indian Rupee') ? `₹${fmtNPR(d.peakNPR)}` : `NPR ${fmtNPR(d.peakNPR)}`}
+                        NPR {fmtNPR(d.peakNPR)}
                       </td>
                     </tr>
                   ))}
@@ -450,10 +482,10 @@ export default async function YearHistoryPage({ params }: { params: { year: stri
             </p>
 
             <h3 className="text-lg font-bold text-slate-900 pt-2">
-              Cross-Border Parity &amp; Indian Rupee (INR) Valuation in {year}
+              Annual High vs. Low Price Volatility in {year}
             </h3>
             <p>
-              Under the fixed peg of 100 INR = 160 NPR, the {year} average hallmark gold price of NPR {fmtNPR(annualAvgGold)} per tola was equivalent to approximately <strong>₹{fmtNPR(avgGoldInrTola)} INR per tola</strong> (₹{fmtNPR(avgGoldInrGram)} INR per gram). At its annual peak of NPR {fmtNPR(peakGoldTola)}, the Indian currency value stood at <strong>₹{fmtNPR(peakGoldInrTola)} INR per tola</strong>.
+              Throughout {year}, the bullion market in Nepal experienced a spread of <strong>NPR {fmtNPR(peakGoldTola - minGoldTola)} per tola</strong> between its lowest point (<strong>NPR {fmtNPR(minGoldTola)}</strong> on {minDateAd}) and its highest peak (<strong>NPR {fmtNPR(peakGoldTola)}</strong> on {peakDateAd}). This annual range reflects the degree of price volatility driven by international bullion fluctuations and macroeconomic conditions during {year}.
             </p>
           </div>
         </article>

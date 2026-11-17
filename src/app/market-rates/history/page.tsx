@@ -204,10 +204,17 @@ export default function HistoryHubPage() {
   const athGoldGram = Math.round((gMax / tolaInGrams) * 100) / 100;
   const athGold22kTola = Math.round(gMax * (22 / 24));
   const athGold22kGram = Math.round((athGold22kTola / tolaInGrams) * 100) / 100;
-  const athGoldInrTola = Math.round(gMax / 1.6);
-  const athGoldInrGram = Math.round((athGoldInrTola / tolaInGrams) * 100) / 100;
   const athDateAd = gMaxRecord?.date_ad || '2026-01-29';
   const athDateBs = gMaxRecord?.date_bs || '2082/10/15';
+
+  // All-Time Low (ATL) calculations
+  const atlGoldTola = gMin;
+  const atlGold10g = Math.round((gMin / tolaInGrams) * 10);
+  const atlGoldGram = Math.round((gMin / tolaInGrams) * 100) / 100;
+  const atlGold22kTola = Math.round(gMin * (22 / 24));
+  const atlGold22kGram = Math.round((atlGold22kTola / tolaInGrams) * 100) / 100;
+  const atlDateAd = gMinRecord?.date_ad || '2013-04-16';
+  const atlDateBs = gMinRecord?.date_bs || '2070/01/03';
 
   // Milestone Years Comparison (2019 to 2026)
   const milestoneYears = [2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019];
@@ -246,8 +253,8 @@ export default function HistoryHubPage() {
       a: `The historic peak rate reached in the Nepalese bullion market was NPR ${fmtNPR(athGoldTola)} per tola on ${athDateAd} (${athDateBs} B.S.), as officially published by the Federation of Nepal Gold and Silver Dealers’ Association (FENEGOSIDA).`
     },
     {
-      q: 'What is the highest gold price in Nepal in Indian Rupees (INR)?',
-      a: `Converted to Indian Rupees at the official Nepal-India currency peg (100 INR = 160 NPR), Nepal's all-time record gold rate of NPR ${fmtNPR(athGoldTola)} per tola equals approximately ₹${fmtNPR(athGoldInrTola)} INR per tola (or ₹${fmtNPR(athGoldInrGram)} INR per gram).`
+      q: 'What was the lowest gold price ever recorded in Nepal?',
+      a: `The lowest gold price officially recorded in Nepal's historical dataset is NPR ${fmtNPR(atlGoldTola)} per tola (NPR ${fmtNPR(atlGold10g)} per 10 grams, or NPR ${fmtNPR(atlGoldGram)} per gram) on ${atlDateAd}${atlDateBs ? ` (${atlDateBs} B.S.)` : ''}. For 22K (22 carat / Tejabi gold), the lowest rate reached approximately NPR ${fmtNPR(atlGold22kTola)} per tola.`
     },
     {
       q: 'What has been the history of gold prices in Nepal?',
@@ -350,42 +357,79 @@ export default function HistoryHubPage() {
           )}
         </div>
 
-        {/* ── All-Time High (ATH) Snapshot Card (Below Dataset Table) ── */}
-        <section className="w-full bg-gradient-to-br from-amber-500/10 via-amber-500/5 to-transparent border border-amber-300/80 rounded-2xl p-5 sm:p-6 shadow-sm">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-amber-200/80 pb-3 mb-4">
+        {/* ── Official All-Time Highest & Lowest Record Snapshot Cards (Below Dataset Table) ── */}
+        <section className="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Highest Card */}
+          <div className="bg-gradient-to-br from-amber-500/10 via-amber-500/5 to-transparent border border-amber-300/80 rounded-2xl p-5 sm:p-6 shadow-sm flex flex-col justify-between">
             <div>
-              <span className="text-[11px] font-black uppercase tracking-wider text-amber-800 bg-amber-200/70 px-2 py-0.5 rounded-md">
-                Official All-Time Record
-              </span>
-              <h2 className="text-xl sm:text-2xl font-black text-slate-900 mt-1">
-                Highest Gold Price in Nepal Till Date
-              </h2>
-            </div>
-            <div className="text-xs text-slate-600 sm:text-right">
-              <span className="font-bold text-slate-800">Recorded On:</span> {athDateAd} ({athDateBs} B.S.)
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-amber-200/80 pb-3 mb-4">
+                <div>
+                  <span className="text-[11px] font-black uppercase tracking-wider text-amber-800 bg-amber-200/70 px-2 py-0.5 rounded-md">
+                    Official All-Time Record High
+                  </span>
+                  <h2 className="text-lg sm:text-xl font-black text-slate-900 mt-1">
+                    Highest Gold Price Till Date
+                  </h2>
+                </div>
+                <div className="text-xs text-slate-600 sm:text-right">
+                  <span className="font-bold text-slate-800">Recorded:</span> {athDateAd} {athDateBs ? `(${athDateBs} B.S.)` : ''}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-3 gap-2.5 sm:gap-3">
+                <div className="bg-white/95 p-3 rounded-xl border border-amber-100 shadow-xs">
+                  <p className="text-[11px] font-semibold text-slate-500">24K (1 Tola)</p>
+                  <p className="text-base sm:text-lg font-black text-slate-900 mt-0.5">NPR {fmtNPR(athGoldTola)}</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5">11.664g standard</p>
+                </div>
+                <div className="bg-white/95 p-3 rounded-xl border border-amber-100 shadow-xs">
+                  <p className="text-[11px] font-semibold text-slate-500">24K (Per Gram)</p>
+                  <p className="text-base sm:text-lg font-black text-slate-900 mt-0.5">NPR {fmtNPR(athGoldGram)}</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5">NPR {fmtNPR(athGold10g)} / 10g</p>
+                </div>
+                <div className="bg-white/95 p-3 rounded-xl border border-amber-100 shadow-xs">
+                  <p className="text-[11px] font-semibold text-slate-500">22K / Tejabi</p>
+                  <p className="text-base sm:text-lg font-black text-slate-900 mt-0.5">NPR {fmtNPR(athGold22kTola)}</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5">per tola</p>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-            <div className="bg-white/90 p-3 sm:p-4 rounded-xl border border-amber-100 shadow-xs">
-              <p className="text-xs font-semibold text-slate-500">24K Gold (Per 1 Tola)</p>
-              <p className="text-lg sm:text-xl font-black text-slate-900 mt-0.5">NPR {fmtNPR(athGoldTola)}</p>
-              <p className="text-[11px] text-slate-400 mt-0.5">11.664 grams standard</p>
-            </div>
-            <div className="bg-white/90 p-3 sm:p-4 rounded-xl border border-amber-100 shadow-xs">
-              <p className="text-xs font-semibold text-slate-500">24K Gold (Per Gram)</p>
-              <p className="text-lg sm:text-xl font-black text-slate-900 mt-0.5">NPR {fmtNPR(athGoldGram)}</p>
-              <p className="text-[11px] text-slate-400 mt-0.5">NPR {fmtNPR(athGold10g)} / 10g</p>
-            </div>
-            <div className="bg-white/90 p-3 sm:p-4 rounded-xl border border-amber-100 shadow-xs">
-              <p className="text-xs font-semibold text-slate-500">22K / 22 Carat (Tejabi)</p>
-              <p className="text-lg sm:text-xl font-black text-slate-900 mt-0.5">NPR {fmtNPR(athGold22kTola)}</p>
-              <p className="text-[11px] text-slate-400 mt-0.5">NPR {fmtNPR(athGold22kGram)} / gram</p>
-            </div>
-            <div className="bg-white/90 p-3 sm:p-4 rounded-xl border border-amber-100 shadow-xs">
-              <p className="text-xs font-semibold text-slate-500">Equivalent in Indian (INR)</p>
-              <p className="text-lg sm:text-xl font-black text-slate-900 mt-0.5">₹{fmtNPR(athGoldInrTola)}</p>
-              <p className="text-[11px] text-slate-400 mt-0.5">₹{fmtNPR(athGoldInrGram)} / gram (at 1.6 peg)</p>
+          {/* Lowest Card */}
+          <div className="bg-gradient-to-br from-slate-500/10 via-slate-500/5 to-transparent border border-slate-300/80 rounded-2xl p-5 sm:p-6 shadow-sm flex flex-col justify-between">
+            <div>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-slate-200 pb-3 mb-4">
+                <div>
+                  <span className="text-[11px] font-black uppercase tracking-wider text-slate-700 bg-slate-200/80 px-2 py-0.5 rounded-md">
+                    Official All-Time Record Low
+                  </span>
+                  <h2 className="text-lg sm:text-xl font-black text-slate-900 mt-1">
+                    Lowest Gold Price Till Date
+                  </h2>
+                </div>
+                <div className="text-xs text-slate-600 sm:text-right">
+                  <span className="font-bold text-slate-800">Recorded:</span> {atlDateAd} {atlDateBs ? `(${atlDateBs} B.S.)` : ''}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-3 gap-2.5 sm:gap-3">
+                <div className="bg-white/95 p-3 rounded-xl border border-slate-200 shadow-xs">
+                  <p className="text-[11px] font-semibold text-slate-500">24K (1 Tola)</p>
+                  <p className="text-base sm:text-lg font-black text-slate-900 mt-0.5">NPR {fmtNPR(atlGoldTola)}</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5">11.664g standard</p>
+                </div>
+                <div className="bg-white/95 p-3 rounded-xl border border-slate-200 shadow-xs">
+                  <p className="text-[11px] font-semibold text-slate-500">24K (Per Gram)</p>
+                  <p className="text-base sm:text-lg font-black text-slate-900 mt-0.5">NPR {fmtNPR(atlGoldGram)}</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5">NPR {fmtNPR(atlGold10g)} / 10g</p>
+                </div>
+                <div className="bg-white/95 p-3 rounded-xl border border-slate-200 shadow-xs">
+                  <p className="text-[11px] font-semibold text-slate-500">22K / Tejabi</p>
+                  <p className="text-base sm:text-lg font-black text-slate-900 mt-0.5">NPR {fmtNPR(atlGold22kTola)}</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5">per tola</p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -497,10 +541,10 @@ export default function HistoryHubPage() {
             </p>
 
             <h3 className="text-lg font-bold text-slate-900 pt-2">
-              Cross-Border Parity &amp; Indian Rupee (INR) Valuation
+              All-Time High vs. Historical Low: Bullion Price Growth in Nepal
             </h3>
             <p>
-              Due to Nepal&apos;s open border and the fixed currency exchange peg with India (<strong>100 INR = 160 NPR</strong>), gold prices in Nepal remain deeply interconnected with bullion rates in India (such as MCX gold contracts and Mumbai Zaveri Bazaar). Nepal&apos;s domestic price reflects the international spot rate converted to NPR, plus transportation, insurance, commercial bank fees, and the government import customs duty. At Nepal&apos;s all-time record rate of NPR {fmtNPR(athGoldTola)} per tola, the Indian Rupee equivalent stood at approximately <strong>₹{fmtNPR(athGoldInrTola)} INR per tola</strong> (₹{fmtNPR(athGoldInrGram)} INR per gram).
+              The historical divergence between Nepal&apos;s recorded low and peak rates illustrates gold&apos;s extraordinary long-term wealth preservation. From an all-time recorded low of <strong>NPR {fmtNPR(atlGoldTola)} per tola</strong> on {atlDateAd}{atlDateBs ? ` (${atlDateBs} B.S.)` : ''} to an all-time peak of <strong>NPR {fmtNPR(athGoldTola)} per tola</strong> on {athDateAd}{athDateBs ? ` (${athDateBs} B.S.)` : ''}, hallmark bullion in Nepal has appreciated by over {Math.round(((athGoldTola - atlGoldTola) / atlGoldTola) * 100)}%. This substantial price expansion reflects compounding inflation, shifting domestic import tariffs, and persistent bullion demand across Nepalese households.
             </p>
 
             <h3 className="text-lg font-bold text-slate-900 pt-2">
