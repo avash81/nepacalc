@@ -314,6 +314,21 @@ export default function InternationalGoldSilverPage() {
         </nav>
       </div>
 
+      {/* ── AI Direct Answer & Key Executive Summary (Optimized for AI Overviews / SearchGPT / Perplexity) ── */}
+      <section id="ai-key-takeaways" className="max-w-6xl mx-auto px-4 pt-3 pb-2">
+        <div className="bg-gradient-to-r from-amber-50 via-white to-slate-50 border border-amber-200/90 rounded-2xl p-4 md:p-5 shadow-xs">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span className="text-[11px] font-bold uppercase tracking-wider text-amber-900">
+              Live US Market Summary &bull; COMEX Real-Time Baseline
+            </span>
+          </div>
+          <p className="text-xs md:text-sm text-slate-800 leading-relaxed font-medium">
+            As of today, the live wholesale gold spot price in the United States is <strong>${fmt2(goldOz)} per troy ounce</strong> (<strong>${fmt2(goldGram)}/g</strong> for pure 24K gold, <strong>${fmt2(goldGram * 0.5833)}/g</strong> for 14K jewelry gold). Silver trades at <strong>${fmt2(silverOz)} per troy ounce</strong> (<strong>${fmt2(silverGram)}/g</strong>). The Gold-to-Silver ratio sits at <strong>{goldRatio}:1</strong>. Spot rates are benchmarked against continuous New York COMEX futures contracts; physical retail bullion coins and bars trade at spot plus a small dealer premium.
+          </p>
+        </div>
+      </section>
+
       {/* ── Main Interactive Dashboard ── */}
       <div id="todays-gold-price">
         <InternationalGoldClient initialData={initialData} />

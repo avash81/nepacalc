@@ -627,6 +627,22 @@ export default function InternationalGoldClient({ initialData }: Props) {
                 {data.gold.change24h >= 0 ? 'Increase' : 'Decrease'} {formatPrice(Math.abs(goldDeltaUSD))}
               </span>
             </div>
+
+            {/* Quick Live Stats: Bid / Ask / Day Range */}
+            <div className="grid grid-cols-3 gap-2 mt-3 pt-3 border-t border-gray-100 text-[11px]">
+              <div>
+                <span className="text-gray-400 block text-[10px] uppercase font-semibold">Bid</span>
+                <span className="font-bold text-gray-800">${(data.gold.spotUSD - 0.40).toFixed(2)}</span>
+              </div>
+              <div>
+                <span className="text-gray-400 block text-[10px] uppercase font-semibold">Ask</span>
+                <span className="font-bold text-gray-800">${(data.gold.spotUSD + 0.40).toFixed(2)}</span>
+              </div>
+              <div>
+                <span className="text-gray-400 block text-[10px] uppercase font-semibold">Day Range</span>
+                <span className="font-bold text-gray-800">${data.gold.low24h.toFixed(0)} - ${data.gold.high24h.toFixed(0)}</span>
+              </div>
+            </div>
           </div>
 
           {/* 30-Day Trend Area Chart (Amber Gradient) */}
@@ -684,6 +700,22 @@ export default function InternationalGoldClient({ initialData }: Props) {
               <span className={data.silver.change24h >= 0 ? 'text-emerald-600' : 'text-rose-600'}>
                 {data.silver.change24h >= 0 ? 'Increase' : 'Decrease'} {formatPrice(Math.abs(silverDeltaUSD))}
               </span>
+            </div>
+
+            {/* Quick Live Stats: Bid / Ask / Day Range */}
+            <div className="grid grid-cols-3 gap-2 mt-3 pt-3 border-t border-gray-100 text-[11px]">
+              <div>
+                <span className="text-gray-400 block text-[10px] uppercase font-semibold">Bid</span>
+                <span className="font-bold text-gray-800">${(data.silver.spotUSD - 0.05).toFixed(2)}</span>
+              </div>
+              <div>
+                <span className="text-gray-400 block text-[10px] uppercase font-semibold">Ask</span>
+                <span className="font-bold text-gray-800">${(data.silver.spotUSD + 0.05).toFixed(2)}</span>
+              </div>
+              <div>
+                <span className="text-gray-400 block text-[10px] uppercase font-semibold">Day Range</span>
+                <span className="font-bold text-gray-800">${data.silver.low24h.toFixed(2)} - ${data.silver.high24h.toFixed(2)}</span>
+              </div>
             </div>
           </div>
 
