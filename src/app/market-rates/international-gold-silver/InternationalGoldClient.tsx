@@ -60,147 +60,6 @@ const SILVER_GRADES: { id: string; name: string; purityPct: string; purity: numb
   { id: 's800', name: '.800 Commercial Silver (European Standard)', purityPct: '80.0%', purity: 0.800 },
 ];
 
-interface UserComment {
-  id: string;
-  author: string;
-  avatarColor: string;
-  timeAgo: string;
-  text: string;
-  likes: number;
-  liked?: boolean;
-}
-
-const INITIAL_COMMENTS: UserComment[] = [
-  {
-    id: 'c1',
-    author: 'Michael R. Vance',
-    avatarColor: 'bg-amber-600',
-    timeAgo: '2 hours ago',
-    text: 'What is the institutional COMEX gold spot bid/ask spread during active New York market hours? Usually seeing around $0.40–$0.60 on institutional desks.',
-    likes: 8,
-  },
-  {
-    id: 'c2',
-    author: 'Elena Rostova',
-    avatarColor: 'bg-emerald-600',
-    timeAgo: '5 hours ago',
-    text: 'Will international spot gold test $4,200/oz following the upcoming Federal Reserve rate decision? Real yields continue to favor hard assets.',
-    likes: 15,
-  },
-  {
-    id: 'c3',
-    author: 'David Chen',
-    avatarColor: 'bg-blue-600',
-    timeAgo: '1 day ago',
-    text: 'What is the typical dealer premium over spot for 1 oz American Gold Eagle versus Canadian Maple Leaf bullion coins? Maple Leaf premiums seem slightly tighter.',
-    likes: 12,
-  },
-  {
-    id: 'c4',
-    author: 'Marcus Sterling',
-    avatarColor: 'bg-purple-600',
-    timeAgo: '1 day ago',
-    text: 'Do London Bullion Market (LBMA) AM/PM gold fix prices differ significantly from COMEX futures? Most physical delivery contracts benchmark to the LBMA PM fix.',
-    likes: 19,
-  },
-  {
-    id: 'c5',
-    author: 'Sophia Martinez',
-    avatarColor: 'bg-rose-600',
-    timeAgo: '2 days ago',
-    text: 'Are 1,000 oz COMEX silver bars subject to lower physical fabrication premiums compared to 10 oz silver bars? Institutional bars trade much closer to raw spot.',
-    likes: 10,
-  },
-  {
-    id: 'c6',
-    author: 'James O’Connor',
-    avatarColor: 'bg-teal-600',
-    timeAgo: '2 days ago',
-    text: 'How does the gold/silver ratio currently stand at ~$4,100 gold and ~$52 silver? Historically, that reflects robust industrial and monetary tailwinds for silver.',
-    likes: 14,
-  },
-  {
-    id: 'c7',
-    author: 'Priya Patel',
-    avatarColor: 'bg-indigo-600',
-    timeAgo: '3 days ago',
-    text: 'Is 22K (91.6% purity) accepted internationally for bullion investment, or is 24K strictly required by international depository vaults?',
-    likes: 7,
-  },
-  {
-    id: 'c8',
-    author: 'Thomas Weber',
-    avatarColor: 'bg-amber-700',
-    timeAgo: '3 days ago',
-    text: 'Why do European mints quote .800 silver for legacy silverware while modern retail bullion focuses strictly on .999 and .9999 fine silver?',
-    likes: 11,
-  },
-  {
-    id: 'c9',
-    author: 'Lucas Dupont',
-    avatarColor: 'bg-cyan-600',
-    timeAgo: '4 days ago',
-    text: 'Can retail investors take physical delivery of a 400 oz gold bar from LBMA-accredited vaults, or is it cash-settled only for retail accounts?',
-    likes: 16,
-  },
-  {
-    id: 'c10',
-    author: 'Hannah Lindqvist',
-    avatarColor: 'bg-violet-600',
-    timeAgo: '4 days ago',
-    text: 'How do central bank net purchases impact the spot gold benchmark compared to Western ETF inflows and outflows?',
-    likes: 21,
-  },
-  {
-    id: 'c11',
-    author: 'Tariq Al-Mansoor',
-    avatarColor: 'bg-emerald-700',
-    timeAgo: '5 days ago',
-    text: 'Does the live spot price quote include London clearing charges (LPMCL) or is that assessed separately during unallocated account transfer?',
-    likes: 9,
-  },
-  {
-    id: 'c12',
-    author: 'Robert K. Hayes',
-    avatarColor: 'bg-sky-600',
-    timeAgo: '5 days ago',
-    text: 'Good to see 14K and 18K purity breakdowns here. Extremely helpful for jewelers evaluating scrap melt value against live COMEX rates.',
-    likes: 23,
-  },
-  {
-    id: 'c13',
-    author: 'Nathan Cooper',
-    avatarColor: 'bg-orange-600',
-    timeAgo: '6 days ago',
-    text: 'What is the standard weight variance tolerance when purchasing 100g cast gold bars from Valcambi or PAMP Suisse?',
-    likes: 5,
-  },
-  {
-    id: 'c14',
-    author: 'Chloe Martin',
-    avatarColor: 'bg-pink-600',
-    timeAgo: '6 days ago',
-    text: 'Is constitutional .900 junk silver still traded strictly on net silver content basis relative to current spot $52/oz?',
-    likes: 8,
-  },
-  {
-    id: 'c15',
-    author: 'Sean Murphy',
-    avatarColor: 'bg-blue-700',
-    timeAgo: '1 week ago',
-    text: 'Noticeable uptick in industrial demand for silver in PV solar cells. That explains why silver percent gains outpace gold recently.',
-    likes: 17,
-  },
-  {
-    id: 'c16',
-    author: 'Alexander Wright',
-    avatarColor: 'bg-slate-700',
-    timeAgo: '1 week ago',
-    text: 'Great live chart! Spot updates match Bloomberg and Kitco terminal prices nicely.',
-    likes: 13,
-  },
-];
-
 export default function InternationalGoldClient({ initialData }: Props) {
   // Live dynamic state
   const [data, setData] = useState<InternationalRatesData>(initialData);
@@ -218,21 +77,6 @@ export default function InternationalGoldClient({ initialData }: Props) {
   const [calcPurity, setCalcPurity] = useState<'24k' | '22k' | '18k' | '14k' | '10k'>('24k');
   const [calcUnitMode, setCalcUnitMode] = useState<'oz' | 'g' | '10g' | 'kg' | 'tola'>('oz');
   const [calcSimpleQty, setCalcSimpleQty] = useState<string>('1');
-
-  // Interactive Comments state (Mirroring Screenshot 2 & 3 & Hamro Patro)
-  const [comments, setComments] = useState<UserComment[]>(INITIAL_COMMENTS);
-  const [visibleCommentsCount, setVisibleCommentsCount] = useState(12);
-  const [isLoadingMoreComments, setIsLoadingMoreComments] = useState(false);
-  const [newCommentText, setNewCommentText] = useState('');
-  const [commentInputActive, setCommentInputActive] = useState(false);
-
-  const handleLoadMoreComments = () => {
-    setIsLoadingMoreComments(true);
-    setTimeout(() => {
-      setVisibleCommentsCount((prev) => Math.min(prev + 6, comments.length));
-      setIsLoadingMoreComments(false);
-    }, 200);
-  };
 
   // Live Auto-Update Poller - dual API sources (public gold-api.com + same-origin /data/international-rates.json)
   const fetchLiveRates = useCallback(async () => {
@@ -454,37 +298,6 @@ export default function InternationalGoldClient({ initialData }: Props) {
   }
 
   const calcTotalUSD = computedQtyInOz * baseRateOz * purityFactor;
-
-  // Add Comment Handler
-  const handleAddComment = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newCommentText.trim()) return;
-
-    const newEntry: UserComment = {
-      id: `c_${Date.now()}`,
-      author: 'Guest Visitor',
-      avatarColor: 'bg-red-600',
-      timeAgo: 'Just now',
-      text: newCommentText.trim(),
-      likes: 0,
-    };
-
-    setComments([newEntry, ...comments]);
-    setNewCommentText('');
-    setCommentInputActive(false);
-  };
-
-  const handleLike = (id: string) => {
-    setComments((prev) =>
-      prev.map((c) => {
-        if (c.id === id) {
-          const liked = !c.liked;
-          return { ...c, liked, likes: liked ? c.likes + 1 : c.likes - 1 };
-        }
-        return c;
-      })
-    );
-  };
 
   return (
     <div className="w-full max-w-6xl mx-auto px-4 py-3 sm:py-6 md:py-8 font-sans font-modern-ui">
