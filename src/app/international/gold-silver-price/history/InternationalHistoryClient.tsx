@@ -336,109 +336,6 @@ export default function InternationalHistoryClient({ initialData, currentLiveRat
         </div>
       </div>
 
-      {/* ── INTERACTIVE MULTI-YEAR SVG CHART ── */}
-      <div className="bg-white border border-gray-200 rounded-2xl p-4 sm:p-6 shadow-xs mb-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
-          <div>
-            <h2 className="text-base sm:text-lg font-bold text-gray-900">
-              {selectedMetal === 'gold' ? 'Historical Gold Price Chart' : 'Historical Silver Price Chart'} (USD {unitLabel})
-            </h2>
-            <p className="text-xs text-gray-500">
-              Annual average benchmark price curve across {rangeFilteredData.length} recorded market years.
-            </p>
-          </div>
-          {hoveredPoint && (
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-gray-900 text-white rounded-lg text-xs font-semibold">
-              <span className="text-gray-300">Year {hoveredPoint.year}:</span>
-              <span className="font-extrabold text-amber-300">
-                {formatPrice(hoveredPoint.avg * unitFactor)} {unitLabel}
-              </span>
-              <span className={hoveredPoint.returnPct >= 0 ? 'text-emerald-400' : 'text-rose-400'}>
-                ({hoveredPoint.returnPct >= 0 ? '+' : ''}{hoveredPoint.returnPct.toFixed(1)}%)
-              </span>
-            </div>
-          )}
-        </div>
-
-        {/* SVG Container */}
-        <div className="w-full overflow-hidden">
-          <svg
-            viewBox="0 0 800 240"
-            className="w-full h-48 sm:h-64 select-none"
-            preserveAspectRatio="none"
-          >
-            <defs>
-              <linearGradient id="chartGradientGold" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#F59E0B" stopOpacity="0.35" />
-                <stop offset="100%" stopColor="#F59E0B" stopOpacity="0.0" />
-              </linearGradient>
-              <linearGradient id="chartGradientSilver" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#64748B" stopOpacity="0.35" />
-                <stop offset="100%" stopColor="#64748B" stopOpacity="0.0" />
-              </linearGradient>
-            </defs>
-
-            {/* Horizontal Grid lines */}
-            <line x1="40" y1="40" x2="760" y2="40" stroke="#F1F5F9" strokeWidth="1" strokeDasharray="4 4" />
-            <line x1="40" y1="100" x2="760" y2="100" stroke="#F1F5F9" strokeWidth="1" strokeDasharray="4 4" />
-            <line x1="40" y1="160" x2="760" y2="160" stroke="#F1F5F9" strokeWidth="1" strokeDasharray="4 4" />
-            <line x1="40" y1="220" x2="760" y2="220" stroke="#CBD5E1" strokeWidth="1" />
-
-            {/* Area Fill */}
-            {svgAreaD && (
-              <path
-                d={svgAreaD}
-                fill={selectedMetal === 'gold' ? 'url(#chartGradientGold)' : 'url(#chartGradientSilver)'}
-              />
-            )}
-
-            {/* Trend Line */}
-            {svgPathD && (
-              <path
-                d={svgPathD}
-                fill="none"
-                stroke={selectedMetal === 'gold' ? '#D97706' : '#475569'}
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            )}
-
-            {/* Interactive Data Dots */}
-            {chartPoints.map((pt) => (
-              <g
-                key={pt.record.year}
-                className="cursor-pointer group"
-                onMouseEnter={() => setHoveredPoint(pt.record)}
-                onMouseLeave={() => setHoveredPoint(null)}
-              >
-                <circle
-                  cx={pt.x}
-                  cy={pt.y}
-                  r="3.5"
-                  className={
-                    hoveredPoint?.year === pt.record.year
-                      ? 'fill-red-600 stroke-white stroke-2'
-                      : selectedMetal === 'gold'
-                      ? 'fill-amber-600 stroke-white stroke-1'
-                      : 'fill-slate-700 stroke-white stroke-1'
-                  }
-                />
-              </g>
-            ))}
-          </svg>
-        </div>
-
-        {/* Horizontal Axis Year Labels */}
-        <div className="flex justify-between items-center text-[10px] text-gray-500 px-6 mt-1 font-semibold">
-          <span>{rangeFilteredData[rangeFilteredData.length - 1]?.year || 1970}</span>
-          {rangeFilteredData.length > 20 && <span>1995</span>}
-          {rangeFilteredData.length > 15 && <span>2010</span>}
-          {rangeFilteredData.length > 8 && <span>2020</span>}
-          <span>2026 (Live)</span>
-        </div>
-      </div>
-
       {/* ── SORTABLE & SEARCHABLE YEAR-BY-YEAR DATA TABLE ── */}
       <div className="bg-white border border-gray-200 rounded-2xl shadow-xs overflow-hidden mb-8">
         <div className="p-4 sm:p-5 border-b border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -566,6 +463,109 @@ export default function InternationalHistoryClient({ initialData, currentLiveRat
               })}
             </tbody>
           </table>
+        </div>
+      </div>
+
+      {/* ── INTERACTIVE MULTI-YEAR SVG CHART (placed below the data table) ── */}
+      <div className="bg-white border border-gray-200 rounded-2xl p-4 sm:p-6 shadow-xs mt-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+          <div>
+            <h3 className="text-base sm:text-lg font-bold text-gray-900">
+              {selectedMetal === 'gold' ? 'Historical Gold Price Chart' : 'Historical Silver Price Chart'} (USD / {unitLabel})
+            </h3>
+            <p className="text-xs text-gray-500">
+              Annual average benchmark price curve across {rangeFilteredData.length} recorded market years.
+            </p>
+          </div>
+          {hoveredPoint && (
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-gray-900 text-white rounded-lg text-xs font-semibold">
+              <span className="text-gray-300">Year {hoveredPoint.year}:</span>
+              <span className="font-extrabold text-amber-300">
+                {formatPrice(hoveredPoint.avg * unitFactor)} {unitLabel}
+              </span>
+              <span className={hoveredPoint.returnPct >= 0 ? 'text-emerald-400' : 'text-rose-400'}>
+                ({hoveredPoint.returnPct >= 0 ? '+' : ''}{hoveredPoint.returnPct.toFixed(1)}%)
+              </span>
+            </div>
+          )}
+        </div>
+
+        {/* SVG Chart */}
+        <div className="w-full overflow-hidden">
+          <svg
+            viewBox="0 0 800 240"
+            className="w-full h-48 sm:h-64 select-none"
+            preserveAspectRatio="none"
+          >
+            <defs>
+              <linearGradient id="chartGradientGold2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#F59E0B" stopOpacity="0.35" />
+                <stop offset="100%" stopColor="#F59E0B" stopOpacity="0.0" />
+              </linearGradient>
+              <linearGradient id="chartGradientSilver2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#64748B" stopOpacity="0.35" />
+                <stop offset="100%" stopColor="#64748B" stopOpacity="0.0" />
+              </linearGradient>
+            </defs>
+
+            {/* Grid lines */}
+            <line x1="40" y1="40" x2="760" y2="40" stroke="#F1F5F9" strokeWidth="1" strokeDasharray="4 4" />
+            <line x1="40" y1="100" x2="760" y2="100" stroke="#F1F5F9" strokeWidth="1" strokeDasharray="4 4" />
+            <line x1="40" y1="160" x2="760" y2="160" stroke="#F1F5F9" strokeWidth="1" strokeDasharray="4 4" />
+            <line x1="40" y1="220" x2="760" y2="220" stroke="#CBD5E1" strokeWidth="1" />
+
+            {/* Area fill */}
+            {svgAreaD && (
+              <path
+                d={svgAreaD}
+                fill={selectedMetal === 'gold' ? 'url(#chartGradientGold2)' : 'url(#chartGradientSilver2)'}
+              />
+            )}
+
+            {/* Trend line */}
+            {svgPathD && (
+              <path
+                d={svgPathD}
+                fill="none"
+                stroke={selectedMetal === 'gold' ? '#D97706' : '#475569'}
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            )}
+
+            {/* Interactive dots */}
+            {chartPoints.map((pt) => (
+              <g
+                key={pt.record.year}
+                className="cursor-pointer"
+                onMouseEnter={() => setHoveredPoint(pt.record)}
+                onMouseLeave={() => setHoveredPoint(null)}
+              >
+                <circle
+                  cx={pt.x}
+                  cy={pt.y}
+                  r="3.5"
+                  className={
+                    hoveredPoint?.year === pt.record.year
+                      ? 'fill-red-600 stroke-white stroke-2'
+                      : selectedMetal === 'gold'
+                      ? 'fill-amber-600 stroke-white stroke-1'
+                      : 'fill-slate-700 stroke-white stroke-1'
+                  }
+                />
+              </g>
+            ))}
+          </svg>
+        </div>
+
+        {/* X-axis year labels */}
+        <div className="flex justify-between items-center text-[10px] text-gray-500 px-6 mt-1 font-semibold">
+          <span>{rangeFilteredData[rangeFilteredData.length - 1]?.year || 1970}</span>
+          {rangeFilteredData.length > 20 && <span>1995</span>}
+          {rangeFilteredData.length > 15 && <span>2010</span>}
+          {rangeFilteredData.length > 8 && <span>2020</span>}
+          <span>2026 (Live)</span>
         </div>
       </div>
     </div>
