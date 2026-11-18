@@ -131,6 +131,22 @@ export default function InternationalHistoryPage() {
       a: 'International wholesale precious metals are benchmarked in Troy Ounces (oz t), not standard avoirdupois ounces. Exactly 1 Troy Ounce equals 31.1034768 grams. To calculate the price per gram, divide the quoted spot price by 31.1035.',
     },
     {
+      q: 'How much is gold and silver going for today compared to historical averages?',
+      a: 'In today\'s market, live international gold and silver spot rates trade significantly above their 56-year historical averages. Today\'s gold and silver price in the international market is driven by central bank reserve accumulation, currency debasement hedges, and green industrial silver demand.',
+    },
+    {
+      q: 'How does the gold and silver price in the international market convert to 1 tola gold price?',
+      a: 'International bullion markets trade in troy ounces (31.1035 grams), while South Asian markets (Nepal, India) quote bullion per tola (1 tola = 11.6638 grams). Exactly 1 Troy Ounce equals 2.6664 tolas. To calculate the 1 tola gold price from international USD spot rates, divide the troy ounce price by 2.6664 (or multiply the per-gram rate by 11.664).',
+    },
+    {
+      q: 'What is the price of silver per gram in US Dollars (سعر جرام الفضة بالدولار)?',
+      a: 'The international spot price of silver per gram in USD is calculated by dividing the quoted troy ounce spot rate by 31.1035. For example, at a benchmark silver rate of $47.50 per ounce, 1 gram of .999 pure fine silver equals approximately $1.53 USD.',
+    },
+    {
+      q: 'What is the difference between LBMA gold price live fixings and COMEX spot rates?',
+      a: 'COMEX (New York) provides continuous real-time futures price discovery that powers live gold and silver rate feeds throughout the day. The LBMA (London Bullion Market Association) sets twice-daily electronic auction benchmarks (AM and PM fixings) used globally by central banks, institutional ETF custodians, and commercial refineries for physical contract settlement.',
+    },
+    {
       q: 'What drove the 1980 and 2011 historic gold bull markets?',
       a: 'The 1980 bull market ($850/oz) was propelled by double-digit US inflation, the Iranian hostage crisis, and Soviet invasion of Afghanistan. The 2011 surge ($1,921.18/oz) was driven by aggressive Federal Reserve quantitative easing following the 2008 crash, European sovereign debt contagion, and the first-ever downgrade of US federal debt creditworthiness.',
     },
@@ -440,7 +456,8 @@ export default function InternationalHistoryPage() {
             </p>
             <ul className="list-disc pl-5 space-y-1 text-slate-600 text-sm">
               <li><strong>1 Troy Ounce:</strong> Exactly 31.1034768 grams, the universal standard for institutional bullion trading.</li>
-              <li><strong>1 Gram:</strong> Common retail metric unit for fine jewelry and small investment bars.</li>
+              <li><strong>1 Tola (South Asian Benchmark):</strong> 11.6638 grams (1 Troy Ounce = 2.6664 tolas). Widely used for 1 tola gold price and silver jewelry valuation in Nepal, India, and regional bullion markets.</li>
+              <li><strong>1 Gram:</strong> Common retail metric unit for fine jewelry and small investment bars (useful for calculating the price of silver per gram in USD and international currencies).</li>
               <li><strong>10 Grams:</strong> Standard consumer investment denomination across international retail gold markets.</li>
               <li><strong>1 Kilogram:</strong> Equal to 32.1507 troy ounces (1,000 grams), the primary wholesale standard for commercial delivery bars.</li>
             </ul>

@@ -226,6 +226,24 @@ export default function InternationalGoldSilverPage() {
         text: "Silver is both a precious metal and a critical industrial commodity used heavily in solar panels, electronics, electric vehicles, and medical devices. Its total market size is much smaller than gold's. As a result, significant buying or selling volume causes larger percentage price swings in silver than in gold. During economic recessions, industrial demand falls sharply, hitting silver harder. During economic expansions or green-energy booms, silver often outperforms gold significantly.",
       },
     },
+    {
+      name: 'How much is gold and silver going for today in the international market?',
+      acceptedAnswer: {
+        text: `Today's gold and silver spot price in the international market is approximately $${fmt2(goldOz)} per troy ounce ($${fmt2(goldGram)}/gram) for 24K gold, and $${fmt2(silverOz)} per troy ounce ($${fmt2(silverGram)}/gram) for fine silver. Live rates are tracked continuously from COMEX New York and LBMA London wholesale trading.`,
+      },
+    },
+    {
+      name: 'How does the international gold rate convert to 1 tola gold price?',
+      acceptedAnswer: {
+        text: `International bullion is quoted per Troy Ounce (31.1035 grams), while Nepal and South Asian markets trade per tola (1 tola = 11.6638 grams). Exactly 1 Troy Ounce equals 2.6664 tolas. At today's international gold rate of $${fmt2(goldOz)}/oz, 1 tola of 24K pure gold is worth approximately $${fmt2(goldOz / 2.6664)} USD before local import duties, sales taxes, and jeweler margins.`,
+      },
+    },
+    {
+      name: 'What is the price of 1 gram of silver in US Dollars (سعر جرام الفضة بالدولار)?',
+      acceptedAnswer: {
+        text: `The international price of 1 gram of .999 fine silver in US Dollars is currently $${fmt2(silverGram)} USD. Because 1 Troy Ounce contains 31.1035 grams, divide the live ounce price of $${fmt2(silverOz)} by 31.1035 to get the per-gram rate.`,
+      },
+    },
   ];
 
   // Full @graph schema - WebPage + FAQPage + BreadcrumbList (3 levels) + Dataset
