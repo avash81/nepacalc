@@ -136,7 +136,12 @@ RewriteRule ^education/?$ /math-tools/ [L,R=301]
 RewriteRule ^calculator/sitemap\.html$ /sitemap/ [L,R=301]
 
 # ============================================================
-# 3. Force Trailing Slash (matches Next.js trailingSlash: true)
+
+# International Gold Silver route migration
+RewriteRule ^market-rates/international-gold-silver/?$ /international/gold-silver-price/ [L,R=301]
+RewriteRule ^market-rates/international-gold-silver/history/?$ /international/gold-silver-price/history/ [L,R=301]
+RewriteRule ^international-gold-silver/?$ /international/gold-silver-price/ [L,R=301]
+RewriteRule ^international-gold-silver/history/?$ /international/gold-silver-price/history/ [L,R=301]# 3. Force Trailing Slash (matches Next.js trailingSlash: true)
 # ============================================================
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_URI} !(.*)/$
@@ -192,3 +197,4 @@ ErrorDocument 404 /404/index.html
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json font/woff font/woff2
 </IfModule>
+

@@ -19,3 +19,13 @@
 /calculator/simple-calculator /calculator/simple-calculator/ 301
 /math-tools/fourfunction /math-tools/fourfunction/ 301
 /math-tools/programmer /math-tools/programmer/ 301
+
+# International Gold Silver route migration
+/market-rates/international-gold-silver/ /international/gold-silver-price/ 301
+/market-rates/international-gold-silver /international/gold-silver-price/ 301
+/market-rates/international-gold-silver/history/ /international/gold-silver-price/history/ 301
+/market-rates/international-gold-silver/history /international/gold-silver-price/history/ 301
+/international-gold-silver/ /international/gold-silver-price/ 301
+/international-gold-silver /international/gold-silver-price/ 301
+/international-gold-silver/history/ /international/gold-silver-price/history/ 301
+/international-gold-silver/history /international/gold-silver-price/history/ 301

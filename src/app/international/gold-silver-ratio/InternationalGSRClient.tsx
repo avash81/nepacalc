@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import Link from 'next/link';
@@ -528,8 +528,8 @@ function generateSeries(assetId: AssetType, timeframe: Timeframe, baseVal: numbe
 
 // Route: /international/gold-silver-ratio/ (and asset-specific routes)
 export const ASSET_SLUG_MAP: Record<AssetType, string> = {
-  gold: '/market-rates/international-gold-silver/',
-  silver: '/market-rates/international-gold-silver/',
+  gold: '/international/gold-silver-price/',
+  silver: '/international/gold-silver-price/',
   platinum: '/international/platinum/',
   palladium: '/international/palladium/',
   copper: '/international/copper/',
@@ -2014,3 +2014,4 @@ export default function InternationalGSRClient({ initialAsset = 'goldsilver' }: 
     </div>
   );
 }
+

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+﻿import { ReactNode } from 'react';
 
 export interface Calculator {
   id: string;
@@ -70,7 +70,7 @@ export const CALCULATORS: Calculator[] = [
   { id: 'exchange-rate-nepal', slug: 'market-rates/exchange-rate-nepal', name: 'Exchange Rate Nepal',  description: 'Live foreign exchange rates for 20+ currencies including USD and INR.', category: 'market', isNepal: true },
   { id: 'currency-converter', slug: 'currency-converter', name: 'Currency Converter',  description: 'Convert international currencies into Nepalese Rupees using live exchange rates.', category: 'market', isNepal: true },
   { id: 'remittance-calculator', slug: 'market-rates/remittance', name: 'Remittance Board',  description: 'Compare real-time exchange rates for sending money to Nepal.', category: 'market', isNepal: true },
-    { id: 'international-gold-silver', slug: 'market-rates/international-gold-silver', name: 'Gold & Silver Price Today (USA)', description: 'Live US spot gold and silver prices in USD with 30-day interactive charts, purity rates (24K-10K), and weight calculator.', category: 'international', isNepal: false, keywords: ['gold price usa', 'silver price usa', 'gold price today usa', 'us gold spot price', 'gold price per ounce usd', 'comex gold spot'] },
+    { id: 'international-gold-silver', slug: 'international/gold-silver-price', name: 'Gold & Silver Price Today (USA)', description: 'Live US spot gold and silver prices in USD with 30-day interactive charts, purity rates (24K-10K), and weight calculator.', category: 'international', isNepal: false, keywords: ['gold price usa', 'silver price usa', 'gold price today usa', 'us gold spot price', 'gold price per ounce usd', 'comex gold spot'] },
     { id: 'gold-silver-ratio', slug: 'international/gold-silver-ratio', name: 'Gold to Silver Ratio (Live GSR)', description: 'Live gold-to-silver ratio with 30-day chart, historical benchmarks, and silver/gold swap calculator.', category: 'international', isNepal: false, keywords: ['gold to silver ratio', 'gold silver ratio live', 'gsr chart', 'is silver undervalued', 'gold silver ratio history'] },
     { id: 'platinum-price', slug: 'international/platinum', name: 'Platinum Price Today (Live Spot)', description: 'Live platinum spot rates in USD per troy ounce, gram, and kilogram with interactive charts and catalytic demand metrics.', category: 'international', isNepal: false, keywords: ['platinum price today', 'live platinum chart', 'platinum spot usd', 'platinum price per ounce'] },
     { id: 'palladium-price', slug: 'international/palladium', name: 'Palladium Price Today (Live Spot)', description: 'Real-time palladium spot price in USD per troy ounce with historical charts, emissions demand, and bid/ask spreads.', category: 'international', isNepal: false, keywords: ['palladium price today', 'palladium spot chart', 'palladium price per ounce', 'live palladium rate'] },
@@ -195,4 +195,5 @@ export const CATEGORIES: Category[] = [
 ];
 
 export const FEATURED_NEPAL = CALCULATORS.filter(c => c.isNepal && (c.isHot || c.isNew));
+
 

@@ -303,6 +303,15 @@ const nextConfig = {
         destination: '/international/dubai-gold-rate/',
         permanent: true,
       },
+      // ── International Gold Silver route migration ─────────────────────────
+      { source: '/market-rates/international-gold-silver', destination: '/international/gold-silver-price/', permanent: true },
+      { source: '/market-rates/international-gold-silver/', destination: '/international/gold-silver-price/', permanent: true },
+      { source: '/market-rates/international-gold-silver/history', destination: '/international/gold-silver-price/history/', permanent: true },
+      { source: '/market-rates/international-gold-silver/history/', destination: '/international/gold-silver-price/history/', permanent: true },
+      { source: '/international-gold-silver', destination: '/international/gold-silver-price/', permanent: true },
+      { source: '/international-gold-silver/', destination: '/international/gold-silver-price/', permanent: true },
+      { source: '/international-gold-silver/history', destination: '/international/gold-silver-price/history/', permanent: true },
+      { source: '/international-gold-silver/history/', destination: '/international/gold-silver-price/history/', permanent: true },
     ];
   },
   // Webpack: tree shaking only
