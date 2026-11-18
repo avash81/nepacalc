@@ -553,15 +553,21 @@ export default function InternationalGoldClient({ initialData }: Props) {
       </div>
       </div>
 
-      {/* ── EXPLANATORY OVERVIEW & QUICK ANSWER (Single Unified Container) ── */}
-      <div id="quick-answer" className="bg-white rounded-2xl border border-gray-200 p-5 sm:p-6 shadow-sm mb-8 space-y-4">
-        <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
-          <strong className="text-gray-900 font-bold">Quick Answer:</strong> The current spot price of gold in the United States is <strong className="text-gray-900 font-bold">${data.gold.spotUSD.toFixed(2)} USD per troy ounce</strong> (approximately <strong className="text-gray-900 font-bold">${(data.gold.spotUSD * UNIT_MULTIPLIERS.g.ozFactor).toFixed(2)} USD per gram</strong>, <strong className="text-gray-900 font-bold">${(data.gold.spotUSD * UNIT_MULTIPLIERS['10g'].ozFactor).toFixed(2)} USD per 10 grams</strong>, and <strong className="text-gray-900 font-bold">${(data.gold.spotUSD * UNIT_MULTIPLIERS.kg.ozFactor).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD per kilogram</strong>). Live US spot silver is <strong className="text-gray-900 font-bold">${data.silver.spotUSD.toFixed(2)} USD per troy ounce</strong> (approximately <strong className="text-gray-900 font-bold">${(data.silver.spotUSD * UNIT_MULTIPLIERS.g.ozFactor).toFixed(2)} USD per gram</strong> and <strong className="text-gray-900 font-bold">${(data.silver.spotUSD * UNIT_MULTIPLIERS.kg.ozFactor).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD per kilogram</strong>). These rates represent real-time wholesale bullion benchmarks traded on US spot and COMEX markets quoted directly in US Dollars (USD).
+      {/* ── EXPLANATORY OVERVIEW & QUICK ANSWER (Single Unified Dynamic Container Below Prices & Graphs) ── */}
+      <div id="quick-answer" className="bg-gradient-to-r from-amber-50/70 via-white to-slate-50 border border-amber-200/90 rounded-2xl p-5 sm:p-6 shadow-xs mb-8 space-y-3.5">
+        <div className="flex items-center gap-2 mb-1">
+          <span className="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span className="text-[11px] font-bold uppercase tracking-wider text-amber-900">
+            Live US Market Summary &bull; COMEX Real-Time Quick Answer
+          </span>
+        </div>
+        <p className="text-xs sm:text-sm text-slate-800 leading-relaxed font-medium">
+          <strong className="text-gray-900 font-bold">Quick Answer:</strong> As of today, the live wholesale gold spot price in the United States is <strong className="text-gray-900 font-bold">${data.gold.spotUSD.toFixed(2)} USD per troy ounce</strong> (approximately <strong className="text-gray-900 font-bold">${(data.gold.spotUSD * UNIT_MULTIPLIERS.g.ozFactor).toFixed(2)}/g</strong> for pure 24K gold, <strong className="text-gray-900 font-bold">${(data.gold.spotUSD * UNIT_MULTIPLIERS.g.ozFactor * 0.5833).toFixed(2)}/g</strong> for 14K jewelry gold, <strong className="text-gray-900 font-bold">${(data.gold.spotUSD * UNIT_MULTIPLIERS['10g'].ozFactor).toFixed(2)}</strong> per 10 grams, and <strong className="text-gray-900 font-bold">${(data.gold.spotUSD * UNIT_MULTIPLIERS.kg.ozFactor).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong> per kilogram). Live US spot silver trades at <strong className="text-gray-900 font-bold">${data.silver.spotUSD.toFixed(2)} USD per troy ounce</strong> (approximately <strong className="text-gray-900 font-bold">${(data.silver.spotUSD * UNIT_MULTIPLIERS.g.ozFactor).toFixed(2)}/g</strong> and <strong className="text-gray-900 font-bold">${(data.silver.spotUSD * UNIT_MULTIPLIERS.kg.ozFactor).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong> per kilogram). The Gold-to-Silver ratio currently sits at <strong className="text-gray-900 font-bold">{(data.gold.spotUSD / (data.silver.spotUSD || 1)).toFixed(1)}:1</strong>. These rates represent continuous New York COMEX futures and US spot wholesale market benchmarks; physical retail bullion coins and bars trade at spot plus a small dealer premium.
         </p>
 
-        <div className="pt-4 border-t border-gray-100 space-y-2">
-          <h2 className="text-xl font-bold text-gray-900">Gold &amp; Silver Prices by Weight</h2>
-          <p className="text-sm text-gray-600 leading-relaxed">
+        <div className="pt-3 border-t border-amber-100/80 space-y-1.5">
+          <h2 className="text-lg sm:text-xl font-bold text-gray-900">Gold &amp; Silver Prices by Weight in the USA</h2>
+          <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
             Stay updated on the daily price of gold in the United States (Pure Bullion 24K, 22K, 18K, and popular US jewelry standards 14K and 10K) alongside live spot silver prices. Rates are updated continuously in real time based on institutional US spot market benchmarks. Gold and silver prices for today are available for troy ounce, gram, 10 grams, and kilogram, quoted directly in US Dollars (USD).
           </p>
         </div>
