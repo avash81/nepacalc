@@ -81,6 +81,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/water/kukl-bill-payment',
     '/nepal/nepal-budget',
     '/market-rates', '/market-rates/history',
+    '/international', '/international/gold-silver-price', '/international/gold-silver-price/history',
     '/guide',
     '/how-much-gold-can-you-bring-to-nepal',
     '/nepal/bluebook-renewal-nepal',

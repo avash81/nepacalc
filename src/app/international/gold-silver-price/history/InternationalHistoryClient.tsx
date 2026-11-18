@@ -1,9 +1,10 @@
 ﻿'use client';
 
 import React, { useState, useMemo } from 'react';
-import Link from 'next/link';
+import { ChevronDown } from 'lucide-react';
 
-export interface YearlyRecord {
+// ── Types ──────────────────────────────────────────────────────────────────────
+export interface YearlyRate {
   year: number;
   avg: number;
   high: number;
@@ -12,563 +13,703 @@ export interface YearlyRecord {
   returnPct: number;
 }
 
-export interface InternationalHistoricalData {
-  meta: {
-    title: string;
-    currency: string;
-    baseUnit: string;
-    sources: string;
-    lastUpdated: string;
-  };
-  milestones: {
-    gold: {
-      allTimeHigh: { price: number; year: number; date: string; context: string };
-      peak2024: { price: number; year: number; date: string; context: string };
-      peak2020: { price: number; year: number; date: string; context: string };
-      peak2011: { price: number; year: number; date: string; context: string };
-      peak1980: { price: number; year: number; date: string; context: string };
-      nixonShock1971: { price: number; year: number; date: string; context: string };
-    };
-    silver: {
-      allTimeHigh: { price: number; year: number; date: string; context: string };
-      peak2011: { price: number; year: number; date: string; context: string };
-      peak1980: { price: number; year: number; date: string; context: string };
-      historicLow1971: { price: number; year: number; date: string; context: string };
-    };
-    goldSilverRatio: {
-      historicalAverage: number;
-      allTimePeak: number;
-      allTimePeakDate: string;
-      allTimeLow: number;
-      allTimeLowDate: string;
-      current: number;
-    };
-  };
-  cagr: {
-    gold: { fiveYear: number; tenYear: number; twentyYear: number; fiftyYear: number };
-    silver: { fiveYear: number; tenYear: number; twentyYear: number; fiftyYear: number };
-  };
-  goldYearly: YearlyRecord[];
-  silverYearly: YearlyRecord[];
+export interface InternationalHistoryDataset {
+  goldYearly: YearlyRate[];
+  silverYearly: YearlyRate[];
+  milestones: any;
+  cagr: any;
 }
 
-interface Props {
-  initialData: InternationalHistoricalData;
-  currentLiveRates?: {
-    goldUSD: number;
-    silverUSD: number;
-  };
+type TabType = 'byyear' | 'yearminmax' | 'bydecade' | 'ratio' | 'cagr';
+type UnitType = 'oz' | 'gram' | '10g' | 'kg';
+
+const TROY_OZ_TO_GRAMS = 31.1034768;
+
+function getUnitMultiplier(unit: UnitType): number {
+  switch (unit) {
+    case 'gram':
+      return 1 / TROY_OZ_TO_GRAMS;
+    case '10g':
+      return 10 / TROY_OZ_TO_GRAMS;
+    case 'kg':
+      return 1000 / TROY_OZ_TO_GRAMS;
+    case 'oz':
+    default:
+      return 1;
+  }
 }
 
-export default function InternationalHistoryClient({ initialData, currentLiveRates }: Props) {
-  const [selectedMetal, setSelectedMetal] = useState<'gold' | 'silver'>('gold');
-  const [selectedUnit, setSelectedUnit] = useState<'oz' | 'g' | 'kg'>('oz');
-  const [selectedRange, setSelectedRange] = useState<'all' | '50y' | '20y' | '10y' | '5y'>('all');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [sortField, setSortField] = useState<'year' | 'avg' | 'high' | 'returnPct'>('year');
-  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
-  const [hoveredPoint, setHoveredPoint] = useState<YearlyRecord | null>(null);
+function getUnitLabel(unit: UnitType): string {
+  switch (unit) {
+    case 'gram':
+      return '/ gram';
+    case '10g':
+      return '/ 10g';
+    case 'kg':
+      return '/ kg';
+    case 'oz':
+    default:
+      return '/ oz';
+  }
+}
 
-  // Unit conversion multipliers relative to 1 Troy Ounce (31.1034768 grams)
-  const unitFactor = useMemo(() => {
-    if (selectedUnit === 'g') return 1 / 31.1034768;
-    if (selectedUnit === 'kg') return 1000 / 31.1034768;
-    return 1;
-  }, [selectedUnit]);
+function fmtUSD(val: number | null | undefined): string {
+  if (val == null || isNaN(val)) return '-';
+  if (val >= 1000) {
+    return '$' + new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(val);
+  }
+  if (val >= 1) {
+    return '$' + val.toFixed(2);
+  }
+  return '$' + val.toFixed(3);
+}
 
-  const unitLabel = selectedUnit === 'oz' ? '/ oz' : selectedUnit === 'g' ? '/ g' : '/ kg';
+export default function InternationalHistoryClient({
+  initialData,
+  currentLiveRates,
+}: {
+  initialData: InternationalHistoryDataset;
+  currentLiveRates: { goldUSD: number; silverUSD: number };
+}) {
+  const [tab, setTab] = useState<TabType>('byyear');
+  const [unit, setUnit] = useState<UnitType>('oz');
+  const [selYear, setSelYear] = useState<string>('all');
+  const [metalFilter, setMetalFilter] = useState<'both' | 'gold' | 'silver'>('both');
+  const [page, setPage] = useState(1);
+  const rowsPerPage = 20;
 
-  // Raw dataset for selected metal
-  const activeDataset = selectedMetal === 'gold' ? initialData.goldYearly : initialData.silverYearly;
+  const multiplier = getUnitMultiplier(unit);
+  const unitLabel = getUnitLabel(unit);
 
-  // Filter by timeframe
-  const rangeFilteredData = useMemo(() => {
-    if (selectedRange === '5y') return activeDataset.filter((r) => r.year >= 2021);
-    if (selectedRange === '10y') return activeDataset.filter((r) => r.year >= 2016);
-    if (selectedRange === '20y') return activeDataset.filter((r) => r.year >= 2006);
-    if (selectedRange === '50y') return activeDataset.filter((r) => r.year >= 1976);
-    return activeDataset;
-  }, [activeDataset, selectedRange]);
+  // Merge gold and silver by year
+  const mergedRecords = useMemo(() => {
+    const silverMap = new Map<number, YearlyRate>();
+    (initialData.silverYearly || []).forEach(s => silverMap.set(s.year, s));
 
-  // Search filter and sort
-  const processedTableData = useMemo(() => {
-    let list = [...rangeFilteredData];
-    if (searchQuery.trim()) {
-      const q = searchQuery.trim().toLowerCase();
-      list = list.filter((r) => String(r.year).includes(q));
-    }
-    list.sort((a, b) => {
-      let diff = 0;
-      if (sortField === 'year') diff = a.year - b.year;
-      else if (sortField === 'avg') diff = a.avg - b.avg;
-      else if (sortField === 'high') diff = a.high - b.high;
-      else if (sortField === 'returnPct') diff = a.returnPct - b.returnPct;
-      return sortDirection === 'desc' ? -diff : diff;
+    return (initialData.goldYearly || []).map(g => {
+      const s = silverMap.get(g.year);
+      const sAvg = s?.avg || 0;
+      const ratio = sAvg > 0 ? g.avg / sAvg : 0;
+      return {
+        year: g.year,
+        gold: g,
+        silver: s,
+        ratio,
+      };
     });
+  }, [initialData]);
+
+  // Decade Aggregates
+  const decadeData = useMemo(() => {
+    const decades = [
+      { id: '2020s', label: '2020s (2020 - 2026)', start: 2020, end: 2026 },
+      { id: '2010s', label: '2010s (2010 - 2019)', start: 2010, end: 2019 },
+      { id: '2000s', label: '2000s (2000 - 2009)', start: 2000, end: 2009 },
+      { id: '1990s', label: '1990s (1990 - 1999)', start: 1990, end: 1999 },
+      { id: '1980s', label: '1980s (1980 - 1989)', start: 1980, end: 1989 },
+      { id: '1970s', label: '1970s (1970 - 1979)', start: 1970, end: 1979 },
+    ];
+
+    return decades.map(dec => {
+      const recs = mergedRecords.filter(r => r.year >= dec.start && r.year <= dec.end);
+      if (recs.length === 0) return null;
+
+      const goldHighs = recs.map(r => r.gold.high);
+      const goldLows = recs.map(r => r.gold.low);
+      const goldAvgs = recs.map(r => r.gold.avg);
+      const silverAvgs = recs.map(r => r.silver?.avg || 0).filter(v => v > 0);
+
+      const gPeak = Math.max(...goldHighs);
+      const gTrough = Math.min(...goldLows);
+      const gMean = goldAvgs.reduce((a, b) => a + b, 0) / goldAvgs.length;
+      const sMean = silverAvgs.length > 0 ? silverAvgs.reduce((a, b) => a + b, 0) / silverAvgs.length : 0;
+
+      // Cumulative return across decade
+      const startClose = recs[recs.length - 1]?.gold.close || 1;
+      const endClose = recs[0]?.gold.close || 1;
+      const netGain = ((endClose - startClose) / startClose) * 100;
+
+      return {
+        label: dec.label,
+        count: recs.length,
+        gPeak,
+        gTrough,
+        gMean,
+        sMean,
+        netGain,
+        ratio: sMean > 0 ? gMean / sMean : 0,
+      };
+    }).filter(Boolean);
+  }, [mergedRecords]);
+
+  // Filtered rows for By Year
+  const filteredRecords = useMemo(() => {
+    let list = mergedRecords;
+    if (selYear !== 'all') {
+      const yr = Number(selYear);
+      list = list.filter(r => r.year === yr);
+    }
     return list;
-  }, [rangeFilteredData, searchQuery, sortField, sortDirection]);
+  }, [mergedRecords, selYear]);
 
-  // High, Low, and Average for the selected filtered window
-  const summaryStats = useMemo(() => {
-    if (rangeFilteredData.length === 0) return { maxHigh: 0, minLow: 0, overallAvg: 0 };
-    let maxHigh = 0;
-    let minLow = Infinity;
-    let sum = 0;
-    rangeFilteredData.forEach((r) => {
-      if (r.high > maxHigh) maxHigh = r.high;
-      if (r.low < minLow) minLow = r.low;
-      sum += r.avg;
-    });
-    return {
-      maxHigh: maxHigh * unitFactor,
-      minLow: minLow * unitFactor,
-      overallAvg: (sum / rangeFilteredData.length) * unitFactor,
-    };
-  }, [rangeFilteredData, unitFactor]);
-
-  const handleSort = (field: 'year' | 'avg' | 'high' | 'returnPct') => {
-    if (sortField === field) {
-      setSortDirection((prev) => (prev === 'desc' ? 'asc' : 'desc'));
-    } else {
-      setSortField(field);
-      setSortDirection('desc');
-    }
+  // Reset page when filter changes
+  const handleYearChange = (yr: string) => {
+    setSelYear(yr);
+    setPage(1);
   };
 
-  // SVG Chart points calculation (chronological order from oldest to newest)
-  const chartPoints = useMemo(() => {
-    const chronological = [...rangeFilteredData].sort((a, b) => a.year - b.year);
-    if (chronological.length < 2) return [];
-
-    const prices = chronological.map((r) => r.avg * unitFactor);
-    const minP = Math.min(...prices) * 0.95;
-    const maxP = Math.max(...prices) * 1.05;
-    const rangeP = maxP - minP || 1;
-
-    const width = 800;
-    const height = 240;
-    const paddingX = 40;
-    const paddingY = 24;
-
-    const innerW = width - paddingX * 2;
-    const innerH = height - paddingY * 2;
-
-    return chronological.map((r, i) => {
-      const x = paddingX + (i / (chronological.length - 1)) * innerW;
-      const price = r.avg * unitFactor;
-      const y = paddingY + innerH - ((price - minP) / rangeP) * innerH;
-      return { x, y, record: r, convertedPrice: price };
-    });
-  }, [rangeFilteredData, unitFactor]);
-
-  const svgPathD = useMemo(() => {
-    if (chartPoints.length < 2) return '';
-    return chartPoints.reduce((acc, pt, i) => {
-      return i === 0 ? `M ${pt.x} ${pt.y}` : `${acc} L ${pt.x} ${pt.y}`;
-    }, '');
-  }, [chartPoints]);
-
-  const svgAreaD = useMemo(() => {
-    if (chartPoints.length < 2) return '';
-    const firstX = chartPoints[0].x;
-    const lastX = chartPoints[chartPoints.length - 1].x;
-    return `${svgPathD} L ${lastX} 220 L ${firstX} 220 Z`;
-  }, [chartPoints, svgPathD]);
-
-  const formatPrice = (val: number) => {
-    if (val >= 1000) {
-      return `$${val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-    }
-    if (val >= 1) {
-      return `$${val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-    }
-    return `$${val.toFixed(3)}`;
-  };
+  const tabs: { id: TabType; label: string }[] = [
+    { id: 'byyear', label: 'By Year' },
+    { id: 'yearminmax', label: 'Year Min/Max' },
+    { id: 'bydecade', label: 'By Decade' },
+    { id: 'ratio', label: 'Gold-Silver Ratio' },
+    { id: 'cagr', label: '50Y Growth (CAGR)' },
+  ];
 
   return (
-    <div className="w-full max-w-6xl mx-auto px-4 py-4 sm:py-6 md:py-8 font-sans font-modern-ui">
+    <div className="w-full relative">
 
-      {/* ── TOP HEADER WITH LIVE RATE CHIPS & SIBLING LINKS ── */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 pb-4 border-b border-gray-200">
-        <div>
-          <div className="flex items-center gap-2 flex-wrap mb-1">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-50 text-amber-900 border border-amber-200">
-              <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
-              1970 - 2026 Historical Archive
-            </span>
-            <span className="text-xs text-gray-500 font-medium">COMEX &amp; LBMA Benchmark Records</span>
-          </div>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">
-            Gold &amp; Silver Price History (1970 - 2026)
-          </h1>
-          <p className="text-sm text-gray-600 mt-1 max-w-2xl">
-            Explore 56+ years of official gold and silver historical spot rates in USD. Analyze multi-decade bull runs, annual high and low prices, the gold-silver ratio, and macroeconomic inflection points.
-          </p>
-        </div>
-
-        {/* Live Spot Quick Links */}
-        <div className="flex items-center gap-2 flex-wrap shrink-0">
-          <Link
-            href="/international/gold-silver-price/"
-            className="inline-flex items-center gap-1.5 bg-white hover:bg-gray-50 text-gray-800 text-xs sm:text-sm font-semibold px-3.5 py-2 rounded-xl border border-gray-300 shadow-xs transition"
-          >
-            <span>Live Spot Dashboard</span>
-            <span className="text-blue-600 font-bold">→</span>
-          </Link>
-          <Link
-            href="/market-rates/gold-silver-ratio/"
-            className="inline-flex items-center gap-1.5 bg-white hover:bg-gray-50 text-gray-800 text-xs sm:text-sm font-semibold px-3.5 py-2 rounded-xl border border-gray-300 shadow-xs transition"
-          >
-            <span>GSR Ratio</span>
-            <span className="text-amber-600 font-bold">→</span>
-          </Link>
-        </div>
+      {/* ── Official Style Header ── */}
+      <div className="text-center mb-8">
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-[#d97706] tracking-wide uppercase">
+          HISTORY
+        </h2>
+        <div className="w-14 h-1 bg-[#d97706] mx-auto mt-2 rounded-full" />
       </div>
 
-      {/* ── CONTROL TOOLBAR (Metal Selector, Unit Selector, Timeframe Filter) ── */}
-      <div className="bg-white border border-gray-200 rounded-2xl p-4 sm:p-5 shadow-xs mb-6">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-
-          {/* Metal Selector (Gold vs Silver) */}
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">Metal:</span>
-            <div className="inline-flex bg-gray-100 p-1 rounded-xl">
-              <button
-                type="button"
-                onClick={() => setSelectedMetal('gold')}
-                className={`px-4 py-1.5 rounded-lg text-xs sm:text-sm font-bold transition cursor-pointer ${
-                  selectedMetal === 'gold'
-                    ? 'bg-amber-500 text-white shadow-xs'
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
-              >
-                Gold (24K / Spot)
-              </button>
-              <button
-                type="button"
-                onClick={() => setSelectedMetal('silver')}
-                className={`px-4 py-1.5 rounded-lg text-xs sm:text-sm font-bold transition cursor-pointer ${
-                  selectedMetal === 'silver'
-                    ? 'bg-slate-700 text-white shadow-xs'
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
-              >
-                Silver (.999 Fine)
-              </button>
-            </div>
-          </div>
-
-          {/* Unit Selector */}
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">Unit:</span>
-            <div className="inline-flex bg-gray-100 p-1 rounded-xl">
-              {(['oz', 'g', 'kg'] as const).map((unit) => (
-                <button
-                  key={unit}
-                  type="button"
-                  onClick={() => setSelectedUnit(unit)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
-                    selectedUnit === unit
-                      ? 'bg-white text-gray-900 shadow-xs border border-gray-200'
-                      : 'text-gray-600 hover:text-gray-900'
-                  }`}
-                >
-                  {unit === 'oz' ? 'Troy Oz' : unit === 'g' ? 'Gram' : 'Kilogram'}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Timeframe Filter */}
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">Period:</span>
-            <div className="inline-flex bg-gray-100 p-1 rounded-xl flex-wrap">
-              {[
-                { id: 'all', label: 'All (1970 - 2026)' },
-                { id: '50y', label: '50Y' },
-                { id: '20y', label: '20Y' },
-                { id: '10y', label: '10Y' },
-                { id: '5y', label: '5Y' },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  type="button"
-                  onClick={() => setSelectedRange(tab.id as any)}
-                  className={`px-2.5 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
-                    selectedRange === tab.id
-                      ? 'bg-blue-600 text-white shadow-xs'
-                      : 'text-gray-600 hover:text-gray-900'
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Dynamic Period Summary Pills */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 pt-4 border-t border-gray-100">
-          <div className="bg-slate-50 p-2.5 rounded-xl border border-gray-200">
-            <span className="block text-[10px] font-bold text-gray-500 uppercase tracking-wider">Period Peak High</span>
-            <span className="text-sm sm:text-base font-extrabold text-gray-900">
-              {formatPrice(summaryStats.maxHigh)} {unitLabel}
-            </span>
-          </div>
-          <div className="bg-slate-50 p-2.5 rounded-xl border border-gray-200">
-            <span className="block text-[10px] font-bold text-gray-500 uppercase tracking-wider">Period Low</span>
-            <span className="text-sm sm:text-base font-extrabold text-gray-900">
-              {formatPrice(summaryStats.minLow)} {unitLabel}
-            </span>
-          </div>
-          <div className="bg-slate-50 p-2.5 rounded-xl border border-gray-200">
-            <span className="block text-[10px] font-bold text-gray-500 uppercase tracking-wider">Period Average</span>
-            <span className="text-sm sm:text-base font-extrabold text-gray-900">
-              {formatPrice(summaryStats.overallAvg)} {unitLabel}
-            </span>
-          </div>
-          <div className="bg-slate-50 p-2.5 rounded-xl border border-gray-200">
-            <span className="block text-[10px] font-bold text-gray-500 uppercase tracking-wider">10-Year CAGR</span>
-            <span className="text-sm sm:text-base font-extrabold text-emerald-700">
-              +{selectedMetal === 'gold' ? initialData.cagr.gold.tenYear : initialData.cagr.silver.tenYear}% / yr
-            </span>
-          </div>
-        </div>
+      {/* ── Sub-tabs Pills ── */}
+      <div className="flex flex-wrap items-center justify-start gap-2 mb-8">
+        {tabs.map(t => {
+          const isActive = tab === t.id;
+          return (
+            <button
+              key={t.id}
+              onClick={() => {
+                setTab(t.id);
+                setPage(1);
+              }}
+              className={`px-4 sm:px-5 py-2 rounded-xl text-sm font-bold transition-all cursor-pointer ${
+                isActive
+                  ? 'bg-white text-[#d97706] shadow-sm border border-slate-200/80 ring-1 ring-amber-500/10'
+                  : 'text-slate-600 hover:text-slate-900 font-semibold'
+              }`}
+            >
+              {t.label}
+            </button>
+          );
+        })}
       </div>
 
-      {/* ── SORTABLE & SEARCHABLE YEAR-BY-YEAR DATA TABLE ── */}
-      <div className="bg-white border border-gray-200 rounded-2xl shadow-xs overflow-hidden mb-8">
-        <div className="p-4 sm:p-5 border-b border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      {/* ── Main Explorer Card ── */}
+      <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-5 sm:p-8">
+
+        {/* ══════════════════════════════════════════════════════════════
+            TAB: BY YEAR (Default & Primary Explorer)
+        ══════════════════════════════════════════════════════════════ */}
+        {tab === 'byyear' && (
           <div>
-            <h3 className="text-base sm:text-lg font-bold text-gray-900">
-              Annual Price History Table ({selectedMetal === 'gold' ? 'Gold' : 'Silver'} - USD {unitLabel})
-            </h3>
-            <p className="text-xs text-gray-500">
-              Click any column heading to sort. Showing {processedTableData.length} recorded market years.
-            </p>
-          </div>
+            <h3 className="text-lg font-bold text-slate-900 mb-5">Rate History by Year</h3>
 
-          {/* Quick Search */}
-          <div className="relative w-full sm:w-56">
-            <input
-              type="text"
-              placeholder="Search year (e.g. 2024)..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full px-3 py-1.5 text-xs bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:border-blue-600 text-gray-900 font-medium"
-            />
-            {searchQuery && (
-              <button
-                type="button"
-                onClick={() => setSearchQuery('')}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-xs font-bold"
-              >
-                ✕
-              </button>
-            )}
-          </div>
-        </div>
+            {/* Filter Controls */}
+            <div className="flex flex-wrap items-center gap-3 mb-6">
+              {/* Year Dropdown */}
+              <div className="relative">
+                <select
+                  value={selYear}
+                  onChange={e => handleYearChange(e.target.value)}
+                  className="appearance-none bg-white border border-slate-300 rounded-xl pl-4 pr-10 py-2.5 text-sm font-semibold text-slate-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 cursor-pointer min-w-[210px]"
+                >
+                  <option value="all">All Years (1970 - 2026)</option>
+                  {mergedRecords.map(r => (
+                    <option key={r.year} value={String(r.year)}>{r.year}</option>
+                  ))}
+                </select>
+                <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              </div>
 
-        <div className="overflow-x-auto">
-          <table className="w-full text-xs sm:text-sm text-left border-collapse">
-            <thead className="bg-slate-50 text-slate-700 font-bold border-b border-gray-200 uppercase text-[11px] tracking-wider">
-              <tr>
-                <th
-                  scope="col"
-                  onClick={() => handleSort('year')}
-                  className="px-4 py-3 cursor-pointer hover:bg-slate-100 transition select-none"
+              {/* Metal Filter */}
+              <div className="relative">
+                <select
+                  value={metalFilter}
+                  onChange={e => setMetalFilter(e.target.value as any)}
+                  className="appearance-none bg-white border border-slate-300 rounded-xl pl-4 pr-10 py-2.5 text-sm font-semibold text-slate-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 cursor-pointer min-w-[150px]"
                 >
-                  <span className="flex items-center gap-1">
-                    Year {sortField === 'year' && (sortDirection === 'desc' ? '↓' : '↑')}
-                  </span>
-                </th>
-                <th
-                  scope="col"
-                  onClick={() => handleSort('avg')}
-                  className="px-4 py-3 text-right cursor-pointer hover:bg-slate-100 transition select-none"
+                  <option value="both">Gold &amp; Silver</option>
+                  <option value="gold">Gold Only</option>
+                  <option value="silver">Silver Only</option>
+                </select>
+                <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              </div>
+
+              {selYear !== 'all' && (
+                <button
+                  onClick={() => handleYearChange('all')}
+                  className="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-4 py-2.5 rounded-xl text-sm transition-colors cursor-pointer"
                 >
-                  <span className="inline-flex items-center gap-1">
-                    Annual Avg {sortField === 'avg' && (sortDirection === 'desc' ? '↓' : '↑')}
-                  </span>
-                </th>
-                <th
-                  scope="col"
-                  onClick={() => handleSort('high')}
-                  className="px-4 py-3 text-right cursor-pointer hover:bg-slate-100 transition select-none"
+                  Show All Years
+                </button>
+              )}
+            </div>
+
+            {/* Unit Toggle (Ounce / Grams / 10g / Kg) */}
+            <div className="flex justify-center my-6">
+              <div className="inline-flex bg-slate-100 p-1 rounded-full border border-slate-200/60 shadow-inner flex-wrap justify-center">
+                <button
+                  type="button"
+                  onClick={() => setUnit('oz')}
+                  className={`px-5 sm:px-7 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                    unit === 'oz'
+                      ? 'bg-white text-slate-900 shadow-sm'
+                      : 'text-slate-500 hover:text-slate-900 font-semibold'
+                  }`}
                 >
-                  <span className="inline-flex items-center gap-1">
-                    Year High (Peak) {sortField === 'high' && (sortDirection === 'desc' ? '↓' : '↑')}
-                  </span>
-                </th>
-                <th scope="col" className="px-4 py-3 text-right">
-                  Year Low
-                </th>
-                <th scope="col" className="px-4 py-3 text-right">
-                  Year Close
-                </th>
-                <th
-                  scope="col"
-                  onClick={() => handleSort('returnPct')}
-                  className="px-4 py-3 text-right cursor-pointer hover:bg-slate-100 transition select-none"
+                  Troy Ounce
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setUnit('gram')}
+                  className={`px-5 sm:px-7 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                    unit === 'gram'
+                      ? 'bg-white text-slate-900 shadow-sm'
+                      : 'text-slate-500 hover:text-slate-900 font-semibold'
+                  }`}
                 >
-                  <span className="inline-flex items-center gap-1">
-                    Annual Return {sortField === 'returnPct' && (sortDirection === 'desc' ? '↓' : '↑')}
-                  </span>
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-100 font-medium">
-              {processedTableData.map((row) => {
-                const isPositive = row.returnPct >= 0;
-                return (
-                  <tr
-                    key={row.year}
-                    className="hover:bg-amber-50/40 transition-colors"
-                  >
-                    <td className="px-4 py-2.5 font-bold text-gray-900">
-                      <span className="flex items-center gap-1.5">
-                        {row.year}
-                        {row.year === 2026 && (
-                          <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-amber-100 text-amber-800 uppercase">
-                            YTD
-                          </span>
-                        )}
-                      </span>
-                    </td>
-                    <td className="px-4 py-2.5 text-right font-bold text-gray-900 tabular-nums">
-                      {formatPrice(row.avg * unitFactor)}
-                    </td>
-                    <td className="px-4 py-2.5 text-right font-semibold text-emerald-800 tabular-nums">
-                      {formatPrice(row.high * unitFactor)}
-                    </td>
-                    <td className="px-4 py-2.5 text-right text-gray-600 tabular-nums">
-                      {formatPrice(row.low * unitFactor)}
-                    </td>
-                    <td className="px-4 py-2.5 text-right font-medium text-gray-800 tabular-nums">
-                      {formatPrice(row.close * unitFactor)}
-                    </td>
-                    <td className="px-4 py-2.5 text-right tabular-nums">
-                      <span
-                        className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold ${
-                          isPositive
-                            ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
-                            : 'bg-rose-50 text-rose-800 border border-rose-200'
-                        }`}
-                      >
-                        {isPositive ? '+' : ''}{row.returnPct.toFixed(2)}%
-                      </span>
-                    </td>
+                  Grams
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setUnit('10g')}
+                  className={`px-5 sm:px-7 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                    unit === '10g'
+                      ? 'bg-white text-slate-900 shadow-sm'
+                      : 'text-slate-500 hover:text-slate-900 font-semibold'
+                  }`}
+                >
+                  10 Grams
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setUnit('kg')}
+                  className={`px-5 sm:px-7 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                    unit === 'kg'
+                      ? 'bg-white text-slate-900 shadow-sm'
+                      : 'text-slate-500 hover:text-slate-900 font-semibold'
+                  }`}
+                >
+                  Kilogram
+                </button>
+              </div>
+            </div>
+
+            {(() => {
+              const totalEntries = filteredRecords.length;
+              const totalPages = Math.max(1, Math.ceil(totalEntries / rowsPerPage));
+              const startEntry = totalEntries === 0 ? 0 : (page - 1) * rowsPerPage + 1;
+              const endEntry = Math.min(page * rowsPerPage, totalEntries);
+              const paginatedRows = filteredRecords.slice((page - 1) * rowsPerPage, page * rowsPerPage);
+
+              const getPageNumbers = () => {
+                const range: (number | string)[] = [];
+                if (totalPages <= 7) {
+                  for (let i = 1; i <= totalPages; i++) range.push(i);
+                  return range;
+                }
+
+                if (page <= 4) {
+                  for (let i = 1; i <= 5; i++) range.push(i);
+                  range.push('...');
+                  range.push(totalPages);
+                } else if (page >= totalPages - 3) {
+                  range.push(1);
+                  range.push('...');
+                  for (let i = totalPages - 4; i <= totalPages; i++) range.push(i);
+                } else {
+                  range.push(1);
+                  range.push('...');
+                  range.push(page - 1);
+                  range.push(page);
+                  range.push(page + 1);
+                  range.push('...');
+                  range.push(totalPages);
+                }
+                return range;
+              };
+
+              return (
+                <div>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm text-left border-collapse">
+                      <thead className="border-b border-slate-200 text-xs font-bold text-slate-700">
+                        <tr>
+                          <th scope="col" className="py-3 px-4 text-left">Year</th>
+                          {metalFilter !== 'silver' && (
+                            <>
+                              <th scope="col" className="py-3 px-4 text-right">Gold Peak</th>
+                              <th scope="col" className="py-3 px-4 text-right">Gold Low</th>
+                              <th scope="col" className="py-3 px-4 text-right">Gold Average</th>
+                            </>
+                          )}
+                          {metalFilter !== 'gold' && (
+                            <>
+                              <th scope="col" className="py-3 px-4 text-right">Silver Peak</th>
+                              <th scope="col" className="py-3 px-4 text-right">Silver Average</th>
+                            </>
+                          )}
+                          <th scope="col" className="py-3 px-4 text-right">Annual Return</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-100">
+                        {paginatedRows.map(row => (
+                          <tr key={row.year} className="hover:bg-slate-50/70 transition-colors">
+                            <td className="py-3.5 px-4 font-semibold text-slate-900 whitespace-nowrap">
+                              {row.year}
+                            </td>
+                            {metalFilter !== 'silver' && (
+                              <>
+                                <td className="py-3.5 px-4 text-amber-700 font-bold text-right whitespace-nowrap">
+                                  {fmtUSD(row.gold.high * multiplier)}
+                                </td>
+                                <td className="py-3.5 px-4 text-slate-600 text-right whitespace-nowrap">
+                                  {fmtUSD(row.gold.low * multiplier)}
+                                </td>
+                                <td className="py-3.5 px-4 font-bold text-slate-900 text-right whitespace-nowrap">
+                                  {fmtUSD(row.gold.avg * multiplier)}
+                                </td>
+                              </>
+                            )}
+                            {metalFilter !== 'gold' && (
+                              <>
+                                <td className="py-3.5 px-4 text-slate-700 font-bold text-right whitespace-nowrap">
+                                  {row.silver ? fmtUSD(row.silver.high * multiplier) : '-'}
+                                </td>
+                                <td className="py-3.5 px-4 font-bold text-slate-900 text-right whitespace-nowrap">
+                                  {row.silver ? fmtUSD(row.silver.avg * multiplier) : '-'}
+                                </td>
+                              </>
+                            )}
+                            <td className="py-3.5 px-4 text-right font-bold whitespace-nowrap">
+                              <span className={row.gold.returnPct >= 0 ? 'text-emerald-600' : 'text-rose-600'}>
+                                {row.gold.returnPct >= 0 ? '+' : ''}{row.gold.returnPct.toFixed(1)}%
+                              </span>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  {/* Pagination footer matching exact Nepal screenshot */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 mt-2 border-t border-slate-200 text-sm text-slate-600">
+                    <div>
+                      Showing {startEntry} to {endEntry} of {totalEntries} entries
+                    </div>
+
+                    {totalPages > 1 && (
+                      <div className="flex items-center gap-1 select-none flex-wrap">
+                        <button
+                          type="button"
+                          onClick={() => setPage(p => Math.max(1, p - 1))}
+                          disabled={page === 1}
+                          className="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+                        >
+                          Previous
+                        </button>
+
+                        {getPageNumbers().map((num, idx) => (
+                          <React.Fragment key={idx}>
+                            {num === '...' ? (
+                              <span className="px-2 py-1 text-slate-400 text-xs">...</span>
+                            ) : (
+                              <button
+                                type="button"
+                                onClick={() => setPage(Number(num))}
+                                className={`min-w-[32px] h-8 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                                  page === num
+                                    ? 'bg-[#d97706] text-white shadow-xs'
+                                    : 'border border-slate-200 hover:bg-slate-50 text-slate-700'
+                                }`}
+                              >
+                                {num}
+                              </button>
+                            )}
+                          </React.Fragment>
+                        ))}
+
+                        <button
+                          type="button"
+                          onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+                          disabled={page === totalPages}
+                          className="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+                        >
+                          Next
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              );
+            })()}
+          </div>
+        )}
+
+        {/* ══════════════════════════════════════════════════════════════
+            TAB: YEAR MIN / MAX
+        ══════════════════════════════════════════════════════════════ */}
+        {tab === 'yearminmax' && (
+          <div>
+            <h3 className="text-lg font-bold text-slate-900 mb-5">Annual Minimum and Maximum Benchmark Spread</h3>
+
+            {/* Unit Toggle */}
+            <div className="flex justify-center my-6">
+              <div className="inline-flex bg-slate-100 p-1 rounded-full border border-slate-200/60 shadow-inner flex-wrap justify-center">
+                <button
+                  type="button"
+                  onClick={() => setUnit('oz')}
+                  className={`px-5 sm:px-7 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                    unit === 'oz' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-900'
+                  }`}
+                >
+                  Troy Ounce
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setUnit('gram')}
+                  className={`px-5 sm:px-7 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                    unit === 'gram' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-900'
+                  }`}
+                >
+                  Grams
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setUnit('10g')}
+                  className={`px-5 sm:px-7 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                    unit === '10g' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-900'
+                  }`}
+                >
+                  10 Grams
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setUnit('kg')}
+                  className={`px-5 sm:px-7 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                    unit === 'kg' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-900'
+                  }`}
+                >
+                  Kilogram
+                </button>
+              </div>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm text-left border-collapse">
+                <thead className="border-b border-slate-200 text-xs font-bold text-slate-700">
+                  <tr>
+                    <th scope="col" className="py-3 px-4 text-left">Year</th>
+                    <th scope="col" className="py-3 px-4 text-right">Gold Min (Low)</th>
+                    <th scope="col" className="py-3 px-4 text-right">Gold Max (Peak)</th>
+                    <th scope="col" className="py-3 px-4 text-right">Gold Spread</th>
+                    <th scope="col" className="py-3 px-4 text-right">Silver Min (Low)</th>
+                    <th scope="col" className="py-3 px-4 text-right">Silver Max (Peak)</th>
+                    <th scope="col" className="py-3 px-4 text-right">Silver Spread</th>
                   </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      {/* ── INTERACTIVE MULTI-YEAR SVG CHART (placed below the data table) ── */}
-      <div className="bg-white border border-gray-200 rounded-2xl p-4 sm:p-6 shadow-xs mt-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
-          <div>
-            <h3 className="text-base sm:text-lg font-bold text-gray-900">
-              {selectedMetal === 'gold' ? 'Historical Gold Price Chart' : 'Historical Silver Price Chart'} (USD / {unitLabel})
-            </h3>
-            <p className="text-xs text-gray-500">
-              Annual average benchmark price curve across {rangeFilteredData.length} recorded market years.
-            </p>
-          </div>
-          {hoveredPoint && (
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-gray-900 text-white rounded-lg text-xs font-semibold">
-              <span className="text-gray-300">Year {hoveredPoint.year}:</span>
-              <span className="font-extrabold text-amber-300">
-                {formatPrice(hoveredPoint.avg * unitFactor)} {unitLabel}
-              </span>
-              <span className={hoveredPoint.returnPct >= 0 ? 'text-emerald-400' : 'text-rose-400'}>
-                ({hoveredPoint.returnPct >= 0 ? '+' : ''}{hoveredPoint.returnPct.toFixed(1)}%)
-              </span>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {mergedRecords.slice(0, 30).map(row => {
+                    const gSpread = (row.gold.high - row.gold.low) * multiplier;
+                    const sSpread = row.silver ? (row.silver.high - row.silver.low) * multiplier : 0;
+                    return (
+                      <tr key={row.year} className="hover:bg-slate-50/70 transition-colors">
+                        <td className="py-3.5 px-4 font-semibold text-slate-900 whitespace-nowrap">{row.year}</td>
+                        <td className="py-3.5 px-4 text-slate-600 text-right whitespace-nowrap">{fmtUSD(row.gold.low * multiplier)}</td>
+                        <td className="py-3.5 px-4 text-amber-700 font-bold text-right whitespace-nowrap">{fmtUSD(row.gold.high * multiplier)}</td>
+                        <td className="py-3.5 px-4 text-slate-800 font-semibold text-right whitespace-nowrap">{fmtUSD(gSpread)}</td>
+                        <td className="py-3.5 px-4 text-slate-600 text-right whitespace-nowrap">{row.silver ? fmtUSD(row.silver.low * multiplier) : '-'}</td>
+                        <td className="py-3.5 px-4 text-slate-800 font-bold text-right whitespace-nowrap">{row.silver ? fmtUSD(row.silver.high * multiplier) : '-'}</td>
+                        <td className="py-3.5 px-4 text-slate-700 font-semibold text-right whitespace-nowrap">{sSpread > 0 ? fmtUSD(sSpread) : '-'}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
             </div>
-          )}
-        </div>
+          </div>
+        )}
 
-        {/* SVG Chart */}
-        <div className="w-full overflow-hidden">
-          <svg
-            viewBox="0 0 800 240"
-            className="w-full h-48 sm:h-64 select-none"
-            preserveAspectRatio="none"
-          >
-            <defs>
-              <linearGradient id="chartGradientGold2" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#F59E0B" stopOpacity="0.35" />
-                <stop offset="100%" stopColor="#F59E0B" stopOpacity="0.0" />
-              </linearGradient>
-              <linearGradient id="chartGradientSilver2" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#64748B" stopOpacity="0.35" />
-                <stop offset="100%" stopColor="#64748B" stopOpacity="0.0" />
-              </linearGradient>
-            </defs>
+        {/* ══════════════════════════════════════════════════════════════
+            TAB: BY DECADE
+        ══════════════════════════════════════════════════════════════ */}
+        {tab === 'bydecade' && (
+          <div>
+            <h3 className="text-lg font-bold text-slate-900 mb-5">Rate History by Decade (1970 - 2026)</h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm text-left border-collapse">
+                <thead className="border-b border-slate-200 text-xs font-bold text-slate-700">
+                  <tr>
+                    <th scope="col" className="py-3 px-4 text-left">Decade Era</th>
+                    <th scope="col" className="py-3 px-4 text-right">Gold Lowest</th>
+                    <th scope="col" className="py-3 px-4 text-right">Gold Peak</th>
+                    <th scope="col" className="py-3 px-4 text-right">Gold Average</th>
+                    <th scope="col" className="py-3 px-4 text-right">Silver Average</th>
+                    <th scope="col" className="py-3 px-4 text-right">Avg GSR</th>
+                    <th scope="col" className="py-3 px-4 text-right">Net Price Growth</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {decadeData.map((d: any) => (
+                    <tr key={d.label} className="hover:bg-slate-50/70 transition-colors">
+                      <td className="py-3.5 px-4 font-bold text-slate-900 whitespace-nowrap">{d.label}</td>
+                      <td className="py-3.5 px-4 text-slate-600 text-right whitespace-nowrap">{fmtUSD(d.gTrough * multiplier)}</td>
+                      <td className="py-3.5 px-4 text-amber-700 font-bold text-right whitespace-nowrap">{fmtUSD(d.gPeak * multiplier)}</td>
+                      <td className="py-3.5 px-4 text-slate-900 font-bold text-right whitespace-nowrap">{fmtUSD(d.gMean * multiplier)}</td>
+                      <td className="py-3.5 px-4 text-slate-800 font-bold text-right whitespace-nowrap">{fmtUSD(d.sMean * multiplier)}</td>
+                      <td className="py-3.5 px-4 text-slate-700 text-right whitespace-nowrap">{d.ratio.toFixed(1)}:1</td>
+                      <td className="py-3.5 px-4 text-right font-bold whitespace-nowrap">
+                        <span className={d.netGain >= 0 ? 'text-emerald-600' : 'text-rose-600'}>
+                          {d.netGain >= 0 ? '+' : ''}{d.netGain.toFixed(1)}%
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
 
-            {/* Grid lines */}
-            <line x1="40" y1="40" x2="760" y2="40" stroke="#F1F5F9" strokeWidth="1" strokeDasharray="4 4" />
-            <line x1="40" y1="100" x2="760" y2="100" stroke="#F1F5F9" strokeWidth="1" strokeDasharray="4 4" />
-            <line x1="40" y1="160" x2="760" y2="160" stroke="#F1F5F9" strokeWidth="1" strokeDasharray="4 4" />
-            <line x1="40" y1="220" x2="760" y2="220" stroke="#CBD5E1" strokeWidth="1" />
+        {/* ══════════════════════════════════════════════════════════════
+            TAB: GOLD-SILVER RATIO
+        ══════════════════════════════════════════════════════════════ */}
+        {tab === 'ratio' && (
+          <div>
+            <h3 className="text-lg font-bold text-slate-900 mb-2">Gold-to-Silver Ratio History</h3>
+            <p className="text-xs sm:text-sm text-slate-500 mb-6">
+              Number of troy ounces of silver required to purchase one troy ounce of gold.
+            </p>
 
-            {/* Area fill */}
-            {svgAreaD && (
-              <path
-                d={svgAreaD}
-                fill={selectedMetal === 'gold' ? 'url(#chartGradientGold2)' : 'url(#chartGradientSilver2)'}
-              />
-            )}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+              <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5">
+                <span className="text-[11px] font-bold text-slate-500 uppercase">Historical Median</span>
+                <p className="text-xl font-extrabold text-slate-900 mt-0.5">55.4:1</p>
+                <p className="text-[11px] text-slate-400 mt-0.5">56-year post-Bretton Woods average</p>
+              </div>
+              <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-3.5">
+                <span className="text-[11px] font-bold text-emerald-800 uppercase">All-Time Low (Silver Surge)</span>
+                <p className="text-xl font-extrabold text-emerald-900 mt-0.5">17.2:1</p>
+                <p className="text-[11px] text-emerald-700 mt-0.5">Recorded in Jan 1980</p>
+              </div>
+              <div className="bg-rose-50 border border-rose-200 rounded-xl p-3.5">
+                <span className="text-[11px] font-bold text-rose-800 uppercase">All-Time Peak (Silver Dip)</span>
+                <p className="text-xl font-extrabold text-rose-900 mt-0.5">125.6:1</p>
+                <p className="text-[11px] text-rose-700 mt-0.5">Recorded in March 2020</p>
+              </div>
+            </div>
 
-            {/* Trend line */}
-            {svgPathD && (
-              <path
-                d={svgPathD}
-                fill="none"
-                stroke={selectedMetal === 'gold' ? '#D97706' : '#475569'}
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            )}
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm text-left border-collapse">
+                <thead className="border-b border-slate-200 text-xs font-bold text-slate-700">
+                  <tr>
+                    <th scope="col" className="py-3 px-4 text-left">Year</th>
+                    <th scope="col" className="py-3 px-4 text-right">Gold Average</th>
+                    <th scope="col" className="py-3 px-4 text-right">Silver Average</th>
+                    <th scope="col" className="py-3 px-4 text-right">Ratio (GSR)</th>
+                    <th scope="col" className="py-3 px-4 text-right">Market Assessment</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {mergedRecords.slice(0, 30).map(row => {
+                    const ratio = row.ratio;
+                    let signal = 'Balanced Valuation (50 - 70)';
+                    let color = 'text-slate-600';
+                    if (ratio >= 80) {
+                      signal = 'Silver Highly Undervalued (>80)';
+                      color = 'text-amber-700 font-bold';
+                    } else if (ratio <= 40) {
+                      signal = 'Silver Outperformance (<40)';
+                      color = 'text-emerald-700 font-bold';
+                    }
+                    return (
+                      <tr key={row.year} className="hover:bg-slate-50/70 transition-colors">
+                        <td className="py-3.5 px-4 font-semibold text-slate-900 whitespace-nowrap">{row.year}</td>
+                        <td className="py-3.5 px-4 text-slate-900 font-bold text-right whitespace-nowrap">{fmtUSD(row.gold.avg)}</td>
+                        <td className="py-3.5 px-4 text-slate-800 font-bold text-right whitespace-nowrap">{row.silver ? fmtUSD(row.silver.avg) : '-'}</td>
+                        <td className="py-3.5 px-4 font-black text-slate-900 text-right whitespace-nowrap">{ratio.toFixed(1)}:1</td>
+                        <td className={`py-3.5 px-4 text-right text-xs whitespace-nowrap ${color}`}>{signal}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
 
-            {/* Interactive dots */}
-            {chartPoints.map((pt) => (
-              <g
-                key={pt.record.year}
-                className="cursor-pointer"
-                onMouseEnter={() => setHoveredPoint(pt.record)}
-                onMouseLeave={() => setHoveredPoint(null)}
-              >
-                <circle
-                  cx={pt.x}
-                  cy={pt.y}
-                  r="3.5"
-                  className={
-                    hoveredPoint?.year === pt.record.year
-                      ? 'fill-red-600 stroke-white stroke-2'
-                      : selectedMetal === 'gold'
-                      ? 'fill-amber-600 stroke-white stroke-1'
-                      : 'fill-slate-700 stroke-white stroke-1'
-                  }
-                />
-              </g>
-            ))}
-          </svg>
-        </div>
+        {/* ══════════════════════════════════════════════════════════════
+            TAB: 50Y GROWTH (CAGR)
+        ══════════════════════════════════════════════════════════════ */}
+        {tab === 'cagr' && (
+          <div>
+            <h3 className="text-lg font-bold text-slate-900 mb-5">Compound Annual Growth Rate (CAGR)</h3>
 
-        {/* X-axis year labels */}
-        <div className="flex justify-between items-center text-[10px] text-gray-500 px-6 mt-1 font-semibold">
-          <span>{rangeFilteredData[rangeFilteredData.length - 1]?.year || 1970}</span>
-          {rangeFilteredData.length > 20 && <span>1995</span>}
-          {rangeFilteredData.length > 15 && <span>2010</span>}
-          {rangeFilteredData.length > 8 && <span>2020</span>}
-          <span>2026 (Live)</span>
-        </div>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+              <div className="bg-white border border-slate-200 p-4 rounded-xl shadow-xs">
+                <span className="text-[11px] font-bold text-slate-500 uppercase">5-Year CAGR</span>
+                <p className="text-lg font-black text-emerald-700 mt-1">+{initialData.cagr.gold.fiveYear}% / yr</p>
+                <p className="text-[11px] text-slate-400 mt-0.5">Silver: +{initialData.cagr.silver.fiveYear}%</p>
+              </div>
+              <div className="bg-white border border-slate-200 p-4 rounded-xl shadow-xs">
+                <span className="text-[11px] font-bold text-slate-500 uppercase">10-Year CAGR</span>
+                <p className="text-lg font-black text-emerald-700 mt-1">+{initialData.cagr.gold.tenYear}% / yr</p>
+                <p className="text-[11px] text-slate-400 mt-0.5">Silver: +{initialData.cagr.silver.tenYear}%</p>
+              </div>
+              <div className="bg-white border border-slate-200 p-4 rounded-xl shadow-xs">
+                <span className="text-[11px] font-bold text-slate-500 uppercase">20-Year CAGR</span>
+                <p className="text-lg font-black text-emerald-700 mt-1">+{initialData.cagr.gold.twentyYear}% / yr</p>
+                <p className="text-[11px] text-slate-400 mt-0.5">Silver: +{initialData.cagr.silver.twentyYear}%</p>
+              </div>
+              <div className="bg-white border border-slate-200 p-4 rounded-xl shadow-xs">
+                <span className="text-[11px] font-bold text-slate-500 uppercase">50-Year CAGR</span>
+                <p className="text-lg font-black text-emerald-700 mt-1">+{initialData.cagr.gold.fiftyYear}% / yr</p>
+                <p className="text-[11px] text-slate-400 mt-0.5">Silver: +{initialData.cagr.silver.fiftyYear}%</p>
+              </div>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm text-left border-collapse">
+                <thead className="border-b border-slate-200 text-xs font-bold text-slate-700">
+                  <tr>
+                    <th scope="col" className="py-3 px-4 text-left">Year</th>
+                    <th scope="col" className="py-3 px-4 text-right">Gold Close</th>
+                    <th scope="col" className="py-3 px-4 text-right">Gold Annual Return</th>
+                    <th scope="col" className="py-3 px-4 text-right">Silver Close</th>
+                    <th scope="col" className="py-3 px-4 text-right">Silver Annual Return</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {mergedRecords.slice(0, 30).map(row => (
+                    <tr key={row.year} className="hover:bg-slate-50/70 transition-colors">
+                      <td className="py-3.5 px-4 font-semibold text-slate-900 whitespace-nowrap">{row.year}</td>
+                      <td className="py-3.5 px-4 font-bold text-slate-900 text-right whitespace-nowrap">{fmtUSD(row.gold.close)}</td>
+                      <td className="py-3.5 px-4 text-right font-bold whitespace-nowrap">
+                        <span className={row.gold.returnPct >= 0 ? 'text-emerald-600' : 'text-rose-600'}>
+                          {row.gold.returnPct >= 0 ? '+' : ''}{row.gold.returnPct.toFixed(1)}%
+                        </span>
+                      </td>
+                      <td className="py-3.5 px-4 font-bold text-slate-900 text-right whitespace-nowrap">{row.silver ? fmtUSD(row.silver.close) : '-'}</td>
+                      <td className="py-3.5 px-4 text-right font-bold whitespace-nowrap">
+                        <span className={(row.silver?.returnPct || 0) >= 0 ? 'text-emerald-600' : 'text-rose-600'}>
+                          {(row.silver?.returnPct || 0) >= 0 ? '+' : ''}{(row.silver?.returnPct || 0).toFixed(1)}%
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
       </div>
     </div>
   );
 }
-
