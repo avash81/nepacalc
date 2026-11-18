@@ -260,8 +260,129 @@ export default function InternationalGoldSilverHistoryPage() {
         </nav>
       </div>
 
-      {/* ── AI DIRECT ANSWER SUMMARY BOX (High-Priority AI Overview Snippet) ── */}
-      <section className="max-w-6xl mx-auto px-4 mb-4">
+      {/* ── CLIENT INTERACTIVE EXPLORER (Toolbar, Table FIRST, Chart SECOND) ── */}
+      <InternationalHistoryClient initialData={histData} currentLiveRates={liveRates} />
+
+      {/* ── POST-DATASET ANALYTICS, ATH/ATL RECORDS & EDITORIAL ── */}
+      <section className="max-w-6xl mx-auto px-4 pb-12 space-y-6">
+
+        {/* ── Live Spot Real-Time Benchmark Tracker (Below Dataset) ── */}
+        <div className="w-full flex flex-wrap items-center justify-between gap-2 px-4 py-3 bg-amber-50/90 border border-amber-200/90 rounded-2xl text-xs sm:text-sm text-amber-950 font-medium shadow-xs">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="font-bold text-amber-900">Live US Market Benchmark:</span>
+            <span>Gold ${liveRates.goldUSD.toLocaleString('en-US', { minimumFractionDigits: 2 })} / oz (${(liveRates.goldUSD / 31.1034768).toFixed(2)}/g)</span>
+            <span className="text-amber-300">•</span>
+            <span>Silver ${liveRates.silverUSD.toLocaleString('en-US', { minimumFractionDigits: 2 })} / oz (${(liveRates.silverUSD / 31.1034768).toFixed(2)}/g)</span>
+            <span className="text-amber-300">•</span>
+            <span>GSR {(liveRates.goldUSD / liveRates.silverUSD).toFixed(1)}:1</span>
+          </div>
+          <Link href="/international/gold-silver-price/" className="text-amber-700 underline font-bold hover:text-amber-800 text-xs sm:text-sm">
+            View Live Price Dashboard →
+          </Link>
+        </div>
+
+        {/* ── Official All-Time Highest & Lowest Record Snapshot Cards (Matching Nepal History Structure) ── */}
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Highest Card */}
+          <div className="bg-gradient-to-br from-amber-500/10 via-amber-500/5 to-transparent border border-amber-300/80 rounded-2xl p-4 sm:p-5 shadow-sm flex flex-col justify-between">
+            <div>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-amber-200/80 pb-2.5 mb-3">
+                <div>
+                  <span className="text-[10px] font-black uppercase tracking-wider text-amber-800 bg-amber-200/70 px-2 py-0.5 rounded">
+                    Official All-Time Record High
+                  </span>
+                  <h2 className="text-base sm:text-lg font-black text-slate-900 mt-1">
+                    Highest Bullion Rates Till Date
+                  </h2>
+                </div>
+                <div className="text-[11px] text-slate-600 sm:text-right">
+                  <span className="font-bold text-slate-800">Peak Year:</span> {milestones.gold.allTimeHigh.year}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2 sm:gap-2.5">
+                <div className="bg-white/95 p-2.5 sm:p-3 rounded-xl border border-amber-100 shadow-xs">
+                  <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide truncate">24K Gold (1 Troy Oz)</p>
+                  <p className="text-sm sm:text-base font-extrabold text-slate-900 mt-0.5 whitespace-nowrap">
+                    ${milestones.gold.allTimeHigh.price.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                  </p>
+                  <p className="text-[10px] text-slate-400 mt-0.5 truncate">
+                    ${(milestones.gold.allTimeHigh.price / 31.1034768).toFixed(2)} / gram
+                  </p>
+                </div>
+                <div className="bg-white/95 p-2.5 sm:p-3 rounded-xl border border-amber-100 shadow-xs">
+                  <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide truncate">22K Gold (1 Troy Oz)</p>
+                  <p className="text-sm sm:text-base font-extrabold text-slate-900 mt-0.5 whitespace-nowrap">
+                    ${(milestones.gold.allTimeHigh.price * 22 / 24).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  </p>
+                  <p className="text-[10px] text-slate-400 mt-0.5 truncate">
+                    ${(milestones.gold.allTimeHigh.price * 22 / 24 / 31.1034768).toFixed(2)} / gram
+                  </p>
+                </div>
+                <div className="bg-white/95 p-2.5 sm:p-3 rounded-xl border border-amber-100 shadow-xs">
+                  <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide truncate">Silver (1 Troy Oz)</p>
+                  <p className="text-sm sm:text-base font-extrabold text-slate-900 mt-0.5 whitespace-nowrap">
+                    ${milestones.silver.allTimeHigh.price.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                  </p>
+                  <p className="text-[10px] text-slate-400 mt-0.5 truncate">
+                    ${(milestones.silver.allTimeHigh.price / 31.1034768).toFixed(2)} / gram
+                  </p>
+                </div>
+                <div className="bg-white/95 p-2.5 sm:p-3 rounded-xl border border-amber-100 shadow-xs">
+                  <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide truncate">Silver (1 Kilogram)</p>
+                  <p className="text-sm sm:text-base font-extrabold text-slate-900 mt-0.5 whitespace-nowrap">
+                    ${Math.round(milestones.silver.allTimeHigh.price / 31.1034768 * 1000).toLocaleString('en-US')}
+                  </p>
+                  <p className="text-[10px] text-slate-400 mt-0.5 truncate">1,000g benchmark</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Lowest Card */}
+          <div className="bg-gradient-to-br from-slate-500/10 via-slate-500/5 to-transparent border border-slate-300/80 rounded-2xl p-4 sm:p-5 shadow-sm flex flex-col justify-between">
+            <div>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-slate-200 pb-2.5 mb-3">
+                <div>
+                  <span className="text-[10px] font-black uppercase tracking-wider text-slate-700 bg-slate-200/80 px-2 py-0.5 rounded">
+                    Official All-Time Record Low
+                  </span>
+                  <h2 className="text-base sm:text-lg font-black text-slate-900 mt-1">
+                    Lowest Bullion Rates (1970 - 2026)
+                  </h2>
+                </div>
+                <div className="text-[11px] text-slate-600 sm:text-right">
+                  <span className="font-bold text-slate-800">Peg Era:</span> 1970 - 1971
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2 sm:gap-2.5">
+                <div className="bg-white/95 p-2.5 sm:p-3 rounded-xl border border-slate-200 shadow-xs">
+                  <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide truncate">24K Gold (1 Troy Oz)</p>
+                  <p className="text-sm sm:text-base font-extrabold text-slate-900 mt-0.5 whitespace-nowrap">$35.00</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5 truncate">$1.13 / gram (Bretton Woods)</p>
+                </div>
+                <div className="bg-white/95 p-2.5 sm:p-3 rounded-xl border border-slate-200 shadow-xs">
+                  <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide truncate">22K Gold (1 Troy Oz)</p>
+                  <p className="text-sm sm:text-base font-extrabold text-slate-900 mt-0.5 whitespace-nowrap">$32.08</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5 truncate">$1.03 / gram</p>
+                </div>
+                <div className="bg-white/95 p-2.5 sm:p-3 rounded-xl border border-slate-200 shadow-xs">
+                  <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide truncate">Silver (1 Troy Oz)</p>
+                  <p className="text-sm sm:text-base font-extrabold text-slate-900 mt-0.5 whitespace-nowrap">$1.29</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5 truncate">$0.04 / gram (Nov 1971)</p>
+                </div>
+                <div className="bg-white/95 p-2.5 sm:p-3 rounded-xl border border-slate-200 shadow-xs">
+                  <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide truncate">Silver (1 Kilogram)</p>
+                  <p className="text-sm sm:text-base font-extrabold text-slate-900 mt-0.5 whitespace-nowrap">$41.47</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5 truncate">1,000g low baseline</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ── AI DIRECT ANSWER SUMMARY BOX (High-Priority AI Overview Snippet - Below Dataset/Records) ── */}
         <div className="bg-gradient-to-r from-amber-50 via-white to-blue-50 border border-amber-200/90 rounded-2xl p-4 sm:p-5 shadow-xs">
           <div className="flex items-center gap-2 mb-2">
             <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-extrabold bg-[#059669] text-white tracking-wide uppercase">
@@ -303,75 +424,8 @@ export default function InternationalGoldSilverHistoryPage() {
             </div>
           </div>
         </div>
-      </section>
 
-      {/* ── CLIENT INTERACTIVE EXPLORER (Toolbar, Chart, and Sortable Table) ── */}
-      <InternationalHistoryClient initialData={histData} currentLiveRates={liveRates} />
-
-      {/* ── IN-DEPTH EDITORIAL ARTICLE & HISTORICAL TIMELINE ── */}
-      <section className="max-w-6xl mx-auto px-4 pb-12 space-y-8">
-
-        {/* Long-Term Historical Trends Article */}
-        <article className="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 shadow-xs space-y-6">
-          <header className="border-b border-gray-200 pb-4">
-            <span className="text-xs font-bold text-blue-600 uppercase tracking-wider">Historical Bullion Analysis</span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight mt-1">
-              The Modern History of Gold and Silver Prices (1970 - 2026)
-            </h2>
-            <p className="text-sm text-gray-600 mt-1">
-              A comprehensive chronicle of the five distinct macroeconomic eras that shaped modern precious metals markets.
-            </p>
-          </header>
-
-          <div className="space-y-6 text-sm sm:text-base text-gray-700 leading-relaxed">
-            <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">
-                1. The Bretton Woods Era and the $35/oz Statutory Gold Peg (1944 - 1971)
-              </h3>
-              <p>
-                Following the 1944 Bretton Woods Agreement, the international monetary architecture was anchored directly to the US Dollar, which in turn was statutorily convertible into gold at exactly <strong>$35.00 per troy ounce</strong> for foreign central banks. Under this system, gold traded in a virtually fixed corridor for over a quarter-century. However, expanding US fiscal deficits from the Vietnam War and social spending created an overhang of foreign-held dollars exceeding US physical gold reserves. Facing persistent French and European gold repatriations, President Richard Nixon unilaterally announced the suspension of dollar convertibility into gold on <strong>August 15, 1971</strong> (the famous &ldquo;Nixon Shock&rdquo;), ending the gold standard and initiating the modern free-floating bullion market.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">
-                2. The 1970s Great Stagflation &amp; The Historic 1980 Peak
-              </h3>
-              <p>
-                Once freed from statutory pricing controls, gold appreciated with extraordinary velocity throughout the 1970s as western economies endured double-digit CPI inflation, OPEC oil shocks, and currency debasement. On <strong>January 21, 1980</strong>, spot gold spiked to an intraday record of <strong>$850.00 per ounce</strong> - representing an astonishing 2,328% gain over its 1971 base. Simultaneously, Texas oil billionaires Nelson Bunker Hunt and William Herbert Hunt accumulated an estimated 200 million ounces of physical silver and COMEX futures contracts, sending spot silver from under $6.00/oz in 1979 to a record high of <strong>$49.45 per ounce</strong> on January 18, 1980. The silver bubble culminated in &ldquo;Silver Thursday&rdquo; on March 27, 1980, after COMEX altered margin rules to force liquidation.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">
-                3. The Two-Decade Bear Market &amp; Central Bank Selling (1981 - 2000)
-              </h3>
-              <p>
-                Under Federal Reserve Chairman Paul Volcker, US short-term interest rates reached 20%, driving real yields positive and crushing inflation expectations. This initiated a 20-year structural bear market for precious metals. Gold drifted lower, finding a generational bottom near $252.80/oz in July 1999 (the &ldquo;Brown Bottom,&rdquo; named after UK Chancellor Gordon Brown selling half of Britain&apos;s gold reserves). During this prolonged disinflationary cycle, silver consolidated between $3.50 and $6.00 per ounce.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">
-                4. The 2000s Commodities Super-Cycle &amp; The 2011 Post-Crisis Surge
-              </h3>
-              <p>
-                The new millennium marked the birth of a major bull run. The launch of the SPDR Gold Shares ETF (GLD) in November 2004 democratized institutional and retail bullion allocation without physical vaulting logistics. The 2008 Global Financial Crisis triggered aggressive central bank quantitative easing (QE), zero interest rate policies (ZIRP), and balance sheet expansion. By <strong>September 6, 2011</strong>, gold reached an all-time nominal high of <strong>$1,921.18 per ounce</strong> amid European Sovereign Debt crises and the first-ever S&amp;P downgrade of US sovereign credit. Silver concurrently matched its 1980 peak, touching <strong>$49.47 per ounce</strong> in April 2011.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">
-                5. Central Bank De-Dollarization &amp; The 2026 Structural Records
-              </h3>
-              <p>
-                Following the 2022 Western freezing of Russian central bank foreign exchange reserves, sovereign central banks worldwide dramatically accelerated physical gold purchases, setting consecutive annual net accumulation records above 1,000 metric tons. Concurrently, silver entered its fourth consecutive year of structural supply deficits, driven by exploding industrial demand in photovoltaic (PV) solar panels, electric vehicles, and AI computing hardware. These dual forces drove gold past $5,000/oz and silver past $100/oz in early 2026, establishing the current modern all-time peaks.
-              </p>
-            </div>
-          </div>
-        </article>
-
-        {/* Milestone Comparison Table */}
+        {/* ── Historical Milestone Comparison Table (Brought Above Editorial Article) ── */}
         <div className="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 shadow-xs">
           <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
             Historical Milestone Comparison: Gold vs. Silver (1970 - 2026)
@@ -447,12 +501,72 @@ export default function InternationalGoldSilverHistoryPage() {
                   <td className="px-4 py-3 text-right font-extrabold text-amber-800">$5,477.79</td>
                   <td className="px-4 py-3 text-right font-extrabold text-slate-800">$113.95</td>
                   <td className="px-4 py-3 text-right text-gray-900 font-bold">48.1:1</td>
-                  <td className="px-4 py-3 text-gray-900 font-semibold">De-dollarization &amp; acute solar industrial squeeze</td>
+                  <td className="px-4 py-3 text-gray-600 font-semibold">De-dollarization &amp; acute solar industrial squeeze</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
+
+        {/* Long-Term Historical Trends Article */}
+        <article className="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 shadow-xs space-y-6">
+          <header className="border-b border-gray-200 pb-4">
+            <span className="text-xs font-bold text-blue-600 uppercase tracking-wider">Historical Bullion Analysis</span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight mt-1">
+              The Modern History of Gold and Silver Prices (1970 - 2026)
+            </h2>
+            <p className="text-sm text-gray-600 mt-1">
+              A comprehensive chronicle of the five distinct macroeconomic eras that shaped modern precious metals markets.
+            </p>
+          </header>
+
+          <div className="space-y-6 text-sm sm:text-base text-gray-700 leading-relaxed">
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">
+                1. The Bretton Woods Era and the $35/oz Statutory Gold Peg (1944 - 1971)
+              </h3>
+              <p>
+                Following the 1944 Bretton Woods Agreement, the international monetary architecture was anchored directly to the US Dollar, which in turn was statutorily convertible into gold at exactly <strong>$35.00 per troy ounce</strong> for foreign central banks. Under this system, gold traded in a virtually fixed corridor for over a quarter-century. However, expanding US fiscal deficits from the Vietnam War and social spending created an overhang of foreign-held dollars exceeding US physical gold reserves. Facing persistent French and European gold repatriations, President Richard Nixon unilaterally announced the suspension of dollar convertibility into gold on <strong>August 15, 1971</strong> (the famous &ldquo;Nixon Shock&rdquo;), ending the gold standard and initiating the modern free-floating bullion market.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">
+                2. The 1970s Great Stagflation &amp; The Historic 1980 Peak
+              </h3>
+              <p>
+                Once freed from statutory pricing controls, gold appreciated with extraordinary velocity throughout the 1970s as western economies endured double-digit CPI inflation, OPEC oil shocks, and currency debasement. On <strong>January 21, 1980</strong>, spot gold spiked to an intraday record of <strong>$850.00 per ounce</strong> - representing an astonishing 2,328% gain over its 1971 base. Simultaneously, Texas oil billionaires Nelson Bunker Hunt and William Herbert Hunt accumulated an estimated 200 million ounces of physical silver and COMEX futures contracts, sending spot silver from under $6.00/oz in 1979 to a record high of <strong>$49.45 per ounce</strong> on January 18, 1980. The silver bubble culminated in &ldquo;Silver Thursday&rdquo; on March 27, 1980, after COMEX altered margin rules to force liquidation.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">
+                3. The Two-Decade Bear Market &amp; Central Bank Selling (1981 - 2000)
+              </h3>
+              <p>
+                Under Federal Reserve Chairman Paul Volcker, US short-term interest rates reached 20%, driving real yields positive and crushing inflation expectations. This initiated a 20-year structural bear market for precious metals. Gold drifted lower, finding a generational bottom near $252.80/oz in July 1999 (the &ldquo;Brown Bottom,&rdquo; named after UK Chancellor Gordon Brown selling half of Britain&apos;s gold reserves). During this prolonged disinflationary cycle, silver consolidated between $3.50 and $6.00 per ounce.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">
+                4. The 2000s Commodities Super-Cycle &amp; The 2011 Post-Crisis Surge
+              </h3>
+              <p>
+                The new millennium marked the birth of a major bull run. The launch of the SPDR Gold Shares ETF (GLD) in November 2004 democratized institutional and retail bullion allocation without physical vaulting logistics. The 2008 Global Financial Crisis triggered aggressive central bank quantitative easing (QE), zero interest rate policies (ZIRP), and balance sheet expansion. By <strong>September 6, 2011</strong>, gold reached an all-time nominal high of <strong>$1,921.18 per ounce</strong> amid European Sovereign Debt crises and the first-ever S&amp;P downgrade of US sovereign credit. Silver concurrently matched its 1980 peak, touching <strong>$49.47 per ounce</strong> in April 2011.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">
+                5. Central Bank De-Dollarization &amp; The 2026 Structural Records
+              </h3>
+              <p>
+                Following the 2022 Western freezing of Russian central bank foreign exchange reserves, sovereign central banks worldwide dramatically accelerated physical gold purchases, setting consecutive annual net accumulation records above 1,000 metric tons. Concurrently, silver entered its fourth consecutive year of structural supply deficits, driven by exploding industrial demand in photovoltaic (PV) solar panels, electric vehicles, and AI computing hardware. These dual forces drove gold past $5,000/oz and silver past $100/oz in early 2026, establishing the current modern all-time peaks.
+              </p>
+            </div>
+          </div>
+        </article>
 
         {/* The Gold-to-Silver Ratio Guide */}
         <div className="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 shadow-xs space-y-4">
