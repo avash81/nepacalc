@@ -302,104 +302,89 @@ export default function InternationalGoldClient({ initialData }: Props) {
   return (
     <div className="w-full max-w-6xl mx-auto px-4 py-3 sm:py-6 md:py-8 font-sans font-modern-ui">
 
-      {/* ── TOP SECTION HEADER (Compact Status Strip & Clean Desktop CTAs) ── */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-4 sm:mb-6">
+      {/* ── TOP SECTION HEADER (Compact Hamro Patro Style - Zero Wasted Space) ── */}
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 mb-4 sm:mb-5">
         <div>
           <div className="flex items-center gap-2 flex-wrap">
-            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 tracking-tight">
-              Gold &amp; Silver Price Today (USA)
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
+              Today&apos;s Gold &amp; Silver Price (USA)
             </h1>
-            <span className="hidden sm:inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-gray-100 text-gray-700 border border-gray-200">
+            <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-gray-100 text-gray-700 border border-gray-200">
               USD Spot
             </span>
           </div>
 
-          {/* Subtitle & Streamlined Live Meta Status Strip */}
-          <div className="flex items-center gap-2 text-xs text-gray-500 mt-1 flex-wrap">
-            <span className="text-[11px] sm:text-xs">Real-time US &amp; international spot prices quoted in USD</span>
+          <div className="text-xs text-gray-500 mt-0.5 flex items-center gap-1.5 flex-wrap">
+            <span>Per ounce, gram and 10 grams</span>
             <span className="text-gray-300">•</span>
-            <div className="inline-flex items-center gap-1.5">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-              <span className="text-[11px] sm:text-xs text-gray-600 font-medium">
-                Live {lastRefreshedText}
-              </span>
-              <button
-                onClick={fetchLiveRates}
-                disabled={isRefreshing}
-                title="Refresh live prices"
-                className="p-1 rounded-full hover:bg-gray-200 text-gray-400 hover:text-gray-700 transition cursor-pointer"
-              >
-                <RefreshCw className={`w-3 h-3 ${isRefreshing ? 'animate-spin text-blue-600' : ''}`} />
-              </button>
-            </div>
+            <button
+              onClick={() => setIsCalculatorOpen(true)}
+              className="text-blue-600 hover:text-blue-700 font-medium hover:underline inline-flex items-center gap-1 cursor-pointer"
+            >
+              Gold &amp; silver calculator
+            </button>
           </div>
         </div>
 
-        {/* Desktop Calculate CTA */}
-        <div className="hidden md:flex items-center gap-2 shrink-0">
+        {/* Compact Right Controls: Unit pills + Red Calculate button + Last updated */}
+        <div className="flex items-center gap-2 flex-wrap">
+          {/* Unit Toggle Pills */}
+          <div className="inline-flex items-center p-0.5 bg-gray-100 rounded-lg border border-gray-200">
+            {(['oz', 'g', '10g', 'kg', 'tola'] as const).map((u) => {
+              const labels: Record<string, string> = {
+                oz: 'Ounce',
+                g: 'Gram',
+                '10g': '10 g',
+                kg: 'Kilo',
+                tola: 'Tola',
+              };
+              const active = activeUnit === u;
+              return (
+                <button
+                  key={u}
+                  onClick={() => setActiveUnit(u)}
+                  className={`text-xs font-semibold px-2.5 py-1 rounded-md transition-all cursor-pointer ${
+                    active
+                      ? 'bg-neutral-900 text-white shadow-xs'
+                      : 'text-gray-600 hover:text-gray-900 hover:bg-white/60'
+                  }`}
+                >
+                  {labels[u]}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Red Calculate Button */}
           <button
             onClick={() => setIsCalculatorOpen(true)}
-            className="inline-flex items-center gap-1.5 bg-[#B91C1C] hover:bg-[#991B1B] text-white text-xs md:text-sm font-semibold px-4 py-2 rounded-full shadow-xs transition active:scale-95 cursor-pointer"
-          >
-            <Calculator className="w-4 h-4" />
-            <span>Price Calculator</span>
-          </button>
-        </div>
-      </div>
-
-      {/* ── STREAMLINED ACTION & UNIT CONTROL ROW (Merged into single row; saves ~80px mobile space) ── */}
-      <div className="flex items-center justify-between gap-2 mb-4 sm:mb-5 p-1.5 sm:p-2 bg-gray-50/90 rounded-2xl border border-gray-200/90 shadow-2xs">
-        
-        {/* Compact Segmented Unit Pills */}
-        <div className="flex items-center gap-1 overflow-x-auto scrollbar-none py-0.5 max-w-full">
-          {(['oz', 'g', '10g', 'kg', 'tola'] as const).map((u) => {
-            const labels: Record<string, string> = {
-              oz: 'Ounce',
-              g: 'Gram',
-              '10g': '10 g',
-              kg: 'Kilo',
-              tola: 'Tola',
-            };
-            const active = activeUnit === u;
-            return (
-              <button
-                key={u}
-                onClick={() => setActiveUnit(u)}
-                className={`text-[11px] sm:text-xs font-semibold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl whitespace-nowrap transition-all duration-150 cursor-pointer ${
-                  active
-                    ? 'bg-neutral-900 text-white shadow-xs'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-white/80'
-                }`}
-              >
-                {labels[u]}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Mobile Action Controls: USD badge + Quick Calc button */}
-        <div className="flex items-center gap-1.5 shrink-0">
-          <span className="md:hidden text-[10px] font-bold text-gray-500 bg-white border border-gray-200 px-2 py-1 rounded-lg">
-            USD
-          </span>
-          <button
-            onClick={() => setIsCalculatorOpen(true)}
-            className="md:hidden inline-flex items-center gap-1 bg-[#B91C1C] hover:bg-[#991B1B] text-white text-[11px] font-semibold px-3 py-1 rounded-xl shadow-xs transition active:scale-95 cursor-pointer"
+            className="inline-flex items-center gap-1.5 bg-[#B91C1C] hover:bg-[#991B1B] text-white text-xs font-semibold px-3 py-1.5 rounded-lg shadow-xs transition active:scale-95 cursor-pointer"
           >
             <Calculator className="w-3.5 h-3.5" />
             <span>Calculate</span>
           </button>
+
+          {/* Last updated timestamp with live pulsing dot & refresh icon */}
+          <div className="hidden sm:inline-flex items-center gap-1.5 text-[11px] text-gray-500 pl-1">
+            <span>Last updated: {lastRefreshedText}</span>
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+            </span>
+            <button
+              onClick={fetchLiveRates}
+              disabled={isRefreshing}
+              title="Refresh live prices"
+              className="p-1 rounded-full hover:bg-gray-200 text-gray-400 hover:text-gray-700 transition cursor-pointer"
+            >
+              <RefreshCw className={`w-3 h-3 ${isRefreshing ? 'animate-spin text-blue-600' : ''}`} />
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* ── DUAL HERO PRICE CARDS ── */}
+      {/* ── DUAL HERO PRICE CARDS (Immediately Below Top Bar) ── */}
       <div className="mb-8">
-        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
-          Live US Gold &amp; Silver Spot Prices (USD)
-        </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
           
           {/* GOLD CARD */}

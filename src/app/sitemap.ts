@@ -82,6 +82,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/nepal/nepal-budget',
     '/market-rates', '/market-rates/history',
     '/international', '/international/gold-silver-price', '/international/gold-silver-price/history',
+    '/international/uk-gold-silver', '/international/canada-gold-silver', '/international/australia-gold-silver',
+    '/international/germany-gold-silver', '/international/france-gold-silver', '/international/netherlands-gold-silver',
     '/guide',
     '/how-much-gold-can-you-bring-to-nepal',
     '/nepal/bluebook-renewal-nepal',
@@ -151,6 +153,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       'palladium-price',
       'copper-price',
       'bitcoin-price',
+      'uk-gold-silver',
+      'canada-gold-silver',
+      'australia-gold-silver',
+      'germany-gold-silver',
+      'france-gold-silver',
+      'netherlands-gold-silver',
     ].includes(calc.id);
 
     return {
