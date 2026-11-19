@@ -84,6 +84,14 @@ const NETHERLANDS_CONFIG: CountryGoldConfig = {
     vatGstRule: 'Investment gold (beleggingsgoud) is 100% exempt from Dutch VAT (0% BTW) under EU Directive 98/80/EC and the Wet op de omzetbelasting 1968.',
     cgtTaxRule: 'Physical gold in the Netherlands is taxed under Box 3 (wealth tax / vermogensrendementheffing) above the personal tax-free allowance.',
   },
+  metalLabel: 'Edelmetaal (Metal)',
+  goldLabel: 'Goud (Gold)',
+  silverLabel: 'Zilver (Silver)',
+  unitLabel: 'Eenheid (Unit)',
+  purityLabel: 'Zuiverheid / Karaat (Purity)',
+  calcButtonLabel: 'Berekenen',
+  closeButtonLabel: 'Sluiten',
+
 };
 
 const FALLBACK_RATES: InternationalRatesData = {

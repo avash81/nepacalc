@@ -73,6 +73,13 @@ export interface CountryGoldConfig {
     vatGstRule: string;
     cgtTaxRule: string;
   };
+  metalLabel?: string;
+  goldLabel?: string;
+  silverLabel?: string;
+  unitLabel?: string;
+  purityLabel?: string;
+  calcButtonLabel?: string;
+  closeButtonLabel?: string;
 }
 
 interface Props {
@@ -358,7 +365,7 @@ export default function CountryGoldClient({ config, initialData }: Props) {
             className="inline-flex items-center gap-1.5 bg-[#B91C1C] hover:bg-[#991B1B] text-white text-xs font-semibold px-3 py-1.5 rounded-lg shadow-xs transition active:scale-95 cursor-pointer"
           >
             <Calculator className="w-3.5 h-3.5" />
-            <span>Calculate</span>
+            <span>{config.calcButtonLabel || 'Calculate'}</span>
           </button>
 
           {/* Last updated timestamp with live pulsing dot & refresh icon */}
@@ -692,11 +699,11 @@ export default function CountryGoldClient({ config, initialData }: Props) {
       {isCalculatorOpen && (
         <div
           onClick={() => setIsCalculatorOpen(false)}
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-150"
+          className="fixed inset-0 z-[500] flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-xs overflow-y-auto animate-in fade-in duration-150"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-md bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-gray-100 p-4 sm:p-5 max-h-[95vh] overflow-y-auto"
+            className="relative w-full max-w-md bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-gray-100 p-4 sm:p-5 max-h-[90vh] overflow-y-auto my-auto"
           >
             {/* Modal Header */}
             <div className="flex items-center justify-between pb-2.5 border-b border-gray-100 mb-3">
@@ -716,7 +723,7 @@ export default function CountryGoldClient({ config, initialData }: Props) {
               {/* Field 1: Metal Toggle */}
               <div>
                 <label className="block text-xs font-semibold text-gray-600 mb-1">
-                  Metal
+                  {config.metalLabel || 'Metal'}
                 </label>
                 <div className="grid grid-cols-2 gap-2 sm:gap-3">
                   <button
@@ -729,7 +736,7 @@ export default function CountryGoldClient({ config, initialData }: Props) {
                     }`}
                   >
                     <Coins className="w-4 h-4 text-[#B91C1C]" />
-                    <span>Gold</span>
+                    <span>{config.goldLabel || 'Gold'}</span>
                   </button>
                   <button
                     type="button"
@@ -741,7 +748,7 @@ export default function CountryGoldClient({ config, initialData }: Props) {
                     }`}
                   >
                     <Scale className="w-4 h-4 text-slate-500" />
-                    <span>Silver</span>
+                    <span>{config.silverLabel || 'Silver'}</span>
                   </button>
                 </div>
               </div>
@@ -749,7 +756,7 @@ export default function CountryGoldClient({ config, initialData }: Props) {
               {/* Field 2: Unit Toggle */}
               <div>
                 <label className="block text-xs font-semibold text-gray-600 mb-1">
-                  Unit
+                  {config.unitLabel || 'Unit'}
                 </label>
                 <div className="grid grid-cols-3 sm:grid-cols-5 gap-1.5">
                   {config.units.map((u) => {
@@ -776,7 +783,7 @@ export default function CountryGoldClient({ config, initialData }: Props) {
               {calcMetal === 'gold' && (
                 <div>
                   <label className="block text-xs font-semibold text-gray-600 mb-1">
-                    Purity / Karat
+                    {config.purityLabel || (config.code === 'uk' || config.code === 'au' ? 'Purity / Carat' : 'Purity / Karat')}
                   </label>
                   <div className="grid grid-cols-3 sm:grid-cols-5 gap-1.5">
                     {config.purities.map((p) => {
@@ -834,7 +841,7 @@ export default function CountryGoldClient({ config, initialData }: Props) {
                 onClick={() => setIsCalculatorOpen(false)}
                 className="w-full py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold text-xs rounded-xl transition cursor-pointer"
               >
-                Close
+                {config.closeButtonLabel || 'Close'}
               </button>
             </div>
           </div>

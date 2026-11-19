@@ -725,11 +725,11 @@ export default function InternationalGoldClient({ initialData }: Props) {
       {isCalculatorOpen && (
         <div
           onClick={() => setIsCalculatorOpen(false)}
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-150"
+          className="fixed inset-0 z-[500] flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-xs overflow-y-auto animate-in fade-in duration-150"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-md bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-gray-100 p-4 sm:p-5 max-h-[95vh] overflow-y-auto"
+            className="relative w-full max-w-md bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-gray-100 p-4 sm:p-5 max-h-[90vh] overflow-y-auto my-auto"
           >
             
             {/* Modal Header */}

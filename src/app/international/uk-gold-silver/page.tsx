@@ -83,6 +83,14 @@ const UK_CONFIG: CountryGoldConfig = {
     vatGstRule: 'Investment gold is VAT-free (0% VAT) in the UK under HMRC Notice 701/21 for qualifying bullion bars and coins.',
     cgtTaxRule: 'Coins produced by The Royal Mint qualifying as UK legal tender (Sovereigns and Britannias) are exempt from Capital Gains Tax (CGT) for UK residents.',
   },
+  metalLabel: 'Precious Metal',
+  goldLabel: 'Gold',
+  silverLabel: 'Silver',
+  unitLabel: 'Weight Unit',
+  purityLabel: 'Purity / Carat (ct)',
+  calcButtonLabel: 'Calculate',
+  closeButtonLabel: 'Close',
+
 };
 
 const FALLBACK_RATES: InternationalRatesData = {

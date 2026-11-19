@@ -83,6 +83,14 @@ const AUSTRALIA_CONFIG: CountryGoldConfig = {
     vatGstRule: 'Investment precious metals (gold >=99.5%, silver >=99.9%) are 100% GST-free under section 38-385 of the GST Act (ATO).',
     cgtTaxRule: 'Individuals holding bullion for more than 12 months benefit from the Australian 50% Capital Gains Tax discount.',
   },
+  metalLabel: 'Precious Metal',
+  goldLabel: 'Gold',
+  silverLabel: 'Silver',
+  unitLabel: 'Weight Unit',
+  purityLabel: 'Purity / Carat (ct)',
+  calcButtonLabel: 'Calculate',
+  closeButtonLabel: 'Close',
+
 };
 
 const FALLBACK_RATES: InternationalRatesData = {

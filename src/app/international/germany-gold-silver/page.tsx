@@ -83,6 +83,14 @@ const GERMANY_CONFIG: CountryGoldConfig = {
     vatGstRule: 'Investment gold (Anlagegold) is 100% exempt from German Value Added Tax (0% Mehrwertsteuer) under § 25c UStG.',
     cgtTaxRule: 'Private sales of physical gold and silver held for at least 1 year (12-month Spekulationsfrist) are completely tax-free under § 23 EStG.',
   },
+  metalLabel: 'Edelmetall (Metal)',
+  goldLabel: 'Gold (Feingold)',
+  silverLabel: 'Silber',
+  unitLabel: 'Einheit (Unit)',
+  purityLabel: 'Feingehalt / Karat (Purity)',
+  calcButtonLabel: 'Rechner (Calculate)',
+  closeButtonLabel: 'Schließen',
+
 };
 
 const FALLBACK_RATES: InternationalRatesData = {

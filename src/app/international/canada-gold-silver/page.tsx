@@ -83,6 +83,14 @@ const CANADA_CONFIG: CountryGoldConfig = {
     vatGstRule: 'Investment precious metals (bars or coins of at least 99.5% gold or 99.9% silver) are zero-rated (0% GST/HST/PST) by the Canada Revenue Agency (CRA).',
     cgtTaxRule: 'Profits on bullion sales are taxable as capital gains by the CRA based on your Adjusted Cost Base (ACB).',
   },
+  metalLabel: 'Precious Metal',
+  goldLabel: 'Gold',
+  silverLabel: 'Silver',
+  unitLabel: 'Weight Unit',
+  purityLabel: 'Purity / Karat (Carat)',
+  calcButtonLabel: 'Calculate',
+  closeButtonLabel: 'Close',
+
 };
 
 const FALLBACK_RATES: InternationalRatesData = {

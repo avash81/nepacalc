@@ -83,6 +83,14 @@ const FRANCE_CONFIG: CountryGoldConfig = {
     vatGstRule: 'Investment gold (or d\'investissement) is 100% exempt from French VAT (0% TVA) under Article 298 sexdecies A of the CGI.',
     cgtTaxRule: 'Resale choice: TMP flat tax (11.5%) or TPV capital gains tax (36.2% with 5% annual reduction after 2 years, reaching 0% tax after 22 years).',
   },
+  metalLabel: 'Métal Précieux (Metal)',
+  goldLabel: 'Or (Gold)',
+  silverLabel: 'Argent (Silver)',
+  unitLabel: 'Unité (Unit)',
+  purityLabel: 'Pureté / Carats (Titrage)',
+  calcButtonLabel: 'Calculer',
+  closeButtonLabel: 'Fermer',
+
 };
 
 const FALLBACK_RATES: InternationalRatesData = {
