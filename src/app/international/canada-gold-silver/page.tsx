@@ -324,6 +324,20 @@ export default function CanadaGoldSilverPage() {
       },
       {
         '@type': 'Dataset',
+        '@id': 'https://nepacalc.com/international/canada-gold-silver/#dataset',
+        url: 'https://nepacalc.com/international/canada-gold-silver/',
+        isAccessibleForFree: true,
+        inLanguage: 'en-CA',
+        creator: {
+          '@type': 'Organization',
+          name: 'NepaCalc',
+          url: 'https://nepacalc.com/',
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'NepaCalc',
+          url: 'https://nepacalc.com/',
+        },
         name: 'Canada Gold and Silver Spot Prices (CAD)',
         description: 'Real-time and 30-day historical wholesale precious metal spot prices in Canadian Dollars (C$) tracked against Royal Canadian Mint benchmarks.',
         license: 'https://creativecommons.org/licenses/by/4.0/',

@@ -317,6 +317,20 @@ export default function FranceGoldSilverPage() {
       },
       {
         '@type': 'Dataset',
+        '@id': 'https://nepacalc.com/international/france-gold-silver/#dataset',
+        url: 'https://nepacalc.com/international/france-gold-silver/',
+        isAccessibleForFree: true,
+        inLanguage: 'fr-FR',
+        creator: {
+          '@type': 'Organization',
+          name: 'NepaCalc',
+          url: 'https://nepacalc.com/',
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'NepaCalc',
+          url: 'https://nepacalc.com/',
+        },
         name: 'France Gold and Silver Spot Prices (EUR)',
         description: 'Real-time and 30-day historical wholesale precious metal spot prices in Euros (€) linked to Euronext Paris and Monnaie de Paris benchmarks.',
         license: 'https://creativecommons.org/licenses/by/4.0/',

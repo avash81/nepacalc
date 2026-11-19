@@ -317,6 +317,20 @@ export default function NetherlandsGoldSilverPage() {
       },
       {
         '@type': 'Dataset',
+        '@id': 'https://nepacalc.com/international/netherlands-gold-silver/#dataset',
+        url: 'https://nepacalc.com/international/netherlands-gold-silver/',
+        isAccessibleForFree: true,
+        inLanguage: 'nl-NL',
+        creator: {
+          '@type': 'Organization',
+          name: 'NepaCalc',
+          url: 'https://nepacalc.com/',
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'NepaCalc',
+          url: 'https://nepacalc.com/',
+        },
         name: 'Netherlands Gold and Silver Spot Prices (EUR)',
         description: 'Real-time and 30-day historical wholesale precious metal spot prices in Euros (€) based on Dutch bullion market and Royal Dutch Mint benchmarks.',
         license: 'https://creativecommons.org/licenses/by/4.0/',

@@ -317,6 +317,20 @@ export default function GermanyGoldSilverPage() {
       },
       {
         '@type': 'Dataset',
+        '@id': 'https://nepacalc.com/international/germany-gold-silver/#dataset',
+        url: 'https://nepacalc.com/international/germany-gold-silver/',
+        isAccessibleForFree: true,
+        inLanguage: 'de-DE',
+        creator: {
+          '@type': 'Organization',
+          name: 'NepaCalc',
+          url: 'https://nepacalc.com/',
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'NepaCalc',
+          url: 'https://nepacalc.com/',
+        },
         name: 'Germany Gold and Silver Spot Prices (EUR)',
         description: 'Real-time and 30-day historical wholesale precious metal spot prices in Euros (€) based on Frankfurt Boerse and Heraeus benchmarks.',
         license: 'https://creativecommons.org/licenses/by/4.0/',

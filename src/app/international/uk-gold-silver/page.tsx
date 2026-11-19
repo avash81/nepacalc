@@ -337,6 +337,20 @@ export default function UkGoldSilverPage() {
       },
       {
         '@type': 'Dataset',
+        '@id': 'https://nepacalc.com/international/uk-gold-silver/#dataset',
+        url: 'https://nepacalc.com/international/uk-gold-silver/',
+        isAccessibleForFree: true,
+        inLanguage: 'en-GB',
+        creator: {
+          '@type': 'Organization',
+          name: 'NepaCalc',
+          url: 'https://nepacalc.com/',
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'NepaCalc',
+          url: 'https://nepacalc.com/',
+        },
         name: 'UK Gold and Silver Spot Prices (GBP)',
         description: 'Real-time and 30-day historical wholesale precious metal spot prices in British Pounds Sterling (£) linked to the London Bullion Market Association (LBMA).',
         license: 'https://creativecommons.org/licenses/by/4.0/',

@@ -318,6 +318,20 @@ export default function AustraliaGoldSilverPage() {
       },
       {
         '@type': 'Dataset',
+        '@id': 'https://nepacalc.com/international/australia-gold-silver/#dataset',
+        url: 'https://nepacalc.com/international/australia-gold-silver/',
+        isAccessibleForFree: true,
+        inLanguage: 'en-AU',
+        creator: {
+          '@type': 'Organization',
+          name: 'NepaCalc',
+          url: 'https://nepacalc.com/',
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'NepaCalc',
+          url: 'https://nepacalc.com/',
+        },
         name: 'Australia Gold and Silver Spot Prices (AUD)',
         description: 'Real-time and 30-day historical wholesale precious metal spot prices in Australian Dollars (A$) based on Perth Mint benchmarks.',
         license: 'https://creativecommons.org/licenses/by/4.0/',
