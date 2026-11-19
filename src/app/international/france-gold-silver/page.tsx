@@ -408,137 +408,120 @@ export default function FranceGoldSilverPage() {
             </div>
           </section>
 
-
-          {/* Section: Official Resources & Regulatory Links */}
-          <section className="bg-white rounded-2xl border border-gray-200 p-6 shadow-xs">
-            <h2 className="text-lg font-bold text-gray-900 mb-4">
-              Ressources Officielles &amp; Autorites de Reglementation
-            </h2>
-            <div className="space-y-3">
-              <a
-                href="https://www.monnaiedeparis.fr/en/collection/gold"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-start gap-3 p-3 bg-blue-50/40 border border-blue-100 rounded-xl hover:bg-blue-50 transition group cursor-pointer"
-              >
-                <div className="shrink-0 mt-0.5 w-7 h-7 bg-blue-900 text-white rounded-lg flex items-center justify-center text-xs font-bold">MP</div>
-                <div>
-                  <div className="text-sm font-bold text-gray-900 group-hover:text-blue-700">Monnaie de Paris - Or Official Gold</div>
-                  <div className="text-xs text-gray-500 mt-0.5">France's official mint (1,150 years of history). Producer of the Napoleon 20 Francs gold coin and official Euro collector and bullion coins.</div>
-                  <div className="text-[11px] text-blue-600 mt-0.5">monnaiedeparis.fr</div>
-                </div>
-              </a>
-              <a
-                href="https://www.impots.gouv.fr/particulier/questions/jai-realise-une-plus-value-lors-de-la-vente-de-metaux-precieux-dois-je-la"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-start gap-3 p-3 bg-blue-50/40 border border-blue-100 rounded-xl hover:bg-blue-50 transition group cursor-pointer"
-              >
-                <div className="shrink-0 mt-0.5 w-7 h-7 bg-blue-900 text-white rounded-lg flex items-center justify-center text-xs font-bold">DG</div>
-                <div>
-                  <div className="text-sm font-bold text-gray-900 group-hover:text-blue-700">Direction Generale des Finances Publiques - Metaux Precieux</div>
-                  <div className="text-xs text-gray-500 mt-0.5">Official French tax authority guidance on plus-values (capital gains) from gold sales: TMP flat tax 11.5% (Art. 150 VI CGI) and TPV regime with annual abatement.</div>
-                  <div className="text-[11px] text-blue-600 mt-0.5">impots.gouv.fr</div>
-                </div>
-              </a>
-              <a
-                href="https://www.banque-france.fr/en/statistics/key-figures"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-start gap-3 p-3 bg-blue-50/40 border border-blue-100 rounded-xl hover:bg-blue-50 transition group cursor-pointer"
-              >
-                <div className="shrink-0 mt-0.5 w-7 h-7 bg-blue-900 text-white rounded-lg flex items-center justify-center text-xs font-bold">BF</div>
-                <div>
-                  <div className="text-sm font-bold text-gray-900 group-hover:text-blue-700">Banque de France - Statistiques et Reserves d'Or</div>
-                  <div className="text-xs text-gray-500 mt-0.5">France's central bank holds 2,436 tonnes of gold reserves (5th globally). Official EUR exchange rates and monetary statistics published by Banque de France.</div>
-                  <div className="text-[11px] text-blue-600 mt-0.5">banque-france.fr</div>
-                </div>
-              </a>
+          {/* Footer Navigation: Simple & Clean, No Big Containers */}
+          <div className="pt-2 space-y-4">
+            <div>
+              <h2 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
+                Ressources Officielles
+              </h2>
+              <div className="flex flex-wrap items-center gap-2 text-xs">
+                <a
+                  href="https://www.monnaiedeparis.fr/en/collection/gold"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  Monnaie de Paris <span className="text-gray-400">(monnaiedeparis.fr)</span>
+                </a>
+                <a
+                  href="https://www.impots.gouv.fr/particulier/questions/jai-realise-une-plus-value-lors-de-la-vente-de-metaux-precieux-dois-je-la"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  DGFiP Metaux Precieux <span className="text-gray-400">(impots.gouv.fr)</span>
+                </a>
+                <a
+                  href="https://www.banque-france.fr/en/statistics/key-figures"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  Banque de France <span className="text-gray-400">(banque-france.fr)</span>
+                </a>
+              </div>
             </div>
-          </section>
-
-
-          {/* Section: Related Internal Tools */}
-          <section className="bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-200 p-6 shadow-xs">
-            <h2 className="text-lg font-bold text-gray-900 mb-4">
-              Outils et Ressources Associes
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <Link
-                href="/international/gold-silver-ratio/"
-                className="flex items-start gap-3 p-3 bg-white border border-gray-200 rounded-xl hover:border-indigo-300 hover:bg-indigo-50/30 transition group"
-              >
-                <div className="shrink-0 mt-0.5 w-8 h-8 bg-indigo-100 text-indigo-700 rounded-lg flex items-center justify-center text-[10px] font-black tracking-tight">GSR</div>
-                <div>
-                  <div className="text-sm font-bold text-gray-900 group-hover:text-indigo-700 leading-tight">Ratio Or-Argent en Direct</div>
-                  <div className="text-xs text-gray-500 mt-0.5 leading-relaxed">Ratio or/argent en temps reel depuis les marches COMEX. Indicateur cle pour les investisseurs francais comparant Napoleon or et pieces d'argent.</div>
-                </div>
-              </Link>
-              <Link
-                href="/international/gold-silver-price/history/"
-                className="flex items-start gap-3 p-3 bg-white border border-gray-200 rounded-xl hover:border-emerald-300 hover:bg-emerald-50/30 transition group"
-              >
-                <div className="shrink-0 mt-0.5 w-8 h-8 bg-emerald-100 text-emerald-700 rounded-lg flex items-center justify-center text-[10px] font-black tracking-tight">ARC</div>
-                <div>
-                  <div className="text-sm font-bold text-gray-900 group-hover:text-emerald-700 leading-tight">Archives Historiques des Prix</div>
-                  <div className="text-xs text-gray-500 mt-0.5 leading-relaxed">Archive complete des prix internationaux or et argent en USD. Indispensable pour calculer l'abattement annuel du regime TPV apres la troisieme annee.</div>
-                </div>
-              </Link>
-              <Link
-                href="/international/dubai-gold-rate/"
-                className="flex items-start gap-3 p-3 bg-white border border-gray-200 rounded-xl hover:border-violet-300 hover:bg-violet-50/30 transition group"
-              >
-                <div className="shrink-0 mt-0.5 w-8 h-8 bg-violet-100 text-violet-700 rounded-lg flex items-center justify-center text-[10px] font-black tracking-tight">DXB</div>
-                <div>
-                  <div className="text-sm font-bold text-gray-900 group-hover:text-violet-700 leading-tight">Prix de l'Or a Dubai (AED)</div>
-                  <div className="text-xs text-gray-500 mt-0.5 leading-relaxed">Suivez les prix officiels de l'or de Dubai. Les souk de Dubai sont un marche de reference mondial pour l'or physique, comparable au marche parisien.</div>
-                </div>
-              </Link>
-              <Link
-                href="/calculator/currency-converter/"
-                className="flex items-start gap-3 p-3 bg-white border border-gray-200 rounded-xl hover:border-amber-300 hover:bg-amber-50/30 transition group"
-              >
-                <div className="shrink-0 mt-0.5 w-8 h-8 bg-amber-100 text-amber-700 rounded-lg flex items-center justify-center text-[10px] font-black tracking-tight">FX</div>
-                <div>
-                  <div className="text-sm font-bold text-gray-900 group-hover:text-amber-700 leading-tight">Convertisseur de Devises (EUR/USD)</div>
-                  <div className="text-xs text-gray-500 mt-0.5 leading-relaxed">Convertissez l'Euro en dollar americain et 160+ devises avec des taux en direct. Utile pour convertir les prix spot USD en euros.</div>
-                </div>
-              </Link>
+            <div>
+              <h2 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
+                Outils &amp; Calculateurs Associes
+              </h2>
+              <div className="flex flex-wrap items-center gap-2 text-xs font-medium">
+                <Link
+                  href="/international/gold-silver-ratio/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  Ratio Or-Argent
+                </Link>
+                <Link
+                  href="/international/gold-silver-price/history/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  Archives Historiques
+                </Link>
+                <Link
+                  href="/calculator/gold-converter/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  Convertisseur d'Or
+                </Link>
+                <Link
+                  href="/calculator/currency-converter/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  Convertisseur EUR/USD
+                </Link>
+              </div>
             </div>
-          </section>
-
-          {/* Section 4: Related International Portals */}
-          <section className="bg-white rounded-2xl border border-gray-200 p-6 shadow-xs">
-            <h2 className="text-lg font-bold text-gray-900 mb-3">
-              Explorer les Cours des Métaux Précieux dans le Monde
-            </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 text-xs font-semibold">
-              <Link href="/international/gold-silver-price/" className="p-3 bg-gray-50 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition border border-gray-100">
-                USA Gold &amp; Silver (USD)
-              </Link>
-              <Link href="/international/uk-gold-silver/" className="p-3 bg-gray-50 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition border border-gray-100">
-                UK Gold &amp; Silver (GBP)
-              </Link>
-              <Link href="/international/germany-gold-silver/" className="p-3 bg-gray-50 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition border border-gray-100">
-                Germany Gold &amp; Silver (EUR)
-              </Link>
-              <Link href="/international/netherlands-gold-silver/" className="p-3 bg-gray-50 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition border border-gray-100">
-                Netherlands Gold &amp; Silver (EUR)
-              </Link>
-              <Link href="/international/canada-gold-silver/" className="p-3 bg-gray-50 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition border border-gray-100">
-                Canada Gold &amp; Silver (CAD)
-              </Link>
-              <Link href="/international/australia-gold-silver/" className="p-3 bg-gray-50 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition border border-gray-100">
-                Australia Gold &amp; Silver (AUD)
-              </Link>
-              <Link href="/international/gold-silver-price/history/" className="p-3 bg-gray-50 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition border border-gray-100">
-                Historique des Cours Spot
-              </Link>
-              <Link href="/international/dubai-gold-rate/" className="p-3 bg-gray-50 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition border border-gray-100">
-                Prix de l&apos;Or à Dubaï (AED)
-              </Link>
+            <div>
+              <h2 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
+                Explorer les Cours Mondiaux des Metaux Precieux
+              </h2>
+              <div className="flex flex-wrap items-center gap-2 text-xs font-medium">
+                <Link
+                  href="/international/uk-gold-silver/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  UK (GBP)
+                </Link>
+                <Link
+                  href="/international/canada-gold-silver/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  Canada (CAD)
+                </Link>
+                <Link
+                  href="/international/australia-gold-silver/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  Australia (AUD)
+                </Link>
+                <Link
+                  href="/international/germany-gold-silver/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  Germany (EUR)
+                </Link>
+                <Link
+                  href="/international/netherlands-gold-silver/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  Netherlands (EUR)
+                </Link>
+                <Link
+                  href="/international/gold-silver-price/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  USA (USD)
+                </Link>
+                <Link
+                  href="/international/dubai-gold-rate/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  Dubai (AED)
+                </Link>
+              </div>
             </div>
-          </section>
+          </div>
 
         </article>
       </div>

@@ -434,137 +434,120 @@ export default function UkGoldSilverPage() {
             </div>
           </section>
 
-
-          {/* Section: Official Resources & Regulatory Links */}
-          <section className="bg-white rounded-2xl border border-gray-200 p-6 shadow-xs">
-            <h2 className="text-lg font-bold text-gray-900 mb-4">
-              Official Resources &amp; Regulatory Authorities
-            </h2>
-            <div className="space-y-3">
-              <a
-                href="https://www.royalmint.com/invest/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-start gap-3 p-3 bg-blue-50/40 border border-blue-100 rounded-xl hover:bg-blue-50 transition group cursor-pointer"
-              >
-                <div className="shrink-0 mt-0.5 w-7 h-7 bg-blue-700 text-white rounded-lg flex items-center justify-center text-xs font-bold">RM</div>
-                <div>
-                  <div className="text-sm font-bold text-gray-900 group-hover:text-blue-700">The Royal Mint - Official Bullion</div>
-                  <div className="text-xs text-gray-500 mt-0.5">UK Government-owned mint; official supplier of Gold Sovereigns, Britannias, and investment bullion. Established 886 AD.</div>
-                  <div className="text-[11px] text-blue-600 mt-0.5">royalmint.com</div>
-                </div>
-              </a>
-              <a
-                href="https://www.lbma.org.uk/prices-and-data/precious-metal-prices"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-start gap-3 p-3 bg-blue-50/40 border border-blue-100 rounded-xl hover:bg-blue-50 transition group cursor-pointer"
-              >
-                <div className="shrink-0 mt-0.5 w-7 h-7 bg-blue-700 text-white rounded-lg flex items-center justify-center text-xs font-bold">LB</div>
-                <div>
-                  <div className="text-sm font-bold text-gray-900 group-hover:text-blue-700">LBMA - London Bullion Market Association</div>
-                  <div className="text-xs text-gray-500 mt-0.5">Official LBMA Gold Price (AM/PM fix) and Silver Price benchmark - the global reference for precious metal spot prices.</div>
-                  <div className="text-[11px] text-blue-600 mt-0.5">lbma.org.uk</div>
-                </div>
-              </a>
-              <a
-                href="https://www.gov.uk/guidance/vat-gold"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-start gap-3 p-3 bg-blue-50/40 border border-blue-100 rounded-xl hover:bg-blue-50 transition group cursor-pointer"
-              >
-                <div className="shrink-0 mt-0.5 w-7 h-7 bg-blue-700 text-white rounded-lg flex items-center justify-center text-xs font-bold">HM</div>
-                <div>
-                  <div className="text-sm font-bold text-gray-900 group-hover:text-blue-700">HMRC - VAT on Investment Gold (Notice 701/21)</div>
-                  <div className="text-xs text-gray-500 mt-0.5">Official UK Government guidance on zero-rated VAT for qualifying investment gold bars and coins. Published by HM Revenue &amp; Customs.</div>
-                  <div className="text-[11px] text-blue-600 mt-0.5">gov.uk</div>
-                </div>
-              </a>
+          {/* Footer Navigation: Simple & Clean, No Big Containers */}
+          <div className="pt-2 space-y-4">
+            <div>
+              <h2 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
+                Official Resources &amp; Regulatory Authorities
+              </h2>
+              <div className="flex flex-wrap items-center gap-2 text-xs">
+                <a
+                  href="https://www.royalmint.com/invest/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  The Royal Mint <span className="text-gray-400">(royalmint.com)</span>
+                </a>
+                <a
+                  href="https://www.lbma.org.uk/prices-and-data/precious-metal-prices"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  LBMA Spot Benchmarks <span className="text-gray-400">(lbma.org.uk)</span>
+                </a>
+                <a
+                  href="https://www.gov.uk/guidance/vat-gold"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  HMRC Notice 701/21 (VAT) <span className="text-gray-400">(gov.uk)</span>
+                </a>
+              </div>
             </div>
-          </section>
-
-
-          {/* Section: Related Internal Tools */}
-          <section className="bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-200 p-6 shadow-xs">
-            <h2 className="text-lg font-bold text-gray-900 mb-4">
-              Related Tools & Resources
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <Link
-                href="/international/gold-silver-ratio/"
-                className="flex items-start gap-3 p-3 bg-white border border-gray-200 rounded-xl hover:border-indigo-300 hover:bg-indigo-50/30 transition group"
-              >
-                <div className="shrink-0 mt-0.5 w-8 h-8 bg-indigo-100 text-indigo-700 rounded-lg flex items-center justify-center text-[10px] font-black tracking-tight">GSR</div>
-                <div>
-                  <div className="text-sm font-bold text-gray-900 group-hover:text-indigo-700 leading-tight">Gold-Silver Ratio Live</div>
-                  <div className="text-xs text-gray-500 mt-0.5 leading-relaxed">Track the real-time gold-to-silver ratio. A key metric for UK bullion investors deciding between sovereign gold and silver Britannias.</div>
-                </div>
-              </Link>
-              <Link
-                href="/international/gold-silver-price/history/"
-                className="flex items-start gap-3 p-3 bg-white border border-gray-200 rounded-xl hover:border-emerald-300 hover:bg-emerald-50/30 transition group"
-              >
-                <div className="shrink-0 mt-0.5 w-8 h-8 bg-emerald-100 text-emerald-700 rounded-lg flex items-center justify-center text-[10px] font-black tracking-tight">HIS</div>
-                <div>
-                  <div className="text-sm font-bold text-gray-900 group-hover:text-emerald-700 leading-tight">Global Spot Price Archive</div>
-                  <div className="text-xs text-gray-500 mt-0.5 leading-relaxed">Access the full historical archive of international gold and silver spot prices in USD. Essential for UK investors reviewing LBMA trend data.</div>
-                </div>
-              </Link>
-              <Link
-                href="/calculator/currency-converter/"
-                className="flex items-start gap-3 p-3 bg-white border border-gray-200 rounded-xl hover:border-violet-300 hover:bg-violet-50/30 transition group"
-              >
-                <div className="shrink-0 mt-0.5 w-8 h-8 bg-violet-100 text-violet-700 rounded-lg flex items-center justify-center text-[10px] font-black tracking-tight">FX</div>
-                <div>
-                  <div className="text-sm font-bold text-gray-900 group-hover:text-violet-700 leading-tight">Currency Converter (GBP/USD)</div>
-                  <div className="text-xs text-gray-500 mt-0.5 leading-relaxed">Convert between British Pound Sterling, US Dollar, and 160+ currencies using live NRB-sourced exchange rates.</div>
-                </div>
-              </Link>
-              <Link
-                href="/market-rates/live-gold-price/"
-                className="flex items-start gap-3 p-3 bg-white border border-gray-200 rounded-xl hover:border-amber-300 hover:bg-amber-50/30 transition group"
-              >
-                <div className="shrink-0 mt-0.5 w-8 h-8 bg-amber-100 text-amber-700 rounded-lg flex items-center justify-center text-[10px] font-black tracking-tight">NPR</div>
-                <div>
-                  <div className="text-sm font-bold text-gray-900 group-hover:text-amber-700 leading-tight">Nepal Live Gold Price</div>
-                  <div className="text-xs text-gray-500 mt-0.5 leading-relaxed">Compare UK gold spot prices against Nepal's official daily gold rates set by FENEGOSIDA. Useful for cross-border gold value analysis.</div>
-                </div>
-              </Link>
+            <div>
+              <h2 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
+                Related Tools &amp; Calculators
+              </h2>
+              <div className="flex flex-wrap items-center gap-2 text-xs font-medium">
+                <Link
+                  href="/international/gold-silver-ratio/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  Gold-Silver Ratio
+                </Link>
+                <Link
+                  href="/international/gold-silver-price/history/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  Spot Price Archive
+                </Link>
+                <Link
+                  href="/calculator/gold-converter/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  Gold Unit Converter
+                </Link>
+                <Link
+                  href="/calculator/currency-converter/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  Currency Converter
+                </Link>
+              </div>
             </div>
-          </section>
-
-          {/* Section 4: Related International Portals */}
-          <section className="bg-white rounded-2xl border border-gray-200 p-6 shadow-xs">
-            <h2 className="text-lg font-bold text-gray-900 mb-3">
-              Explore Global Precious Metal Rates
-            </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 text-xs font-semibold">
-              <Link href="/international/gold-silver-price/" className="p-3 bg-gray-50 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition border border-gray-100">
-                USA Gold &amp; Silver (USD)
-              </Link>
-              <Link href="/international/canada-gold-silver/" className="p-3 bg-gray-50 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition border border-gray-100">
-                Canada Gold &amp; Silver (CAD)
-              </Link>
-              <Link href="/international/australia-gold-silver/" className="p-3 bg-gray-50 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition border border-gray-100">
-                Australia Gold &amp; Silver (AUD)
-              </Link>
-              <Link href="/international/germany-gold-silver/" className="p-3 bg-gray-50 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition border border-gray-100">
-                Germany Gold &amp; Silver (EUR)
-              </Link>
-              <Link href="/international/france-gold-silver/" className="p-3 bg-gray-50 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition border border-gray-100">
-                France Gold &amp; Silver (EUR)
-              </Link>
-              <Link href="/international/netherlands-gold-silver/" className="p-3 bg-gray-50 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition border border-gray-100">
-                Netherlands Gold &amp; Silver (EUR)
-              </Link>
-              <Link href="/international/gold-silver-price/history/" className="p-3 bg-gray-50 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition border border-gray-100">
-                Historical Spot Archive
-              </Link>
-              <Link href="/international/dubai-gold-rate/" className="p-3 bg-gray-50 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition border border-gray-100">
-                Dubai Gold Rates (AED)
-              </Link>
+            <div>
+              <h2 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
+                Explore Global Precious Metal Rates
+              </h2>
+              <div className="flex flex-wrap items-center gap-2 text-xs font-medium">
+                <Link
+                  href="/international/canada-gold-silver/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  Canada (CAD)
+                </Link>
+                <Link
+                  href="/international/australia-gold-silver/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  Australia (AUD)
+                </Link>
+                <Link
+                  href="/international/germany-gold-silver/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  Germany (EUR)
+                </Link>
+                <Link
+                  href="/international/france-gold-silver/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  France (EUR)
+                </Link>
+                <Link
+                  href="/international/netherlands-gold-silver/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  Netherlands (EUR)
+                </Link>
+                <Link
+                  href="/international/gold-silver-price/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  USA (USD)
+                </Link>
+                <Link
+                  href="/international/dubai-gold-rate/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  Dubai (AED)
+                </Link>
+              </div>
             </div>
-          </section>
+          </div>
 
         </article>
       </div>

@@ -408,137 +408,120 @@ export default function NetherlandsGoldSilverPage() {
             </div>
           </section>
 
-
-          {/* Section: Official Resources & Regulatory Links */}
-          <section className="bg-white rounded-2xl border border-gray-200 p-6 shadow-xs">
-            <h2 className="text-lg font-bold text-gray-900 mb-4">
-              Officiele Bronnen &amp; Regelgevende Instanties
-            </h2>
-            <div className="space-y-3">
-              <a
-                href="https://www.waarborghholland.nl/en/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-start gap-3 p-3 bg-blue-50/40 border border-blue-100 rounded-xl hover:bg-blue-50 transition group cursor-pointer"
-              >
-                <div className="shrink-0 mt-0.5 w-7 h-7 bg-orange-700 text-white rounded-lg flex items-center justify-center text-xs font-bold">WH</div>
-                <div>
-                  <div className="text-sm font-bold text-gray-900 group-hover:text-blue-700">WaarborghHolland - Dutch Assay Office</div>
-                  <div className="text-xs text-gray-500 mt-0.5">Official Netherlands assay authority based in Gouda. Governs hallmarking of precious metals under the Waarborgwet. All Dutch gold must bear WaarborghHolland marks.</div>
-                  <div className="text-[11px] text-blue-600 mt-0.5">waarborghholland.nl</div>
-                </div>
-              </a>
-              <a
-                href="https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/btw/bijzondere_situaties/financiele_diensten/goud/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-start gap-3 p-3 bg-blue-50/40 border border-blue-100 rounded-xl hover:bg-blue-50 transition group cursor-pointer"
-              >
-                <div className="shrink-0 mt-0.5 w-7 h-7 bg-orange-700 text-white rounded-lg flex items-center justify-center text-xs font-bold">BD</div>
-                <div>
-                  <div className="text-sm font-bold text-gray-900 group-hover:text-blue-700">Belastingdienst - BTW op Goud (VAT on Gold)</div>
-                  <div className="text-xs text-gray-500 mt-0.5">Dutch Tax Authority official guidance: 0% BTW (VAT) on investment gold under EU Directive 98/80/EC. Covers eligible bars (99.5%+) and coins (90%+ purity, post-1800).</div>
-                  <div className="text-[11px] text-blue-600 mt-0.5">belastingdienst.nl</div>
-                </div>
-              </a>
-              <a
-                href="https://www.dnb.nl/en/payments/cash/dutch-currency-and-gold/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-start gap-3 p-3 bg-blue-50/40 border border-blue-100 rounded-xl hover:bg-blue-50 transition group cursor-pointer"
-              >
-                <div className="shrink-0 mt-0.5 w-7 h-7 bg-orange-700 text-white rounded-lg flex items-center justify-center text-xs font-bold">DN</div>
-                <div>
-                  <div className="text-sm font-bold text-gray-900 group-hover:text-blue-700">De Nederlandsche Bank - Dutch Gold &amp; Currency</div>
-                  <div className="text-xs text-gray-500 mt-0.5">Netherlands central bank (DNB) holds 612.5 tonnes of gold reserves. Official publications on Dutch monetary gold, Gouden Tientje, and foreign exchange rates.</div>
-                  <div className="text-[11px] text-blue-600 mt-0.5">dnb.nl</div>
-                </div>
-              </a>
+          {/* Footer Navigation: Simple & Clean, No Big Containers */}
+          <div className="pt-2 space-y-4">
+            <div>
+              <h2 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
+                Officiele Bronnen
+              </h2>
+              <div className="flex flex-wrap items-center gap-2 text-xs">
+                <a
+                  href="https://www.waarborghholland.nl/en/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  WaarborghHolland <span className="text-gray-400">(waarborghholland.nl)</span>
+                </a>
+                <a
+                  href="https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/btw/bijzondere_situaties/financiele_diensten/goud/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  Belastingdienst BTW <span className="text-gray-400">(belastingdienst.nl)</span>
+                </a>
+                <a
+                  href="https://www.dnb.nl/en/payments/cash/dutch-currency-and-gold/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  De Nederlandsche Bank <span className="text-gray-400">(dnb.nl)</span>
+                </a>
+              </div>
             </div>
-          </section>
-
-
-          {/* Section: Related Internal Tools */}
-          <section className="bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-200 p-6 shadow-xs">
-            <h2 className="text-lg font-bold text-gray-900 mb-4">
-              Gerelateerde Tools en Bronnen
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <Link
-                href="/international/gold-silver-ratio/"
-                className="flex items-start gap-3 p-3 bg-white border border-gray-200 rounded-xl hover:border-indigo-300 hover:bg-indigo-50/30 transition group"
-              >
-                <div className="shrink-0 mt-0.5 w-8 h-8 bg-indigo-100 text-indigo-700 rounded-lg flex items-center justify-center text-[10px] font-black tracking-tight">GSR</div>
-                <div>
-                  <div className="text-sm font-bold text-gray-900 group-hover:text-indigo-700 leading-tight">Goud-Zilver Verhouding Live</div>
-                  <div className="text-xs text-gray-500 mt-0.5 leading-relaxed">Realtime goud/zilver-verhouding op basis van COMEX-spotprijzen. Belangrijke indicator voor Nederlandse beleggers die kiezen tussen Gouden Tientjes en zilveren munten.</div>
-                </div>
-              </Link>
-              <Link
-                href="/international/gold-silver-price/history/"
-                className="flex items-start gap-3 p-3 bg-white border border-gray-200 rounded-xl hover:border-emerald-300 hover:bg-emerald-50/30 transition group"
-              >
-                <div className="shrink-0 mt-0.5 w-8 h-8 bg-emerald-100 text-emerald-700 rounded-lg flex items-center justify-center text-[10px] font-black tracking-tight">ARC</div>
-                <div>
-                  <div className="text-sm font-bold text-gray-900 group-hover:text-emerald-700 leading-tight">Historisch Prijsarchief</div>
-                  <div className="text-xs text-gray-500 mt-0.5 leading-relaxed">Volledig historisch archief van internationale goud- en zilverprijzen in USD. Essentieel voor Box 3 vermogenswaardering en belastingaangiftes bij de Belastingdienst.</div>
-                </div>
-              </Link>
-              <Link
-                href="/international/gold-silver-price/"
-                className="flex items-start gap-3 p-3 bg-white border border-gray-200 rounded-xl hover:border-violet-300 hover:bg-violet-50/30 transition group"
-              >
-                <div className="shrink-0 mt-0.5 w-8 h-8 bg-violet-100 text-violet-700 rounded-lg flex items-center justify-center text-[10px] font-black tracking-tight">USD</div>
-                <div>
-                  <div className="text-sm font-bold text-gray-900 group-hover:text-violet-700 leading-tight">Live VS Goud en Zilver (USD)</div>
-                  <div className="text-xs text-gray-500 mt-0.5 leading-relaxed">Volg live goud- en zilverprijzen in USD vanaf de COMEX. Vergelijk met EUR-prijzen om de impact van de EUR/USD wisselkoers op uw goudportfolio te begrijpen.</div>
-                </div>
-              </Link>
-              <Link
-                href="/calculator/currency-converter/"
-                className="flex items-start gap-3 p-3 bg-white border border-gray-200 rounded-xl hover:border-amber-300 hover:bg-amber-50/30 transition group"
-              >
-                <div className="shrink-0 mt-0.5 w-8 h-8 bg-amber-100 text-amber-700 rounded-lg flex items-center justify-center text-[10px] font-black tracking-tight">FX</div>
-                <div>
-                  <div className="text-sm font-bold text-gray-900 group-hover:text-amber-700 leading-tight">Valutaomrekener (EUR/USD)</div>
-                  <div className="text-xs text-gray-500 mt-0.5 leading-relaxed">Reken Euro om naar US-dollar en 160+ valuta met live koersen. Handig om USD COMEX-spotprijzen naar Nederlandse euro-goudprijzen om te rekenen.</div>
-                </div>
-              </Link>
+            <div>
+              <h2 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
+                Gerelateerde Tools &amp; Rekenmachines
+              </h2>
+              <div className="flex flex-wrap items-center gap-2 text-xs font-medium">
+                <Link
+                  href="/international/gold-silver-ratio/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  Goud-Zilver Verhouding
+                </Link>
+                <Link
+                  href="/international/gold-silver-price/history/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  Historisch Archief
+                </Link>
+                <Link
+                  href="/calculator/gold-converter/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  Goud Eenheden Omrekenen
+                </Link>
+                <Link
+                  href="/calculator/currency-converter/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  Valutaomrekener
+                </Link>
+              </div>
             </div>
-          </section>
-
-          {/* Section 4: Related International Portals */}
-          <section className="bg-white rounded-2xl border border-gray-200 p-6 shadow-xs">
-            <h2 className="text-lg font-bold text-gray-900 mb-3">
-              Verken Wereldwijde Edelmetaalprijzen
-            </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 text-xs font-semibold">
-              <Link href="/international/gold-silver-price/" className="p-3 bg-gray-50 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition border border-gray-100">
-                USA Gold &amp; Silver (USD)
-              </Link>
-              <Link href="/international/uk-gold-silver/" className="p-3 bg-gray-50 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition border border-gray-100">
-                UK Gold &amp; Silver (GBP)
-              </Link>
-              <Link href="/international/germany-gold-silver/" className="p-3 bg-gray-50 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition border border-gray-100">
-                Germany Gold &amp; Silver (EUR)
-              </Link>
-              <Link href="/international/france-gold-silver/" className="p-3 bg-gray-50 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition border border-gray-100">
-                France Gold &amp; Silver (EUR)
-              </Link>
-              <Link href="/international/canada-gold-silver/" className="p-3 bg-gray-50 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition border border-gray-100">
-                Canada Gold &amp; Silver (CAD)
-              </Link>
-              <Link href="/international/australia-gold-silver/" className="p-3 bg-gray-50 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition border border-gray-100">
-                Australia Gold &amp; Silver (AUD)
-              </Link>
-              <Link href="/international/gold-silver-price/history/" className="p-3 bg-gray-50 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition border border-gray-100">
-                Historisch Spot Archief
-              </Link>
-              <Link href="/international/dubai-gold-rate/" className="p-3 bg-gray-50 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition border border-gray-100">
-                Dubai Goudkoers (AED)
-              </Link>
+            <div>
+              <h2 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
+                Wereldwijde Edelmetaalprijzen Bekijken
+              </h2>
+              <div className="flex flex-wrap items-center gap-2 text-xs font-medium">
+                <Link
+                  href="/international/uk-gold-silver/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  UK (GBP)
+                </Link>
+                <Link
+                  href="/international/canada-gold-silver/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  Canada (CAD)
+                </Link>
+                <Link
+                  href="/international/australia-gold-silver/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  Australia (AUD)
+                </Link>
+                <Link
+                  href="/international/germany-gold-silver/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  Germany (EUR)
+                </Link>
+                <Link
+                  href="/international/france-gold-silver/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  France (EUR)
+                </Link>
+                <Link
+                  href="/international/gold-silver-price/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  USA (USD)
+                </Link>
+                <Link
+                  href="/international/dubai-gold-rate/"
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-700 rounded transition"
+                >
+                  Dubai (AED)
+                </Link>
+              </div>
             </div>
-          </section>
+          </div>
 
         </article>
       </div>
