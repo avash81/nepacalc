@@ -15,7 +15,6 @@ const GERMANY_CONFIG: CountryGoldConfig = {
   marketBadge: 'Frankfurt Boerse & Heraeus Spot',
   goldCardTitle: 'Gold (Feingold 999.9)',
   silverCardTitle: 'Silver (Feinsilber .999)',
-  subtitle: 'Per Unze, Gramm and 100g Barren • Real-time Euro spot rates',
   units: [
     { id: 'oz', label: 'Pro Feinunze (oz)', shortLabel: 'Unze', ozFactor: 1 },
     { id: 'g', label: 'Pro Gramm (g)', shortLabel: 'Gramm', ozFactor: 1 / 31.1034768 },

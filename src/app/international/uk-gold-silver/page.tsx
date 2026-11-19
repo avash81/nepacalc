@@ -15,7 +15,6 @@ const UK_CONFIG: CountryGoldConfig = {
   marketBadge: 'LBMA London Fix & Spot',
   goldCardTitle: 'Gold (24ct / Hallmark)',
   silverCardTitle: 'Silver (.999 Fine)',
-  subtitle: 'Per troy ounce, gram and sovereign • Live London bullion spot',
   units: [
     { id: 'oz', label: 'Per Troy Ounce', shortLabel: 'Ounce', ozFactor: 1 },
     { id: 'g', label: 'Per Gram', shortLabel: 'Gram', ozFactor: 1 / 31.1034768 },

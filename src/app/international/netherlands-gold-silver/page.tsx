@@ -15,7 +15,6 @@ const NETHERLANDS_CONFIG: CountryGoldConfig = {
   marketBadge: 'Amsterdam Spot & Royal Dutch Mint',
   goldCardTitle: 'Gold (24 Karaat / 999.9)',
   silverCardTitle: 'Silver (.999 Puur Zilver)',
-  subtitle: 'Per Troy Ounce, Gram and Gouden Tientje • Real-time Euro spot rates',
   units: [
     { id: 'oz', label: 'Per Troy Ounce (oz)', shortLabel: 'Ounce', ozFactor: 1 },
     { id: 'g', label: 'Per Gram (g)', shortLabel: 'Gram', ozFactor: 1 / 31.1034768 },

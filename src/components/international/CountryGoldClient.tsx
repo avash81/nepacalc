@@ -64,7 +64,7 @@ export interface CountryGoldConfig {
   marketBadge: string;       // 'London Bullion (LBMA)' | 'TSX / Canadian Spot' | 'Perth Mint / ASX' | 'Frankfurt Spot' | 'Paris Euronext / BdF' | 'Amsterdam / DNB'
   goldCardTitle: string;     // e.g. 'Gold (24ct / Hallmark)'
   silverCardTitle: string;   // e.g. 'Silver (.999 Fine)'
-  subtitle: string;          // e.g. 'Per troy ounce, gram and sovereign • Live London bullion spot'
+  subtitle?: string;
   units: CountryUnit[];
   purities: CountryPurity[];
   popularItems: PopularItem[];
@@ -325,16 +325,7 @@ export default function CountryGoldClient({ config, initialData }: Props) {
             </span>
           </div>
 
-          <div className="text-xs text-gray-500 mt-0.5 flex items-center gap-1.5 flex-wrap">
-            <span>{config.subtitle}</span>
-            <span className="text-gray-300">•</span>
-            <button
-              onClick={() => setIsCalculatorOpen(true)}
-              className="text-blue-600 hover:text-blue-700 font-medium hover:underline inline-flex items-center gap-1 cursor-pointer"
-            >
-              Gold &amp; silver calculator
-            </button>
-          </div>
+
         </div>
 
         {/* Compact Right Controls: Unit pills + Red Calculate button + Last updated */}

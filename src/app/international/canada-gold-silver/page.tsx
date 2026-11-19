@@ -15,7 +15,6 @@ const CANADA_CONFIG: CountryGoldConfig = {
   marketBadge: 'TSX & Montreal Spot Benchmark',
   goldCardTitle: 'Gold (24K / .9999 Fine)',
   silverCardTitle: 'Silver (.9999 Fine)',
-  subtitle: 'Per troy ounce, gram and Maple Leaf • Real-time Canadian Dollar spot',
   units: [
     { id: 'oz', label: 'Per Troy Ounce', shortLabel: 'Ounce', ozFactor: 1 },
     { id: 'g', label: 'Per Gram', shortLabel: 'Gram', ozFactor: 1 / 31.1034768 },

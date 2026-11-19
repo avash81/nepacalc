@@ -15,7 +15,6 @@ const FRANCE_CONFIG: CountryGoldConfig = {
   marketBadge: 'Euronext & Monnaie de Paris Spot',
   goldCardTitle: 'Gold (Or 24K / 999‰)',
   silverCardTitle: 'Silver (Argent .999)',
-  subtitle: 'Per Once, Gramme and Napoléon 20F • Real-time Euro spot rates',
   units: [
     { id: 'oz', label: 'Par Once Troy (oz)', shortLabel: 'Once', ozFactor: 1 },
     { id: 'g', label: 'Par Gramme (g)', shortLabel: 'Gramme', ozFactor: 1 / 31.1034768 },

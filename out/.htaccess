@@ -141,7 +141,9 @@ RewriteRule ^calculator/sitemap\.html$ /sitemap/ [L,R=301]
 RewriteRule ^market-rates/international-gold-silver/?$ /international/gold-silver-price/ [L,R=301]
 RewriteRule ^market-rates/international-gold-silver/history/?$ /international/gold-silver-price/history/ [L,R=301]
 RewriteRule ^international-gold-silver/?$ /international/gold-silver-price/ [L,R=301]
-RewriteRule ^international-gold-silver/history/?$ /international/gold-silver-price/history/ [L,R=301]# 3. Force Trailing Slash (matches Next.js trailingSlash: true)
+RewriteRule ^international-gold-silver/history/?$ /international/gold-silver-price/history/ [L,R=301]
+
+# 3. Force Trailing Slash (matches Next.js trailingSlash: true)
 # ============================================================
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_URI} !(.*)/$

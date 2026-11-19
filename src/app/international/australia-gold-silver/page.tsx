@@ -15,7 +15,6 @@ const AUSTRALIA_CONFIG: CountryGoldConfig = {
   marketBadge: 'Perth Mint & ASX Spot Benchmark',
   goldCardTitle: 'Gold (24ct / .9999 Fine)',
   silverCardTitle: 'Silver (.9999 Fine)',
-  subtitle: 'Per troy ounce, gram and Kangaroo • Live Australian Dollar bullion spot',
   units: [
     { id: 'oz', label: 'Per Troy Ounce', shortLabel: 'Ounce', ozFactor: 1 },
     { id: 'g', label: 'Per Gram', shortLabel: 'Gram', ozFactor: 1 / 31.1034768 },
