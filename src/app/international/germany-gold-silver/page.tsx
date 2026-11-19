@@ -408,6 +408,105 @@ export default function GermanyGoldSilverPage() {
             </div>
           </section>
 
+
+          {/* Section: Official Resources & Regulatory Links */}
+          <section className="bg-white rounded-2xl border border-gray-200 p-6 shadow-xs">
+            <h2 className="text-lg font-bold text-gray-900 mb-4">
+              Offizielle Ressourcen &amp; Regulierungsbehoerden
+            </h2>
+            <div className="space-y-3">
+              <a
+                href="https://www.bundesbank.de/en/bundesbank/banknotes-and-coins/gold"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-3 p-3 bg-blue-50/40 border border-blue-100 rounded-xl hover:bg-blue-50 transition group cursor-pointer"
+              >
+                <div className="shrink-0 mt-0.5 w-7 h-7 bg-gray-800 text-white rounded-lg flex items-center justify-center text-xs font-bold">BB</div>
+                <div>
+                  <div className="text-sm font-bold text-gray-900 group-hover:text-blue-700">Deutsche Bundesbank - Gold</div>
+                  <div className="text-xs text-gray-500 mt-0.5">Germany's central bank; holds one of the world's largest gold reserves (3,352 tonnes). Official publications on gold storage and monetary policy.</div>
+                  <div className="text-[11px] text-blue-600 mt-0.5">bundesbank.de</div>
+                </div>
+              </a>
+              <a
+                href="https://www.bzst.de/DE/Unternehmen/Umsatzsteuer/Umsatzsteuer_node.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-3 p-3 bg-blue-50/40 border border-blue-100 rounded-xl hover:bg-blue-50 transition group cursor-pointer"
+              >
+                <div className="shrink-0 mt-0.5 w-7 h-7 bg-gray-800 text-white rounded-lg flex items-center justify-center text-xs font-bold">BZ</div>
+                <div>
+                  <div className="text-sm font-bold text-gray-900 group-hover:text-blue-700">Bundeszentralamt fuer Steuern - Umsatzsteuer</div>
+                  <div className="text-xs text-gray-500 mt-0.5">German Federal Tax Authority. Governs paragraph 25c UStG: 0% MwSt (VAT) on investment gold bars and coins meeting EU fineness standards.</div>
+                  <div className="text-[11px] text-blue-600 mt-0.5">bzst.de</div>
+                </div>
+              </a>
+              <a
+                href="https://www.heraeus.com/en/hpm/precious_metal_prices/prices.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-3 p-3 bg-blue-50/40 border border-blue-100 rounded-xl hover:bg-blue-50 transition group cursor-pointer"
+              >
+                <div className="shrink-0 mt-0.5 w-7 h-7 bg-gray-800 text-white rounded-lg flex items-center justify-center text-xs font-bold">HE</div>
+                <div>
+                  <div className="text-sm font-bold text-gray-900 group-hover:text-blue-700">Heraeus - Edelmetallpreise (Precious Metal Prices)</div>
+                  <div className="text-xs text-gray-500 mt-0.5">Germany's leading LBMA-accredited precious metal refiner, headquartered in Hanau. Official daily gold and silver prices in EUR published since 1851.</div>
+                  <div className="text-[11px] text-blue-600 mt-0.5">heraeus.com</div>
+                </div>
+              </a>
+            </div>
+          </section>
+
+
+          {/* Section: Related Internal Tools */}
+          <section className="bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-200 p-6 shadow-xs">
+            <h2 className="text-lg font-bold text-gray-900 mb-4">
+              Verwandte Tools und Ressourcen
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <Link
+                href="/international/gold-silver-ratio/"
+                className="flex items-start gap-3 p-3 bg-white border border-gray-200 rounded-xl hover:border-indigo-300 hover:bg-indigo-50/30 transition group"
+              >
+                <div className="shrink-0 mt-0.5 w-8 h-8 bg-indigo-100 text-indigo-700 rounded-lg flex items-center justify-center text-[10px] font-black tracking-tight">GSR</div>
+                <div>
+                  <div className="text-sm font-bold text-gray-900 group-hover:text-indigo-700 leading-tight">Gold-Silber-Verhaeltnis Live</div>
+                  <div className="text-xs text-gray-500 mt-0.5 leading-relaxed">Echtzeit-Verhaeltnis von Gold zu Silber auf Basis von COMEX-Spotpreisen. Wichtige Kennzahl fuer deutsche Anleger, die zwischen Kruegerrand und Silbermuenzen abwaegen.</div>
+                </div>
+              </Link>
+              <Link
+                href="/international/gold-silver-price/history/"
+                className="flex items-start gap-3 p-3 bg-white border border-gray-200 rounded-xl hover:border-emerald-300 hover:bg-emerald-50/30 transition group"
+              >
+                <div className="shrink-0 mt-0.5 w-8 h-8 bg-emerald-100 text-emerald-700 rounded-lg flex items-center justify-center text-[10px] font-black tracking-tight">ARC</div>
+                <div>
+                  <div className="text-sm font-bold text-gray-900 group-hover:text-emerald-700 leading-tight">Historisches Preisarchiv</div>
+                  <div className="text-xs text-gray-500 mt-0.5 leading-relaxed">Vollstaendiges historisches Archiv internationaler Gold- und Silberpreise in USD. Unverzichtbar fuer die Berechnung der einjahrigen Spekulationsfrist nach Paragraph 23 EStG.</div>
+                </div>
+              </Link>
+              <Link
+                href="/international/platinum/"
+                className="flex items-start gap-3 p-3 bg-white border border-gray-200 rounded-xl hover:border-violet-300 hover:bg-violet-50/30 transition group"
+              >
+                <div className="shrink-0 mt-0.5 w-8 h-8 bg-violet-100 text-violet-700 rounded-lg flex items-center justify-center text-[10px] font-black tracking-tight">PLT</div>
+                <div>
+                  <div className="text-sm font-bold text-gray-900 group-hover:text-violet-700 leading-tight">Platin Spotpreis (USD)</div>
+                  <div className="text-xs text-gray-500 mt-0.5 leading-relaxed">Aktuelle Platinpreise in USD. Deutschland ist weltweit einer der groessten Platinkonsumenten durch seine Automobilindustrie.</div>
+                </div>
+              </Link>
+              <Link
+                href="/calculator/currency-converter/"
+                className="flex items-start gap-3 p-3 bg-white border border-gray-200 rounded-xl hover:border-amber-300 hover:bg-amber-50/30 transition group"
+              >
+                <div className="shrink-0 mt-0.5 w-8 h-8 bg-amber-100 text-amber-700 rounded-lg flex items-center justify-center text-[10px] font-black tracking-tight">FX</div>
+                <div>
+                  <div className="text-sm font-bold text-gray-900 group-hover:text-amber-700 leading-tight">Waehrungsrechner (EUR/USD)</div>
+                  <div className="text-xs text-gray-500 mt-0.5 leading-relaxed">Konvertieren Sie Euro in US-Dollar und 160+ Waehrungen. Hilfreich zur Umrechnung von USD-Spotpreisen in Euro-Goldpreise.</div>
+                </div>
+              </Link>
+            </div>
+          </section>
+
           {/* Section 4: Related International Portals */}
           <section className="bg-white rounded-2xl border border-gray-200 p-6 shadow-xs">
             <h2 className="text-lg font-bold text-gray-900 mb-3">

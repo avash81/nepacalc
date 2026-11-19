@@ -415,6 +415,105 @@ export default function CanadaGoldSilverPage() {
             </div>
           </section>
 
+
+          {/* Section: Official Resources & Regulatory Links */}
+          <section className="bg-white rounded-2xl border border-gray-200 p-6 shadow-xs">
+            <h2 className="text-lg font-bold text-gray-900 mb-4">
+              Official Resources &amp; Regulatory Authorities
+            </h2>
+            <div className="space-y-3">
+              <a
+                href="https://www.mint.ca/en/products/gold"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-3 p-3 bg-blue-50/40 border border-blue-100 rounded-xl hover:bg-blue-50 transition group cursor-pointer"
+              >
+                <div className="shrink-0 mt-0.5 w-7 h-7 bg-red-700 text-white rounded-lg flex items-center justify-center text-xs font-bold">RC</div>
+                <div>
+                  <div className="text-sm font-bold text-gray-900 group-hover:text-blue-700">Royal Canadian Mint - Gold Bullion</div>
+                  <div className="text-xs text-gray-500 mt-0.5">Official Crown Corporation; producer of the Gold Maple Leaf (.9999 fine gold, 24K), Canada's premier investment bullion coin since 1979.</div>
+                  <div className="text-[11px] text-blue-600 mt-0.5">mint.ca</div>
+                </div>
+              </a>
+              <a
+                href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate/list-taxable-supplies/precious-metals.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-3 p-3 bg-blue-50/40 border border-blue-100 rounded-xl hover:bg-blue-50 transition group cursor-pointer"
+              >
+                <div className="shrink-0 mt-0.5 w-7 h-7 bg-red-700 text-white rounded-lg flex items-center justify-center text-xs font-bold">CR</div>
+                <div>
+                  <div className="text-sm font-bold text-gray-900 group-hover:text-blue-700">Canada Revenue Agency - GST/HST on Precious Metals</div>
+                  <div className="text-xs text-gray-500 mt-0.5">Official CRA guidance confirming gold, silver, and platinum bullion meeting purity standards are zero-rated supplies under the Excise Tax Act.</div>
+                  <div className="text-[11px] text-blue-600 mt-0.5">canada.ca</div>
+                </div>
+              </a>
+              <a
+                href="https://www.bankofcanada.ca/rates/exchange/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-3 p-3 bg-blue-50/40 border border-blue-100 rounded-xl hover:bg-blue-50 transition group cursor-pointer"
+              >
+                <div className="shrink-0 mt-0.5 w-7 h-7 bg-red-700 text-white rounded-lg flex items-center justify-center text-xs font-bold">BC</div>
+                <div>
+                  <div className="text-sm font-bold text-gray-900 group-hover:text-blue-700">Bank of Canada - Official Exchange Rates</div>
+                  <div className="text-xs text-gray-500 mt-0.5">Official CAD/USD and global foreign exchange rates published daily by the Bank of Canada. Used as the reference rate for financial reporting.</div>
+                  <div className="text-[11px] text-blue-600 mt-0.5">bankofcanada.ca</div>
+                </div>
+              </a>
+            </div>
+          </section>
+
+
+          {/* Section: Related Internal Tools */}
+          <section className="bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-200 p-6 shadow-xs">
+            <h2 className="text-lg font-bold text-gray-900 mb-4">
+              Related Tools & Resources
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <Link
+                href="/international/gold-silver-ratio/"
+                className="flex items-start gap-3 p-3 bg-white border border-gray-200 rounded-xl hover:border-indigo-300 hover:bg-indigo-50/30 transition group"
+              >
+                <div className="shrink-0 mt-0.5 w-8 h-8 bg-indigo-100 text-indigo-700 rounded-lg flex items-center justify-center text-[10px] font-black tracking-tight">GSR</div>
+                <div>
+                  <div className="text-sm font-bold text-gray-900 group-hover:text-indigo-700 leading-tight">Gold-Silver Ratio Live</div>
+                  <div className="text-xs text-gray-500 mt-0.5 leading-relaxed">Live gold-to-silver ratio updated from COMEX spot prices. Essential reading for Canadian investors comparing Gold Maple Leaf vs Silver Maple Leaf returns.</div>
+                </div>
+              </Link>
+              <Link
+                href="/international/gold-silver-price/history/"
+                className="flex items-start gap-3 p-3 bg-white border border-gray-200 rounded-xl hover:border-emerald-300 hover:bg-emerald-50/30 transition group"
+              >
+                <div className="shrink-0 mt-0.5 w-8 h-8 bg-emerald-100 text-emerald-700 rounded-lg flex items-center justify-center text-[10px] font-black tracking-tight">HIS</div>
+                <div>
+                  <div className="text-sm font-bold text-gray-900 group-hover:text-emerald-700 leading-tight">Global Spot Price Archive</div>
+                  <div className="text-xs text-gray-500 mt-0.5 leading-relaxed">Full historical archive of international gold and silver spot prices. Compare current CAD gold prices against multi-year USD spot benchmarks.</div>
+                </div>
+              </Link>
+              <Link
+                href="/international/bitcoin/"
+                className="flex items-start gap-3 p-3 bg-white border border-gray-200 rounded-xl hover:border-violet-300 hover:bg-violet-50/30 transition group"
+              >
+                <div className="shrink-0 mt-0.5 w-8 h-8 bg-violet-100 text-violet-700 rounded-lg flex items-center justify-center text-[10px] font-black tracking-tight">BTC</div>
+                <div>
+                  <div className="text-sm font-bold text-gray-900 group-hover:text-violet-700 leading-tight">Bitcoin Price (USD)</div>
+                  <div className="text-xs text-gray-500 mt-0.5 leading-relaxed">Track live Bitcoin prices alongside gold. Many Canadian TFSA investors hold both BTC and gold bullion for portfolio diversification.</div>
+                </div>
+              </Link>
+              <Link
+                href="/calculator/currency-converter/"
+                className="flex items-start gap-3 p-3 bg-white border border-gray-200 rounded-xl hover:border-amber-300 hover:bg-amber-50/30 transition group"
+              >
+                <div className="shrink-0 mt-0.5 w-8 h-8 bg-amber-100 text-amber-700 rounded-lg flex items-center justify-center text-[10px] font-black tracking-tight">FX</div>
+                <div>
+                  <div className="text-sm font-bold text-gray-900 group-hover:text-amber-700 leading-tight">Currency Converter (CAD/USD)</div>
+                  <div className="text-xs text-gray-500 mt-0.5 leading-relaxed">Convert Canadian Dollar to USD and 160+ currencies with live rates. Useful when calculating CAD gold value from USD COMEX spot prices.</div>
+                </div>
+              </Link>
+            </div>
+          </section>
+
           {/* Section 4: Related International Portals */}
           <section className="bg-white rounded-2xl border border-gray-200 p-6 shadow-xs">
             <h2 className="text-lg font-bold text-gray-900 mb-3">
