@@ -18,7 +18,6 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    siteName: 'NepaCalc',
     title: 'Gold and Silver Price History (1970-2026) | USD Rates',
     description: 'Explore gold and silver price history from 1970 to 2026. View 56-year historical spot rates in USD, annual high and low records, CAGR trends, and metal ratios.',
     url: 'https://nepacalc.com/international/gold-silver-price/history/',
@@ -139,7 +138,7 @@ export default function InternationalHistoryPage() {
       a: 'International bullion markets trade in troy ounces (31.1035 grams), while South Asian markets (Nepal, India) quote bullion per tola (1 tola = 11.6638 grams). Exactly 1 Troy Ounce equals 2.6664 tolas. To calculate the 1 tola gold price from international USD spot rates, divide the troy ounce price by 2.6664 (or multiply the per-gram rate by 11.664).',
     },
     {
-      q: 'What is the price of silver per gram in US Dollars (سعر جرام الفضة بالدولار)?',
+      q: 'What is the price of silver per gram in US Dollars?',
       a: 'The international spot price of silver per gram in USD is calculated by dividing the quoted troy ounce spot rate by 31.1035. For example, at a benchmark silver rate of $47.50 per ounce, 1 gram of .999 pure fine silver equals approximately $1.53 USD.',
     },
     {
