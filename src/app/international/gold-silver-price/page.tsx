@@ -181,8 +181,8 @@ export default function InternationalGoldSilverPage() {
       />
 
       {/* ── Breadcrumb ── */}
-      <div className="max-w-6xl mx-auto px-4 pt-2 sm:pt-5">
-        <nav aria-label="Breadcrumb" className="mb-2">
+      <div className="max-w-6xl mx-auto px-4 pt-2 sm:pt-3">
+        <nav aria-label="Breadcrumb" className="mb-1 sm:mb-1.5">
           <Link
             href="/"
             className="sm:hidden inline-flex items-center gap-1 text-[11px] font-semibold text-gray-500 hover:text-blue-600 transition"
@@ -203,7 +203,7 @@ export default function InternationalGoldSilverPage() {
         </nav>
 
         {/* ── Country Portals Navigation Bar ── */}
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-2 scrollbar-none text-xs">
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-0.5 sm:pb-1 scrollbar-none text-xs">
           <span className="text-gray-400 font-medium whitespace-nowrap pr-1">Regional Portals:</span>
           {countryPortals.map((portal) => (
             <Link

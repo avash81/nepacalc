@@ -351,10 +351,10 @@ export default function InternationalGoldClient({ initialData }: Props) {
   };
 
   return (
-    <div className="w-full max-w-6xl mx-auto px-4 py-3 sm:py-6 md:py-8 font-sans font-modern-ui">
+    <div className="w-full max-w-6xl mx-auto px-4 pt-1 sm:pt-1.5 pb-4 sm:pb-6 md:pb-8 font-sans font-modern-ui">
 
       {/* ── TOP SECTION HEADER (Compact Hamro Patro Style - Zero Wasted Space) ── */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 mb-4 sm:mb-5">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-2 mb-3 sm:mb-4">
         <div>
           <div className="flex items-center gap-2 flex-wrap">
             <h1 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
@@ -363,17 +363,6 @@ export default function InternationalGoldClient({ initialData }: Props) {
             <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-gray-100 text-gray-700 border border-gray-200">
               USD Spot
             </span>
-          </div>
-
-          <div className="text-xs text-gray-500 mt-0.5 flex items-center gap-1.5 flex-wrap">
-            <span>Per ounce, gram and 10 grams</span>
-            <span className="text-gray-300">•</span>
-            <button
-              onClick={() => setIsCalculatorOpen(true)}
-              className="text-blue-600 hover:text-blue-700 font-medium hover:underline inline-flex items-center gap-1 cursor-pointer"
-            >
-              Gold &amp; silver calculator
-            </button>
           </div>
         </div>
 
