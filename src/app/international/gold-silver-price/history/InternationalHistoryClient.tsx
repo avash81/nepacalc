@@ -1,6 +1,6 @@
-﻿'use client';
+'use client';
 
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { ChevronDown, Search, Loader2 } from 'lucide-react';
 
 // ── Types ──────────────────────────────────────────────────────────────────────
@@ -20,7 +20,17 @@ export interface InternationalHistoryDataset {
   cagr: any;
 }
 
-type TabType = 'byyear' | 'bymonth' | 'daily' | 'yearminmax' | 'bydecade' | 'ratio' | 'cagr';
+type TabType =
+  | 'daily'
+  | 'bymonth'
+  | 'weekminmax'
+  | 'monthminmax'
+  | 'yearminmax'
+  | 'byyear'
+  | 'bydecade'
+  | 'ratio'
+  | 'cagr';
+
 type UnitType = 'oz' | 'gram' | '10g' | 'kg';
 
 const TROY_OZ_TO_GRAMS = 31.1034768;
@@ -88,7 +98,8 @@ export default function InternationalHistoryClient({
   initialData: InternationalHistoryDataset;
   currentLiveRates: { goldUSD: number; silverUSD: number };
 }) {
-  const [tab, setTab] = useState<TabType>('byyear');
+  // Default to By Day (Daily) matching Nepal page screenshot
+  const [tab, setTab] = useState<TabType>('daily');
   const [unit, setUnit] = useState<UnitType>('oz');
   const [selYear, setSelYear] = useState<string>('all');
   const [metalFilter, setMetalFilter] = useState<'both' | 'gold' | 'silver'>('both');
@@ -103,8 +114,9 @@ export default function InternationalHistoryClient({
   const [dailyPage, setDailyPage] = useState(1);
   const dailyRowsPerPage = 25;
 
+  // Load daily rates whenever on daily, weekminmax, monthminmax, or bymonth
   useEffect(() => {
-    if (tab === 'daily' && dailyData.length === 0 && !dailyLoading) {
+    if (['daily', 'weekminmax', 'monthminmax', 'bymonth'].includes(tab) && dailyData.length === 0 && !dailyLoading) {
       setDailyLoading(true);
       fetch('/data/international-daily-rates.json')
         .then(res => res.json())
@@ -149,58 +161,131 @@ export default function InternationalHistoryClient({
     setDailyPage(1);
   };
 
-  // ── Monthly Tab State (1960 - 2026) ──
-  const [monthlyData, setMonthlyData] = useState<any[]>([]);
-  const [monthlyLoading, setMonthlyLoading] = useState(false);
-  const [monthlyYear, setMonthlyYear] = useState<string>('all');
-  const [monthlyPage, setMonthlyPage] = useState(1);
-  const monthlyRowsPerPage = 24;
+  // ── Monthly Data & Filters ──
+  const [bmYear, setBmYear] = useState<number>(2026);
+  const [bmMonth, setBmMonth] = useState<number>(11);
+  const [bmResult, setBmResult] = useState<{
+    year: number;
+    month: number;
+    records: any[];
+  } | null>(null);
+
+  const handleByMonthSearch = (yr: number, mo: number) => {
+    const padMonth = String(mo).padStart(2, '0');
+    const monthKey = `${yr}-${padMonth}`;
+    const recs = dailyData.filter(r => r.year === yr && r.month === monthKey);
+    setBmResult({
+      year: yr,
+      month: mo,
+      records: recs,
+    });
+  };
 
   useEffect(() => {
-    if (tab === 'bymonth' && monthlyData.length === 0 && !monthlyLoading) {
-      setMonthlyLoading(true);
-      fetch('/data/international-monthly-rates.json')
-        .then(res => res.json())
-        .then(json => {
-          if (json && json.data) {
-            const rev = [...json.data].reverse();
-            setMonthlyData(rev);
-          }
-        })
-        .catch(err => console.error('Failed to load monthly rates:', err))
-        .finally(() => setMonthlyLoading(false));
+    if (dailyData.length > 0 && !bmResult) {
+      handleByMonthSearch(bmYear, bmMonth);
     }
-  }, [tab, monthlyData.length, monthlyLoading]);
+  }, [dailyData, bmResult]);
 
-  const availableMonthlyYears = useMemo(() => {
-    const setYears = new Set<number>();
-    monthlyData.forEach(r => {
-      if (r.month) {
-        const y = parseInt(r.month.slice(0, 4), 10);
-        if (!isNaN(y)) setYears.add(y);
-      }
-    });
-    return Array.from(setYears).sort((a, b) => b - a);
-  }, [monthlyData]);
+  // ── Week Min/Max Calculation (Last 7 Trading Days) ──
+  const weekData = useMemo(() => {
+    if (!dailyData || dailyData.length === 0) return null;
+    const recs = dailyData.slice(0, 7);
+    const goldHighs = recs.map(r => r.gold_high || r.gold).filter(Boolean);
+    const goldLows = recs.map(r => r.gold_low || r.gold).filter(Boolean);
+    const silverHighs = recs.map(r => r.silver_high || r.silver).filter(Boolean);
+    const silverLows = recs.map(r => r.silver_low || r.silver).filter(Boolean);
 
-  const filteredMonthly = useMemo(() => {
-    let list = monthlyData;
-    if (monthlyYear !== 'all') {
-      const yrPrefix = monthlyYear + 'M';
-      list = list.filter(r => r.month && r.month.startsWith(yrPrefix));
+    return {
+      goldMax: Math.max(...goldHighs),
+      goldMin: Math.min(...goldLows),
+      silverMax: Math.max(...silverHighs),
+      silverMin: Math.min(...silverLows),
+      startDate: recs[recs.length - 1]?.date,
+      endDate: recs[0]?.date,
+    };
+  }, [dailyData]);
+
+  // ── Month Min/Max State ──
+  const [mmYear, setMmYear] = useState<number>(2026);
+  const [mmMonth, setMmMonth] = useState<number>(11);
+  const [mmResult, setMmResult] = useState<{
+    year: number;
+    month: number;
+    goldMax: number;
+    goldMin: number;
+    silverMax: number;
+    silverMin: number;
+    count: number;
+  } | null>(null);
+
+  const handleMmSearch = (yr: number, mo: number) => {
+    const padMonth = String(mo).padStart(2, '0');
+    const monthKey = `${yr}-${padMonth}`;
+    const recs = dailyData.filter(r => r.year === yr && r.month === monthKey);
+
+    if (recs.length > 0) {
+      const gH = recs.map(r => r.gold_high || r.gold).filter(Boolean);
+      const gL = recs.map(r => r.gold_low || r.gold).filter(Boolean);
+      const sH = recs.map(r => r.silver_high || r.silver).filter(Boolean);
+      const sL = recs.map(r => r.silver_low || r.silver).filter(Boolean);
+      setMmResult({
+        year: yr,
+        month: mo,
+        goldMax: Math.max(...gH),
+        goldMin: Math.min(...gL),
+        silverMax: Math.max(...sH),
+        silverMin: Math.min(...sL),
+        count: recs.length,
+      });
+    } else {
+      setMmResult(null);
     }
-    return list;
-  }, [monthlyData, monthlyYear]);
+  };
 
-  const totalMonthlyPages = Math.ceil(filteredMonthly.length / monthlyRowsPerPage) || 1;
-  const pagedMonthly = useMemo(() => {
-    const start = (monthlyPage - 1) * monthlyRowsPerPage;
-    return filteredMonthly.slice(start, start + monthlyRowsPerPage);
-  }, [filteredMonthly, monthlyPage]);
+  useEffect(() => {
+    if (dailyData.length > 0 && !mmResult) {
+      handleMmSearch(mmYear, mmMonth);
+    }
+  }, [dailyData, mmResult]);
 
-  const handleMonthlyYearChange = (yr: string) => {
-    setMonthlyYear(yr);
-    setMonthlyPage(1);
+  // ── Year Min/Max State (1970 - 2026) ──
+  const [ymYear, setYmYear] = useState<number>(2026);
+  const [ymResult, setYmResult] = useState<{
+    year: number;
+    goldHigh: number;
+    goldLow: number;
+    silverHigh: number;
+    silverLow: number;
+    returnPct: number;
+  } | null>(() => {
+    const g = (initialData.goldYearly || []).find(r => r.year === 2026);
+    const s = (initialData.silverYearly || []).find(r => r.year === 2026);
+    return g ? {
+      year: 2026,
+      goldHigh: g.high,
+      goldLow: g.low,
+      silverHigh: s?.high || 0,
+      silverLow: s?.low || 0,
+      returnPct: g.returnPct,
+    } : null;
+  });
+
+  const handleYmSearch = (yr: number) => {
+    const g = (initialData.goldYearly || []).find(r => r.year === yr);
+    const s = (initialData.silverYearly || []).find(r => r.year === yr);
+    if (g) {
+      setYmResult({
+        year: yr,
+        goldHigh: g.high,
+        goldLow: g.low,
+        silverHigh: s?.high || 0,
+        silverLow: s?.low || 0,
+        returnPct: g.returnPct,
+      });
+    } else {
+      setYmResult(null);
+    }
   };
 
   const multiplier = getUnitMultiplier(unit);
@@ -249,7 +334,6 @@ export default function InternationalHistoryClient({
       const gMean = goldAvgs.reduce((a, b) => a + b, 0) / goldAvgs.length;
       const sMean = silverAvgs.length > 0 ? silverAvgs.reduce((a, b) => a + b, 0) / silverAvgs.length : 0;
 
-      // Cumulative return across decade
       const startClose = recs[recs.length - 1]?.gold.close || 1;
       const endClose = recs[0]?.gold.close || 1;
       const netGain = ((endClose - startClose) / startClose) * 100;
@@ -283,11 +367,14 @@ export default function InternationalHistoryClient({
     setPage(1);
   };
 
+  // Tabs matching Nepal history sequence exactly: By Day, By Month, Week Min/Max, Month Min/Max, Year Min/Max
   const tabs: { id: TabType; label: string }[] = [
-    { id: 'byyear', label: 'By Year' },
+    { id: 'daily', label: 'By Day' },
     { id: 'bymonth', label: 'By Month' },
-    { id: 'daily', label: 'Daily Rates' },
+    { id: 'weekminmax', label: 'Week Min/Max' },
+    { id: 'monthminmax', label: 'Month Min/Max' },
     { id: 'yearminmax', label: 'Year Min/Max' },
+    { id: 'byyear', label: 'By Year' },
     { id: 'bydecade', label: 'By Decade' },
     { id: 'ratio', label: 'Gold-Silver Ratio' },
     { id: 'cagr', label: '50Y Growth (CAGR)' },
@@ -304,7 +391,7 @@ export default function InternationalHistoryClient({
         <div className="w-14 h-1 bg-[#d97706] mx-auto mt-2 rounded-full" />
       </div>
 
-      {/* ── Sub-tabs Pills ── */}
+      {/* ── Sub-tabs Pills (Matching Nepal layout exactly) ── */}
       <div className="flex flex-wrap items-center justify-start gap-2 mb-8">
         {tabs.map(t => {
           const isActive = tab === t.id;
@@ -331,464 +418,7 @@ export default function InternationalHistoryClient({
       <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-5 sm:p-8">
 
         {/* ══════════════════════════════════════════════════════════════
-            TAB: BY YEAR (Default & Primary Explorer)
-        ══════════════════════════════════════════════════════════════ */}
-        {tab === 'byyear' && (
-          <div>
-            <h3 className="text-lg font-bold text-slate-900 mb-5">Rate History by Year</h3>
-
-            {/* Filter Controls */}
-            <div className="flex flex-wrap items-center gap-3 mb-6">
-              {/* Year Dropdown */}
-              <div className="relative">
-                <select
-                  value={selYear}
-                  onChange={e => handleYearChange(e.target.value)}
-                  className="appearance-none bg-white border border-slate-300 rounded-xl pl-4 pr-10 py-2.5 text-sm font-semibold text-slate-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 cursor-pointer min-w-[210px]"
-                >
-                  <option value="all">All Years (1970 - 2026)</option>
-                  {mergedRecords.map(r => (
-                    <option key={r.year} value={String(r.year)}>{r.year}</option>
-                  ))}
-                </select>
-                <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-              </div>
-
-              {/* Metal Filter */}
-              <div className="relative">
-                <select
-                  value={metalFilter}
-                  onChange={e => setMetalFilter(e.target.value as any)}
-                  className="appearance-none bg-white border border-slate-300 rounded-xl pl-4 pr-10 py-2.5 text-sm font-semibold text-slate-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 cursor-pointer min-w-[150px]"
-                >
-                  <option value="both">Gold &amp; Silver</option>
-                  <option value="gold">Gold Only</option>
-                  <option value="silver">Silver Only</option>
-                </select>
-                <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-              </div>
-
-              {selYear !== 'all' && (
-                <button
-                  onClick={() => handleYearChange('all')}
-                  className="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-4 py-2.5 rounded-xl text-sm transition-colors cursor-pointer"
-                >
-                  Show All Years
-                </button>
-              )}
-            </div>
-
-            {/* Unit Toggle (Ounce / Grams / 10g / Kg) */}
-            <div className="flex justify-center my-6">
-              <div className="inline-flex bg-slate-100 p-1 rounded-full border border-slate-200/60 shadow-inner flex-wrap justify-center">
-                <button
-                  type="button"
-                  onClick={() => setUnit('oz')}
-                  className={`px-5 sm:px-7 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                    unit === 'oz'
-                      ? 'bg-white text-slate-900 shadow-sm'
-                      : 'text-slate-500 hover:text-slate-900 font-semibold'
-                  }`}
-                >
-                  Troy Ounce
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setUnit('gram')}
-                  className={`px-5 sm:px-7 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                    unit === 'gram'
-                      ? 'bg-white text-slate-900 shadow-sm'
-                      : 'text-slate-500 hover:text-slate-900 font-semibold'
-                  }`}
-                >
-                  Grams
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setUnit('10g')}
-                  className={`px-5 sm:px-7 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                    unit === '10g'
-                      ? 'bg-white text-slate-900 shadow-sm'
-                      : 'text-slate-500 hover:text-slate-900 font-semibold'
-                  }`}
-                >
-                  10 Grams
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setUnit('kg')}
-                  className={`px-5 sm:px-7 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                    unit === 'kg'
-                      ? 'bg-white text-slate-900 shadow-sm'
-                      : 'text-slate-500 hover:text-slate-900 font-semibold'
-                  }`}
-                >
-                  Kilogram
-                </button>
-              </div>
-            </div>
-
-            {(() => {
-              const totalEntries = filteredRecords.length;
-              const totalPages = Math.max(1, Math.ceil(totalEntries / rowsPerPage));
-              const startEntry = totalEntries === 0 ? 0 : (page - 1) * rowsPerPage + 1;
-              const endEntry = Math.min(page * rowsPerPage, totalEntries);
-              const paginatedRows = filteredRecords.slice((page - 1) * rowsPerPage, page * rowsPerPage);
-
-              const getPageNumbers = () => {
-                const range: (number | string)[] = [];
-                if (totalPages <= 7) {
-                  for (let i = 1; i <= totalPages; i++) range.push(i);
-                  return range;
-                }
-
-                if (page <= 4) {
-                  for (let i = 1; i <= 5; i++) range.push(i);
-                  range.push('...');
-                  range.push(totalPages);
-                } else if (page >= totalPages - 3) {
-                  range.push(1);
-                  range.push('...');
-                  for (let i = totalPages - 4; i <= totalPages; i++) range.push(i);
-                } else {
-                  range.push(1);
-                  range.push('...');
-                  range.push(page - 1);
-                  range.push(page);
-                  range.push(page + 1);
-                  range.push('...');
-                  range.push(totalPages);
-                }
-                return range;
-              };
-
-              return (
-                <div>
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-sm text-left border-collapse">
-                      <thead className="border-b border-slate-200 text-xs font-bold text-slate-700">
-                        <tr>
-                          <th scope="col" className="py-3 px-4 text-left">Year</th>
-                          {metalFilter !== 'silver' && (
-                            <>
-                              <th scope="col" className="py-3 px-4 text-right">Gold Peak</th>
-                              <th scope="col" className="py-3 px-4 text-right">Gold Low</th>
-                              <th scope="col" className="py-3 px-4 text-right">Gold Average</th>
-                            </>
-                          )}
-                          {metalFilter !== 'gold' && (
-                            <>
-                              <th scope="col" className="py-3 px-4 text-right">Silver Peak</th>
-                              <th scope="col" className="py-3 px-4 text-right">Silver Average</th>
-                            </>
-                          )}
-                          <th scope="col" className="py-3 px-4 text-right">Annual Return</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-slate-100">
-                        {paginatedRows.map(row => (
-                          <tr key={row.year} className="hover:bg-slate-50/70 transition-colors">
-                            <td className="py-3.5 px-4 font-semibold text-slate-900 whitespace-nowrap">
-                              {row.year}
-                            </td>
-                            {metalFilter !== 'silver' && (
-                              <>
-                                <td className="py-3.5 px-4 text-amber-700 font-bold text-right whitespace-nowrap">
-                                  {fmtUSD(row.gold.high * multiplier)}
-                                </td>
-                                <td className="py-3.5 px-4 text-slate-600 text-right whitespace-nowrap">
-                                  {fmtUSD(row.gold.low * multiplier)}
-                                </td>
-                                <td className="py-3.5 px-4 font-bold text-slate-900 text-right whitespace-nowrap">
-                                  {fmtUSD(row.gold.avg * multiplier)}
-                                </td>
-                              </>
-                            )}
-                            {metalFilter !== 'gold' && (
-                              <>
-                                <td className="py-3.5 px-4 text-slate-700 font-bold text-right whitespace-nowrap">
-                                  {row.silver ? fmtUSD(row.silver.high * multiplier) : '-'}
-                                </td>
-                                <td className="py-3.5 px-4 font-bold text-slate-900 text-right whitespace-nowrap">
-                                  {row.silver ? fmtUSD(row.silver.avg * multiplier) : '-'}
-                                </td>
-                              </>
-                            )}
-                            <td className="py-3.5 px-4 text-right font-bold whitespace-nowrap">
-                              <span className={row.gold.returnPct >= 0 ? 'text-emerald-600' : 'text-rose-600'}>
-                                {row.gold.returnPct >= 0 ? '+' : ''}{row.gold.returnPct.toFixed(1)}%
-                              </span>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-
-                  {/* Pagination footer matching exact Nepal screenshot */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 mt-2 border-t border-slate-200 text-sm text-slate-600">
-                    <div>
-                      Showing {startEntry} to {endEntry} of {totalEntries} entries
-                    </div>
-
-                    {totalPages > 1 && (
-                      <div className="flex items-center gap-1 select-none flex-wrap">
-                        <button
-                          type="button"
-                          onClick={() => setPage(p => Math.max(1, p - 1))}
-                          disabled={page === 1}
-                          className="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
-                        >
-                          Previous
-                        </button>
-
-                        {getPageNumbers().map((num, idx) => (
-                          <React.Fragment key={idx}>
-                            {num === '...' ? (
-                              <span className="px-2 py-1 text-slate-400 text-xs">...</span>
-                            ) : (
-                              <button
-                                type="button"
-                                onClick={() => setPage(Number(num))}
-                                className={`min-w-[32px] h-8 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                                  page === num
-                                    ? 'bg-[#d97706] text-white shadow-xs'
-                                    : 'border border-slate-200 hover:bg-slate-50 text-slate-700'
-                                }`}
-                              >
-                                {num}
-                              </button>
-                            )}
-                          </React.Fragment>
-                        ))}
-
-                        <button
-                          type="button"
-                          onClick={() => setPage(p => Math.min(totalPages, p + 1))}
-                          disabled={page === totalPages}
-                          className="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
-                        >
-                          Next
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              );
-            })()}
-          </div>
-        )}
-
-        {/* ══════════════════════════════════════════════════════════════
-            TAB: BY MONTH (Monthly Benchmark 1960 - 2026)
-        ══════════════════════════════════════════════════════════════ */}
-        {tab === 'bymonth' && (
-          <div>
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
-              <div>
-                <h3 className="text-lg font-bold text-slate-900">
-                  Monthly Gold &amp; Silver Rates (1960 - 2026)
-                </h3>
-                <p className="text-xs text-slate-500 mt-0.5">
-                  Official historical monthly averages and ranges from the World Bank Pink Sheet (1960–2024) and COMEX futures (2025–2026).
-                </p>
-              </div>
-              <span className="inline-flex items-center self-start sm:self-auto px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
-                {filteredMonthly.length.toLocaleString()} Months
-              </span>
-            </div>
-
-            {/* Filter Controls */}
-            <div className="flex flex-wrap items-center gap-3 mb-5">
-              <div className="relative">
-                <select
-                  value={monthlyYear}
-                  onChange={e => {
-                    handleMonthlyYearChange(e.target.value);
-                  }}
-                  className="appearance-none bg-white border border-slate-300 rounded-xl pl-4 pr-10 py-2.5 text-sm font-semibold text-slate-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 cursor-pointer min-w-[190px]"
-                >
-                  <option value="all">All Years (1960 - 2026)</option>
-                  {availableMonthlyYears.map(yr => (
-                    <option key={yr} value={String(yr)}>Year {yr}</option>
-                  ))}
-                </select>
-                <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-              </div>
-
-              {monthlyYear !== 'all' && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    setMonthlyYear('all');
-                    setMonthlyPage(1);
-                  }}
-                  className="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-3.5 py-2.5 rounded-xl text-xs transition-colors cursor-pointer"
-                >
-                  Reset Filter
-                </button>
-              )}
-            </div>
-
-            {/* Unit Toggle */}
-            <div className="flex justify-center my-5">
-              <div className="inline-flex bg-slate-100 p-1 rounded-full border border-slate-200/60 shadow-inner flex-wrap justify-center">
-                {(['oz', 'gram', '10g', 'kg'] as UnitType[]).map(u => (
-                  <button
-                    key={u}
-                    type="button"
-                    onClick={() => setUnit(u)}
-                    className={`px-5 sm:px-7 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                      unit === u
-                        ? 'bg-white text-slate-900 shadow-sm'
-                        : 'text-slate-500 hover:text-slate-900 font-semibold'
-                    }`}
-                  >
-                    {u === 'oz' ? 'Troy Ounce' : u === 'gram' ? 'Grams' : u === '10g' ? '10 Grams' : 'Kilogram'}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Loading State */}
-            {monthlyLoading && (
-              <div className="py-16 text-center">
-                <Loader2 className="w-8 h-8 text-amber-600 animate-spin mx-auto mb-3" />
-                <p className="text-sm font-bold text-slate-700">Loading historical monthly rates...</p>
-                <p className="text-xs text-slate-400 mt-1">Extracting 803 monthly records (1960–2026)</p>
-              </div>
-            )}
-
-            {/* Monthly Table */}
-            {!monthlyLoading && (
-              <div className="overflow-x-auto">
-                <table className="w-full text-xs sm:text-sm text-left border-collapse">
-                  <thead>
-                    <tr className="border-b border-slate-200 text-slate-500 font-bold text-[11px] sm:text-xs uppercase tracking-wider bg-slate-50/75">
-                      <th scope="col" className="py-3 px-4 text-left">Month</th>
-                      <th scope="col" className="py-3 px-4 text-right">Gold Average {unitLabel}</th>
-                      <th scope="col" className="py-3 px-4 text-right">Gold High / Low</th>
-                      <th scope="col" className="py-3 px-4 text-right">Silver Average {unitLabel}</th>
-                      <th scope="col" className="py-3 px-4 text-right">Silver High / Low</th>
-                      <th scope="col" className="py-3 px-4 text-right">Gold-Silver Ratio</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-100 font-medium">
-                    {pagedMonthly.length === 0 ? (
-                      <tr>
-                        <td colSpan={6} className="py-8 text-center text-slate-500 text-sm">
-                          No monthly records match your filter criteria.
-                        </td>
-                      </tr>
-                    ) : (
-                      pagedMonthly.map((row, idx) => {
-                        const gAvg = row.gold ? fmtUSD(row.gold * multiplier) : '-';
-                        const gHigh = row.gold_high ? fmtUSD(row.gold_high * multiplier) : '-';
-                        const gLow = row.gold_low ? fmtUSD(row.gold_low * multiplier) : '-';
-                        const sAvg = row.silver ? fmtUSD(row.silver * multiplier) : '-';
-                        const sHigh = row.silver_high ? fmtUSD(row.silver_high * multiplier) : '-';
-                        const sLow = row.silver_low ? fmtUSD(row.silver_low * multiplier) : '-';
-                        const ratio = row.gold && row.silver && row.silver > 0 ? (row.gold / row.silver).toFixed(2) : null;
-                        const ratioStr = ratio ? `${ratio}:1` : '-';
-
-                        return (
-                          <tr key={row.month || idx} className="hover:bg-amber-50/20 transition-colors">
-                            <td className="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">
-                              {formatMonthLabel(row.month)}
-                            </td>
-                            <td className="py-3 px-4 font-bold text-amber-950 text-right whitespace-nowrap">
-                              {gAvg}
-                            </td>
-                            <td className="py-3 px-4 text-slate-500 text-right whitespace-nowrap text-xs">
-                              {gHigh !== '-' && gLow !== '-' ? (
-                                <>
-                                  <span className="text-emerald-700 font-semibold">{gHigh}</span>
-                                  <span className="mx-1 text-slate-300">/</span>
-                                  <span className="text-rose-700 font-semibold">{gLow}</span>
-                                </>
-                              ) : (
-                                <span className="text-slate-400">—</span>
-                              )}
-                            </td>
-                            <td className="py-3 px-4 font-bold text-slate-800 text-right whitespace-nowrap">
-                              {sAvg}
-                            </td>
-                            <td className="py-3 px-4 text-slate-500 text-right whitespace-nowrap text-xs">
-                              {sHigh !== '-' && sLow !== '-' ? (
-                                <>
-                                  <span className="text-emerald-700 font-semibold">{sHigh}</span>
-                                  <span className="mx-1 text-slate-300">/</span>
-                                  <span className="text-rose-700 font-semibold">{sLow}</span>
-                                </>
-                              ) : (
-                                <span className="text-slate-400">—</span>
-                              )}
-                            </td>
-                            <td className="py-3 px-4 text-right whitespace-nowrap font-semibold text-slate-700">
-                              {ratioStr}
-                            </td>
-                          </tr>
-                        );
-                      })
-                    )}
-                  </tbody>
-                </table>
-
-                {/* Pagination Controls */}
-                {totalMonthlyPages > 1 && (
-                  <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mt-6 pt-4 border-t border-slate-100 text-xs text-slate-600">
-                    <div>
-                      Showing{' '}
-                      <span className="font-bold text-slate-900">
-                        {Math.min(filteredMonthly.length, (monthlyPage - 1) * monthlyRowsPerPage + 1)}
-                      </span>
-                      {' '}to{' '}
-                      <span className="font-bold text-slate-900">
-                        {Math.min(filteredMonthly.length, monthlyPage * monthlyRowsPerPage)}
-                      </span>
-                      {' '}of{' '}
-                      <span className="font-bold text-slate-900">{filteredMonthly.length.toLocaleString()}</span>
-                      {' '}months
-                    </div>
-
-                    <div className="flex items-center gap-1.5">
-                      <button
-                        type="button"
-                        onClick={() => setMonthlyPage(p => Math.max(1, p - 1))}
-                        disabled={monthlyPage === 1}
-                        className="px-3.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
-                      >
-                        Previous
-                      </button>
-
-                      <span className="px-3 py-1.5 text-xs font-bold text-slate-800">
-                        Page {monthlyPage} of {totalMonthlyPages}
-                      </span>
-
-                      <button
-                        type="button"
-                        onClick={() => setMonthlyPage(p => Math.min(totalMonthlyPages, p + 1))}
-                        disabled={monthlyPage === totalMonthlyPages}
-                        className="px-3.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
-                      >
-                        Next
-                      </button>
-                    </div>
-                  </div>
-                )}
-
-                <div className="mt-4 p-3.5 bg-slate-50 rounded-xl border border-slate-200/80 text-xs text-slate-500">
-                  <p>
-                    <strong>Data Source:</strong> Monthly averages (1960–2024) are derived from the World Bank Commodity Markets Pink Sheet (London Gold &amp; Silver Fixing). 2025–2026 data is calculated from the CME Group COMEX continuous futures daily session settlements.
-                  </p>
-                </div>
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* ══════════════════════════════════════════════════════════════
-            TAB: DAILY RATES (COMEX Daily Sessions 2000 - 2026)
+            TAB 1: BY DAY (Daily Rates 2000 - 2026)
         ══════════════════════════════════════════════════════════════ */}
         {tab === 'daily' && (
           <div>
@@ -808,7 +438,6 @@ export default function InternationalHistoryClient({
 
             {/* Filter Controls */}
             <div className="flex flex-wrap items-center gap-3 mb-5">
-              {/* Year Dropdown */}
               <div className="relative">
                 <select
                   value={dailyYear}
@@ -823,7 +452,6 @@ export default function InternationalHistoryClient({
                 <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
               </div>
 
-              {/* Date Search */}
               <div className="relative flex-1 min-w-[200px] max-w-sm">
                 <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                 <input
@@ -986,132 +614,591 @@ export default function InternationalHistoryClient({
                     </div>
                   </div>
                 )}
-
-                <div className="mt-4 p-3.5 bg-slate-50 rounded-xl border border-slate-200/80 text-xs text-slate-500">
-                  <p>
-                    <strong>Data Scope Note:</strong> Continuous electronic futures daily trading data covers 2000 to 2026 (6,586 trading days) from the CME Group COMEX benchmark. For official 1960–2026 monthly averages and 1970–2026 London Bullion Market fixings, please select the <strong>By Month</strong>, <strong>By Year</strong>, or <strong>By Decade</strong> tabs.
-                  </p>
-                </div>
               </div>
             )}
           </div>
         )}
 
         {/* ══════════════════════════════════════════════════════════════
-            TAB: YEAR MIN / MAX
+            TAB 2: BY MONTH (Matching Nepal Image 3)
         ══════════════════════════════════════════════════════════════ */}
-        {tab === 'yearminmax' && (
+        {tab === 'bymonth' && (
           <div>
-            <h3 className="text-lg font-bold text-slate-900 mb-5">Annual Minimum and Maximum Benchmark Spread</h3>
+            <h3 className="text-lg font-bold text-slate-900 mb-5">Rate History by Month</h3>
+
+            {/* Filter Controls (Year + Month + Search button matching Nepal Image 3) */}
+            <div className="flex flex-wrap items-center gap-3 mb-6">
+              <div className="relative">
+                <select
+                  value={bmYear}
+                  onChange={e => setBmYear(Number(e.target.value))}
+                  className="appearance-none bg-white border border-slate-300 rounded-xl px-4 py-2.5 pr-8 text-sm font-semibold text-slate-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 cursor-pointer min-w-[110px]"
+                >
+                  {Array.from({ length: 27 }, (_, i) => 2026 - i).map(y => (
+                    <option key={y} value={y}>{y}</option>
+                  ))}
+                </select>
+                <span className="absolute right-3 top-3 pointer-events-none text-xs text-slate-400">▼</span>
+              </div>
+
+              <div className="relative">
+                <select
+                  value={bmMonth}
+                  onChange={e => setBmMonth(Number(e.target.value))}
+                  className="appearance-none bg-white border border-slate-300 rounded-xl px-4 py-2.5 pr-8 text-sm font-semibold text-slate-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 cursor-pointer min-w-[140px]"
+                >
+                  {MONTH_NAMES_FULL.map((name, i) => (
+                    <option key={i + 1} value={i + 1}>{name}</option>
+                  ))}
+                </select>
+                <span className="absolute right-3 top-3 pointer-events-none text-xs text-slate-400">▼</span>
+              </div>
+
+              <button
+                onClick={() => handleByMonthSearch(bmYear, bmMonth)}
+                className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold px-6 py-2.5 rounded-xl text-sm shadow-sm transition-colors flex items-center gap-2 cursor-pointer"
+              >
+                <span>🔍</span>
+                <span>Search</span>
+              </button>
+            </div>
 
             {/* Unit Toggle */}
             <div className="flex justify-center my-6">
-              <div className="inline-flex bg-slate-100 p-1 rounded-full border border-slate-200/60 shadow-inner flex-wrap justify-center">
-                <button
-                  type="button"
-                  onClick={() => setUnit('oz')}
-                  className={`px-5 sm:px-7 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                    unit === 'oz' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-900'
-                  }`}
-                >
-                  Troy Ounce
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setUnit('gram')}
-                  className={`px-5 sm:px-7 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                    unit === 'gram' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-900'
-                  }`}
-                >
-                  Grams
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setUnit('10g')}
-                  className={`px-5 sm:px-7 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                    unit === '10g' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-900'
-                  }`}
-                >
-                  10 Grams
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setUnit('kg')}
-                  className={`px-5 sm:px-7 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                    unit === 'kg' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-900'
-                  }`}
-                >
-                  Kilogram
-                </button>
+              <div className="inline-flex bg-slate-100 p-1 rounded-full border border-slate-200/60 shadow-inner">
+                {(['oz', '10g', 'gram'] as UnitType[]).map(u => (
+                  <button
+                    key={u}
+                    type="button"
+                    onClick={() => setUnit(u)}
+                    className={`px-7 py-1.5 rounded-full text-sm font-bold transition-all cursor-pointer ${
+                      unit === u
+                        ? 'bg-white text-slate-900 shadow-sm'
+                        : 'text-slate-500 hover:text-slate-900 font-semibold'
+                    }`}
+                  >
+                    {u === 'oz' ? 'Troy Ounce' : u === '10g' ? '10 Grams' : 'Grams'}
+                  </button>
+                ))}
               </div>
             </div>
 
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm text-left border-collapse">
-                <thead className="border-b border-slate-200 text-xs font-bold text-slate-700">
-                  <tr>
-                    <th scope="col" className="py-3 px-4 text-left">Year</th>
-                    <th scope="col" className="py-3 px-4 text-right">Gold Min (Low)</th>
-                    <th scope="col" className="py-3 px-4 text-right">Gold Max (Peak)</th>
-                    <th scope="col" className="py-3 px-4 text-right">Gold Spread</th>
-                    <th scope="col" className="py-3 px-4 text-right">Silver Min (Low)</th>
-                    <th scope="col" className="py-3 px-4 text-right">Silver Max (Peak)</th>
-                    <th scope="col" className="py-3 px-4 text-right">Silver Spread</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100">
-                  {mergedRecords.slice(0, 30).map(row => {
-                    const gSpread = (row.gold.high - row.gold.low) * multiplier;
-                    const sSpread = row.silver ? (row.silver.high - row.silver.low) * multiplier : 0;
-                    return (
-                      <tr key={row.year} className="hover:bg-slate-50/70 transition-colors">
-                        <td className="py-3.5 px-4 font-semibold text-slate-900 whitespace-nowrap">{row.year}</td>
-                        <td className="py-3.5 px-4 text-slate-600 text-right whitespace-nowrap">{fmtUSD(row.gold.low * multiplier)}</td>
-                        <td className="py-3.5 px-4 text-amber-700 font-bold text-right whitespace-nowrap">{fmtUSD(row.gold.high * multiplier)}</td>
-                        <td className="py-3.5 px-4 text-slate-800 font-semibold text-right whitespace-nowrap">{fmtUSD(gSpread)}</td>
-                        <td className="py-3.5 px-4 text-slate-600 text-right whitespace-nowrap">{row.silver ? fmtUSD(row.silver.low * multiplier) : '-'}</td>
-                        <td className="py-3.5 px-4 text-slate-800 font-bold text-right whitespace-nowrap">{row.silver ? fmtUSD(row.silver.high * multiplier) : '-'}</td>
-                        <td className="py-3.5 px-4 text-slate-700 font-semibold text-right whitespace-nowrap">{sSpread > 0 ? fmtUSD(sSpread) : '-'}</td>
+            {/* Month Daily Table */}
+            {bmResult ? (
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm text-left border-collapse">
+                  <thead className="border-b border-slate-200 text-xs font-bold text-slate-700 bg-slate-50/75">
+                    <tr>
+                      <th scope="col" className="py-3 px-4 text-left">Trading Date</th>
+                      <th scope="col" className="py-3 px-4 text-right">Fine Gold (24K) {unitLabel}</th>
+                      <th scope="col" className="py-3 px-4 text-right">Gold High / Low</th>
+                      <th scope="col" className="py-3 px-4 text-right">Silver (999) {unitLabel}</th>
+                      <th scope="col" className="py-3 px-4 text-right">Silver High / Low</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 font-medium">
+                    {(bmResult.records || []).map((row, i) => {
+                      const gClose = row.gold ? fmtUSD(row.gold * multiplier) : '-';
+                      const gHigh = row.gold_high ? fmtUSD(row.gold_high * multiplier) : '-';
+                      const gLow = row.gold_low ? fmtUSD(row.gold_low * multiplier) : '-';
+                      const sClose = row.silver ? fmtUSD(row.silver * multiplier) : '-';
+                      const sHigh = row.silver_high ? fmtUSD(row.silver_high * multiplier) : '-';
+                      const sLow = row.silver_low ? fmtUSD(row.silver_low * multiplier) : '-';
+
+                      return (
+                        <tr key={row.date || i} className="hover:bg-amber-50/20 transition-colors">
+                          <td className="py-3.5 px-4 font-bold text-slate-900 whitespace-nowrap">
+                            {row.date}
+                          </td>
+                          <td className="py-3.5 px-4 font-bold text-amber-950 text-right whitespace-nowrap">
+                            {gClose}
+                          </td>
+                          <td className="py-3.5 px-4 text-slate-500 text-right whitespace-nowrap text-xs">
+                            <span className="text-emerald-700 font-semibold">{gHigh}</span>
+                            <span className="mx-1 text-slate-300">/</span>
+                            <span className="text-rose-700 font-semibold">{gLow}</span>
+                          </td>
+                          <td className="py-3.5 px-4 font-bold text-slate-800 text-right whitespace-nowrap">
+                            {sClose}
+                          </td>
+                          <td className="py-3.5 px-4 text-slate-500 text-right whitespace-nowrap text-xs">
+                            <span className="text-emerald-700 font-semibold">{sHigh}</span>
+                            <span className="mx-1 text-slate-300">/</span>
+                            <span className="text-rose-700 font-semibold">{sLow}</span>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                    {(!bmResult.records || bmResult.records.length === 0) && (
+                      <tr>
+                        <td colSpan={5} className="py-8 px-4 text-center text-slate-400">
+                          No verified daily trading sessions recorded for {MONTH_NAMES_FULL[bmMonth - 1]} {bmYear}.
+                        </td>
                       </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <p className="text-slate-400 text-sm text-center py-8">Select a year and month then click Search.</p>
+            )}
           </div>
         )}
 
         {/* ══════════════════════════════════════════════════════════════
-            TAB: BY DECADE
+            TAB 3: WEEK MIN/MAX (Matching Nepal Image 4)
+        ══════════════════════════════════════════════════════════════ */}
+        {tab === 'weekminmax' && (
+          <div>
+            <h3 className="text-lg font-bold text-slate-900 mb-2">Rate History by Week [Maximum to Minimum]</h3>
+            {weekData && (
+              <p className="text-xs text-slate-500 mb-6">
+                Active trading sessions window: <span className="font-semibold text-slate-700">{weekData.startDate}</span> to <span className="font-semibold text-slate-700">{weekData.endDate}</span>
+              </p>
+            )}
+
+            {weekData ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Per 1 Troy Ounce */}
+                <div className="space-y-4">
+                  <h4 className="text-xs font-black uppercase text-slate-500 tracking-wider">Per 1 Troy Ounce</h4>
+                  <MinMaxCard
+                    label="Fine Gold (9999 / 24K)"
+                    min={weekData.goldMin}
+                    max={weekData.goldMax}
+                  />
+                  <MinMaxCard
+                    label="Silver (999 Pure)"
+                    min={weekData.silverMin}
+                    max={weekData.silverMax}
+                  />
+                </div>
+
+                {/* Per 10 Grams */}
+                <div className="space-y-4">
+                  <h4 className="text-xs font-black uppercase text-slate-500 tracking-wider">Per 10 Grams</h4>
+                  <MinMaxCard
+                    label="Fine Gold (9999 / 24K)"
+                    min={weekData.goldMin ? (weekData.goldMin / TROY_OZ_TO_GRAMS) * 10 : null}
+                    max={weekData.goldMax ? (weekData.goldMax / TROY_OZ_TO_GRAMS) * 10 : null}
+                  />
+                  <MinMaxCard
+                    label="Silver (999 Pure)"
+                    min={weekData.silverMin ? (weekData.silverMin / TROY_OZ_TO_GRAMS) * 10 : null}
+                    max={weekData.silverMax ? (weekData.silverMax / TROY_OZ_TO_GRAMS) * 10 : null}
+                  />
+                </div>
+              </div>
+            ) : (
+              <div className="py-12 text-center text-slate-400">Loading weekly session benchmarks...</div>
+            )}
+          </div>
+        )}
+
+        {/* ══════════════════════════════════════════════════════════════
+            TAB 4: MONTH MIN/MAX (Matching Nepal Image 5)
+        ══════════════════════════════════════════════════════════════ */}
+        {tab === 'monthminmax' && (
+          <div>
+            <h3 className="text-lg font-bold text-slate-900 mb-5">Rate History by Month [Maximum to Minimum]</h3>
+
+            {/* Filter Controls (Year + Month + Search button) */}
+            <div className="flex flex-wrap items-center gap-3 mb-6">
+              <div className="relative">
+                <select
+                  value={mmYear}
+                  onChange={e => setMmYear(Number(e.target.value))}
+                  className="appearance-none bg-white border border-slate-300 rounded-xl px-4 py-2.5 pr-8 text-sm font-semibold text-slate-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 cursor-pointer min-w-[110px]"
+                >
+                  {Array.from({ length: 27 }, (_, i) => 2026 - i).map(y => (
+                    <option key={y} value={y}>{y}</option>
+                  ))}
+                </select>
+                <span className="absolute right-3 top-3 pointer-events-none text-xs text-slate-400">▼</span>
+              </div>
+
+              <div className="relative">
+                <select
+                  value={mmMonth}
+                  onChange={e => setMmMonth(Number(e.target.value))}
+                  className="appearance-none bg-white border border-slate-300 rounded-xl px-4 py-2.5 pr-8 text-sm font-semibold text-slate-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 cursor-pointer min-w-[140px]"
+                >
+                  {MONTH_NAMES_FULL.map((name, i) => (
+                    <option key={i + 1} value={i + 1}>{name}</option>
+                  ))}
+                </select>
+                <span className="absolute right-3 top-3 pointer-events-none text-xs text-slate-400">▼</span>
+              </div>
+
+              <button
+                onClick={() => handleMmSearch(mmYear, mmMonth)}
+                className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold px-6 py-2.5 rounded-xl text-sm shadow-sm transition-colors flex items-center gap-2 cursor-pointer"
+              >
+                <span>🔍</span>
+                <span>Search</span>
+              </button>
+            </div>
+
+            {/* Min / Max Cards (Two Columns: Per 1 Troy Ounce and Per 10 Grams) */}
+            {mmResult ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-4">
+                  <h4 className="text-xs font-black uppercase text-slate-500 tracking-wider">Per 1 Troy Ounce</h4>
+                  <MinMaxCard
+                    label="Fine Gold (9999 / 24K)"
+                    min={mmResult.goldMin}
+                    max={mmResult.goldMax}
+                  />
+                  <MinMaxCard
+                    label="Silver (999 Pure)"
+                    min={mmResult.silverMin}
+                    max={mmResult.silverMax}
+                  />
+                </div>
+
+                <div className="space-y-4">
+                  <h4 className="text-xs font-black uppercase text-slate-500 tracking-wider">Per 10 Grams</h4>
+                  <MinMaxCard
+                    label="Fine Gold (9999 / 24K)"
+                    min={mmResult.goldMin ? (mmResult.goldMin / TROY_OZ_TO_GRAMS) * 10 : null}
+                    max={mmResult.goldMax ? (mmResult.goldMax / TROY_OZ_TO_GRAMS) * 10 : null}
+                  />
+                  <MinMaxCard
+                    label="Silver (999 Pure)"
+                    min={mmResult.silverMin ? (mmResult.silverMin / TROY_OZ_TO_GRAMS) * 10 : null}
+                    max={mmResult.silverMax ? (mmResult.silverMax / TROY_OZ_TO_GRAMS) * 10 : null}
+                  />
+                </div>
+              </div>
+            ) : (
+              <p className="text-slate-400 text-sm text-center py-8">Select a year and month then click Search.</p>
+            )}
+          </div>
+        )}
+
+        {/* ══════════════════════════════════════════════════════════════
+            TAB 5: YEAR MIN/MAX (Matching Nepal Image 6)
+        ══════════════════════════════════════════════════════════════ */}
+        {tab === 'yearminmax' && (
+          <div>
+            <h3 className="text-lg font-bold text-slate-900 mb-5">Rate History by Year [Maximum to Minimum]</h3>
+
+            {/* Filter Controls (Year + Search button) */}
+            <div className="flex flex-wrap items-center gap-3 mb-6">
+              <div className="relative">
+                <select
+                  value={ymYear}
+                  onChange={e => setYmYear(Number(e.target.value))}
+                  className="appearance-none bg-white border border-slate-300 rounded-xl px-4 py-2.5 pr-8 text-sm font-semibold text-slate-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 cursor-pointer min-w-[120px]"
+                >
+                  {Array.from({ length: 57 }, (_, i) => 2026 - i).map(y => (
+                    <option key={y} value={y}>{y}</option>
+                  ))}
+                </select>
+                <span className="absolute right-3 top-3 pointer-events-none text-xs text-slate-400">▼</span>
+              </div>
+
+              <button
+                onClick={() => handleYmSearch(ymYear)}
+                className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold px-6 py-2.5 rounded-xl text-sm shadow-sm transition-colors flex items-center gap-2 cursor-pointer"
+              >
+                <span>🔍</span>
+                <span>Search</span>
+              </button>
+            </div>
+
+            {/* Min / Max Cards (Two Columns: Per 1 Troy Ounce and Per 10 Grams) */}
+            {ymResult ? (
+              <div className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <h4 className="text-xs font-black uppercase text-slate-500 tracking-wider">Per 1 Troy Ounce</h4>
+                    <MinMaxCard
+                      label="Fine Gold (9999 / 24K)"
+                      min={ymResult.goldLow}
+                      max={ymResult.goldHigh}
+                    />
+                    <MinMaxCard
+                      label="Silver (999 Pure)"
+                      min={ymResult.silverLow}
+                      max={ymResult.silverHigh}
+                    />
+                  </div>
+
+                  <div className="space-y-4">
+                    <h4 className="text-xs font-black uppercase text-slate-500 tracking-wider">Per 10 Grams</h4>
+                    <MinMaxCard
+                      label="Fine Gold (9999 / 24K)"
+                      min={ymResult.goldLow ? (ymResult.goldLow / TROY_OZ_TO_GRAMS) * 10 : null}
+                      max={ymResult.goldHigh ? (ymResult.goldHigh / TROY_OZ_TO_GRAMS) * 10 : null}
+                    />
+                    <MinMaxCard
+                      label="Silver (999 Pure)"
+                      min={ymResult.silverLow ? (ymResult.silverLow / TROY_OZ_TO_GRAMS) * 10 : null}
+                      max={ymResult.silverHigh ? (ymResult.silverHigh / TROY_OZ_TO_GRAMS) * 10 : null}
+                    />
+                  </div>
+                </div>
+
+                <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl flex flex-wrap items-center justify-between gap-3 text-xs">
+                  <div>
+                    <span className="text-slate-500 font-medium">Gold Trading Spread: </span>
+                    <span className="font-bold text-slate-900">{fmtUSD(ymResult.goldHigh - ymResult.goldLow)}</span>
+                  </div>
+                  <div>
+                    <span className="text-slate-500 font-medium">Annual Return: </span>
+                    <span className={`font-bold ${ymResult.returnPct >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
+                      {ymResult.returnPct >= 0 ? '+' : ''}{ymResult.returnPct.toFixed(1)}%
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <p className="text-slate-400 text-sm text-center py-8">Select a year then click Search.</p>
+            )}
+          </div>
+        )}
+
+        {/* ══════════════════════════════════════════════════════════════
+            TAB 6: BY YEAR (Annual Historical Rates 1970 - 2026)
+        ══════════════════════════════════════════════════════════════ */}
+        {tab === 'byyear' && (
+          <div>
+            <h3 className="text-lg font-bold text-slate-900 mb-5">Rate History by Year</h3>
+
+            {/* Filter Controls */}
+            <div className="flex flex-wrap items-center gap-3 mb-6">
+              <div className="relative">
+                <select
+                  value={selYear}
+                  onChange={e => handleYearChange(e.target.value)}
+                  className="appearance-none bg-white border border-slate-300 rounded-xl pl-4 pr-10 py-2.5 text-sm font-semibold text-slate-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 cursor-pointer min-w-[210px]"
+                >
+                  <option value="all">All Years (1970 - 2026)</option>
+                  {mergedRecords.map(r => (
+                    <option key={r.year} value={String(r.year)}>{r.year}</option>
+                  ))}
+                </select>
+                <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              </div>
+
+              <div className="relative">
+                <select
+                  value={metalFilter}
+                  onChange={e => setMetalFilter(e.target.value as any)}
+                  className="appearance-none bg-white border border-slate-300 rounded-xl pl-4 pr-10 py-2.5 text-sm font-semibold text-slate-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 cursor-pointer min-w-[150px]"
+                >
+                  <option value="both">Gold &amp; Silver</option>
+                  <option value="gold">Gold Only</option>
+                  <option value="silver">Silver Only</option>
+                </select>
+                <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              </div>
+
+              {selYear !== 'all' && (
+                <button
+                  type="button"
+                  onClick={() => handleYearChange('all')}
+                  className="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-3.5 py-2.5 rounded-xl text-xs transition-colors cursor-pointer"
+                >
+                  Reset Filter
+                </button>
+              )}
+            </div>
+
+            {/* Unit Toggle */}
+            <div className="flex justify-center my-6">
+              <div className="inline-flex bg-slate-100 p-1 rounded-full border border-slate-200/60 shadow-inner flex-wrap justify-center">
+                {(['oz', 'gram', '10g', 'kg'] as UnitType[]).map(u => (
+                  <button
+                    key={u}
+                    type="button"
+                    onClick={() => setUnit(u)}
+                    className={`px-5 sm:px-7 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                      unit === u
+                        ? 'bg-white text-slate-900 shadow-sm'
+                        : 'text-slate-500 hover:text-slate-900 font-semibold'
+                    }`}
+                  >
+                    {u === 'oz' ? 'Troy Ounce' : u === 'gram' ? 'Grams' : u === '10g' ? '10 Grams' : 'Kilogram'}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {(() => {
+              const totalEntries = filteredRecords.length;
+              const totalPages = Math.ceil(totalEntries / rowsPerPage) || 1;
+              const startIdx = (page - 1) * rowsPerPage;
+              const paginatedRows = filteredRecords.slice(startIdx, startIdx + rowsPerPage);
+              const startEntry = totalEntries === 0 ? 0 : startIdx + 1;
+              const endEntry = Math.min(startIdx + rowsPerPage, totalEntries);
+
+              const getPageNumbers = () => {
+                const nums: (number | string)[] = [];
+                if (totalPages <= 7) {
+                  for (let i = 1; i <= totalPages; i++) nums.push(i);
+                } else {
+                  nums.push(1);
+                  if (page > 3) nums.push('...');
+                  const s = Math.max(2, page - 1);
+                  const e = Math.min(totalPages - 1, page + 1);
+                  for (let i = s; i <= e; i++) nums.push(i);
+                  if (page < totalPages - 2) nums.push('...');
+                  nums.push(totalPages);
+                }
+                return nums;
+              };
+
+              return (
+                <div>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm text-left border-collapse">
+                      <thead>
+                        <tr className="border-b border-slate-200 text-slate-500 font-bold text-xs uppercase tracking-wider bg-slate-50/75">
+                          <th scope="col" className="py-3 px-4 text-left">Year</th>
+                          {metalFilter !== 'silver' && (
+                            <>
+                              <th scope="col" className="py-3 px-4 text-right">Gold Peak</th>
+                              <th scope="col" className="py-3 px-4 text-right">Gold Low</th>
+                              <th scope="col" className="py-3 px-4 text-right">Gold Average</th>
+                            </>
+                          )}
+                          {metalFilter !== 'gold' && (
+                            <>
+                              <th scope="col" className="py-3 px-4 text-right">Silver Peak</th>
+                              <th scope="col" className="py-3 px-4 text-right">Silver Average</th>
+                            </>
+                          )}
+                          <th scope="col" className="py-3 px-4 text-right">Annual Return</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-100">
+                        {paginatedRows.map(row => (
+                          <tr key={row.year} className="hover:bg-slate-50/70 transition-colors">
+                            <td className="py-3.5 px-4 font-semibold text-slate-900 whitespace-nowrap">
+                              {row.year}
+                            </td>
+                            {metalFilter !== 'silver' && (
+                              <>
+                                <td className="py-3.5 px-4 text-amber-700 font-bold text-right whitespace-nowrap">
+                                  {fmtUSD(row.gold.high * multiplier)}
+                                </td>
+                                <td className="py-3.5 px-4 text-slate-600 text-right whitespace-nowrap">
+                                  {fmtUSD(row.gold.low * multiplier)}
+                                </td>
+                                <td className="py-3.5 px-4 font-bold text-slate-900 text-right whitespace-nowrap">
+                                  {fmtUSD(row.gold.avg * multiplier)}
+                                </td>
+                              </>
+                            )}
+                            {metalFilter !== 'gold' && (
+                              <>
+                                <td className="py-3.5 px-4 text-slate-700 font-bold text-right whitespace-nowrap">
+                                  {row.silver ? fmtUSD(row.silver.high * multiplier) : '-'}
+                                </td>
+                                <td className="py-3.5 px-4 font-bold text-slate-900 text-right whitespace-nowrap">
+                                  {row.silver ? fmtUSD(row.silver.avg * multiplier) : '-'}
+                                </td>
+                              </>
+                            )}
+                            <td className="py-3.5 px-4 text-right font-bold whitespace-nowrap">
+                              <span className={row.gold.returnPct >= 0 ? 'text-emerald-600' : 'text-rose-600'}>
+                                {row.gold.returnPct >= 0 ? '+' : ''}{row.gold.returnPct.toFixed(1)}%
+                              </span>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  {/* Pagination footer */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 mt-2 border-t border-slate-200 text-sm text-slate-600">
+                    <div>
+                      Showing {startEntry} to {endEntry} of {totalEntries} entries
+                    </div>
+
+                    {totalPages > 1 && (
+                      <div className="flex items-center gap-1 select-none flex-wrap">
+                        <button
+                          type="button"
+                          onClick={() => setPage(p => Math.max(1, p - 1))}
+                          disabled={page === 1}
+                          className="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+                        >
+                          Previous
+                        </button>
+
+                        {getPageNumbers().map((num, idx) => (
+                          <React.Fragment key={idx}>
+                            {num === '...' ? (
+                              <span className="px-2 py-1 text-slate-400 text-xs">...</span>
+                            ) : (
+                              <button
+                                type="button"
+                                onClick={() => setPage(Number(num))}
+                                className={`min-w-[32px] h-8 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                                  page === num
+                                    ? 'bg-[#d97706] text-white shadow-xs'
+                                    : 'border border-slate-200 hover:bg-slate-50 text-slate-700'
+                                }`}
+                              >
+                                {num}
+                              </button>
+                            )}
+                          </React.Fragment>
+                        ))}
+
+                        <button
+                          type="button"
+                          onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+                          disabled={page === totalPages}
+                          className="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+                        >
+                          Next
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              );
+            })()}
+          </div>
+        )}
+
+        {/* ══════════════════════════════════════════════════════════════
+            TAB 7: BY DECADE
         ══════════════════════════════════════════════════════════════ */}
         {tab === 'bydecade' && (
           <div>
-            <h3 className="text-lg font-bold text-slate-900 mb-5">Rate History by Decade (1970 - 2026)</h3>
+            <h3 className="text-lg font-bold text-slate-900 mb-5">Precious Metals Performance by Decade</h3>
+
             <div className="overflow-x-auto">
               <table className="w-full text-sm text-left border-collapse">
-                <thead className="border-b border-slate-200 text-xs font-bold text-slate-700">
-                  <tr>
-                    <th scope="col" className="py-3 px-4 text-left">Decade Era</th>
-                    <th scope="col" className="py-3 px-4 text-right">Gold Lowest</th>
+                <thead>
+                  <tr className="border-b border-slate-200 text-slate-500 font-bold text-xs uppercase tracking-wider bg-slate-50/75">
+                    <th scope="col" className="py-3 px-4 text-left">Decade</th>
                     <th scope="col" className="py-3 px-4 text-right">Gold Peak</th>
-                    <th scope="col" className="py-3 px-4 text-right">Gold Average</th>
-                    <th scope="col" className="py-3 px-4 text-right">Silver Average</th>
-                    <th scope="col" className="py-3 px-4 text-right">Avg GSR</th>
-                    <th scope="col" className="py-3 px-4 text-right">Net Price Growth</th>
+                    <th scope="col" className="py-3 px-4 text-right">Gold Low</th>
+                    <th scope="col" className="py-3 px-4 text-right">Gold Mean</th>
+                    <th scope="col" className="py-3 px-4 text-right">Silver Mean</th>
+                    <th scope="col" className="py-3 px-4 text-right">Mean Ratio</th>
+                    <th scope="col" className="py-3 px-4 text-right">Decade Gain</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
-                  {decadeData.map((d: any) => (
-                    <tr key={d.label} className="hover:bg-slate-50/70 transition-colors">
-                      <td className="py-3.5 px-4 font-bold text-slate-900 whitespace-nowrap">{d.label}</td>
-                      <td className="py-3.5 px-4 text-slate-600 text-right whitespace-nowrap">{fmtUSD(d.gTrough * multiplier)}</td>
-                      <td className="py-3.5 px-4 text-amber-700 font-bold text-right whitespace-nowrap">{fmtUSD(d.gPeak * multiplier)}</td>
-                      <td className="py-3.5 px-4 text-slate-900 font-bold text-right whitespace-nowrap">{fmtUSD(d.gMean * multiplier)}</td>
-                      <td className="py-3.5 px-4 text-slate-800 font-bold text-right whitespace-nowrap">{fmtUSD(d.sMean * multiplier)}</td>
-                      <td className="py-3.5 px-4 text-slate-700 text-right whitespace-nowrap">{d.ratio.toFixed(1)}:1</td>
+                  {decadeData.map((dec: any) => (
+                    <tr key={dec.label} className="hover:bg-slate-50/70 transition-colors">
+                      <td className="py-3.5 px-4 font-bold text-slate-900 whitespace-nowrap">{dec.label}</td>
+                      <td className="py-3.5 px-4 text-amber-700 font-bold text-right whitespace-nowrap">{fmtUSD(dec.gPeak)}</td>
+                      <td className="py-3.5 px-4 text-slate-600 text-right whitespace-nowrap">{fmtUSD(dec.gTrough)}</td>
+                      <td className="py-3.5 px-4 font-bold text-slate-900 text-right whitespace-nowrap">{fmtUSD(dec.gMean)}</td>
+                      <td className="py-3.5 px-4 font-bold text-slate-900 text-right whitespace-nowrap">{fmtUSD(dec.sMean)}</td>
+                      <td className="py-3.5 px-4 font-semibold text-slate-700 text-right whitespace-nowrap">{dec.ratio.toFixed(1)}:1</td>
                       <td className="py-3.5 px-4 text-right font-bold whitespace-nowrap">
-                        <span className={d.netGain >= 0 ? 'text-emerald-600' : 'text-rose-600'}>
-                          {d.netGain >= 0 ? '+' : ''}{d.netGain.toFixed(1)}%
+                        <span className={dec.netGain >= 0 ? 'text-emerald-600' : 'text-rose-600'}>
+                          {dec.netGain >= 0 ? '+' : ''}{dec.netGain.toFixed(1)}%
                         </span>
                       </td>
                     </tr>
@@ -1123,36 +1210,35 @@ export default function InternationalHistoryClient({
         )}
 
         {/* ══════════════════════════════════════════════════════════════
-            TAB: GOLD-SILVER RATIO
+            TAB 8: GOLD-SILVER RATIO
         ══════════════════════════════════════════════════════════════ */}
         {tab === 'ratio' && (
           <div>
-            <h3 className="text-lg font-bold text-slate-900 mb-2">Gold-to-Silver Ratio History</h3>
-            <p className="text-xs sm:text-sm text-slate-500 mb-6">
-              Number of troy ounces of silver required to purchase one troy ounce of gold.
-            </p>
+            <h3 className="text-lg font-bold text-slate-900 mb-5">Gold-to-Silver Ratio (GSR) History</h3>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
-              <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5">
-                <span className="text-[11px] font-bold text-slate-500 uppercase">Historical Median</span>
-                <p className="text-xl font-extrabold text-slate-900 mt-0.5">55.4:1</p>
-                <p className="text-[11px] text-slate-400 mt-0.5">56-year post-Bretton Woods average</p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+              <div className="bg-white border border-slate-200 p-4 rounded-xl shadow-xs">
+                <span className="text-xs text-slate-500 font-bold uppercase">Current GSR Spot</span>
+                <p className="text-2xl font-black text-amber-700 mt-1">
+                  {(currentLiveRates.goldUSD / currentLiveRates.silverUSD).toFixed(1)}:1
+                </p>
+                <p className="text-[11px] text-slate-400 mt-0.5">Ounces of silver to purchase 1 oz of gold</p>
               </div>
-              <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-3.5">
-                <span className="text-[11px] font-bold text-emerald-800 uppercase">All-Time Low (Silver Surge)</span>
-                <p className="text-xl font-extrabold text-emerald-900 mt-0.5">17.2:1</p>
-                <p className="text-[11px] text-emerald-700 mt-0.5">Recorded in Jan 1980</p>
+              <div className="bg-white border border-slate-200 p-4 rounded-xl shadow-xs">
+                <span className="text-xs text-slate-500 font-bold uppercase">50-Year Median Ratio</span>
+                <p className="text-2xl font-black text-slate-800 mt-1">64.5:1</p>
+                <p className="text-[11px] text-slate-400 mt-0.5">Historical central equilibrium</p>
               </div>
-              <div className="bg-rose-50 border border-rose-200 rounded-xl p-3.5">
-                <span className="text-[11px] font-bold text-rose-800 uppercase">All-Time Peak (Silver Dip)</span>
-                <p className="text-xl font-extrabold text-rose-900 mt-0.5">125.6:1</p>
-                <p className="text-[11px] text-rose-700 mt-0.5">Recorded in March 2020</p>
+              <div className="bg-white border border-slate-200 p-4 rounded-xl shadow-xs">
+                <span className="text-xs text-slate-500 font-bold uppercase">All-Time Peak Ratio</span>
+                <p className="text-2xl font-black text-slate-800 mt-1">125.1:1</p>
+                <p className="text-[11px] text-slate-400 mt-0.5">March 2020 liquidity peak</p>
               </div>
             </div>
 
             <div className="overflow-x-auto">
               <table className="w-full text-sm text-left border-collapse">
-                <thead className="border-b border-slate-200 text-xs font-bold text-slate-700">
+                <thead className="border-b border-slate-200 text-xs font-bold text-slate-700 bg-slate-50/75">
                   <tr>
                     <th scope="col" className="py-3 px-4 text-left">Year</th>
                     <th scope="col" className="py-3 px-4 text-right">Gold Average</th>
@@ -1161,7 +1247,7 @@ export default function InternationalHistoryClient({
                     <th scope="col" className="py-3 px-4 text-right">Market Assessment</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100">
+                <tbody className="divide-y divide-slate-100 font-medium">
                   {mergedRecords.slice(0, 30).map(row => {
                     const ratio = row.ratio;
                     let signal = 'Balanced Valuation (50 - 70)';
@@ -1190,7 +1276,7 @@ export default function InternationalHistoryClient({
         )}
 
         {/* ══════════════════════════════════════════════════════════════
-            TAB: 50Y GROWTH (CAGR)
+            TAB 9: 50Y GROWTH (CAGR)
         ══════════════════════════════════════════════════════════════ */}
         {tab === 'cagr' && (
           <div>
@@ -1221,7 +1307,7 @@ export default function InternationalHistoryClient({
 
             <div className="overflow-x-auto">
               <table className="w-full text-sm text-left border-collapse">
-                <thead className="border-b border-slate-200 text-xs font-bold text-slate-700">
+                <thead className="border-b border-slate-200 text-xs font-bold text-slate-700 bg-slate-50/75">
                   <tr>
                     <th scope="col" className="py-3 px-4 text-left">Year</th>
                     <th scope="col" className="py-3 px-4 text-right">Gold Close</th>
@@ -1230,7 +1316,7 @@ export default function InternationalHistoryClient({
                     <th scope="col" className="py-3 px-4 text-right">Silver Annual Return</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100">
+                <tbody className="divide-y divide-slate-100 font-medium">
                   {mergedRecords.slice(0, 30).map(row => (
                     <tr key={row.year} className="hover:bg-slate-50/70 transition-colors">
                       <td className="py-3.5 px-4 font-semibold text-slate-900 whitespace-nowrap">{row.year}</td>
@@ -1254,6 +1340,58 @@ export default function InternationalHistoryClient({
           </div>
         )}
 
+      </div>
+
+      {/* ── Scroll to Top Floating Button (matching user screenshot) ── */}
+      <button
+        type="button"
+        onClick={() => {
+          if (typeof window !== 'undefined') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        }}
+        className="fixed bottom-6 right-6 w-11 h-11 bg-[#ea580c] hover:bg-[#c2410c] text-white rounded-full shadow-lg flex items-center justify-center transition-transform hover:scale-110 z-30 font-bold text-lg cursor-pointer"
+        aria-label="Scroll to top"
+      >
+        ↑
+      </button>
+
+    </div>
+  );
+}
+
+// ── Reusable Min/Max Card with Green Up and Red Down Arrows (Matching Nepal exactly) ──
+function MinMaxCard({
+  label,
+  min,
+  max,
+}: {
+  label: string;
+  min?: number | null;
+  max?: number | null;
+}) {
+  return (
+    <div className="bg-white border border-slate-200/90 rounded-2xl p-4 sm:p-5 shadow-sm">
+      <p className="text-sm font-bold text-slate-700 mb-4">{label}</p>
+      
+      <div className="flex justify-between items-center py-2 border-b border-slate-100">
+        <span className="flex items-center gap-1.5 text-xs text-emerald-600 font-bold">
+          <span className="text-base leading-none font-black text-emerald-500">↑</span>
+          <span>Max</span>
+        </span>
+        <div className="text-right">
+          <div className="font-extrabold text-slate-900 text-sm">{fmtUSD(max)}</div>
+        </div>
+      </div>
+
+      <div className="flex justify-between items-center pt-2">
+        <span className="flex items-center gap-1.5 text-xs text-rose-600 font-bold">
+          <span className="text-base leading-none font-black text-rose-500">↓</span>
+          <span>Min</span>
+        </span>
+        <div className="text-right">
+          <div className="font-extrabold text-slate-900 text-sm">{fmtUSD(min)}</div>
+        </div>
       </div>
     </div>
   );
