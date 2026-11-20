@@ -1,7 +1,7 @@
 ﻿'use client';
 
-import React, { useState, useMemo } from 'react';
-import { ChevronDown } from 'lucide-react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { ChevronDown, Search, Loader2 } from 'lucide-react';
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 export interface YearlyRate {
@@ -20,7 +20,7 @@ export interface InternationalHistoryDataset {
   cagr: any;
 }
 
-type TabType = 'byyear' | 'yearminmax' | 'bydecade' | 'ratio' | 'cagr';
+type TabType = 'byyear' | 'daily' | 'yearminmax' | 'bydecade' | 'ratio' | 'cagr';
 type UnitType = 'oz' | 'gram' | '10g' | 'kg';
 
 const TROY_OZ_TO_GRAMS = 31.1034768;
@@ -77,6 +77,60 @@ export default function InternationalHistoryClient({
   const [metalFilter, setMetalFilter] = useState<'both' | 'gold' | 'silver'>('both');
   const [page, setPage] = useState(1);
   const rowsPerPage = 20;
+
+  // ── Daily Tab State ──
+  const [dailyData, setDailyData] = useState<any[]>([]);
+  const [dailyLoading, setDailyLoading] = useState(false);
+  const [dailyYear, setDailyYear] = useState<string>('2026');
+  const [dailySearch, setDailySearch] = useState<string>('');
+  const [dailyPage, setDailyPage] = useState(1);
+  const dailyRowsPerPage = 25;
+
+  useEffect(() => {
+    if (tab === 'daily' && dailyData.length === 0 && !dailyLoading) {
+      setDailyLoading(true);
+      fetch('/data/international-daily-rates.json')
+        .then(res => res.json())
+        .then(json => {
+          if (json && json.data) {
+            setDailyData(json.data);
+          }
+        })
+        .catch(err => console.error('Failed to load daily rates:', err))
+        .finally(() => setDailyLoading(false));
+    }
+  }, [tab, dailyData.length, dailyLoading]);
+
+  const availableDailyYears = useMemo(() => {
+    const setYears = new Set<number>();
+    dailyData.forEach(r => { if (r.year) setYears.add(r.year); });
+    const sorted = Array.from(setYears).sort((a, b) => b - a);
+    return sorted.length > 0 ? sorted : [2026, 2025, 2024, 2023, 2022, 2021, 2020];
+  }, [dailyData]);
+
+  const filteredDaily = useMemo(() => {
+    let list = dailyData;
+    if (dailyYear !== 'all') {
+      const yr = parseInt(dailyYear, 10);
+      list = list.filter(r => r.year === yr);
+    }
+    if (dailySearch.trim()) {
+      const q = dailySearch.trim().toLowerCase();
+      list = list.filter(r => r.date && r.date.toLowerCase().includes(q));
+    }
+    return list;
+  }, [dailyData, dailyYear, dailySearch]);
+
+  const totalDailyPages = Math.ceil(filteredDaily.length / dailyRowsPerPage) || 1;
+  const pagedDaily = useMemo(() => {
+    const start = (dailyPage - 1) * dailyRowsPerPage;
+    return filteredDaily.slice(start, start + dailyRowsPerPage);
+  }, [filteredDaily, dailyPage]);
+
+  const handleDailyYearChange = (yr: string) => {
+    setDailyYear(yr);
+    setDailyPage(1);
+  };
 
   const multiplier = getUnitMultiplier(unit);
   const unitLabel = getUnitLabel(unit);
@@ -160,6 +214,7 @@ export default function InternationalHistoryClient({
 
   const tabs: { id: TabType; label: string }[] = [
     { id: 'byyear', label: 'By Year' },
+    { id: 'daily', label: 'Daily Rates' },
     { id: 'yearminmax', label: 'Year Min/Max' },
     { id: 'bydecade', label: 'By Decade' },
     { id: 'ratio', label: 'Gold-Silver Ratio' },
@@ -449,6 +504,216 @@ export default function InternationalHistoryClient({
                 </div>
               );
             })()}
+          </div>
+        )}
+
+        {/* ══════════════════════════════════════════════════════════════
+            TAB: DAILY RATES (COMEX Daily Sessions 2000 - 2026)
+        ══════════════════════════════════════════════════════════════ */}
+        {tab === 'daily' && (
+          <div>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+              <div>
+                <h3 className="text-lg font-bold text-slate-900">
+                  Daily Gold &amp; Silver Rates (COMEX Benchmark)
+                </h3>
+                <p className="text-xs text-slate-500 mt-0.5">
+                  Official daily trading sessions (2000 - 2026). Continuous electronic COMEX futures in USD.
+                </p>
+              </div>
+              <span className="inline-flex items-center self-start sm:self-auto px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                {filteredDaily.length.toLocaleString()} Trading Days
+              </span>
+            </div>
+
+            {/* Filter Controls */}
+            <div className="flex flex-wrap items-center gap-3 mb-5">
+              {/* Year Dropdown */}
+              <div className="relative">
+                <select
+                  value={dailyYear}
+                  onChange={e => handleDailyYearChange(e.target.value)}
+                  className="appearance-none bg-white border border-slate-300 rounded-xl pl-4 pr-10 py-2.5 text-sm font-semibold text-slate-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 cursor-pointer min-w-[170px]"
+                >
+                  <option value="all">All Years (2000 - 2026)</option>
+                  {availableDailyYears.map(yr => (
+                    <option key={yr} value={String(yr)}>Year {yr}</option>
+                  ))}
+                </select>
+                <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              </div>
+
+              {/* Date Search */}
+              <div className="relative flex-1 min-w-[200px] max-w-sm">
+                <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <input
+                  type="text"
+                  placeholder="Filter by date (e.g. 2026-11)..."
+                  value={dailySearch}
+                  onChange={e => {
+                    setDailySearch(e.target.value);
+                    setDailyPage(1);
+                  }}
+                  className="w-full bg-white border border-slate-300 rounded-xl pl-10 pr-4 py-2.5 text-sm font-semibold text-slate-800 placeholder-slate-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500"
+                />
+              </div>
+
+              {(dailyYear !== 'all' || dailySearch) && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setDailyYear('all');
+                    setDailySearch('');
+                    setDailyPage(1);
+                  }}
+                  className="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-3.5 py-2.5 rounded-xl text-xs transition-colors cursor-pointer"
+                >
+                  Reset Filter
+                </button>
+              )}
+            </div>
+
+            {/* Unit Toggle */}
+            <div className="flex justify-center my-5">
+              <div className="inline-flex bg-slate-100 p-1 rounded-full border border-slate-200/60 shadow-inner flex-wrap justify-center">
+                {(['oz', 'gram', '10g', 'kg'] as UnitType[]).map(u => (
+                  <button
+                    key={u}
+                    type="button"
+                    onClick={() => setUnit(u)}
+                    className={`px-5 sm:px-7 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                      unit === u
+                        ? 'bg-white text-slate-900 shadow-sm'
+                        : 'text-slate-500 hover:text-slate-900 font-semibold'
+                    }`}
+                  >
+                    {u === 'oz' ? 'Troy Ounce' : u === 'gram' ? 'Grams' : u === '10g' ? '10 Grams' : 'Kilogram'}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Loading State */}
+            {dailyLoading && (
+              <div className="py-16 text-center">
+                <Loader2 className="w-8 h-8 text-amber-600 animate-spin mx-auto mb-3" />
+                <p className="text-sm font-bold text-slate-700">Loading daily COMEX historical sessions...</p>
+                <p className="text-xs text-slate-400 mt-1">Extracting 6,586 trading records</p>
+              </div>
+            )}
+
+            {/* Daily Table */}
+            {!dailyLoading && (
+              <div className="overflow-x-auto">
+                <table className="w-full text-xs sm:text-sm text-left border-collapse">
+                  <thead>
+                    <tr className="border-b border-slate-200 text-slate-500 font-bold text-[11px] sm:text-xs uppercase tracking-wider bg-slate-50/75">
+                      <th scope="col" className="py-3 px-4 text-left">Trading Date</th>
+                      <th scope="col" className="py-3 px-4 text-right">Gold Close {unitLabel}</th>
+                      <th scope="col" className="py-3 px-4 text-right">Gold High / Low</th>
+                      <th scope="col" className="py-3 px-4 text-right">Silver Close {unitLabel}</th>
+                      <th scope="col" className="py-3 px-4 text-right">Silver High / Low</th>
+                      <th scope="col" className="py-3 px-4 text-right">Gold-Silver Ratio</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 font-medium">
+                    {pagedDaily.length === 0 ? (
+                      <tr>
+                        <td colSpan={6} className="py-8 text-center text-slate-500 text-sm">
+                          No daily trading sessions match your search criteria.
+                        </td>
+                      </tr>
+                    ) : (
+                      pagedDaily.map((row, idx) => {
+                        const gClose = row.gold ? fmtUSD(row.gold * multiplier) : '-';
+                        const gHigh = row.gold_high ? fmtUSD(row.gold_high * multiplier) : '-';
+                        const gLow = row.gold_low ? fmtUSD(row.gold_low * multiplier) : '-';
+                        const sClose = row.silver ? fmtUSD(row.silver * multiplier) : '-';
+                        const sHigh = row.silver_high ? fmtUSD(row.silver_high * multiplier) : '-';
+                        const sLow = row.silver_low ? fmtUSD(row.silver_low * multiplier) : '-';
+                        const ratioStr = row.ratio ? `${row.ratio.toFixed(2)}:1` : '-';
+
+                        return (
+                          <tr key={row.date || idx} className="hover:bg-amber-50/20 transition-colors">
+                            <td className="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">
+                              {row.date}
+                            </td>
+                            <td className="py-3 px-4 font-bold text-amber-950 text-right whitespace-nowrap">
+                              {gClose}
+                            </td>
+                            <td className="py-3 px-4 text-slate-500 text-right whitespace-nowrap text-xs">
+                              <span className="text-emerald-700 font-semibold">{gHigh}</span>
+                              <span className="mx-1 text-slate-300">/</span>
+                              <span className="text-rose-700 font-semibold">{gLow}</span>
+                            </td>
+                            <td className="py-3 px-4 font-bold text-slate-800 text-right whitespace-nowrap">
+                              {sClose}
+                            </td>
+                            <td className="py-3 px-4 text-slate-500 text-right whitespace-nowrap text-xs">
+                              <span className="text-emerald-700 font-semibold">{sHigh}</span>
+                              <span className="mx-1 text-slate-300">/</span>
+                              <span className="text-rose-700 font-semibold">{sLow}</span>
+                            </td>
+                            <td className="py-3 px-4 text-right whitespace-nowrap font-semibold text-slate-700">
+                              {ratioStr}
+                            </td>
+                          </tr>
+                        );
+                      })
+                    )}
+                  </tbody>
+                </table>
+
+                {/* Pagination Controls */}
+                {totalDailyPages > 1 && (
+                  <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mt-6 pt-4 border-t border-slate-100 text-xs text-slate-600">
+                    <div>
+                      Showing{' '}
+                      <span className="font-bold text-slate-900">
+                        {Math.min(filteredDaily.length, (dailyPage - 1) * dailyRowsPerPage + 1)}
+                      </span>
+                      {' '}to{' '}
+                      <span className="font-bold text-slate-900">
+                        {Math.min(filteredDaily.length, dailyPage * dailyRowsPerPage)}
+                      </span>
+                      {' '}of{' '}
+                      <span className="font-bold text-slate-900">{filteredDaily.length.toLocaleString()}</span>
+                      {' '}sessions
+                    </div>
+
+                    <div className="flex items-center gap-1.5">
+                      <button
+                        type="button"
+                        onClick={() => setDailyPage(p => Math.max(1, p - 1))}
+                        disabled={dailyPage === 1}
+                        className="px-3.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+                      >
+                        Previous
+                      </button>
+
+                      <span className="px-3 py-1.5 text-xs font-bold text-slate-800">
+                        Page {dailyPage} of {totalDailyPages}
+                      </span>
+
+                      <button
+                        type="button"
+                        onClick={() => setDailyPage(p => Math.min(totalDailyPages, p + 1))}
+                        disabled={dailyPage === totalDailyPages}
+                        className="px-3.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+                      >
+                        Next
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                <div className="mt-4 p-3.5 bg-slate-50 rounded-xl border border-slate-200/80 text-xs text-slate-500">
+                  <p>
+                    <strong>Data Scope Note:</strong> Continuous electronic futures daily trading data covers 2000 to 2026 (6,586 trading days) from the CME Group COMEX benchmark. For official 1970–1999 London Bullion Market fixings and World Bank monthly averages, please select the <strong>By Year</strong> or <strong>By Decade</strong> tabs.
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
         )}
 
