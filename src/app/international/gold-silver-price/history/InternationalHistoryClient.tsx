@@ -20,7 +20,7 @@ export interface InternationalHistoryDataset {
   cagr: any;
 }
 
-type TabType = 'byyear' | 'daily' | 'yearminmax' | 'bydecade' | 'ratio' | 'cagr';
+type TabType = 'byyear' | 'bymonth' | 'daily' | 'yearminmax' | 'bydecade' | 'ratio' | 'cagr';
 type UnitType = 'oz' | 'gram' | '10g' | 'kg';
 
 const TROY_OZ_TO_GRAMS = 31.1034768;
@@ -62,6 +62,23 @@ function fmtUSD(val: number | null | undefined): string {
     return '$' + val.toFixed(2);
   }
   return '$' + val.toFixed(3);
+}
+
+const MONTH_NAMES_FULL = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December'
+];
+
+function formatMonthLabel(mStr: string): string {
+  if (!mStr) return '-';
+  const parts = mStr.split('M');
+  if (parts.length === 2) {
+    const yr = parts[0];
+    const mIdx = parseInt(parts[1], 10) - 1;
+    const mName = MONTH_NAMES_FULL[mIdx] || parts[1];
+    return `${mName} ${yr}`;
+  }
+  return mStr;
 }
 
 export default function InternationalHistoryClient({
@@ -130,6 +147,60 @@ export default function InternationalHistoryClient({
   const handleDailyYearChange = (yr: string) => {
     setDailyYear(yr);
     setDailyPage(1);
+  };
+
+  // ── Monthly Tab State (1960 - 2026) ──
+  const [monthlyData, setMonthlyData] = useState<any[]>([]);
+  const [monthlyLoading, setMonthlyLoading] = useState(false);
+  const [monthlyYear, setMonthlyYear] = useState<string>('all');
+  const [monthlyPage, setMonthlyPage] = useState(1);
+  const monthlyRowsPerPage = 24;
+
+  useEffect(() => {
+    if (tab === 'bymonth' && monthlyData.length === 0 && !monthlyLoading) {
+      setMonthlyLoading(true);
+      fetch('/data/international-monthly-rates.json')
+        .then(res => res.json())
+        .then(json => {
+          if (json && json.data) {
+            const rev = [...json.data].reverse();
+            setMonthlyData(rev);
+          }
+        })
+        .catch(err => console.error('Failed to load monthly rates:', err))
+        .finally(() => setMonthlyLoading(false));
+    }
+  }, [tab, monthlyData.length, monthlyLoading]);
+
+  const availableMonthlyYears = useMemo(() => {
+    const setYears = new Set<number>();
+    monthlyData.forEach(r => {
+      if (r.month) {
+        const y = parseInt(r.month.slice(0, 4), 10);
+        if (!isNaN(y)) setYears.add(y);
+      }
+    });
+    return Array.from(setYears).sort((a, b) => b - a);
+  }, [monthlyData]);
+
+  const filteredMonthly = useMemo(() => {
+    let list = monthlyData;
+    if (monthlyYear !== 'all') {
+      const yrPrefix = monthlyYear + 'M';
+      list = list.filter(r => r.month && r.month.startsWith(yrPrefix));
+    }
+    return list;
+  }, [monthlyData, monthlyYear]);
+
+  const totalMonthlyPages = Math.ceil(filteredMonthly.length / monthlyRowsPerPage) || 1;
+  const pagedMonthly = useMemo(() => {
+    const start = (monthlyPage - 1) * monthlyRowsPerPage;
+    return filteredMonthly.slice(start, start + monthlyRowsPerPage);
+  }, [filteredMonthly, monthlyPage]);
+
+  const handleMonthlyYearChange = (yr: string) => {
+    setMonthlyYear(yr);
+    setMonthlyPage(1);
   };
 
   const multiplier = getUnitMultiplier(unit);
@@ -214,6 +285,7 @@ export default function InternationalHistoryClient({
 
   const tabs: { id: TabType; label: string }[] = [
     { id: 'byyear', label: 'By Year' },
+    { id: 'bymonth', label: 'By Month' },
     { id: 'daily', label: 'Daily Rates' },
     { id: 'yearminmax', label: 'Year Min/Max' },
     { id: 'bydecade', label: 'By Decade' },
@@ -508,6 +580,214 @@ export default function InternationalHistoryClient({
         )}
 
         {/* ══════════════════════════════════════════════════════════════
+            TAB: BY MONTH (Monthly Benchmark 1960 - 2026)
+        ══════════════════════════════════════════════════════════════ */}
+        {tab === 'bymonth' && (
+          <div>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+              <div>
+                <h3 className="text-lg font-bold text-slate-900">
+                  Monthly Gold &amp; Silver Rates (1960 - 2026)
+                </h3>
+                <p className="text-xs text-slate-500 mt-0.5">
+                  Official historical monthly averages and ranges from the World Bank Pink Sheet (1960–2024) and COMEX futures (2025–2026).
+                </p>
+              </div>
+              <span className="inline-flex items-center self-start sm:self-auto px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                {filteredMonthly.length.toLocaleString()} Months
+              </span>
+            </div>
+
+            {/* Filter Controls */}
+            <div className="flex flex-wrap items-center gap-3 mb-5">
+              <div className="relative">
+                <select
+                  value={monthlyYear}
+                  onChange={e => {
+                    handleMonthlyYearChange(e.target.value);
+                  }}
+                  className="appearance-none bg-white border border-slate-300 rounded-xl pl-4 pr-10 py-2.5 text-sm font-semibold text-slate-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 cursor-pointer min-w-[190px]"
+                >
+                  <option value="all">All Years (1960 - 2026)</option>
+                  {availableMonthlyYears.map(yr => (
+                    <option key={yr} value={String(yr)}>Year {yr}</option>
+                  ))}
+                </select>
+                <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              </div>
+
+              {monthlyYear !== 'all' && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMonthlyYear('all');
+                    setMonthlyPage(1);
+                  }}
+                  className="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-3.5 py-2.5 rounded-xl text-xs transition-colors cursor-pointer"
+                >
+                  Reset Filter
+                </button>
+              )}
+            </div>
+
+            {/* Unit Toggle */}
+            <div className="flex justify-center my-5">
+              <div className="inline-flex bg-slate-100 p-1 rounded-full border border-slate-200/60 shadow-inner flex-wrap justify-center">
+                {(['oz', 'gram', '10g', 'kg'] as UnitType[]).map(u => (
+                  <button
+                    key={u}
+                    type="button"
+                    onClick={() => setUnit(u)}
+                    className={`px-5 sm:px-7 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                      unit === u
+                        ? 'bg-white text-slate-900 shadow-sm'
+                        : 'text-slate-500 hover:text-slate-900 font-semibold'
+                    }`}
+                  >
+                    {u === 'oz' ? 'Troy Ounce' : u === 'gram' ? 'Grams' : u === '10g' ? '10 Grams' : 'Kilogram'}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Loading State */}
+            {monthlyLoading && (
+              <div className="py-16 text-center">
+                <Loader2 className="w-8 h-8 text-amber-600 animate-spin mx-auto mb-3" />
+                <p className="text-sm font-bold text-slate-700">Loading historical monthly rates...</p>
+                <p className="text-xs text-slate-400 mt-1">Extracting 803 monthly records (1960–2026)</p>
+              </div>
+            )}
+
+            {/* Monthly Table */}
+            {!monthlyLoading && (
+              <div className="overflow-x-auto">
+                <table className="w-full text-xs sm:text-sm text-left border-collapse">
+                  <thead>
+                    <tr className="border-b border-slate-200 text-slate-500 font-bold text-[11px] sm:text-xs uppercase tracking-wider bg-slate-50/75">
+                      <th scope="col" className="py-3 px-4 text-left">Month</th>
+                      <th scope="col" className="py-3 px-4 text-right">Gold Average {unitLabel}</th>
+                      <th scope="col" className="py-3 px-4 text-right">Gold High / Low</th>
+                      <th scope="col" className="py-3 px-4 text-right">Silver Average {unitLabel}</th>
+                      <th scope="col" className="py-3 px-4 text-right">Silver High / Low</th>
+                      <th scope="col" className="py-3 px-4 text-right">Gold-Silver Ratio</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 font-medium">
+                    {pagedMonthly.length === 0 ? (
+                      <tr>
+                        <td colSpan={6} className="py-8 text-center text-slate-500 text-sm">
+                          No monthly records match your filter criteria.
+                        </td>
+                      </tr>
+                    ) : (
+                      pagedMonthly.map((row, idx) => {
+                        const gAvg = row.gold ? fmtUSD(row.gold * multiplier) : '-';
+                        const gHigh = row.gold_high ? fmtUSD(row.gold_high * multiplier) : '-';
+                        const gLow = row.gold_low ? fmtUSD(row.gold_low * multiplier) : '-';
+                        const sAvg = row.silver ? fmtUSD(row.silver * multiplier) : '-';
+                        const sHigh = row.silver_high ? fmtUSD(row.silver_high * multiplier) : '-';
+                        const sLow = row.silver_low ? fmtUSD(row.silver_low * multiplier) : '-';
+                        const ratio = row.gold && row.silver && row.silver > 0 ? (row.gold / row.silver).toFixed(2) : null;
+                        const ratioStr = ratio ? `${ratio}:1` : '-';
+
+                        return (
+                          <tr key={row.month || idx} className="hover:bg-amber-50/20 transition-colors">
+                            <td className="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">
+                              {formatMonthLabel(row.month)}
+                            </td>
+                            <td className="py-3 px-4 font-bold text-amber-950 text-right whitespace-nowrap">
+                              {gAvg}
+                            </td>
+                            <td className="py-3 px-4 text-slate-500 text-right whitespace-nowrap text-xs">
+                              {gHigh !== '-' && gLow !== '-' ? (
+                                <>
+                                  <span className="text-emerald-700 font-semibold">{gHigh}</span>
+                                  <span className="mx-1 text-slate-300">/</span>
+                                  <span className="text-rose-700 font-semibold">{gLow}</span>
+                                </>
+                              ) : (
+                                <span className="text-slate-400">—</span>
+                              )}
+                            </td>
+                            <td className="py-3 px-4 font-bold text-slate-800 text-right whitespace-nowrap">
+                              {sAvg}
+                            </td>
+                            <td className="py-3 px-4 text-slate-500 text-right whitespace-nowrap text-xs">
+                              {sHigh !== '-' && sLow !== '-' ? (
+                                <>
+                                  <span className="text-emerald-700 font-semibold">{sHigh}</span>
+                                  <span className="mx-1 text-slate-300">/</span>
+                                  <span className="text-rose-700 font-semibold">{sLow}</span>
+                                </>
+                              ) : (
+                                <span className="text-slate-400">—</span>
+                              )}
+                            </td>
+                            <td className="py-3 px-4 text-right whitespace-nowrap font-semibold text-slate-700">
+                              {ratioStr}
+                            </td>
+                          </tr>
+                        );
+                      })
+                    )}
+                  </tbody>
+                </table>
+
+                {/* Pagination Controls */}
+                {totalMonthlyPages > 1 && (
+                  <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mt-6 pt-4 border-t border-slate-100 text-xs text-slate-600">
+                    <div>
+                      Showing{' '}
+                      <span className="font-bold text-slate-900">
+                        {Math.min(filteredMonthly.length, (monthlyPage - 1) * monthlyRowsPerPage + 1)}
+                      </span>
+                      {' '}to{' '}
+                      <span className="font-bold text-slate-900">
+                        {Math.min(filteredMonthly.length, monthlyPage * monthlyRowsPerPage)}
+                      </span>
+                      {' '}of{' '}
+                      <span className="font-bold text-slate-900">{filteredMonthly.length.toLocaleString()}</span>
+                      {' '}months
+                    </div>
+
+                    <div className="flex items-center gap-1.5">
+                      <button
+                        type="button"
+                        onClick={() => setMonthlyPage(p => Math.max(1, p - 1))}
+                        disabled={monthlyPage === 1}
+                        className="px-3.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+                      >
+                        Previous
+                      </button>
+
+                      <span className="px-3 py-1.5 text-xs font-bold text-slate-800">
+                        Page {monthlyPage} of {totalMonthlyPages}
+                      </span>
+
+                      <button
+                        type="button"
+                        onClick={() => setMonthlyPage(p => Math.min(totalMonthlyPages, p + 1))}
+                        disabled={monthlyPage === totalMonthlyPages}
+                        className="px-3.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+                      >
+                        Next
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                <div className="mt-4 p-3.5 bg-slate-50 rounded-xl border border-slate-200/80 text-xs text-slate-500">
+                  <p>
+                    <strong>Data Source:</strong> Monthly averages (1960–2024) are derived from the World Bank Commodity Markets Pink Sheet (London Gold &amp; Silver Fixing). 2025–2026 data is calculated from the CME Group COMEX continuous futures daily session settlements.
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* ══════════════════════════════════════════════════════════════
             TAB: DAILY RATES (COMEX Daily Sessions 2000 - 2026)
         ══════════════════════════════════════════════════════════════ */}
         {tab === 'daily' && (
@@ -709,7 +989,7 @@ export default function InternationalHistoryClient({
 
                 <div className="mt-4 p-3.5 bg-slate-50 rounded-xl border border-slate-200/80 text-xs text-slate-500">
                   <p>
-                    <strong>Data Scope Note:</strong> Continuous electronic futures daily trading data covers 2000 to 2026 (6,586 trading days) from the CME Group COMEX benchmark. For official 1970–1999 London Bullion Market fixings and World Bank monthly averages, please select the <strong>By Year</strong> or <strong>By Decade</strong> tabs.
+                    <strong>Data Scope Note:</strong> Continuous electronic futures daily trading data covers 2000 to 2026 (6,586 trading days) from the CME Group COMEX benchmark. For official 1960–2026 monthly averages and 1970–2026 London Bullion Market fixings, please select the <strong>By Month</strong>, <strong>By Year</strong>, or <strong>By Decade</strong> tabs.
                   </p>
                 </div>
               </div>

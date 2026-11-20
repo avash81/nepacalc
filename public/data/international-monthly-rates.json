@@ -1,7 +1,7 @@
 {
-  "source": "World Bank Commodity Markets (Pink Sheet) - London Afternoon Gold and Silver Fixing",
+  "source": "World Bank Commodity Markets (1960-2024) & CME Group COMEX Futures (2025-2026)",
   "unit": "USD per troy ounce",
-  "totalMonths": 780,
+  "totalMonths": 803,
   "data": [
     {
       "month": "1960M01",
@@ -3902,6 +3902,236 @@
       "month": "2024M12",
       "gold": 2648.01,
       "silver": 30.764
+    },
+    {
+      "month": "2025M01",
+      "gold": 2727.53,
+      "silver": 30.834,
+      "gold_high": 2838.0,
+      "gold_low": 2624.6,
+      "silver_high": 32.76,
+      "silver_low": 29.26,
+      "days": 21
+    },
+    {
+      "month": "2025M02",
+      "gold": 2914.92,
+      "silver": 32.533,
+      "gold_high": 2974.0,
+      "gold_low": 2802.2,
+      "silver_high": 34.08,
+      "silver_low": 31.08,
+      "days": 19
+    },
+    {
+      "month": "2025M03",
+      "gold": 2992.17,
+      "silver": 33.547,
+      "gold_high": 3132.5,
+      "gold_low": 2866.3,
+      "silver_high": 35.26,
+      "silver_low": 31.38,
+      "days": 21
+    },
+    {
+      "month": "2025M04",
+      "gold": 3231.54,
+      "silver": 32.16,
+      "gold_high": 3509.9,
+      "gold_low": 2970.4,
+      "silver_high": 34.85,
+      "silver_low": 28.31,
+      "days": 21
+    },
+    {
+      "month": "2025M05",
+      "gold": 3286.86,
+      "silver": 32.704,
+      "gold_high": 3448.2,
+      "gold_low": 3123.3,
+      "silver_high": 33.58,
+      "silver_low": 31.68,
+      "days": 21
+    },
+    {
+      "month": "2025M06",
+      "gold": 3371.28,
+      "silver": 35.996,
+      "gold_high": 3476.3,
+      "gold_low": 3250.5,
+      "silver_high": 37.26,
+      "silver_low": 33.45,
+      "days": 20
+    },
+    {
+      "month": "2025M07",
+      "gold": 3348.16,
+      "silver": 37.686,
+      "gold_high": 3451.7,
+      "gold_low": 3263.9,
+      "silver_high": 39.41,
+      "silver_low": 35.85,
+      "days": 23
+    },
+    {
+      "month": "2025M08",
+      "gold": 3420.57,
+      "silver": 38.154,
+      "gold_high": 3534.1,
+      "gold_low": 3331.4,
+      "silver_high": 40.31,
+      "silver_low": 36.35,
+      "days": 21
+    },
+    {
+      "month": "2025M09",
+      "gold": 3719.18,
+      "silver": 42.792,
+      "gold_high": 3899.2,
+      "gold_low": 3506.0,
+      "silver_high": 46.96,
+      "silver_low": 40.19,
+      "days": 21
+    },
+    {
+      "month": "2025M10",
+      "gold": 4067.3,
+      "silver": 48.422,
+      "gold_high": 4398.0,
+      "gold_low": 3842.8,
+      "silver_high": 53.34,
+      "silver_low": 45.38,
+      "days": 23
+    },
+    {
+      "month": "2025M11",
+      "gold": 4090.86,
+      "silver": 50.476,
+      "gold_high": 4263.1,
+      "gold_low": 3935.7,
+      "silver_high": 56.46,
+      "silver_low": 46.81,
+      "days": 19
+    },
+    {
+      "month": "2025M12",
+      "gold": 4337.67,
+      "silver": 64.537,
+      "gold_high": 4584.0,
+      "gold_low": 4194.0,
+      "silver_high": 79.7,
+      "silver_low": 56.14,
+      "days": 22
+    },
+    {
+      "month": "2026M01",
+      "gold": 4739.93,
+      "silver": 90.434,
+      "gold_high": 5586.2,
+      "gold_low": 4319.7,
+      "silver_high": 121.3,
+      "silver_low": 70.56,
+      "days": 20
+    },
+    {
+      "month": "2026M02",
+      "gold": 5035.54,
+      "silver": 81.69,
+      "gold_high": 5299.0,
+      "gold_low": 4423.2,
+      "silver_high": 93.88,
+      "silver_low": 68.71,
+      "days": 19
+    },
+    {
+      "month": "2026M03",
+      "gold": 4864.14,
+      "silver": 77.877,
+      "gold_high": 5434.1,
+      "gold_low": 4100.0,
+      "silver_high": 95.86,
+      "silver_low": 61.09,
+      "days": 22
+    },
+    {
+      "month": "2026M04",
+      "gold": 4744.44,
+      "silver": 75.956,
+      "gold_high": 4917.7,
+      "gold_low": 4522.2,
+      "silver_high": 82.83,
+      "silver_low": 69.83,
+      "days": 21
+    },
+    {
+      "month": "2026M05",
+      "gold": 4598.23,
+      "silver": 78.141,
+      "gold_high": 4783.4,
+      "gold_low": 4363.5,
+      "silver_high": 88.89,
+      "silver_low": 71.97,
+      "days": 20
+    },
+    {
+      "month": "2026M06",
+      "gold": 4257.85,
+      "silver": 66.387,
+      "gold_high": 4577.3,
+      "gold_low": 3955.4,
+      "silver_high": 76.03,
+      "silver_low": 57.03,
+      "days": 21
+    },
+    {
+      "month": "2026M07",
+      "gold": 4078.74,
+      "silver": 58.614,
+      "gold_high": 4215.5,
+      "gold_low": 3963.0,
+      "silver_high": 62.62,
+      "silver_low": 55.01,
+      "days": 22
+    },
+    {
+      "month": "2026M08",
+      "gold": 4468.87,
+      "silver": 65.286,
+      "gold_high": 4755.0,
+      "gold_low": 4074.0,
+      "silver_high": 71.16,
+      "silver_low": 57.67,
+      "days": 21
+    },
+    {
+      "month": "2026M09",
+      "gold": 4365.38,
+      "silver": 64.492,
+      "gold_high": 4558.5,
+      "gold_low": 4143.1,
+      "silver_high": 68.11,
+      "silver_low": 60.0,
+      "days": 21
+    },
+    {
+      "month": "2026M10",
+      "gold": 4121.15,
+      "silver": 57.035,
+      "gold_high": 4259.0,
+      "gold_low": 3879.3,
+      "silver_high": 61.62,
+      "silver_low": 48.88,
+      "days": 22
+    },
+    {
+      "month": "2026M11",
+      "gold": 3918.01,
+      "silver": 49.036,
+      "gold_high": 4157.7,
+      "gold_low": 3514.9,
+      "silver_high": 53.21,
+      "silver_low": 41.02,
+      "days": 15
     }
   ]
 }
