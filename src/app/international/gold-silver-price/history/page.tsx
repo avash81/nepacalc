@@ -408,21 +408,7 @@ export default function InternationalHistoryPage() {
             </p>
           </div>
 
-          {/* Featured Infographic / Image with SEO Alt Text and Explicit Dimensions */}
-          <figure className="my-6 overflow-hidden rounded-2xl border border-slate-200">
-            <img
-              src="/images/og/international-gold-silver.jpg"
-              alt="Gold and Silver Price History from 1970 to 2026 Historical Spot Trends in USD"
-              width={1200}
-              height={630}
-              loading="lazy"
-              decoding="async"
-              className="w-full h-auto object-cover max-h-[360px]"
-            />
-            <figcaption className="bg-slate-50 px-4 py-2 text-xs text-slate-500 text-center border-t border-slate-200">
-              Official 56-year bullion benchmark cycle for gold and silver spot rates (1970 - 2026) in US Dollars.
-            </figcaption>
-          </figure>
+
 
           {/* Milestone Years Comparison Table */}
           <div className="mt-6 overflow-hidden rounded-xl border border-slate-200">
