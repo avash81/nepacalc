@@ -3,163 +3,986 @@
     "title": "International Gold & Silver Historical Price Data (1970-2026)",
     "currency": "USD",
     "baseUnit": "Troy Ounce (31.1034768 grams)",
-    "sources": "LBMA Daily Benchmarks, COMEX Continuous Futures, World Gold Council, Federal Reserve Economic Data",
-    "lastUpdated": "2026-11-17T22:00:00Z"
+    "sources": "World Bank Commodity Markets (Pink Sheet 1960-2024), London Bullion Market Association (LBMA fixings 1970-2026), COMEX CME Continuous Futures (2000-2026), MeasuringWorth Academic Historical Series",
+    "lastUpdated": "2026-11-20T21:57:52.734806Z",
+    "totalYears": 57,
+    "status": "official_verified"
   },
   "milestones": {
     "gold": {
-      "allTimeHigh": { "price": 5477.79, "year": 2026, "date": "2026-02-14", "context": "Global sovereign de-dollarization and unprecedented central bank reserve accumulation" },
-      "peak2024": { "price": 2693.76, "year": 2024, "date": "2024-10-31", "context": "US Federal Reserve interest rate easing cycle and Middle East tensions" },
-      "peak2020": { "price": 2058.40, "year": 2020, "date": "2020-08-06", "context": "COVID-19 monetary stimulus and global zero interest rate policy (ZIRP)" },
-      "peak2011": { "price": 1921.18, "year": 2011, "date": "2011-09-06", "context": "European Sovereign Debt Crisis and US credit rating downgrade" },
-      "peak1980": { "price": 850.00, "year": 1980, "date": "1980-01-21", "context": "The Great Inflation, Iranian Revolution, and Soviet invasion of Afghanistan" },
-      "nixonShock1971": { "price": 35.00, "year": 1971, "date": "1971-08-15", "context": "President Nixon suspends dollar convertibility into gold, ending Bretton Woods" }
+      "allTimeHigh": {
+        "rate": 5586.2,
+        "date": "2026-01-28",
+        "year": 2026,
+        "description": "Global de-dollarization and massive institutional bullion accumulation lifted gold to its record peak."
+      },
+      "allTimeLow": {
+        "rate": 34.75,
+        "date": "1970-01-16",
+        "year": 1970,
+        "description": "Statutory Bretton Woods gold convertibility peg ($35/oz) before President Nixon ended dollar convertibility."
+      },
+      "biggestOneDayGain": {
+        "pct": 13.5,
+        "date": "1980-01-21",
+        "description": "Intense stagflation buying and geopolitical instability triggered historic single-day spike."
+      }
     },
     "silver": {
-      "allTimeHigh": { "price": 113.95, "year": 2026, "date": "2026-02-18", "context": "Structural global supply deficit driven by massive photovoltaic solar and EV industrial demand" },
-      "peak2011": { "price": 49.47, "year": 2011, "date": "2011-04-28", "context": "Speculative commodities boom following quantitative easing (QE2)" },
-      "peak1980": { "price": 49.45, "year": 1980, "date": "1980-01-18", "context": "Hunt Brothers attempt to corner the global physical silver market" },
-      "historicLow1971": { "price": 1.29, "year": 1971, "date": "1971-11-03", "context": "Pre-inflationary modern baseline" }
+      "allTimeHigh": {
+        "rate": 121.3,
+        "date": "2026-02-14",
+        "year": 2026,
+        "description": "Record industrial demand from photovoltaics, EV manufacturing, and severe global physical supply deficits."
+      },
+      "allTimeLow": {
+        "rate": 1.29,
+        "date": "1971-11-03",
+        "year": 1971,
+        "description": "Pre-stagflation baseline silver market rate."
+      }
     },
     "goldSilverRatio": {
-      "historicalAverage": 55.4,
-      "allTimePeak": 125.6,
-      "allTimePeakDate": "March 2020",
-      "allTimeLow": 17.2,
-      "allTimeLowDate": "January 1980",
-      "current": 81.6
+      "allTimeHigh": {
+        "ratio": 125.6,
+        "year": 2020,
+        "description": "March 2020 pandemic liquidity freeze: gold held safe-haven value while industrial silver plummeted."
+      },
+      "allTimeLow": {
+        "ratio": 15.2,
+        "year": 1980,
+        "description": "January 1980 Hunt Brothers silver squeeze briefly compressed the gold-silver ratio to historical parity."
+      }
     }
   },
   "cagr": {
     "gold": {
-      "fiveYear": 16.4,
-      "tenYear": 11.8,
-      "twentyYear": 9.5,
-      "fiftyYear": 8.7
+      "fiveYear": 14.12,
+      "tenYear": 11.9,
+      "twentyYear": 8.97,
+      "fiftyYear": 6.65
     },
     "silver": {
-      "fiveYear": 14.1,
-      "tenYear": 10.9,
-      "twentyYear": 7.8,
-      "fiftyYear": 6.9
+      "fiveYear": 12.09,
+      "tenYear": 9.98,
+      "twentyYear": 6.02,
+      "fiftyYear": 4.6
     }
   },
   "goldYearly": [
-    { "year": 2026, "avg": 4542.81, "high": 5477.79, "low": 3631.10, "close": 3877.15, "returnPct": -10.21 },
-    { "year": 2025, "avg": 3431.54, "high": 4533.57, "low": 2624.50, "close": 4318.18, "returnPct": 64.53 },
-    { "year": 2024, "avg": 2386.20, "high": 2693.76, "low": 2025.82, "close": 2624.49, "returnPct": 27.17 },
-    { "year": 2023, "avg": 1927.99, "high": 2053.13, "low": 1811.27, "close": 1932.50, "returnPct": 5.93 },
-    { "year": 2022, "avg": 1801.87, "high": 2043.30, "low": 1626.65, "close": 1824.32, "returnPct": -0.23 },
-    { "year": 2021, "avg": 1798.89, "high": 1954.40, "low": 1678.00, "close": 1828.60, "returnPct": -3.51 },
-    { "year": 2020, "avg": 1773.73, "high": 2058.40, "low": 1472.35, "close": 1895.10, "returnPct": 24.43 },
-    { "year": 2019, "avg": 1393.34, "high": 1542.60, "low": 1270.05, "close": 1523.00, "returnPct": 18.83 },
-    { "year": 2018, "avg": 1268.93, "high": 1360.25, "low": 1176.70, "close": 1281.65, "returnPct": -1.15 },
-    { "year": 2017, "avg": 1260.39, "high": 1351.20, "low": 1162.00, "close": 1296.50, "returnPct": 12.57 },
-    { "year": 2016, "avg": 1251.92, "high": 1372.60, "low": 1073.60, "close": 1151.70, "returnPct": 8.63 },
-    { "year": 2015, "avg": 1158.86, "high": 1298.00, "low": 1049.60, "close": 1060.20, "returnPct": -11.59 },
-    { "year": 2014, "avg": 1266.06, "high": 1379.00, "low": 1144.50, "close": 1199.25, "returnPct": -0.19 },
-    { "year": 2013, "avg": 1409.51, "high": 1692.50, "low": 1192.75, "close": 1201.50, "returnPct": -27.79 },
-    { "year": 2012, "avg": 1668.86, "high": 1790.00, "low": 1537.50, "close": 1664.00, "returnPct": 5.68 },
-    { "year": 2011, "avg": 1573.16, "high": 1896.50, "low": 1316.00, "close": 1574.50, "returnPct": 11.65 },
-    { "year": 2010, "avg": 1226.66, "high": 1426.00, "low": 1052.25, "close": 1410.25, "returnPct": 29.74 },
-    { "year": 2009, "avg": 972.35, "high": 1212.50, "low": 810.00, "close": 1087.00, "returnPct": 24.08 },
-    { "year": 2008, "avg": 871.96, "high": 1034.00, "low": 712.50, "close": 876.00, "returnPct": 5.54 },
-    { "year": 2007, "avg": 695.39, "high": 841.00, "low": 636.50, "close": 830.00, "returnPct": 31.54 },
-    { "year": 2006, "avg": 603.80, "high": 725.00, "low": 536.50, "close": 631.00, "returnPct": 23.24 },
-    { "year": 2005, "avg": 444.74, "high": 536.50, "low": 411.50, "close": 512.00, "returnPct": 17.58 },
-    { "year": 2004, "avg": 409.72, "high": 454.00, "low": 375.00, "close": 435.45, "returnPct": 5.65 },
-    { "year": 2003, "avg": 363.38, "high": 416.25, "low": 320.00, "close": 412.10, "returnPct": 19.94 },
-    { "year": 2002, "avg": 309.73, "high": 349.30, "low": 277.50, "close": 343.60, "returnPct": 24.40 },
-    { "year": 2001, "avg": 271.04, "high": 293.50, "low": 255.95, "close": 276.20, "returnPct": -1.00 },
-    { "year": 2000, "avg": 279.11, "high": 315.50, "low": 264.00, "close": 279.00, "returnPct": -5.73 },
-    { "year": 1999, "avg": 278.86, "high": 326.00, "low": 252.80, "close": 296.00, "returnPct": 2.07 },
-    { "year": 1998, "avg": 294.25, "high": 314.60, "low": 273.20, "close": 290.00, "returnPct": -0.17 },
-    { "year": 1997, "avg": 331.00, "high": 368.50, "low": 283.00, "close": 290.50, "returnPct": -21.43 },
-    { "year": 1996, "avg": 387.73, "high": 416.25, "low": 353.00, "close": 370.00, "returnPct": -4.64 },
-    { "year": 1995, "avg": 384.07, "high": 396.00, "low": 372.40, "close": 388.00, "returnPct": 1.70 },
-    { "year": 1994, "avg": 384.15, "high": 396.50, "low": 370.10, "close": 381.50, "returnPct": -2.18 },
-    { "year": 1993, "avg": 359.88, "high": 405.50, "low": 326.00, "close": 390.00, "returnPct": 17.11 },
-    { "year": 1992, "avg": 343.95, "high": 359.50, "low": 330.25, "close": 333.00, "returnPct": -5.54 },
-    { "year": 1991, "avg": 362.34, "high": 403.00, "low": 350.25, "close": 352.50, "returnPct": -9.00 },
-    { "year": 1990, "avg": 383.51, "high": 424.00, "low": 346.00, "close": 387.50, "returnPct": -9.88 },
-    { "year": 1989, "avg": 381.02, "high": 416.75, "low": 356.00, "close": 430.00, "returnPct": 0.47 },
-    { "year": 1988, "avg": 437.83, "high": 484.50, "low": 395.00, "close": 428.00, "returnPct": -15.93 },
-    { "year": 1987, "avg": 446.75, "high": 502.50, "low": 393.50, "close": 509.00, "returnPct": 23.85 },
-    { "year": 1986, "avg": 368.05, "high": 440.00, "low": 327.00, "close": 411.00, "returnPct": 21.24 },
-    { "year": 1985, "avg": 317.26, "high": 339.00, "low": 284.25, "close": 339.00, "returnPct": 8.12 },
-    { "year": 1984, "avg": 360.55, "high": 406.50, "low": 304.50, "close": 313.50, "returnPct": -18.70 },
-    { "year": 1983, "avg": 424.24, "high": 511.50, "low": 399.50, "close": 385.50, "returnPct": -15.17 },
-    { "year": 1982, "avg": 376.00, "high": 488.50, "low": 296.50, "close": 454.50, "returnPct": 16.03 },
-    { "year": 1981, "avg": 460.18, "high": 599.00, "low": 391.00, "close": 391.75, "returnPct": -32.58 },
-    { "year": 1980, "avg": 612.56, "high": 850.00, "low": 474.00, "close": 581.00, "returnPct": 28.56 },
-    { "year": 1979, "avg": 307.65, "high": 524.00, "low": 216.50, "close": 524.00, "returnPct": 125.05 },
-    { "year": 1978, "avg": 193.35, "high": 243.65, "low": 167.80, "close": 232.85, "returnPct": 33.15 },
-    { "year": 1977, "avg": 147.72, "high": 175.80, "low": 130.00, "close": 174.88, "returnPct": 23.33 },
-    { "year": 1976, "avg": 124.74, "high": 145.00, "low": 103.05, "close": 141.80, "returnPct": -0.14 },
-    { "year": 1975, "avg": 161.02, "high": 186.50, "low": 126.00, "close": 142.00, "returnPct": -25.26 },
-    { "year": 1974, "avg": 159.02, "high": 197.50, "low": 115.00, "close": 189.95, "returnPct": 65.17 },
-    { "year": 1973, "avg": 97.22, "high": 127.00, "low": 64.50, "close": 115.00, "returnPct": 72.93 },
-    { "year": 1972, "avg": 58.17, "high": 70.00, "low": 43.80, "close": 66.50, "returnPct": 47.78 },
-    { "year": 1971, "avg": 40.80, "high": 43.90, "low": 37.38, "close": 45.00, "returnPct": 20.32 },
-    { "year": 1970, "avg": 35.96, "high": 39.19, "low": 34.75, "close": 37.38, "returnPct": 6.16 }
+    {
+      "year": 2026,
+      "avg": 4478.51,
+      "high": 5586.2,
+      "low": 3514.9,
+      "close": 3538.7,
+      "returnPct": -18.48
+    },
+    {
+      "year": 2025,
+      "avg": 3466.09,
+      "high": 4584.0,
+      "low": 2624.6,
+      "close": 4341.1,
+      "returnPct": 64.37
+    },
+    {
+      "year": 2024,
+      "avg": 2404.71,
+      "high": 2801.8,
+      "low": 1996.4,
+      "close": 2641.0,
+      "returnPct": 27.47
+    },
+    {
+      "year": 2023,
+      "avg": 1954.52,
+      "high": 2152.3,
+      "low": 1810.8,
+      "close": 2071.8,
+      "returnPct": 13.45
+    },
+    {
+      "year": 2022,
+      "avg": 1805.19,
+      "high": 2078.8,
+      "low": 1618.3,
+      "close": 1826.2,
+      "returnPct": -0.13
+    },
+    {
+      "year": 2021,
+      "avg": 1798.91,
+      "high": 1962.5,
+      "low": 1673.3,
+      "close": 1828.6,
+      "returnPct": -3.51
+    },
+    {
+      "year": 2020,
+      "avg": 1776.81,
+      "high": 2089.2,
+      "low": 1452.1,
+      "close": 1895.1,
+      "returnPct": 24.72
+    },
+    {
+      "year": 2019,
+      "avg": 1392.72,
+      "high": 1553.2,
+      "low": 1266.0,
+      "close": 1519.5,
+      "returnPct": 18.87
+    },
+    {
+      "year": 2018,
+      "avg": 1267.6,
+      "high": 1365.4,
+      "low": 1161.4,
+      "close": 1278.3,
+      "returnPct": -2.14
+    },
+    {
+      "year": 2017,
+      "avg": 1257.7,
+      "high": 1355.8,
+      "low": 1146.5,
+      "close": 1306.3,
+      "returnPct": 13.59
+    },
+    {
+      "year": 2016,
+      "avg": 1249.71,
+      "high": 1374.9,
+      "low": 1063.2,
+      "close": 1150.0,
+      "returnPct": 8.46
+    },
+    {
+      "year": 2015,
+      "avg": 1158.84,
+      "high": 1303.5,
+      "low": 1046.2,
+      "close": 1060.3,
+      "returnPct": -10.44
+    },
+    {
+      "year": 2014,
+      "avg": 1265.82,
+      "high": 1391.4,
+      "low": 1133.0,
+      "close": 1183.9,
+      "returnPct": -1.5
+    },
+    {
+      "year": 2013,
+      "avg": 1408.66,
+      "high": 1694.7,
+      "low": 1182.0,
+      "close": 1201.9,
+      "returnPct": -28.24
+    },
+    {
+      "year": 2012,
+      "avg": 1668.84,
+      "high": 1794.8,
+      "low": 1528.5,
+      "close": 1674.8,
+      "returnPct": 6.96
+    },
+    {
+      "year": 2011,
+      "avg": 1572.14,
+      "high": 1911.6,
+      "low": 1307.7,
+      "close": 1565.8,
+      "returnPct": 10.18
+    },
+    {
+      "year": 2010,
+      "avg": 1227.5,
+      "high": 1431.1,
+      "low": 1045.2,
+      "close": 1421.1,
+      "returnPct": 29.76
+    },
+    {
+      "year": 2009,
+      "avg": 974.15,
+      "high": 1226.4,
+      "low": 805.6,
+      "close": 1095.2,
+      "returnPct": 23.95
+    },
+    {
+      "year": 2008,
+      "avg": 870.98,
+      "high": 1014.6,
+      "low": 681.0,
+      "close": 883.6,
+      "returnPct": 5.83
+    },
+    {
+      "year": 2007,
+      "avg": 697.01,
+      "high": 843.2,
+      "low": 607.0,
+      "close": 834.9,
+      "returnPct": 31.44
+    },
+    {
+      "year": 2006,
+      "avg": 604.22,
+      "high": 723.0,
+      "low": 518.6,
+      "close": 635.2,
+      "returnPct": 22.84
+    },
+    {
+      "year": 2005,
+      "avg": 445.27,
+      "high": 538.5,
+      "low": 410.1,
+      "close": 517.1,
+      "returnPct": 18.19
+    },
+    {
+      "year": 2004,
+      "avg": 409.52,
+      "high": 456.5,
+      "low": 375.8,
+      "close": 437.5,
+      "returnPct": 5.24
+    },
+    {
+      "year": 2003,
+      "avg": 363.72,
+      "high": 417.2,
+      "low": 319.3,
+      "close": 415.7,
+      "returnPct": 19.59
+    },
+    {
+      "year": 2002,
+      "avg": 310.48,
+      "high": 350.5,
+      "low": 278.1,
+      "close": 347.6,
+      "returnPct": 24.72
+    },
+    {
+      "year": 2001,
+      "avg": 271.04,
+      "high": 294.0,
+      "low": 255.0,
+      "close": 278.7,
+      "returnPct": 2.46
+    },
+    {
+      "year": 2000,
+      "avg": 270.28,
+      "high": 278.4,
+      "low": 263.9,
+      "close": 272.0,
+      "returnPct": -8.11
+    },
+    {
+      "year": 1999,
+      "avg": 278.77,
+      "high": 326.0,
+      "low": 252.8,
+      "close": 296.0,
+      "returnPct": 2.07
+    },
+    {
+      "year": 1998,
+      "avg": 294.16,
+      "high": 314.6,
+      "low": 273.2,
+      "close": 290.0,
+      "returnPct": -0.17
+    },
+    {
+      "year": 1997,
+      "avg": 331.1,
+      "high": 368.5,
+      "low": 283.0,
+      "close": 290.5,
+      "returnPct": -21.49
+    },
+    {
+      "year": 1996,
+      "avg": 387.7,
+      "high": 416.25,
+      "low": 353.0,
+      "close": 370.0,
+      "returnPct": -4.64
+    },
+    {
+      "year": 1995,
+      "avg": 384.16,
+      "high": 396.0,
+      "low": 372.4,
+      "close": 388.0,
+      "returnPct": 1.7
+    },
+    {
+      "year": 1994,
+      "avg": 384.01,
+      "high": 396.5,
+      "low": 370.1,
+      "close": 381.5,
+      "returnPct": -2.18
+    },
+    {
+      "year": 1993,
+      "avg": 359.77,
+      "high": 405.5,
+      "low": 326.0,
+      "close": 390.0,
+      "returnPct": 17.12
+    },
+    {
+      "year": 1992,
+      "avg": 343.73,
+      "high": 359.5,
+      "low": 330.25,
+      "close": 333.0,
+      "returnPct": -5.53
+    },
+    {
+      "year": 1991,
+      "avg": 362.18,
+      "high": 403.0,
+      "low": 350.25,
+      "close": 352.5,
+      "returnPct": -9.03
+    },
+    {
+      "year": 1990,
+      "avg": 383.47,
+      "high": 424.0,
+      "low": 346.0,
+      "close": 387.5,
+      "returnPct": -9.88
+    },
+    {
+      "year": 1989,
+      "avg": 381.43,
+      "high": 416.75,
+      "low": 356.0,
+      "close": 430.0,
+      "returnPct": 0.47
+    },
+    {
+      "year": 1988,
+      "avg": 437.05,
+      "high": 484.5,
+      "low": 395.0,
+      "close": 428.0,
+      "returnPct": -15.91
+    },
+    {
+      "year": 1987,
+      "avg": 446.47,
+      "high": 502.5,
+      "low": 393.5,
+      "close": 509.0,
+      "returnPct": 23.84
+    },
+    {
+      "year": 1986,
+      "avg": 367.69,
+      "high": 440.0,
+      "low": 327.0,
+      "close": 411.0,
+      "returnPct": 21.24
+    },
+    {
+      "year": 1985,
+      "avg": 317.91,
+      "high": 339.0,
+      "low": 284.25,
+      "close": 339.0,
+      "returnPct": 8.13
+    },
+    {
+      "year": 1984,
+      "avg": 360.48,
+      "high": 406.5,
+      "low": 304.5,
+      "close": 313.5,
+      "returnPct": -18.68
+    },
+    {
+      "year": 1983,
+      "avg": 422.53,
+      "high": 511.5,
+      "low": 399.5,
+      "close": 385.5,
+      "returnPct": -15.18
+    },
+    {
+      "year": 1982,
+      "avg": 375.8,
+      "high": 488.5,
+      "low": 296.5,
+      "close": 454.5,
+      "returnPct": 16.02
+    },
+    {
+      "year": 1981,
+      "avg": 459.75,
+      "high": 599.0,
+      "low": 391.0,
+      "close": 391.75,
+      "returnPct": -32.57
+    },
+    {
+      "year": 1980,
+      "avg": 607.86,
+      "high": 850.0,
+      "low": 474.0,
+      "close": 581.0,
+      "returnPct": 10.88
+    },
+    {
+      "year": 1979,
+      "avg": 306.67,
+      "high": 524.0,
+      "low": 216.5,
+      "close": 524.0,
+      "returnPct": 125.04
+    },
+    {
+      "year": 1978,
+      "avg": 193.24,
+      "high": 243.65,
+      "low": 167.8,
+      "close": 232.85,
+      "returnPct": 33.15
+    },
+    {
+      "year": 1977,
+      "avg": 147.72,
+      "high": 175.8,
+      "low": 130.0,
+      "close": 174.88,
+      "returnPct": 23.33
+    },
+    {
+      "year": 1976,
+      "avg": 124.82,
+      "high": 145.0,
+      "low": 103.05,
+      "close": 141.8,
+      "returnPct": -0.14
+    },
+    {
+      "year": 1975,
+      "avg": 161.03,
+      "high": 186.5,
+      "low": 126.0,
+      "close": 142.0,
+      "returnPct": -25.24
+    },
+    {
+      "year": 1974,
+      "avg": 159.25,
+      "high": 197.5,
+      "low": 115.0,
+      "close": 189.95,
+      "returnPct": 65.17
+    },
+    {
+      "year": 1973,
+      "avg": 97.33,
+      "high": 127.0,
+      "low": 64.5,
+      "close": 115.0,
+      "returnPct": 72.93
+    },
+    {
+      "year": 1972,
+      "avg": 58.16,
+      "high": 70.0,
+      "low": 43.8,
+      "close": 66.5,
+      "returnPct": 47.78
+    },
+    {
+      "year": 1971,
+      "avg": 40.8,
+      "high": 43.9,
+      "low": 37.38,
+      "close": 45.0,
+      "returnPct": 20.39
+    },
+    {
+      "year": 1970,
+      "avg": 35.94,
+      "high": 39.19,
+      "low": 34.75,
+      "close": 37.38,
+      "returnPct": 6.19
+    }
   ],
   "silverYearly": [
-    { "year": 2026, "avg": 73.00, "high": 113.95, "low": 46.99, "close": 47.49, "returnPct": -33.72 },
-    { "year": 2025, "avg": 40.16, "high": 44.31, "low": 32.63, "close": 71.65, "returnPct": 147.75 },
-    { "year": 2024, "avg": 27.35, "high": 34.85, "low": 22.08, "close": 28.92, "returnPct": 21.51 },
-    { "year": 2023, "avg": 23.35, "high": 26.06, "low": 20.04, "close": 23.80, "returnPct": -0.71 },
-    { "year": 2022, "avg": 21.73, "high": 26.46, "low": 17.83, "close": 23.97, "returnPct": 2.88 },
-    { "year": 2021, "avg": 25.13, "high": 28.54, "low": 21.57, "close": 23.30, "returnPct": -11.71 },
-    { "year": 2020, "avg": 20.55, "high": 29.78, "low": 12.12, "close": 26.39, "returnPct": 47.84 },
-    { "year": 2019, "avg": 16.21, "high": 19.57, "low": 14.41, "close": 17.85, "returnPct": 15.16 },
-    { "year": 2018, "avg": 15.71, "high": 17.52, "low": 14.03, "close": 15.50, "returnPct": -8.55 },
-    { "year": 2017, "avg": 17.05, "high": 18.54, "low": 15.61, "close": 16.95, "returnPct": 2.91 },
-    { "year": 2016, "avg": 17.14, "high": 20.63, "low": 13.85, "close": 16.47, "returnPct": 18.74 },
-    { "year": 2015, "avg": 15.68, "high": 18.30, "low": 13.74, "close": 13.87, "returnPct": -13.15 },
-    { "year": 2014, "avg": 19.08, "high": 22.18, "low": 15.22, "close": 15.97, "returnPct": -18.10 },
-    { "year": 2013, "avg": 23.79, "high": 32.23, "low": 18.61, "close": 19.50, "returnPct": -34.87 },
-    { "year": 2012, "avg": 31.15, "high": 37.47, "low": 26.68, "close": 29.94, "returnPct": 7.39 },
-    { "year": 2011, "avg": 35.12, "high": 49.47, "low": 26.15, "close": 27.88, "returnPct": -9.19 },
-    { "year": 2010, "avg": 20.19, "high": 30.90, "low": 15.14, "close": 30.70, "returnPct": 80.69 },
-    { "year": 2009, "avg": 14.67, "high": 19.31, "low": 10.11, "close": 16.99, "returnPct": 50.49 },
-    { "year": 2008, "avg": 14.99, "high": 21.31, "low": 8.88, "close": 11.29, "returnPct": -23.61 },
-    { "year": 2007, "avg": 13.38, "high": 15.82, "low": 11.67, "close": 14.78, "returnPct": 14.57 },
-    { "year": 2006, "avg": 11.55, "high": 15.21, "low": 8.83, "close": 12.90, "returnPct": 46.09 },
-    { "year": 2005, "avg": 7.32, "high": 9.23, "low": 6.39, "close": 8.83, "returnPct": 28.91 },
-    { "year": 2004, "avg": 6.67, "high": 8.45, "low": 5.50, "close": 6.85, "returnPct": 14.74 },
-    { "year": 2003, "avg": 4.88, "high": 5.97, "low": 4.37, "close": 5.97, "returnPct": 24.12 },
-    { "year": 2002, "avg": 4.60, "high": 5.10, "low": 4.25, "close": 4.81, "returnPct": 5.25 },
-    { "year": 2001, "avg": 4.37, "high": 4.80, "low": 4.05, "close": 4.57, "returnPct": -0.22 },
-    { "year": 2000, "avg": 4.95, "high": 5.45, "low": 4.55, "close": 4.58, "returnPct": -14.39 },
-    { "year": 1999, "avg": 5.22, "high": 5.75, "low": 4.95, "close": 5.35, "returnPct": 9.18 },
-    { "year": 1998, "avg": 5.54, "high": 7.15, "low": 4.65, "close": 4.90, "returnPct": -15.52 },
-    { "year": 1997, "avg": 4.90, "high": 6.25, "low": 4.20, "close": 5.80, "returnPct": 20.83 },
-    { "year": 1996, "avg": 5.17, "high": 5.70, "low": 4.65, "close": 4.80, "returnPct": -6.80 },
-    { "year": 1995, "avg": 5.20, "high": 6.00, "low": 4.40, "close": 5.15, "returnPct": 6.19 },
-    { "year": 1994, "avg": 5.29, "high": 5.75, "low": 4.70, "close": 4.85, "returnPct": -1.02 },
-    { "year": 1993, "avg": 4.30, "high": 5.50, "low": 3.65, "close": 4.90, "returnPct": 30.67 },
-    { "year": 1992, "avg": 3.94, "high": 4.20, "low": 3.65, "close": 3.75, "returnPct": -2.60 },
-    { "year": 1991, "avg": 4.04, "high": 4.55, "low": 3.55, "close": 3.85, "returnPct": -3.75 },
-    { "year": 1990, "avg": 4.82, "high": 5.35, "low": 3.90, "close": 4.00, "returnPct": -23.08 },
-    { "year": 1989, "avg": 5.50, "high": 6.35, "low": 5.00, "close": 5.20, "returnPct": -16.13 },
-    { "year": 1988, "avg": 6.53, "high": 8.35, "low": 5.80, "close": 6.20, "returnPct": -8.82 },
-    { "year": 1987, "avg": 7.01, "high": 11.25, "low": 5.30, "close": 6.80, "returnPct": 17.24 },
-    { "year": 1986, "avg": 5.47, "high": 6.40, "low": 4.85, "close": 5.80, "returnPct": -1.69 },
-    { "year": 1985, "avg": 6.14, "high": 6.60, "low": 5.50, "close": 5.90, "returnPct": -7.81 },
-    { "year": 1984, "avg": 8.14, "high": 10.10, "low": 6.30, "close": 6.40, "returnPct": -31.18 },
-    { "year": 1983, "avg": 11.44, "high": 14.60, "low": 8.30, "close": 9.30, "returnPct": -13.89 },
-    { "year": 1982, "avg": 7.95, "high": 11.20, "low": 4.90, "close": 10.80, "returnPct": 35.00 },
-    { "year": 1981, "avg": 10.52, "high": 15.00, "low": 8.00, "close": 8.00, "returnPct": -49.69 },
-    { "year": 1980, "avg": 20.63, "high": 49.45, "low": 10.80, "close": 15.90, "returnPct": -35.63 },
-    { "year": 1979, "avg": 11.09, "high": 35.00, "low": 6.00, "close": 24.70, "returnPct": 308.26 },
-    { "year": 1978, "avg": 5.40, "high": 6.24, "low": 4.85, "close": 6.05, "returnPct": 26.57 },
-    { "year": 1977, "avg": 4.62, "high": 5.01, "low": 4.35, "close": 4.78, "returnPct": 8.64 },
-    { "year": 1976, "avg": 4.35, "high": 5.09, "low": 3.78, "close": 4.40, "returnPct": -1.12 },
-    { "year": 1975, "avg": 4.42, "high": 5.23, "low": 3.96, "close": 4.45, "returnPct": 2.30 },
-    { "year": 1974, "avg": 4.71, "high": 6.70, "low": 3.22, "close": 4.35, "returnPct": 33.85 },
-    { "year": 1973, "avg": 2.56, "high": 3.38, "low": 1.96, "close": 3.25, "returnPct": 62.50 },
-    { "year": 1972, "avg": 1.68, "high": 2.04, "low": 1.35, "close": 2.00, "returnPct": 43.88 },
-    { "year": 1971, "avg": 1.55, "high": 1.70, "low": 1.29, "close": 1.39, "returnPct": -15.24 },
-    { "year": 1970, "avg": 1.77, "high": 1.94, "low": 1.56, "close": 1.64, "returnPct": -8.38 }
+    {
+      "year": 2026,
+      "avg": 69.78,
+      "high": 121.3,
+      "low": 41.02,
+      "close": 41.28,
+      "returnPct": -41.14
+    },
+    {
+      "year": 2025,
+      "avg": 40.12,
+      "high": 79.7,
+      "low": 28.31,
+      "close": 70.13,
+      "returnPct": 142.33
+    },
+    {
+      "year": 2024,
+      "avg": 28.3,
+      "high": 34.83,
+      "low": 21.92,
+      "close": 28.94,
+      "returnPct": 21.34
+    },
+    {
+      "year": 2023,
+      "avg": 23.39,
+      "high": 26.2,
+      "low": 19.83,
+      "close": 23.85,
+      "returnPct": -0.04
+    },
+    {
+      "year": 2022,
+      "avg": 21.76,
+      "high": 27.31,
+      "low": 17.32,
+      "close": 23.86,
+      "returnPct": 2.27
+    },
+    {
+      "year": 2021,
+      "avg": 25.14,
+      "high": 30.16,
+      "low": 21.46,
+      "close": 23.33,
+      "returnPct": -11.39
+    },
+    {
+      "year": 2020,
+      "avg": 20.65,
+      "high": 29.53,
+      "low": 11.73,
+      "close": 26.33,
+      "returnPct": 47.67
+    },
+    {
+      "year": 2019,
+      "avg": 16.16,
+      "high": 19.54,
+      "low": 14.24,
+      "close": 17.83,
+      "returnPct": 15.55
+    },
+    {
+      "year": 2018,
+      "avg": 15.65,
+      "high": 17.55,
+      "low": 13.91,
+      "close": 15.43,
+      "returnPct": -9.55
+    },
+    {
+      "year": 2017,
+      "avg": 17.02,
+      "high": 18.5,
+      "low": 15.15,
+      "close": 17.06,
+      "returnPct": 7.03
+    },
+    {
+      "year": 2016,
+      "avg": 17.13,
+      "high": 21.09,
+      "low": 13.71,
+      "close": 15.94,
+      "returnPct": 15.76
+    },
+    {
+      "year": 2015,
+      "avg": 15.66,
+      "high": 18.35,
+      "low": 13.64,
+      "close": 13.77,
+      "returnPct": -11.5
+    },
+    {
+      "year": 2014,
+      "avg": 19.03,
+      "high": 22.05,
+      "low": 14.1,
+      "close": 15.56,
+      "returnPct": -19.54
+    },
+    {
+      "year": 2013,
+      "avg": 23.75,
+      "high": 32.41,
+      "low": 18.18,
+      "close": 19.34,
+      "returnPct": -35.9
+    },
+    {
+      "year": 2012,
+      "avg": 31.14,
+      "high": 37.48,
+      "low": 26.07,
+      "close": 30.17,
+      "returnPct": 8.21
+    },
+    {
+      "year": 2011,
+      "avg": 35.25,
+      "high": 49.52,
+      "low": 26.39,
+      "close": 27.88,
+      "returnPct": -9.8
+    },
+    {
+      "year": 2010,
+      "avg": 20.24,
+      "high": 30.9,
+      "low": 14.82,
+      "close": 30.91,
+      "returnPct": 83.77
+    },
+    {
+      "year": 2009,
+      "avg": 14.7,
+      "high": 19.43,
+      "low": 10.37,
+      "close": 16.82,
+      "returnPct": 49.25
+    },
+    {
+      "year": 2008,
+      "avg": 14.95,
+      "high": 21.18,
+      "low": 8.78,
+      "close": 11.27,
+      "returnPct": -23.85
+    },
+    {
+      "year": 2007,
+      "avg": 13.38,
+      "high": 15.5,
+      "low": 11.47,
+      "close": 14.8,
+      "returnPct": 15.44
+    },
+    {
+      "year": 2006,
+      "avg": 11.55,
+      "high": 14.95,
+      "low": 8.81,
+      "close": 12.82,
+      "returnPct": 45.35
+    },
+    {
+      "year": 2005,
+      "avg": 7.32,
+      "high": 9.17,
+      "low": 6.41,
+      "close": 8.82,
+      "returnPct": 29.52
+    },
+    {
+      "year": 2004,
+      "avg": 6.69,
+      "high": 8.21,
+      "low": 5.49,
+      "close": 6.81,
+      "returnPct": 14.45
+    },
+    {
+      "year": 2003,
+      "avg": 4.89,
+      "high": 5.98,
+      "low": 4.35,
+      "close": 5.95,
+      "returnPct": 23.96
+    },
+    {
+      "year": 2002,
+      "avg": 4.6,
+      "high": 5.15,
+      "low": 4.22,
+      "close": 4.8,
+      "returnPct": 4.8
+    },
+    {
+      "year": 2001,
+      "avg": 4.36,
+      "high": 4.8,
+      "low": 4.03,
+      "close": 4.58,
+      "returnPct": -0.22
+    },
+    {
+      "year": 2000,
+      "avg": 4.78,
+      "high": 5.05,
+      "low": 4.55,
+      "close": 4.59,
+      "returnPct": -13.88
+    },
+    {
+      "year": 1999,
+      "avg": 5.22,
+      "high": 5.75,
+      "low": 4.88,
+      "close": 5.33,
+      "returnPct": 6.81
+    },
+    {
+      "year": 1998,
+      "avg": 5.55,
+      "high": 7.81,
+      "low": 4.62,
+      "close": 4.99,
+      "returnPct": -17.11
+    },
+    {
+      "year": 1997,
+      "avg": 4.91,
+      "high": 6.27,
+      "low": 4.22,
+      "close": 6.02,
+      "returnPct": 25.68
+    },
+    {
+      "year": 1996,
+      "avg": 5.2,
+      "high": 5.83,
+      "low": 4.71,
+      "close": 4.79,
+      "returnPct": -7.17
+    },
+    {
+      "year": 1995,
+      "avg": 5.2,
+      "high": 6.04,
+      "low": 4.41,
+      "close": 5.16,
+      "returnPct": 5.74
+    },
+    {
+      "year": 1994,
+      "avg": 5.28,
+      "high": 5.75,
+      "low": 4.59,
+      "close": 4.88,
+      "returnPct": -4.69
+    },
+    {
+      "year": 1993,
+      "avg": 4.31,
+      "high": 5.42,
+      "low": 3.56,
+      "close": 5.12,
+      "returnPct": 39.51
+    },
+    {
+      "year": 1992,
+      "avg": 3.95,
+      "high": 4.32,
+      "low": 3.65,
+      "close": 3.67,
+      "returnPct": -5.41
+    },
+    {
+      "year": 1991,
+      "avg": 4.05,
+      "high": 4.54,
+      "low": 3.55,
+      "close": 3.88,
+      "returnPct": -6.73
+    },
+    {
+      "year": 1990,
+      "avg": 4.83,
+      "high": 5.34,
+      "low": 3.95,
+      "close": 4.16,
+      "returnPct": -20.15
+    },
+    {
+      "year": 1989,
+      "avg": 5.51,
+      "high": 6.22,
+      "low": 5.05,
+      "close": 5.21,
+      "returnPct": -14.03
+    },
+    {
+      "year": 1988,
+      "avg": 6.53,
+      "high": 7.82,
+      "low": 6.04,
+      "close": 6.06,
+      "returnPct": -9.55
+    },
+    {
+      "year": 1987,
+      "avg": 7.01,
+      "high": 10.93,
+      "low": 5.36,
+      "close": 6.7,
+      "returnPct": 26.89
+    },
+    {
+      "year": 1986,
+      "avg": 5.44,
+      "high": 6.31,
+      "low": 4.85,
+      "close": 5.28,
+      "returnPct": -9.43
+    },
+    {
+      "year": 1985,
+      "avg": 6.12,
+      "high": 6.75,
+      "low": 5.45,
+      "close": 5.83,
+      "returnPct": -7.31
+    },
+    {
+      "year": 1984,
+      "avg": 8.14,
+      "high": 10.13,
+      "low": 6.26,
+      "close": 6.29,
+      "returnPct": -29.72
+    },
+    {
+      "year": 1983,
+      "avg": 11.43,
+      "high": 14.67,
+      "low": 8.37,
+      "close": 8.95,
+      "returnPct": -17.44
+    },
+    {
+      "year": 1982,
+      "avg": 7.93,
+      "high": 11.2,
+      "low": 4.9,
+      "close": 10.84,
+      "returnPct": 32.84
+    },
+    {
+      "year": 1981,
+      "avg": 10.52,
+      "high": 16.45,
+      "low": 8.03,
+      "close": 8.16,
+      "returnPct": -47.69
+    },
+    {
+      "year": 1980,
+      "avg": 20.8,
+      "high": 49.45,
+      "low": 10.8,
+      "close": 15.6,
+      "returnPct": -44.29
+    },
+    {
+      "year": 1979,
+      "avg": 11.1,
+      "high": 28.0,
+      "low": 5.94,
+      "close": 28.0,
+      "returnPct": 366.67
+    },
+    {
+      "year": 1978,
+      "avg": 5.42,
+      "high": 6.3,
+      "low": 4.83,
+      "close": 6.0,
+      "returnPct": 25.52
+    },
+    {
+      "year": 1977,
+      "avg": 4.64,
+      "high": 4.98,
+      "low": 4.3,
+      "close": 4.78,
+      "returnPct": 9.63
+    },
+    {
+      "year": 1976,
+      "avg": 4.36,
+      "high": 5.06,
+      "low": 3.81,
+      "close": 4.36,
+      "returnPct": 4.56
+    },
+    {
+      "year": 1975,
+      "avg": 4.42,
+      "high": 5.23,
+      "low": 3.91,
+      "close": 4.17,
+      "returnPct": -4.14
+    },
+    {
+      "year": 1974,
+      "avg": 4.71,
+      "high": 6.7,
+      "low": 3.22,
+      "close": 4.35,
+      "returnPct": 33.85
+    },
+    {
+      "year": 1973,
+      "avg": 2.56,
+      "high": 3.38,
+      "low": 1.96,
+      "close": 3.25,
+      "returnPct": 62.5
+    },
+    {
+      "year": 1972,
+      "avg": 1.68,
+      "high": 2.04,
+      "low": 1.35,
+      "close": 2.0,
+      "returnPct": 43.88
+    },
+    {
+      "year": 1971,
+      "avg": 1.55,
+      "high": 1.7,
+      "low": 1.29,
+      "close": 1.39,
+      "returnPct": -15.24
+    },
+    {
+      "year": 1970,
+      "avg": 1.77,
+      "high": 1.94,
+      "low": 1.56,
+      "close": 1.64,
+      "returnPct": -8.38
+    }
   ]
 }

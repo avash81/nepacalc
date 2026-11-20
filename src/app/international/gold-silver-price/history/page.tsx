@@ -167,13 +167,26 @@ export default function InternationalHistoryPage() {
   const datasetSchema = {
     '@context': 'https://schema.org',
     '@type': 'Dataset',
+    '@id': 'https://nepacalc.com/international/gold-silver-price/history/#dataset',
     name: 'International Gold and Silver Historical Price Dataset (1970 - 2026)',
-    description: 'Official 56-year historical bullion dataset of wholesale gold and silver spot prices in USD per troy ounce and gram.',
+    description: 'Official 56-year historical bullion dataset of wholesale gold and silver spot prices in USD per troy ounce and gram based on LBMA, World Bank, and COMEX benchmarks.',
     url: 'https://nepacalc.com/international/gold-silver-price/history/',
-    temporalCoverage: '1970-01-01/2026-11-17',
+    temporalCoverage: '1970-01-01/2026-11-20',
     spatialCoverage: 'Global / US (COMEX & LBMA)',
-    creator: { '@type': 'Organization', name: 'NepaCalc', url: 'https://nepacalc.com' },
+    isAccessibleForFree: true,
+    inLanguage: 'en-US',
+    creator: {
+      '@type': 'Organization',
+      name: 'NepaCalc',
+      url: 'https://nepacalc.com/',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'NepaCalc',
+      url: 'https://nepacalc.com/',
+    },
     license: 'https://creativecommons.org/licenses/by/4.0/',
+    measurementTechnique: 'London Bullion Market Association (LBMA) afternoon fixings, World Bank Commodity Markets pink sheet, and CME COMEX continuous futures settlement benchmarks',
   };
 
   const faqSchema = {
@@ -579,90 +592,115 @@ export default function InternationalHistoryPage() {
           </div>
         </section>
 
-        {/* ── Related Market Tools & Internal Links ── */}
-        <section className="w-full bg-white p-6 sm:p-8 rounded-2xl border border-slate-200/90 shadow-sm space-y-4">
-          <h2 className="text-xl font-black text-slate-900 tracking-tight">
-            Explore Related Precious Metals &amp; Currency Benchmarks
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pt-2">
-            <Link
-              href="/international/gold-silver-price/"
-              className="p-3.5 rounded-xl border border-slate-200 hover:border-amber-400 hover:bg-amber-50/40 transition-all flex flex-col justify-between"
-            >
-              <span className="text-sm font-bold text-slate-900 hover:text-amber-800">
-                Live Gold &amp; Silver Spot Rates (USA) →
-              </span>
-              <span className="text-xs text-slate-500 mt-1">
-                Real-time wholesale bullion spot prices per troy ounce, gram, and 10g in USD.
-              </span>
-            </Link>
-            <Link
-              href="/international/gold-silver-ratio/"
-              className="p-3.5 rounded-xl border border-slate-200 hover:border-amber-400 hover:bg-amber-50/40 transition-all flex flex-col justify-between"
-            >
-              <span className="text-sm font-bold text-slate-900 hover:text-amber-800">
-                Gold-to-Silver Ratio (Live GSR) →
-              </span>
-              <span className="text-xs text-slate-500 mt-1">
-                Interactive historical ratio calculator, silver swap value, and valuation bands.
-              </span>
-            </Link>
-            <Link
-              href="/international/dubai-gold-rate/"
-              className="p-3.5 rounded-xl border border-slate-200 hover:border-amber-400 hover:bg-amber-50/40 transition-all flex flex-col justify-between"
-            >
-              <span className="text-sm font-bold text-slate-900 hover:text-amber-800">
-                Dubai Gold Rate Today (AED &amp; USD) →
-              </span>
-              <span className="text-xs text-slate-500 mt-1">
-                24K, 22K, 21K, and 18K retail jewelry prices in Dubai with tourist VAT refunds.
-              </span>
-            </Link>
-            <Link
-              href="/market-rates/history/"
-              className="p-3.5 rounded-xl border border-slate-200 hover:border-amber-400 hover:bg-amber-50/40 transition-all flex flex-col justify-between"
-            >
-              <span className="text-sm font-bold text-slate-900 hover:text-amber-800">
-                Nepal Gold Price History (FENEGOSIDA) →
-              </span>
-              <span className="text-xs text-slate-500 mt-1">
-                Official historical records of hallmark gold and silver rates in Nepal (NPR per tola).
-              </span>
-            </Link>
-            <Link
-              href="/market-rates/live-gold-price/"
-              className="p-3.5 rounded-xl border border-slate-200 hover:border-amber-400 hover:bg-amber-50/40 transition-all flex flex-col justify-between"
-            >
-              <span className="text-sm font-bold text-slate-900 hover:text-amber-800">
-                Today Gold Price in Nepal (Live NPR) →
-              </span>
-              <span className="text-xs text-slate-500 mt-1">
-                Current hallmark gold and tejabi gold rates per tola and 10 grams in Kathmandu.
-              </span>
-            </Link>
-            <Link
-              href="/international/"
-              className="p-3.5 rounded-xl border border-slate-200 hover:border-amber-400 hover:bg-amber-50/40 transition-all flex flex-col justify-between"
-            >
-              <span className="text-sm font-bold text-slate-900 hover:text-amber-800">
-                International Market Hub →
-              </span>
-              <span className="text-xs text-slate-500 mt-1">
-                Browse global commodities, platinum, palladium, copper, and currency converters.
-              </span>
-            </Link>
+        {/* ── Related Market Tools & Country Portals ── */}
+        <section className="w-full bg-white p-6 sm:p-8 rounded-2xl border border-slate-200/90 shadow-sm space-y-5">
+          <div>
+            <h2 className="text-xl font-black text-slate-900 tracking-tight mb-2">
+              Explore Global Precious Metal History &amp; Rates by Country
+            </h2>
+            <p className="text-xs text-slate-500 mb-3">
+              Access real-time wholesale spot rates, local tax rules, and currency-specific pricing across global financial centres:
+            </p>
+            <div className="flex flex-wrap items-center gap-2 text-xs font-medium">
+              <Link
+                href="/international/uk-gold-silver/"
+                className="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-amber-800 rounded transition"
+              >
+                UK (GBP £)
+              </Link>
+              <Link
+                href="/international/canada-gold-silver/"
+                className="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-amber-800 rounded transition"
+              >
+                Canada (CAD C$)
+              </Link>
+              <Link
+                href="/international/australia-gold-silver/"
+                className="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-amber-800 rounded transition"
+              >
+                Australia (AUD A$)
+              </Link>
+              <Link
+                href="/international/germany-gold-silver/"
+                className="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-amber-800 rounded transition"
+              >
+                Germany (EUR €)
+              </Link>
+              <Link
+                href="/international/france-gold-silver/"
+                className="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-amber-800 rounded transition"
+              >
+                France (EUR €)
+              </Link>
+              <Link
+                href="/international/netherlands-gold-silver/"
+                className="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-amber-800 rounded transition"
+              >
+                Netherlands (EUR €)
+              </Link>
+              <Link
+                href="/international/gold-silver-price/"
+                className="px-2.5 py-1 bg-amber-100 hover:bg-amber-200 text-amber-900 font-bold rounded transition"
+              >
+                USA (USD $)
+              </Link>
+              <Link
+                href="/international/dubai-gold-rate/"
+                className="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-amber-800 rounded transition"
+              >
+                Dubai (AED)
+              </Link>
+            </div>
+          </div>
+
+          <div className="border-t border-slate-100 pt-4">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
+              Precious Metal Calculators &amp; Converters
+            </h3>
+            <div className="flex flex-wrap items-center gap-2 text-xs font-medium">
+              <Link
+                href="/international/gold-silver-ratio/"
+                className="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-amber-800 rounded transition"
+              >
+                Live Gold-Silver Ratio
+              </Link>
+              <Link
+                href="/calculator/gold-converter/"
+                className="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-amber-800 rounded transition"
+              >
+                Gold Unit Converter (oz ↔ gram)
+              </Link>
+              <Link
+                href="/calculator/currency-converter/"
+                className="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-amber-800 rounded transition"
+              >
+                Currency Converter
+              </Link>
+              <Link
+                href="/market-rates/history/"
+                className="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-amber-800 rounded transition"
+              >
+                Nepal Gold History (FENEGOSIDA)
+              </Link>
+              <Link
+                href="/international/"
+                className="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-amber-800 rounded transition"
+              >
+                International Commodities Hub
+              </Link>
+            </div>
           </div>
 
           {/* ── Official Institutional Sources ── */}
           <div className="pt-4 border-t border-slate-100 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-slate-500">
-            <span className="font-bold text-slate-700">Authoritative Market Sources:</span>
+            <span className="font-bold text-slate-700">Official Data Sources &amp; Verification:</span>
             <a
-              href="https://www.gold.org"
+              href="https://www.worldbank.org/en/research/commodity-markets"
               target="_blank"
               rel="noopener noreferrer nofollow"
               className="hover:text-amber-700 hover:underline"
             >
-              World Gold Council (WGC) ↗
+              World Bank Pink Sheet (1960-2024) ↗
             </a>
             <span className="text-slate-300">•</span>
             <a
@@ -671,7 +709,7 @@ export default function InternationalHistoryPage() {
               rel="noopener noreferrer nofollow"
               className="hover:text-amber-700 hover:underline"
             >
-              LBMA Precious Metals Benchmark ↗
+              LBMA London Fixings (1970-2026) ↗
             </a>
             <span className="text-slate-300">•</span>
             <a
@@ -680,7 +718,16 @@ export default function InternationalHistoryPage() {
               rel="noopener noreferrer nofollow"
               className="hover:text-amber-700 hover:underline"
             >
-              CME Group COMEX Futures ↗
+              CME Group COMEX Continuous Futures ↗
+            </a>
+            <span className="text-slate-300">•</span>
+            <a
+              href="https://www.gold.org"
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              className="hover:text-amber-700 hover:underline"
+            >
+              World Gold Council (WGC) ↗
             </a>
           </div>
         </section>
