@@ -43,13 +43,22 @@ const UNIT_MULTIPLIERS: Record<string, { label: string; shortLabel: string; ozFa
   kg: { label: 'Per Kilogram', shortLabel: 'Kilo', ozFactor: 1000 / 31.1034768 },
 };
 
-// Purities for Gold
+// Purities for Gold (US Standards: 24K pure benchmark, 22K Eagle/jewelry, 18K fine, 14K popular, 10K FTC minimum)
 const GOLD_PURITIES: Record<string, { name: string; purity: number; desc: string }> = {
-  '24k': { name: '24K', purity: 0.999, desc: '99.9% Pure (Investment Bullion)' },
-  '22k': { name: '22K', purity: 0.9167, desc: '91.6% (Hallmark Jewelry)' },
-  '18k': { name: '18K', purity: 0.750, desc: '75.0% (Diamond & Fine Jewelry)' },
-  '14k': { name: '14K', purity: 0.5833, desc: '58.3% (Popular Fine Jewelry)' },
-  '10k': { name: '10K', purity: 0.4167, desc: '41.7% (Entry Fine Jewelry)' },
+  '24k': { name: '24K', purity: 1.0000, desc: '100% Pure Benchmark (24/24)' },
+  '22k': { name: '22K', purity: 22 / 24, desc: '91.67% Hallmark (22/24)' },
+  '18k': { name: '18K', purity: 18 / 24, desc: '75.0% Fine Jewelry (18/24)' },
+  '14k': { name: '14K', purity: 14 / 24, desc: '58.33% Popular US Jewelry (14/24)' },
+  '10k': { name: '10K', purity: 10 / 24, desc: '41.67% Legal Minimum US Gold (10/24)' },
+};
+
+// Purities for Silver (US Standards: 9999 Fine, 999 Bullion, 925 Sterling, 900 Coin, 400 1965-70 Half Dollars)
+const SILVER_PURITIES: Record<string, { name: string; purity: number; desc: string }> = {
+  s9999: { name: '9999 Fine', purity: 0.9999, desc: '99.99% Fine Silver Bullion' },
+  s999: { name: '999 Fine', purity: 0.9990, desc: '99.9% Standard Silver Bullion' },
+  s925: { name: '925 Sterling', purity: 0.9250, desc: '92.5% Sterling Silver Jewelry & Flatware' },
+  s900: { name: '900 Coin', purity: 0.9000, desc: '90% Constitutional US Coin Silver' },
+  s400: { name: '400 Silver', purity: 0.4000, desc: '40% Eligible US Silver Coins (1965-1970 Kennedy Half Dollars)' },
 };
 
 // Section A: International Silver Purity & Alloy Matrix data
@@ -75,7 +84,8 @@ export default function InternationalGoldClient({ initialData }: Props) {
   // Modal Calculator State
   const [calcMetal, setCalcMetal] = useState<'gold' | 'silver'>('gold');
   const [calcPurity, setCalcPurity] = useState<'24k' | '22k' | '18k' | '14k' | '10k'>('24k');
-  const [calcUnitMode, setCalcUnitMode] = useState<'oz' | 'g' | '10g' | 'kg' | 'tola'>('oz');
+  const [calcSilverPurity, setCalcSilverPurity] = useState<'s9999' | 's999' | 's925' | 's900' | 's400'>('s999');
+  const [calcUnitMode, setCalcUnitMode] = useState<'oz' | 'g' | 'dwt' | '10g' | 'kg' | 'tola'>('oz');
   const [calcSimpleQty, setCalcSimpleQty] = useState<string>('1');
 
   // Live Auto-Update Poller - dual API sources (public gold-api.com + same-origin /data/international-rates.json)
@@ -281,23 +291,64 @@ export default function InternationalGoldClient({ initialData }: Props) {
 
   // Calculator Modal Calculation
   const baseRateOz = calcMetal === 'gold' ? data.gold.spotUSD : data.silver.spotUSD;
-  const purityFactor = calcMetal === 'gold' ? GOLD_PURITIES[calcPurity].purity : 0.999;
+  const purityFactor = calcMetal === 'gold' 
+    ? GOLD_PURITIES[calcPurity].purity 
+    : SILVER_PURITIES[calcSilverPurity].purity;
 
   let computedQtyInOz = 0;
-  const qtyVal = parseFloat(calcSimpleQty) || 0;
-  if (calcUnitMode === 'oz') {
-    computedQtyInOz = qtyVal;
-  } else if (calcUnitMode === 'g') {
-    computedQtyInOz = qtyVal / 31.1034768;
-  } else if (calcUnitMode === '10g') {
-    computedQtyInOz = qtyVal * (10 / 31.1034768);
-  } else if (calcUnitMode === 'kg') {
-    computedQtyInOz = qtyVal * (1000 / 31.1034768);
-  } else if (calcUnitMode === 'tola') {
-    computedQtyInOz = qtyVal * (11.6638 / 31.1034768);
+  const qtyVal = parseFloat(calcSimpleQty);
+  const isValidQty = !isNaN(qtyVal) && qtyVal > 0;
+
+  if (isValidQty) {
+    if (calcUnitMode === 'oz') {
+      computedQtyInOz = qtyVal;
+    } else if (calcUnitMode === 'g') {
+      computedQtyInOz = qtyVal / 31.1034768;
+    } else if (calcUnitMode === 'dwt') {
+      computedQtyInOz = qtyVal / 20; // 1 Troy oz = 20 dwt (1.55517384 g each)
+    } else if (calcUnitMode === '10g') {
+      computedQtyInOz = qtyVal * (10 / 31.1034768);
+    } else if (calcUnitMode === 'kg') {
+      computedQtyInOz = qtyVal * (1000 / 31.1034768);
+    } else if (calcUnitMode === 'tola') {
+      computedQtyInOz = qtyVal * (11.6638 / 31.1034768);
+    }
   }
 
-  const calcTotalUSD = computedQtyInOz * baseRateOz * purityFactor;
+  const calcTotalUSD = isValidQty ? computedQtyInOz * baseRateOz * purityFactor : 0;
+
+  // Rate per 1 unit
+  let unitFactorInOz = 1;
+  if (calcUnitMode === 'oz') unitFactorInOz = 1;
+  else if (calcUnitMode === 'g') unitFactorInOz = 1 / 31.1034768;
+  else if (calcUnitMode === 'dwt') unitFactorInOz = 1 / 20;
+  else if (calcUnitMode === '10g') unitFactorInOz = 10 / 31.1034768;
+  else if (calcUnitMode === 'kg') unitFactorInOz = 1000 / 31.1034768;
+  else if (calcUnitMode === 'tola') unitFactorInOz = 11.6638 / 31.1034768;
+
+  const calcUnitRateUSD = baseRateOz * unitFactorInOz * purityFactor;
+
+  const getUnitDisplayLabel = () => {
+    switch (calcUnitMode) {
+      case 'oz': return 'Troy oz';
+      case 'g': return 'gram';
+      case 'dwt': return 'dwt';
+      case '10g': return '10 grams';
+      case 'kg': return 'kilogram';
+      case 'tola': return 'tola';
+    }
+  };
+
+  const getQuantityInputLabel = () => {
+    switch (calcUnitMode) {
+      case 'oz': return 'Quantity (Troy Ounce)';
+      case 'g': return 'Quantity (Gram)';
+      case 'dwt': return 'Quantity (Pennyweight)';
+      case '10g': return 'Quantity (10 Grams)';
+      case 'kg': return 'Quantity (Kilogram)';
+      case 'tola': return 'Quantity (Tola)';
+    }
+  };
 
   return (
     <div className="w-full max-w-6xl mx-auto px-4 py-3 sm:py-6 md:py-8 font-sans font-modern-ui">
@@ -780,15 +831,21 @@ export default function InternationalGoldClient({ initialData }: Props) {
                 </div>
               </div>
 
-              {/* Field 2: Unit (Single 5-column balanced row matching Purity row) */}
+              {/* Field 2: Weight Unit (Primary US Units + Tola) */}
               <div>
-                <label className="block text-xs font-semibold text-gray-600 mb-1">
-                  Unit
-                </label>
-                <div className="grid grid-cols-5 gap-1.5">
+                <div className="flex items-center justify-between mb-1">
+                  <label className="block text-xs font-semibold text-gray-600">
+                    Weight Unit
+                  </label>
+                  {calcUnitMode === 'dwt' && (
+                    <span className="text-[10px] text-gray-500 font-medium">Pennyweight (dwt) = 1.555g</span>
+                  )}
+                </div>
+                <div className="grid grid-cols-3 sm:grid-cols-6 gap-1.5">
                   {[
-                    { id: 'oz', label: 'Ounce' },
+                    { id: 'oz', label: 'Troy oz' },
                     { id: 'g', label: 'Gram' },
+                    { id: 'dwt', label: 'DWT', title: 'Pennyweight (dwt)' },
                     { id: '10g', label: '10 g' },
                     { id: 'kg', label: 'Kilo' },
                     { id: 'tola', label: 'Tola' },
@@ -798,6 +855,7 @@ export default function InternationalGoldClient({ initialData }: Props) {
                       <button
                         key={u.id}
                         type="button"
+                        title={u.title || u.label}
                         onClick={() => setCalcUnitMode(u.id as any)}
                         className={`py-1.5 px-1 rounded-xl text-[11px] sm:text-xs font-bold transition text-center cursor-pointer ${
                           active
@@ -812,11 +870,11 @@ export default function InternationalGoldClient({ initialData }: Props) {
                 </div>
               </div>
 
-              {/* Field 2b: Purity (When Gold is Selected) */}
-              {calcMetal === 'gold' && (
+              {/* Field 2b: Purity Selection */}
+              {calcMetal === 'gold' ? (
                 <div>
                   <label className="block text-xs font-semibold text-gray-600 mb-1">
-                    Purity / Karat
+                    Gold Purity / Karat
                   </label>
                   <div className="grid grid-cols-5 gap-1.5">
                     {(Object.keys(GOLD_PURITIES) as (keyof typeof GOLD_PURITIES)[]).map((k) => {
@@ -838,12 +896,38 @@ export default function InternationalGoldClient({ initialData }: Props) {
                     })}
                   </div>
                 </div>
+              ) : (
+                <div>
+                  <label className="block text-xs font-semibold text-gray-600 mb-1">
+                    Silver Purity
+                  </label>
+                  <div className="grid grid-cols-5 gap-1.5">
+                    {(Object.keys(SILVER_PURITIES) as (keyof typeof SILVER_PURITIES)[]).map((sk) => {
+                      const active = calcSilverPurity === sk;
+                      return (
+                        <button
+                          key={sk}
+                          type="button"
+                          title={SILVER_PURITIES[sk].desc}
+                          onClick={() => setCalcSilverPurity(sk as any)}
+                          className={`py-1.5 px-0.5 rounded-xl text-[10px] sm:text-xs font-bold transition text-center cursor-pointer ${
+                            active
+                              ? 'border-2 border-[#B91C1C] text-[#B91C1C] bg-red-50/40 shadow-xs'
+                              : 'border border-gray-300 text-gray-600 hover:bg-gray-50'
+                          }`}
+                        >
+                          {SILVER_PURITIES[sk].name}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
               )}
 
               {/* Field 3: Quantity Input */}
               <div>
                 <label className="block text-xs font-semibold text-gray-600 mb-1">
-                  Quantity ({calcUnitMode === 'oz' ? 'Troy Ounce' : calcUnitMode === 'g' ? 'Grams' : calcUnitMode === '10g' ? '10g units' : calcUnitMode === 'kg' ? 'Kilograms' : 'Tolas'})
+                  {getQuantityInputLabel()}
                 </label>
                 <input
                   type="number"
@@ -854,20 +938,44 @@ export default function InternationalGoldClient({ initialData }: Props) {
                   placeholder="Enter quantity..."
                   className="w-full px-3.5 py-2 text-sm sm:text-base font-bold text-gray-900 rounded-xl border border-gray-300 focus:outline-none focus:border-[#B91C1C]"
                 />
+                {!isValidQty && calcSimpleQty !== '' && (
+                  <p className="text-[11px] text-rose-600 font-medium mt-1">
+                    Please enter a valid positive number.
+                  </p>
+                )}
               </div>
 
               {/* Field 4: Result Box */}
               <div className="bg-[#ECFDF5] border border-[#A7F3D0] rounded-2xl p-3.5 sm:p-4 text-center mt-2">
                 <span className="block text-[11px] font-bold text-[#059669] uppercase tracking-wider">
-                  Total Price
+                  ESTIMATED METAL VALUE
                 </span>
                 <div className="text-2xl sm:text-3xl font-extrabold text-[#059669] my-0.5 tracking-tight">
                   ${calcTotalUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD
                 </div>
                 <div className="text-[11px] text-gray-500 mt-0.5">
-                  Rate: ${(baseRateOz * (calcUnitMode === 'tola' ? 11.6638 / 31.1034768 : calcUnitMode === '10g' ? 10 / 31.1034768 : calcUnitMode === 'g' ? 1 / 31.1034768 : calcUnitMode === 'kg' ? 1000 / 31.1034768 : 1) * purityFactor).toFixed(2)} USD / unit · Real-time Benchmark
+                  Rate: ${calcUnitRateUSD.toFixed(2)} USD / {getUnitDisplayLabel()} &middot; {calcMetal === 'gold' ? GOLD_PURITIES[calcPurity].name : SILVER_PURITIES[calcSilverPurity].name} Spot Benchmark
                 </div>
+                <p className="text-[10px] text-[#059669]/90 font-medium mt-1">
+                  Based on the live spot benchmark and selected purity.
+                </p>
               </div>
+
+              {/* Informational Notes */}
+              {calcMetal === 'gold' ? (
+                <p className="text-[11px] text-gray-500 bg-amber-50/70 p-2.5 rounded-xl border border-amber-200/60 leading-relaxed">
+                  <strong className="text-amber-900">American Gold Eagle Note:</strong> American Gold Eagle coins are 22K gold but contain their stated weight in pure gold. Their total coin weight is greater than their fine-gold content. Use the coin&apos;s stated fine-gold weight when estimating its metal value.
+                </p>
+              ) : (
+                <p className="text-[11px] text-gray-500 bg-slate-50 p-2.5 rounded-xl border border-slate-200 leading-relaxed">
+                  <strong className="text-slate-800">US Silver Coin Note:</strong> Some older US coins contain 90% or 40% silver, depending on denomination and year. Check the coin&apos;s actual composition before calculating its silver value. Collectible coins may also have additional numismatic value.
+                </p>
+              )}
+
+              {/* Pricing Disclaimer */}
+              <p className="text-[10px] text-gray-400 leading-tight text-center px-1">
+                Estimated metal value is calculated from the displayed spot-market reference and selected purity. It does not include dealer premiums, jewellery workmanship, gemstones, assay or refining costs, shipping or applicable taxes. Actual buying and selling prices may differ.
+              </p>
 
               <button
                 type="button"
