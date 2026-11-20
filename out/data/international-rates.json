@@ -1,21 +1,21 @@
 {
   "gold": {
-    "spotUSD": 3547.4,
+    "spotUSD": 3530.45,
     "change24h": 34.8,
-    "changePercent24h": 0.99,
-    "prevClose": 3512.6,
-    "high24h": 3563.9,
-    "low24h": 3529.2,
-    "updatedAt": "2026-11-20T16:10:06Z"
+    "changePercent24h": 1,
+    "prevClose": 3495.65,
+    "high24h": 3546.95,
+    "low24h": 3512.25,
+    "updatedAt": "2026-11-20T17:39:06Z"
   },
   "silver": {
-    "spotUSD": 41.57,
+    "spotUSD": 40.94,
     "change24h": 0.68,
-    "changePercent24h": 1.66,
-    "prevClose": 40.89,
-    "high24h": 42.12,
-    "low24h": 40.82,
-    "updatedAt": "2026-11-20T16:10:05Z"
+    "changePercent24h": 1.69,
+    "prevClose": 40.26,
+    "high24h": 41.49,
+    "low24h": 40.19,
+    "updatedAt": "2026-11-20T17:39:05Z"
   },
   "history30d": {
     "gold": [
@@ -81,7 +81,7 @@
       },
       {
         "date": "11-20",
-        "price": 3547.4
+        "price": 3530.45
       }
     ],
     "silver": [
@@ -147,12 +147,12 @@
       },
       {
         "date": "11-20",
-        "price": 41.57
+        "price": 40.94
       }
     ]
   },
   "usdNprRate": 149.27,
   "source": "COMEX / LBMA Spot Benchmark",
-  "published_at": "2026-11-20T16:10:29.355Z",
+  "published_at": "2026-11-20T17:39:11.251Z",
   "status": "verified"
 }
