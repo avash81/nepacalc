@@ -243,15 +243,15 @@ export default function InternationalGoldClient({ initialData }: Props) {
       const gGram = (data.gold.spotUSD / 31.1034768).toFixed(2);
       const g10g = (data.gold.spotUSD * (10 / 31.1034768)).toFixed(2);
 
-      // 1. Dynamic browser tab title (SEO clean without price numbers)
-      document.title = 'Gold & Silver Price Today USA | Live Spot Rates (USD)';
+      // 1. Dynamic browser tab title (SEO clean matching search intent)
+      document.title = 'Gold Price Today in USA & Silver Price | Live USD Rates';
 
       // 2. Dynamic meta description
       const metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc) {
         metaDesc.setAttribute(
           'content',
-          `Live international spot prices: Gold $${gFmt}/oz ($${gGram}/g, $${g10g}/10g) and Silver $${sFmt}/oz in USD. Compare purity rates and market benchmarks.`
+          `Check gold price today in the USA ($${gFmt}/oz, $${gGram}/g) and live silver price in USD ($${sFmt}/oz). Compare 24K, 22K, 14K rates, sterling silver, and charts.`
         );
       }
 
@@ -937,7 +937,7 @@ export default function InternationalGoldClient({ initialData }: Props) {
               {/* Field 4: Result Box */}
               <div className="bg-[#ECFDF5] border border-[#A7F3D0] rounded-2xl p-3.5 sm:p-4 text-center mt-2">
                 <span className="block text-[11px] font-bold text-[#059669] uppercase tracking-wider">
-                  ESTIMATED METAL VALUE
+                  {calcMetal === 'gold' ? 'ESTIMATED GOLD VALUE' : 'ESTIMATED SILVER VALUE'}
                 </span>
                 <div className="text-2xl sm:text-3xl font-extrabold text-[#059669] my-0.5 tracking-tight">
                   ${calcTotalUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD

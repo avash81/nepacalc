@@ -62,8 +62,8 @@ function getInitialRates(): InternationalRatesData {
 }
 
 export const metadata: Metadata = {
-  title: 'Gold Price in USA & Silver Price Today | Live USD Rates',
-  description: 'Check live US gold and silver prices in USD per troy ounce, gram and kilogram. Compare gold karats, silver purity, bid and ask prices, and market trends.',
+  title: 'Gold Price Today in USA & Silver Price | Live USD Rates',
+  description: 'Check gold price today in the USA and live silver price in US dollars per troy ounce, gram and kilogram. Compare 24K, 22K, 14K gold rates, 925 sterling silver price, charts, and gold-to-silver ratio.',
   alternates: {
     canonical: 'https://nepacalc.com/international/gold-silver-price/',
     languages: {
@@ -85,8 +85,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: 'https://nepacalc.com/international/gold-silver-price/',
-    title: 'Gold Price in USA & Silver Price Today | Live USD Rates',
-    description: 'Live US gold and silver spot prices in USD per troy ounce, gram and kilogram. Compare gold karats, silver purity, bid and ask quotes, and market trends.',
+    title: 'Gold Price Today in USA & Silver Price | Live USD Rates',
+    description: 'Live US gold and silver spot prices in USD per troy ounce, gram and kilogram. Compare 24K, 22K, 14K gold rates, 925 sterling silver, bid and ask quotes, and charts.',
     images: [
       {
         url: 'https://nepacalc.com/images/og/gold-silver-price-usa.png',
@@ -100,8 +100,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Gold Price in USA & Silver Price Today | Live USD Rates',
-    description: 'Live US gold and silver spot prices in USD per troy ounce, gram and kilogram. Compare gold karats, silver purity, bid and ask quotes, and market trends.',
+    title: 'Gold Price Today in USA & Silver Price | Live USD Rates',
+    description: 'Live US gold and silver spot prices in USD per troy ounce, gram and kilogram. Compare 24K, 22K, 14K gold rates, 925 sterling silver, bid and ask quotes, and charts.',
     images: [
       {
         url: 'https://nepacalc.com/images/og/gold-silver-price-usa.png',
@@ -156,6 +156,76 @@ export default function InternationalGoldSilverPage() {
             position: 3,
             name: 'Gold and Silver Price USA',
             item: 'https://nepacalc.com/international/gold-silver-price/',
+          },
+        ],
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': 'https://nepacalc.com/international/gold-silver-price/#faq',
+        mainEntity: [
+          {
+            '@type': 'Question',
+            name: 'What is the gold price today in the USA?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'The gold price today in the USA is determined by the live COMEX futures and international LBMA spot benchmark, quoted in US dollars per troy ounce, gram, and kilogram.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'What is the silver price today in US dollars?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'The live silver price in US dollars is quoted per troy ounce (31.1035 grams) and can be calculated per gram, 10 grams, or kilogram for 999 fine silver and 925 sterling silver.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'What is the current sterling silver price?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Sterling silver contains 92.5% pure silver and is marked 925. Its estimated metal value equals its weight multiplied by 0.925 and the current fine silver price per gram.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'What is the 24 carat gold price in the USA today?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: '24 carat gold is 99.9% pure bullion. Its price per troy ounce equals the active international gold spot quotation, and its price per gram is obtained by dividing the spot price by 31.1034768.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'What is the 22K gold rate per gram today?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: '22K gold contains 91.67% pure gold. Its price per gram is calculated by multiplying the 24K pure gold price per gram by 0.9167.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'How much is 14K gold worth per ounce?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: '14K gold contains 58.33% pure gold. Its melt value per ounce is calculated by multiplying the 24K spot gold price per ounce by 0.5833.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'What is the gold-to-silver ratio today and how is it calculated?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'The gold-to-silver ratio measures how many ounces of silver are needed to equal the market value of one ounce of gold. It is calculated by dividing the gold spot price per ounce by the silver spot price per ounce.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'Where can I view live gold and silver price charts and historical performance?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Our interactive portal displays live 30-day interactive price trend charts in USD, alongside a dedicated 56-year historical database spanning 1970 to 2026.',
+            },
           },
         ],
       },
@@ -235,20 +305,37 @@ export default function InternationalGoldSilverPage() {
       {/* ── Educational Content Underneath Live Price Displays & Calculators ── */}
       <div className="max-w-6xl mx-auto px-4 pb-16 space-y-8">
 
-        {/* Section 1: Overview */}
-        <section className="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 shadow-xs">
-          <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 tracking-tight">
-            Gold and Silver Price in the USA: Live Spot Rates, Purity and Value Explained
-          </h2>
-          <div className="space-y-3.5 text-sm md:text-base text-gray-700 leading-relaxed">
-            <p>
-              Gold and silver prices in the United States are quoted in US dollars (USD) and are closely linked to international precious metals markets. The live rates above show the current market prices for gold and silver, while the value per gram, ounce, kilogram and other weights is calculated from the same underlying metal price.
+        {/* Section 1: Overview & Current Gold and Silver Prices in US Dollars */}
+        <section className="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 shadow-xs space-y-5">
+          <div>
+            <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 tracking-tight">
+              Gold and Silver Price in the USA: Live Spot Rates, Purity and Value Explained
+            </h2>
+            <div className="space-y-3.5 text-sm md:text-base text-gray-700 leading-relaxed">
+              <p>
+                Gold and silver prices in the United States are quoted in US dollars (USD) and are closely linked to international precious metals markets. The live rates above show the current market prices for gold and silver, while the value per gram, ounce, kilogram and other weights is calculated from the same underlying metal price.
+              </p>
+              <p>
+                The actual value of gold or silver depends on its weight, purity and current market rate. Physical coins, bullion bars, jewellery and silverware may also have additional premiums or costs that are not included in the spot price.
+              </p>
+              <p>
+                Whether you are checking the <strong>gold price today in the USA</strong>, tracking the <strong>gold rate today in the USA</strong>, calculating the value of 14K jewellery, checking the <strong>silver price in USD</strong>, or comparing <strong>gold price today per gram</strong>, the following guide explains how these prices work.
+              </p>
+            </div>
+          </div>
+
+          <div className="border-t border-gray-100 pt-5 space-y-3">
+            <h3 className="text-lg font-bold text-gray-900">
+              Current Gold and Silver Prices in US Dollars
+            </h3>
+            <p className="text-sm md:text-base text-gray-700 leading-relaxed">
+              Gold and silver prices in the United States are commonly quoted in US dollars (USD) per troy ounce. The live market rates can also be converted into grams, 10 grams, pennyweights and kilograms to help compare the value of different quantities.
             </p>
-            <p>
-              The actual value of gold or silver depends on its weight, purity and current market rate. Physical coins, bullion bars, jewellery and silverware may also have additional premiums or costs that are not included in the spot price.
+            <p className="text-sm md:text-base text-gray-700 leading-relaxed">
+              The gold price today in the USA depends on the current international gold spot benchmark, while the silver price today in US dollars reflects the corresponding silver market quotation. Both prices change as precious metals trade across global markets.
             </p>
-            <p>
-              Whether you are checking the gold price today in the USA, calculating the value of 14K jewellery, comparing silver prices per gram, or understanding how precious metals are traded, the following guide explains how these prices work.
+            <p className="text-sm md:text-base text-gray-700 leading-relaxed">
+              For smaller quantities, the gold price per gram and silver price per gram provide a practical way to estimate the metal value of jewellery, bullion and other precious metal items.
             </p>
           </div>
         </section>
@@ -371,17 +458,20 @@ export default function InternationalGoldSilverPage() {
           </div>
         </section>
 
-        {/* Section 3: Silver Price in the USA by Purity */}
+        {/* Section 3: Silver Price Per Troy Ounce, Gram and Sterling Purity */}
         <section className="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 shadow-xs space-y-6">
           <div>
             <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 tracking-tight">
-              Silver Price in the USA by Purity
+              Silver Price Per Troy Ounce, Gram and Sterling Purity
             </h2>
             <p className="text-sm md:text-base text-gray-700 leading-relaxed">
-              Silver is traded in different purity grades depending on whether it is used for investment bullion, jewellery, silverware or industrial applications.
+              The silver spot price is generally quoted per troy ounce in US dollars. Dividing the current silver price per troy ounce by 31.1034768 gives its approximate value per gram.
             </p>
             <p className="text-sm md:text-base text-gray-700 leading-relaxed mt-2">
-              Fine silver bullion is commonly marked 999, while sterling silver jewellery and household silverware are generally marked 925.
+              Fine silver bullion is commonly marked 999, while sterling silver contains 92.5% pure silver and is marked 925. The estimated sterling silver price can therefore be calculated by multiplying its weight by 0.925 and the current fine-silver price per gram.
+            </p>
+            <p className="text-sm md:text-base text-gray-700 leading-relaxed mt-2">
+              The actual selling price of sterling silver jewellery or silverware may differ from its estimated metal value because of refining costs, workmanship, condition and buyer margins. Silver is traded in various purity grades across US markets:
             </p>
           </div>
 
@@ -458,17 +548,17 @@ export default function InternationalGoldSilverPage() {
           </div>
         </section>
 
-        {/* Section 4: Gold and Silver Price per Gram, Ounce and Kilogram */}
+        {/* Section 4: Gold Price Per Ounce and Per Gram Today */}
         <section className="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 shadow-xs space-y-6">
           <div>
             <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 tracking-tight">
-              Gold and Silver Price per Gram, Ounce and Kilogram
+              Gold Price Per Ounce and Per Gram Today
             </h2>
             <p className="text-sm md:text-base text-gray-700 leading-relaxed">
-              Gold and silver prices are commonly displayed in troy ounces in international bullion markets. However, buyers, sellers and investors also use grams, kilograms, tolas and other units.
+              Gold and silver prices are commonly displayed in troy ounces in international bullion markets. However, buyers, sellers and investors frequently trade in grams, 10 grams, pennyweights, and kilograms.
             </p>
             <p className="text-sm md:text-base text-gray-700 leading-relaxed mt-2">
-              Converting between these measurements makes it easier to compare precious metal prices and calculate the value of different quantities.
+              The <strong>gold price per ounce today in USD</strong> represents the wholesale spot benchmark for 31.1034768 grams of 99.99% pure bullion. To calculate the <strong>gold price today per gram</strong>, simply divide the active spot price per ounce by 31.1034768. The table below provides standardized conversion factors across all primary bullion and jewellery weight units:
             </p>
           </div>
 
@@ -493,9 +583,9 @@ export default function InternationalGoldSilverPage() {
                   <td className="py-3 px-4 font-mono text-xs">0.03215075</td>
                 </tr>
                 <tr className="hover:bg-amber-50/40 transition">
-                  <td className="py-3 px-4 font-semibold text-gray-900">5 Grams</td>
-                  <td className="py-3 px-4 font-mono text-xs">5 g</td>
-                  <td className="py-3 px-4 font-mono text-xs">0.16075373</td>
+                  <td className="py-3 px-4 font-semibold text-gray-900">1 Pennyweight (dwt)</td>
+                  <td className="py-3 px-4 font-mono text-xs">1.55517384 g</td>
+                  <td className="py-3 px-4 font-mono text-xs">0.05000000</td>
                 </tr>
                 <tr className="hover:bg-amber-50/40 transition bg-gray-50/50">
                   <td className="py-3 px-4 font-semibold text-gray-900">10 Grams</td>
@@ -572,7 +662,34 @@ export default function InternationalGoldSilverPage() {
           </div>
         </section>
 
-        {/* Section 5: What Is the Gold and Silver Spot Price? */}
+        {/* Section 5: Gold and Silver Price Charts and Historical Performance */}
+        <section className="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 shadow-xs space-y-4">
+          <h2 className="text-xl md:text-2xl font-bold text-gray-900 tracking-tight">
+            Gold and Silver Price Charts and Historical Performance
+          </h2>
+          <div className="space-y-3.5 text-sm md:text-base text-gray-700 leading-relaxed">
+            <p>
+              Live gold and silver price charts help show how precious metals have moved over different market periods. Short-term charts can help illustrate daily and monthly price fluctuations, while longer historical charts provide context for changes over several years.
+            </p>
+            <p>
+              Gold price history and silver price history can be compared to identify past highs, market corrections and periods of changing demand. Historical performance is useful for understanding market trends, although past price movements do not guarantee future results.
+            </p>
+          </div>
+          <div className="pt-2 flex flex-wrap items-center gap-4">
+            <Link
+              href="/international/gold-silver-price/history/"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl text-sm shadow-sm transition"
+            >
+              <span>Explore 56-Year Gold &amp; Silver History (1970 &ndash; 2026)</span>
+              <span>&rarr;</span>
+            </Link>
+            <span className="text-xs text-gray-500">
+              Includes daily trading sessions, monthly benchmarks, and 50-year CAGR data.
+            </span>
+          </div>
+        </section>
+
+        {/* Section 6: What Is the Gold and Silver Spot Price? */}
         <section className="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 shadow-xs space-y-4">
           <h2 className="text-xl md:text-2xl font-bold text-gray-900 tracking-tight">
             What Is the Gold and Silver Spot Price?
@@ -810,34 +927,43 @@ export default function InternationalGoldSilverPage() {
           </div>
         </section>
 
-        {/* Section 10: What Is the Gold-to-Silver Ratio? */}
+        {/* Section 11: What Is the Gold-to-Silver Ratio Today? */}
         <section className="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 shadow-xs space-y-5">
           <div>
             <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2 tracking-tight">
-              What Is the Gold-to-Silver Ratio?
+              What Is the Gold-to-Silver Ratio Today?
             </h2>
             <p className="text-sm md:text-base text-gray-700 leading-relaxed">
-              The gold-to-silver ratio measures how many troy ounces of silver are needed to equal the market value of one troy ounce of gold. It is calculated by dividing the gold spot price per troy ounce by the silver spot price per troy ounce.
+              The <strong>gold-to-silver ratio today</strong> measures how many troy ounces of silver are required to purchase one single troy ounce of gold at current spot prices. It is calculated by dividing the gold spot price per troy ounce by the silver spot price per troy ounce.
             </p>
           </div>
 
           <div className="bg-amber-50/80 p-4 rounded-xl border border-amber-200 font-mono text-xs md:text-sm text-amber-950">
-            Gold-to-Silver Ratio = Gold Price per Troy Ounce &divide; Silver Price per Troy Ounce
+            Gold-to-Silver Ratio = Current Gold Spot Price per Troy Ounce &divide; Current Silver Spot Price per Troy Ounce
           </div>
 
-          <p className="text-sm text-gray-700 leading-relaxed">
-            For example, if gold trades at $3,000 per troy ounce and silver trades at $30 per troy ounce, the ratio is 100:1. This means one troy ounce of gold has the same spot-market value as 100 troy ounces of silver.
-          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1.5">
+              <h3 className="text-sm font-bold text-emerald-800 flex items-center gap-1.5">
+                <span>&uarr;</span> What Does a Rising Ratio Mean?
+              </h3>
+              <p className="text-xs text-gray-600 leading-relaxed">
+                When the ratio rises, gold is gaining value faster than silver (or silver is dropping faster). This frequently occurs during periods of economic uncertainty, risk aversion, or monetary tightening when investors seek gold as a primary safe-haven asset.
+              </p>
+            </div>
+            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1.5">
+              <h3 className="text-sm font-bold text-rose-800 flex items-center gap-1.5">
+                <span>&darr;</span> What Does a Falling Ratio Mean?
+              </h3>
+              <p className="text-xs text-gray-600 leading-relaxed">
+                When the ratio declines, silver is outperforming gold. Because more than 50% of silver demand originates from industrial applications (electronics, solar panels, EV manufacturing), a falling ratio often coincides with broader industrial and commodity bull cycles.
+              </p>
+            </div>
+          </div>
 
-          <div className="border-t border-gray-100 pt-4 space-y-2">
-            <h3 className="text-base font-bold text-gray-900">
-              Why Do Investors Monitor the Gold-to-Silver Ratio?
-            </h3>
+          <div className="border-t border-gray-100 pt-3 space-y-2">
             <p className="text-sm text-gray-700 leading-relaxed">
-              The ratio helps investors compare the relative performance of gold and silver. When the ratio increases, gold is outperforming silver over that period. When the ratio decreases, silver is outperforming gold.
-            </p>
-            <p className="text-sm text-gray-700 leading-relaxed">
-              Some precious metals investors use the ratio as one of several measures when comparing the two markets. However, a high or low ratio does not guarantee that either metal is undervalued or that a reversal will occur. The ratio should be considered alongside market conditions, supply and demand and individual investment objectives. Explore the dedicated{' '}
+              Historically over the past 50 years, the gold-to-silver ratio has fluctuated between roughly 30:1 and over 100:1. For interactive multi-decade charts and comparative analysis, visit our dedicated{' '}
               <Link
                 href="/international/gold-silver-ratio/"
                 className="text-blue-600 hover:underline font-semibold"
@@ -979,6 +1105,58 @@ export default function InternationalGoldSilverPage() {
               </h3>
               <p className="text-sm text-gray-700 leading-relaxed">
                 The gold-to-silver ratio is a measure of the relative value of the two metals. Investors sometimes use it to compare their historical and current performance, but it is not a guaranteed buying or selling signal. Gold and silver prices can be affected by different economic and industrial conditions.
+              </p>
+            </div>
+
+            <div className="pt-4">
+              <h3 className="text-base font-bold text-gray-900 mb-1.5">
+                What is the 24 carat gold price in the USA today?
+              </h3>
+              <p className="text-sm text-gray-700 leading-relaxed">
+                24 carat (24K) gold represents 99.9% fine gold bullion. Its spot price per troy ounce matches the live gold price in USD quoted at the top of this page. To find the 24 carat gold price per gram in the USA today, divide the troy ounce price by 31.1034768.
+              </p>
+            </div>
+
+            <div className="pt-4">
+              <h3 className="text-base font-bold text-gray-900 mb-1.5">
+                What is the 22K gold rate per gram today?
+              </h3>
+              <p className="text-sm text-gray-700 leading-relaxed">
+                22K gold contains 91.67% pure gold (916 hallmark). Its market rate per gram is calculated by multiplying the current 24K gold price per gram by 0.9167. For example, if 24K gold is $113.65/g, 22K gold is approximately $104.18/g before craftsmanship and retail markups.
+              </p>
+            </div>
+
+            <div className="pt-4">
+              <h3 className="text-base font-bold text-gray-900 mb-1.5">
+                How much is 14K gold worth per ounce?
+              </h3>
+              <p className="text-sm text-gray-700 leading-relaxed">
+                14K gold contains 58.33% pure gold. Its melt value per troy ounce equals the current 24K spot gold price per ounce multiplied by 0.5833. To find its value per gram, multiply the 24K price per gram by 0.5833.
+              </p>
+            </div>
+
+            <div className="pt-4">
+              <h3 className="text-base font-bold text-gray-900 mb-1.5">
+                What is the current sterling silver price?
+              </h3>
+              <p className="text-sm text-gray-700 leading-relaxed">
+                Sterling silver contains 92.5% pure silver and is marked with the 925 hallmark. Its estimated metal value depends on its weight and the current fine-silver spot price. A 925-marked item contains 0.925 grams of pure silver per gram of sterling silver. Multiply the item&apos;s total gram weight by 0.925 and then by the live silver price per gram to find its intrinsic bullion value.
+              </p>
+            </div>
+
+            <div className="pt-4">
+              <h3 className="text-base font-bold text-gray-900 mb-1.5">
+                Where can I view live gold and silver price charts and historical performance?
+              </h3>
+              <p className="text-sm text-gray-700 leading-relaxed">
+                The top cards on this page display live 30-day interactive price trend charts for gold and silver in USD. For long-term trends, visit our dedicated{' '}
+                <Link
+                  href="/international/gold-silver-price/history/"
+                  className="text-blue-600 hover:underline font-semibold"
+                >
+                  56-Year Gold and Silver Price History (1970–2026)
+                </Link>{' '}
+                portal, featuring daily COMEX sessions, monthly World Bank benchmarks, week/month/year min-max tables, and 50-year CAGR growth analysis.
               </p>
             </div>
 
