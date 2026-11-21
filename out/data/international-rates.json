@@ -6,7 +6,7 @@
     "prevClose": 3504.2,
     "high24h": 3555.5,
     "low24h": 3520.8,
-    "updatedAt": "2026-11-21T12:25:38Z"
+    "updatedAt": "2026-11-21T12:31:38Z"
   },
   "silver": {
     "spotUSD": 41.08,
@@ -15,7 +15,7 @@
     "prevClose": 40.4,
     "high24h": 41.63,
     "low24h": 40.33,
-    "updatedAt": "2026-11-21T12:25:37Z"
+    "updatedAt": "2026-11-21T12:31:37Z"
   },
   "history30d": {
     "gold": [
@@ -153,6 +153,6 @@
   },
   "usdNprRate": 148.28,
   "source": "COMEX / LBMA Spot Benchmark",
-  "published_at": "2026-11-21T12:25:49.463Z",
+  "published_at": "2026-11-21T12:31:48.300Z",
   "status": "verified"
 }
